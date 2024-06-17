@@ -6,4 +6,4 @@ description: Homepage
 image: /img/aelficon.png
 ---
 
-# Welcome to the home page
+# aelf Documentation
