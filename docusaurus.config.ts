@@ -57,8 +57,8 @@ const config: Config = {
     navbar: {
       title: "AELF Docs",
       logo: {
-        alt: "AELF",
-        src: "img/logo.svg",
+        alt: "aelf",
+        src: "img/aelficon.png",
       },
       items: [
         {
