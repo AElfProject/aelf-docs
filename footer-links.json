@@ -1,0 +1,39 @@
+{
+  "links": [
+    {
+      "title": "Docs",
+      "items": [
+        {
+          "label": "Tutorial",
+          "to": "/docs/intro"
+        }
+      ]
+    },
+    {
+      "title": "Community",
+      "items": [
+        {
+          "label": "Discord",
+          "href": "https://discord.gg/bgysa9xjvD"
+        },
+        {
+          "label": "Twitter",
+          "href": "https://twitter.com/aelfblockchain"
+        }
+      ]
+    },
+    {
+      "title": "More",
+      "items": [
+        {
+          "label": "Blog",
+          "to": "/blog"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com/AElfProject"
+        }
+      ]
+    }
+  ]
+}

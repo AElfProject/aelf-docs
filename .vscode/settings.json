@@ -1,6 +1,0 @@
-{
-  "[markdown]": {
-    "editor.defaultFormatter": "tehnix.vscode-tidymarkdown"
-  },
-  "editor.formatOnSave": true
-}

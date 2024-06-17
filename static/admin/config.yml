@@ -1,0 +1,72 @@
+backend:
+  name: github
+  branch: main
+  repo: yongenaelf/aelf-docs-cms
+  squash_merges: true
+  base_url: https://production.aelf-docs-oauth.yongen-loong.workers.dev
+
+# These lines should *not* be indented
+media_folder: "static/img" # Media files will be stored in the repo under static/images/uploads
+public_folder: "/img/" # The src attribute for uploaded media will begin with /images/uploads
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "_"
+
+collections:
+- name: docs
+  label: Docs
+  label_singular: Doc
+  identifier_field: 'title'
+  folder: docs
+  create: true
+  nested:
+    depth: 4 
+    summary: '{{title}}' 
+  fields:
+    - label: Sidebar position
+      name: sidebar_position
+      widget: number
+    - label: Title
+      name: title
+      widget: string
+    - label: Description
+      name: description
+    - label: Image
+      name: image
+      widget: 'image'
+      allow_multiple: false
+    - label: Body
+      name: body
+      widget: markdown
+  sortableFields: ["title", "sidebar_position"]
+  extension: md
+  format: frontmatter
+  editor:
+    preview: false
+  meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
+
+- name: settings
+  label: Settings
+  editor:
+    preview: false
+  files:
+    - label: "Footer Links"
+      name: "footerlinks"
+      file: "footer-links.json"
+      fields:
+        - label: Links
+          name: links
+          widget: list
+          collapsed: false
+          fields:
+            - {label: Title, name: title, widget: string}
+            - label: Items
+              name: items
+              widget: list
+              collapsed: false
+              fields:
+                - {label: Label, name: label, widget: string}
+                - {label: To, name: to, widget: string, required: false}
+                - {label: Href, name: href, widget: string, required: false}
