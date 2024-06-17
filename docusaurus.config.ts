@@ -53,12 +53,12 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    image: "img/aelficon.png",
     navbar: {
-      title: "AELF Docs",
+      title: "aelf Docs",
       logo: {
         alt: "aelf",
-        src: "img/aelficon.png",
+        src: "img/Logo.aelf.svg",
       },
       items: [
         {
