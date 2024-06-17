@@ -3,7 +3,7 @@ slug: /
 sidebar_position: 0
 title: Home
 description: Homepage
-image: /img/undraw_docusaurus_mountain.svg
+image: /img/aelficon.png
 ---
 
 # Welcome to the home page
