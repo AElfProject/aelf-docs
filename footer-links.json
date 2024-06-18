@@ -4,8 +4,8 @@
       "title": "Docs",
       "items": [
         {
-          "label": "Tutorial",
-          "to": "/docs/intro"
+          "label": "Home",
+          "to": "/"
         }
       ]
     },
@@ -26,8 +26,8 @@
       "title": "More",
       "items": [
         {
-          "label": "Blog",
-          "to": "/blog"
+          "label": "Medium",
+          "href": "https://medium.com/aelfblockchain"
         },
         {
           "label": "GitHub",
