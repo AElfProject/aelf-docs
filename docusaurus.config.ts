@@ -10,15 +10,15 @@ const config: Config = {
   trailingSlash: true,
 
   // Set the production url of your site here
-  url: "https://docs-cms.aelf.dev",
+  url: "https://docs.aelf.dev",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "yongenaelf", // Usually your GitHub org/user name.
-  projectName: "aelf-docs-cms", // Usually your repo name.
+  organizationName: "AElfProject", // Usually your GitHub org/user name.
+  projectName: "aelf-docs", // Usually your repo name.
 
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
