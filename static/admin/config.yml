@@ -1,7 +1,7 @@
 backend:
   name: github
   branch: main
-  repo: yongenaelf/aelf-docs-cms
+  repo: AElfProject/aelf-docs
   squash_merges: true
   base_url: https://production.aelf-docs-oauth.yongen-loong.workers.dev
 
