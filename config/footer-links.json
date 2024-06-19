@@ -1,37 +1,78 @@
 {
   "links": [
     {
-      "title": "Docs",
+      "title": "Platform",
       "items": [
         {
-          "label": "Home",
-          "to": "/"
+          "label": "Technology",
+          "href": "#"
+        },
+        {
+          "label": "Audit Report",
+          "href": "#"
+        },
+        {
+          "label": "Privacy",
+          "href": "#"
+        },
+        {
+          "label": "Terms of Use",
+          "href": "#"
+        },
+        {
+          "label": "Cookie Policy",
+          "href": "#"
         }
       ]
     },
     {
-      "title": "Community",
+      "title": "Developer Resources",
       "items": [
         {
-          "label": "Discord",
-          "href": "https://discord.gg/bgysa9xjvD"
+          "label": "Docs",
+          "href": "#"
         },
         {
-          "label": "Twitter",
-          "href": "https://twitter.com/aelfblockchain"
+          "label": "Tools",
+          "href": "#"
+        },
+        {
+          "label": "Examples & Tutorials",
+          "href": "#"
+        },
+        {
+          "label": "Github",
+          "href": "#"
         }
       ]
     },
     {
-      "title": "More",
+      "title": "Ecosystem",
       "items": [
         {
-          "label": "Medium",
-          "href": "https://medium.com/aelfblockchain"
+          "label": "Overview",
+          "href": "#"
         },
         {
-          "label": "GitHub",
-          "href": "https://github.com/AElfProject"
+          "label": "dApps",
+          "href": "#"
+        },
+        {
+          "label": "aelf Ventures",
+          "href": "#"
+        },
+        {
+          "label": "Blog",
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "title": "Connect",
+      "items": [
+        {
+          "label": "Contact Us",
+          "href": "#"
         }
       ]
     }
