@@ -82,6 +82,11 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    docs: {
+      sidebar: {
+        hideable: true, // https://docusaurus.io/docs/sidebar#hideable-sidebar
+      },
+    },
   } satisfies Preset.ThemeConfig,
 };
 
