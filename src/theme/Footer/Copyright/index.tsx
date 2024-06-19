@@ -19,6 +19,7 @@ export default function CopyrightWrapper(props: Props): JSX.Element {
               href={i.href}
               target="_blank"
               rel="noopener noreferrer"
+              title={i.label}
             >
               {i.icon ? (
                 <img src={i.icon} />
