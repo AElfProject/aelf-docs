@@ -76,7 +76,7 @@ const config: Config = {
     footer: {
       style: "light",
       links: footerLinks.links,
-      copyright: `Copyright © ${new Date().getFullYear()} AElfProject.`,
+      copyright: `Copyright © ${new Date().getFullYear()} aelf`,
     },
     prism: {
       theme: prismThemes.github,
