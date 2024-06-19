@@ -82,3 +82,16 @@ collections:
             - {label: Label, name: label, widget: string}
             - {label: Href, name: href, widget: string}
             - {label: Icon, name: icon, widget: image, allow_multiple: false, required: false}
+    - label: "Navbar Links"
+      name: "navbarlinks"
+      file: "config/navbar-links.json"
+      fields:
+        - label: Links
+          name: links
+          widget: list
+          collapsed: false
+          fields:
+            - {label: Label, name: label, widget: string}
+            - {label: To, name: to, widget: string, required: false}
+            - {label: Href, name: href, widget: string, required: false}
+            - {label: Position, name: position, widget: select, options: [left, right], default: left}

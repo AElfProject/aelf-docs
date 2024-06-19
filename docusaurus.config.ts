@@ -2,6 +2,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import footerLinks from "./config/footer-links.json";
+import navbarLinks from "./config/navbar-links.json";
 
 const config: Config = {
   title: "AELF Docs",
@@ -59,19 +60,8 @@ const config: Config = {
         alt: "aelf",
         src: "img/Logo.aelf.svg",
       },
-      items: [
-        {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "Docs",
-        },
-        {
-          href: "https://github.com/AElfProject/AElf",
-          label: "GitHub",
-          position: "right",
-        },
-      ],
+      // @ts-expect-error
+      items: navbarLinks.links,
     },
     footer: {
       style: "light",
