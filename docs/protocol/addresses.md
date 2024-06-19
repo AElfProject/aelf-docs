@@ -23,7 +23,7 @@ A **User Address** in aelf is generated from a unique key pair owned by a real u
 - A User Address is derived from a key pair using the `IAElfAsymmetricCipherKeyPair` interface.
 - This interface includes
 
-```base
+```protobuf
 public interface IAElfAsymmetricCipherKeyPair
 {
     byte[] PrivateKey { get; }
@@ -96,7 +96,7 @@ A **Contract Address** in aelf blockchain uniquely identifies a Smart Contract. 
 
 Here’s how you can build a Contract Address in aelf:
 
-```c#
+```protobuf
 private static Address BuildContractAddress(Hash chainId, long serialNumber)
 {
     var hash = HashHelper.ConcatAndCompute(chainId, HashHelper.ComputeFrom(serialNumber));
