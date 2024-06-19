@@ -29,19 +29,19 @@
       "title": "Developer Resources",
       "items": [
         {
+          "label": "Quick Start",
+          "href": "#"
+        },
+        {
+          "label": "Learn",
+          "href": "#"
+        },
+        {
           "label": "Docs",
           "href": "#"
         },
         {
           "label": "Tools",
-          "href": "#"
-        },
-        {
-          "label": "Examples & Tutorials",
-          "href": "#"
-        },
-        {
-          "label": "Github",
           "href": "#"
         }
       ]

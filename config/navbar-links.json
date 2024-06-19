@@ -1,6 +1,26 @@
 {
   "links": [
     {
+      "to": "#",
+      "label": "Quick Start",
+      "position": "left"
+    },
+    {
+      "to": "#",
+      "label": "Learn",
+      "position": "left"
+    },
+    {
+      "to": "#",
+      "label": "Docs",
+      "position": "left"
+    },
+    {
+      "to": "#",
+      "label": "Tools",
+      "position": "left"
+    },
+    {
       "href": "https://github.com/AElfProject/AElf",
       "label": "GitHub",
       "position": "right"
