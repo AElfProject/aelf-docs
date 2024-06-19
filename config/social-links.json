@@ -1,0 +1,24 @@
+{
+  "links": [
+    {
+      "label": "Twitter",
+      "icon": "",
+      "href": "https://twitter.com/aelfblockchain"
+    },
+    {
+      "label": "Discord",
+      "icon": "",
+      "href": "https://discord.gg/bgysa9xjvD"
+    },
+    {
+      "label": "Medium",
+      "icon": "",
+      "href": "https://medium.com/aelfblockchain"
+    },
+    {
+      "label": "GitHub",
+      "icon": "",
+      "href": "https://github.com/AElfProject"
+    }
+  ]
+}
