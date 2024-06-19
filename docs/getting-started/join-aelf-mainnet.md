@@ -1,6 +1,6 @@
 ## How to Join the Mainnet
 
-There are two ways to run an AElf node: using Docker (recommended) or running binaries from GitHub. Before starting, you need to install some tools and frameworks. Command line instructions are provided for most dependencies. For complex needs, see the Environment setup section.
+There are two ways to run an aelf node: using Docker (recommended) or running binaries from GitHub. Before starting, you need to install some tools and frameworks. Command line instructions are provided for most dependencies. For complex needs, see the Environment setup section.
 
 ### Steps to Set Up a Node
 
@@ -21,7 +21,7 @@ There are two ways to run an AElf node: using Docker (recommended) or running bi
 
 **Note:**
 - For non-block producing nodes, there is no requirement on the number of nodes.
-- To become a BP, run individual nodes for both MainChain AELF and all SideChains.
+- To become a BP, run individual nodes for both MainChain aelf and all SideChains.
 
 **Time Syncing:** Ensure your server is time-synced via NTP to avoid syncing issues.
 
@@ -85,7 +85,7 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
 1. Download the settings template and Docker script:
     ```sh
     cd /tmp/
-    wget https://github.com/AElfProject/AElf/releases/download/v1.6.0/aelf-mainnet-mainchain.zip
+    wget https://github.com/aelfProject/aelf/releases/download/v1.6.0/aelf-mainnet-mainchain.zip
     unzip aelf-mainnet-mainchain.zip
     mv aelf-mainnet-mainchain /opt/aelf-node
     ```
@@ -117,7 +117,7 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
 
 ## Running a Full Node with Docker
 
-1. Pull AElf’s Docker image and start the node:
+1. Pull aelf’s Docker image and start the node:
     ```sh
     docker pull aelf/node:mainnet-v1.6.0
     cd /opt/aelf-node
@@ -135,16 +135,16 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
 2. Get the latest release and run the node:
     ```sh
     cd /tmp/
-    wget https://github.com/AElfProject/AElf/releases/download/v1.6.0/aelf.zip
+    wget https://github.com/aelfProject/aelf/releases/download/v1.6.0/aelf.zip
     unzip aelf.zip
     mv aelf /opt/aelf-node/
     cd /opt/aelf-node
-    dotnet aelf/AElf.Launcher.dll
+    dotnet aelf/aelf.Launcher.dll
     ```
 
 ## Running a Full Node with the Source
 
-1. Ensure the code version is consistent (AELF v1.6.0).
+1. Ensure the code version is consistent (aelf v1.6.0).
 2. Compile on an Ubuntu Linux machine (recommended Ubuntu 18.04.2 LTS) with .NET Core SDK version 6.0.
 
 ## Check the Node
@@ -161,7 +161,7 @@ aelf-command get-blk-height -e http://your node ip address:port
 
     ```sh
     cd /tmp/
-    wget https://github.com/AElfProject/AElf/releases/download/v1.6.0/aelf-mainnet-sidechain1.zip
+    wget https://github.com/aelfProject/aelf/releases/download/v1.6.0/aelf-mainnet-sidechain1.zip
     unzip aelf-mainnet-sidechain1.zip
     mv aelf-mainnet-sidechain1 /opt/aelf-node
     ```
@@ -176,7 +176,7 @@ aelf-command get-blk-height -e http://your node ip address:port
                 "ParentChainServerIp": "your mainchain ip address",
                 "ListeningPort": 5011
             },
-            "ParentChainId": "AELF",
+            "ParentChainId": "aelf",
             "Economic": {
                 "SymbolListToPayTxFee": "WRITE,READ,STORAGE,TRAFFIC",
                 "SymbolListToPayRental": "CPU,RAM,DISK,NET"
