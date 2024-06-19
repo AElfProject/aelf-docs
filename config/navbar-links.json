@@ -22,7 +22,7 @@
     },
     {
       "href": "https://aelf.com/blog",
-      "aria-label": "Blog",
+      "label": "Blog",
       "position": "right"
     }
   ]
