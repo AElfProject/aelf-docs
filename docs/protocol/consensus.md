@@ -1,4 +1,3 @@
-```markdown
 # Consensus
 
 ## Overview
@@ -35,4 +34,3 @@ Only one node generates blocks at a time to avoid forks. If multiple orphan node
 
 ## Irreversible Block
 Some block links (block height to hash value) are irreversible, confirmed by the AEDPoS mechanism during round changes.
-```
