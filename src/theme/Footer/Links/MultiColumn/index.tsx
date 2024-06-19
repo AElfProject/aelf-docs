@@ -38,7 +38,7 @@ export default function FooterLinksMultiColumn({
 }: Props): JSX.Element {
   return (
     <div className="row footer__links">
-      <div className="col footer__col">
+      <div className="col footer__col mobile-hidden">
         <img src="/img/Logo.aelf.svg" />
       </div>
       {columns.map((column, i) => (
