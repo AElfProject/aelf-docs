@@ -50,3 +50,7 @@
 .header-github-link:hover::before {
   background-color: var(--ifm-navbar-link-hover-color);
 }
+
+.navbar__items [class^='iconExternalLink'] {
+  display: none;
+}
