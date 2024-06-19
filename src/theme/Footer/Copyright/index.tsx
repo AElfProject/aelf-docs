@@ -22,7 +22,7 @@ export default function CopyrightWrapper(props: Props): JSX.Element {
               title={i.label}
             >
               {i.icon ? (
-                <img src={i.icon} />
+                <img src={i.icon} className={styles.img} />
               ) : (
                 <span className={styles.icon}>?</span>
               )}

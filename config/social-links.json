@@ -1,24 +1,54 @@
 {
   "links": [
     {
-      "label": "Twitter",
-      "icon": "",
-      "href": "https://twitter.com/aelfblockchain"
+      "label": "Email",
+      "icon": "/img/Email.svg",
+      "href": "mailto:social@aelf.io"
     },
     {
-      "label": "Discord",
-      "icon": "",
-      "href": "https://discord.gg/bgysa9xjvD"
-    },
-    {
-      "label": "Medium",
-      "icon": "",
-      "href": "https://medium.com/aelfblockchain"
+      "label": "X",
+      "icon": "/img/X.svg",
+      "href": "https://x.com/aelfblockchain"
     },
     {
       "label": "GitHub",
-      "icon": "",
+      "icon": "/img/Github.svg",
       "href": "https://github.com/AElfProject"
+    },
+    {
+      "label": "Discord",
+      "icon": "/img/Discord.svg",
+      "href": "https://discord.gg/bgysa9xjvD"
+    },
+    {
+      "label": "Reddit",
+      "icon": "/img/Reddit.svg",
+      "href": "https://www.reddit.com/r/aelfofficial/"
+    },
+    {
+      "label": "Medium",
+      "icon": "/img/Medium.svg",
+      "href": "https://medium.com/aelfblockchain"
+    },
+    {
+      "label": "Telegram",
+      "icon": "/img/Telegram.svg",
+      "href": "https://t.me/aelfblockchain"
+    },
+    {
+      "label": "WeChat",
+      "icon": "/img/WeChat.svg",
+      "href": "#"
+    },
+    {
+      "label": "YouTube",
+      "icon": "/img/Youtube.svg",
+      "href": "https://www.youtube.com/c/aelfblockchain"
+    },
+    {
+      "label": "Facebook",
+      "icon": "/img/Facebook.svg",
+      "href": "https://www.facebook.com/aelfofficial/"
     }
   ]
 }
