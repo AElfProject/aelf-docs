@@ -1,6 +1,6 @@
 # How to Join the Testnet
 
-You can run an AElf node using Docker (recommended) or GitHub binaries. 
+You can run an aelf node using Docker (recommended) or GitHub binaries. 
 Before starting, install the necessary tools and frameworks. Detailed instructions are in the environment setup section.
 
 ## Steps to Set Up a Node:
@@ -81,7 +81,7 @@ We support Redis and SSDB. For testnet, we use SSDB snapshots. Configure two SSD
 
     ```sh
     cd /tmp/
-    wget https://github.com/AElfProject/AElf/releases/download/v1.0.0-rc1/aelf-testnet-mainchain.zip
+    wget https://github.com/aelfProject/aelf/releases/download/v1.0.0-rc1/aelf-testnet-mainchain.zip
     unzip aelf-testnet-mainchain.zip
     mv aelf-testnet-mainchain /opt/aelf-node
     ```
@@ -137,11 +137,11 @@ We support Redis and SSDB. For testnet, we use SSDB snapshots. Configure two SSD
 
     ```sh
     cd /tmp/
-    wget https://github.com/AElfProject/AElf/releases/download/v1.0.0-rc1/aelf.zip
+    wget https://github.com/aelfProject/aelf/releases/download/v1.0.0-rc1/aelf.zip
     unzip aelf.zip
     mv aelf /opt/aelf-node/
     cd /opt/aelf-node
-    dotnet aelf/AElf.Launcher.dll
+    dotnet aelf/aelf.Launcher.dll
     ```
 
 ## Check the Node
@@ -159,7 +159,7 @@ aelf-command get-blk-height -e http://your-node-ip:port
 
     ```sh
     cd /tmp/
-    wget https://github.com/AElfProject/AElf/releases/download/v1.0.0-rc1/aelf-testnet-sidechain1.zip
+    wget https://github.com/aelfProject/aelf/releases/download/v1.0.0-rc1/aelf-testnet-sidechain1.zip
     unzip aelf-testnet-sidechain1.zip
     mv aelf-testnet-sidechain1 /opt/aelf-node
     ```
@@ -174,7 +174,7 @@ aelf-command get-blk-height -e http://your-node-ip:port
                 "ParentChainServerIp": "mainchain-ip",
                 "ListeningPort": 5001
             },
-            "ParentChainId": "AELF"
+            "ParentChainId": "aelf"
         },
         "Network": {
             "BootNodes": [
