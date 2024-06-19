@@ -40,12 +40,12 @@ aelf-command create
 
 You will receive your wallet information, which includes the mnemonic, private key, public key, and address. Here is an example of the output:
 
-```json
-AElf [Info]: Your wallet info is:
-AElf [Info]: Mnemonic            : major clap hurdle hammer push slogan ranch quantum reunion hope enroll repeat
-AElf [Info]: Private Key         : 2229945cf294431183fd1d8101e27b17a1a590d3a1f7f2b9299850b24262ed8a
-AElf [Info]: Public Key          : 04eed00eb009ccd283798e3862781cebd25ed6a4641e0e1b7d0e3b6b59025040679fc4dc0edc9de166bd630c7255188a9aeadfc832fdae0828270f77c6ef267905
-AElf [Info]: Address             : Q3t34SAEsxAQrSQidTRzDonWNTPpSTgH8bqu8pQUGCSWRPdRC
+```base
+   AElf [Info]: Your wallet info is : 
+   AElf [Info]: Mnemonic            : major clap hurdle hammer push slogan ranch quantum reunion hope enroll repeat 
+   AElf [Info]: Private Key         : 2229945cf294431183fd1d8101e27b17a1a590d3a1f7f2b9299850b24262ed8a 
+   AElf [Info]: Public Key          : 04eed00eb009ccd283798e3862781cebd25ed6a4641e0e1b7d0e3b6b59025040679fc4dc0edc9de166bd630c7255188a9aeadfc832fdae0828270f77c6ef267905 
+   AElf [Info]: Address             : Q3t34SAEsxAQrSQidTRzDonWNTPpSTgH8bqu8pQUGCSWRPdRC
 ```
 ## Start the Full Node
 
