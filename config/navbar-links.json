@@ -19,6 +19,11 @@
       "to": "#",
       "label": "Tools",
       "position": "left"
+    },
+    {
+      "href": "https://aelf.com/blog",
+      "label": "Blog",
+      "position": "right"
     }
   ]
 }
