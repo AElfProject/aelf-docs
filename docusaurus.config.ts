@@ -55,7 +55,6 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/aelficon.png",
     navbar: {
-      title: "aelf Docs",
       logo: {
         alt: "aelf",
         src: "img/Logo.aelf.svg",
