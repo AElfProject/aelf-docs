@@ -1,22 +1,22 @@
 {
   "links": [
     {
-      "to": "#",
+      "to": "/quick-start",
       "label": "Quick Start",
       "position": "left"
     },
     {
-      "to": "#",
+      "to": "/learn",
       "label": "Learn",
       "position": "left"
     },
     {
-      "to": "#",
+      "to": "/docs",
       "label": "Docs",
       "position": "left"
     },
     {
-      "to": "#",
+      "to": "/tools",
       "label": "Tools",
       "position": "left"
     },
