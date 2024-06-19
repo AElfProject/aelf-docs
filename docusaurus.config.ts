@@ -60,8 +60,17 @@ const config: Config = {
         alt: "aelf",
         src: "img/Logo.aelf.svg",
       },
-      // @ts-expect-error
-      items: navbarLinks.links,
+      items: [
+        // @ts-expect-error
+        ...navbarLinks.links,
+        {
+          href: "https://github.com/AElfProject",
+          // @ts-expect-error
+          position: "right",
+          className: "header-github-link",
+          "aria-label": "GitHub repository",
+        },
+      ],
     },
     footer: {
       style: "light",

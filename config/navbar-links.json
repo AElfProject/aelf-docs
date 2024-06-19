@@ -19,11 +19,6 @@
       "to": "#",
       "label": "Tools",
       "position": "left"
-    },
-    {
-      "href": "https://github.com/AElfProject/AElf",
-      "label": "GitHub",
-      "position": "right"
     }
   ]
 }
