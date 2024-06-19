@@ -30,19 +30,23 @@
       "items": [
         {
           "label": "Quick Start",
-          "href": "#"
+          "href": "/quick-start"
         },
         {
           "label": "Learn",
-          "href": "#"
+          "href": "/learn"
         },
         {
           "label": "Docs",
-          "href": "#"
+          "href": "/docs"
         },
         {
           "label": "Tools",
-          "href": "#"
+          "href": "/tools"
+        },
+        {
+          "label": "Resources",
+          "href": "/resources"
         }
       ]
     },

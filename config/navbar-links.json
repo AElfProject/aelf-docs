@@ -21,6 +21,11 @@
       "position": "left"
     },
     {
+      "to": "/resources",
+      "label": "Resources",
+      "position": "left"
+    },
+    {
       "href": "https://aelf.com/blog",
       "label": "Blog",
       "position": "right"
