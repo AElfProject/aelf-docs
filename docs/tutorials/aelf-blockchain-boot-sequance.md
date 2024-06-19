@@ -1,10 +1,8 @@
 # aelf Blockchain Boot Sequence
-----------------------------------------------------------------------------
 
 This guide explains how the aelf Blockchain starts from initial nodes and transitions to production nodes through elections, completing the full startup process.
 
 ## Start Initial Nodes
-----------------------------------------------------------------------------
 
 To begin the aelf Blockchain, you need to start at least one initial node. It’s recommended to start with 1-5 initial nodes.
 
@@ -31,7 +29,6 @@ To begin the aelf Blockchain, you need to start at least one initial node. It’
 By following these steps, you can successfully start the aelf Blockchain with initial nodes and prepare for the election of production nodes.
 
 # Run a Full Node
---------------------------------------------------------------------------------------------
 
 ### Create an Account for the Full Node
 
@@ -51,7 +48,6 @@ AElf [Info]: Public Key          : 04eed00eb009ccd283798e3862781cebd25ed6a4641e0
 AElf [Info]: Address             : Q3t34SAEsxAQrSQidTRzDonWNTPpSTgH8bqu8pQUGCSWRPdRC
 ```
 ## Start the Full Node
-----------------------------------------------------------------------------
 
 Starting the full node involves similar steps to starting the initial nodes. However, ensure that the `InitialMinerList` in your configuration file matches the list from the initial node setup. Here is an example configuration:
 
@@ -113,12 +109,14 @@ When running a full node on the aelf blockchain network, the following key infor
 - **BestChainHash**: The hash of the best chain.
 - **BestChainHeight**: The height of the best chain.
 
+
 The `BestChainHeight` and `LastIrreversibleBlockHeight` should be increasing as the full node catches up with the initial nodes. Once the heights match, the node is fully synchronized, and you can proceed with further steps.
+
 
 By following these details, you ensure that your full node is correctly set up and actively participating in the aelf blockchain network.
 
 ## Become a Candidate Node
-----------------------------------------------------------------------------
+
 To participate in the election process and become a candidate node, full nodes need to interact with the Election contract. Here's a step-by-step guide:
 
 ### Step 1: Ensure Sufficient Tokens
