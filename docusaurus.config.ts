@@ -74,7 +74,7 @@ const config: Config = {
       ],
     },
     footer: {
-      style: "dark",
+      style: "light",
       links: footerLinks.links,
       copyright: `Copyright © ${new Date().getFullYear()} AElfProject.`,
     },
