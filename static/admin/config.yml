@@ -54,7 +54,7 @@ collections:
   files:
     - label: "Footer Links"
       name: "footerlinks"
-      file: "footer-links.json"
+      file: "config/footer-links.json"
       fields:
         - label: Links
           name: links

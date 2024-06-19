@@ -1,7 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import footerLinks from "./footer-links.json";
+import footerLinks from "./config/footer-links.json";
 
 const config: Config = {
   title: "AELF Docs",
