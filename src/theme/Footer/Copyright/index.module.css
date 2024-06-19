@@ -13,3 +13,33 @@ span.icon {
 .img {
   margin: 0 0 0 10px;
 }
+
+.logo {
+  display: none;
+}
+
+@media screen and (max-width: 996px) {
+  .wrap {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .social {
+    order: -1;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .logo {
+    display: block;
+    width: 4rem;
+    margin-right: auto;
+  }
+
+  .copyright {
+    display: flex;
+    gap: 10px;
+    text-align: right;
+  }
+}

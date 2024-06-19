@@ -11,8 +11,11 @@ export default function CopyrightWrapper(props: Props): JSX.Element {
   return (
     <>
       <div className={styles.wrap}>
-        <Copyright {...props} />
-        <div>
+        <div className={styles.copyright}>
+          <img className={styles.logo} src="/img/Logo.aelf.svg" />
+          <Copyright {...props} />
+        </div>
+        <div className={styles.social}>
           {socialLinks.links.map((i, key) => (
             <a
               key={key}
