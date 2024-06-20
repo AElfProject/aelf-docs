@@ -20,4 +20,4 @@ jobs:
             -e TYPESENSE_HOST="${{ secrets.TYPESENSE_HOST }}" \
             -e TYPESENSE_PORT=443 \
             -e TYPESENSE_PROTOCOL=https \
-            -e "CONFIG=$(cat config/typesense.json | jq -r tostring)" typesense/docsearch-scraper:latest
+            -e "CONFIG=$(cat config/typesense.json | jq -r tostring)" typesense/docsearch-scraper:0.9.1
