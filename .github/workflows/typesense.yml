@@ -9,8 +9,6 @@ jobs:
   build:
     name: Update Typesense index
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
