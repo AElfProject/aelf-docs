@@ -3,6 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import footerLinks from "./config/footer-links.json";
 import navbarLinks from "./config/navbar-links.json";
+import typesenseThemeConfig from "./config/typesense-theme-config.json";
 
 const config: Config = {
   title: "AELF Docs",
@@ -51,7 +52,7 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-
+  themes: ["docusaurus-theme-search-typesense"],
   themeConfig: {
     // Replace with your project's social card
     image: "img/aelficon.png",
@@ -86,6 +87,7 @@ const config: Config = {
         hideable: true, // https://docusaurus.io/docs/sidebar#hideable-sidebar
       },
     },
+    typesense: typesenseThemeConfig,
   } satisfies Preset.ThemeConfig,
 };
 

@@ -1,0 +1,15 @@
+{
+  "typesenseCollectionName": "aelf-docs",
+  "typesenseServerConfig": {
+    "nodes": [
+      {
+        "host": "typesense.test.aelf.dev",
+        "port": 443,
+        "protocol": "https"
+      }
+    ],
+    "apiKey": "5zqd4xhbUfewLSGk7Veev11KXZcDRy9z"
+  },
+  "typesenseSearchParameters": {},
+  "contextualSearch": true
+}
