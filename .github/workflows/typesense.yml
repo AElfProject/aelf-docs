@@ -15,15 +15,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: 'npm'
-      
-      - run: npm install
-      - run: npm run build
       - run: |
-          npm run serve -- --port 80 &
           docker run -it \
             -e TYPESENSE_API_KEY=${{ secrets.TYPESENSE_API_KEY }} \
             -e TYPESENSE_HOST=${{ secrets.TYPESENSE_HOST }} \

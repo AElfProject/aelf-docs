@@ -1,7 +1,7 @@
 {
   "index_name": "aelf-docs",
-  "start_urls": ["http://host.docker.internal"],
-  "sitemap_urls": ["http://host.docker.internal/sitemap.xml"],
+  "start_urls": ["https://docs.aelf.dev"],
+  "sitemap_urls": ["http://docs.aelf.dev/sitemap.xml"],
   "sitemap_alternate_links": true,
   "stop_urls": [],
   "selectors": {
