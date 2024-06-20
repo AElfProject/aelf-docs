@@ -40,7 +40,7 @@ aelf-command create
 
 You will receive your wallet information, which includes the mnemonic, private key, public key, and address. Here is an example of the output:
 
-```base
+```protobuf
    AElf [Info]: Your wallet info is : 
    AElf [Info]: Mnemonic            : major clap hurdle hammer push slogan ranch quantum reunion hope enroll repeat 
    AElf [Info]: Private Key         : 2229945cf294431183fd1d8101e27b17a1a590d3a1f7f2b9299850b24262ed8a 
@@ -131,7 +131,7 @@ aelf-command send AElf.ContractNames.Token Transfer '{"symbol": "ELF", "to": "Q3
 
 #### Check Balance:
 
-```base
+```protobuf
 aelf-command call AElf.ContractNames.Token GetBalance '{"symbol": "ELF", "owner": "Q3t34SAEsxAQrSQidTRzDonWNTPpSTgH8bqu8pQUGCSWRPdRC"}'
 ```
 
@@ -153,7 +153,7 @@ Announce your candidacy using the Election contract. The AnnounceElection transa
 
 #### Announce Election:
 
-```base
+```protobuf
 aelf-command send AElf.ContractNames.Election AnnounceElection '{"value": "Q3t34SAEsxAQrSQidTRzDonWNTPpSTgH8bqu8pQUGCSWRPdRC"}' -a Q3t34SAEsxAQrSQidTRzDonWNTPpSTgH8bqu8pQUGCSWRPdRC
 ```
 
@@ -163,7 +163,7 @@ Check the candidate information to confirm that your full node is now a candidat
 
 #### Check Candidate Information::
 
-```base
+```protobuf
 aelf-command call AElf.ContractNames.Election GetCandidateInformation '{"value":"04eed00eb009ccd283798e3862781cebd25ed6a4641e0e1b7d0e3b6b59025040679fc4dc0edc9de166bd630c7255188a9aeadfc832fdae0828270f77c6ef267905"}'
 ```
 
@@ -215,13 +215,13 @@ After the user account is created successfully, we will first transfer some toke
 
 #### Transfer Tokens:
 
-```base
+```protobuf
 aelf-command send AElf.ContractNames.Token Transfer '{"symbol": "ELF", "to": "ZBBPU7DMVQ72YBQNmaKTDPKaAkHNzzA3naH5B6kE7cBm8g1ei", "amount": "200000000000"}'
 ```
 
 #### Confirm the Balance:
 
-```base
+```protobuf
 aelf-command call AElf.ContractNames.Token GetBalance '{"symbol": "ELF", "owner": "ZBBPU7DMVQ72YBQNmaKTDPKaAkHNzzA3naH5B6kE7cBm8g1ei"}'
 ```
 
@@ -244,7 +244,7 @@ Use the Election contract to vote for a candidate node. Here, we vote for the no
 
 #### Cast Vote:
 
-```base
+```protobuf
 aelf-command send AElf.ContractNames.Election Vote '{"candidatePubkey":"04eed00eb009ccd283798e3862781cebd25ed6a4641e0e1b7d0e3b6b59025040679fc4dc0edc9de166bd630c7255188a9aeadfc832fdae0828270f77c6ef267905","amount":2000000000,"endTimestamp":{"seconds":1600271999,"nanos":999000}}' -a ZBBPU7DMVQ72YBQNmaKTDPKaAkHNzzA3naH5B6kE7cBm8g1ei
 ```
 
@@ -254,7 +254,7 @@ Check the votes received by the candidate node to ensure your vote has been coun
 
 #### Check Candidate Votes:
 
-```base
+```protobuf
 aelf-command call AElf.ContractNames.Election GetCandidateVote '{"value":"04eed00eb009ccd283798e3862781cebd25ed6a4641e0e1b7d0e3b6b59025040679fc4dc0edc9de166bd630c7255188a9aeadfc832fdae0828270f77c6ef267905"}'
 ```
 
@@ -321,25 +321,25 @@ When the number of initial nodes and candidate nodes exceeds the maximum number 
 
 #### 1. Create Additional Full Nodes:
 
-```base
+```protobuf
 aelf-command create
 ```
 
 #### 2. Transfer Tokens to New Nodes:
 
-```base
+```protobuf
 aelf-command send AElf.ContractNames.Token Transfer '{"symbol": "ELF", "to": "<new_node_address>", "amount": "200000000000"}'
 ```
 
 #### 3. Nominate New Nodes as Candidates:
 
-```base
+```protobuf
 aelf-command send AElf.ContractNames.Election AnnounceElection '{"value": "<new_node_address>"}' -a <new_node_address>
 ```
 
 #### 4. Vote for New Candidates:
 
-```base
+```protobuf
 aelf-command send AElf.ContractNames.Election Vote '{"candidatePubkey":"<new_node_pubkey>","amount":2000000000,"endTimestamp":{"seconds":<timestamp>,"nanos":999000}}' -a <user_address>
 ```
 
