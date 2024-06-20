@@ -1,3 +1,8 @@
+---
+sidebar_position: 2
+title: Testnet
+---
+
 # How to Join the Testnet
 
 You can run an aelf node using Docker (recommended) or GitHub binaries. 
