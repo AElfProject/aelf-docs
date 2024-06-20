@@ -16,8 +16,8 @@ jobs:
         uses: actions/checkout@v4
 
       - run: |
-          docker run -e TYPESENSE_API_KEY=${{ secrets.TYPESENSE_API_KEY }} \
-            -e TYPESENSE_HOST=${{ secrets.TYPESENSE_HOST }} \
+          docker run -e TYPESENSE_API_KEY="${{ secrets.TYPESENSE_API_KEY }}" \
+            -e TYPESENSE_HOST="${{ secrets.TYPESENSE_HOST }}" \
             -e TYPESENSE_PORT=443 \
             -e TYPESENSE_PROTOCOL=https \
             -e "CONFIG=$(cat config/typesense.json | jq -r tostring)" typesense/docsearch-scraper:latest
