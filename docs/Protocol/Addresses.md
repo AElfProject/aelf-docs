@@ -65,7 +65,7 @@ In aelf, we usually encode the address in a format called base58. The address is
 
 ```javascript
 import Aelf from 'aelf-sdk';
-const address = aelf.wallet.getAddressFromPubKey(pubKey);
+const address = Aelf.wallet.getAddressFromPubKey(pubKey);
 ```
 
 
