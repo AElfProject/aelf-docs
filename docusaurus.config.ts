@@ -81,7 +81,14 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ["bash", "csharp", "protobuf", "json"],
+      additionalLanguages: [
+        "bash",
+        "csharp",
+        "java",
+        "json",
+        "php",
+        "protobuf",
+      ],
     },
     docs: {
       sidebar: {
