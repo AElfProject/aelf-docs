@@ -155,6 +155,47 @@ The usage of TransferTransactionFeesToFeeReceiver method is implemented as below
 
 Implement ACS1 by defining GetMethodFee to manage method-specific fees. Optionally, use MappedState for efficient fee management across methods.
 
+To set method fees, implement the `GetMethodFee` method.
+
+For methods `Foo1`, `Foo2`, `Bar1`, and `Bar2`, set fees to 1, 1, 2, and 2 ELF respectively. The fees can be hardcoded like this:
+
+```csharp
+public override MethodFees GetMethodFee(StringValue input)
+{
+    if (input.Value == nameof(Foo1) || input.Value == nameof(Foo2))
+    {
+        return new MethodFees
+        {
+            MethodName = input.Value,
+            Fees =
+            {
+                new MethodFee
+                {
+                    BasicFee = 1_00000000,
+                    Symbol = Context.Variables.NativeSymbol
+                }
+            }
+        };
+    }
+    if (input.Value == nameof(Bar1) || input.Value == nameof(Bar2))
+    {
+        return new MethodFees
+        {
+            MethodName = input.Value,
+            Fees =
+            {
+                new MethodFee
+                {
+                    BasicFee = 2_00000000,
+                    Symbol = Context.Variables.NativeSymbol
+                }
+            }
+        };
+    }
+    return new MethodFees();
+}
+```
+
 ### Test
 
 Test ACS1 functionality by calling GetMethodFee and GetMethodFeeController to validate expected behavior.

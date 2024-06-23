@@ -1,14 +1,14 @@
-ACS0 - Contract Deployment Standard
+# ACS0 - Contract Deployment Standard
 ===================================
 
 ACS0 is used to manage the deployment and update of contracts.
 
-Interface
+## Interface
 ---------
 
 The contract inherited from ACS0 needs to implement the following interfaces:
 
-Methods
+## Methods
 ~~~~~~~
 
 | Method Name                          | Request Type                                                              | Response Type                                | Description                                                                                                                      |
@@ -37,8 +37,8 @@ Methods
 | PerformUpdateUserSmartContract       | `acs0.ContractUpdateInput <#acs0.ContractUpdateInput>`                     | `google.protobuf.Empty <#google.protobuf.Empty>` | Perform user contract update.                                                                                                    |
 | SetContractAuthor                    | `acs0.SetContractAuthorInput <#acs0.SetContractAuthorInput>`               | `google.protobuf.Empty <#google.protobuf.Empty>` | Set author of the specified contract.                                                                                            |
 
-Types
-~~~~~
+
+## Types
 
 <div id="acs0.AuthorUpdated"></div>
 
