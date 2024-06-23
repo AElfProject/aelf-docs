@@ -1,6 +1,6 @@
 # Smart Contract Service
 
-When writing a smart contract in AElf, the first step is to define it so our tools can generate it. AElf contracts are defined and generated using gRPC and protobuf.
+When writing a smart contract in aelf, the first step is to define it so our tools can generate it. aelf contracts are defined and generated using gRPC and protobuf.
 
 ## Example: Multi-Token Contract
 

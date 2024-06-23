@@ -2,7 +2,7 @@
 
 A blockchain platform works like a distributed database that stores all smart contracts. Each contract has a unique address used for state queries and updates. Methods in the contract code handle permission checks and logic.
 
-## Smart Contract Parts in AElf
+## Smart Contract Parts in aelf
 
 1. **Interface**: 
    - Supports multiple languages.
@@ -16,13 +16,13 @@ A blockchain platform works like a distributed database that stores all smart co
    - Protobuf plugins generate the smart contract skeleton.
    - Developers fill in the logic by overriding methods.
 
-Smart contracts in AElf are divided across the Kernel, the runtime, and the SDK. The Kernel handles core components and execution abstractions. Contracts rely on runtime modules and the SDK.
+Smart contracts in aelf are divided across the Kernel, the runtime, and the SDK. The Kernel handles core components and execution abstractions. Contracts rely on runtime modules and the SDK.
 
 A smart contract consists of methods that interact with state variables. Transactions trigger these methods to modify the blockchain state.
 
 ## Architecture Overview
 
-AElf defines Smart Contracts as micro-services, making them language-independent. For example, the Consensus Protocol is a service defined by a smart contract.
+aelf defines Smart Contracts as micro-services, making them language-independent. For example, the Consensus Protocol is a service defined by a smart contract.
 
 ![Smart Contract Architecture](../../_images/sc-as-service.png)
 
@@ -55,7 +55,7 @@ When a block’s transactions are executed, each transaction generates a trace c
 
 ## SDK
 
-AElf has a native C# SDK for developing smart contracts in C#. It includes:
+aelf has a native C# SDK for developing smart contracts in C#. It includes:
 - Helpers to communicate with the bridge.
 - Type infrastructure like `ContractState`, `MappedState`, and `SingletonState`.
 

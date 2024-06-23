@@ -3,7 +3,7 @@
 ## Project Properties
 
 ### Add Contract Proto File
-Ensure to add a contract proto file in the contract directory of your project. This allows AElf’s contract patcher to process the DLL, enabling necessary injections for code checks during deployment. Without this, deployment will fail.
+Ensure to add a contract proto file in the contract directory of your project. This allows aelf’s contract patcher to process the DLL, enabling necessary injections for code checks during deployment. Without this, deployment will fail.
 
 ```tree
 src

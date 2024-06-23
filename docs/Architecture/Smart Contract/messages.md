@@ -1,6 +1,6 @@
 # Smart Contract Messages
 
-In AElf, we use protobuf messages to call smart contracts and serialize their state. Here's a simple example of a message definition:
+In aelf, we use protobuf messages to call smart contracts and serialize their state. Here's a simple example of a message definition:
 
 ```cs
 message CreateInput {

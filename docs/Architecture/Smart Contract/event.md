@@ -2,7 +2,7 @@
 
 ## Event Option
 
-Events in AElf smart contracts are used to represent occurrences during execution. These events are logged in the transaction traces.
+Events in aelf smart contracts are used to represent occurrences during execution. These events are logged in the transaction traces.
 
 Example of an event definition:
 
