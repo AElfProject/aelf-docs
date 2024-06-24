@@ -3,7 +3,7 @@ backend:
   branch: develop
   repo: AElfProject/aelf-docs
   squash_merges: true
-  base_url: https://production.aelf-docs-oauth.yongen-loong.workers.dev
+  base_url: https://docs-oauth.test.aelf.dev
 
 # These lines should *not* be indented
 media_folder: "static/img" # Media files will be stored in the repo under static/images/uploads
