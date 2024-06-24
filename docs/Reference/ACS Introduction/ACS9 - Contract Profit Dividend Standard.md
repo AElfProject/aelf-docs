@@ -23,7 +23,7 @@ ACS9 includes several methods given below:
 #### acs9.ProfitsMap
 | Field         | Type                               | Description                              | Label     |
 |---------------|------------------------------------|------------------------------------------|-----------|
-| value         | map<string, int64>                 | Profits accumulated, symbol -> amount.    | repeated  |
+| value         | map\<string, int64\>                 | Profits accumulated, symbol -\> amount.    | repeated  |
 
 #### acs9.TakeContractProfitsInput
 | Field         | Type   | Description                       | Label     |

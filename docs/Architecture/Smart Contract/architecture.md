@@ -24,7 +24,7 @@ A smart contract consists of methods that interact with state variables. Transac
 
 aelf defines Smart Contracts as micro-services, making them language-independent. For example, the Consensus Protocol is a service defined by a smart contract.
 
-![Smart Contract Architecture](../../_images/sc-as-service.png)
+<!-- ![Smart Contract Architecture](../../_images/sc-as-service.png) -->
 
 ### Chain Interactions
 

@@ -37,7 +37,7 @@ This involves methods for chain creation and indexing:
 #### acs7.ChainIdAndHeightDict
 | Field                    | Description             | Label     |
 |--------------------------|-------------------------|-----------|
-| `id_height_dict` (map<int32, int64>) | Chain IDs and heights | repeated  |
+| `id_height_dict` (map\<int32, int64\>) | Chain IDs and heights | repeated  |
 
 #### acs7.ChainInitializationData
 | Field                                  | Description                        | Label   |

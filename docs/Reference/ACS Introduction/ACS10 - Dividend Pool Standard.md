@@ -362,11 +362,14 @@ await tokenHolderContractStub.RegisterForProfits.SendAsync(new RegisterForProfit
 ```
 
 - Implement Donate to reduce the account balance by another 10 ELF:
+
+```cs
 await acs10DemoContractStub.Donate.SendAsync(new DonateInput
 {
     Symbol = "ELF",
     Amount = amount
 });
+```
 
 - Test the GetUndistributedDividends and GetDividends:
 ```cs

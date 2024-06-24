@@ -10,7 +10,7 @@
 
 If these rules are not followed, code deployment will fail.
 
-![Contract Class Structure](../../_images/contract-class-structure.png)
+<!-- ![Contract Class Structure](../../_images/contract-class-structure.png) -->
 
 ## Field Usage Limitations
 

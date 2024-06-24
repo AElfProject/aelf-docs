@@ -24,10 +24,10 @@ When deploying new contract code, Nodes perform checks against a whitelist. If a
 | Type                          | Member (Field / Method) | Allowed   |
 |-------------------------------|-------------------------|-----------|
 | Array                         | AsReadOnly              | Allowed   |
-| Func<T>                       | ALL                     | Allowed   |
-| Func<T,T>                     | ALL                     | Allowed   |
-| Func<T,T,T>                   | ALL                     | Allowed   |
-| Nullable<T>                   | ALL                     | Allowed   |
+| Func\<T\>                       | ALL                     | Allowed   |
+| Func\<T,T\>                     | ALL                     | Allowed   |
+| Func\<T,T,T\>                   | ALL                     | Allowed   |
+| Nullable\<T\>                   | ALL                     | Allowed   |
 | Environment                   | CurrentManagedThreadId  | Allowed   |
 | BitConverter                  | GetBytes                | Allowed   |
 | NotImplementedException       | ALL                     | Allowed   |

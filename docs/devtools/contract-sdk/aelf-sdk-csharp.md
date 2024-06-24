@@ -159,7 +159,7 @@ The generated hash type id.
 | Name           | Type                                       | Description                              |
 |----------------|--------------------------------------------|------------------------------------------|
 | contractAddress| AElf.Types.Address                         | The contract address for id generation.  |
-| bytes          | System.Collections.Generic.IEnumerable<Byte>| The bytes for id generation.             |
+| bytes          | System.Collections.Generic.IEnumerable\<Byte\>| The bytes for id generation.             |
 
 ## GetContractAddressByName(hash) `method`
 Get the address of a system contract by its name hash. These hashes are in the SmartContractConstants.cs file.
@@ -218,7 +218,7 @@ Logs information for debugging. Visible only when the node is in debug mode.
 ### Parameters
 | Name | Type                       | Description                             |
 |------|----------------------------|-----------------------------------------|
-| func | System.Func<System.String> | The logic for logging purposes.         |
+| func | System.Func\<System.String\> | The logic for logging purposes.         |
 
 ## RecoverPublicKey() `method`
 Recovers the public key of the transaction sender.
@@ -543,7 +543,7 @@ Generates a hash type ID based on the current contract address and the bytes.
 | Name  | Type                                                    | Description                                  |
 |-------|---------------------------------------------------------|----------------------------------------------|
 | this  | AElf.Kernel.SmartContract.ISmartContractBridgeContext   | An instance of ISmartContractBridgeContext.  |
-| bytes | System.Collections.Generic.IEnumerable{System.Byte}     | The bytes for ID generation.                 |
+| bytes | System.Collections.Generic.IEnumerable\{System.Byte\}     | The bytes for ID generation.                 |
 
 ## GenerateId(this, token) `method`
 Generates a hash type ID based on the current contract address and the token.
