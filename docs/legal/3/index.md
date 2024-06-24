@@ -2,7 +2,7 @@
 sidebar_position: 0
 title: Cookie Policy
 ---
-Last updated: 25 June 2024
+**Last updated: 25 June 2024**
 
 This Cookie Policy explains how Aelf Pte Ltd ("Company," "we," "us," and "our") uses cookies and similar technologies to recognize you when you visit our website at https://www.aelf.com ("Website"). It explains what these technologies are and why we use them, as well as your rights to control our use of them. This may help us to provide you with a good experience when you browse our Websites and may also allow us to improve our Websites. By continuing to browse the Websites, you are agreeing to our use of cookies as well as the terms of this policy (the “Cookie Policy”). Please note that in some cases we may use cookies to collect personal information, or that becomes personal information if we combine it with other information.
 
