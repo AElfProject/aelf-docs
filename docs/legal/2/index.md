@@ -1,5 +1,5 @@
 ---
-sidebar_position: 0
+sidebar_position: 2
 title: Privacy Policy
 ---
 Last updated: 25 June 2024
