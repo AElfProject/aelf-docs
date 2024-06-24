@@ -28,15 +28,18 @@ collections:
     - label: Sidebar position
       name: sidebar_position
       widget: number
+      default: 1
     - label: Title
       name: title
       widget: string
     - label: Description
       name: description
+      required: false
     - label: Image
       name: image
       widget: 'image'
       allow_multiple: false
+      required: false
     - label: Body
       name: body
       widget: markdown
