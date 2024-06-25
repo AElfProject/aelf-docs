@@ -1,3 +1,9 @@
+---
+sidebar_position: 4
+title: Verify
+description: Verify
+---
+
 # Cross Chain Transaction Verification
 
 This section provides guidance on verifying transactions across different blockchain chains, assuming that a side chain has already been deployed and indexed by the main chain.
@@ -28,7 +34,7 @@ message VerifyTransactionInput {
 
 The **VerifyTransaction** method is used for verification and returns whether the transaction was mined and indexed by the destination chain. The method is the same for both scenarios; only the input values differ.
 
-### Verifying a Main Chain Transaction
+## Verifying a Main Chain Transaction
 
 To verify a main chain transaction on a side chain, use the **VerifyTransaction** method on the side chain with the following input values:
 
@@ -39,7 +45,7 @@ To verify a main chain transaction on a side chain, use the **VerifyTransaction*
 
 You can retrieve the Merkle path of a transaction in a block by using the chain's API method **GetMerklePathByTransactionIdAsync**.
 
-### Verifying a Side Chain Transaction
+## Verifying a Side Chain Transaction
 
 For verifying a side chain transaction:
 

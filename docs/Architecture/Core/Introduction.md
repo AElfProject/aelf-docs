@@ -1,3 +1,9 @@
+---
+sidebar_position: 1
+title: Introduction
+description: Introduction
+---
+
 # Application Pattern
 
 We follow generally accepted good practices in programming, especially those that align with our project needs. Some of these practices are specific to C#, while others pertain to general Object-Oriented Programming (OOP) principles like **SOLID** and **DRY**.

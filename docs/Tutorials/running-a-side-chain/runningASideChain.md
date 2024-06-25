@@ -1,3 +1,9 @@
+---
+sidebar_position: 2
+title: Running a Side Chain
+description: Running a Side Chain
+---
+
 # Running a Side Chain (After its Release)
 
 This tutorial explains how to run a side chain node after it has been approved by the producers and released by the creator. After creating the side chain, producers need to run a side chain node.
@@ -26,7 +32,7 @@ Two configuration files must be placed in the configuration folder of the side c
 
 After the release of the side chain creation request, the ChainId of the new side chain will be accessible in the SideChainCreatedEvent logged by the transaction that released it.
 
-In this example, we will set up the side chain node with ChainId `tDVV` (1866392 converted to base58), connecting to Redis `db2`, and using web API port `1235`. Don’t forget to change the account, password, and initial miner.
+In this example, we will set up the side chain node with ChainId `tDVV` (1866392 converted to base58), connecting to Redis `db2`, and using web API port `1235`. Don’t forget to change the `account`, `password`, and `initial miner`.
 
 #### appsettings.json
 

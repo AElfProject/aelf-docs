@@ -1,4 +1,8 @@
-# Requesting the Creation of a Side Chain
+---
+sidebar_position: 1
+title: Requesting the Creation of a Side Chain
+description: Requesting the Creation of a Side Chain
+---
 
 Side chains can be created in the aelf ecosystem to enable scalability. This section introduces the process in detail.
 
@@ -51,7 +55,7 @@ This creation of a side chain (logical, on-chain creation) is done in four steps
 
 To test the creation process, you will need a producer node running and the following:
 
-- A key-pair (account) created; this will be your Producer (also used to create the creation request in this tutorial).
+- A `key-pair` (account) created; this will be your Producer (also used to create the creation request in this tutorial).
 - The node needs to be configured with an API endpoint, account, and miner list that correspond to what is in the script.
 
 Here is the initialization code:

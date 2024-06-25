@@ -1,6 +1,12 @@
+---
+sidebar_position: 2
+title: Implementations
+description: Implementations
+---
+
 # Design Principles
 
-![image](node-archi.png)
+![image](../../../static/img/node-archi.png)
 
 The diagram above shows the conceptual structure of the node and the separation between the OS and Kernel.
 
