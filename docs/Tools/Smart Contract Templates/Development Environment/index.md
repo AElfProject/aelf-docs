@@ -1,0 +1,229 @@
+---
+sidebar_position: 2
+title: Development Environment
+---
+
+## Development Environment
+
+### Before You Start
+To develop smart contracts, you need to install the .NET SDK. Other tools for starting aelf nodes and publishing contracts are optional.
+
+### macOS Setup
+1. **Requirements**:
+   - macOS 10.7 or higher
+   - 2GHz processor (3GHz recommended)
+   - 8 GB RAM (16 GB recommended)
+   - 10 GB free space
+   - Broadband internet
+
+2. **Apple M1 Support**: Install Rosetta:
+   ```bash
+   /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+   ```
+
+3. Install Homebrew:
+    ```sh
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew --version
+    brew update
+    ```
+
+4. Install Git:
+    ```sh
+    brew install git
+    git --version
+    ```
+    
+5. Install .NET SDK:
+    ```sh
+    brew install --cask dotnet-sdk
+    dotnet --version
+    ```
+
+6. Install protoBuf:
+    ```sh
+    brew install protobuf
+    protoc --version
+    ```
+
+7. Install Redis:
+    ```sh
+    brew install redis
+    redis-server
+    ```
+
+8. Install Node.js:
+    ```sh
+    brew install node
+    npm --version
+    ```
+
+9. Install aelf-command:
+    ```sh
+    npm i aelf-command -g
+    ```
+
+10. Create an aelf Account:
+    ```sh
+    aelf-command create
+    ```   
+
+### Linux Setup
+1. **Requirements**:
+    - Ubuntu 18.04
+    - Broadband internet
+
+2. Update Environment:
+    ```sh
+    sudo apt-get update
+    ```
+
+3. Install Git:
+    ```sh
+    sudo apt-get install git -y
+    git --version
+    ```
+
+4. Install .NET SDK:
+    ```sh
+    wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    sudo dpkg -i packages-microsoft-prod.deb
+    sudo apt-get update
+    sudo apt-get install -y dotnet-sdk-6.0
+    dotnet --version
+    ```
+
+5. Install protoBuf:
+    ```sh
+    curl -OL https://github.com/google/protobuf/releases/download/v21.9/protoc-21.9-linux-x86_64.zip
+    unzip protoc-21.9-linux-x86_64.zip -d protoc3
+    sudo mv protoc3/bin/* /usr/local/bin/
+    sudo mv protoc3/include/* /usr/local/include/
+    protoc --version
+    ```
+
+6. Install Redis:
+    ```sh
+    sudo apt-get install redis -y
+    redis-server
+    ```
+
+7. Install Node.js:
+    ```sh
+    curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    npm --version
+    ```
+
+8. Install aelf-command:
+    ```sh
+    npm i aelf-command -g
+    ```
+
+9. Create an aelf Account:
+    ```sh
+    aelf-command create
+    ```
+
+### Windows Setup
+1. **Requirements**:
+    - Windows 10 or higher
+    - Broadband internet
+
+2. Install Chocolatey:
+    ```sh
+    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    choco
+    ```
+
+3. Install Git:
+    ```sh
+    choco install git -y
+    git --version
+    ```
+
+4. Install .NET SDK:
+    ```sh
+    choco install dotnetcore-sdk -y
+    dotnet --version
+    ```
+
+5. Install protoBuf:
+    ```sh
+    choco install protoc -y
+    protoc --version
+    ```
+
+6. Install Redis:
+    ```sh
+    choco install redis-64 -y
+    redis-server
+    ```
+
+7. Install Node.js:
+    ```sh
+    choco install nodejs -y
+    npm --version
+    ```
+
+8. Install aelf-command:
+    ```sh
+    npm i aelf-command -g
+    ```
+
+9. Create an aelf Account:
+    ```sh
+    aelf-command create
+    ```
+
+### Codespaces Setup
+1. Open Codespaces:
+
+2. Visit the aelfProject repo.
+
+3. Click "Code" > "Codespaces" > "+" to create a new codespace.
+
+4. Check Installed Versions:
+    ```sh
+    git --version
+    npm --version
+    ```
+
+5. Update Environment:
+    ```sh
+    sudo apt-get update
+    ```
+
+6. Install .NET SDK:
+    ```sh
+    wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    sudo dpkg -i packages-microsoft-prod.deb
+    sudo apt-get update
+    sudo apt-get install -y dotnet-sdk-6.0
+    dotnet --version
+    ```
+
+7. Install protoBuf:
+    ```sh
+    curl -OL https://github.com/google/protobuf/releases/download/v21.9/protoc-21.9-linux-x86_64.zip
+    unzip protoc-21.9-linux-x86_64.zip -d protoc3
+    sudo mv protoc3/bin/* /usr/local/bin/
+    sudo mv protoc3/include/* /usr/local/include/
+    protoc --version
+    ```
+
+8. Install Redis:
+    ```sh
+    sudo apt-get install redis -y
+    redis-server
+    ```
+
+9. Install aelf-command:
+    ```sh
+    npm i aelf-command -g
+    ```
+
+10. Create an aelf Account:
+    ```sh
+    aelf-command create
+    ```
