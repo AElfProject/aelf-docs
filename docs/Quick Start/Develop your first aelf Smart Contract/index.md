@@ -1,3 +1,10 @@
+---
+sidebar_position: 4
+title: Smart Contract Developing Demos
+description: Smart Contract Developing Demos
+image: /img/Logo.aelf.svg
+---
+
 # Smart Contract Developing Demos
 
 ### Bingo Game

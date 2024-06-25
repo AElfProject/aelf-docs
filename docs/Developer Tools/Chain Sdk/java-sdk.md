@@ -2,6 +2,7 @@
 sidebar_position: 4
 title: JAVA SDK
 description: JAVA SDK
+image: /img/Logo.aelf.svg
 ---
 
 # aelf-sdk.java - aelf Java API
@@ -48,63 +49,40 @@ boolean isConnected = client.isConnected();
 
 ### Initiate a Transfer Transaction
 
-Initiate a transfer transaction using the following steps:
-
-#### 1. Get Token Contract Address
 
 ```java
-Copy code
+// Get token contract address.
 String tokenContractAddress = client.getContractAddressByName(privateKey, Sha256.getBytesSha256("AElf.ContractNames.Token"));
-```
 
-#### 2. Set Recipient Address
-
-```java
 Client.Address.Builder to = Client.Address.newBuilder();
 to.setValue(ByteString.copyFrom(Base58.decodeChecked("7s4XoUHfPuqoZAwnTV7pHWZAaivMiL8aZrDSnY9brE1woa8vz")));
 Client.Address toObj = to.build();
-```
 
-#### 3. Create Transfer Input
-
-```java
 TokenContract.TransferInput.Builder paramTransfer = TokenContract.TransferInput.newBuilder();
 paramTransfer.setTo(toObj);
 paramTransfer.setSymbol("ELF");
 paramTransfer.setAmount(1000000000);
 paramTransfer.setMemo("transfer in demo");
 TokenContract.TransferInput paramTransferObj = paramTransfer.build();
-```
 
-#### 4. Generate and Sign Transaction
-
-```java
 String ownerAddress = client.getAddressFromPrivateKey(privateKey);
+
 Transaction.Builder transactionTransfer = client.generateTransaction(ownerAddress, tokenContractAddress, "Transfer", paramTransferObj.toByteArray());
 Transaction transactionTransferObj = transactionTransfer.build();
 transactionTransfer.setSignature(ByteString.copyFrom(ByteArrayHelper.hexToByteArray(client.signTransaction(privateKey, transactionTransferObj))));
 transactionTransferObj = transactionTransfer.build();
-```
 
-#### 5. Send Transaction
-
-```java
+// Send the transfer transaction to AElf chain node.
 SendTransactionInput sendTransactionInputObj = new SendTransactionInput();
 sendTransactionInputObj.setRawTransaction(Hex.toHexString(transactionTransferObj.toByteArray()));
 SendTransactionOutput sendResult = client.sendTransaction(sendTransactionInputObj);
-```
 
-#### 6. Query Execution Results
-
-```java
 Thread.sleep(4000);
+// After the transaction is mined, query the execution results.
 TransactionResultDto transactionResult = client.getTransactionResult(sendResult.getTransactionId());
 System.out.println(transactionResult.getStatus());
-```
 
-#### 7. Query Account Balance
-
-```java
+// Query account balance.
 Client.Address.Builder owner = Client.Address.newBuilder();
 owner.setValue(ByteString.copyFrom(Base58.decodeChecked(ownerAddress)));
 Client.Address ownerObj = owner.build();
@@ -225,9 +203,9 @@ Get block information by block hash.
 - `blockHash` - String
 - `includeTransactions` - boolean (true to include transaction ids list in the block, false otherwise)
 
-**Returns**: `BlockDto`
+**Returns**:
 
-  - `json`
+  - `BlockDto`
     - `BlockHash` - String
     - `Header` - BlockHeaderDto
         - `PreviousBlockHash` - String
@@ -261,9 +239,9 @@ client.getBlockByHash(blockHash);
 - `blockHeight` - long
 - `includeTransactions` - boolean (true to include transaction ids list in the block, false otherwise)
 
-**Returns**: `BlockDto`
+**Returns**:
 
-  - `json`
+  - `BlockDto`
     - `BlockHash` - String
     - `Header` - BlockHeaderDto
         - `PreviousBlockHash` - String
@@ -351,10 +329,11 @@ client.getTransactionResults(blockHash, 0, 10);
 
 **Parameters:**: None
 
-**Returns**: `TransactionPoolStatusOutput`
+**Returns**: 
 
-- `Queued` - int
-- `Validated` - int
+    - `TransactionPoolStatusOutput`
+       - `Queued` - int
+       - `Validated` - int
 
 **Example**:
 
@@ -374,9 +353,10 @@ client.getTransactionPoolStatus();
 - `SendTransactionInput` - Serialization of data into protobuf format:
     - `RawTransaction` - String
 
-**Returns**: `SendTransactionOutput`
+**Returns**: 
 
-- `TransactionId` - String
+    - `SendTransactionOutput`
+       - `TransactionId` - String
 
 **Example**:
 
@@ -398,10 +378,11 @@ client.sendTransaction(input);
     - `Signature` - String
     - `ReturnTransaction` - boolean
 
-**Returns**: `SendRawTransactionOutput`
+**Returns**: 
 
-    - `TransactionId` - String
-    - `Transaction` - TransactionDto
+    - `SendRawTransactionOutput`
+        - `TransactionId` - String
+        - `Transaction` - TransactionDto
     
 
 **Example**:
@@ -452,9 +433,10 @@ Create an unsigned serialized transaction.
     - `MethodName` - String
     - `Params` - String
 
-**Returns**: `CreateRawTransactionOutput` - Serialization of data into protobuf format:
+**Returns**:    
 
-- `RawTransaction` - String
+   - `CreateRawTransactionOutput` - Serialization of data into protobuf format:
+       - `RawTransaction` - String
 
 **Example**:
 
@@ -515,22 +497,23 @@ Get peer information about the connected network nodes.
 
 - `withMetrics` - boolean
 
-**Returns**: `List<PeerDto>`
+**Returns**: 
 
-- `IpAddress` - String
-- `ProtocolVersion` - int
-- `ConnectionTime` - long
-- `ConnectionStatus` - String
-- `Inbound` - boolean
-- `BufferedTransactionsCount` - int
-- `BufferedBlocksCount` - int
-- `BufferedAnnouncementsCount` - int
-- `NodeVersion` - String
-- `RequestMetrics` -  List`<RequestMetric>`
-- `RoundTripTime` - long
-- `MethodName` - String
-- `Info` - String
-- `RequestTime` - String
+    - `List<PeerDto>`
+       - `IpAddress` - String
+       - `ProtocolVersion` - int
+       - `ConnectionTime` - long
+       - `ConnectionStatus` - String
+       - `Inbound` - boolean
+       - `BufferedTransactionsCount` - int
+       - `BufferedBlocksCount` - int
+       - `BufferedAnnouncementsCount` - int
+       - `NodeVersion` - String
+       - `RequestMetrics` -  List`<RequestMetric>`
+           - `RoundTripTime` - long
+           - `MethodName` - String
+           - `Info` - String
+           - `RequestTime` - String
 
 
 **Example**:
@@ -597,12 +580,13 @@ Estimate transaction fee.
 - `CalculateTransactionFeeInput`
     - `RawTransaction` - String
 
-**Returns**: `CalculateTransactionFeeOutput`
+**Returns**: 
 
-- `Success` - boolean
-- `TransactionFee` - HashMap`<String, Long>`
-- `ResourceFee` - HashMap`<String, Long>`
-
+   - `CalculateTransactionFeeOutput`
+       - `Success` - boolean
+       - `TransactionFee` - HashMap`<String, Long>`
+       - `ResourceFee` - HashMap`<String, Long>`
+    
 **Example**:
 
 ```java
@@ -617,11 +601,12 @@ CalculateTransactionFeeOutput output = client.calculateTransactionFee(input);
 
 **Parameters:** None
 
-**Returns**: `NetworkInfoOutput`
+**Returns**: 
 
-- `Version` - String
-- `ProtocolVersion` - int
-- `Connections` - int
+    - `NetworkInfoOutput`
+       - `Version` - String
+       - `ProtocolVersion` - int
+       - `Connections` - int
 
 **Example**:
 
@@ -773,11 +758,13 @@ client.getAddressFromPrivateKey(privateKey);
 
 **Parameters:** None
 
-**Returns**: `KeyPairInfo`
+**Returns**: 
 
-- `PrivateKey` - String
-- `PublicKey` - String
-- `Address` - String
+   - `KeyPairInfo`
+   
+      - `PrivateKey` - String
+      - `PublicKey` - String
+      - `Address` - String
 
 **Example**:
 

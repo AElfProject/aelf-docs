@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Wallet and Block Explorer
+image: /img/Logo.aelf.svg
 ---
 
 # Wallet and Block Explorer
