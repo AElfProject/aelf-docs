@@ -1,645 +1,30 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 title: Net API
----
-
-# AELF API 1.0
-
-## Chain API
-
-### Get information about a given block by block hash. Optionally with the list of its transactions.
-
-```http
-GET /api/blockChain/block
-```
-
-**Parameters**
-
-| Type      | Name                  | Description  | Schema  | Default |
-| --------- | --------------------- | ------------ | ------- | ------- |
-| **Query** | `blockHash`           | block hash   | string  |         |
-|           | _optional_            |              |         |         |
-| **Query** | `includeTransactions` | include      | boolean | "false" |
-|           |                       | transactions |         |         |
-|           | _optional_            | or not       |         |         |
-
-**Responses**
-
-| HTTP Code | Description | Schema     |
-| --------- | ----------- | ---------- |
-| **200**   | Success     | `BlockDto` |
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-### Get information about a given block by block height. Optionally with the list of its transactions.
-
-```http
-GET /api/blockChain/blockByHeight
-```
-
-**Parameters**
-
-| Type      | Name                  | Description  | Schema  | Default |
-| --------- | --------------------- | ------------ | ------- | ------- |
-| **Query** | `blockHeight`         | block height | integer |         |
-|           | _optional_            |              | (int64) |         |
-| **Query** | `includeTransactions` | include      | boolean | "false" |
-|           |                       | transactions |         |         |
-|           | _optional_            | or not       |         |         |
-
-**Responses**
-
-| HTTP Code | Description | Schema     |
-| --------- | ----------- | ---------- |
-| **200**   | Success     | `BlockDto` |
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-### Get the height of the current chain.
-
-```http
-GET /api/blockChain/blockHeight
-```
-
-**Responses**
-
-| HTTP Code | Description | Schema          |
-| --------- | ----------- | --------------- |
-| **200**   | Success     | integer (int64) |
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-### Get the current state about a given block
-
-```http
-GET /api/blockChain/blockState
-```
-
-**Parameters**
-
-| Type      | Name        | Description | Schema |
-| --------- | ----------- | ----------- | ------ |
-| **Query** | `blockHash` | block hash  | string |
-
-**Responses**
-
-| HTTP Code | Description | Schema          |
-| --------- | ----------- | --------------- |
-| **200**   | Success     | `BlockStateDto` |
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-### Get the current status of the block chain.
-
-```http
-GET /api/blockChain/chainStatus
-```
-
-**Responses**
-
-| HTTP Code | Description | Schema           |
-| --------- | ----------- | ---------------- |
-| **200**   | Success     | `ChainStatusDto` |
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-### Get the protobuf definitions related to a contract
-
-```http
-GET /api/blockChain/contractFileDescriptorSet
-```
-
-**Parameters**
-
-| Type      | Name      | Description      | Schema |
-| --------- | --------- | ---------------- | ------ |
-| **Query** | `address` | contract address | string |
-
-**Responses**
-
-| HTTP Code | Description | Schema |
-| --------- | ----------- | ------ |
-| **200**   | Success     | byte   |
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-### Execute a raw transaction
-
-```http
-POST /api/blockChain/executeRawTransaction
-```
-
-**Parameters**
-
-| Type     | Name    | Schema                     |
-| -------- | ------- | -------------------------- |
-| **Body** | `input` | `ExecuteRawTransactionDto` |
-
-**Responses**
-
-| HTTP Code | Description | Schema |
-| --------- | ----------- | ------ |
-| **200**   | Success     | string |
-
-**Consumes**
-
-- `application/json-patch+json; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/*+json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-### Call a read-only method on a contract
-
-```http
-POST /api/blockChain/executeTransaction
-```
-
-**Parameters**
-
-| Type     | Name    | Schema                  |
-| -------- | ------- | ----------------------- |
-| **Body** | `input` | `ExecuteTransactionDto` |
-
-**Responses**
-
-| HTTP Code | Description | Schema |
-| --------- | ----------- | ------ |
-| **200**   | Success     | string |
-
-**Consumes**
-
-- `application/json-patch+json; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/*+json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-### Get the merkle path of a transaction
-
-```http
-GET /api/blockChain/merklePathByTransactionId
-```
-
-**Parameters**
-
-| Type      | Name            | Schema |
-| --------- | --------------- | ------ |
-| **Query** | `transactionId` | string |
-
-**Responses**
-
-| HTTP Code | Description | Schema          |
-| --------- | ----------- | --------------- |
-| **200**   | Success     | `MerklePathDto` |
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-### Create an unsigned serialized transaction
-
-```http
-POST /api/blockChain/rawTransaction
-```
-
-**Parameters**
-
-| Type     | Name    | Schema                      |
-| -------- | ------- | --------------------------- |
-| **Body** | `input` | `CreateRawTransactionInput` |
-
-**Responses**
-
-| HTTP Code | Description | Schema                       |
-| --------- | ----------- | ---------------------------- |
-| **200**   | Success     | `CreateRawTransactionOutput` |
-
-**Consumes**
-
-- `application/json-patch+json; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/*+json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-# Get the Current Status of a Transaction
-
-**GET** `/api/blockChain/transactionResult`
-
-**Parameters**
-
-| Type      | Name            | Schema   | Description    | Required |
-| --------- | --------------- | -------- | -------------- | -------- |
-| **Query** | `transactionId` | `string` | Transaction ID | No       |
-
-**Responses**
-
-| HTTP Code | Description | Schema                 |
-| --------- | ----------- | ---------------------- |
-| **200**   | Success     | `TransactionResultDto` |
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-# Send a Transaction
-
-**POST** `/api/blockChain/sendRawTransaction`
-
-**Parameters**
-
-| Type     | Name      | Schema                                                   |
-| -------- | --------- | -------------------------------------------------------- |
-| **Body** | **input** | `SendRawTransactionInput <#sendrawtransactioninput>`\_\_ |
-
-**Responses**
-
-| HTTP Code | Description | Schema                                                     |
-| --------- | ----------- | ---------------------------------------------------------- |
-| **200**   | Success     | `SendRawTransactionOutput <#sendrawtransactionoutput>`\_\_ |
-
-**Consumes**
-
-- `application/json-patch+json; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/*+json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-# Broadcast a Transaction
-
-**POST** `/api/blockChain/sendTransaction`
-
-**Parameters**
-
-| Type     | Name      | Schema                                             |
-| -------- | --------- | -------------------------------------------------- |
-| **Body** | **input** | `SendTransactionInput <#sendtransactioninput>`\_\_ |
-
-**Responses**
-
-| HTTP Code | Description | Schema                                               |
-| --------- | ----------- | ---------------------------------------------------- |
-| **200**   | Success     | `SendTransactionOutput <#sendtransactionoutput>`\_\_ |
-
-**Consumes**
-
-- `application/json-patch+json; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/*+json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-# Broadcast Multiple Transactions
-
-**POST** `/api/blockChain/sendTransactions`
-
-**Parameters**
-
-| Type     | Name      | Schema                                               |
-| -------- | --------- | ---------------------------------------------------- |
-| **Body** | **input** | `SendTransactionsInput <#sendtransactionsinput>`\_\_ |
-
-**Responses**
-
-| HTTP Code | Description | Schema           |
-| --------- | ----------- | ---------------- |
-| **200**   | Success     | `<string>` array |
-
-**Consumes**
-
-- `application/json-patch+json; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/*+json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-# Estimate Transaction Fee
-
-**POST** `/api/blockChain/calculateTransactionFee`
-
-**Parameters**
-
-| Type     | Name      | Schema                                                             | Default |
-| -------- | --------- | ------------------------------------------------------------------ | ------- |
-| **Body** | **Input** | `CalculateTransactionFeeInput <#calculatetransactionfeeinput>`\_\_ | -       |
-
-**Responses**
-
-| HTTP Code | Description | Schema                                                               |
-| --------- | ----------- | -------------------------------------------------------------------- |
-| **200**   | Success     | `CalculateTransactionFeeOutput <#calculatetransactionfeeoutput>`\_\_ |
-
-**Consumes**
-
-- `application/json-patch+json; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/*+json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Produces**
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-**Tags**
-
-- BlockChain
-
----
-
-# Get the Current Status of a Transaction
-
-**GET** `/api/blockChain/transactionResult`
-
-## Parameters
-
-| Type      | Name            | Schema   | Description    | Required |
-| --------- | --------------- | -------- | -------------- | -------- |
-| **Query** | `transactionId` | `string` | Transaction ID | No       |
-
-## Responses
-
-| HTTP Code | Description | Schema                 |
-| --------- | ----------- | ---------------------- |
-| **200**   | Success     | `TransactionResultDto` |
-
-## Produces
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-## Tags
-
-- BlockChain
-
----
-
-# Get Task Queue Status
-
-**GET** `/api/blockChain/taskQueueStatus`
-
-## Responses
-
-| HTTP Code | Description | Schema                   |
-| --------- | ----------- | ------------------------ |
-| **200**   | Success     | `TaskQueueInfoDto` array |
-
-## Produces
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-## Tags
-
-- BlockChain
-
----
-
-# Get Transaction Pool Status
-
-**GET** `/api/blockChain/transactionPoolStatus`
-
-## Responses
-
-| HTTP Code | Description | Schema                           |
-| --------- | ----------- | -------------------------------- |
-| **200**   | Success     | `GetTransactionPoolStatusOutput` |
-
-## Produces
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-## Tags
-
-- BlockChain
-
----
-
-# Get Multiple Transaction Results
-
-**GET** `/api/blockChain/transactionResults`
-
-## Parameters
-
-| Type      | Name        | Description | Schema          | Default |
-| --------- | ----------- | ----------- | --------------- | ------- |
-| **Query** | `blockHash` | block hash  | string          |         |
-| **Query** | `limit`     | limit       | integer (int32) | `10`    |
-| **Query** | `offset`    | offset      | integer (int32) | `0`     |
-
-## Responses
-
-| HTTP Code | Description | Schema                       |
-| --------- | ----------- | ---------------------------- |
-| **200**   | Success     | `TransactionResultDto` array |
-
-## Produces
-
-- `text/plain; v=1.0`
-- `application/json; v=1.0`
-- `text/json; v=1.0`
-- `application/x-protobuf; v=1.0`
-
-## Tags
-
-- BlockChain
-
 ---
 
 # Net API
 
 ## Get Network Information
 
-**GET** `/api/net/networkInfo`
+```http
+GET /api/net/networkInfo
+```
 
-## Responses
+### Responses
 
 | HTTP Code | Description | Schema                 |
 | --------- | ----------- | ---------------------- |
 | **200**   | Success     | `GetNetworkInfoOutput` |
 
-## Produces
+### Produces
 
 - `text/plain; v=1.0`
 - `application/json; v=1.0`
 - `text/json; v=1.0`
 - `application/x-protobuf; v=1.0`
 
-## Tags
+### Tags
 
 - Net
 
@@ -647,26 +32,28 @@ POST /api/blockChain/rawTransaction
 
 ## Add Peer
 
-**POST** `/api/net/peer`
+```http
+POST /api/net/peer
+```
 
-## Parameters
+#### Parameters
 
 | Type     | Name    | Schema         |
 | -------- | ------- | -------------- |
 | **Body** | `input` | `AddPeerInput` |
 
-## Responses
+### Responses
 
 | HTTP Code | Description  | Schema  |
 | --------- | ------------ | ------- |
 | **200**   | Success      | boolean |
 | **401**   | Unauthorized |         |
 
-## Security
+### Security
 
 - Basic Authentication
 
-## Consumes
+### Consumes
 
 - `application/json-patch+json; v=1.0`
 - `application/json; v=1.0`
@@ -674,14 +61,14 @@ POST /api/blockChain/rawTransaction
 - `application/*+json; v=1.0`
 - `application/x-protobuf; v=1.0`
 
-## Produces
+### Produces
 
 - `text/plain; v=1.0`
 - `application/json; v=1.0`
 - `text/json; v=1.0`
 - `application/x-protobuf; v=1.0`
 
-## Tags
+### Tags
 
 - Net
 
@@ -691,31 +78,31 @@ POST /api/blockChain/rawTransaction
 
 **DELETE** `/api/net/peer`
 
-## Parameters
+### Parameters
 
 | Type      | Name      | Description | Schema |
 | --------- | --------- | ----------- | ------ |
 | **Query** | `address` | ip address  | string |
 
-## Responses
+### Responses
 
 | HTTP Code | Description  | Schema  |
 | --------- | ------------ | ------- |
 | **200**   | Success      | boolean |
 | **401**   | Unauthorized |         |
 
-## Security
+### Security
 
 - Basic Authentication
 
-## Produces
+### Produces
 
 - `text/plain; v=1.0`
 - `application/json; v=1.0`
 - `text/json; v=1.0`
 - `application/x-protobuf; v=1.0`
 
-## Tags
+### Tags
 
 - Net
 
@@ -725,61 +112,61 @@ POST /api/blockChain/rawTransaction
 
 **GET** `/api/net/peers`
 
-## Parameters
+### Parameters
 
 | Type      | Name          | Description | Schema | Default   |
 | --------- | ------------- | ----------- | ------ | --------- |
 | **Query** | `withMetrics` | boolean     |        | `"false"` |
 
-## Responses
+### Responses
 
 | HTTP Code | Description | Schema          |
 | --------- | ----------- | --------------- |
 | **200**   | Success     | `PeerDto` array |
 
-## Produces
+### Produces
 
 - `text/plain; v=1.0`
 - `application/json; v=1.0`
 - `text/json; v=1.0`
 - `application/x-protobuf; v=1.0`
 
-## Tags
+### Tags
 
 - BlockChain
 
 ---
 
-### Get the Current Status of a Transaction
+## Get the Current Status of a Transaction
 
 **GET** `/api/blockChain/transactionResult`
 
-**Parameters**
+### Parameters
 
 | Type      | Name            | Schema   | Description    | Required |
 | --------- | --------------- | -------- | -------------- | -------- |
 | **Query** | `transactionId` | `string` | Transaction ID | No       |
 
-**Responses**
+### Responses
 
 | HTTP Code | Description | Schema                 |
 | --------- | ----------- | ---------------------- |
 | **200**   | Success     | `TransactionResultDto` |
 
-**Produces**
+### Produces
 
 - `text/plain; v=1.0`
 - `application/json; v=1.0`
 - `text/json; v=1.0`
 - `application/x-protobuf; v=1.0`
 
-**Tags**
+### Tags
 
 - BlockChain
 
 ---
 
-### Definitions
+## Definitions
 
 #### AddPeerInput
 
@@ -1127,7 +514,7 @@ This structure should provide a clear overview of each variable's name, schema, 
 
 ---
 
-### CalculateTransactionFeeOutput
+#### CalculateTransactionFeeOutput
 
 **Name:** CalculateTransactionFeeOutput
 
