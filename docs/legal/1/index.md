@@ -18,7 +18,7 @@ If you do not understand and accept all these Terms and Conditions, then you sho
 
 **1.2. Entire Agreement.** These Terms of Use, together with any other terms, policies, or notices to which you may agree in writing, as applicable (including but not limited to those documents incorporated by clause 1.11, below) constitute the sole and entire agreement between you and aelf and supersede all prior and contemporaneous understandings between the parties on your use of the Site. Any additional terms, conditions, licenses, limitations, disclaimers and obligations contained within and on the Site are incorporated into these Terms of Use by reference, including the Privacy Policy. You agree that, by accessing the Site, you represent and warrant that you have read, understood, and agreed to all provisions of these Terms of Use.
 
-**1.3. Contact Us.** We are contactable VIA EMAIL at legal@aelf.io.
+**1.3. Contact Us.** Please reach out to us [here](https://form.aelf.com/contact).
 
 **1.4. Our Site.** These Terms of Use govern your use of our “Site,” which DOES NOT INCLUDE the aelf chain or the blockchain-based protocols of the underlying aelf network, but which DOES INCLUDE the software and internet-based information, services, and features (and related communications) available through each of the following:
 
