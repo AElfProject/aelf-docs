@@ -170,7 +170,7 @@ However, please remember:
 
 \- You are responsible for your username and password and should keep them safe.
 
-\- If you believe your privacy has been breached, please contact us immediately on \[insert general Aelf email ].
+\- If you believe your privacy has been breached, please contact us immediately [here](https://form.aelf.com/contact).
 
 **11. Your Rights and Choices** 
 
@@ -196,7 +196,7 @@ We may update this Privacy Policy from time to time. The updated version will be
 
 **14. Contact Us**
 
-If you have questions or comments about this privacy policy, you may email us at \[insert general Aelf email]. 
+If you have questions or comments about this privacy policy, you may email us [here](https://form.aelf.com/contact). 
 
 **15. How Can You Review, Update, Or Delete The Data We Collect From You?**
 
