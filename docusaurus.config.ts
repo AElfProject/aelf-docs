@@ -60,6 +60,7 @@ const config: Config = {
       logo: {
         alt: "aelf",
         src: "img/Logo.aelf.svg",
+        srcDark: "img/Logo.aelf.white.svg",
       },
       items: [
         // @ts-expect-error
