@@ -41,7 +41,7 @@ Currently, aelf blockchain utilizes ECKeyPair for this purpose, similar to many 
 
 ##### Generating a Key Pair:
 
-* Users can use the [aelf-command](../reference/cli/introduction.md) tool to create a valid ECKeyPair:
+* Users can use the [aelf-command](../../tools/aelf-cli/introduction/index.md) tool to create a valid ECKeyPair:
 
 ```shell
 aelf-command create
@@ -51,7 +51,7 @@ aelf-command create
 
 ##### Using dApp SDK:
 
-For dApp developers, the aelf JavaScript SDK [js-sdk](../reference/chain-sdk/javascript/js-sdk.md)` offers a method based on [bip39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) for deterministic key pair generation:
+For dApp developers, the aelf JavaScript SDK [js-sdk](../../tools/chain-sdk/javascript-sdk/index.md)` offers a method based on [bip39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) for deterministic key pair generation:
 
 ```javascript
 import Aelf from 'aelf-sdk';
