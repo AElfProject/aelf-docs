@@ -1,6 +1,8 @@
 ---
 sidebar_position: 4
 title: Network
+description: Network
+image: /img/Logo.aelf.svg
 ---
 
 # Network

@@ -1,3 +1,10 @@
+---
+sidebar_position: 4
+title: Transactions
+description: Transactions
+image: /img/Logo.aelf.svg
+---
+
 # Overview
 
 Transactions play a critical role in modifying the state of the aelf blockchain through interactions with smart contracts. Here’s how transactions function:

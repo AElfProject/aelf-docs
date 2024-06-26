@@ -1,3 +1,10 @@
+---
+sidebar_position: 1
+title: aelf Blockchain Boot Sequence
+description: aelf Blockchain Boot Sequence
+image: /img/Logo.aelf.svg
+---
+
 # aelf Blockchain Boot Sequence
 
 This guide explains how the aelf Blockchain starts from initial nodes and transitions to production nodes through elections, completing the full startup process.
@@ -11,7 +18,8 @@ To begin the aelf Blockchain, you need to start at least one initial node. It’
 ##### Setup Initial Nodes:
 
 - Refer to the "Getting Started" section for detailed steps.
-- Use the :doc:`Running multi-nodes with Docker <../getting_started/development-environment/node>` guide to start the initial nodes. This example uses three initial nodes.
+<!-- - Use the :doc:`Running multi-nodes withDocker <../getting_started/development-environment/node>` guide to start the initial nodes.  -->
+- This example uses three initial nodes.
 
 ##### Election Time Configuration:
 

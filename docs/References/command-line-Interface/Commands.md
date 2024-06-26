@@ -2,6 +2,7 @@
 sidebar_position: 2
 title: Commands
 description: Commands
+image: /img/Logo.aelf.svg
 ---
 
 # Commands Overview

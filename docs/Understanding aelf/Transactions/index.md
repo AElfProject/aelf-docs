@@ -1,6 +1,8 @@
 ---
 sidebar_position: 6
 title: Transactions
+description: Transactions
+image: /img/Logo.aelf.svg
 ---
 
 # Overview

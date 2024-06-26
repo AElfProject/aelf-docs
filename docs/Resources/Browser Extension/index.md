@@ -2,6 +2,7 @@
 sidebar_position: 4
 title: Browser Extension
 description: Explore Portkey wallet and other extensions
+image: /img/Logo.aelf.svg
 ---
 
 # aelf-web-extension

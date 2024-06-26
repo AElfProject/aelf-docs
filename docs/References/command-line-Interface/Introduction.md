@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Introduction to the CLI
 description: Introduction to the CLI
+image: /img/Logo.aelf.svg
 ---
 
 # Introduction to the CLI

@@ -1,8 +1,9 @@
 ---
 sidebar_position: 5
 title: Addresses
+description: Addresses
+image: /img/Logo.aelf.svg
 ---
-
 # Address
 
 ### Overview
