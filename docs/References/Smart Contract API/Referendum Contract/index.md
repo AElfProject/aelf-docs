@@ -1,4 +1,4 @@
 ---
 sidebar_position: 2
-title: Smart Contract API
+title: Referendum Contract
 ---
