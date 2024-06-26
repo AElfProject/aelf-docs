@@ -2,6 +2,7 @@
 sidebar_position: 6
 title: Python SDK
 description: Python SDK
+image: /img/Logo.aelf.svg
 ---
 
 # aelf-sdk.py - aelf Python API

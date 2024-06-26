@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: PHP SDK
 description: PHP SDK
+image: /img/Logo.aelf.svg
 ---
 
 # aelf-sdk.php - aelf PHP API
@@ -93,7 +94,6 @@ print_r($result);
 ```
 
 ## Web API
-----------
 
 You can access the Web API of your aelf node at:
 
@@ -108,7 +108,7 @@ Before using the methods, make sure you have an instance of AElf:
 ```php
 require_once 'vendor/autoload.php';
 use AElf\AElf;
-
+// create a new instance of AElf
 $url = '127.0.0.1:8000';
 $aelf = new AElf($url);
 ```
@@ -120,11 +120,28 @@ $aelf = new AElf($url);
 
 - **Parameters**: None
 
-- **Returns**: Array with chain status details
+- **Returns**:
+
+   - `Array`
+      - `ChainId` - String
+      - `Branches` - Array
+      - `NotLinkedBlocks` - Array
+      - `LongestChainHeight` - Integer
+      - `LongestChainHash` - String
+      - `GenesisBlockHash` - String
+      - `GenesisContractAddress` - String
+      - `LastIrreversibleBlockHash` - String
+      - `LastIrreversibleBlockHeight` - Integer
+      - `BestChainHash` - String
+      - `BestChainHeight` - Integer
+
 
 - **Example** :
 
 ```php
+// create a new instance of AElf
+$aelf = new AElf($url);
+
 $chainStatus = $aelf->getChainStatus();
 print_r($chainStatus);
 ```
@@ -142,12 +159,14 @@ print_r($chainStatus);
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $height = $aelf->getBlockHeight();
 print($height);
 ```
 
 
-### 3. Get Block by Hash
+### 3. getBlock
 
 - **API Path**: `/api/blockChain/block`
 
@@ -156,11 +175,30 @@ print($height);
    - `block_hash` (String)
    - `include_transactions` (Boolean)
 
-- **Returns**: Array with block information
+- **Returns**: 
+
+   - `Array`
+      - `BlockHash` - String
+      - `Header` - Array
+         - `PreviousBlockHash` - String
+         - `MerkleTreeRootOfTransactions` - String
+         - `MerkleTreeRootOfWorldState` - String
+         - `Extra` - List
+         - `Height` - Integer
+         - `Time` - String
+         - `ChainId` - String
+         - `Bloom` - String
+         - `SignerPubkey` - String
+      - `Body` - Array
+         - `TransactionsCount` - Integer
+         - `Transactions` - Array
+            - `transactionId` - String
 
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $block = $aelf->getBlockByHeight(1, true);
 $block2 = $aelf->getBlockByHash($block['BlockHash'], false);
 print_r($block2);
@@ -176,11 +214,31 @@ print_r($block2);
    - `block_height` (Number)
    - `include_transactions` (Boolean)
 
-- **Returns**: Array with block information
+- **Returns**: 
+
+   - `Array`
+      - `BlockHash` - String
+      - `Header` - Array
+         - `PreviousBlockHash` - String
+         - `MerkleTreeRootOfTransactions` - String
+         - `MerkleTreeRootOfWorldState` - String
+         - `Extra` - List
+         - `Height` - Integer
+         - `Time` - String
+         - `ChainId` - String
+         - `Bloom` - String
+         - `SignerPubkey` - String
+      - `Body` - Array
+         - `TransactionsCount` - Integer
+         - `Transactions` - Array
+            - `transactionId` - String
+
 
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $block = $aelf->getBlockByHeight(1, true);
 print_r($block);
 ```
@@ -194,11 +252,35 @@ print_r($block);
 
    - `transactionId` (String)
 
-- **Returns**: Object with transaction result details
+- **Returns**:
+
+   - `Object`
+      - `TransactionId` - String
+      - `Status` - String
+      - `Logs` - Array
+         - `Address` - String
+         - `Name` - String
+         - `Indexed` - Array
+         - `NonIndexed` - String
+      - `Bloom` - String
+      - `BlockNumber` - Integer
+      - `Transaction` - Array
+         - `From` - String
+         - `To` - String
+         - `RefBlockNumber` - Integer
+         - `RefBlockPrefix` - String
+         - `MethodName` - String
+         - `Params` - json
+         - `Signature` - String
+            - `transactionId` - String
+      - `ReadableReturnValue` - String
+      - `Error` - String
 
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $block = $aelf->getBlockByHeight(1, true);
 $transactionResult = $aelf->getTransactionResult($block['Body']['Transactions'][0]);
 print_r($transactionResult);
@@ -215,11 +297,16 @@ print_r($transactionResult);
    - `offset` (Number)
    - `limit` (Number)
 
-- **Returns**: List of transaction result objects
+- **Returns**: 
+
+   - `List` - The array of method descriptions:
+      - the transaction result object
 
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $block = $aelf->getBlockByHeight(1, true);
 $transactionResults = $aelf->getTransactionResults($block['Body']);
 print_r($transactionResults);
@@ -233,6 +320,8 @@ print_r($transactionResults);
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $status = $aelf->getTransactionPoolStatus();
 print_r($status);
 ```
@@ -273,6 +362,8 @@ print_r($result);
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $paramsList = [$params1, $params2];
 $rawTransactionsList = [];
 foreach ($paramsList as $param) {
@@ -339,11 +430,16 @@ $aelf->removePeer($url);
 
    - `transaction` (Array)
 
-- **Returns**: Array with the raw transaction hex string
+- **Returns**: 
+
+   - `Array`
+      - `RawTransaction` - hex string bytes generated by transaction information
 
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $status = $aelf->getChainStatus();
 $params = base64_encode(hex2bin(hash('sha256', 'AElf.ContractNames.Consensus')));
 $param = array('value' => $params);
@@ -373,6 +469,8 @@ print_r($rawTransaction);
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $rawTransaction = $aelf->createRawTransaction($transaction);
 $transactionId = hash('sha256', hex2bin($rawTransaction['RawTransaction']));
 $sign = $aelf->getSignatureWithPrivateKey($privateKey, $transactionId);
@@ -398,6 +496,8 @@ print_r($execute);
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $rawTransaction = $aelf->createRawTransaction($transaction);
 $transactionId = hash('sha256', hex2bin($rawTransaction['RawTransaction']));
 $sign = $aelf->getSignatureWithPrivateKey($privateKey, $transactionId);
@@ -418,6 +518,8 @@ print_r($execute);
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $block = $aelf->getBlockByHeight(1, true);
 $merklePath = $aelf->getMerklePathByTransactionId($block['Body']['Transactions'][0]);
 print_r($merklePath);
@@ -434,11 +536,19 @@ print_r($merklePath);
 
    - `CalculateTransactionFeeInput` (Object)
 
-- **Returns**: `CalculateTransactionFeeOutput (Object)`
+- **Returns**: 
+
+   - `CalculateTransactionFeeOutput (Object)`
+
+       - `Success` - bool
+       - `TransactionFee` - Array
+       - `ResourceFee` - Array
 
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 $calculateTransactionFeeInputParam = [
     "rawTransaction" => $rawTransactionInput,
 ];
@@ -454,6 +564,8 @@ print_r($result);
 - **Example** :
 
 ```php
+$aelf = new AElf($url);
+
 print_r($aelf->getNetworkInfo());
 ```
 

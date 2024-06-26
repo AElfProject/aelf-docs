@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Javascript SDK
 description: Javascript SDK
+image: /img/Logo.aelf.svg
 ---
 
 # aelf-sdk.js - aelf JavaScript API
@@ -170,6 +171,8 @@ You can access the Web API of your aelf node at `{chainAddress}/swagger/index.ht
 
 For example, if your local node address is `http://127.0.0.1:1235`, you can view the Web API at `http://127.0.0.1:1235/swagger/index.html`.
 
+parameters and returns based on the URL: [https://aelf-public-node.aelf.io/swagger/index.html](https://aelf-public-node.aelf.io/swagger/index.html)
+
 The methods below use an instance of aelf. If you don't have one, create it as shown:
 
 ```javascript
@@ -186,7 +189,19 @@ Get the current status of the blockchain.
 - **Web API Path**: `/api/blockChain/chainStatus`
 - **Method**: GET
 - **Parameters**: None
-- **Returns**: Object with details like ChainId, LongestChainHeight, GenesisContractAddress, etc.
+- **Returns**: `Object`
+
+    - `ChainId` - String
+    - `Branches` - Object
+    - `NotLinkedBlocks` - Object
+    - `LongestChainHeight` - Number
+    - `LongestChainHash` - String
+    - `GenesisBlockHash` - String
+    - `GenesisContractAddress` - String
+    - `LastIrreversibleBlockHash` - String
+    - `LastIrreversibleBlockHeight` - Number
+    - `BestChainHash` - String
+    - `BestChainHeight` - Number
 
 
 #### Example:
@@ -206,7 +221,7 @@ Get the protobuf definitions related to a contract.
 - **Web API Path**: `/api/blockChain/contractFileDescriptorSet`
 - **Method**: GET
 - **Parameters**: `contractAddress` (String)
-- **Returns**: String.
+- **Returns**: `String`.
 
 
 #### Example:
@@ -227,7 +242,7 @@ Get the current best height of the chain.
 - **Web API Path**: `/api/blockChain/blockHeight`
 - **Method**: GET
 - **Parameters**: None
-- **Returns**: Number.
+- **Returns**: `Number`.
 
 
 #### Example:
@@ -246,10 +261,31 @@ Get block information by block hash.
 
 - **Web API Path**: `/api/blockChain/block`
 - **Method**: GET
-- **Parameters**: `contractAddress` (String)
+- **Parameters**:
    - **`blockHash`** (String)
    - **`includeTransactions`** (Boolean)
-- **Returns**: object with block details
+      - `true` require transaction ids list in the block
+      - `false` Doesn’t require transaction ids list in the block
+
+- **Returns**: `Object`
+      
+      - `BlockHash` - String 
+
+      - `Header` - Object 
+          - `PreviousBlockHash` - String 
+          - `MerkleTreeRootOfTransactions` - String 
+          - `MerkleTreeRootOfWorldState` - String 
+          - `Extra` - Array 
+          - `Height` - Number 
+          - `Time` - google.protobuf.Timestamp 
+          - `ChainId` - String 
+          - `Bloom` - String 
+          - `SignerPubkey` - String 
+
+      - `Body` - Object 
+          - `TransactionsCount` - Number 
+          - `Transactions` - Array 
+            - `transactionId` - String 
 
 
 #### Example:
@@ -271,7 +307,29 @@ Get block information by block height.
 - **Parameters**:
    - **`blockHash`** (String)
    - **`includeTransactions`** (Boolean)
-- **Returns**: Object with block details
+      - `true` require transaction ids list in the block
+      - `false` Doesn’t require transaction ids list in the block
+
+- **Returns**: `Object`
+      
+      - `BlockHash` - String 
+
+      - `Header` - Object 
+          - `PreviousBlockHash` - String 
+          - `MerkleTreeRootOfTransactions` - String 
+          - `MerkleTreeRootOfWorldState` - String 
+          - `Extra` - Array 
+          - `Height` - Number 
+          - `Time` - google.protobuf.Timestamp 
+          - `ChainId` - String 
+          - `Bloom` - String 
+          - `SignerPubkey` - String 
+
+      - `Body` - Object 
+          - `TransactionsCount` - Number 
+          - `Transactions` - Array 
+            - `transactionId` - String 
+
 
 
 #### Example:
@@ -289,7 +347,27 @@ aelf.chain.getBlockByHeight(12, false)
 - **Web API Path**: `/api/blockChain/transactionResult`
 - **Method**: GET
 - **Parameters**: `transactionId` (String)
-- **Returns**: Object with transaction details
+- **Returns**: `Object`
+      
+      - `TransactionId` - String 
+      - `Status` - String 
+      - `Logs` - Array 
+          - `Address` - String 
+          - `Name` - String 
+          - `Indexed` - Array 
+          - `NonIndexed` - Number 
+      - `Bloom` - String 
+      - `BlockNumber` - Number 
+      - `Transaction` - Object 
+          - `From` - String 
+          - `To` - String 
+          - `RefBlockNumber` - Number 
+          - `RefBlockPrefix` - String 
+          - `MethodName` - String 
+          - `Params` - Object 
+          - `Signature` - String 
+      - `ReadableReturnValue` - Object 
+      - `Error` - String 
 
 
 #### Example:
@@ -310,7 +388,9 @@ aelf.chain.getTxResult(transactionId)
    - **`blockHash`** (String)
    - **`offset`** (Number)
    - **`limit`** (Number)
-- **Returns**: Array of transaction result objects
+- **Returns**: 
+   - `Array` - The array of method descriptions:
+      - the transaction result object
 
 
 #### Example:
@@ -328,7 +408,6 @@ aelf.chain.getTxResults(blockHash, 0, 2)
 - **Web API Path**: `/api/blockChain/transactionPoolStatus`
 - **Method**: GET
 - **Parameters**: None
-- **Returns**: Object with transaction pool status
 
 
 ### 9. Send Transaction
@@ -337,61 +416,65 @@ aelf.chain.getTxResults(blockHash, 0, 2)
 - **Web API Path**: `/api/blockChain/sendTransaction`
 - **Method**: POST
 - **Parameters**: `Object` (Serialized protobuf data with RawTransaction string)
-- **Returns**: Transaction ID
+   - `RawTransaction` - String
 
 
 ### 10. Send Multiple Transactions
 
-
 - **Web API Path**: `/api/blockChain/sendTransactions`
 - **Method**: POST
 - **Parameters**: `Object` (Serialized protobuf data with RawTransaction string)
-- **Returns**: Transaction IDs
+   - `RawTransaction` - String
 
 
 ### 11. Call Read-Only Method
 
+Call a read-only method on a contract.
 
-- **Web API Path**: `/api/blockChain/callReadOnly`
 - **Method**: POST
 - **Parameters**: `Object` (Serialized protobuf data with RawTransaction string)
+   - `RawTransaction` - String
 - **Returns**: Method call result
 
 
 ### 12. Get Peers
 
+Get peer info about the connected network nodes.
 
-- **Web API Path**: `/api/net/peers`
 - **Method**: GET
 - **Parameters**: `withMetrics` (Boolean)
-- **Returns**: Array of peer info
-
+   - `true` with metrics
+   - `false` without metrics
+   
 
 ### 13. Add Peer
 
+Attempts to add a node to the connected network nodes
 
-- **Web API Path**: `/api/net/peer`
 - **Method**: POST
-- **Parameters**: `Object` (Address string)
-- **Returns**: Status
-
+- **Parameters**: `Object` The object with the following structure :
+   - `Address` - String
 
 ### 14. Remove Peer
 
+Attempts to remove a node from the connected network nodes
 
-- **Web API Path**: `/api/net/peer`
 - **Method**: DELETE
 - **Parameters**: `address` (String)
-- **Returns**: Status
 
 
-### 15. Send Multiple Transactions
+### 15. Calculate Transaction Fee
 
 
 - **Web API Path**: `/api/blockChain/calculateTransactionFee`
 - **Method**: POST
-- **Parameters**:  `CalculateTransactionFeeInput` (Object with RawTransaction string)
-- **Returns**: `CalculateTransactionFeeOutput` (Object with fee details)
+- **Parameters**:  `CalculateTransactionFeeInput` (Object with RawTransaction string):
+   - `RawTransaction` - String
+- **Returns**: `CalculateTransactionFeeOutput` (Object with fee details):
+   - `Success` - Bool
+   - `TransactionFee` - Array
+   - `ResourceFee` - Array
+   
 
 #### Example
 
@@ -405,11 +488,9 @@ aelf.chain.calculateTransactionFee(rawTransaction)
 ### 16. Network Info
 
 
-- **Web API Path**: `/api/net/networkInfo`
 - **Method**: GET
 - **Parameters**: None
 - **Returns**: Network connection info
-
 
 
 ## AElf.wallet
