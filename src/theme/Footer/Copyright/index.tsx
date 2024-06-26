@@ -3,7 +3,8 @@ import Copyright from "@theme-original/Footer/Copyright";
 import type CopyrightType from "@theme/Footer/Copyright";
 import type { WrapperProps } from "@docusaurus/types";
 import styles from "./index.module.css";
-import socialLinks from "../../../../config/social-links.json";
+import socialLinks from "@site/config/social-links.json";
+import Logo from "@site/src/theme/logo";
 
 type Props = WrapperProps<typeof CopyrightType>;
 
@@ -12,7 +13,9 @@ export default function CopyrightWrapper(props: Props): JSX.Element {
     <>
       <div className={styles.wrap}>
         <div className={styles.copyright}>
-          <img className={styles.logo} src="/img/Logo.aelf.svg" />
+          <div className={styles.logo}>
+            <Logo />
+          </div>
           <Copyright {...props} />
         </div>
         <div className={styles.social}>

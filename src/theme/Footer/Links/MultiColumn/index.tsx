@@ -1,6 +1,7 @@
 import React from "react";
 import LinkItem from "@theme/Footer/LinkItem";
 import type { Props } from "@theme/Footer/Links/MultiColumn";
+import Logo from "@site/src/theme/logo";
 
 type ColumnType = Props["columns"][number];
 type ColumnItemType = ColumnType["items"][number];
@@ -39,7 +40,7 @@ export default function FooterLinksMultiColumn({
   return (
     <div className="row footer__links">
       <div className="col footer__col mobile-hidden">
-        <img src="/img/Logo.aelf.svg" />
+        <Logo />
       </div>
       {columns.map((column, i) => (
         <Column key={i} column={column} />
