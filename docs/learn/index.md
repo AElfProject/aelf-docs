@@ -1,4 +1,4 @@
 ---
-sidebar_position: 2
+sidebar_position: 0
 title: Understanding aelf
 ---
