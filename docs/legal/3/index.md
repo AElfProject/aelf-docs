@@ -72,4 +72,4 @@ The date at the top of this Cookie Policy indicates when it was last updated.
 
 **Where can I get further information?**
 
-If you have any questions about our use of cookies or other technologies, please email us at \[insert general Aelf email].
+If you have any questions about our use of cookies or other technologies, please contact us [here](https://form.aelf.com/contact).
