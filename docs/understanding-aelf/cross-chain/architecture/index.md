@@ -22,7 +22,7 @@ Through this link, messages are exchanged, and indexing is performed to ensure t
 
 In the current architecture, both the side chain node and the main chain node have one server and exactly one client. This forms the basis for AElf's two-way communication between the main chain and side chains. Both the server and the client are implemented as node plugins (a node has a collection of plugins). Interaction (listening and requesting) can start once both nodes are running.
 
-![Node Level Architecture](side-chain-nodes.png)
+![Node Level Architecture](../../../../static/img/side-chain-nodes.png)
 
 The diagram above illustrates two nodes run by an entity: one main chain node and one side chain node. Note that the nodes don't have to be in the same physical location.
 
@@ -63,4 +63,4 @@ Apart from the data in blocks, most cross-chain data will be stored by the cross
 
 Conceptually, the node operates as described in the following diagram. The main/side chain node receives cross-chain data from the other side and stores it in local memory. The indexing transaction is packed by the miner, and the cross-chain data is written into the `State` through the `Crosschain Contract`.
 
-![Data Flow](architecture-node.png)
+![Data Flow](../../../../static/img/architecture-node.png)

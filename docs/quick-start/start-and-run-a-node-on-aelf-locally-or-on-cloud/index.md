@@ -6,21 +6,21 @@ This guide will walk you through the steps required to run an aelf node on Googl
 
 1. Go to the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace) and search for "aelf blockchain for enterprise".
 
-   ![image](gcp-step1.png)
+   ![image](../../../static/img/gcp-step1.png)
 
 2. Find the aelf image and click on "LAUNCH ON COMPUTE ENGINE".
 
-   ![image](gcp-step2-b.png)
+   ![image](../../../static/img/gcp-step2-b.png)
 
 3. Keep the default settings and click "DEPLOY" at the bottom left of the page.
 
-   ![image](gcp-deployed.png)
+   ![image](../../../static/img/gcp-deployed.png)
 
 ## Step 2: Access and Start the Chain
 
 1. Login to the launched VM instance via SSH. You can do this by clicking the SSH drop-down and selecting "Open in browser window".
 
-   ![image](gcp-ssh-select.png)
+   ![image](../../../static/img/gcp-ssh-select.png)
 
 2. In the SSH session, execute `sudo bash` to elevate your privileges.
 
@@ -35,7 +35,7 @@ This guide will walk you through the steps required to run an aelf node on Googl
      cd /opt/aelf-node && docker-compose up -d
      ```
 
-   ![image](gcp-docker-compose.png)
+   ![image](../../../static/img/gcp-docker-compose.png)
 
 ## Step 3: Verify Chain Status
 
@@ -45,6 +45,6 @@ This guide will walk you through the steps required to run an aelf node on Googl
    curl -X GET "http://127.0.0.1:8001/api/blockChain/chainStatus" -H "accept: text/plain; v=1.0"
    ```
 
-   ![image](gcp-curl-chain-stat.png)
+   ![image](../../../static/img/gcp-curl-chain-stat.png)
 
 2. If everything is working normally, you should see the chain status increase with each request.
