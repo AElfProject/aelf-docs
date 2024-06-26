@@ -630,7 +630,7 @@ $tokenInfo->mergeFromString(hex2bin($response));
 
 ## Other Tool Kit
 
-AElf supplies some APIs to simplify development.
+aelf supplies some APIs to simplify development.
 
 ### 1. Get Chain Id
 

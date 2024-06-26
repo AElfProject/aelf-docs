@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: Wallet and Block Explorer
-image: /img/Logo.aelf.svg
+description: Manage your assets and explore aelf's blockchain data
 ---
 
 # Wallet and Block Explorer

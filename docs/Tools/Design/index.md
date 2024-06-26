@@ -1,12 +1,12 @@
 ---
 sidebar_position: 6
-title: aelf design
+title: aelf Design
 ---
 
 <div align="center">
 
-<h1 align="center">aelf Design</h1>
-<h2>A UI component library based on Antd and compliant with aelf visual specifications</h2>
+<h1 align="left">aelf Design</h1>
+<h2 align="left">A UI component library based on Antd and compliant with aelf visual specifications</h2>
 <h2 align="left"> website: https://aelf-design.vercel.app/</h2>
 
 </div>

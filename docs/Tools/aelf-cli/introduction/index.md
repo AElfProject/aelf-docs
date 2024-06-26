@@ -44,7 +44,7 @@ You need to create a new account or load an existing account using a `private ke
 
 **Create a New Wallet**
 
-```sql
+```sh
 aelf-command create
 ```
 
@@ -65,7 +65,7 @@ Account info has been saved to "/Users/young/.local/share/aelf/keys/2Ue31YTuB5Sz
 
 **Load Wallet from Private Key**
 
-```sql
+```sh
 aelf-command load e038eea7e151eb451ba2901f7...b08ba5b76d8f288
 ```
 
@@ -85,7 +85,7 @@ Account info has been saved to "/Users/young/.local/share/aelf/keys/2Ue31YTuB5Sz
 
 **Show Wallet Info**
 
-```sql
+```sh
 aelf-command wallet -a 2Ue31YTuB5Szy7cnr3SCEGU2gtGi5uMQBYarYUR5oGin1sys6H
 ```
 
@@ -104,7 +104,7 @@ Here you can decide whether to encrypt the account info and save it to a file.
 
 **Interactive Console**
 
-```sql
+```sh
 aelf-command console -a 2Ue31YTuB5Szy7cnr3SCEGU2gtGi5uMQBYarYUR5oGin1sys6H
 ✔ Enter the URI of an AElf node: http://127.0.0.1:8000
 ✔ Enter the password you typed when creating a wallet … ********
@@ -128,7 +128,7 @@ Welcome to aelf interactive console. Ctrl + C to terminate the program. Double t
 
 **Default Parameters**
 
-```sql
+```sh
 aelf-command console
 ✔ Enter the URI of an AElf node: http://127.0.0.1:8000
 ✔ Enter a valid wallet address, if you don't have, create one by aelf-command create … 2Ue31YTuB5Szy7cnr3SCEGU2gtGi5uMQBYarYUR5oGin1sys6H
@@ -154,7 +154,7 @@ Welcome to aelf interactive console. Ctrl + C to terminate the program. Double t
 
 To get help, use:
 
-```sql
+```sh
 aelf-command -h
 ```
 
@@ -191,13 +191,13 @@ Commands:
 
 To get help for a sub-command, such as call, use:
 
-```sql
+```sh
 aelf-command call -h
 ```
 
 Output example:
 
-```sql
+```sh
 Usage: aelf-command call [options] [contract-address|contract-name] [method] [params]
 
 Call a read-only method on a contract.
@@ -215,13 +215,13 @@ aelf-command call
 
 For the interactive console:
 
-```sql
+```sh
 aelf-command console -h
 ```
 
 Output example:
 
-```sql
+```sh
 Usage: aelf-command console [options]
 
 Open a node REPL

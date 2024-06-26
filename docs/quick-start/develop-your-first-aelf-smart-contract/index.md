@@ -152,7 +152,7 @@ message BoutInformation {
       - **contract**: Store definition proto files for your contract.
       - **message**: Define common properties that can be imported and used by other proto files.
       - **reference**: Store proto files for contracts referenced by your contract.
-      - **base**: Store basic proto files, such as ACS (AElf standard contract) proto files.
+      - **base**: Store basic proto files, such as ACS (aelf contract standard) proto files.
       
    - For Protobuf files under the test folder:
       - **contract**: Store definition proto files for your contract and any referenced contracts.

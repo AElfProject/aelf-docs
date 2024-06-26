@@ -9,7 +9,7 @@ image: /img/Logo.aelf.svg
 
 ## Introduction
 
-This document provides information on how to use the AElf Go SDK (aelf-sdk.go) to interact with an AElf node. The SDK allows you to communicate with a local or remote AElf node using HTTP. Here you will find instructions for setting up the SDK, examples of how to use it, and a brief description of its main functions.
+This document provides information on how to use the aelf Go SDK (aelf-sdk.go) to interact with an aelf node. The SDK allows you to communicate with a local or remote aelf node using HTTP. Here you will find instructions for setting up the SDK, examples of how to use it, and a brief description of its main functions.
 
 For additional information, please visit the repository: [aelf-sdk.go](https://github.com/AElfProject/aelf-sdk.go)
 
@@ -63,7 +63,7 @@ transaction, _ := aelf.CreateTransaction(fromAddress, tokenContractAddress, meth
 signature, _ := aelf.SignTransaction(aelf.PrivateKey, transaction)
 transaction.Signature = signature
 
-// Send the transfer transaction to AElf chain node.
+// Send the transfer transaction to aelf chain node.
 transactionByets, _ := proto.Marshal(transaction)
 sendResult, _ := aelf.SendTransaction(hex.EncodeToString(transactionByets))
 

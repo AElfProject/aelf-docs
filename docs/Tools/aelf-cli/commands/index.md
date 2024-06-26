@@ -19,7 +19,7 @@ description: aelf CLI Commands
 You can set these options in several ways, in order of priority from low to high:
 
 1. **Environment Variables**
-    ```sql
+    ```sh
     # Set datadir
     $ export AELF_CLI_DATADIR=/Users/{you}/.local/share/aelf
     
@@ -38,32 +38,32 @@ You can set these options in several ways, in order of priority from low to high
 
 **set**: Save configuration in the global `.aelfrc` file.
 
-```sql
+```sh
 $ aelf-command config set endpoint http://127.0.0.1:8000
 ✔ Succeed!
 ```
 
 **get**: Retrieve a value from the global `.aelfrc` file.
-```sql
+```sh
 $ aelf-command config get endpoint
 http://127.0.0.1:8000
 ```
 
 **delete**: Remove a key-value pair from the global `.aelfrc` file.
-```sql
+```sh
 $ aelf-command config delete endpoint
 ✔ Succeed!
 ```
 
 **list**: List all configurations stored in the global `.aelfrc` file.
-```sql
+```sh
 $ aelf-command config list
 endpoint=http://127.0.0.1:8000
 password=password
 ```
 
 **Usage:**
-```sql
+```sh
 $ aelf-command config -h
 Usage: aelf-command config [options] <flag> [key] [value]
 
@@ -90,7 +90,7 @@ Each line contains a `<key, value>` pair separated by a whitespace.
 ### CLI Parameters
 
 You can pass common options directly as CLI parameters:
-```sql
+```sh
 $ aelf-command console -a sadaf -p password -e http://127.0.0.1:8000
 ```
 Options given in higher priority (e.g., CLI parameters) will overwrite those with lower priority (e.g., environment variables).
@@ -99,7 +99,7 @@ Options given in higher priority (e.g., CLI parameters) will overwrite those wit
 
 Use the `create` command to create a new account.
 
-```sql
+```sh
 $ aelf-command create -h
 Usage: aelf-command create [options] [save-to-file]
 
@@ -109,7 +109,7 @@ Options:
 ```
 
 **Examples:**
-```sql
+```sh
 $ aelf-command create
 $ aelf-command create <save-to-file>
 $ aelf-command create -c aes-128-cbc
@@ -124,19 +124,19 @@ This command allows you to load an account from a backup.
 
 ### Load from Mnemonic
 
-```sql
+```sh
 $ aelf-command load 'great mushroom loan crisp ... door juice embrace'
 ```
 
 ### Load from Private Key
 
-```sql
+```sh
 $ aelf-command load 'e038eea7e151eb451ba2901f7...b08ba5b76d8f288'
 ```
 
 ### Load from Prompting
 
-```sql
+```sh
 $ aelf-command load
 ? Enter a private key or mnemonic › e038eea7e151eb451ba2901f7...b08ba5b76d8f288
 ```
@@ -145,7 +145,7 @@ $ aelf-command load
 
 This command allows you to print wallet information, including the `private key`, `address`, `public key`, and `mnemonic`.
 
-```sql
+```sh
 $ aelf-command wallet -a C91b1SF5mMbenHZTfdfbJSkJcK7HMjeiuw...8qYjGsESanXR
 AElf [Info]: 
 Private Key         : 97ca9fbece296231f26bee0e493500810f...cbd984f69a8dc22ec9ec89ebb00
@@ -155,7 +155,7 @@ Address             : C91b1SF5mMbenHZTfdfbJSkJcK7HMjeiuw...8qYjGsESanXR
 
 ## Proposal - Create a Proposal
 
-There are three types of proposal contracts in AElf:
+There are three types of proposal contracts in aelf:
 
 - AElf.ContractNames.Parliament
 - AElf.ContractNames.Referendum
@@ -167,7 +167,7 @@ Depending on your needs, you can choose one and create a proposal.
 
 **Get the Default Organization's Address with the Parliament Contract**
 
-```sql
+```sh
 $ aelf-command call AElf.ContractNames.Parliament GetDefaultOrganizationAddress
 ✔ Fetching contract successfully!
 ✔ Calling method successfully!
@@ -183,7 +183,7 @@ The default organization includes all miners; every proposal under AElf.Contract
 
 **Create an Organization with the Referendum Contract**
 
-```sql
+```sh
 $ aelf-command send AElf.ContractNames.Referendum
 ✔ Fetching contract successfully!
 ? Pick up a contract method: CreateOrganization
@@ -223,7 +223,7 @@ Result:
 
 ### Create a Proposal
 
-```sql
+```sh
 $ aelf-command proposal
 ? Pick up a contract name to create a proposal: AElf.ContractNames.Parliament
 ? Enter an organization address: BkcXRkykRC2etHp9hgFfbw2ec1edx7ERBxYtbC97z3Q2bNCwc
@@ -253,7 +253,7 @@ You can get the proposal id, then get the proposal’s status.
 
 ### Get Proposal Status
 
-```sql
+```sh
 $ aelf-command call AElf.ContractNames.Parliament GetProposal bafe83ca4ec5b2a2f1e8016d09b21362c9345954a014379375f1a90b7afb43fb
 {
   ...
@@ -274,7 +274,7 @@ $ aelf-command call AElf.ContractNames.Parliament GetProposal bafe83ca4ec5b2a2f1
 
 You can release a proposal when it gets approved.
 
-```sql
+```sh
 $ aelf-command send AElf.ContractNames.Parliament Release bafe83ca4ec5b2a2f1e8016d09b21362c9345954a014379375f1a90b7afb43fb
 AElf [Info]:
  { TransactionId:
@@ -285,7 +285,7 @@ AElf [Info]:
 
 Use the `get-tx-result` command to retrieve the details of the transaction:
 
-```sql
+```sh
 $ aelf-command get-tx-result 09c8c824d2e3aea1d...cefe4e236c5b818d6a01d4f7ca0b60fe99535
 AElf [Info]: {
   "TransactionId": "09c8c824d2e3aea1d...cefe4e236c5b818d6a01d4f7ca0b60fe99535",
@@ -323,7 +323,7 @@ The command outputs detailed information about the transaction, including its st
 
 ###  Decode the Logs for Readable Result
 
-```sql
+```sh
 $ aelf-command event 09c8c824d2e3aea1d...cefe4e236c5b818d6a01d4f7ca0b60fe99535
 ```
 
@@ -333,7 +333,7 @@ This command provides a readable format of the events logged by the transaction.
 
 Here is a sample output from the `get-tx-result` command:
 
-```sql
+```sh
 {
   "TransactionId": "09c8c824d2e3aea1d...cefe4e236c5b818d6a01d4f7ca0b60fe99535",
   "Status": "MINED",
@@ -369,7 +369,7 @@ Here is a sample output from the `get-tx-result` command:
 
 After running the `event` command, the decoded event output is as follows:
 
-```sql
+```sh
 {
   "Address": "25CecrU94dmMdbhC3LWMKxtoaL4Wv8PChGvVJM6PxkHAyvXEhB",
   "Name": "Transferred",
@@ -599,19 +599,19 @@ This command helps you understand what happened during a transaction, especially
 
 ## send - Send a transaction
 
-#### 1. Enter AElf Node URI:
+#### 1. Enter aelf Node URI:
 
 ```javascript
 $ aelf-command send
 ✔ Enter the URI of an AElf node … http://13.231.179.27:8000
 ```
 
-You need to specify the URI of an AElf blockchain node to which you will connect.
+You need to specify the URI of an aelf blockchain node to which you will connect.
 
 #### 2. Enter Wallet Address and Password:
 
 
-```sql
+```sh
 ✔ Enter a valid wallet address, if you do not have, create one by aelf-command create … D3vSjRYL8MpeRpvUDy85ktXijnBe2tHn8NTACsggUVteQCNGP
 ✔ Enter the password you typed when creating a wallet … ********
 ```
@@ -621,7 +621,7 @@ Provide your wallet address and the password associated with it. This is necessa
 
 #### 3. Enter Contract Information:
 
-```sql
+```sh
 ✔ Enter contract name (System contracts only) or the address of contract … AElf.ContractNames.Token
 ✔ Fetching contract successfully!
 ```
@@ -639,7 +639,7 @@ Choose the specific method of the contract you want to invoke. Here, `Transfer` 
 
 #### 5. Enter Method Parameters:
 
-```sql
+```sh
 Enter the params one by one, type `Enter` to skip optional param:
 ? Enter the required param <to>: C91b1SF5mMbenHZTfdfbJSkJcK7HMjeiuwfQu8qYjGsESanXR
 ? Enter the required param <symbol>: ELF
@@ -651,7 +651,7 @@ Input the required parameters for the `Transfer` method: recipient address (`to`
 
 #### 6. Confirmation and Execution:
 
-```sql
+```sh
 The params you entered is:
 {
   "to": "C91b1SF5mMbenHZTfdfbJSkJcK7HMjeiuwfQu8qYjGsESanXR",
@@ -679,13 +679,13 @@ Result:
 The transaction is executed successfully, and you receive the `TransactionId` as confirmation.
 
 
-By following these steps, you can effectively send transactions on the AElf blockchain using the `aelf-command send`   interface. Adjust parameters and contract names as necessary for different contract methods or system contracts within AElf.
+By following these steps, you can effectively send transactions on the aelf blockchain using the `aelf-command send`   interface. Adjust parameters and contract names as necessary for different contract methods or system contracts within AElf.
 
 
 ## call - Call a read-only method on a contract
 
 
-```sql
+```sh
 $ aelf-command call
 ✔ Enter the the URI of an AElf node … http://13.231.179.27:8000
 ✔ Enter a valid wallet address, if you do not have, create one by aelf-command create … D3vSjRYL8MpeRpvUDy85ktXijnBe2tHn8NTACsggUVteQCNGP
@@ -719,13 +719,13 @@ Result:
 ✔ Succeed!
 ```
 
-```sql
+```sh
 aelf-command call AElf.ContractNames.Token GetTokenInfo '{"symbol":"ELF"}'
 ```
 
 ## get-chain-status - Get the current status of the block chain
 
-```sql
+```sh
 $ aelf-command get-chain-status
 ✔ Succeed
 {
@@ -748,7 +748,7 @@ $ aelf-command get-chain-status
 
 ## get-tx-result - Get a transaction result
 
-```sql
+```sh
 $ aelf-command get-tx-result
 ✔ Enter the the URI of an AElf node … http://13.231.179.27:8000
 ✔ Enter a valid transaction id in hex format … 7b620a49ee9666c0c381fdb33f94bd31e1b5eb0fdffa081463c3954e9f734a02
@@ -779,7 +779,7 @@ $ aelf-command get-tx-result
 
 ## get-blk-height - Get the block height
 
-```sql
+```sh
 $ aelf-command get-blk-height
 ✔ Enter the the URI of an AElf node … http://13.231.179.27:8000
 > 7902091
@@ -789,7 +789,7 @@ $ aelf-command get-blk-height
 
 Either a block height or a block hash can be provided as an argument to this sub-command.
 
-```sql
+```sh
 $ aelf-command get-blk-info
 ✔ Enter the the URI of an AElf node: http://13.231.179.27:8000
 ✔ Enter a valid height or block hash: 123
@@ -819,14 +819,14 @@ $ aelf-command get-blk-info
 ```
 
 
-```sql
+```sh
 aelf-command get-blk-info ca61c7c8f5fc1bc8af0536bc9b51c61a94f39641a93a748e72802b3678fea4a9 true
 ```
 
 
 ## console - Open an interactive console
 
-```sql
+```sh
 $ aelf-command console
 ✔ Enter the the URI of an AElf node … http://13.231.179.27:8000
 ✔ Enter a valid wallet address, if you do not have, create one by aelf-command create … 2Ue31YTuB5Szy7cnr3SCEGU2gtGi5uMQBYarYUR5oGin1sys6H

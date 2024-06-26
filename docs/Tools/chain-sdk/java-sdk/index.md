@@ -9,7 +9,7 @@ image: /img/Logo.aelf.svg
 
 ## Introduction
 
-`aelf-sdk.java` is a set of libraries that allow interaction with a local or remote AElf node using an HTTP connection. This documentation guides you through installing and running `aelf-sdk.java`, along with providing API reference documentation and examples.
+`aelf-sdk.java` is a set of libraries that allow interaction with a local or remote aelf node using an HTTP connection. This documentation guides you through installing and running `aelf-sdk.java`, along with providing API reference documentation and examples.
 
 For more information, you can check out the [repository](https://github.com/AElfProject/aelf-sdk.java).
 
@@ -30,7 +30,7 @@ To add the `aelf-sdk.java` package to your project, use the following Maven depe
 
 ### Create Instance
 
-Create a new instance of `AElfClient`, and set the URL of an AElf chain node.
+Create a new instance of `AElfClient`, and set the URL of an aelf chain node.
 
 ```java
 import AElf.Client.Service;
@@ -41,7 +41,7 @@ AElfClient client = new AElfClient("http://127.0.0.1:1235");
 
 ### Test Connection
 
-Check if the AElf chain node is connectable.
+Check if the aelf chain node is connectable.
 
 ```java
 boolean isConnected = client.isConnected();
@@ -72,7 +72,7 @@ Transaction transactionTransferObj = transactionTransfer.build();
 transactionTransfer.setSignature(ByteString.copyFrom(ByteArrayHelper.hexToByteArray(client.signTransaction(privateKey, transactionTransferObj))));
 transactionTransferObj = transactionTransfer.build();
 
-// Send the transfer transaction to AElf chain node.
+// Send the transfer transaction to aelf chain node.
 SendTransactionInput sendTransactionInputObj = new SendTransactionInput();
 sendTransactionInputObj.setRawTransaction(Hex.toHexString(transactionTransferObj.toByteArray()));
 SendTransactionOutput sendResult = client.sendTransaction(sendTransactionInputObj);
@@ -106,7 +106,7 @@ TokenContract.GetBalanceOutput balance = TokenContract.GetBalanceOutput.getDefau
 System.out.println(balance.getBalance());
 ```
 
-This guide provides basic steps to interact with an AElf node using the aelf-sdk.java library. For more detailed information and advanced usage, please refer to the repository documentation.
+This guide provides basic steps to interact with an aelf node using the aelf-sdk.java library. For more detailed information and advanced usage, please refer to the repository documentation.
 
 
 

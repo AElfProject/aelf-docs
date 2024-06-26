@@ -51,6 +51,7 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
     brew install redis
     redis-server
     ```
+![mac_install_redis1](/img/mac_install_redis1.png)
 
 8. Install Node.js:
     ```sh
@@ -67,6 +68,15 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
     ```sh
     aelf-command create
     ```   
+
+    Similar Output:
+    ```sh
+    AElf [Info]: Your wallet info is :
+    AElf [Info]: Mnemonic            : mirror among battle muffin cattle plunge tuition buzz hip mad surround recall
+    AElf [Info]: Private Key         : 4bf625afea60e21aa5afcab5ea682b3dfb614941245698632d72a09ae13*****
+    AElf [Info]: Public Key          : 04f9bb56a9eca921bd494e677307f0279c98f1d2ed6bdeaa6dd256878272eabd14e91ec61469d2a32ce5e63205930dabdc0b9f13fc80c1f4e31760618d182*****
+    AElf [Info]: Address             : 21qciGwcaowwBttKMjMk86AW6WajhcodSHytY1vCyZb7p*****
+    ```
 
 ### Linux Setup
 1. **Requirements**:
@@ -159,6 +169,7 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
     choco install redis-64 -y
     redis-server
     ```
+![windows_install_redis1](/img/windows_install_redis1.webp)
 
 7. Install Node.js:
     ```sh
@@ -178,10 +189,12 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
 
 ### Codespaces Setup
 1. Open Codespaces:
+![codespaces11](/img/codespaces11.webp)
 
 2. Visit the aelfProject repo.
 
 3. Click "Code" > "Codespaces" > "+" to create a new codespace.
+![codespaces21](/img/codespaces21.webp)
 
 4. Check Installed Versions:
     ```sh

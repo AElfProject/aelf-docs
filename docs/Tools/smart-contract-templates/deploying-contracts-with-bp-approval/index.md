@@ -25,7 +25,7 @@ To deploy/update contracts on AElf Mainnet with `ContractDeploymentAuthorityRequ
 
 ## Deploy / Update through aelf-command
 
-<!-- ![Diagram for deploy through aelf command][img/BP-approval-required.png] -->
+![Diagram for deploy through aelf command](/img/BP-approval-required.png)
 
 ### Contracts Deployment/Update Procedure
 

@@ -7,12 +7,12 @@ image: /img/Logo.aelf.svg
 
 # aelf-sdk.cs - aelf C# API
 
-`aelf-sdk.cs` is a C# library that facilitates communication with an AElf node over HTTP. Below is a comprehensive guide on how to install and use the `aelf-sdk.cs` package, along with some example usages.
+`aelf-sdk.cs` is a C# library that facilitates communication with an aelf node over HTTP. Below is a comprehensive guide on how to install and use the `aelf-sdk.cs` package, along with some example usages.
 
 
 ## Introduction
 
-`aelf-sdk.cs` is a collection of libraries designed for interaction with both local and remote AElf nodes via HTTP connections. This documentation provides instructions on how to install and run `aelf-sdk.cs`, and includes API reference documentation with examples. [aelf-sdk.cs](https://github.com/AElfProject/aelf-sdk.cs)
+`aelf-sdk.cs` is a collection of libraries designed for interaction with both local and remote aelf nodes via HTTP connections. This documentation provides instructions on how to install and run `aelf-sdk.cs`, and includes API reference documentation with examples. [aelf-sdk.cs](https://github.com/AElfProject/aelf-sdk.cs)
 
 
 ## Adding aelf-sdk.cs package
@@ -54,7 +54,7 @@ Replace `X.X.X` with the desired version of the `AElf.Client` package.
 
 ### 1. Create Instance
 
-Create a new instance of AElfClient and set the URL of an AElf chain node.
+Create a new instance of AElfClient and set the URL of an aelf chain node.
 
 ```csharp
 using AElf.Client.Service;
@@ -66,7 +66,7 @@ AElfClient client = new AElfClient("http://127.0.0.1:1235");
 
 ### 2. Test Connection
 
-Check that the AElf chain node is connectable.
+Check that the aelf chain node is connectable.
 
 ```csharp
 var isConnected = await client.IsConnectedAsync();
@@ -159,10 +159,10 @@ var transaction = await client.GenerateTransaction(ownerAddress, tokenContractAd
 var txWithSign = client.SignTransaction(PrivateKey, transaction);
 ```
 
-#### d. Send Transaction to AElf Chain Node
+#### d. Send Transaction to aelf Chain Node
 
 ```csharp
-// Send the transfer transaction to AElf chain node.
+// Send the transfer transaction to aelf chain node.
 var result = await client.SendTransactionAsync(new SendTransactionInput
 {
     RawTransaction = txWithSign.ToByteArray().ToHex()
@@ -213,11 +213,11 @@ Console.WriteLine($"Account Balance: {balance.Balance}");
 
 You can see how the Web API of the node works at `{chainAddress}/swagger/index.html`. For example, on a local address: `http://127.0.0.1:1235/swagger/index.html`.
 
-Here are the examples and code snippets for interacting with the AElf Web API using the `AElfClient` instance.
+Here are the examples and code snippets for interacting with the aelf Web API using the `AElfClient` instance.
 
 ### 1. Create Instance
 
-Create a new instance of AElfClient and set the URL of an AElf chain node.
+Create a new instance of AElfClient and set the URL of an aelf chain node.
 
 ```csharp
 using AElf.Client.Service;

@@ -3,7 +3,7 @@ sidebar_position: 5
 title: Deploying Contract without BP Approval
 ---
 
-# Deploying/Updating Contracts (No BP Approval Required)
+# Deploying Contracts without BP Approval
 
 Contracts can be deployed/updated via aelf explorer or aelf-command. Ensure npm and aelf-command are installed before starting. Follow the [Deployment Environment guide](#) if needed.
 
@@ -18,7 +18,7 @@ In these 6 cases, BP approval is not needed for contract deployment/updates:
 - Deploying user contracts on MainChain (initiated by BPs, recommended on SideChains).
 - Updating user contracts on MainChain (initiated by contract creators).
 
-<!-- ![Deploying Contract without BP Approval][img/No-BP-approval-required.png] -->
+![Deploying Contract without BP Approval](/img/No-BP-approval-required.webp)
 
 User contracts are non-system contracts. Contracts must implement ACS12 standards. No BP approval is needed; developers initiate 1 transaction to deploy/update contracts.
 
