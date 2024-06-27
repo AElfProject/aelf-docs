@@ -4,6 +4,7 @@ sidebar_position: 0
 title: Home
 description: Homepage
 image: /img/aelficon.png
+hide_table_of_contents: true
 ---
 
 ![](/img/banner.jpeg)
@@ -11,6 +12,10 @@ image: /img/aelficon.png
 # aelf Documentation
 
 aelf is a high-performance, cloud-native, layer-1 blockchain network with its Mainnet nodes running on different cloud-computing data centers. It provides a high-speed running environment for smart contracts and enables the execution of contracts in parallel and smart contract microservitization running on server clusters. Its MainChain and multi-SideChains architecture supports efficient indexing within the network and guarantees almost unlimited scalability. The built-in cross-chain design facilitates ultra-fast interaction of data. The innovative hybrid of shared SideChain and exclusive SideChain greatly lowers the cost for developers and users and further enhances the overall network performance.
+
+<section className="row">
+
+<article className="col col--6 margin-bottom--lg">
 
 ## 🏁 Quick Start
 
@@ -20,6 +25,10 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 - [Start](/quick-start/start-and-run-a-node-on-aelf-locally-or-on-cloud/) and run a node on aelf locally or on cloud
 - [Run](/quick-start/run-a-side-chain/) a Side Chain
 - [Explore](/quick-start/explore-running-aelf-side-chain/) running aelf's side chain
+
+</article>
+
+<article className="col col--6 margin-bottom--lg">
 
 ## 📚 Understanding aelf
 
@@ -32,6 +41,10 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 - [Smart Contract](/learn/smart-contract/) - aelf's smart contract architecture
 - [ACS Introduction](/learn/acs-introduction/) - An introduction to aelf contract system
 
+</article>
+
+<article className="col col--6 margin-bottom--lg">
+
 ## 📖 Tutorials
 
 - [Smart Contract](/tutorials/smart-contract-development/) Development
@@ -40,6 +53,10 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
   - Run a [Mainnet](/tutorials/operate-a-node/run-a-mainnet-node/) Node
   - Run a [Side Chain](/tutorials/operate-a-node/run-a-side-chain/)
   - Run aelf on [Cloud](/tutorials/operate-a-node/run-aelf-on-cloud/)
+
+</article>
+
+<article className="col col--6 margin-bottom--lg">
 
 ## 🛠️ Tools
 
@@ -50,10 +67,18 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 - [Faucet](/tools/faucet/) - Test your dApp with aelf test tokens
 - [Design](/tools/design/) - Explore aelf design library
 
+</article>
+
+<article className="col col--6 margin-bottom--lg">
+
 ## ⭐️ References
 
-- Web API - Interact with the aelf blockchain through the web
-- Smart Contract API - Access smart contract functionalities using API
+- [Web API](/docs/web-api/) - Interact with the aelf blockchain through the web
+- [Smart Contract API](/docs/smart-contract-api/) - Access smart contract functionalities using API
+
+</article>
+
+<article className="col col--6 margin-bottom--lg">
 
 ## 🔖 Resources
 
@@ -63,3 +88,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 - [Browser Extension](/resources/browser-extension/) - Explore Portkey wallet and other extensions
 - [DevOps](/resources/devops/) - Tools to build and deploy efficiently
 - [Protobuf Extension](/resources/protobuf-extension/) - An open-source gRPC
+
+</article>
+
+</section>
