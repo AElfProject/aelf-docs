@@ -3,7 +3,7 @@ sidebar_position: 4
 title: Consensus Contract
 ---
 
-# AElf.Contracts.Consensus.AEDPoS
+# Consensus Contract
 
 ## AEDPoS contract
 

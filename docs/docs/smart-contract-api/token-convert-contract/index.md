@@ -1,13 +1,11 @@
 ---
 sidebar_position: 14
-title: Token Convert Contract
+title: Token Converter Contract
 ---
 
-# TokenConverter
+# Token Converter Contract
 
-Using this contract can build a connection between the base token and other tokens created on the chain. After building the connection, users can trade tokens with the Bancor model. You can find detailed information about Bancor in the AElf Economic System White Paper.
-
-Implement aelf Standards ACS1.
+Using this contract can build a connection between the base token and other tokens created on the chain. After building the connection, users can trade tokens with the Bancor model. You can find detailed information about Bancor in the AElf Economic System White Paper. Implement aelf Standards ACS1.
 
 ## Contract Methods
 

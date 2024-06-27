@@ -3,7 +3,7 @@ sidebar_position: 15
 title: Configuration Contract
 ---
 
-# Configuration contract. 
+# Configuration Contract 
 
 Used to manage the configuration on the blockchain. Implements aelf Standards ACS1.
 

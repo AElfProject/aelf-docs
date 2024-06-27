@@ -3,11 +3,9 @@ sidebar_position: 12
 title: Token Holder Contract
 ---
 
-# TokenHolder contract.
+# TokenHolder Contract
 
-Used to build a bonus model for distributing bonuses to those who hold the token.
-
-Implement aelf Standards ACS1.
+Used to build a bonus model for distributing bonuses to those who hold the token. Implement aelf Standards ACS1.
 
 ## Contract Methods
 

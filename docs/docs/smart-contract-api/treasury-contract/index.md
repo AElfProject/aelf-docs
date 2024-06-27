@@ -3,13 +3,9 @@ sidebar_position: 10
 title: Treasury Contract
 ---
 
-# AElf.Contracts.Treasury
+# Treasury Contract
 
-Treasury contract.
-
-Used for distributing bonuses to voters and candidates during the election process.
-
-Implement aelf Standards ACS1 and ACS10.
+Used for distributing bonuses to voters and candidates during the election process. Implement aelf Standards ACS1 and ACS10.
 
 ## Contract Methods
 

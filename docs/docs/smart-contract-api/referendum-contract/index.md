@@ -5,8 +5,6 @@ title: Referendum Contract
 
 # Referendum
 
-Referendum contract.
-
 Production nodes or associations cannot determine all decisions. Some extremely important decisions, especially those involving user rights and interests, should involve all users and give full control to the user's voting for governance. The Referendum contract is built for this.
 
 Implement aelf Standards ACS1 and ACS3.

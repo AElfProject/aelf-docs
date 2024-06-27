@@ -3,12 +3,8 @@ sidebar_position: 11
 title: Vote Contract
 ---
 
-# Vote contract.
-
-The Vote contract is an abstract layer for voting. Developers implement
-concrete voting activities by calling this contract.
-
-Implements aelf Standards ACS1.
+# Vote Contract
+The Vote contract is an abstract layer for voting. Developers implement concrete voting activities by calling this contract. Implements aelf Standards ACS1.
 
 ## Contract Methods
 
