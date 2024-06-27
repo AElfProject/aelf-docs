@@ -14,41 +14,41 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 
 ## 🏁 Quick Start
 
-- Intro to aelf Development
-- Develop your first aelf Smart Contract
-- Become a Node Operator
-- Start and run a node on aelf locally or on cloud
-- Run a Side Chain
-- Explore running aelf's side chain
+- [Intro](/quick-start/intro-to-aelf-development/) to aelf Development
+- [Develop](/quick-start/develop-your-first-aelf-smart-contract/) your first aelf Smart Contract
+- [Become](/quick-start/become-a-node-operator/) a Node Operator
+- [Start](/quick-start/start-and-run-a-node-on-aelf-locally-or-on-cloud/) and run a node on aelf locally or on cloud
+- [Run](/quick-start/run-a-side-chain/) a Side Chain
+- [Explore](/quick-start/explore-running-aelf-side-chain/) running aelf's side chain
 
 ## 📚 Understanding aelf
 
-- Core - aelf's core architecture
-- Cross-chain - aelf's cross-chain architecture
-- Consensus - Understanding aelf's consensus mechanism
-- Network - Exploring aelf's network architecture
-- Addresses - Managing aelf's blockchain addresses
-- Transactions - Handling transaction processes
-- Smart Contract - aelf's smart contract architecture
-- ACS Introduction - An introduction to aelf contract system
+- [Core](/learn/core/) - aelf's core architecture
+- [Cross-chain](/learn/cross-chain/) - aelf's cross-chain architecture
+- [Consensus](/learn/consensus/) - Understanding aelf's consensus mechanism
+- [Network](/learn/network/) - Exploring aelf's network architecture
+- [Addresses](/learn/addresses/) - Managing aelf's blockchain addresses
+- [Transactions](/learn/transactions/) - Handling transaction processes
+- [Smart Contract](/learn/smart-contract/) - aelf's smart contract architecture
+- [ACS Introduction](/learn/acs-introduction/) - An introduction to aelf contract system
 
 ## 📖 Tutorials
 
-- Smart Contract Development
-- Operate a Node
-  - Run a Testnet Node
-  - Run a Mainnet Node
-  - Run a Side Chain
-  - Run aelf on Cloud
+- [Smart Contract](/tutorials/smart-contract-development/) Development
+- [Operate a Node](/tutorials/operate-a-node/)
+  - Run a [Testnet](/tutorials/operate-a-node/run-a-testnet-node/) Node
+  - Run a [Mainnet](/tutorials/operate-a-node/run-a-mainnet-node/) Node
+  - Run a [Side Chain](/tutorials/operate-a-node/run-a-side-chain/)
+  - Run aelf on [Cloud](/tutorials/operate-a-node/run-aelf-on-cloud/)
 
 ## 🛠️ Tools
 
-- Chain SDK - Develop blockchain specific applications using ChainSDK
-- aelf-deploy - Deploy your smart contract using this CLI
-- aelf CLI - Execute blockchain operations via CLI
-- Smart Contract Templates - Templates to quickly build your smart contract
-- Faucet - Test your dApp with aelf test tokens
-- Design - Explore aelf design library
+- [Chain SDK](/tools/chain-sdk/) - Develop blockchain specific applications using ChainSDK
+- [aelf-deploy](/tools/aelf-deploy/) - Deploy your smart contract using this CLI
+- [aelf CLI](/tools/aelf-cli/) - Execute blockchain operations via CLI
+- [Smart Contract Templates](/tools/smart-contract-templates/) - Templates to quickly build your smart contract
+- [Faucet](/tools/faucet/) - Test your dApp with aelf test tokens
+- [Design](/tools/design/) - Explore aelf design library
 
 ## ⭐️ References
 
@@ -57,10 +57,10 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 
 ## 🔖 Resources
 
-- Integration Guide - Learn how to integrate with other tools and DApps
-- Wallet and Block Explorer - Manage your assets and explore aelf's blockchain data
-- AetherLink - Transfer tamper-proof data from off-chain to on-chain
-- Browser Extension - Explore Portkey wallet and other extensions
-- DevOps - Tools to build and deploy efficiently
-- aelf Whitepaper - Read aelf's whitepaper
-- Protobuf Extension - An open-source gRPC
+- [Integration Guide](/resources/integration-guide/) - Learn how to integrate with other tools and DApps
+- [Wallet and Block Explorer](/resources/wallet-and-block-explorer/) - Manage your assets and explore aelf's blockchain data
+- [AetherLink](/resources/aetherLink/) - Transfer tamper-proof data from off-chain to on-chain
+- [Browser Extension](/resources/browser-extension/) - Explore Portkey wallet and other extensions
+- [DevOps](/resources/devops/) - Tools to build and deploy efficiently
+- [aelf Whitepaper](/resources/aelf-whitepaper/) - Read aelf's whitepaper
+- [Protobuf Extension](/resources/protobuf-extension/) - An open-source gRPC
