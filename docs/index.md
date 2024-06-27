@@ -15,7 +15,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 
 <section className="row">
 
-<article className="col col--6 margin-bottom--lg">
+<article className="col col--4 margin-bottom--lg">
 
 ## 🏁 Quick Start
 
@@ -28,7 +28,42 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 
 </article>
 
-<article className="col col--6 margin-bottom--lg">
+<article className="col col--4 margin-bottom--lg">
+
+## ⭐️ References
+
+- [Web API](/docs/web-api/) - Interact with the aelf blockchain through the web
+- [Smart Contract API](/docs/smart-contract-api/) - Access smart contract functionalities using API
+
+</article>
+
+<article className="col col--4 margin-bottom--lg">
+
+## 📖 Tutorials
+
+- [Smart Contract](/quick-start/develop-your-first-aelf-smart-contract/) Development
+- [Operate a Node](/tutorials/operate-a-node/)
+  - Run a [Testnet](/tutorials/operate-a-node/run-a-testnet-node/) Node
+  - Run a [Mainnet](/tutorials/operate-a-node/run-a-mainnet-node/) Node
+  - Run a [Side Chain](/tutorials/operate-a-node/run-a-side-chain/)
+  - Run aelf on [Cloud](/tutorials/operate-a-node/run-aelf-on-cloud/)
+
+</article>
+
+<article className="col col--4 margin-bottom--lg">
+
+## 🛠️ Tools
+
+- [Chain SDK](/tools/chain-sdk/) - Develop blockchain specific applications using ChainSDK
+- [aelf-deploy](/tools/aelf-deploy/) - Deploy your smart contract using this CLI
+- [aelf CLI](/tools/aelf-cli/) - Execute blockchain operations via CLI
+- [Smart Contract Templates](/tools/smart-contract-templates/) - Templates to quickly build your smart contract
+- [Faucet](/tools/faucet/) - Test your dApp with aelf test tokens
+- [Design](/tools/design/) - Explore aelf design library
+
+</article>
+
+<article className="col col--4 margin-bottom--lg">
 
 ## 📚 Understanding aelf
 
@@ -43,42 +78,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 
 </article>
 
-<article className="col col--6 margin-bottom--lg">
-
-## 📖 Tutorials
-
-- [Smart Contract](/tutorials/smart-contract-development/) Development
-- [Operate a Node](/tutorials/operate-a-node/)
-  - Run a [Testnet](/tutorials/operate-a-node/run-a-testnet-node/) Node
-  - Run a [Mainnet](/tutorials/operate-a-node/run-a-mainnet-node/) Node
-  - Run a [Side Chain](/tutorials/operate-a-node/run-a-side-chain/)
-  - Run aelf on [Cloud](/tutorials/operate-a-node/run-aelf-on-cloud/)
-
-</article>
-
-<article className="col col--6 margin-bottom--lg">
-
-## 🛠️ Tools
-
-- [Chain SDK](/tools/chain-sdk/) - Develop blockchain specific applications using ChainSDK
-- [aelf-deploy](/tools/aelf-deploy/) - Deploy your smart contract using this CLI
-- [aelf CLI](/tools/aelf-cli/) - Execute blockchain operations via CLI
-- [Smart Contract Templates](/tools/smart-contract-templates/) - Templates to quickly build your smart contract
-- [Faucet](/tools/faucet/) - Test your dApp with aelf test tokens
-- [Design](/tools/design/) - Explore aelf design library
-
-</article>
-
-<article className="col col--6 margin-bottom--lg">
-
-## ⭐️ References
-
-- [Web API](/docs/web-api/) - Interact with the aelf blockchain through the web
-- [Smart Contract API](/docs/smart-contract-api/) - Access smart contract functionalities using API
-
-</article>
-
-<article className="col col--6 margin-bottom--lg">
+<article className="col col--4 margin-bottom--lg">
 
 ## 🔖 Resources
 
