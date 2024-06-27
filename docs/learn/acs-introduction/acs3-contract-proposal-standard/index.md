@@ -1,3 +1,9 @@
+---
+sidebar_position: 3
+title: ACS3 - Contract Proposal Standard
+description: ACS3 is used when a method needs multiple approvals.
+---
+
 # ACS3 - Contract Proposal Standard
 
 ACS3 is used when a method needs multiple approvals. Implement these methods for voting and approval:

@@ -1,3 +1,9 @@
+---
+sidebar_position: 12
+title: ACS12 - User Contract Standard
+description: Manage user contracts. Required on testnet.
+---
+
 # ACS12 - User Contract Standard
 ACS12 is a standard used to manage user contracts.
 

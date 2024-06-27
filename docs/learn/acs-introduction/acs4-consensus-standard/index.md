@@ -1,3 +1,9 @@
+---
+sidebar_position: 4
+title: ACS4 - Consensus Standard
+description: ACS4 customizes consensus mechanisms.
+---
+
 # ACS4 - Consensus Standard
 ACS4 customizes consensus mechanisms.
 

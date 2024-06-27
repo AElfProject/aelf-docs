@@ -1,3 +1,9 @@
+---
+sidebar_position: 10
+title: ACS10 - Dividend Pool Standard
+description: Creation and management of dividend pools.
+---
+
 # ACS10 - Dividend Pool Standard
 ACS10 facilitates the creation and management of dividend pools within a contract.
 

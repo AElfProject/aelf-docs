@@ -1,3 +1,9 @@
+---
+sidebar_position: 6
+title: ACS6 - Random Number Provider Standard
+description: To generate a random number in your contract.
+---
+
 # ACS6 - Random Number Provider Standard
 To generate a random number in your contract, use ACS6.
 

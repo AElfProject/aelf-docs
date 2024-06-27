@@ -1,3 +1,9 @@
+---
+sidebar_position: 8
+title: ACS8 - Transaction Resource Token Fee Standard
+description: Called contract pays on behalf of user.
+---
+
 # ACS8 - Transaction Resource Token Fee Standard
 ACS8 is a transaction fee standard similar to ACS1, but it charges the called contract rather than the user. The fee charged includes four specified tokens: WRITE, READ, NET, and TRAFFIC.
 

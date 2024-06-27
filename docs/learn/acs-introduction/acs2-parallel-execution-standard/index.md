@@ -1,3 +1,9 @@
+---
+sidebar_position: 2
+title: ACS2 - Parallel Execution Standard
+description: ACS2 helps with parallel transaction execution.
+---
+
 # ACS2 - Parallel Execution Standard
 ACS2 helps with parallel transaction execution.
 

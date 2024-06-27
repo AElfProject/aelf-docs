@@ -1,3 +1,9 @@
+---
+sidebar_position: 9
+title: ACS9 - Contract Profit Dividend Standard
+description: Profit distribution on smart contracts.
+---
+
 # ACS9 - Contract Profit Dividend Standard
 ACS9 defines a standard for distributing profits on aelf's side chain contracts.
 
