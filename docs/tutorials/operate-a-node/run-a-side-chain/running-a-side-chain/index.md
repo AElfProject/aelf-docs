@@ -17,7 +17,7 @@ This tutorial explains how to run a side chain node after it has been approved b
 
 The key-pair (account) used for mining on the side chain must be the same as the one used on the main-chain node. Both production nodes need to be launched with the same key-pair.
 
-For more information about side chain creation, refer to the document in the [request-side-chain section](request-new-side-chain).
+For more information about side chain creation, refer to the document in the [request-side-chain section](/tutorials/operate-a-node/run-a-side-chain/request-side-chain-creation/).
 
 ## Side Chain Configuration
 

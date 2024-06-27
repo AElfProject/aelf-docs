@@ -21,7 +21,7 @@ Upon creating a new proposal for the side chain, the `ProposalCreated` event con
 
 Once the side chain is created, the `SideChainCreatedEvent` containing the chain ID will be fired.
 
-The side chain node can be launched once it is created on the main chain. Ensure the side chain ID from the creation result is configured correctly before launching the side chain node. Make sure the cross-chain communication context is correctly set, as the side chain node will request main chain node for chain initialization data. For more details, check the [side chain node running tutorial](running-side-chain).
+The side chain node can be launched once it is created on the main chain. Ensure the side chain ID from the creation result is configured correctly before launching the side chain node. Make sure the cross-chain communication context is correctly set, as the side chain node will request main chain node for chain initialization data. For more details, check the [side chain node running tutorial](/tutorials/operate-a-node/run-a-side-chain/).
 
 ## Side Chain Types
 
