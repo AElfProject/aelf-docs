@@ -12,12 +12,13 @@ name: Publish Docker image
 on:
   workflow_dispatch:
   push:
-    branches: [develop]
+    branches: [main, develop]
 
 jobs:
   build:
     name: Build and Push Docker image to Docker Hub
     runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
     permissions:
       contents: read
     steps:
@@ -30,6 +31,12 @@ jobs:
           cache: 'npm'
       
       - run: npm install
+      - name: create env file
+        run: |
+          touch .env
+          echo TYPESENSE_COLLECTION_NAME=${{ env.TYPESENSE_COLLECTION_NAME }} >> .env
+          echo TYPESENSE_SERVER_HOST=${{ env.TYPESENSE_SERVER_HOST }} >> .env
+          echo TYPESENSE_SEARCH_ONLY_APIKEY=${{ env.TYPESENSE_SEARCH_ONLY_APIKEY }} >> .env
       - run: npm run build
 
       - name: Log in to Docker Hub
@@ -75,7 +82,7 @@ jobs:
               workflow_id: 'deploy.yaml',
               ref: 'main',
               inputs: {
-                env: 'development',
+                env: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }},
                 appName: 'docs',
                 appProject: 'aelf-docs',
                 commit_sha: 'sha-${{ steps.vars.outputs.short_sha }}',

@@ -3,7 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import footerLinks from "./config/footer-links.json";
 import navbarLinks from "./config/navbar-links.json";
-import typesenseThemeConfig from "./config/typesense-theme-config.json";
+import "dotenv/config";
 
 const config: Config = {
   title: "AELF Docs",
@@ -96,7 +96,21 @@ const config: Config = {
         hideable: true, // https://docusaurus.io/docs/sidebar#hideable-sidebar
       },
     },
-    typesense: typesenseThemeConfig,
+    typesense: {
+      typesenseCollectionName: process.env.TYPESENSE_COLLECTION_NAME,
+      typesenseServerConfig: {
+        nodes: [
+          {
+            host: process.env.TYPESENSE_SERVER_HOST,
+            port: 443,
+            protocol: "https",
+          },
+        ],
+        apiKey: process.env.TYPESENSE_SEARCH_ONLY_APIKEY,
+      },
+      typesenseSearchParameters: {},
+      contextualSearch: true,
+    },
   } satisfies Preset.ThemeConfig,
 };
 
