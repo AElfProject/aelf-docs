@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
 title: Request a Side Chain
+description: Begin here.
 ---
-
 
 Side chains can be created in the aelf ecosystem to enable scalability. This section introduces the process in detail.
 

@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
 title: Run a Side Chain
+description: Operational details.
 ---
-
 
 # Running a Side Chain (After its Release)
 
