@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 title: Parliament Contract
+description: Production nodes govern with a two-thirds majority.
 ---
 
 # Parliament Contract

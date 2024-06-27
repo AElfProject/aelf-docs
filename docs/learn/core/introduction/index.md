@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: Core Introduction
+description: Overview of aelf, its architecture, and key features.
 ---
 
 # Application Pattern
