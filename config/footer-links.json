@@ -67,7 +67,7 @@
         },
         {
           "label": "Blog",
-          "href": "#"
+          "href": "https://blog.aelf.com/"
         }
       ]
     },
@@ -76,7 +76,7 @@
       "items": [
         {
           "label": "Contact Us",
-          "href": "#"
+          "href": "https://form.aelf.com/contact"
         }
       ]
     }
