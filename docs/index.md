@@ -62,5 +62,4 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 - [AetherLink](/resources/aetherLink/) - Transfer tamper-proof data from off-chain to on-chain
 - [Browser Extension](/resources/browser-extension/) - Explore Portkey wallet and other extensions
 - [DevOps](/resources/devops/) - Tools to build and deploy efficiently
-- [aelf Whitepaper](/resources/aelf-whitepaper/) - Read aelf's whitepaper
 - [Protobuf Extension](/resources/protobuf-extension/) - An open-source gRPC
