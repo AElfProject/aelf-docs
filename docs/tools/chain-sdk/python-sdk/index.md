@@ -120,19 +120,21 @@ aelf = AElf('http://127.0.0.1:8000')
 
 **Parameters**: None
 
-**Returns**: JSON
+**Returns**: 
 
-   - `ChainId` - String
-   - `Branches` - JSON
-   - `NotLinkedBlocks` - JSON
-   - `LongestChainHeight` - Number
-   - `LongestChainHash` - String
-   - `GenesisBlockHash` - String
-   - `GenesisContractAddress` - String
-   - `LastIrreversibleBlockHash` - String
-   - `LastIrreversibleBlockHeight` - Number
-   - `BestChainHash` - String
-   - `BestChainHeight` - Number
+   - `JSON`
+
+      - `ChainId` - String
+      - `Branches` - JSON
+      - `NotLinkedBlocks` - JSON
+      - `LongestChainHeight` - Number
+      - `LongestChainHash` - String
+      - `GenesisBlockHash` - String
+      - `GenesisContractAddress` - String
+      - `LastIrreversibleBlockHash` - String
+      - `LastIrreversibleBlockHeight` - Number
+      - `BestChainHash` - String
+      - `BestChainHeight` - Number
 
 **Example**:
 
@@ -149,7 +151,7 @@ print('# get_chain_status', chain_status)
 
 **Parameters**: None
 
-**Returns**: Number
+**Returns**: `Number`
 
 **Example**:
 
@@ -169,22 +171,25 @@ print('# get_block_height', block_height)
    - `block_hash` - String
    - `include_transactions` - Boolean (true to include transaction IDs list, false otherwise)
 
-**Returns**: JSON
+**Returns**: 
+
+   - `JSON`
 
    - `BlockHash` - String
    - `Header` - JSON
-   - `PreviousBlockHash` - String
-   - `MerkleTreeRootOfTransactions` - String
-   - `MerkleTreeRootOfWorldState` - String
-   - `Extra` - List
-   - `Height` - Number
-   - `Time` - JSON
-   - `ChainId` - String
-   - `Bloom` - String
-   - `SignerPubkey` - String
+      - `PreviousBlockHash` - String
+      - `MerkleTreeRootOfTransactions` - String
+      - `MerkleTreeRootOfWorldState` - String
+      - `Extra` - List
+      - `Height` - Number
+      - `Time` - JSON
+      - `ChainId` - String
+      - `Bloom` - String
+      - `SignerPubkey` - String
    - `Body` - JSON
-   - `TransactionsCount` - Number
-   - `Transactions` - List
+      - `TransactionsCount` - Number
+      - `Transactions` - List
+         - `transactionId` - String
 
 **Example**:
 
@@ -204,22 +209,25 @@ print('# get_block', block)
    - `block_height` - Number
    - `include_transactions` - Boolean (true to include transaction IDs list, false otherwise)
 
-**Returns**: JSON
+**Returns**: 
+
+   - `JSON`
 
    - `BlockHash` - String
    - `Header` - JSON
-   - `PreviousBlockHash` - String
-   - `MerkleTreeRootOfTransactions` - String
-   - `MerkleTreeRootOfWorldState` - String
-   - `Extra` - List
-   - `Height` - Number
-   - `Time` - JSON
-   - `ChainId` - String
-   - `Bloom` - String
-   - `SignerPubkey` - String
+      - `PreviousBlockHash` - String
+      - `MerkleTreeRootOfTransactions` - String
+      - `MerkleTreeRootOfWorldState` - String
+      - `Extra` - List
+      - `Height` - Number
+      - `Time` - JSON
+      - `ChainId` - String
+      - `Bloom` - String
+      - `SignerPubkey` - String
    - `Body` - JSON
-   - `TransactionsCount` - Number
-   - `Transactions` - List
+      - `TransactionsCount` - Number
+      - `Transactions` - List
+         - `transactionId` - String
 
 **Example**:
 
@@ -238,27 +246,29 @@ print('# get_block_by_height', block_by_height)
 
    - `transactionId` - String
 
-**Returns**: JSON
+**Returns**: 
 
-   - `TransactionId` - String
-   - `Status` - String
-   - `Logs` - List
-   - `Address` - String
-   - `Name` - String
-   - `Indexed` - List
-   - `NonIndexed` - String
-   - `Bloom` - String
-   - `BlockNumber` - Number
-   - `Transaction` - List
-   - `From` - Number
-   - `To` - Number
-   - `RefBlockNumber` - Number
-   - `RefBlockPrefix` - String
-   - `MethodName` - String
-   - `Params` - JSON
-   - `Signature` - String
-   - `ReadableReturnValue` - JSON
-   - `Error` - String
+   - `JSON`
+
+      - `TransactionId` - String
+      - `Status` - String
+      - `Logs` - List
+         - `Address` - String
+         - `Name` - String
+         - `Indexed` - List
+         - `NonIndexed` - String
+      - `Bloom` - String
+      - `BlockNumber` - Number
+      - `Transaction` - List
+         - `From` - Number
+         - `To` -  Number
+         - `RefBlockNumber` - Number
+         - `RefBlockPrefix` - String
+         - `MethodName` - String
+         - `Params` - JSON
+         - `Signature` - String
+      - `ReadableReturnValue` - JSON
+      - `Error` - String
 
 **Example**:
 
@@ -280,7 +290,7 @@ print('# get_transaction_result', transaction_result)
    - `limit` - Number
 
 
-**Returns**: List of transaction result objects
+**Returns**: `List` of transaction result objects
 
 **Example**:
 
@@ -360,12 +370,6 @@ print('# send_transactions', result)
 
 **Web API Path**: `/api/net/peers`
 
-**Parameters**:
-
-   - `blockHash` - String
-   - `offset` - Number
-   - `limit` - Number
-
 **Example**:
 
 ```python
@@ -423,9 +427,10 @@ print('# remove_peer', remove_peer)
 
    - `transaction` - JSON format transaction
 
-**Returns**: JSON
+**Returns**: 
 
-   - `RawTransaction` - hex string bytes generated by transaction information
+   - `JSON`
+      - `RawTransaction` - hex string bytes generated by transaction information
 
 **Example**:
 
@@ -548,7 +553,7 @@ print('# get_merkle_path', merkle_path)
 ```
 
 
-### 16. Calculate Transaction Fee
+### 17. Calculate Transaction Fee
 
 **Web API Path**: `/api/blockchain/calculateTransactionFee`
 
@@ -559,11 +564,12 @@ print('# get_merkle_path', merkle_path)
    - `CalculateTransactionFeeInput` - JSON with the following structure:
       - `RawTransaction` - String
 
-**Returns**: JSON with the following structure:
+**Returns**: 
 
-   - `Success` - Boolean
-   - `TransactionFee` - Array
-   - `ResourceFee` - Array
+   - `CalculateTransactionFeeOutput` - `json` - The json with the following structure :
+      - `Success` - Boolean
+      - `TransactionFee` - Array
+      - `ResourceFee` - Array
 
 **Example**:
 
@@ -580,7 +586,7 @@ print('# calculate_transaction_fee', calculate_transaction_fee_output)
 
 
 
-### 16. Calculate Transaction Fee
+### 18. Get Network Info
 
 **Web API Path**: `/api/net/networkInfo`
 
@@ -618,11 +624,11 @@ genesis_contract_address = aelf.get_genesis_contract_address_string()
 
 **Parameters:**
 
-- `contract_name` - String: system contract’s name
+   - `contract_name` - String: system contract’s name
 
 **Returns:**
 
-Address: system contract’s address
+   - `Address`: system contract’s address
 
 **Example:**
 
@@ -637,11 +643,11 @@ multi_token_contract_address = aelf.get_system_contract_address('AElf.ContractNa
 
 **Parameters:**
 
-- `contract_name` - String: system contract’s name
+   - `contract_name` - String: system contract’s name
 
 **Returns:**
 
-String: system contract’s address
+   - `String`: system contract’s address
 
 **Example:**
 
@@ -656,9 +662,9 @@ multi_token_contract_address_string = aelf.get_system_contract_address_string('A
 
 **Parameters:**
 
-- `to_address` - Address or String: target contract’s address
-- `method_name` - String: method name
-- `params` - String: serialize parameters into String
+   - `to_address` - Address or String: target contract’s address
+   - `method_name` - String: method name
+   - `params` - String: serialize parameters into String
 
 **Example:**
 
@@ -677,8 +683,8 @@ Sign a transaction with the user’s private key.
 
 **Parameters:**
 
-- `private_key` - String: user’s private key
-- `transaction` - Transaction: transaction
+   - `private_key` - String: user’s private key
+   - `transaction` - Transaction: transaction
 
 **Example:**
 
@@ -699,11 +705,11 @@ Generate an address from a public key.
 
 **Parameters:**
 
-- `public_key` - bytes: user’s public key
+   - `public_key` - bytes: user’s public key
 
 **Returns:**
 
-- Address
+   - `Address`
 
 **Example:**
 
@@ -720,11 +726,11 @@ Generate an address string from a public key.
 
 **Parameters:**
 
-- `public_key` - bytes: user’s public key
+   - `public_key` - bytes: user’s public key
 
 **Returns:**
 
-- String
+   - `String`
 
 **Example:**
 
@@ -741,7 +747,7 @@ address = aelf.get_address_string_from_public_key(public_key)
 
 **Returns:**
 
-- Number
+   - `Number`
 
 **Example:**
 
@@ -758,12 +764,12 @@ print('# get_chain_id', chain_id)
 
 **Parameters:**
 
-- `address` - Address: address
+   - `address` - Address: address
 
 **Returns:**
 
-- String
-
+   - `String`
+ 
 **Example:**
 
 ```python
@@ -834,13 +840,13 @@ toolkit.cross_chain_transfer(to_address_string, symbol, amount, memo, to_chain_i
 
 ## Requirements
 
-- Python
-- Docker
+- [Python](https://www.python.org/)
+- [Docker](https://www.docker.com/)
 
 
 ## Support
 
-- Node
+- [Node](https://hub.docker.com/r/aelf/node)
 
 ## About Contributing
 
