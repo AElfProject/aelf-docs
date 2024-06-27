@@ -150,6 +150,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Docs Reference",
+
       collapsible: false,
       link: {
         type: "generated-index",
@@ -159,6 +160,7 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Smart Contract API",
+          description: "Useful references for smart contract.",
           link: {
             type: "generated-index",
             slug: "/docs/smart-contract-api",
@@ -170,6 +172,7 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Web API",
+          description: "Useful references for web.",
           link: {
             type: "generated-index",
             slug: "/docs/web-api",
