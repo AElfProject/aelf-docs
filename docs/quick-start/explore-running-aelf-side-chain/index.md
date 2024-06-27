@@ -30,8 +30,6 @@ The indexing fee is paid for side chain indexing. You can specify the indexing f
 
 Developers of an exclusive side chain pay producers for running it by paying CPU, RAM, DISK, and NET resource tokens. This model is called _charge-by-time_. The amount the side chain creator must share with the producers is set after the chain's creation. The **exclusive** side chain is priced according to the time used. The unit price of the fee is determined through negotiation between the production node and the developer.
 
-For more information, see the [Economic whitepaper - 4.3 Sidechain Developer Charging Model](https://aelf.com/gridcn/aelf_Economic_and_Governance_Whitepaper_v1.2_en.pdf).
-
 ## Simple Demo for Side Chain Creation Request
 
 When a user (usually a developer) feels the need to create a new side chain on aelf, they must call the cross-chain contract and request a side chain creation. After the request, parliament organization members will either approve or reject the creation. If the request is approved, the developer must then release the proposal.
