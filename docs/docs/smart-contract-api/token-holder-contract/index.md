@@ -1,6 +1,7 @@
 ---
 sidebar_position: 12
 title: Token Holder Contract
+description: Builds a bonus model for distributing bonuses to holders. 
 ---
 
 # TokenHolder Contract

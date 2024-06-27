@@ -1,6 +1,7 @@
 ---
 sidebar_position: 11
 title: Vote Contract
+description: Vote contract is an abstract layer for voting. 
 ---
 
 # Vote Contract

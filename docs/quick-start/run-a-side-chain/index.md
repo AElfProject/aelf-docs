@@ -1,3 +1,8 @@
+---
+title:  Running a Side Chain
+description: How to run a side chain after its released ?
+---
+
 # Running a Side Chain (After its Release)
 
 This tutorial explains how to run a side chain node after it has been approved by the producers and released by the creator. After creating the side chain, producers need to run a side chain node.

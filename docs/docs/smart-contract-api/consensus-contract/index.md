@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
 title: Consensus Contract
+description: Manages block producers and data synchronization
 ---
 
 # Consensus Contract

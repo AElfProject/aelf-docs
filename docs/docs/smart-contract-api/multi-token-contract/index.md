@@ -1,6 +1,8 @@
 ---
 sidebar_position: 7
 title: Multi Token Contract
+description: Manage the user's account and transaction fees. 
+
 ---
 
 # MultiToken Contract

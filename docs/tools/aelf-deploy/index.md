@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: aelf Deploy Tool
+description: aelf-deploy simplifies contract updates.
 ---
 
 # aelf Deploy Tool

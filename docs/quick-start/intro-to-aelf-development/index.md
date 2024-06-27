@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: Overview
+description: Guides and APIs for aelf DApp developers.
 ---
 
 # Developer Documentation Overview
@@ -9,7 +10,7 @@ This document provides guidelines, documents, and API references for developers 
 
 ## Introduction to aelf
 
-aelf is a comprehensive solution for Web3 DApps, offering a cloud-native, high-performance blockchain system. It supports DeFi and Metaverse applications, providing a secure, fast, and cost-efficient environment.
+aelf is a comprehensive solution for Web3 DApps, offering a cloud-native, high-performance blockchain system. It supports DeFi and Metaverse applications, providing a secure, fast, and cost-efficient environment.    
 
 ## Key Features
 

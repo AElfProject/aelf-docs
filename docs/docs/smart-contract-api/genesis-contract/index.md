@@ -1,6 +1,7 @@
 ---
 sidebar_position: 6
 title: Genesis Contract
+description: Manage and Update the deployment of contracts. 
 ---
 
 # Genesis Contract

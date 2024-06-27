@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: Network
-description: Network
+description: This guide explains the aelf's network layer. 
 image: /img/Logo.aelf.svg
 ---
 

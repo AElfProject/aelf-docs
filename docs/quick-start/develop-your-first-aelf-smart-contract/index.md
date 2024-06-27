@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: Smart Contract Developing Demos
-description: Smart Contract Developing Demos
+description: This document provides you Smart Contract examples
 image: /img/Logo.aelf.svg
 ---
 

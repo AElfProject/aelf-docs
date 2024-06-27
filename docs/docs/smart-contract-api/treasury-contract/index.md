@@ -1,6 +1,7 @@
 ---
 sidebar_position: 10
 title: Treasury Contract
+description: Used for distributing bonuses to voters and candidates. 
 ---
 
 # Treasury Contract

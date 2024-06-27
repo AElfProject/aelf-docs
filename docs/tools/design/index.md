@@ -1,6 +1,7 @@
 ---
 sidebar_position: 6
 title: aelf Design
+description: UI component library based on Antd.
 ---
 
 <div align="center">

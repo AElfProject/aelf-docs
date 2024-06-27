@@ -1,3 +1,8 @@
+---
+title:  Getting Started with Google Cloud
+description: How to run aelf node on Google Cloud Platform (GCP) ?
+---
+
 # Getting Started with Google Cloud
 
 This guide will walk you through the steps required to run an aelf node on Google Cloud Platform (GCP).
