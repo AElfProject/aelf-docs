@@ -77,7 +77,7 @@ jobs:
               inputs: {
                 env: 'development',
                 appName: 'docs',
-                appProject: 'factory',
+                appProject: 'aelf-docs',
                 commit_sha: 'sha-${{ steps.vars.outputs.short_sha }}',
               }
             })
