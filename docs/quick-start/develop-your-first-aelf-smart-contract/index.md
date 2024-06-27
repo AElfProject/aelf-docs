@@ -84,14 +84,14 @@ This API list ensures that users can easily interact with the Bingo contract, re
 
 1. Create a new folder named `BingoGame`:
 
-```base
+```sh
 mkdir BingoGame
 cd BingoGame
 ```
 
 2. Execute the following commands to create and initialize the contract project:
 
-```base
+```sh
 dotnet new aelf -n BingoGameContract -N AElf.Contracts.BingoGame
 ```
 
@@ -101,7 +101,7 @@ After successful execution, you will find  `src` and `test` directories within t
 
 Based on the API list from the requirements analysis, the `bingo_contract.proto` file should be defined as follows:
 
-```base
+```cs
 syntax = "proto3";
 
 import "aelf/core.proto";
@@ -221,7 +221,7 @@ To test the Bingo contract, follow these steps to set up the environment and wri
 
 Ensure the following directory structure for your protobuf files:
 
-```base
+```sh
 test
 ├── Protobuf
 │   ├── message
@@ -235,7 +235,7 @@ To test the Bingo contract, you'll need to set up two stubs: one for the Bingo c
 
 #### 2. Prepare the Stubs
 
-```base
+```cs
 // Get a stub for testing.
 var keyPair = SampleECKeyPairs.KeyPairs[0];
 var stub = GetBingoContractStub(keyPair);
@@ -248,7 +248,7 @@ Here, `stub` is the Bingo contract stub, and `tokenStub` is the Token contract s
 #### 3. Prepare the Bonus Pool
 In the unit test, the keyPair account is preloaded with a large amount of ELF tokens by default. To run the Bingo contract, you'll need to transfer some ELF tokens to the Bingo contract as a bonus pool:
 
-```base
+```cs
 // Prepare the bonus pool.
 await tokenStub.Transfer.SendAsync(new TransferInput
 {
@@ -262,7 +262,7 @@ await tokenStub.Transfer.SendAsync(new TransferInput
 
 You can now start using the BingoGame contract by registering a player:
 
-```base
+```cs
 // Register the player.
 await stub.Register.SendAsync(new Empty());
 ```
@@ -271,7 +271,7 @@ await stub.Register.SendAsync(new Empty());
 
 After registration, retrieve and check the player's information:
 
-```base
+```cs
 // Retrieve and check player information.
 var address = Address.FromPublicKey(keyPair.PublicKey);
 var playerInformation = await stub.GetPlayerInformation.CallAsync(address);
@@ -283,7 +283,7 @@ playerInformation.RegisterTime.ShouldNotBeNull();
 
 Before placing a bet, you need to approve the Bingo contract to spend tokens on behalf of the player:
 
-```base
+```cs
 // Approve the Bingo contract.
 await tokenStub.Approve.SendAsync(new ApproveInput
 {
@@ -297,7 +297,7 @@ await tokenStub.Approve.SendAsync(new ApproveInput
 
 Place a bet using the Play method of the Bingo contract:
 
-```base
+```cs
 // Place a bet.
 await stub.Play.SendAsync(new Int64Value { Value = 10000 });
 ```
@@ -306,7 +306,7 @@ await stub.Play.SendAsync(new Int64Value { Value = 10000 });
 
 Verify that a Bout is generated after placing the bet:
 
-```base
+```cs
 // Check if Bout is generated.
 Hash playId;
 var playerInformation = await stub.GetPlayerInformation.CallAsync(address);
@@ -318,7 +318,7 @@ playId = playerInformation.Bouts.First().PlayId;
 
 Since determining the outcome requires eight blocks, send seven invalid transactions to increase the block height:
 
-```base
+```cs
 // Increase block height by mining 7 more blocks.
 for (var i = 0; i < 7; i++)
 {
@@ -330,7 +330,7 @@ for (var i = 0; i < 7; i++)
 
 Finally, check the award. A non-zero award indicates a win:
 
-```base
+```cs
 // Check the award.
 await stub.Bingo.SendAsync(playId);
 var award = await stub.GetAward.CallAsync(playId);
