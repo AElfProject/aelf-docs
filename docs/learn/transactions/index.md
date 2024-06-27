@@ -43,12 +43,12 @@ Smart contracts in aelf blockchain serve as self-executing contracts with predef
 
 In the aelf blockchain, smart contract methods are categorized into two types based on their functionality: **actions** and **views**.
 
-##### 1. Action Methods:
+### 1. Action Methods:
 
    - **Definition**: Action methods are designed to modify the state of a contract.
    - **Execution**: When a transaction containing an action method is included in a block and successfully executed, it can change the internal state of the contract.
 
-##### Example
+#### Example
 
 ```protobuf
 rpc Vote (VoteInput) returns (google.protobuf.Empty) {
@@ -57,7 +57,7 @@ rpc Vote (VoteInput) returns (google.protobuf.Empty) {
   - Action methods are typically used for operations that alter data within the blockchain, such as updating balances, transferring tokens, or recording votes.
 
 
-##### 2. View Methods:
+### 2. View Methods:
 
    - **Definition**: View methods retrieve data from the contract but do not modify its state under any circumstances.
    - **Execution**: They are purely read-only operations.
