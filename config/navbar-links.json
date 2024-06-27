@@ -16,6 +16,11 @@
       "position": "left"
     },
     {
+      "to": "/tutorials",
+      "label": "Tutorials",
+      "position": "left"
+    },
+    {
       "to": "/tools",
       "label": "Tools",
       "position": "left"

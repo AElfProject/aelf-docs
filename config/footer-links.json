@@ -41,6 +41,10 @@
           "href": "/docs"
         },
         {
+          "label": "Tutorials",
+          "href": "/tutorials"
+        },
+        {
           "label": "Tools",
           "href": "/tools"
         },
