@@ -17,7 +17,7 @@ The transfer process will always use the same contract methods and follow these 
 
 There are a few preparation steps required before a cross chain transfer, which need to be done only once for each chain. If these steps are already completed, you can skip this part.
 
-Let's say you want to transfer token **FOO** from chain **A** to chain **B**. Before you start, make sure you understand how cross chain transaction verification works. Any input containing `MerklePath` in the following steps means that cross chain verification is needed. Refer to the [cross chain verification documentation](crosschain-verification) for more details.
+Let's say you want to transfer token **FOO** from chain **A** to chain **B**. Before you start, make sure you understand how cross chain transaction verification works. Any input containing `MerklePath` in the following steps means that cross chain verification is needed. Refer to the [cross chain verification documentation](/learn/cross-chain/cross-chain-verification/) for more details.
 
 - **Validate `Token Contract` address on chain A**
 
@@ -34,7 +34,7 @@ Let's say you want to transfer token **FOO** from chain **A** to chain **B**. Be
 
 - **Register the token contract address of chain A on chain B**
 
-  Create a proposal for the `RegisterCrossChainTokenContractAddress` for the default parliament organization on chain B. Refer to the [Parliament contract documentation](../../reference/smart-contract-api/parliament) for more details. Apart from cross chain verification context, you also need to provide the origin data of `tx_1` and the `Token Contract` address on chain A.
+  Create a proposal for the `RegisterCrossChainTokenContractAddress` for the default parliament organization on chain B. Refer to the [Parliament contract documentation](/docs/smart-contract-api/parliament-contract/) for more details. Apart from cross chain verification context, you also need to provide the origin data of `tx_1` and the `Token Contract` address on chain A.
 
   ```protobuf
   rpc RegisterCrossChainTokenContractAddress (RegisterCrossChainTokenContractAddressInput) returns (google.protobuf.Empty) {}
