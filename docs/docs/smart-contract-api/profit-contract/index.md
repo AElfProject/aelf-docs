@@ -3,13 +3,9 @@ sidebar_position: 8
 title: Profit Contract
 ---
 
-# AElf.Contracts.Profit
+# Profit Contract
 
-## Profit contract
-
-The Profit contract is an abstract layer for creating a scheme to share bonuses. Developers can build a system to distribute bonuses by calling this contract.
-
-Implement aelf Standards ACS1.
+The Profit contract is an abstract layer for creating a scheme to share bonuses. Developers can build a system to distribute bonuses by calling this contract. Implement aelf Standards ACS1.
 
 ## Contract Methods
 

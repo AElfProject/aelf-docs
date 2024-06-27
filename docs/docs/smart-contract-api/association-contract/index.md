@@ -3,9 +3,8 @@ sidebar_position: 1
 title: Association Contract
 ---
 
-# AElf.Contracts.Association
 
-## Association contract 
+# Association contract 
 
 Organizations established to achieve specific goals can use this contract to cooperatively handle transactions within the organization.
 

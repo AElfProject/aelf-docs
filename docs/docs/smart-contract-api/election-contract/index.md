@@ -3,7 +3,7 @@ sidebar_position: 5
 title: Election Contract
 ---
 
-# Election contract
+# Election Contract
 
 Used for voting for Block Producers.Implement aelf Standards ACS1.
 

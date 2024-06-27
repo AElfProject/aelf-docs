@@ -3,10 +3,9 @@ sidebar_position: 6
 title: Genesis Contract
 ---
 
-# AElf.Contracts.Genesis
+# Genesis Contract
 
-Genesis contract. Used to manage the deployment and update of contracts.
-Implement aelf Standards ACS0 and ACS1.
+Used to manage the deployment and update of contracts. Implement aelf Standards ACS0 and ACS1.
 
 ## Contract Methods
 

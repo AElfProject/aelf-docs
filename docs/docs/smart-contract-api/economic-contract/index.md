@@ -5,9 +5,7 @@ title: Economic Contract
 
 # Economic Contract
 
-The Economic contract establishes the economic system of the aelf. When the blockchain starts to work, this contract will initialize other contracts related to economic activities.
-
-Implements aelf Standards ACS1.
+The Economic contract establishes the economic system of the aelf. When the blockchain starts to work, this contract will initialize other contracts related to economic activities. Implements aelf Standards ACS1.
 
 ## Contract Methods
 

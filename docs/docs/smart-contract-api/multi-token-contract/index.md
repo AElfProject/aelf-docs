@@ -3,13 +3,9 @@ sidebar_position: 7
 title: Multi Token Contract
 ---
 
-# AElf.Contracts.MultiToken
+# MultiToken Contract
 
-MultiToken contract.
-
-The MultiToken contract is mainly used to manage the user's account and transaction fees related settings.
-
-Implements aelf Standards ACS1 and ACS2.
+The MultiToken contract is mainly used to manage the user's account and transaction fees related settings. Implements aelf Standards ACS1 and ACS2.
 
 ## Contract Methods
 

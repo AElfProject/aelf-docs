@@ -4,7 +4,7 @@ title: Cross Chain Contract
 ---
 
 
-# Cross-Chain contract.
+# Cross-Chain Contract
 
 Implement aelf Standards ACS1 and ACS7.
 

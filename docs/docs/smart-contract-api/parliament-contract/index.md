@@ -3,9 +3,7 @@ sidebar_position: 3
 title: Parliament Contract
 ---
 
-# AElf.Contracts.Parliament
-
-Parliament contract.
+# Parliament Contract
 
 The production nodes use the Parliament contract to govern important matters. In the initial state, the production nodes are members of the parliament, and only when two-thirds of the production nodes vote in favor of a given decision, will it be executed.
 
