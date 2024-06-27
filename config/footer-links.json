@@ -5,11 +5,11 @@
       "items": [
         {
           "label": "Technology",
-          "href": "#"
+          "href": "https://aelf.com/technology"
         },
         {
           "label": "Audit Report",
-          "href": "#"
+          "href": "https://github.com/AElfProject/aelf-audit-reports"
         },
         {
           "label": "Privacy",
@@ -55,15 +55,15 @@
       "items": [
         {
           "label": "Overview",
-          "href": "#"
+          "href": "https://aelf.com/ecosystem"
         },
         {
           "label": "dApps",
-          "href": "#"
+          "href": "https://aelf.com/ecosystem"
         },
         {
           "label": "aelf Ventures",
-          "href": "#"
+          "href": "https://aelf.com/aelf-ventures"
         },
         {
           "label": "Blog",
