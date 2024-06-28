@@ -43,15 +43,14 @@ For those using QQ Browser and similar, you can add the extension manually.
 To access the complete data structure, [click here](#data-format). For an extension demo, refer to the provided examples.
 
 -  [Check Extension Demo](#demo-of-checking-the-extension)
--  [GET_CHAIN_STATUS](#get-chain-status)
--  [CALL_AELF_CHAIN](#call-aelf-chain)
+-  [GET_CHAIN_STATUS](#get_chain_status)
+-  [CALL_AELF_CHAIN](#call_aelf_chain)
 -  [LOGIN](#login)
--  [INIT_AELF_CONTRACT](#init-aelf-contract)
--  [CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY](#call-aelf-contract-call-aelf-contract-readonly)
--  [CHECK_PERMISSION](#check-permission)
--  [SET_CONTRACT_PERMISSION](#set-contract-permission)
--  [REMOVE_CONTRACT_PERMISSION](#remove-contract-permission>)
--  [REMOVE_METHODS_WHITELIST](#remove-methods-whitelist>)
+-  [INIT_AELF_CONTRACT](#init_aelf_contract)
+-  [CALL_AELF_CONTRACT / CALL_AELF_CONTRACT_READONLY](#call_aelf_contract--call_aelf_contract_readonly)
+-  [CHECK_PERMISSION](#check_permission)
+-  [SET_CONTRACT_PERMISSION](#set_contract_permission)
+-  [REMOVE_METHODS_WHITELIST](#remove_methods_whitelist)
 
 
 ## Data Format
