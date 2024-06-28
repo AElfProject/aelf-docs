@@ -221,18 +221,18 @@ css`
 
 ## Develop aelfd component
 
-1. ### According to the component design draft, identify the differences with the antd component
+### 1. According to the component design draft, identify the differences with the antd component
 
-![img](https://hoopox.feishu.cn/space/api/box/stream/download/asynccode/?code=OWY0Yjc4MGRlMjY5ZWIzOTFmMWFlMWVlNjE2NmUyNGFfcTM4dWUyTkhLYTBQVG1pSjhjWkVhVzNhaGIxazJoRFpfVG9rZW46Q0x6S2JwTlZRb2pDdVV4TU5mWGNVd2ZEbllnXzE3MTc3MzA0OTE6MTcxNzczNDA5MV9WNA)
+![img](/img/aelf-design-sizes.jpeg)
 
 1. 5 size types need to be provided, antd has 3
 2. Different sizes of height, padding, rounded corners, font size, and minimum width are different
 
-3. ### List the new features based on the antd component
+### 2. List the new features based on the antd component
 
-4. Provide optional throttle click function
+1. Provide optional throttle click function
 
-5. ### Configure token
+### 3. Configure token
 
 Component tokens required to configure this component, global tokens (pay attention to whether it will affect other components), and custom tokens.
 
@@ -262,7 +262,7 @@ Component tokens required to configure this component, global tokens (pay attent
 theme?: ThemeConfig | GetAntdTheme;
 ```
 
-4. ### Define aelfd component type file
+### 4. Define aelfd component type file
 
 ```TypeScript
 export type AelfdButtonSizeType =
@@ -279,7 +279,7 @@ export interface IAelfdButtonProps
 }
 ```
 
-5. ### Writing component logic and style files
+### 5. Writing component logic and style files
 
 ```TypeScript
 const useStyles = createStyles(
