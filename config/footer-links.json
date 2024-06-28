@@ -5,7 +5,7 @@
       "items": [
         {
           "label": "Technology",
-          "href": "https://aelf.com/technology"
+          "href": "https://aelf.com/platform"
         },
         {
           "label": "Audit Report",
@@ -30,23 +30,23 @@
       "items": [
         {
           "label": "Quick Start",
-          "href": "/quick-start"
+          "href": "/quick-start/"
         },
         {
           "label": "Learn",
-          "href": "/learn"
+          "href": "/learn/"
         },
         {
           "label": "Docs",
-          "href": "/docs"
+          "href": "/docs/"
         },
         {
           "label": "Tools",
-          "href": "/tools"
+          "href": "/tools/"
         },
         {
           "label": "Resources",
-          "href": "/resources"
+          "href": "/resources/"
         }
       ]
     },
@@ -59,11 +59,11 @@
         },
         {
           "label": "dApps",
-          "href": "https://aelf.com/ecosystem"
+          "href": "https://aelf.com/ecosystem#ECOSYSTEM_DAPPS"
         },
         {
           "label": "aelf Ventures",
-          "href": "https://aelf.com/aelf-ventures"
+          "href": "https://aelf.com/ecosystem#ECOSYSTEM_VENTURES"
         },
         {
           "label": "Blog",
