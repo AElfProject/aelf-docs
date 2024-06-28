@@ -6,15 +6,15 @@ description: Manage your assets and explore aelf's blockchain data
 
 # Wallet and Block Explorer
 
-### Explorer
+## Explorer
 
-`[Github](https://github.com/AElfProject/aelf-block-explorer)`
+[Github](https://github.com/AElfProject/aelf-block-explorer)
 
-#### Overview
+ **Overview**
 
 Our blockchain explorer lets you do a lot of things easily. You can view blocks and transactions, buy resources, vote, campaign for node roles, and check out contracts.
 
-#### Features
+### Features
 
    - **View Blocks and Transactions**: Track the latest blocks and transactions on the network.
    - **Purchase Resources**: Buy necessary resources for your operations.
@@ -22,13 +22,13 @@ Our blockchain explorer lets you do a lot of things easily. You can view blocks 
    - **View Contracts**: Access and review smart contracts.
    
 
-### iOS/Android Wallet
+## iOS/Android Wallet
 
-#### Overview
+ **Overview**
 
 The mobile wallet app for iOS and Android helps you manage your assets and trade across different blockchains. It also offers a platform for developers to integrate their applications using the wallet SDK.
 
-#### Features
+**Features**
 
    - **Basic Asset Management**: Easily manage your digital assets.
    - **Cross-Chain Trading**: Trade assets across different blockchains seamlessly.
@@ -37,33 +37,32 @@ The mobile wallet app for iOS and Android helps you manage your assets and trade
 
 ## Web Wallet
 
-[Github](https://github.com/AElfProject/aelf-web-wallet)`
+[Github](https://github.com/AElfProject/aelf-web-wallet)
 
-#### Overview
+### Overview
 
 The web wallet offers basic functionalities for handling transactions right from your browser.
 
-#### Features
+Features
 
    - Transaction Management: Handle your transactions with ease.
 
 
 
-## Explorer API
+### Explorer API
 
 [To get more information by code](https://github.com/AElfProject/aelf-block-api)
 
-#### Introduction
 
 Our Explorer API allows you to interact with blockchain data. You can get information about blocks, transactions, and TPS (transactions per second). Here’s how you can use it:
 
-#### Blocks
+###  Blocks
 
-##### Get Block List
+#### Get Block List
 
-**URL**:  `api/all/blocks?limit={limit}&page={page}`
-**Method**: `GET`
-**Description**: Retrieve a list of blocks.
+- **URL**:  `api/all/blocks?limit={limit}&page={page}`
+- **Method**: `GET`
+- **Description**: Retrieve a list of blocks.
 
 **Success Response:**
 
@@ -101,17 +100,17 @@ Our Explorer API allows you to interact with blockchain data. You can get inform
             "merkle_root_tx": "776abba03d66127927edc6437d406f708b64c1653a1cc22af9c490aa4f0c22dc",
             "merkle_root_state": "ccc32ab23d619b2b8e0e9b82a53bb66b3a6d168993188b5d3f7f0ac2cb17206f",
             "time": "2019-04-27T02:00:26.690003Z"
-        },
+        }
     ]
 }
 ```
 
 
-##### Get Block List By Block Hash
+#### Get Block List By Block Hash
 
-**URL**:  `api/block/transactions?limit={limit}&page={page}&order={order}&block_hash={block_hash}`
-**Method**: `GET`
-**Description**: Retrieve a list of blocks using a specific block hash.
+- **URL**:  `api/block/transactions?limit={limit}&page={page}&order={order}&block_hash={block_hash}`
+- **Method**: `GET`
+- **Description**: Retrieve a list of blocks using a specific block hash.
 
 **Success Response:**
 
@@ -130,18 +129,31 @@ Our Explorer API allows you to interact with blockchain data. You can get inform
             "tx_status": "Mined",
             "time": "2019-04-26T06:47:00.265604Z"
         },
-        ...
+        {
+            "tx_id": "d9398736920a5c87ea7cae46c265efa84ac7be4cf8edd37bea54078abef1b44c",
+            "params_to": "",
+            "chain_id": "AELF",
+            "block_height": 590,
+            "address_from": "2EyPedNTscFK5EwR8FqTrCeW2LZzuPQ7vr18Y5QWuEUApdCkM6",
+            "address_to": "xw6U3FRE5H8rU3z8vAgF9ivnWSkxULK5cibdZzMC9UWf7rPJf",
+            "params": "",
+            "method": "NextRound",
+            "block_hash": "79584a99b7f5da5959a26ff02cbe174d632eb5ef3c6c8d5192de48b6f5584c8d",
+            "quantity": 0,
+            "tx_status": "Mined",
+            "time": "2019-04-26T06:47:00.265604Z"
+        }
     ]
 }
 ```
 
-#### Transactions
+### Transactions
 
-##### Get Transactions List
+#### Get Transactions List
 
-**URL**:  `api/all/transactions?limit={limit}&page={page}`
-**Method**: `GET`
-**Description**: Retrieve a list of transactions.
+- **URL**:  `api/all/transactions?limit={limit}&page={page}`
+- **Method**: `GET`
+- **Description**: Retrieve a list of transactions.
 
 **Success Response:**
 
@@ -161,17 +173,44 @@ Our Explorer API allows you to interact with blockchain data. You can get inform
             "tx_status": "Mined",
             "time": "2019-04-26T07:18:36.636701Z"
         },
-        ...
+        {
+            "tx_id": "4780a7b2737b6f044894719b9bb4cb09862c0b4a7cae267131a0b5c3e7c12850",
+            "params_to": "",
+            "chain_id": "AELF",
+            "block_height": 1063,
+            "address_from": "QUYYqzTQmugruHYmuJVftwmVjnUM82pXnMTnT5jh55qwZKrMw",
+            "address_to": "xw6U3FRE5H8rU3z8vAgF9ivnWSkxULK5cibdZzMC9UWf7rPJf",
+            "params": "",
+            "method": "UpdateValue",
+            "block_hash": "381114b86b09886f59956851a1d47d8442b29f44f3785dade3c667ca320e23bb",
+            "quantity": 0,
+            "tx_status": "Mined",
+            "time": "2019-04-26T07:18:36.636701Z"
+        },
+        {
+            "tx_id": "0230385e3f060059d2a62addac09ad6d01f96d32ec076cfbf44c6a3b70c6e092",
+            "params_to": "",
+            "chain_id": "AELF",
+            "block_height": 1062,
+            "address_from": "zizPhdDpQCZxMChMxn1oZ4ttJGJUo61Aocg5BpTYvzLQGmBjT",
+            "address_to": "xw6U3FRE5H8rU3z8vAgF9ivnWSkxULK5cibdZzMC9UWf7rPJf",
+            "params": "",
+            "method": "NextRound",
+            "block_hash": "06a3ceb783480f4cf5b8402f6749617093d9ea5f9a053f65e86554aeed6d98f4",
+            "quantity": 0,
+            "tx_status": "Mined",
+            "time": "2019-04-26T07:18:28.635113Z"
+        }
     ]
 }
 ```
 
 
-##### Get Transactions List By Address
+#### Get Transactions List By Address
 
-**URL**:  `api/address/transactions?contract_address={contract_address}&limit={limit}&page={page}&address={address}`
-**Method**: `GET`
-**Description**: Retrieve a list of transactions associated with a specific address. 
+- **URL**:  `api/address/transactions?contract_address={contract_address}&limit={limit}&page={page}&address={address}`
+- **Method**: `GET`
+- **Description**: Retrieve a list of transactions associated with a specific address. 
 
 **Success Response:**
 
@@ -191,17 +230,43 @@ Our Explorer API allows you to interact with blockchain data. You can get inform
             "tx_status": "Mined",
             "time": "2019-04-26T07:18:36.636701Z"
         },
-        ...
+        {
+            "tx_id": "4780a7b2737b6f044894719b9bb4cb09862c0b4a7cae267131a0b5c3e7c12850",
+            "params_to": "",
+            "chain_id": "AELF",
+            "block_height": 1063,
+            "address_from": "QUYYqzTQmugruHYmuJVftwmVjnUM82pXnMTnT5jh55qwZKrMw",
+            "address_to": "xw6U3FRE5H8rU3z8vAgF9ivnWSkxULK5cibdZzMC9UWf7rPJf",
+            "params": "",
+            "method": "UpdateValue",
+            "block_hash": "381114b86b09886f59956851a1d47d8442b29f44f3785dade3c667ca320e23bb",
+            "quantity": 0,
+            "tx_status": "Mined",
+            "time": "2019-04-26T07:18:36.636701Z"
+        },
+        {
+            "tx_id": "0230385e3f060059d2a62addac09ad6d01f96d32ec076cfbf44c6a3b70c6e092",
+            "params_to": "",
+            "chain_id": "AELF",
+            "block_height": 1062,
+            "address_from": "zizPhdDpQCZxMChMxn1oZ4ttJGJUo61Aocg5BpTYvzLQGmBjT",
+            "address_to": "xw6U3FRE5H8rU3z8vAgF9ivnWSkxULK5cibdZzMC9UWf7rPJf",
+            "params": "",
+            "method": "NextRound",
+            "block_hash": "06a3ceb783480f4cf5b8402f6749617093d9ea5f9a053f65e86554aeed6d98f4",
+            "quantity": 0,
+            "tx_status": "Mined",
+            "time": "2019-04-26T07:18:28.635113Z"
+        }
     ]
 }
 ```
 
-#### TPS (Transactions Per Second)
+### TPS (Transactions Per Second)
 
-##### Get TPS Record
+#### Get TPS Record
 
 - **URL**: `api/tps/list?start_time={unix_timestamp}&end_time={unix_timestamp}&order={order}`
-
 - **Method**: `GET`
 - **Description**: Obtain TPS records for performance monitoring.
 
@@ -221,7 +286,36 @@ Success Response:
             "tpm": 1878,
             "type": 1
         },
-        ...
+        {
+            "id": 12499,
+            "start": "2019-11-22T01:13:14Z",
+            "end": "2019-11-22T01:14:14Z",
+            "txs": 1889,
+            "blocks": 117,
+            "tps": 31,
+            "tpm": 1889,
+            "type": 1
+        },
+        {
+            "id": 12500,
+            "start": "2019-11-22T01:14:14Z",
+            "end": "2019-11-22T01:15:14Z",
+            "txs": 1819,
+            "blocks": 114,
+            "tps": 30,
+            "tpm": 1819,
+            "type": 1
+        },
+        {
+            "id": 12501,
+            "start": "2019-11-22T01:15:14Z",
+            "end": "2019-11-22T01:16:14Z",
+            "txs": 1779,
+            "blocks": 105,
+            "tps": 30,
+            "tpm": 1779,
+            "type": 1
+        }
     ]
 }
 ```
