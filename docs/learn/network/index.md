@@ -66,11 +66,11 @@ Nodes use a defined network interface protocol for normal operation and data syn
 When a node connects, it exchanges handshake information. This includes chain status, current height, and more.
 
 - **Request**: 
-    ```proto
+    ```cs
     rpc DoHandshake (HandshakeRequest) returns (HandshakeReply) {}
     ```
 - **Handshake Message**:
-    ```proto
+    ```cs
     message Handshake {
         HandshakeData handshake_data = 1;
         bytes signature = 2;
@@ -78,7 +78,7 @@ When a node connects, it exchanges handshake information. This includes chain st
     }
     ```
 - **HandshakeData Message**:
-    ```proto
+    ```cs
     message HandshakeData {
         int32 chain_id = 1;
         int32 version = 2;
@@ -95,7 +95,7 @@ When a node connects, it exchanges handshake information. This includes chain st
 #### ConfirmHandshake
 Confirms the handshake with the target node.
 - **Request**:
-    ```proto
+    ```cs
     rpc ConfirmHandshake (ConfirmHandshakeRequest) returns (VoidReply) {}
     ```
 
@@ -104,28 +104,28 @@ Confirms the handshake with the target node.
 #### BlockBroadcastStream
 Receives block information after packaging.
 - **Request**:
-    ```proto
+    ```cs
     rpc BlockBroadcastStream (stream BlockWithTransactions) returns (VoidReply) {}
     ```
 
 #### TransactionBroadcastStream
 Receives forwarded transaction information.
 - **Request**:
-    ```proto
+    ```cs
     rpc TransactionBroadcastStream (stream aelf.Transaction) returns (VoidReply) {}
     ```
 
 #### AnnouncementBroadcastStream
 Receives block announcements.
 - **Request**:
-    ```proto
+    ```cs
     rpc AnnouncementBroadcastStream (stream BlockAnnouncement) returns (VoidReply) {}
     ```
 
 #### LibAnnouncementBroadcastStream
 Receives last irreversible block (LIB) announcements.
 - **Request**:
-    ```proto
+    ```cs
     rpc LibAnnouncementBroadcastStream (stream LibAnnouncement) returns (VoidReply) {}
     ```
 
@@ -134,14 +134,14 @@ Receives last irreversible block (LIB) announcements.
 #### RequestBlock
 Requests a single block.
 - **Request**:
-    ```proto
+    ```cs
     rpc RequestBlock (BlockRequest) returns (BlockReply) {}
     ```
 
 #### RequestBlocks
 Requests multiple blocks.
 - **Request**:
-    ```proto
+    ```cs
     rpc RequestBlocks (BlocksRequest) returns (BlockList) {}
     ```
 
@@ -150,13 +150,13 @@ Requests multiple blocks.
 #### Ping
 Verifies network availability.
 - **Request**:
-    ```proto
+    ```cs
     rpc Ping (PingRequest) returns (PongReply) {}
     ```
 
 #### CheckHealth
 Performs health checks on peers.
 - **Request**:
-    ```proto
+    ```cs
     rpc CheckHealth (HealthCheckRequest) returns (HealthCheckReply) {}
     ```
