@@ -88,6 +88,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain network with its Ma
 - [Browser Extension](/resources/browser-extension/) - Explore Portkey wallet and other extensions
 - [DevOps](/resources/devops/) - Tools to build and deploy efficiently
 - [Protobuf Extension](/resources/protobuf-extension/) - An open-source gRPC
+- [Whitepapers](/resources/whitepaper/) - aelf Whitepapers
 
 </article>
 
