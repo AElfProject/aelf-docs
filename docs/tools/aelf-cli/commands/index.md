@@ -38,32 +38,32 @@ You can set these options in several ways, in order of priority from low to high
 
 **set**: Save configuration in the global `.aelfrc` file.
 
-```sh
+```bash
 $ aelf-command config set endpoint http://127.0.0.1:8000
 ✔ Succeed!
 ```
 
 **get**: Retrieve a value from the global `.aelfrc` file.
-```sh
+```bash
 $ aelf-command config get endpoint
 http://127.0.0.1:8000
 ```
 
 **delete**: Remove a key-value pair from the global `.aelfrc` file.
-```sh
+```bash
 $ aelf-command config delete endpoint
 ✔ Succeed!
 ```
 
 **list**: List all configurations stored in the global `.aelfrc` file.
-```sh
+```bash
 $ aelf-command config list
 endpoint=http://127.0.0.1:8000
 password=password
 ```
 
 **Usage:**
-```sh
+```bash
 $ aelf-command config -h
 Usage: aelf-command config [options] <flag> [key] [value]
 
@@ -631,7 +631,7 @@ Specify the contract name or address. In this example, AElf.ContractNames.Token 
 
 #### 4. Select Contract Method:
 
-```css
+```bash
 ? Pick up a contract method: Transfer
 ```
 

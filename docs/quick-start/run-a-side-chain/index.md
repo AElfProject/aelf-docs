@@ -3,7 +3,7 @@ title:  Running a Side Chain
 description: How to run a side chain after its released ?
 ---
 
-# Running a Side Chain (After its Release)
+# Running a Side Chain 
 
 This tutorial explains how to run a side chain node after it has been approved by the producers and released by the creator. After creating the side chain, producers need to run a side chain node.
 
@@ -83,12 +83,12 @@ Change `ParentChainServerIp` and `ParentChainServerPort` depending on the listen
 
 Open a terminal and navigate to the folder where you created the side chain configuration:
 
-```bash
+```sh
 dotnet ../AElf.Launcher.dll
 ```
 
 You can try out a few commands from another terminal to check if everything is fine, for example:
 
-```bash
+```sh
 aelf-command get-blk-height -e http://127.0.0.1:1235
 ```

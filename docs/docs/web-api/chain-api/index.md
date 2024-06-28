@@ -7,7 +7,7 @@ title: Chain API
 
 ## Get information about a given block by block hash. Optionally with the list of its transactions.
 
-```http
+```sh
 GET /api/blockChain/block
 ```
 
@@ -35,7 +35,7 @@ GET /api/blockChain/block
 
 ## Get information about a given block by block height. Optionally with the list of its transactions.
 
-```http
+```sh
 GET /api/blockChain/blockByHeight
 ```
 
@@ -63,7 +63,7 @@ GET /api/blockChain/blockByHeight
 
 ## Get the height of the current chain.
 
-```http
+```sh
 GET /api/blockChain/blockHeight
 ```
 
@@ -86,7 +86,7 @@ GET /api/blockChain/blockHeight
 
 ## Get the current state about a given block.
 
-```http
+```sh
 GET /api/blockChain/blockState
 ```
 
@@ -113,7 +113,7 @@ GET /api/blockChain/blockState
 
 ## Get the current status of the block chain.
 
-```http
+```sh
 GET /api/blockChain/chainStatus
 ```
 
@@ -136,7 +136,7 @@ GET /api/blockChain/chainStatus
 
 ## Get the protobuf definitions related to a contract.
 
-```http
+```sh
 GET /api/blockChain/contractFileDescriptorSet
 ```
 
@@ -163,7 +163,7 @@ GET /api/blockChain/contractFileDescriptorSet
 
 ## Execute a raw transaction.
 
-```http
+```sh
 POST /api/blockChain/executeRawTransaction
 ```
 
@@ -202,7 +202,7 @@ POST /api/blockChain/executeRawTransaction
 
 ## Call a read-only method on a contract.
 
-```http
+```sh
 POST /api/blockChain/executeTransaction
 ```
 
@@ -241,7 +241,7 @@ POST /api/blockChain/executeTransaction
 
 ## Get the merkle path of a transaction.
 
-```http
+```sh
 GET /api/blockChain/merklePathByTransactionId
 ```
 
@@ -272,7 +272,7 @@ GET /api/blockChain/merklePathByTransactionId
 
 ## Creates an unsigned serialized transaction.
 
-```http
+```sh
 POST /api/blockChain/rawTransaction
 ```
 
@@ -311,7 +311,7 @@ POST /api/blockChain/rawTransaction
 
 ## Send a transaction.
 
-```http
+```sh
 POST /api/blockChain/sendRawTransaction
 ```
 
@@ -350,7 +350,7 @@ POST /api/blockChain/sendRawTransaction
 
 ## Broadcast a Transaction
 
-```http
+```sh
 POST /api/blockChain/sendTransaction
 ```
 
@@ -389,7 +389,7 @@ POST /api/blockChain/sendTransaction
 
 ## Broadcast Multiple Transactions
 
-```http
+```sh
 POST /api/blockChain/sendTransactions
 ```
 
@@ -428,7 +428,7 @@ POST /api/blockChain/sendTransactions
 
 ## Estimate Transaction Fee
 
-```http
+```sh
 POST /api/blockChain/calculateTransactionFee
 ```
 
@@ -467,7 +467,7 @@ POST /api/blockChain/calculateTransactionFee
 
 ## Get the Current Status of a Transaction
 
-```http
+```sh
 GET /api/blockChain/transactionResult
 ```
 
@@ -498,7 +498,7 @@ GET /api/blockChain/transactionResult
 
 ## Get the Transaction Pool Status
 
-```http
+```sh
 GET /api/blockChain/transactionPoolStatus
 ```
 
@@ -523,7 +523,7 @@ GET /api/blockChain/transactionPoolStatus
 
 ## Get the Current Status of a Transaction
 
-```http
+```sh
 GET /api/blockChain/transactionResult
 ```
 
@@ -554,7 +554,7 @@ GET /api/blockChain/transactionResult
 
 ## Get Multiple Transaction Results
 
-```http
+```sh
 GET /api/blockChain/transactionResults
 ```
 

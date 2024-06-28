@@ -8,7 +8,7 @@ description: Manage your assets and explore aelf's blockchain data
 
 ### Explorer
 
-[Github](https://github.com/AElfProject/aelf-block-explorer)`
+`[Github](https://github.com/AElfProject/aelf-block-explorer)`
 
 #### Overview
 
@@ -200,9 +200,10 @@ Our Explorer API allows you to interact with blockchain data. You can get inform
 
 ##### Get TPS Record
 
-**URL**: `api/tps/list?start_time={unix_timestamp}&end_time={unix_timestamp}&order={order}`
-**Method**: `GET`
-**Description**: Obtain TPS records for performance monitoring.
+- **URL**: `api/tps/list?start_time={unix_timestamp}&end_time={unix_timestamp}&order={order}`
+
+- **Method**: `GET`
+- **Description**: Obtain TPS records for performance monitoring.
 
 Success Response:
 
