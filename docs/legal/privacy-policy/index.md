@@ -8,7 +8,7 @@ This privacy policy ("Privacy Policy") elucidates the procedures by which Aelf P
 
 We reserve the right to modify this Privacy Policy periodically. Should alterations occur, we will notify you by amending the date at the top of this policy. Additionally, in certain instances, we may provide further notification, such as appending a statement to our Website or dispatching a notification to you. We encourage you to regularly review this Privacy Policy to remain informed about our information procedures and the choices at your disposal.
 
-We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy policy or our practices with regard to your personal information, please contact us at \[insert general Aelf email].
+We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy policy or our practices with regard to your personal information, please contact us [here](https://form.aelf.com/contact).
 
 **1. Our Role In Your Privacy**
 
