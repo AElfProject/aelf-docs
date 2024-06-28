@@ -7,7 +7,7 @@ title: Net API
 
 ## Get Network Information
 
-```http
+```sh
 GET /api/net/networkInfo
 ```
 
@@ -32,7 +32,7 @@ GET /api/net/networkInfo
 
 ## Add Peer
 
-```http
+```sh
 POST /api/net/peer
 ```
 

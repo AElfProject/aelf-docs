@@ -44,13 +44,13 @@ You need to create a new account or load an existing account using a `private ke
 
 **Create a New Wallet**
 
-```sh
+```bash
 aelf-command create
 ```
 
 Output example:
 
-```
+```bash
 Your wallet info is:
 Mnemonic:            great mushroom loan crisp ... door juice embrace
 Private Key:         e038eea7e151eb451ba2901f7...b08ba5b76d8f288
@@ -65,13 +65,13 @@ Account info has been saved to "/Users/young/.local/share/aelf/keys/2Ue31YTuB5Sz
 
 **Load Wallet from Private Key**
 
-```sh
+```bash
 aelf-command load e038eea7e151eb451ba2901f7...b08ba5b76d8f288
 ```
 
 Output example:
 
-```
+```bash
 Your wallet info is:
 Private Key:         e038eea7e151eb451ba2901f7...b08ba5b76d8f288
 Public Key:          0478903d96aa2c8c0...6a3e7d810cacd136117ea7b13d2c9337e1ec88288111955b76ea
@@ -91,7 +91,7 @@ aelf-command wallet -a 2Ue31YTuB5Szy7cnr3SCEGU2gtGi5uMQBYarYUR5oGin1sys6H
 
 Output example:
 
-```
+```bash
 Your wallet info is:
 Private Key:         e038eea7e151eb451ba2901f7...b08ba5b76d8f288
 Public Key:          0478903d96aa2c8c0...6a3e7d810cacd136117ea7b13d2c9337e1ec88288111955b76ea
@@ -160,7 +160,7 @@ aelf-command -h
 
 Output example:
 
-```
+```bash
 Usage: aelf-command [command] [options]
 
 Options:

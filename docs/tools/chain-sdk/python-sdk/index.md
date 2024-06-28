@@ -715,7 +715,6 @@ Generate an address from a public key.
 
 ```python
 aelf = AElf(url)
-
 address = aelf.get_address_from_public_key(public_key)
 ```
 
@@ -736,7 +735,6 @@ Generate an address string from a public key.
 
 ```python
 aelf = AElf(url)
-
 address = aelf.get_address_string_from_public_key(public_key)
 ```
 
@@ -774,7 +772,6 @@ print('# get_chain_id', chain_id)
 
 ```python
 aelf = AElf(url)
-
 address = aelf.chain.get_system_contract_address("AElf.ContractNames.Consensus")
 formatted_address = aelf.get_formatted_address(address)
 print('formatted address', formatted_address)
@@ -789,7 +786,6 @@ Check whether the node is connected.
 
 ```python
 aelf = AElf(url)
-
 is_connected = aelf.is_connected()
 ```
 

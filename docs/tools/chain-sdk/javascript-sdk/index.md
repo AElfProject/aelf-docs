@@ -23,7 +23,7 @@ First, you need to add `aelf-sdk.js` to your project. You can do this using the 
 
 ### Using npm
 
-```base
+```sh
 npm install aelf-sdk
 ```
 

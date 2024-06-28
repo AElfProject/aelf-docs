@@ -36,7 +36,7 @@ This simple game demonstrates how to develop and interact with smart contracts o
 
 # API List
 
-Here is a summary of the essential APIs needed for the Bingo Game DApp, along with additional methods to make the Bingo contract more complete:
+Here is a summary of the essential APIs needed for the Bingo Game dApp, along with additional methods to make the Bingo contract more complete:
 
 ### Basic APIs
 
@@ -47,7 +47,7 @@ Here is a summary of the essential APIs needed for the Bingo Game DApp, along wi
 - Corresponds to step 3: Check results
 
 ### Additional Action Methods
-In order to make the Bingo contract a more complete DApp contract, two additional Action methods are added:
+In order to make the Bingo contract a more complete dApp contract, two additional Action methods are added:
 
 ##### 1. Register
 - Creates a file for users to save registration time and user-specific values (used in random number calculations for the Bingo game).
@@ -252,7 +252,7 @@ In the unit test, the keyPair account is preloaded with a large amount of ELF to
 // Prepare the bonus pool.
 await tokenStub.Transfer.SendAsync(new TransferInput
 {
-    To = DAppContractAddress,
+    To = dAppContractAddress,
     Symbol = "ELF",
     Amount = 100_00000000
 });
@@ -287,7 +287,7 @@ Before placing a bet, you need to approve the Bingo contract to spend tokens on 
 // Approve the Bingo contract.
 await tokenStub.Approve.SendAsync(new ApproveInput
 {
-    Spender = DAppContractAddress,
+    Spender = dAppContractAddress,
     Symbol = "ELF",
     Amount = 10000
 });
