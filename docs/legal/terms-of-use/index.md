@@ -42,9 +42,9 @@ If you do not understand and accept all these Terms and Conditions, then you sho
 
 **1.11. Incorporation of Other Terms.** As between you and aelf, all other terms, conditions, policies, or notices to which you may agree, including but not limited to each of the following, are expressly incorporated into these Terms and Conditions by reference:
 
- a. Our Privacy Policy, available at \[to be inserted when the link is available], which governs our use of any personal data we collect about you or you provide to us, and, under which you consent to our use of your personal information and warrant that all data you provide is accurate (our “Privacy Policy”);
+ a. Our Privacy Policy, available [here](https://docs.aelf.com/legal/privacy-policy/), which governs our use of any personal data we collect about you or you provide to us, and, under which you consent to our use of your personal information and warrant that all data you provide is accurate (our “Privacy Policy”);
 
- b. Our Cookie Policy available at \[to be inserted when the link is available] , which sets out how aelf uses cookies and similar technologies to recognize you when you visit our Website.
+ b. Our Cookie Policy available [here](https://docs.aelf.com/legal/cookie-policy/), which sets out how aelf uses cookies and similar technologies to recognize you when you visit our Website.
 
  c. Any applicable terms, disclosures, and other documents that may be posted on the Site from time to time; and
 
@@ -140,7 +140,7 @@ If you do not understand and accept all these Terms and Conditions, then you sho
 
 **5. Your Content**
 
-**5.1. Our Use of Your Content.** The Site may provide you with opportunities to upload, display, or transmit data or other content (together, “User Content”). As part of these Terms and Conditions and subject to our Privacy Policy (available at \[to be inserted when the link is available]), you grant us a perpetual, irrevocable, worldwide, fully paid, non-exclusive, and non-sublicensable right and license to use and exploit any User Content in any form. We retain the unlimited right and exclusive discretion to copy, reproduce, fix, modify, adapt, translate, reformat, prepare derivatives of, manufacture, publish, distribute, sell, licence, transfer, lease, or transmit any User Content. We also reserve the right to incorporate any User Content as part of the Site or any Site Content, or into any other material.
+**5.1. Our Use of Your Content.** The Site may provide you with opportunities to upload, display, or transmit data or other content (together, “User Content”). As part of these Terms and Conditions and subject to our [Privacy Policy](https://docs.aelf.com/legal/privacy-policy/), you grant us a perpetual, irrevocable, worldwide, fully paid, non-exclusive, and non-sublicensable right and license to use and exploit any User Content in any form. We retain the unlimited right and exclusive discretion to copy, reproduce, fix, modify, adapt, translate, reformat, prepare derivatives of, manufacture, publish, distribute, sell, licence, transfer, lease, or transmit any User Content. We also reserve the right to incorporate any User Content as part of the Site or any Site Content, or into any other material.
 
 **5.2. Your Feedback.** No User Content you submit will be deemed to establish any additional or separate contractual relationship between you and us outside the provisions of these Terms and Conditions.
 
@@ -168,7 +168,7 @@ If you do not understand and accept all these Terms and Conditions, then you sho
 
 **7. Information Collection**
 
-**7.1. Privacy of Your Information.** To use certain features of the Site, you may be required to provide us with your personal information, including but not limited to your name, address, and contact details. Our use of your personal information is subject to the terms of our Privacy Policy (available at \[to be inserted when the link is available]), which is incorporated in these Terms of Use. Any data collected about you or from you by third parties on our behalf is also subject to our Privacy Policy.
+**7.1. Privacy of Your Information.** To use certain features of the Site, you may be required to provide us with your personal information, including but not limited to your name, address, and contact details. Our use of your personal information is subject to the terms of our [Privacy Policy ](https://docs.aelf.com/legal/privacy-policy/)which is incorporated in these Terms of Use. Any data collected about you or from you by third parties on our behalf is also subject to our Privacy Policy.
 
 **7.2. Collecting Anonymised Data.** When you use the Site, we may monitor your computer or mobile device’s memory to ensure the Site is performing properly. During this process, we may collect anonymised data from you or your device and use it to inform our Site’s continued development.
 
