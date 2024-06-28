@@ -399,7 +399,7 @@ After running the `event` command, the decoded event output is as follows:
 
 These steps and commands will help you retrieve and decode the transaction results on the ealf blockchain.
 
-For more details, check the descriptions of [`aelf-command event`](#event-deserialize-the-result-return-by-executing-a-transaction).
+For more details, check the descriptions of [`aelf-command event`](#event---deserialize-transaction-result).
 
 
 # Deploy a smart contract
