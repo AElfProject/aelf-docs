@@ -73,8 +73,6 @@ jobs:
       
       - name: Deploy
         uses: actions/github-script@v6
-        env:
-          ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
         with:
           github-token: ${{ secrets.WORKFLOW_DISPATCH }}
           script: |
@@ -84,7 +82,7 @@ jobs:
               workflow_id: 'deploy.yaml',
               ref: 'main',
               inputs: {
-                env: ${{ env.ENV }},
+                env: '${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}',
                 appName: 'docs',
                 appProject: 'aelf-docs',
                 commit_sha: 'sha-${{ steps.vars.outputs.short_sha }}',
