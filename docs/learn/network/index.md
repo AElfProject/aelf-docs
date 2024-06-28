@@ -66,11 +66,11 @@ Nodes use a defined network interface protocol for normal operation and data syn
 When a node connects, it exchanges handshake information. This includes chain status, current height, and more.
 
 - **Request**: 
-    ```proto
+    ```cs
     rpc DoHandshake (HandshakeRequest) returns (HandshakeReply) {}
     ```
 - **Handshake Message**:
-    ```proto
+    ```protobuf
     message Handshake {
         HandshakeData handshake_data = 1;
         bytes signature = 2;
@@ -78,7 +78,7 @@ When a node connects, it exchanges handshake information. This includes chain st
     }
     ```
 - **HandshakeData Message**:
-    ```proto
+    ```protobuf
     message HandshakeData {
         int32 chain_id = 1;
         int32 version = 2;
@@ -95,7 +95,7 @@ When a node connects, it exchanges handshake information. This includes chain st
 #### ConfirmHandshake
 Confirms the handshake with the target node.
 - **Request**:
-    ```proto
+    ```protobuf
     rpc ConfirmHandshake (ConfirmHandshakeRequest) returns (VoidReply) {}
     ```
 
@@ -104,28 +104,28 @@ Confirms the handshake with the target node.
 #### BlockBroadcastStream
 Receives block information after packaging.
 - **Request**:
-    ```proto
+    ```protobuf
     rpc BlockBroadcastStream (stream BlockWithTransactions) returns (VoidReply) {}
     ```
 
 #### TransactionBroadcastStream
 Receives forwarded transaction information.
 - **Request**:
-    ```proto
+    ```protobuf
     rpc TransactionBroadcastStream (stream aelf.Transaction) returns (VoidReply) {}
     ```
 
 #### AnnouncementBroadcastStream
 Receives block announcements.
 - **Request**:
-    ```proto
+    ```protobuf
     rpc AnnouncementBroadcastStream (stream BlockAnnouncement) returns (VoidReply) {}
     ```
 
 #### LibAnnouncementBroadcastStream
 Receives last irreversible block (LIB) announcements.
 - **Request**:
-    ```proto
+    ```protobuf
     rpc LibAnnouncementBroadcastStream (stream LibAnnouncement) returns (VoidReply) {}
     ```
 
@@ -134,14 +134,14 @@ Receives last irreversible block (LIB) announcements.
 #### RequestBlock
 Requests a single block.
 - **Request**:
-    ```proto
+    ```protobuf
     rpc RequestBlock (BlockRequest) returns (BlockReply) {}
     ```
 
 #### RequestBlocks
 Requests multiple blocks.
 - **Request**:
-    ```proto
+    ```protobuf
     rpc RequestBlocks (BlocksRequest) returns (BlockList) {}
     ```
 
@@ -150,13 +150,13 @@ Requests multiple blocks.
 #### Ping
 Verifies network availability.
 - **Request**:
-    ```proto
+    ```protobuf
     rpc Ping (PingRequest) returns (PongReply) {}
     ```
 
 #### CheckHealth
 Performs health checks on peers.
 - **Request**:
-    ```proto
+    ```protobuf
     rpc CheckHealth (HealthCheckRequest) returns (HealthCheckReply) {}
     ```
