@@ -1,0 +1,34 @@
+{
+  "links": [
+    {
+      "to": "/quick-start",
+      "label": "Quick Start",
+      "position": "left"
+    },
+    {
+      "to": "/learn",
+      "label": "Learn",
+      "position": "left"
+    },
+    {
+      "to": "/docs",
+      "label": "Docs",
+      "position": "left"
+    },
+    {
+      "to": "/tools",
+      "label": "Tools",
+      "position": "left"
+    },
+    {
+      "to": "/resources",
+      "label": "Resources",
+      "position": "left"
+    },
+    {
+      "href": "https://blog.aelf.com/",
+      "label": "Blog",
+      "position": "right"
+    }
+  ]
+}

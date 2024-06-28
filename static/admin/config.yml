@@ -1,0 +1,100 @@
+backend:
+  name: github
+  branch: develop
+  repo: AElfProject/aelf-docs
+  squash_merges: true
+  base_url: https://docs-oauth.test.aelf.dev
+
+# These lines should *not* be indented
+media_folder: "static/img" # Media files will be stored in the repo under static/images/uploads
+public_folder: "/img/" # The src attribute for uploaded media will begin with /images/uploads
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "_"
+
+collections:
+- name: docs
+  label: Docs
+  label_singular: Doc
+  identifier_field: 'title'
+  folder: docs
+  create: true
+  nested:
+    depth: 4 
+    summary: '{{title}}' 
+  fields:
+    - label: Sidebar position
+      name: sidebar_position
+      widget: number
+      default: 1
+    - label: Title
+      name: title
+      widget: string
+    - label: Description
+      name: description
+      required: false
+    - label: Image
+      name: image
+      widget: 'image'
+      allow_multiple: false
+      required: false
+    - label: Body
+      name: body
+      widget: markdown
+  sortableFields: ["title", "sidebar_position"]
+  extension: md
+  format: frontmatter
+  editor:
+    preview: false
+  meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
+
+- name: settings
+  label: Settings
+  editor:
+    preview: false
+  files:
+    - label: "Footer Links"
+      name: "footerlinks"
+      file: "config/footer-links.json"
+      fields:
+        - label: Links
+          name: links
+          widget: list
+          collapsed: false
+          fields:
+            - {label: Title, name: title, widget: string}
+            - label: Items
+              name: items
+              widget: list
+              collapsed: false
+              fields:
+                - {label: Label, name: label, widget: string}
+                - {label: To, name: to, widget: string, required: false}
+                - {label: Href, name: href, widget: string, required: false}
+    - label: "Social Links"
+      name: "sociallinks"
+      file: "config/social-links.json"
+      fields:
+        - label: Links
+          name: links
+          widget: list
+          collapsed: false
+          fields:
+            - {label: Label, name: label, widget: string}
+            - {label: Href, name: href, widget: string}
+            - {label: Icon, name: icon, widget: image, allow_multiple: false, required: false}
+    - label: "Navbar Links"
+      name: "navbarlinks"
+      file: "config/navbar-links.json"
+      fields:
+        - label: Links
+          name: links
+          widget: list
+          collapsed: false
+          fields:
+            - {label: Label, name: label, widget: string}
+            - {label: To, name: to, widget: string, required: false}
+            - {label: Href, name: href, widget: string, required: false}
+            - {label: Position, name: position, widget: select, options: [left, right], default: left}

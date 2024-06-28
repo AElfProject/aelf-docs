@@ -1,0 +1,24 @@
+{
+  "links": [
+    {
+      "label": "X",
+      "icon": "/img/X.svg",
+      "href": "https://x.com/aelfblockchain"
+    },
+    {
+      "label": "Telegram",
+      "icon": "/img/Telegram.svg",
+      "href": "https://t.me/aelfblockchain"
+    },
+    {
+      "label": "Discord",
+      "icon": "/img/Discord.svg",
+      "href": "https://discord.gg/bgysa9xjvD"
+    },
+    {
+      "label": "GitHub",
+      "icon": "/img/Github.svg",
+      "href": "https://github.com/AElfProject"
+    }
+  ]
+}
