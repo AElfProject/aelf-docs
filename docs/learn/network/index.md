@@ -70,7 +70,7 @@ When a node connects, it exchanges handshake information. This includes chain st
     rpc DoHandshake (HandshakeRequest) returns (HandshakeReply) {}
     ```
 - **Handshake Message**:
-    ```cs
+    ```protobuf
     message Handshake {
         HandshakeData handshake_data = 1;
         bytes signature = 2;
@@ -78,7 +78,7 @@ When a node connects, it exchanges handshake information. This includes chain st
     }
     ```
 - **HandshakeData Message**:
-    ```cs
+    ```protobuf
     message HandshakeData {
         int32 chain_id = 1;
         int32 version = 2;
@@ -95,7 +95,7 @@ When a node connects, it exchanges handshake information. This includes chain st
 #### ConfirmHandshake
 Confirms the handshake with the target node.
 - **Request**:
-    ```cs
+    ```protobuf
     rpc ConfirmHandshake (ConfirmHandshakeRequest) returns (VoidReply) {}
     ```
 
@@ -104,28 +104,28 @@ Confirms the handshake with the target node.
 #### BlockBroadcastStream
 Receives block information after packaging.
 - **Request**:
-    ```cs
+    ```protobuf
     rpc BlockBroadcastStream (stream BlockWithTransactions) returns (VoidReply) {}
     ```
 
 #### TransactionBroadcastStream
 Receives forwarded transaction information.
 - **Request**:
-    ```cs
+    ```protobuf
     rpc TransactionBroadcastStream (stream aelf.Transaction) returns (VoidReply) {}
     ```
 
 #### AnnouncementBroadcastStream
 Receives block announcements.
 - **Request**:
-    ```cs
+    ```protobuf
     rpc AnnouncementBroadcastStream (stream BlockAnnouncement) returns (VoidReply) {}
     ```
 
 #### LibAnnouncementBroadcastStream
 Receives last irreversible block (LIB) announcements.
 - **Request**:
-    ```cs
+    ```protobuf
     rpc LibAnnouncementBroadcastStream (stream LibAnnouncement) returns (VoidReply) {}
     ```
 
@@ -134,14 +134,14 @@ Receives last irreversible block (LIB) announcements.
 #### RequestBlock
 Requests a single block.
 - **Request**:
-    ```cs
+    ```protobuf
     rpc RequestBlock (BlockRequest) returns (BlockReply) {}
     ```
 
 #### RequestBlocks
 Requests multiple blocks.
 - **Request**:
-    ```cs
+    ```protobuf
     rpc RequestBlocks (BlocksRequest) returns (BlockList) {}
     ```
 
@@ -150,13 +150,13 @@ Requests multiple blocks.
 #### Ping
 Verifies network availability.
 - **Request**:
-    ```cs
+    ```protobuf
     rpc Ping (PingRequest) returns (PongReply) {}
     ```
 
 #### CheckHealth
 Performs health checks on peers.
 - **Request**:
-    ```cs
+    ```protobuf
     rpc CheckHealth (HealthCheckRequest) returns (HealthCheckReply) {}
     ```
