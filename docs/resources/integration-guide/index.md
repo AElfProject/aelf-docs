@@ -48,9 +48,9 @@ const APP_NAME = 'explorer.aelf.io';
 const WEBSITE_ICON = 'https://explorer.aelf.io/favicon.main.ico';
 const CHAIN_ID = 'AELF' as TChainId;
 const NETWORK_TYPE = 'TESTNET';
-const RPC_SERVER_AELF = 'https://explorer-test.aelf.io/chain';
-const RPC_SERVER_TDVV = 'https://explorer-test-side02.aelf.io/chain';
-const RPC_SERVER_TDVW = 'https://explorer-test-side02.aelf.io/chain';
+const RPC_SERVER_AELF = 'https://aelf-test-node.aelf.io';
+const RPC_SERVER_TDVV = 'https://tdvv-public-node.aelf.io';
+const RPC_SERVER_TDVW = 'https://tdvw-test-node.aelf.io';
 const GRAPHQL_SERVER = 'https://dapp-aa-portkey-test.portkey.finance/Portkey_DID/PortKeyIndexerCASchema/graphql';
 const CONNECT_SERVER = 'https://auth-aa-portkey-test.portkey.finance';
 
