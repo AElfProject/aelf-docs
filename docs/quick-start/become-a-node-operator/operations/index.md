@@ -6,7 +6,7 @@ title: Operations
 
 # Operations
 
-## Steps to Become a BP
+## Steps to Become a  BP (Block Producer)
 
 1. Set up nodes.
 2. Participate in BP election using nodes.
@@ -32,7 +32,7 @@ aelf doesn't have light nodes, so all nodes are full nodes. [Click here](#) to l
 
 Stake 100,000 ELF to join the node election. Ensure you have enough balance.
 
-1. Go to the Governance page.
+1. Go to the [Governance page](https://explorer.aelf.io/vote/election).
 2. Click "Become a candidate node."
 3. Stake 100,000 ELF.
 

@@ -48,6 +48,7 @@ Contracts using ACS0 need to implement these methods:
 |--------------|--------------|----------------------------------|
 | `address`    | `aelf.address` | Contract code byte array.        |
 | `old_author` | `aelf.address` | Contract code category (0: C#). |
+| `CrossChainCreateToken` | `aelf.address` | Indicates if the contract is the system contract. |
 
 #### acs0.CodeCheckRequired
 
@@ -114,9 +115,13 @@ Contracts using ACS0 need to implement these methods:
 | `is_system_contract`| `bool`       | Is it a system contract?         |
 | `version`          | `int32`      | Contract version.                |
 | `contract_version` | `string`     | Contract version.                |
-| `contract_type`    | `string`     | Contract type.                   |
-| `deployed_by`      | `aelf.Address` | Deployer address.              |
-| `deployed_on`      | `google.protobuf.Timestamp` | Deployment time.         |
+| `is_user_contract` | `bool`       | Indicates if the contract is the user contract. |
+
+#### acs0.ContractProposed
+
+| Field               | Type         | Description                      |
+|---------------------|--------------|----------------------------------|
+| `proposed_contract_input_hash`     | `aelf.Hash` | The id of the proposed contract.|
 
 #### acs0.ContractUpdateInput
 
@@ -124,15 +129,6 @@ Contracts using ACS0 need to implement these methods:
 |---------------------|--------------|----------------------------------|
 | `address`           | `aelf.Address` | Contract address.              |
 | `code`              | `bytes`      | Contract code byte array.       |
-| `category`          | `sint32`     | Contract code category (0: C#). |
-| `is_system_contract`| `bool`       | Is it a system contract?        |
-| `is_user_contract`  | `bool`       | Is it a user contract?          |
-
-#### acs0.ReleaseContractInput
-
-| Field       | Type       | Description                    |
-|-------------|------------|--------------------------------|
-| `proposal_id` | `aelf.Hash` | Proposal ID to be released. |
 
 #### acs0.SetContractAuthorInput
 
@@ -141,6 +137,13 @@ Contracts using ACS0 need to implement these methods:
 | `address`       | `aelf.Address` | Contract address.              |
 | `author`        | `aelf.Address` | New author address.            |
 
+#### acs0.ReleaseContractInput
+
+| Field       | Type       | Description                    |
+|-------------|------------|--------------------------------|
+| `proposal_id` | `aelf.Hash` | Proposal ID to be released. |
+| `proposed_contract_input_hash` | `aelf.Hash` | The id of the proposed contract. |
+
 #### acs0.SystemContractDeploymentInput
 
 | Field           | Type         | Description                      |
@@ -148,6 +151,22 @@ Contracts using ACS0 need to implement these methods:
 | `category`      | `sint32`     | Contract code category (0: C#). |
 | `code`          | `bytes`      | Contract code byte array.       |
 | `name`          | `aelf.Hash`  | Contract name (must be unique). |
+| `transaction_method_call_list`          | `aelf.Hash`  | SystemContractDeploymentInput.SystemTransactionMethodCallList |
+
+#### acs0.SystemContractDeploymentInput.SystemTransactionMethodCall
+
+| Field                  | Type         | Description                      |
+|------------------------|--------------|----------------------------------|
+| `method_name` | `string` | The method name of system transaction.        |
+| `params`      | `aelf.Address` | The params of system transaction method.|
+
+
+#### acs0.SystemContractDeploymentInput.SystemTransactionMethodCallList
+
+| Field                  | Type         | Description                      |
+|------------------------|--------------|----------------------------------|
+| `value` | `SystemContractDeploymentInput.SystemTransactionMethodCall` | The list of system transactions.|
+
 
 #### acs0.ValidateSystemContractAddressInput
 
@@ -155,7 +174,6 @@ Contracts using ACS0 need to implement these methods:
 |------------------------|--------------|----------------------------------|
 | `system_contract_hash_name` | `aelf.Hash` | Contract name hash.            |
 | `address`              | `aelf.Address` | Contract address.              |
-
 #### aelf.Address
 
 | Field     | Type    | Description                |

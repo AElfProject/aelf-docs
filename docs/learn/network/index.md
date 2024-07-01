@@ -39,10 +39,18 @@ It also performs regular tasks:
 
 ### aelf.OS.Core.Network
 This core module includes:
-- **NetworkService**: Manages sending/receiving requests, broadcasting items to peers, and handling network exceptions.
-- **IPeerPool/PeerPool**: Manages active peer connections.
-- **IPeer**: Defines peer interactions and metrics.
-- **IaelfNetworkServer**: Manages network lifecycle and connections.
+
+- Application layer implementation:
+   - **NetworkService**: Manages sending/receiving requests, broadcasting items to peers, and handling network exceptions.
+
+- Infrastructure layer implementation and definition:
+   - **IPeerPool/PeerPool**: Manages active peer connections.
+   - **IPeer**: Defines peer interactions and metrics.
+   - **IaelfNetworkServer**: Manages network lifecycle and connections.
+
+- Definitions of types (network_types.proto and partial).
+
+- Defines the event that should be launched from the infrastructure layer’s implementation.
 
 ### aelf.OS.Network.Grpc
 Implements the infrastructure layer using gRPC:
@@ -77,6 +85,12 @@ When a node connects, it exchanges handshake information. This includes chain st
         bytes session_id = 3;
     }
     ```
+
+    - **handshake_data**: the data of handshake.
+    - **signature**: the signatrue of handshake data.
+    - **session_id**: randomly generated ids when nodes connect.
+
+
 - **HandshakeData Message**:
     ```protobuf
     message HandshakeData {
@@ -92,11 +106,94 @@ When a node connects, it exchanges handshake information. This includes chain st
     }
     ```
 
+    -   **chain_id**: the id of current chain.
+    -   **version**: current version of the network.
+    -   **listening_port**: the port number at which the current node network is listening.
+    -   **pubkey**: the public key of the current node used by the receiver to verify the data signature.
+    -   **best_chain_hash**: the lastest block hash of the best branch.
+    -   **best_chain_height**: the lastest block height of the best branch.
+    -   **last_irreversible_block_hash**: the hash of the last irreversible block.
+    -   **last_irreversible_block_height**: the height of the last irreversible block.
+    -   **time**: the time of handshake.
+
+- **HandshakeRequest Message**
+
+    ```protobuf
+    message HandshakeRequest {
+        Handshake handshake = 1;
+    }
+    ```
+   
+    - **handshake**: complete handshake information, including handshake data and signature.
+
+
+- **HandshakeReply Message**
+
+    ```protobuf
+    message HandshakeReply {
+      Handshake handshake = 1;
+      HandshakeError error = 2;
+    }
+    ```
+   
+    - **handshake**: complete handshake information, including handshake data and signature.
+    - **error**: handshake error enum.
+
+
+- **HandshakeError Enum**
+
+    ```protobuf
+     enum HandshakeError {
+        HANDSHAKE_OK = 0;
+        CHAIN_MISMATCH = 1;
+        PROTOCOL_MISMATCH = 2;
+        WRONG_SIGNATURE = 3;
+        REPEATED_CONNECTION = 4;
+        CONNECTION_REFUSED = 5;
+        INVALID_CONNECTION = 6;
+        SIGNATURE_TIMEOUT = 7;
+     }
+    ```
+   
+    - **HAND_SHAKE**: this message is a handshake request.
+    - **PING**: this message is a ping request.
+    - **CONFIRM_HAND_SHAKE**: this message is a confirm handshake reply.
+    - **HEALTH_CHECK**: this message is a health check request or reply.
+    - **REQUEST_BLOCK**: this message is a request block request or reply.
+    - **REQUEST_BLOCKS**: this message is a request blocks request or reply.
+    - **GET_NODES**: this message is a get nodes request or reply.
+    - **BLOCK_BROADCAST**: this message is a block broadcast request or reply.
+    - **TRANSACTION_BROADCAST**: this message is a transaction broadcast request or reply.
+    - **ANNOUNCEMENT_BROADCAST**: this message is a announcement broadcast request or reply.
+    - **LIB_ANNOUNCEMENT_BROADCAST**: this message is a lib announcement broadcast request or reply.
+    - **DISCONNECT**: this message is a disconnect request or reply.
+
+
+- **StreamType Enum**
+
+    ```protobuf
+     enum StreamType {
+        UNKNOWN = 0;
+        REQUEST = 1;
+        REPLY = 2;
+     }
+    ```
+   
+    - **REQUEST**: this is a request.
+    - **REPLY**: this is reply.
+
 #### ConfirmHandshake
 Confirms the handshake with the target node.
+
 - **Request**:
+
     ```protobuf
     rpc ConfirmHandshake (ConfirmHandshakeRequest) returns (VoidReply) {}
+    ```
+
+    ```protobuf
+    message ConfirmHandshakeRequest {
+    }
     ```
 
 ### Broadcasting
@@ -108,6 +205,15 @@ Receives block information after packaging.
     rpc BlockBroadcastStream (stream BlockWithTransactions) returns (VoidReply) {}
     ```
 
+    ```protobuf
+       message BlockWithTransactions {
+       aelf.BlockHeader header = 1;
+       repeated aelf.Transaction transactions = 2;
+    }
+    ```
+    - **header**
+    - **transactions**
+
 #### TransactionBroadcastStream
 Receives forwarded transaction information.
 - **Request**:
@@ -117,10 +223,22 @@ Receives forwarded transaction information.
 
 #### AnnouncementBroadcastStream
 Receives block announcements.
+
 - **Request**:
     ```protobuf
     rpc AnnouncementBroadcastStream (stream BlockAnnouncement) returns (VoidReply) {}
     ```
+
+    ```protobuf
+       message BlockWithTransactions {
+       aelf.BlockHeader header = 1;
+       repeated aelf.Transaction transactions = 2;
+    }
+    ```
+
+    - **block_hash**: the announced block hash.
+    - **block_height**: the announced block height.
+
 
 #### LibAnnouncementBroadcastStream
 Receives last irreversible block (LIB) announcements.
@@ -129,14 +247,45 @@ Receives last irreversible block (LIB) announcements.
     rpc LibAnnouncementBroadcastStream (stream LibAnnouncement) returns (VoidReply) {}
     ```
 
+    ```protobuf
+    message LibAnnouncement{
+        aelf.Hash lib_hash = 1;
+        int64 lib_height = 2;
+    }
+    ```
+
+    - **lib_hash**: the announced last irreversible block hash.
+    - **lib_height**: the announced last irreversible block height.
+
 ### Block Request
 
 #### RequestBlock
 Requests a single block.
-- **Request**:
+
     ```protobuf
     rpc RequestBlock (BlockRequest) returns (BlockReply) {}
     ```
+
+    - **BlockRequest Message**
+       ```protobuf
+            message BlockRequest {
+            aelf.Hash hash = 1;
+       }
+       ```
+
+       - **hash**: the block hash that you want to request.
+
+    - **BlockReply Message**
+       ```protobuf
+       message BlockReply {
+           string error = 1;
+           BlockWithTransactions block = 2;
+       }
+       ```
+
+       - **error**: error message.
+       - **block**: the requested block, including complete block and transactions information.
+
 
 #### RequestBlocks
 Requests multiple blocks.
@@ -144,6 +293,27 @@ Requests multiple blocks.
     ```protobuf
     rpc RequestBlocks (BlocksRequest) returns (BlockList) {}
     ```
+
+    - **BlocksRequest Message**
+        ```protobuf
+        message BlocksRequest {
+            aelf.Hash previous_block_hash = 1;
+            int32 count = 2;
+        }
+        ```
+
+       - **previous_block_hash**: the previous block hash of the request blocks, and the result does not contain this block.
+       - **count**: the number of blocks you want to request.
+
+    - **BlockList Message**
+        ```protobuf
+        message BlockList {
+           repeated BlockWithTransactions blocks = 1;
+        }
+        ```
+
+       - **blocks**: the requested blocks, including complete blocks and transactions information.
+
 
 ### Peer Management
 
