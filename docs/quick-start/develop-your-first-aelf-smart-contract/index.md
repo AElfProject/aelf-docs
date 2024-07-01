@@ -101,7 +101,7 @@ After successful execution, you will find  `src` and `test` directories within t
 
 Based on the API list from the requirements analysis, the `bingo_contract.proto` file should be defined as follows:
 
-```cs
+```protobuf
 syntax = "proto3";
 
 import "aelf/core.proto";

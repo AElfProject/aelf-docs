@@ -236,7 +236,26 @@ This is the last step involved in creating a side chain, after this the chain id
 
 ### Complete Script
 
-This script demonstrates the essential steps to create a side chain in the aelf ecosystem. The developer must approve some ELF tokens, request the side chain creation, get approval from the parliament organization, and finally release the proposal to create the side chain. Ensure to set the proper configurations and values as per your blockchain environment.
+To successfully run this script, make sure you have a node running and configured with one producer. The producer should match the **defaultPrivateKey** and **defaultPrivateKeyAddress** in the script.
+
+By default, the script connects to the node’s API at **`http://127.0.0.1:1234`**. If your node uses a different address, you will need to update this in the script.
+
+#### Install aelf-sdk
+
+If you haven't installed it yet, you need to install **`aelf-sdk`** :
+
+```bash
+npm install aelf-sdk
+```
+
+#### Running the Script
+
+You can run the script from any location:
+
+```bash
+node sideChainProposal.js
+```
+
 
 ```javascript
 const AElf = require("aelf-sdk");

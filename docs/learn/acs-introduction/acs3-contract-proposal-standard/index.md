@@ -124,6 +124,142 @@ ACS3 is used when a method needs multiple approvals. Implement these methods for
 | proposer            | aelf.Address  | Proposer address         |       |
 | organization_address| aelf.Address  | Organization address     |       |
 
+#### acs3.Address
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| value               | bytes         |                          |       |
+
+#### acs3.BinaryMerkleTree
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| nodes               | Hash          | The leaf nodes.          |       |
+| root                | Hash          | The root node hash.      |       |
+| leaf_count          | int32         | The count of leaf node.  |       |
+
+#### acs3.Hash
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| value               | bytes         |                          |       |
+
+#### acs3.LogEvent
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| address             | Address       | The contract address.    |       |
+| name                | string        | The name of the log event.|       |
+| indexed             | bytes         | The indexed data, used to calculate bloom.  | repeated |
+| non_indexed         | bytes         | The non indexed data.    |       |
+
+#### acs3.MerklePath
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| merkle_path_nodes   | MerklePathNode| The merkle path nodes.   |repeated|
+
+#### acs3.MerklePathNode
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| hash                | Hash          | The node hash.           |       |
+| is_left_child_node  | bool          | Whether it is a left child node.|       |
+
+#### acs3.SInt32Value
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| value               | sint32        |                          |       |
+
+#### acs3.SInt64Value
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| value               | sint64        |                          |       |
+
+#### acs3.ScopedStatePath
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| address             | Address       | The scope address, which will be the contract address. |       |
+| path                | StatePath     | The path of contract state. |       |
+
+#### acs3.SmartContractRegistration
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| category            | sint32        | The category of contract code(0: C#). |       |
+| code                | bytes         | The byte array of the contract code.  |       |
+| code_hash           | Hash          | The hash of the contract code.        |       |
+| is_system_contract  | bool          | Whether it is a system contract.      |       |
+| version             | int32         | The version of the current contract.  |       |
+
+#### acs3.StatePath
+| Field               | Type          | Description              | Label |
+| ------------------- | ------------- | ------------------------ | ----- |
+| parts               | string        | The partial path of the state path.|repeated|
+
+
+#### acs3.Transaction
+
+| Field               | Type          | Description              |
+| ------------------- | ------------- | ------------------------ |
+| from                | Address       | The address of the sender of the transaction. |
+| to                  | Address       | The address of the contract when calling a contract.  |
+| ref_block_number    | int64         | The height of the referenced block hash.      |      
+| ref_block_prefix    | bytes         | The first four bytes of the referenced block hash.      |       
+| method_name         | string        | The name of a method in the smart contract at the To address.  |       
+| params              | bytes         | The parameters to pass to the smart contract method.  |       
+| signature           | bytes         | When signing a transaction it’s actually a subset of the fields: from/to and the target method as well as the parameter that were given. It also contains the reference block number and prefix.  |       
+
+
+#### acs3.TransactionExecutingStateSet
+
+| Field               | Type                                     | Description              | Label    |
+| ------------------- | -------------                            | ------------------------ | -------- |
+| writes              | TransactionExecutingStateSet.WritesEntry | The changed states.      | repeated |
+| reads               | TransactionExecutingStateSet.ReadsEntry  | The read states.         | repeated |
+| deletes             | TransactionExecutingStateSet.DeletesEntry| The deleted states.      | repeated |      
+
+
+#### acs3.TransactionExecutingStateSet.DeletesEntry
+
+| Field               | Type          | Description              |
+| ------------------- | ------------- | ------------------------ |
+| key                 | string        |                          |       
+| value               | bool          |                          |       
+
+
+#### acs3.TransactionExecutingStateSet.ReadsEntry
+
+| Field               | Type          | Description              |
+| ------------------- | ------------- | ------------------------ |
+| key                 | string        |                          |       
+| value               | bool          |                          |   
+
+#### acs3.TransactionExecutingStateSet.WritesEntry
+
+| Field               | Type          | Description              |
+| ------------------- | ------------- | ------------------------ |
+| key                 | string        |                          |       
+| value               | bool          |                          |   
+
+#### acs3.TransactionResult
+
+| Field               | Type                    | Description                   |  Label  |
+| ------------------- | -------------           | ------------------------      | ------- |
+| transaction_id      | Hash                    | The transaction id.           |         |
+| status              | TransactionResultStatus | The transaction result status.|         |
+| logs                | LogEvent                | The log events.               |repeated |   
+| bloom               | bytes                   | Bloom filter for transaction logs. A transaction log event can be defined in the contract and stored in the bloom filter after the transaction is executed. Through this filter, we can quickly search for and determine whether a log exists in the transaction result.|         |       
+| return_value        | bytes                   | The return value of the transaction execution.|         |       
+| block_number        | int64                   | The height of the block hat packages the transaction.|         |
+| block_hash          | Hash                    | The hash of the block hat packages the transaction.|         |
+| error               | string                  | Failed execution error message.|         |
+
+#### acs3.TransactionResultStatus
+
+| Field                  | Number | Description                   |
+| -------------------    | ------ | ------------------------      |
+| NOT_EXISTED            |   0    | The execution result of the transaction does not exist.|
+| PENDING                |   1    | The transaction is in the transaction pool waiting to be packaged.|         
+| FAILED                 |   2    | Transaction execution failed. |
+| MINED                  |   3    | The transaction was successfully executed and successfully packaged into a block.|               
+| CONFLICT               |   4    | When executed in parallel, there are conflicts with other transactions.|             
+| PENDING_VALIDATION     |   5    | The transaction is waiting for validation.|         
+| NODE_VALIDATION_FAILED |   6    | Transaction validation failed.|         
+
 ## Implementation
 
 Assume there's only one organization in a contract, so no need to define the Organization type. Voters must use a token to vote. We'll focus on the core methods: CreateProposal, Approve, Reject, Abstain, and Release.

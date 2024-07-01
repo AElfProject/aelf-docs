@@ -85,6 +85,24 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
     ```
     Follow the prompts to set a password and save the account info.
 
+The command prompts for a password, enter it and don’t forget it. The output of the command should look something like this:
+
+```bash
+AElf [Info]: Your wallet info is :
+AElf [Info]: Mnemonic            : term jar tourist monitor melody tourist catch sad ankle disagree great adult
+AElf [Info]: Private Key         : 34192c729751bd6ac0a5f18926d74255112464b471aec499064d5d1e5b8ff3ce
+AElf [Info]: Public Key          : 04904e51a944ab13b031cb4fead8caa6c027b09661dc5550ee258ef5c5e78d949b1082636dc8e27f20bc427b25b99a1cadac483fae35dd6410f347096d65c80402
+AElf [Info]: Address             : 29KM437eJRRuTfvhsB8QAsyVvi8mmyN9Wqqame6TsJhrqXbeWd
+? Save account info into a file? Yes
+? Enter a password: *********
+? Confirm password: *********
+✔ Account info has been saved to "/usr/local/share/aelf/keys/29KM437eJRRuTfvhsB8QAsyVvi8mmyN9Wqqame6TsJhrqXbeWd.json"
+```
+
+In the next steps of the tutorial you will need the Public Key and the Address for the account you just created. You’ll notice the last line of the commands output will show you the path to the newly created key. The aelf directory is the data directory (datadir) and this is where the node will read the keys from.
+
+For more detailed information about the command line interface (CLI), refer to the [command line interface](/tools/aelf-cli/introduction).
+
 ### Prepare Node Configuration
 
 1. Download the settings template and Docker script:
