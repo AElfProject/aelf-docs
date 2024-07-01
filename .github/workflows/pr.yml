@@ -17,7 +17,6 @@ jobs:
   build:
     name: Check build
     runs-on: ubuntu-latest
-    environment: 'development'
     permissions:
       contents: read
     steps:
@@ -33,7 +32,7 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo TYPESENSE_COLLECTION_NAME=${{ vars.TYPESENSE_COLLECTION_NAME }} >> .env
-          echo TYPESENSE_SERVER_HOST=${{ vars.TYPESENSE_SERVER_HOST }} >> .env
-          echo TYPESENSE_SEARCH_ONLY_APIKEY=${{ vars.TYPESENSE_SEARCH_ONLY_APIKEY }} >> .env
+          echo TYPESENSE_COLLECTION_NAME="" >> .env
+          echo TYPESENSE_SERVER_HOST="" >> .env
+          echo TYPESENSE_SEARCH_ONLY_APIKEY="" >> .env
       - run: npm run build
