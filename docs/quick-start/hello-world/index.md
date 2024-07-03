@@ -1,11 +1,11 @@
 ---
 sidebar_position: 4
-title: Setup Development Environment
+title: Hello World - Smart Contract Demo
 ---
 
 # Hello World
 
-## 1. Setup Development Environment
+## 1. Hello World - Smart Contract Demo
 This guide provides step-by-step instructions to set up your local development environment to get started with aelf blockchain.
 
 ### Prerequisites
