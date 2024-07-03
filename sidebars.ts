@@ -42,10 +42,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "quick-start/develop-your-first-aelf-smart-contract/index",
-        },
-        {
-          type: "doc",
           id: "quick-start/explore-running-aelf-side-chain/index",
         },
         { type: "doc", id: "quick-start/run-a-side-chain/index" },
