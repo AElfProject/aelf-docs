@@ -23,6 +23,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         { type: "doc", id: "quick-start/intro-to-aelf-development/index" },
+        { type: "doc", id: "quick-start/hello-world/index" },
         {
           type: "category",
           label: "Become a Node Operator",
