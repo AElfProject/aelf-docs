@@ -32,10 +32,16 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 <article className="col col--4 margin-bottom--lg">
 
-## ⭐️ References
+## 📚 Understanding aelf
 
-- [Web API](/docs/web-api/) - Interact with the aelf blockchain through the web
-- [Smart Contract API](/docs/smart-contract-api/) - Access smart contract functionalities using API
+- [Core](/learn/core/) - aelf's core architecture
+- [Cross-chain](/learn/cross-chain/) - aelf's cross-chain architecture
+- [Consensus](/learn/consensus/) - Understanding aelf's consensus mechanism
+- [Network](/learn/network/) - Exploring aelf's network architecture
+- [Addresses](/learn/addresses/) - Managing aelf's blockchain addresses
+- [Transactions](/learn/transactions/) - Handling transaction processes
+- [Smart Contract](/learn/smart-contract/) - aelf's smart contract architecture
+- [ACS Introduction](/learn/acs-introduction/) - An introduction to aelf contract system
 
 </article>
 
@@ -67,16 +73,10 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 <article className="col col--4 margin-bottom--lg">
 
-## 📚 Understanding aelf
+## ⭐️ References
 
-- [Core](/learn/core/) - aelf's core architecture
-- [Cross-chain](/learn/cross-chain/) - aelf's cross-chain architecture
-- [Consensus](/learn/consensus/) - Understanding aelf's consensus mechanism
-- [Network](/learn/network/) - Exploring aelf's network architecture
-- [Addresses](/learn/addresses/) - Managing aelf's blockchain addresses
-- [Transactions](/learn/transactions/) - Handling transaction processes
-- [Smart Contract](/learn/smart-contract/) - aelf's smart contract architecture
-- [ACS Introduction](/learn/acs-introduction/) - An introduction to aelf contract system
+- [Web API](/docs/web-api/) - Interact with the aelf blockchain through the web
+- [Smart Contract API](/docs/smart-contract-api/) - Access smart contract functionalities using API
 
 </article>
 
