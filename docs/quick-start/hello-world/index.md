@@ -6,22 +6,21 @@ title: Hello World - Smart Contract Demo
 # Hello World
 
 ## 1. Hello World - Smart Contract Demo
-This guide provides step-by-step instructions to set up your local development environment to get started with aelf blockchain.
+This guide provides step-by-step instructions to set up your local development environment to get started developing and deploying aelf smart contracts.
 
 ### Prerequisites
 - Basic knowledge of terminal commands
 - **IDE** - Install [VS Code](https://code.visualstudio.com/)
-- Install [Git](https://git-scm.com/)
 
 ### Install Required Packages
 - [Install dotnet](https://dotnet.microsoft.com/en-us/download)
 - Install aelf contract templates
 
 ```bash title="Terminal"
-dotnet install AELF.ContractTemplates 
+dotnet new install AELF.ContractTemplates 
 ```
 
-AELF.ContractTemplates are predefined templates for developing and deploying smart contracts on the aelf blockchain
+AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.
 
 - Install aelf deploy tool
 
@@ -29,7 +28,8 @@ AELF.ContractTemplates are predefined templates for developing and deploying sma
 dotnet tool install --global aelf.deploy
 ```
 
-aelf.deploy is a utility for deploying and managing smart contracts on the aelf blockchain.
+aelf.deploy is a utility tool for deploying smart contracts on the aelf blockchain. 
+Please remember to export PATH after installing aelf.deploy.
 
 ### Install Node.js and Yarn
 - [Install Node.js](https://nodejs.org/en)
@@ -41,6 +41,7 @@ npm i -g aelf-command
 ```
 
 aelf-command is a CLI tool for interacting with the aelf blockchain, enabling tasks like creating wallets and managing transactions.
+Provide required permissions while installing aelf-command globally.
 
 ## 2. Develop Smart Contract
 
@@ -51,13 +52,19 @@ Open your `Terminal`.
 Enter the following command to generate a new project:
 
 ```bash title="Terminal"
+mkdir hello-world
+cd hello-world
 dotnet new aelf -n HelloWorld
-cd HelloWorld
 ```
 
 ### Install ACS12.proto
 
 ```bash title="Terminal"
+mkdir Protobuf
+cd Protobuf
+mkdir references
+cd ..
+export ACS_DIR=Protobuf/references
 curl -O --output-dir $ACS_DIR https://raw.githubusercontent.com/AElfProject/AElf/dev/protobuf/acs12.proto
 ```
 
@@ -65,6 +72,10 @@ curl -O --output-dir $ACS_DIR https://raw.githubusercontent.com/AElfProject/AElf
 
 Now that we have a template hello world project, we can customize the template to incorporate our own contract logic.
 Lets start by implementing methods to provide basic functionality for updating and reading a message stored persistently in the contract state.
+
+```bash title="Terminal"
+cd src
+```
 
 ```csharp title="src/HelloWorldState.cs"
 using AElf.Sdk.CSharp.State;
@@ -115,10 +126,9 @@ namespace AElf.Contracts.HelloWorld
 }
 ```
 
-Build the new code with the following commands:
+Build the new code with the following commands inside src folder:
 
 ```bash title="Terminal"
-cd src
 dotnet build
 ```
 
