@@ -42,12 +42,12 @@ import { PortkeyDiscoverWallet } from '@aelf-web-login/wallet-adapter-portkey-di
 import { PortkeyAAWallet } from '@aelf-web-login/wallet-adapter-portkey-aa';
 import { NightElfWallet } from '@aelf-web-login/wallet-adapter-night-elf';
 import { IConfigProps } from '@aelf-web-login/wallet-adapter-bridge';
-import { TChainId } from '@aelf-web-login/wallet-adapter-base';
+import { TChainId, SignInDesignEnum, NetworkEnum } from '@aelf-web-login/wallet-adapter-base';
 
 const APP_NAME = 'explorer.aelf.io';
 const WEBSITE_ICON = 'https://explorer.aelf.io/favicon.main.ico';
 const CHAIN_ID = 'AELF' as TChainId;
-const NETWORK_TYPE = 'TESTNET';
+const NETWORK_TYPE = NetworkEnum.TESTNET;
 const RPC_SERVER_AELF = 'https://aelf-test-node.aelf.io';
 const RPC_SERVER_TDVV = 'https://tdvv-public-node.aelf.io';
 const RPC_SERVER_TDVW = 'https://tdvw-test-node.aelf.io';
@@ -74,10 +74,10 @@ const baseConfig = {
   chainId: CHAIN_ID,
   keyboard: true,
   noCommonBaseModal: false,
-  design: 'CryptoDesign', // "SocialDesign" | "CryptoDesign" | "Web2Design"
+  design: SignInDesignEnum.CryptoDesign, // "SocialDesign" | "CryptoDesign" | "Web2Design"
   titleForSocialDesign: 'Crypto wallet',
   iconSrcForSocialDesign: 'url or base64',
-}
+};
 
 const wallets = [
   new PortkeyAAWallet({
@@ -116,11 +116,11 @@ const wallets = [
   }),
 ]
 
-const config = {
+const config: IConfigProps = {
   didConfig,
   baseConfig,
   wallets
-} as IConfigProps;
+};
 ```
 
 # Usage
@@ -149,6 +149,7 @@ const Demo = () => {
     lock,
     isLocking,
     isConnected,
+    loginError,
     walletType,
     getAccountByChainId,
     getWalletSyncIsCompleted,
@@ -157,24 +158,6 @@ const Demo = () => {
     callViewMethod
   } = useConnectWallet();
 }
-
-const connectWallet: () => Promise<TWalletInfo>
-const disConnectWallet: () => Promise<void>
-const walletInfo: TWalletInfo
-const lock: () => void
-const isLocking: boolean
-const isConnected: boolean
-const walletType: WalletTypeEnum
-const getAccountByChainId: (chainId: TChainId) => Promise<string>
-const getWalletSyncIsCompleted: (chainId: TChainId) => Promise<string | boolean>
-const getSignature: (params: TSignatureParams) => Promise<{
-    error: number;
-    errorMessage: string;
-    signature: string;
-    from: string;
-} | null>
-const callSendMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>
-const callViewMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>
 ```
 
 # API
@@ -187,7 +170,9 @@ connectWallet: () => Promise<TWalletInfo>
 
 > Connect wallet and return walletInfo
 
-```JavaScript
+```TypeScript
+import { Button } from 'aelf-design';
+
 const Demo = () => {
     const { connectWallet } = useConnectWallet();
     const onConnectBtnClickHandler = async() => {
@@ -211,7 +196,9 @@ disConnectWallet: () => Promise<void>
 
 > Disconnect wallet
 
-```JavaScript
+```TypeScript
+import { Button } from 'aelf-design';
+
 const Demo = () => {
     const { disConnectWallet } = useConnectWallet();
     const onDisConnectBtnClickHandler = () => {
@@ -231,7 +218,9 @@ lock: () => void
 
 > Lock wallet, only portkeyAA wallet take effect
 
-```JavaScript
+```TypeScript
+import { Button } from 'aelf-design';
+
 const Demo = () => {
     const { lock } = useConnectWallet();
     return (
@@ -248,7 +237,9 @@ getAccountByChainId: (chainId: TChainId) => Promise<string>
 
 > Get account address of designative chainId
 
-```JavaScript
+```TypeScript
+import { Button } from 'aelf-design';
+
 const Demo = () => {
     const { getAccountByChainId } = useConnectWallet();
 
@@ -276,6 +267,8 @@ getWalletSyncIsCompleted: (chainId: TChainId) => Promise<string | boolean>
 > Return account address of designative chainId if sync is competed, otherwise return false
 
 ```TypeScript
+import { Button } from 'aelf-design';
+
 const Demo = () => {
     const { getWalletSyncIsCompleted } = useConnectWallet();
 
@@ -303,6 +296,8 @@ const getSignature: (params: TSignatureParams) => Promise<{ ``    error: number;
 > Get signature message
 
 ```TypeScript
+import { Button, Input } from 'aelf-design';
+
 type TSignatureParams = {
   appName: string;
   address: string;
@@ -347,6 +342,8 @@ callSendMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>
 > Call contract's send method
 
 ```TypeScript
+import { Button } from 'aelf-design';
+
 interface ICallContractParams<T> {
   contractAddress: string;
   methodName: string;
@@ -394,6 +391,8 @@ callViewMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>
 > Call contract's view method
 
 ```TypeScript
+import { Button } from 'aelf-design';
+
 interface ICallContractParams<T> {
   contractAddress: string;
   methodName: string;
@@ -494,7 +493,7 @@ type TWalletInfo =
     },
   }
 
- const Demo = () => {
+const Demo = () => {
     const { walletInfo } = useConnectWallet();
     console.log(walletInfo)
     return null
@@ -517,7 +516,7 @@ enum WalletTypeEnum {
   discover = 'PortkeyDiscover',
 }
 
- const Demo = () => {
+const Demo = () => {
     const { walletType } = useConnectWallet();
     console.log(walletType)
     return null
@@ -533,7 +532,9 @@ const isLocking: boolean
 > indicate whether the current state is locked, only portkeyAA wallet take effect, other wallets always return false
 
 ```TypeScript
- const Demo = () => {
+import { Button } from 'aelf-design';
+
+const Demo = () => {
     const { isLocking } = useConnectWallet();
 
     return (
@@ -553,7 +554,9 @@ const isConnected: boolean
 > indicate whether the current state is connected
 
 ```TypeScript
- const Demo = () => {
+import { Button } from 'aelf-design';
+
+const Demo = () => {
     const { isConnected } = useConnectWallet();
 
     return (
@@ -562,6 +565,36 @@ const isConnected: boolean
         <Button disabled={!isConnected}>disConnect</Button>
       </div>
     )
+}
+```
+
+## loginError
+
+```
+const loginError: TWalletError | null
+```
+
+> indicate are there any errors during the login/logout/unlock process
+
+```TypeScript
+type TWalletError = {
+  name: string;
+  code: number;
+  message: string;
+  nativeError?: any;
+}
+
+const Demo = () => {
+  const { loginError } = useConnectWallet();
+
+  useEffect(() => {
+    if (!loginError) {
+      return;
+    }
+    console.log(loginError.message);
+  }, [loginError]);
+
+  return null
 }
 ```
 
@@ -576,7 +609,7 @@ const isConnected: boolean
 2. cd to demo directory and execute dev command
 
 ```bash
-  cd packages/starter/doc-site
+  cd packages/starter
   pnpm dev
 ```
 
