@@ -12,13 +12,13 @@ description: Learn how to integrate with other tools and DApps
 
 # Install
 
-```Dockerfile
+```sh
 yarn add @aelf-web-login/wallet-adapter-night-elf @aelf-web-login/wallet-adapter-portkey-aa @aelf-web-login/wallet-adapter-portkey-discover @aelf-web-login/wallet-adapter-react @aelf-web-login/wallet-adapter-base @aelf-web-login/wallet-adapter-bridge
 ```
 
 Then the `package.json` will be like this
 
-```JSON
+```json
 "dependencies": {
     "@aelf-web-login/wallet-adapter-night-elf": "^0.0.2-alpha.7",
     "@aelf-web-login/wallet-adapter-portkey-aa": "^0.0.2-alpha.7",
@@ -37,7 +37,7 @@ Then the `package.json` will be like this
 4. Create `wallets` by wallet instance
 5. Combine them into a whole as `config`
 
-```TypeScript
+```ts
 import { PortkeyDiscoverWallet } from '@aelf-web-login/wallet-adapter-portkey-discover';
 import { PortkeyAAWallet } from '@aelf-web-login/wallet-adapter-portkey-aa';
 import { NightElfWallet } from '@aelf-web-login/wallet-adapter-night-elf';
@@ -130,7 +130,7 @@ const config: IConfigProps = {
 3. pass the return value `bridgeAPI` to `WebLoginProvider`
 4. use `useConnectWallet` to consume `bridgeAPI`
 
-```TypeScript
+```tsx
 import { WebLoginProvider, init, useConnectWallet } from '@aelf-web-login/wallet-adapter-react';
 
 const App = () => {
@@ -164,13 +164,13 @@ const Demo = () => {
 
 ## connectWallet
 
-```
+```ts
 connectWallet: () => Promise<TWalletInfo>
 ```
 
 > Connect wallet and return walletInfo
 
-```TypeScript
+```tsx
 import { Button } from 'aelf-design';
 
 const Demo = () => {
@@ -190,13 +190,13 @@ const Demo = () => {
 
 ## disConnectWallet
 
-```
+```ts
 disConnectWallet: () => Promise<void>
 ```
 
 > Disconnect wallet
 
-```TypeScript
+```tsx
 import { Button } from 'aelf-design';
 
 const Demo = () => {
@@ -212,13 +212,13 @@ const Demo = () => {
 
 ## lock
 
-```
+```ts
 lock: () => void
 ```
 
 > Lock wallet, only portkeyAA wallet take effect
 
-```TypeScript
+```tsx
 import { Button } from 'aelf-design';
 
 const Demo = () => {
@@ -231,13 +231,13 @@ const Demo = () => {
 
 ## getAccountByChainId
 
-```
+```ts
 getAccountByChainId: (chainId: TChainId) => Promise<string>
 ```
 
 > Get account address of designative chainId
 
-```TypeScript
+```tsx
 import { Button } from 'aelf-design';
 
 const Demo = () => {
@@ -260,13 +260,13 @@ const Demo = () => {
 
 ## getWalletSyncIsCompleted
 
-```
+```ts
 getWalletSyncIsCompleted: (chainId: TChainId) => Promise<string | boolean>
 ```
 
 > Return account address of designative chainId if sync is competed, otherwise return false
 
-```TypeScript
+```tsx
 import { Button } from 'aelf-design';
 
 const Demo = () => {
@@ -289,13 +289,13 @@ const Demo = () => {
 
 ## getSignature
 
-```
+```ts
 const getSignature: (params: TSignatureParams) => Promise<{ ``    error: number; ``    errorMessage: string; ``    signature: string; ``    from: string; ``} | null>
 ```
 
 > Get signature message
 
-```TypeScript
+```tsx
 import { Button, Input } from 'aelf-design';
 
 type TSignatureParams = {
@@ -335,13 +335,13 @@ const Demo = () => {
 
 ## callSendMethod
 
-```
+```ts
 callSendMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>
 ```
 
 > Call contract's send method
 
-```TypeScript
+```tsx
 import { Button } from 'aelf-design';
 
 interface ICallContractParams<T> {
@@ -384,13 +384,13 @@ const Demo = () => {
 
 ## callViewMethod
 
-```
+```ts
 callViewMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>
 ```
 
 > Call contract's view method
 
-```TypeScript
+```tsx
 import { Button } from 'aelf-design';
 
 interface ICallContractParams<T> {
@@ -432,13 +432,13 @@ const Demo = () => {
 
 ## walletInfo
 
-```
+```ts
 const walletInfo: TWalletInfo
 ```
 
 > Wallet information after connecting wallet, can import `TWalletInfo` from `@aelf-web-login/wallet-adapter-base`
 
-```TypeScript
+```tsx
 type TWalletInfo =
   | {
       name?: string;
@@ -502,13 +502,13 @@ const Demo = () => {
 
 ## walletType
 
-```
+```ts
 const walletType: WalletTypeEnum
 ```
 
 > The currently connected wallet type, can import `WalletTypeEnum` from `@aelf-web-login/wallet-adapter-base`
 
-```TypeScript
+```tsx
 enum WalletTypeEnum {
   unknown = 'Unknown',
   elf = 'NightElf',
@@ -525,13 +525,13 @@ const Demo = () => {
 
 ## isLocking
 
-```
+```ts
 const isLocking: boolean
 ```
 
 > indicate whether the current state is locked, only portkeyAA wallet take effect, other wallets always return false
 
-```TypeScript
+```tsx
 import { Button } from 'aelf-design';
 
 const Demo = () => {
@@ -547,13 +547,13 @@ const Demo = () => {
 
 ## isConnected
 
-```
+```ts
 const isConnected: boolean
 ```
 
 > indicate whether the current state is connected
 
-```TypeScript
+```tsx
 import { Button } from 'aelf-design';
 
 const Demo = () => {
@@ -570,13 +570,13 @@ const Demo = () => {
 
 ## loginError
 
-```
+```ts
 const loginError: TWalletError | null
 ```
 
 > indicate are there any errors during the login/logout/unlock process
 
-```TypeScript
+```tsx
 type TWalletError = {
   name: string;
   code: number;
@@ -602,15 +602,15 @@ const Demo = () => {
 
 1. Install dependencies in the project root directory
 
-```bash
-  pnpm install
+```sh
+pnpm install
 ```
 
 2. cd to demo directory and execute dev command
 
-```bash
-  cd packages/starter
-  pnpm dev
+```sh
+cd packages/starter
+pnpm dev
 ```
 
 # Publish
@@ -618,6 +618,6 @@ const Demo = () => {
 1. Upgrade the version numbers of each sub package
 2. execute release command in the project root directory
 
-```bash
-  pnpm release
+```sh
+pnpm release
 ```
