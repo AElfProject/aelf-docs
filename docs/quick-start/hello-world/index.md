@@ -4,7 +4,7 @@ title: Hello Contract
 ---
 # Hello Contract
 
-## 1. Hello Contract
+## 1. Setup Environment
 
 This guide provides step-by-step instructions to set up your local development environment to get started developing and deploying aelf smart contracts.
 
