@@ -1,11 +1,9 @@
 ---
 sidebar_position: 4
-title: Requesting the Creation of a Side Chain
+title: Creation of a Side Chain
 description: How to create a side chain ?
 ---
-
-
-# Requesting the Creation of a Side Chain
+# Creation of a Side Chain
 
 Side chains can be created in the aelf ecosystem to enable scalability. This section introduces the process in detail.
 
@@ -35,7 +33,7 @@ The indexing fee is paid for side chain indexing. You can specify the indexing f
 
 ### Resource Fee
 
-Developers of an exclusive side chain pay producers for running it by paying CPU, RAM, DISK, and NET resource tokens. This model is called _charge-by-time_. The amount the side chain creator must share with the producers is set after the chain's creation. The **exclusive** side chain is priced according to the time used. The unit price of the fee is determined through negotiation between the production node and the developer.
+Developers of an exclusive side chain pay producers for running it by paying CPU, RAM, DISK, and NET resource tokens. This model is called *charge-by-time*. The amount the side chain creator must share with the producers is set after the chain's creation. The **exclusive** side chain is priced according to the time used. The unit price of the fee is determined through negotiation between the production node and the developer.
 
 ## Simple Demo for Side Chain Creation Request
 
@@ -47,17 +45,17 @@ We'll use the [aelf-js-sdk](https://github.com/AElfProject/aelf-sdk.js/tree/mast
 
 This creation of a side chain (logical, on-chain creation) is done in four steps:
 
-1. The developer must _allow/approve_ some tokens to the cross-chain contract of the main chain.
-2. The developer calls the cross-chain contract of the main chain to _request_ the creation.
-3. The parliament organization members must _approve_ this request.
-4. Finally, the developer must _release_ the request to finalize the creation.
+1. The developer must *allow/approve* some tokens to the cross-chain contract of the main chain.
+2. The developer calls the cross-chain contract of the main chain to *request* the creation.
+3. The parliament organization members must *approve* this request.
+4. Finally, the developer must *release* the request to finalize the creation.
 
 ### Set-Up
 
 To test the creation process, you will need a producer node running and the following:
 
-- A key-pair (account) created; this will be your Producer (also used to create the creation request in this tutorial).
-- The node needs to be configured with an API endpoint, account, and miner list that correspond to what is in the script.
+* A key-pair (account) created; this will be your Producer (also used to create the creation request in this tutorial).
+* The node needs to be configured with an API endpoint, account, and miner list that correspond to what is in the script.
 
 Here is the initialization code:
 
@@ -160,12 +158,12 @@ message SideChainTokenInitialIssue{
 
 In order for the creation request to succeed, some assertions must pass:
 
-- The Sender can only have one pending request at any time.
-- The `locked_token_amount` cannot be lower than the indexing price.
-- If `is_privilege_preserved` is true (exclusive side chain), the token initial issue list cannot be empty and all with an `amount` greater than 0.
-- If `is_privilege_preserved` is true (exclusive side chain), the `initial_resource_amount` must contain all resource tokens of the chain, and the value must be greater than 0.
-- The allowance approved to cross-chain contract from the proposer (Sender of the transaction) cannot be lower than the `locked_token_amount`.
-- No need to provide data about side chain token if `is_privilege_preserved` is false.
+* The Sender can only have one pending request at any time.
+* The `locked_token_amount` cannot be lower than the indexing price.
+* If `is_privilege_preserved` is true (exclusive side chain), the token initial issue list cannot be empty and all with an `amount` greater than 0.
+* If `is_privilege_preserved` is true (exclusive side chain), the `initial_resource_amount` must contain all resource tokens of the chain, and the value must be greater than 0.
+* The allowance approved to cross-chain contract from the proposer (Sender of the transaction) cannot be lower than the `locked_token_amount`.
+* No need to provide data about side chain token if `is_privilege_preserved` is false.
 
 ```javascript
 var sideChainCreationRequest = async function (crossChainContract) {
@@ -215,7 +213,7 @@ var proposalApproveTx = await parliamentContract.Approve(deserializedLogs[0].pro
 await pollMining(proposalApproveTx.TransactionId);
 ```
 
-**Note**: when calling **Approve** it will be the _Sender_ of the transaction that approves. Here the script is set to use the key of one parliament organization member, see full script at the end.
+**Note**: when calling **Approve** it will be the *Sender* of the transaction that approves. Here the script is set to use the key of one parliament organization member, see full script at the end.
 
 #### Release the Proposal
 
