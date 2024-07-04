@@ -1,30 +1,32 @@
 ---
 sidebar_position: 4
-title: Hello World - Smart Contract Demo
+title: Hello Contract
 ---
+# Hello Contract
 
-# Hello World
+## 1. Hello Contract
 
-## 1. Hello World - Smart Contract Demo
 This guide provides step-by-step instructions to set up your local development environment to get started developing and deploying aelf smart contracts.
 
 ### Prerequisites
-- Basic knowledge of terminal commands
-- **IDE** - Install [VS Code](https://code.visualstudio.com/)
+
+* Basic knowledge of terminal commands
+* **IDE** - Install [VS Code](https://code.visualstudio.com/)
 
 ### Install Required Packages
-- [Install dotnet](https://dotnet.microsoft.com/en-us/download)
-- Install aelf contract templates
 
-```bash title="Terminal"
+* [Install dotnet](https://dotnet.microsoft.com/en-us/download)
+* Install aelf contract templates
+
+```bash
 dotnet new install AELF.ContractTemplates 
 ```
 
 AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.
 
-- Install aelf deploy tool
+* Install aelf deploy tool
 
-```bash title="Terminal"
+```bash
 dotnet tool install --global aelf.deploy
 ```
 
@@ -32,11 +34,13 @@ aelf.deploy is a utility tool for deploying smart contracts on the aelf blockcha
 Please remember to export PATH after installing aelf.deploy.
 
 ### Install Node.js and Yarn
-- [Install Node.js](https://nodejs.org/en)
-- Install aelf-command
+
+* [Install Node.js](https://nodejs.org/en)
+* Install aelf-command
 
 ### Install aelf-command
-```bash title="Terminal"
+
+```bash
 npm i -g aelf-command
 ```
 
@@ -51,7 +55,7 @@ Open your `Terminal`.
 
 Enter the following command to generate a new project:
 
-```bash title="Terminal"
+```bash
 mkdir hello-world
 cd hello-world
 dotnet new aelf -n HelloWorld
@@ -59,7 +63,7 @@ dotnet new aelf -n HelloWorld
 
 ### Install ACS12.proto
 
-```bash title="Terminal"
+```bash
 mkdir Protobuf
 cd Protobuf
 mkdir references
@@ -73,11 +77,11 @@ curl -O --output-dir $ACS_DIR https://raw.githubusercontent.com/AElfProject/AElf
 Now that we have a template hello world project, we can customize the template to incorporate our own contract logic.
 Lets start by implementing methods to provide basic functionality for updating and reading a message stored persistently in the contract state.
 
-```bash title="Terminal"
+```bash
 cd src
 ```
 
-```csharp title="src/HelloWorldState.cs"
+```csharp
 using AElf.Sdk.CSharp.State;
 
 namespace AElf.Contracts.HelloWorld
@@ -94,7 +98,7 @@ namespace AElf.Contracts.HelloWorld
 
 The implementation of file `src/HelloWorld.cs` is as follows:
 
-```csharp title="src/HelloWorld.cs"
+```csharp
 // contract implementation starts here
 namespace AElf.Contracts.HelloWorld
 {
@@ -128,7 +132,7 @@ namespace AElf.Contracts.HelloWorld
 
 Build the new code with the following commands inside src folder:
 
-```bash title="Terminal"
+```bash
 dotnet build
 ```
 
@@ -138,19 +142,19 @@ dotnet build
 
 #### Create A Wallet
 
-import CreateWallet from '@site/docs/\_create-wallet.md';
+import CreateWallet from '@site/docs/_create-wallet.md';
 
 <CreateWallet/>
 
 #### Acquire Testnet Tokens for Development
 
-import GetTestnetToken from '@site/docs/\_get-testnet-token.md';
+import GetTestnetToken from '@site/docs/_get-testnet-token.md';
 
 <GetTestnetToken/>
 
 ### Deploy Your Smart Contract
 
-import DeploySmartContract from '@site/docs/\_deploy-smart-contract.md';
+import DeploySmartContract from '@site/docs/_deploy-smart-contract.md';
 
 <DeploySmartContract/>
 
@@ -161,13 +165,13 @@ Lets try to call methods on your newly-deployed smart contract using `aelf-comma
 Firstly, we will set a message using the `Update` method. Run the following command,
 and enter the message argument as `test`. This will set `test` into the Message contract state.
 
-```bash title="Terminal"
+```bash
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Update
 ```
 
 After that, we can use `Read` method to retrieve the value previously set for the Message contract state.
 Running the following command should yield `test`.
 
-```bash title="Terminal"
+```bash
 aelf-command call $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Read
 ```
