@@ -1,4 +1,4 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 
 /**
  * Creating a sidebar enables you to:
@@ -24,6 +24,7 @@ const sidebars: SidebarsConfig = {
       items: [
         { type: "doc", id: "quick-start/intro-to-aelf-development/index" },
         { type: "doc", id: "quick-start/hello-world/index" },
+        { type: "doc", id: "quick-start/lottery-game/index" },
         {
           type: "category",
           label: "Become a Node Operator",

@@ -1339,7 +1339,11 @@ dotnet build
 
 You should see **LotteryGame.dll.patched** in the directory `lottery_game/src/bin/Debug/net.6.0`
 
-## 3. Create A Wallet
+## 3. Deploying Smart Contract
+
+### Preparing for deployment
+
+#### Create A Wallet
 
 To send transactions on the aelf blockchain, you must have a wallet.
 
@@ -1351,7 +1355,7 @@ aelf-command create
 
 ![result](/img/create_wallet_output.png)
 
-### Acquire Testnet Tokens(Faucet) for Development
+#### Acquire Testnet Tokens(Faucet) for Development
 
 To deploy smart contracts or execute on-chain transactions on aelf, you'll require testnet ELF tokens.
 
@@ -1380,8 +1384,8 @@ aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_A
 You will be prompted for the following:
 
 ```sh
-Enter the required param <symbol>: **ELF**
-Enter the required param <owner>: **$WALLET_ADDRESS**
+Enter the required param <symbol>: ELF
+Enter the required param <owner>: $WALLET_ADDRESS
 ```
 
 You should see the Result displaying your wallet's ELF balance.
@@ -1396,7 +1400,7 @@ Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). Enter y
   </TabItem>
 </Tabs>
 
-## 4. Deploying your first smart contract on testnet
+### Deploy Your Smart Contract
 
 The smart contract needs to be deployed on the chain before users can interact with it.
 
@@ -1412,9 +1416,9 @@ Please wait for approximately 1 to 2 minutes. If the deployment is successful, i
 
 ![result](/img/deploy-result.png)
 
-## 5. Connecting to your smart contract on testnet (lottery)
+## 4. Interact with Your Deployed Smart Contract
 
-### 5.1 Approving Smart Contract Spending
+### 4.1 Approving Smart Contract Spending
 
 ```bash
 aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Approve
@@ -1430,19 +1434,19 @@ Enter the params one by one, type `Enter` to skip optional param:
 ? Enter the required param <amount>: 9000000000
 ```
 
-### 5.2 Initializing Lottery Game Contract
+### 4.2 Initializing Lottery Game Contract
 
 ```bash
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Initialize
 ```
 
-### 5.3 Depositing funds into the Lottery Game Contract
+### 4.3 Depositing funds into the Lottery Game Contract
 
 ```bash
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Deposit
 ```
 
-### 5.4 Playing the Lottery Game
+### 4.4 Playing the Lottery Game
 
 ```bash
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Play
