@@ -3,6 +3,8 @@ The smart contract needs to be deployed on the chain before users can interact w
 Run the following command to deploy a contract.
 
 ```bash title="Terminal"
+export CONTRACT_PATH=./src/bin/Debug/net6.0
+export CONTRACT_FILE=HelloWorld
 aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH/$CONTRACT_FILE.dll.patched -e https://tdvw-test-node.aelf.io/
 ```
 
