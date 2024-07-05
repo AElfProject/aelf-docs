@@ -1411,7 +1411,7 @@ You should see the result displaying your wallet's ELF balance.
   </TabItem>
   <TabItem value="web" label="Web" default>
 
-Go to this url <https://faucet-ui.aelf.dev>. Enter your address and click `Get Tokens`.
+Go to this ![url](https://faucet-ui.aelf.dev). Enter your address and click `Get Tokens`.
 
 ![result](/img/get-token-ui.png)
 
@@ -1424,7 +1424,9 @@ The smart contract needs to be deployed on the chain before users can interact w
 
 Run the following command to deploy a contract. Remember to export the path of LotteryGame.dll.patched to CONTRACT_PATH. For this you need to copy actual path src/bin/Debug/net6.0/LotteryGame.dll.patched of lottery-game directory. For example:
 
+```bash
 export CONTRACT_PATH = /Users/mohit/Desktop/aelf/lottery-game/src/bin/Debug/net6.0/LotteryGame.dll.patched 
+```
 
 ```bash
 export CONTRACT_PATH="SRC_DIRECTORY_PATH" + /bin/Debug/net6.0/LotteryGame.dll.patched

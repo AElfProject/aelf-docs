@@ -23,9 +23,6 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         { type: "doc", id: "quick-start/intro-to-aelf-development/index" },
-        { type: "doc", id: "quick-start/hello-world/index" },
-        { type: "doc", id: "quick-start/lottery-game/index" },
-        { type: "doc", id: "quick-start/vote-contract/index" },
         {
           type: "category",
           label: "Become a Node Operator",
@@ -43,15 +40,7 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
-        {
-          type: "doc",
-          id: "quick-start/explore-running-aelf-side-chain/index",
-        },
-        { type: "doc", id: "quick-start/run-a-side-chain/index" },
-        {
-          type: "doc",
-          id: "quick-start/start-and-run-a-node-on-aelf-locally-or-on-cloud/index",
-        },
+        { type: "doc", id: "quick-start/explore-running-aelf-side-chain/index" },
       ],
     },
   ],
@@ -176,6 +165,25 @@ const sidebars: SidebarsConfig = {
                   dirName: "tutorials/operate-a-node/run-a-side-chain",
                 },
               ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Dapp Development",
+          description: "Tutorials on developing Dapps.",
+          link: {
+            type: "generated-index",
+            slug: "/tutorials/dapp-development",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "tutorials/dapp-development/lottery-game/index",
+            },
+            {
+              type: "doc",
+              id: "tutorials/dapp-development/vote-contract/index",
             },
           ],
         },
