@@ -73,7 +73,7 @@ Provide required permissions while installing aelf-command globally.
 
 </TabItem>
 </Tabs>
-## 2. Writing your first smart contract
+## 2. Develop smart contract
 
 ### Project Setup
 
@@ -235,7 +235,7 @@ message ProposalList {
 
    - **`Initialize`** : Set up initial state
 
-   - **`JoinDAO`** : User joins DAO (input: address)
+   - **`JoinDAO`** : User joins DAO. User's `address` is the function parameter.
 
    - **`CreateProposal`** : User creates a proposal (input: address, title, description, vote threshold)
 
@@ -298,9 +298,9 @@ namespace AElf.Contracts.BuildersDAO
 
 ##### 3. **State Variables**
 
-   - **`Members`** : Mapping each member to a boolean (indicates if they joined the DAO)
+   - **`Members`** : Mapping each member to a boolean indicates if they joined the DAO.
    
-   - **`Proposals`** : Mapping each proposal to an ID (for identification and retrieval)
+   - **`Proposals`** : Mapping each proposal to an ID for identification and retrieval.
    
    - **`MemberCountId`** and **`NextProposalId`** : Track total number of members and proposals
 
@@ -359,7 +359,7 @@ namespace AElf.Contracts.BuildersDAO
 
 #### Implementing Initialize Function
 
-- Go to the comment `// Implement Initialize Smart Contract Logic.`
+- Go to the comment `Implement Initialize Smart Contract Logic.`
 
 - Check if the smart contract is already initialized; return if true.
 
@@ -394,7 +394,7 @@ public override Empty Initialize(Empty input)
 
 #### Implementing Join DAO Function
 
-- Go to the comment `// Implement Join DAO Logic`
+- Go to the comment `Implement Join DAO Logic`
 
 - Check if the member already exists in the DAO using the **`Members`** state variable.
 
@@ -420,13 +420,13 @@ public override Empty JoinDAO(Address input)
 
 #### Implementing Create Proposal Function
 
-- Go to the comment `// Implement Create Proposal Logic`
+- Go to the comment `Implement Create Proposal Logic`
 
 - Check if the user is a DAO member (required to create proposals).
 
 - Create a new proposal object using fields from **`CreateProposalInput`**.
 
-- **`Update`** Proposals with the new proposal, increment NextProposalId, and return the created proposal object.
+- **`Update`** Proposals with the new proposal, increment `NextProposalId`, and return the created proposal object.
 
 Now, use the provided code snippet to fill in the **`CreateProposal`** function.
 
@@ -591,9 +591,9 @@ public override BoolValue GetMemberExist(Address input)
 }
 ```
 
-With that, we have implemented all the functionalities of our Voting dApp smart contract!
+With that, we have implemented all the functionalities of our Voting dApp smart contract.
 
-In the next step, we will compile our smart contract and deploy our written smart contract to the aelf sidechain!
+In the next step, we will compile our smart contract and deploy our written smart contract to the aelf sidechain.
 
 
 
