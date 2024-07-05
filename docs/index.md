@@ -68,6 +68,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 - [Smart Contract Templates](/tools/smart-contract-templates/) - Templates to quickly build your smart contract
 - [Faucet](/tools/faucet/) - Test your dApp with aelf test tokens
 - [Design](/tools/design/) - Explore aelf design library
+- [Playground](/tools/aelf-playground/) - Play with aelf in your browser
 
 </article>
 

@@ -319,6 +319,7 @@ const sidebars: SidebarsConfig = {
         },
         { type: "doc", id: "tools/faucet/index" },
         { type: "doc", id: "tools/design/index" },
+        { type: "doc", id: "tools/aelf-playground/index" },
         {
           type: "category",
           label: "Contract SDK",
