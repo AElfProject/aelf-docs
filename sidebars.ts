@@ -226,7 +226,11 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "doc",
-                  id: "tutorials/dapp-development/lottery-game/deploy-interact-smart-contract",
+                  id: "tutorials/dapp-development/lottery-game/deploy-smart-contract",
+                },
+                {
+                  type: "doc",
+                  id: "tutorials/dapp-development/lottery-game/interact-smart-contact",
                 },
               ],
             },
@@ -350,6 +354,5 @@ const sidebars: SidebarsConfig = {
     },
   ],
 };
-
 
 export default sidebars;
