@@ -25,7 +25,6 @@ const sidebars: SidebarsConfig = {
         { type: "doc", id: "quick-start/intro-to-aelf-development/index" },
         { type: "doc", id: "quick-start/hello-world/index" },
         { type: "doc", id: "quick-start/lottery-game/index" },
-        { type: "doc", id: "quick-start/vote-contract/index" },
         {
           type: "category",
           label: "Become a Node Operator",
@@ -178,6 +177,33 @@ const sidebars: SidebarsConfig = {
               ],
             },
           ],
+        },
+        {
+          type: "category",
+          label: "Vote Contract",
+          description: "Vote smart contract",
+          link: {
+            type: "generated-index",
+            slug: "/tutorials/vote-contract",
+          },
+          items:[
+            {
+              type: "doc",
+              id: "tutorials/vote-contract/setup-environment",
+            },
+            {
+              type: "doc",
+              id: "tutorials/vote-contract/develop-smart-contract",
+            },
+            {
+              type: "doc",
+              id: "tutorials/vote-contract/deploy-smart-contract",
+            },
+            {
+              type: "doc",
+              id: "tutorials/vote-contract/create-dapp",
+            },
+          ]
         },
       ],
     },
