@@ -24,11 +24,8 @@ const sidebars: SidebarsConfig = {
       items: [
         { type: "doc", id: "quick-start/intro-to-aelf-development/index" },
         { type: "doc", id: "quick-start/hello-world/index" },
-<<<<<<< Updated upstream
         { type: "doc", id: "quick-start/lottery-game/index" },
-=======
         { type: "doc", id: "quick-start/vote-contract/index" },
->>>>>>> Stashed changes
         {
           type: "category",
           label: "Become a Node Operator",
