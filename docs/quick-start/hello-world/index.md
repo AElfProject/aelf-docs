@@ -59,17 +59,6 @@ cd hello-world
 dotnet new aelf -n HelloWorld
 ```
 
-### Install ACS12.proto
-
-```bash
-mkdir Protobuf
-cd Protobuf
-mkdir references
-cd ..
-export ACS_DIR=Protobuf/references
-curl -O --output-dir $ACS_DIR https://raw.githubusercontent.com/AElfProject/AElf/dev/protobuf/acs12.proto
-```
-
 ### Adding Your Smart Contract Code
 
 Now that we have a template hello world project, we can customise the template to incorporate our own contract logic.
@@ -146,7 +135,7 @@ To send transactions on the aelf blockchain, you must have a wallet.
 
 Run this command to create aelf wallet.
 
-```bash title="Terminal"
+```bash
 aelf-command create
 ```
 
@@ -166,15 +155,18 @@ import TabItem from '@theme/TabItem';
 
 Run the following command to get testnet ELF tokens from faucet. Remember to either export your wallet address and wallet password or replace $WALLET_ADDRESS and $WALLET_ADDRESS with your wallet address and wallet password respectively.
 
-```bash title="Terminal"
+```bash
 export WALLET_ADDRESS="YOUR_WALLET_ADDRESS"
 curl -X POST "https://faucet.aelf.dev/api/claim?walletAddress=$WALLET_ADDRESS" -H "accept: application/json" -d ""
 ```
+
 To check your wallet's current ELF balance:
-```bash title="Terminal"
+
+```bash
 export WALLET_PASSWORD="YOUR_WALLET_PASSWORD"
 aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
 ```
+
 You will be prompted for the following:  
 
 ```sh
@@ -187,7 +179,7 @@ You should see the Result displaying your wallet's ELF balance.
   </TabItem>
   <TabItem value="web" label="Web" default>
 
-Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). Enter your address and click `Get Tokens`.
+Go to this url <https://faucet-ui.aelf.dev>. Enter your address and click `Get Tokens`.
 
 ![result](/img/get-token-ui.png)
 
@@ -198,18 +190,22 @@ Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). Enter y
 
 The smart contract needs to be deployed on the chain before users can interact with it.
 
-Run the following command to deploy a contract. Remember to export the path of HelloWorld.dll.patched to CONTRACT_PATH. 
-Remember to export CONTRACT_FILE equals to HelloWorld.
+Run the following command to deploy a contract. Remember to export the path of HelloWorld.dll.patched to CONTRACT_PATH. For this you need to copy actual path src/bin/Debug/net6.0/HelloWorld.dll.patched of hello-world directory.
+For example: 
 
-```bash title="Terminal"
-export CONTRACT_PATH="SRC_DIRECTORY_PATH" + /bin/Debug/net6.0
-export CONTRACT_FILE=HelloWorld
-aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH/$CONTRACT_FILE.dll.patched -e https://tdvw-test-node.aelf.io/
+```bash
+export CONTRACT_PATH = /Users/mohit/Desktop/aelf/hello-world/src/bin/Debug/net6.0/HelloWorld.dll.patched 
+```
+
+```bash
+aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH -e https://tdvw-test-node.aelf.io/
 ```
 
 Please wait for approximately 1 to 2 minutes. If the deployment is successful, it will provide you with the contract address.
 
 ![result](/img/deploy-result.png)
+
+NOTE: If aelf-deploy command returns "aelf-deploy not found", then uninstall and reinstall aelf.deploy.
 
 ## 4. Interact with Your Deployed Smart Contract
 
