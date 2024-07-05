@@ -170,7 +170,7 @@ aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_A
 You will be prompted for the following:  
 
 ```sh
-Enter the required param <symbol>: **ELF**  
+Enter the required param <symbol>: ELF  
 Enter the required param <owner>: **$WALLET_ADDRESS**
 ```
 
