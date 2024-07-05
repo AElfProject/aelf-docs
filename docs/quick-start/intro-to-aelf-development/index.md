@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 1
 title: Intro to aelf Development
 ---
 # Intro to aelf Development
