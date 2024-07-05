@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 title: Running a Side Chain
 ---
 # Running a Side Chain
