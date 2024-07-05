@@ -11,10 +11,13 @@ This guide provides step-by-step instructions to set up your local development e
 
 ### Prerequisites
 
+<Tabs>
+<TabItem value="local" label="Local" default>
+
 - Basic knowledge of terminal commands
 - **IDE** - Install [VS Code](https://code.visualstudio.com/)
 
-### Install Required Packages
+**Install Required Packages**
 
 - [Install dotnet](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - Install aelf contract templates
@@ -34,7 +37,7 @@ dotnet tool install --global aelf.deploy
 aelf.deploy is a utility tool for deploying smart contracts on the aelf blockchain.
 Please remember to export PATH after installing aelf.deploy.
 
-### Install Node.js and Yarn
+**Install Node.js and Yarn**
 
 - [Install Node.js](https://nodejs.org/en)
 - Install aelf-command
@@ -45,6 +48,34 @@ sudo npm i -g aelf-command
 
 aelf-command is a CLI tool for interacting with the aelf blockchain, enabling tasks like creating wallets and managing transactions.
 Provide required permissions while installing aelf-command globally.
+</TabItem>
+
+<TabItem value="codespaces" label="Codespaces">
+
+1. **Go to the Repository Template**:
+   Visit [aelf-devcontainer-template](https://github.com/AElfProject/aelf-devcontainer-template).
+
+2. **Create a New Repository**:
+   Click the **"Use this template"** button.
+   Choose **"Create a new repository"**.
+
+3. **Name Your Repository**:
+   Enter a suitable repository name.
+   Click **"Create repository"**.
+
+4. **Access Codespaces**:
+   Within the GitHub interface of your new repository, click on **"Code"**.
+   Select **"Codespaces"**.
+
+5. **Create a New Codespace**:
+   Click on the **"+"** sign to create a new Codespace.
+
+6. **Wait for Your Workspace to Load**:
+   After some time, your workspace will load with the contents of the repository.
+   You can now continue your development using GitHub Codespaces.
+
+</TabItem>
+</Tabs>
 
 ## 2. Develop Smart Contract
 
@@ -55,9 +86,9 @@ Open your `Terminal`.
 Enter the following command to generate a new project:
 
 ```bash
-mkdir hello-world
-cd hello-world
-dotnet new aelf -n HelloWorld
+mkdir lottery-game
+cd lottery-game
+dotnet new aelf -n LotteryGame
 ```
 
 ### Install ACS12.proto
