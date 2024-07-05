@@ -73,6 +73,7 @@ Provide required permissions while installing aelf-command globally.
 
 </TabItem>
 </Tabs>
+
 ## 2. Develop smart contract
 
 ### Project Setup
@@ -237,9 +238,9 @@ message ProposalList {
 
    - **`JoinDAO`** : User joins DAO. User's `address` is the function parameter.
 
-   - **`CreateProposal`** : User creates a proposal (input: address, title, description, vote threshold)
+   - **`CreateProposal`** : User creates a proposal. User's `address` , `title` , `description` , `vote threshold` are the function parameter.
 
-   - **`VoteOnProposal`** : User votes on a proposal (input: address, proposal, vote)
+   - **`VoteOnProposal`** : User votes on a proposal. User's `address` , `proposal` `vote` is the function parameter.
 
    - **`GetAllProposals`** : Fetch list of proposals
 
@@ -424,11 +425,11 @@ public override Empty JoinDAO(Address input)
 
 - Check if the user is a DAO member (required to create proposals).
 
-- Create a new proposal object using fields from **`CreateProposalInput`**.
+- Create a new proposal object using fields from `CreateProposalInput`.
 
-- **`Update`** Proposals with the new proposal, increment `NextProposalId`, and return the created proposal object.
+- `Update` Proposals with the new proposal, increment NextProposalId, and return the created proposal object.
 
-Now, use the provided code snippet to fill in the **`CreateProposal`** function.
+Now, use the provided code snippet to fill in the `CreateProposal` function.
 
 ```csharp
 // Implement Create Proposal Logic
