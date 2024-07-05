@@ -1,12 +1,12 @@
 ---
 sidebar_position: 3
-title: Deploy Your Smart Contract
+title: Deploy and Interact with Smart Contract
 description: Deploying and Interacting with smartcontract
 ---
 
-### Preparing for deployment
+## Preparing for deployment
 
-#### Create A Wallet
+### Create A Wallet
 
 To send transactions on the aelf blockchain, you must have a wallet.
 
@@ -18,7 +18,7 @@ aelf-command create
 
 ![result](/img/create_wallet_output.png)
 
-#### Acquire Testnet Tokens(Faucet) for Development
+### Acquire Testnet Tokens(Faucet) for Development
 
 To deploy smart contracts or execute on-chain transactions on aelf, you'll require testnet ELF tokens.
 
@@ -80,7 +80,7 @@ Please wait for approximately 1 to 2 minutes. If the deployment is successful, i
 
 ![result](/img/deploy-result.png)
 
-## 4. Interact with Your Deployed Smart Contract
+## Interact with Your Deployed Smart Contract
 
 ### Approving Smart Contract Spending
 
