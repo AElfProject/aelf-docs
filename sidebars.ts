@@ -168,6 +168,25 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
+        {
+          type: "category",
+          label: "Dapp Development",
+          description: "Tutorials on developing Dapps.",
+          link: {
+            type: "generated-index",
+            slug: "/tutorials/dapp-development",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "tutorials/dapp-development/lottery-game/index",
+            },
+            {
+              type: "doc",
+              id: "tutorials/dapp-development/vote-contract/index",
+            },
+          ],
+        },
       ],
     },
   ],
