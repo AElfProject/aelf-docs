@@ -25,6 +25,7 @@ const sidebars: SidebarsConfig = {
         { type: "doc", id: "quick-start/intro-to-aelf-development/index" },
         { type: "doc", id: "quick-start/hello-world/index" },
         { type: "doc", id: "quick-start/lottery-game/index" },
+        { type: "doc", id: "quick-start/vote-contract/index" },
         {
           type: "category",
           label: "Become a Node Operator",
