@@ -15,7 +15,7 @@ This guide provides step-by-step instructions to set up your local development e
 
 ### Install Required Packages
 
-* [Install dotnet](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+* [Install dotnet SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 * Install aelf contract templates
 
 ```bash
@@ -31,7 +31,9 @@ dotnet tool install --global aelf.deploy
 ```
 
 aelf.deploy is a utility tool for deploying smart contracts on the aelf blockchain. 
-Please remember to export PATH after installing aelf.deploy.
+Please remember to export PATH after installing aelf.deploy.\
+
+ℹ️ Note: If you have installed aelf.deploy and your terminal says that there is no such command available, please uninstall and install aelf.deploy.
 
 ### Install Node.js and Yarn
 
