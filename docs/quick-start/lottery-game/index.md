@@ -2,7 +2,6 @@
 sidebar_position: 4
 title: Lottery Game Contract
 ---
-
 # Lottery Game Contract
 
 This guide provides step-by-step instructions to set up your local development environment to get started developing and deploying aelf smart contracts.
@@ -14,13 +13,13 @@ This guide provides step-by-step instructions to set up your local development e
 <Tabs>
 <TabItem value="local" label="Local" default>
 
-- Basic knowledge of terminal commands
-- **IDE** - Install [VS Code](https://code.visualstudio.com/)
+* Basic knowledge of terminal commands
+* **IDE** - Install [VS Code](https://code.visualstudio.com/)
 
 **Install Required Packages**
 
-- [Install dotnet](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-- Install aelf contract templates
+* [Install dotnet](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+* Install aelf contract templates
 
 ```bash
 dotnet new --install AELF.ContractTemplates
@@ -28,7 +27,7 @@ dotnet new --install AELF.ContractTemplates
 
 AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.
 
-- Install aelf deploy tool
+* Install aelf deploy tool
 
 ```bash
 dotnet tool install --global aelf.deploy
@@ -39,8 +38,8 @@ Please remember to export PATH after installing aelf.deploy.
 
 **Install Node.js and Yarn**
 
-- [Install Node.js](https://nodejs.org/en)
-- Install aelf-command
+* [Install Node.js](https://nodejs.org/en)
+* Install aelf-command
 
 ```bash
 sudo npm i -g aelf-command
@@ -52,24 +51,16 @@ Provide required permissions while installing aelf-command globally.
 
 <TabItem value="codespaces" label="Codespaces">
 
-1. **Go to the Repository Template**:
-   Visit [aelf-devcontainer-template](https://github.com/AElfProject/aelf-devcontainer-template).
-
-2. **Create a New Repository**:
-   Click the **"Use this template"** button.
-   Choose **"Create a new repository"**.
-
+1. Visit [aelf-devcontainer-template](https://github.com/AElfProject/aelf-devcontainer-template).
+2. Click the `Use this template` button. Choose `Create a new repository`.
 3. **Name Your Repository**:
    Enter a suitable repository name.
    Click **"Create repository"**.
-
 4. **Access Codespaces**:
    Within the GitHub interface of your new repository, click on **"Code"**.
    Select **"Codespaces"**.
-
 5. **Create a New Codespace**:
    Click on the **"+"** sign to create a new Codespace.
-
 6. **Wait for Your Workspace to Load**:
    After some time, your workspace will load with the contents of the repository.
    You can now continue your development using GitHub Codespaces.
@@ -96,9 +87,9 @@ dotnet new aelf -n LotteryGame
 ```bash
 mkdir Protobuf
 cd Protobuf
-mkdir references
+mkdir reference
 cd ..
-export ACS_DIR=Protobuf/references
+export ACS_DIR=Protobuf/reference
 curl -O --output-dir $ACS_DIR https://raw.githubusercontent.com/AElfProject/AElf/dev/protobuf/acs12.proto
 ```
 
@@ -187,8 +178,6 @@ message PlayAmountLimitMessage {
   int64 minimumAmount = 1;
   int64 maximumAmount = 2;
 }
-
-
 ```
 
 #### Define Contract States
@@ -217,15 +206,13 @@ namespace AElf.Contracts.LotteryGame
 Create a new folder **reference** under `src/Protobuf/`
 
 ```bash
-cd /src/Protobuf
-mkdir reference
+cd /src/Protobuf/reference
 ```
 
-Create a new file **token_contract.proto** under `src/Protobuf/reference/`
-The implementation of file `token_contract.protot`
+Create a new file `token_contract.proto` under `src/Protobuf/reference/`
+The implementation of file `token_contract.proto`
 
 ```csharp
-
 /**
  * MultiToken contract.
  */
@@ -1380,7 +1367,7 @@ To send transactions on the aelf blockchain, you must have a wallet.
 
 Run this command to create aelf wallet.
 
-```bash title="Terminal"
+```bash
 aelf-command create
 ```
 
@@ -1400,14 +1387,14 @@ import TabItem from '@theme/TabItem';
 
 Run the following command to get testnet ELF tokens from faucet. Remember to either export your wallet address and wallet password or replace $WALLET_ADDRESS and $WALLET_ADDRESS with your wallet address and wallet password respectively.
 
-```bash title="Terminal"
+```bash
 export WALLET_ADDRESS="YOUR_WALLET_ADDRESS"
 curl -X POST "https://faucet.aelf.dev/api/claim?walletAddress=$WALLET_ADDRESS" -H "accept: application/json" -d ""
 ```
 
 To check your wallet's current ELF balance:
 
-```bash title="Terminal"
+```bash
 export WALLET_PASSWORD="YOUR_WALLET_PASSWORD"
 aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
 ```
@@ -1424,7 +1411,7 @@ You should see the Result displaying your wallet's ELF balance.
   </TabItem>
   <TabItem value="web" label="Web" default>
 
-Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). Enter your address and click `Get Tokens`.
+Go to this url <https://faucet-ui.aelf.dev>. Enter your address and click `Get Tokens`.
 
 ![result](/img/get-token-ui.png)
 
