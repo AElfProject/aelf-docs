@@ -23,6 +23,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         { type: "doc", id: "quick-start/intro-to-aelf-development/index" },
+        { type: "doc", id: "quick-start/hello-world/index" },
         {
           type: "category",
           label: "Become a Node Operator",
@@ -40,7 +41,10 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
-        { type: "doc", id: "quick-start/explore-running-aelf-side-chain/index" },
+        {
+          type: "doc",
+          id: "quick-start/explore-running-aelf-side-chain/index",
+        },
       ],
     },
   ],
@@ -186,6 +190,29 @@ const sidebars: SidebarsConfig = {
               id: "tutorials/dapp-development/vote-contract/index",
             },
           ],
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Lottery Game Contract",
+      description: "Lottery Game Contract",
+      link: {
+        type: "generated-index",
+        slug: "/tutorials/lottery-game",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "tutorials/lottery-game/setup-enviornment",
+        },
+        {
+          type: "doc",
+          id: "tutorials/lottery-game/develop-smart-contract",
+        },
+        {
+          type: "doc",
+          id: "tutorials/lottery-game/deploy-interact-smart-contract",
         },
       ],
     },

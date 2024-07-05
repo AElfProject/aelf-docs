@@ -1,74 +1,8 @@
 ---
-sidebar_position: 4
-title: Lottery Game Contract
+sidebar_position: 2
+title: Develop the smart contract
+description: Developing the smart contract
 ---
-# Lottery Game Contract
-
-This guide provides step-by-step instructions to set up your local development environment to get started developing and deploying aelf smart contracts.
-
-## 1. Setup Environment
-
-### Prerequisites
-
-<Tabs>
-<TabItem value="local" label="Local" default>
-
-* Basic knowledge of terminal commands
-* **IDE** - Install [VS Code](https://code.visualstudio.com/)
-
-**Install Required Packages**
-
-* [Install dotnet](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-* Install aelf contract templates
-
-```bash
-dotnet new --install AELF.ContractTemplates
-```
-
-AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.
-
-* Install aelf deploy tool
-
-```bash
-dotnet tool install --global aelf.deploy
-```
-
-aelf.deploy is a utility tool for deploying smart contracts on the aelf blockchain.
-Please remember to export PATH after installing aelf.deploy.
-
-**Install Node.js and Yarn**
-
-* [Install Node.js](https://nodejs.org/en)
-* Install aelf-command
-
-```bash
-sudo npm i -g aelf-command
-```
-
-aelf-command is a CLI tool for interacting with the aelf blockchain, enabling tasks like creating wallets and managing transactions.
-Provide required permissions while installing aelf-command globally.
-</TabItem>
-
-<TabItem value="codespaces" label="Codespaces">
-
-1. Visit [aelf-devcontainer-template](https://github.com/AElfProject/aelf-devcontainer-template).
-2. Click the `Use this template` button. Choose `Create a new repository`.
-3. **Name Your Repository**:
-   Enter a suitable repository name.
-   Click **"Create repository"**.
-4. **Access Codespaces**:
-   Within the GitHub interface of your new repository, click on **"Code"**.
-   Select **"Codespaces"**.
-5. **Create a New Codespace**:
-   Click on the **"+"** sign to create a new Codespace.
-6. **Wait for Your Workspace to Load**:
-   After some time, your workspace will load with the contents of the repository.
-   You can now continue your development using GitHub Codespaces.
-
-</TabItem>
-</Tabs>
-
-## 2. Develop Smart Contract
 
 ### Start Your Smart Contract Project
 
@@ -106,7 +40,7 @@ cd src
 
 The implementation of file `src/Protobuf/contract/lottery_game_contract.proto` is as follows:
 
-```csharp
+```csharp title= "src/Protobuf/contract/lottery_game_contract.proto"
 syntax = "proto3";
 
 import "aelf/core.proto";
@@ -184,7 +118,7 @@ message PlayAmountLimitMessage {
 
 The implementation of file `src/LotteryGameState.cs` is as follows:
 
-```csharp
+```csharp title = "src/LotteryGameState.cs"
 using AElf.Sdk.CSharp.State;
 using AElf.Types;
 
@@ -212,7 +146,7 @@ cd /src/Protobuf/reference
 Create a new file `token_contract.proto` under `src/Protobuf/reference/`
 The implementation of file `token_contract.proto`
 
-```csharp
+```csharp title = "token_contract.proto"
 /**
  * MultiToken contract.
  */
@@ -1111,10 +1045,10 @@ message SymbolAliasDeleted {
 
 #### Contract Reference State
 
-Navigate to `src/` create a **new file** `ContractReferences.cs`
+Navigate to `src` and create a **new file** `ContractReferences.cs`
 The implementation of file `src/ContractRefefrence.cs` is as follows:
 
-```csharp
+```csharp title ="src/ContractRefefrence.cs"
 using AElf.Contracts.MultiToken;
 
 namespace AElf.Contracts.LotteryGame
@@ -1130,7 +1064,7 @@ namespace AElf.Contracts.LotteryGame
 
 Navigate to `src/LotteryGame.cs`
 
-```csharp
+```csharp title= "src/LotteryGame.cs"
 using AElf.Contracts.MultiToken;
 using AElf.Sdk.CSharp;
 using AElf.Types;
@@ -1349,13 +1283,14 @@ namespace AElf.Contracts.LotteryGame
 
 #### Building Smart Contract
 
-Build the new code with the following commands inside `src/` folder:
+Build the new code with the following commands inside `src` folder:
 
 ```bash
 dotnet build
 ```
 
 You should see **LotteryGame.dll.patched** in the directory `lottery_game/src/bin/Debug/net.6.0`
+<<<<<<<< HEAD:docs/tutorials/dapp-development/lottery-game/index.md
 
 ## 3. Deploying Smart Contract
 
@@ -1485,3 +1420,5 @@ You will be prompted for the following:
 Enter the required param <symbol>: ELF
 Enter the required param <owner>: $WALLET_ADDRESS
 ```
+========
+>>>>>>>> 81b8bd1 (Changing folder for lotterybank):docs/tutorials/lottery-game/develop-smart-contract.md
