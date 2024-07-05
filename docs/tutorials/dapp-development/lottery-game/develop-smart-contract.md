@@ -1,74 +1,8 @@
 ---
-sidebar_position: 4
-title: Lottery Game Contract
+sidebar_position: 2
+title: Develop the smart contract
+description: Developing the smart contract
 ---
-# Lottery Game Contract
-
-This guide provides step-by-step instructions to set up your local development environment to get started developing and deploying aelf smart contracts.
-
-## 1. Setup Environment
-
-### Prerequisites
-
-<Tabs>
-<TabItem value="local" label="Local" default>
-
-* Basic knowledge of terminal commands
-* **IDE** - Install [VS Code](https://code.visualstudio.com/)
-
-**Install Required Packages**
-
-* [Install dotnet](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-* Install aelf contract templates
-
-```bash
-dotnet new --install AELF.ContractTemplates
-```
-
-AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.
-
-* Install aelf deploy tool
-
-```bash
-dotnet tool install --global aelf.deploy
-```
-
-aelf.deploy is a utility tool for deploying smart contracts on the aelf blockchain.
-Please remember to export PATH after installing aelf.deploy.
-
-**Install Node.js and Yarn**
-
-* [Install Node.js](https://nodejs.org/en)
-* Install aelf-command
-
-```bash
-sudo npm i -g aelf-command
-```
-
-aelf-command is a CLI tool for interacting with the aelf blockchain, enabling tasks like creating wallets and managing transactions.
-Provide required permissions while installing aelf-command globally.
-</TabItem>
-
-<TabItem value="codespaces" label="Codespaces">
-
-1. Visit [aelf-devcontainer-template](https://github.com/AElfProject/aelf-devcontainer-template).
-2. Click the `Use this template` button. Choose `Create a new repository`.
-3. **Name Your Repository**:
-   Enter a suitable repository name.
-   Click **"Create repository"**.
-4. **Access Codespaces**:
-   Within the GitHub interface of your new repository, click on **"Code"**.
-   Select **"Codespaces"**.
-5. **Create a New Codespace**:
-   Click on the **"+"** sign to create a new Codespace.
-6. **Wait for Your Workspace to Load**:
-   After some time, your workspace will load with the contents of the repository.
-   You can now continue your development using GitHub Codespaces.
-
-</TabItem>
-</Tabs>
-
-## 2. Develop Smart Contract
 
 ### Start Your Smart Contract Project
 
@@ -106,7 +40,7 @@ cd src
 
 The implementation of file `src/Protobuf/contract/lottery_game_contract.proto` is as follows:
 
-```csharp
+```csharp title= "src/Protobuf/contract/lottery_game_contract.proto"
 syntax = "proto3";
 
 import "aelf/core.proto";
@@ -184,7 +118,7 @@ message PlayAmountLimitMessage {
 
 The implementation of file `src/LotteryGameState.cs` is as follows:
 
-```csharp
+```csharp title = "src/LotteryGameState.cs"
 using AElf.Sdk.CSharp.State;
 using AElf.Types;
 
@@ -212,7 +146,7 @@ cd /src/Protobuf/reference
 Create a new file `token_contract.proto` under `src/Protobuf/reference/`
 The implementation of file `token_contract.proto`
 
-```csharp
+```csharp title = "token_contract.proto"
 /**
  * MultiToken contract.
  */
@@ -1111,10 +1045,10 @@ message SymbolAliasDeleted {
 
 #### Contract Reference State
 
-Navigate to `src/` create a **new file** `ContractReferences.cs`
+Navigate to `src` and create a **new file** `ContractReferences.cs`
 The implementation of file `src/ContractRefefrence.cs` is as follows:
 
-```csharp
+```csharp title ="src/ContractRefefrence.cs"
 using AElf.Contracts.MultiToken;
 
 namespace AElf.Contracts.LotteryGame
@@ -1130,7 +1064,7 @@ namespace AElf.Contracts.LotteryGame
 
 Navigate to `src/LotteryGame.cs`
 
-```csharp
+```csharp title= "src/LotteryGame.cs"
 using AElf.Contracts.MultiToken;
 using AElf.Sdk.CSharp;
 using AElf.Types;
@@ -1347,141 +1281,12 @@ namespace AElf.Contracts.LotteryGame
 }
 ```
 
-#### Building Smart Contract
+### Building Smart Contract
 
-Build the new code with the following commands inside `src/` folder:
+Build the new code with the following commands inside `src` folder:
 
 ```bash
 dotnet build
 ```
 
 You should see **LotteryGame.dll.patched** in the directory `lottery_game/src/bin/Debug/net.6.0`
-
-## 3. Deploying Smart Contract
-
-### Preparing for deployment
-
-#### Create A Wallet
-
-To send transactions on the aelf blockchain, you must have a wallet.
-
-Run this command to create aelf wallet.
-
-```bash
-aelf-command create
-```
-
-![result](/img/create_wallet_output.png)
-
-#### Acquire Testnet Tokens(Faucet) for Development
-
-To deploy smart contracts or execute on-chain transactions on aelf, you'll require testnet ELF tokens.
-
-**Get ELF Tokens**
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs>
-  <TabItem value="cli" label="CLI" default>
-
-Run the following command to get testnet ELF tokens from faucet. Remember to either export your wallet address and wallet password or replace $WALLET_ADDRESS and $WALLET_ADDRESS with your wallet address and wallet password respectively.
-
-```bash
-export WALLET_ADDRESS="YOUR_WALLET_ADDRESS"
-curl -X POST "https://faucet.aelf.dev/api/claim?walletAddress=$WALLET_ADDRESS" -H "accept: application/json" -d ""
-```
-
-To check your wallet's current ELF balance:
-
-```bash
-export WALLET_PASSWORD="YOUR_WALLET_PASSWORD"
-aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
-```
-
-You will be prompted for the following:
-
-```sh
-Enter the required param <symbol>: ELF
-Enter the required param <owner>: **$WALLET_ADDRESS**
-```
-
-You should see the result displaying your wallet's ELF balance.
-
-  </TabItem>
-  <TabItem value="web" label="Web" default>
-
-Go to this ![url](https://faucet-ui.aelf.dev). Enter your address and click `Get Tokens`.
-
-![result](/img/get-token-ui.png)
-
-  </TabItem>
-</Tabs>
-
-### Deploy Your Smart Contract
-
-The smart contract needs to be deployed on the chain before users can interact with it.
-
-Run the following command to deploy a contract. Remember to export the path of LotteryGame.dll.patched to CONTRACT_PATH. For this you need to copy actual path src/bin/Debug/net6.0/LotteryGame.dll.patched of lottery-game directory. For example:
-
-```bash
-export CONTRACT_PATH = /Users/mohit/Desktop/aelf/lottery-game/src/bin/Debug/net6.0/LotteryGame.dll.patched 
-```
-
-```bash
-export CONTRACT_PATH="SRC_DIRECTORY_PATH" + /bin/Debug/net6.0/LotteryGame.dll.patched
-aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH -e https://tdvw-test-node.aelf.io/
-```
-
-Please wait for approximately 1 to 2 minutes. If the deployment is successful, it will provide you with the contract address.
-
-![result](/img/deploy-result.png)
-
-## 4. Interact with Your Deployed Smart Contract
-
-### Approving Smart Contract Spending
-
-```bash
-aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Approve
-```
-
-NOTE: `ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx` is the contract address of `Multitoken Contract` on aelf Testnet Sidechain (tDVW).
-When prompted, enter the following parameters to approve the spending of 90 ELF tokens:
-
-```terminal
-Enter the params one by one, type `Enter` to skip optional param:
-? Enter the required param <spender>: $CONTRACT_ADDRESS
-? Enter the required param <symbol>: ELF
-? Enter the required param <amount>: 9000000000
-```
-
-### Initializing Lottery Game Contract
-
-```bash
-aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Initialize
-```
-
-### Depositing funds into the Lottery Game Contract
-
-```bash
-aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Deposit
-```
-
-### Playing the Lottery Game
-
-```bash
-aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Play
-```
-
-Let's check the **balance**
-
-```bash
-aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
-```
-
-You will be prompted for the following:
-
-```terminal
-Enter the required param <symbol>: ELF
-Enter the required param <owner>: $WALLET_ADDRESS
-```

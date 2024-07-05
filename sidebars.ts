@@ -40,7 +40,10 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
-        { type: "doc", id: "quick-start/explore-running-aelf-side-chain/index" },
+        {
+          type: "doc",
+          id: "quick-start/explore-running-aelf-side-chain/index",
+        },
       ],
     },
   ],
@@ -178,12 +181,54 @@ const sidebars: SidebarsConfig = {
           },
           items: [
             {
-              type: "doc",
-              id: "tutorials/dapp-development/lottery-game/index",
+              type: "category",
+              label: "Vote Contract",
+              description: "Tutorials on developing vote contract",
+              link: {
+                type: "generated-index",
+                slug: "/tutorials/dapp-development/vote-contract",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "tutorials/dapp-development/vote-contract/setup-environment",
+                },
+                {
+                  type: "doc",
+                  id: "tutorials/dapp-development/vote-contract/develop-smart-contract",
+                },
+                {
+                  type: "doc",
+                  id: "tutorials/dapp-development/vote-contract/deploy-smart-contract",
+                },
+                {
+                  type: "doc",
+                  id: "tutorials/dapp-development/vote-contract/create-dapp",
+                },
+              ],
             },
             {
-              type: "doc",
-              id: "tutorials/dapp-development/vote-contract/index",
+              type: "category",
+              label: "Lottery Game Contract",
+              description: "Tutorials on developing lottery game contract",
+              link: {
+                type: "generated-index",
+                slug: "/tutorials/dapp-development/lottery-game",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "tutorials/dapp-development/lottery-game/setup-environment",
+                },
+                {
+                  type: "doc",
+                  id: "tutorials/dapp-development/lottery-game/develop-smart-contract",
+                },
+                {
+                  type: "doc",
+                  id: "tutorials/dapp-development/lottery-game/deploy-interact-smart-contract",
+                },
+              ],
             },
           ],
         },
@@ -305,5 +350,6 @@ const sidebars: SidebarsConfig = {
     },
   ],
 };
+
 
 export default sidebars;
