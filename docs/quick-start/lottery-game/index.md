@@ -1403,10 +1403,10 @@ You will be prompted for the following:
 
 ```sh
 Enter the required param <symbol>: ELF
-Enter the required param <owner>: $WALLET_ADDRESS
+Enter the required param <owner>: **$WALLET_ADDRESS**
 ```
 
-You should see the Result displaying your wallet's ELF balance.
+You should see the result displaying your wallet's ELF balance.
 
   </TabItem>
   <TabItem value="web" label="Web" default>
@@ -1422,12 +1422,13 @@ Go to this url <https://faucet-ui.aelf.dev>. Enter your address and click `Get T
 
 The smart contract needs to be deployed on the chain before users can interact with it.
 
-Run the following command to deploy a contract. Remember to export the path of LotteryGame.dll.patched to CONTRACT_PATH. Remember to export CONTRACT_FILE equals to LotteryGame.
+Run the following command to deploy a contract. Remember to export the path of LotteryGame.dll.patched to CONTRACT_PATH. For this you need to copy actual path src/bin/Debug/net6.0/LotteryGame.dll.patched of lottery-game directory. For example:
+
+export CONTRACT_PATH = /Users/mohit/Desktop/aelf/lottery-game/src/bin/Debug/net6.0/LotteryGame.dll.patched 
 
 ```bash
-export CONTRACT_PATH="SRC_DIRECTORY_PATH" + /bin/Debug/net6.0
-export CONTRACT_FILE=LotteryGame
-aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH/$CONTRACT_FILE.dll.patched -e https://tdvw-test-node.aelf.io/
+export CONTRACT_PATH="SRC_DIRECTORY_PATH" + /bin/Debug/net6.0/LotteryGame.dll.patched
+aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH -e https://tdvw-test-node.aelf.io/
 ```
 
 Please wait for approximately 1 to 2 minutes. If the deployment is successful, it will provide you with the contract address.
@@ -1436,13 +1437,13 @@ Please wait for approximately 1 to 2 minutes. If the deployment is successful, i
 
 ## 4. Interact with Your Deployed Smart Contract
 
-### 4.1 Approving Smart Contract Spending
+### Approving Smart Contract Spending
 
 ```bash
 aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Approve
 ```
 
-`ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx` is the contract address of **Multitoken Contract** on aelf Testnet Sidechain (tDVW).
+NOTE: `ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx` is the contract address of `Multitoken Contract` on aelf Testnet Sidechain (tDVW).
 When prompted, enter the following parameters to approve the spending of 90 ELF tokens:
 
 ```terminal
@@ -1452,19 +1453,19 @@ Enter the params one by one, type `Enter` to skip optional param:
 ? Enter the required param <amount>: 9000000000
 ```
 
-### 4.2 Initializing Lottery Game Contract
+### Initializing Lottery Game Contract
 
 ```bash
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Initialize
 ```
 
-### 4.3 Depositing funds into the Lottery Game Contract
+### Depositing funds into the Lottery Game Contract
 
 ```bash
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Deposit
 ```
 
-### 4.4 Playing the Lottery Game
+### Playing the Lottery Game
 
 ```bash
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Play
