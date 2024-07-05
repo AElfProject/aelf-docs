@@ -421,3 +421,7 @@ createSideChain().then(() => {
 ```
 
 **Note**: Replace the placeholders in the script with actual values and logic for your use case.
+
+
+
+Next, we can move on to [Running a Side Chain](tutorials/operate-a-node/run-a-side-chain).
