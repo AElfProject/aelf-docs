@@ -546,46 +546,46 @@ In the next step, we will compile our smart contract and deploy our written smar
 
 #### 2. Writing Unit Tests
 
-   - We'll now write unit tests for our Voting Smart Contract in \*\*\`test/BuildersDAOTests.cs\`\*\*.
-   - Replace the current contents of \*\*\`test/BuildersDAOTests.cs\`\*\* with the following code snippet.
+   - We'll now write unit tests for our Voting Smart Contract in \\*\\*\\`test/BuildersDAOTests.cs\\`\\*\\*.
+   - Replace the current contents of \\*\\*\\`test/BuildersDAOTests.cs\\`\\*\\* with the following code snippet.
 
 
 #### Implementing Unit Test for Initialize
 
-The \`Initialize\` method initializes the smart contract by setting up Proposal #1
+The \\`Initialize\\` method initializes the smart contract by setting up Proposal #1
 
 This process ensures thorough testing and readiness for deployment of our smart contract.
 
 
-  - \*\*Positive Cases:\*\*
+  - \\*\\*Positive Cases:\\*\\*
 
-    - Call \`Initialize\` once and verify the proposal title using \*\*\`GetProposal\`\*\* with \*\*\`proposalId = "0"\`\*\*. 
-    - Check if the title is "Proposal #1" using \*\*\`ShouldBe\`\*\* method.
+    - Call \\`Initialize\\` once and verify the proposal title using \\*\\*\\`GetProposal\\`\\*\\* with \\*\\*\\`proposalId = "0"\\`\\*\\*. 
+    - Check if the title is "Proposal #1" using \\*\\*\\`ShouldBe\\`\\*\\* method.
 
-\`\`\`csharp
-\[Fact]
+\\`\\`\\`csharp
+\\[Fact]
 public async Task InitializeTest_Success()
 {
     await BuildersDAOStub.Initialize.SendAsync(new Empty());
     var proposal = await BuildersDAOStub.GetProposal.CallAsync(new StringValue {Value = "0"});
     proposal.Title.ShouldBe("Proposal #1");
 }
-\`\`\`
+\\`\\`\\`
 
-  - \*\*Negative cases:\*\*
+  - \\*\\*Negative cases:\\*\\*
 
     - We call the initialize twice, when we make the second call, it will throw an exception containing already initialized.
-    - We can use \*\*\`ShouldContain\`\*\* method to verify the exception message.
+    - We can use \\*\\*\\`ShouldContain\\`\\*\\* method to verify the exception message.
 
-\`\`\`csharp
-\[Fact]
+\\`\\`\\`csharp
+\\[Fact]
 public async Task InitializeTest_Duplicate()
 {
     await BuildersDAOStub.Initialize.SendAsync(new Empty());
     var executionResult = await BuildersDAOStub.Initialize.SendWithExceptionAsync(new Empty());
     executionResult.TransactionResult.Error.ShouldContain("already initialized");
 }
-\`\`\` -->
+\\`\\`\\` -->
 
 ### Complete Implementation
 
@@ -708,7 +708,6 @@ dotnet build
 * You should observe the following as shown below indicating a successful build.
 
    ![img](/img/cs-dotnet-build-contract.png)
-
 * **Voting Smart Contract Successfully Compiled!**
 
    With our smart contract successfully compiled, we are now ready to deploy our smart contract!
