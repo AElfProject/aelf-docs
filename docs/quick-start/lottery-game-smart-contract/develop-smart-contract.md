@@ -32,7 +32,9 @@ Firstly, rename `Protobuf/contract/hello_world_contract.proto` to `lottery_game_
 mv Protobuf/contract/hello_world_contract.proto Protobuf/contract/lottery_game_contract.proto
 ```
 
-Next, the implementation of file `src/Protobuf/contract/lottery_game_contract.proto` is as follows:
+Next, open the project with your IDE. 
+
+The implementation of file `src/Protobuf/contract/lottery_game_contract.proto` is as follows:
 
 ```csharp
 syntax = "proto3";
