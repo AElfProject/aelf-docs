@@ -18,7 +18,7 @@ When prompted, enter the following parameters to approve the spending of 90 ELF 
 
 ```terminal
 Enter the params one by one, type `Enter` to skip optional param:
-? Enter the required param <spender>: $CONTRACT_ADDRESS
+? Enter the required param <spender>: "INSERT_YOUR_CONTRACT_ADDRESS_HERE"
 ? Enter the required param <symbol>: ELF
 ? Enter the required param <amount>: 9000000000
 ```
