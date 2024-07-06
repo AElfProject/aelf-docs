@@ -1,11 +1,11 @@
 {
   "position": 2,
-  "label": "Vote",
+  "label": "Vote Contract",
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Vote",
+    "title": "Vote Contract",
     "slug": "quick-start/vote-contract"
   },
   "customProps": {

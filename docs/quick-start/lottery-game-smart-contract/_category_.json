@@ -1,11 +1,11 @@
 {
   "position": 3,
-  "label": "Lottery Game",
+  "label": "Lottery Game Contract",
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Lottery Game",
+    "title": "Lottery Game Contract",
     "slug": "quick-start/lottery-game-smart-contract"
   },
   "customProps": {
