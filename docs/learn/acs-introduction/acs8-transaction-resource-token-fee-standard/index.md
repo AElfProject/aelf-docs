@@ -1,7 +1,7 @@
 ---
 sidebar_position: 8
-title: ACS8 - Transaction Resource Token Fee Standard
-description: Called contract pays on behalf of user.
+title: Token Fee
+description: ACS8
 ---
 
 # ACS8 - Transaction Resource Token Fee Standard

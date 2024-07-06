@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
-title: Smart Contract Service
+title: Service
+description: gRPC and protobuf
 ---
 
 # Smart Contract Service

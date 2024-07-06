@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: Consensus
-description: This guide explains the aelf consensus mechanism. 
+description: aelf consensus mechanism
 ---
 
 # Consensus

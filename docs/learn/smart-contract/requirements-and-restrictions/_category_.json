@@ -1,0 +1,14 @@
+{
+  "position": 5,
+  "label": "Restrictions",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Requirements and Restrictions",
+    "slug": "learn/smart-contract/requirements-and-restrictions"
+  },
+  "customProps": {
+    "description": "Requirements and Restrictions"
+  }
+}

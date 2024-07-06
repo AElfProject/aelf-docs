@@ -1,7 +1,7 @@
 ---
 sidebar_position: 11
-title: ACS11 - Cross Chain Consensus Standard
-description: Customize consensus mechanisms for cross-chain operations.
+title: Cross Chain Consensus
+description: ACS11
 ---
 
 # ACS11 - Cross Chain Consensus Standard

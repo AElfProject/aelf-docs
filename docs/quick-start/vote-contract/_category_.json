@@ -1,0 +1,14 @@
+{
+  "position": 3,
+  "label": "Vote",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Vote",
+    "slug": "quick-start/vote-contract"
+  },
+  "customProps": {
+    "description": "Smart contract"
+  }
+}

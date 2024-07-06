@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Association Contract
-description: Association contract handles transactions.
+description: Transactions handling
 ---
 
 

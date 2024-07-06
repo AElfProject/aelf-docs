@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
-title: ACS3 - Contract Proposal Standard
-description: ACS3 is used when a method needs multiple approvals.
+title: Contract Proposal
+description: ACS3
 ---
 
 # ACS3 - Contract Proposal Standard

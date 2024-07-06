@@ -1,7 +1,7 @@
 ---
-sidebar_position: 9
-title: aelf Blockchain Boot Sequence
-description: This guide covers aelf's node startup process.
+sidebar_position: 5
+title: Boot Sequence
+description: aelf's node startup process
 image: /img/Logo.aelf.svg
 ---
 

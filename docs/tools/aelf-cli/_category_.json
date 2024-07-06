@@ -1,0 +1,14 @@
+{
+  "position": 3,
+  "label": "aelf CLI",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "aelf CLI",
+    "slug": "tools/aelf-cli"
+  },
+  "customProps": {
+    "description": "Command-line interface for aelf"
+  }
+}

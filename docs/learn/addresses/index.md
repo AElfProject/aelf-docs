@@ -1,7 +1,7 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 title: Addresses
-description: This guide explains how addresses work in aelf. 
+description: How aelf addresses work 
 image: /img/Logo.aelf.svg
 ---
 # Address

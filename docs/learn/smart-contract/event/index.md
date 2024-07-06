@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
-title: Smart Contract Events
+title: Events
+description: Logging transaction events
 ---
 
 # Smart Contract Events

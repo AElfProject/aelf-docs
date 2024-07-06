@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
 title: Election Contract
-description: Election Contract used for voting for Block Producers. 
+description: Voting for Block Producers
 ---
 
 # Election Contract

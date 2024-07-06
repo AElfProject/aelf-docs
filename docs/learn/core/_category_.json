@@ -1,0 +1,14 @@
+{
+  "position": 1,
+  "label": "Core",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Core",
+    "slug": "learn/core"
+  },
+  "customProps": {
+    "description": "Architecture of aelf"
+  }
+}

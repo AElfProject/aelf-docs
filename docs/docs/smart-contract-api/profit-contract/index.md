@@ -1,7 +1,7 @@
 ---
 sidebar_position: 8
 title: Profit Contract
-description: Helps in creating a scheme to share bonuses. 
+description: Bonus schemes
 ---
 
 # Profit Contract

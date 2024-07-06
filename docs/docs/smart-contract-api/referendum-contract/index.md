@@ -1,8 +1,7 @@
 ---
 sidebar_position: 2
 title: Referendum Contract
-description: Allows user voting on critical governance decisions.
-
+description: Governance decisions
 ---
 
 # Referendum

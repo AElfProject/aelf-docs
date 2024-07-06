@@ -1,7 +1,7 @@
 ---
 sidebar_position: 9
-title: ACS9 - Contract Profit Dividend Standard
-description: Profit distribution on smart contracts.
+title: Profit Dividend
+description: ACS9
 ---
 
 # ACS9 - Contract Profit Dividend Standard

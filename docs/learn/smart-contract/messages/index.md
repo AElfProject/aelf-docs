@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
-title: Smart Contract Messages
+title: Messages
+description: Calling smart contracts
 ---
 
 # Smart Contract Messages

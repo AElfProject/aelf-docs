@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
-title: Run a Testnet Node
+title: Testnet Node
+description: How to join Testnet
 ---
 # How to Join the Testnet
 

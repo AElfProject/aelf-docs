@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
-title: Contract Class Structure
+title: Class Structure
+description: Code check restrictions
 ---
 
 # Contract Class Structure

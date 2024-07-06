@@ -1,7 +1,7 @@
 ---
 sidebar_position: 10
-title: ACS10 - Dividend Pool Standard
-description: Creation and management of dividend pools.
+title: Dividend Pool
+description: ACS10
 ---
 
 # ACS10 - Dividend Pool Standard

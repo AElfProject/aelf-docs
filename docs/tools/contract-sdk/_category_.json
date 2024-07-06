@@ -1,0 +1,14 @@
+{
+  "position": 8,
+  "label": "Contract SDK",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Contract SDK",
+    "slug": "tools/contract-sdk"
+  },
+  "customProps": {
+    "description": "C# SDKs for smart contracts"
+  }
+}

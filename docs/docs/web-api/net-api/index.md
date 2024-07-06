@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Net API
+description: aelf network API Reference
 ---
 
 # Net API

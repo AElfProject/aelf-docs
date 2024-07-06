@@ -1,0 +1,14 @@
+{
+  "position": 1,
+  "label": "Chain SDK",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Chain SDK",
+    "slug": "tools/chain-sdk"
+  },
+  "customProps": {
+    "description": "SDKs for working with the blockchain."
+  }
+}

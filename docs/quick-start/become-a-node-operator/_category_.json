@@ -1,0 +1,14 @@
+{
+  "position": 2,
+  "label": "Node Operator",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Node Operator",
+    "slug": "quick-start/become-a-node-operator"
+  },
+  "customProps": {
+    "description": "Join our network"
+  }
+}

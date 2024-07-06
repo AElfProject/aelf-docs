@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
-title: Run a Mainnet Node
+title: Mainnet Node
+description: How to join Mainnet
 ---
 ## How to Join the Mainnet
 

@@ -1,0 +1,14 @@
+{
+  "position": 9,
+  "label": "ACS",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "aelf Contract Standards",
+    "slug": "learn/acs-introduction"
+  },
+  "customProps": {
+    "description": "aelf Contract Standards"
+  }
+}
