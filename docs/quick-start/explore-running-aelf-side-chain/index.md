@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 6
 title: Creation of a Side Chain
 description: How to create a side chain ?
 ---

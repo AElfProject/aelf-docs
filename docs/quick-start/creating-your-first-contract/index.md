@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
-title: Intro to aelf Development
+title: Creating your first contract
+description: Hello World
 ---
-# Intro to aelf Development
+# Creating your first contract
 
 This guide provides step-by-step instructions to set up your local development environment to get started developing and deploying a simple aelf 'Hello World' smart contract.
 
