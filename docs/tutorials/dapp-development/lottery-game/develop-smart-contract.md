@@ -1,9 +1,8 @@
 ---
 sidebar_position: 2
-title: Develop the smart contract
-description: Developing the smart contract
+title: Lottery Game
+description: Developing a lottery game smart contract
 ---
-
 ### Start Your Smart Contract Project
 
 Open your `Terminal`.
@@ -40,7 +39,7 @@ cd src
 
 The implementation of file `src/Protobuf/contract/lottery_game_contract.proto` is as follows:
 
-```csharp title= "src/Protobuf/contract/lottery_game_contract.proto"
+```csharp
 syntax = "proto3";
 
 import "aelf/core.proto";
@@ -118,7 +117,7 @@ message PlayAmountLimitMessage {
 
 The implementation of file `src/LotteryGameState.cs` is as follows:
 
-```csharp title = "src/LotteryGameState.cs"
+```csharp
 using AElf.Sdk.CSharp.State;
 using AElf.Types;
 
@@ -146,7 +145,7 @@ cd /src/Protobuf/reference
 Create a new file `token_contract.proto` under `src/Protobuf/reference/`
 The implementation of file `token_contract.proto`
 
-```csharp title = "token_contract.proto"
+```csharp
 /**
  * MultiToken contract.
  */
@@ -1048,7 +1047,7 @@ message SymbolAliasDeleted {
 Navigate to `src` and create a **new file** `ContractReferences.cs`
 The implementation of file `src/ContractRefefrence.cs` is as follows:
 
-```csharp title ="src/ContractRefefrence.cs"
+```csharp
 using AElf.Contracts.MultiToken;
 
 namespace AElf.Contracts.LotteryGame
@@ -1064,7 +1063,7 @@ namespace AElf.Contracts.LotteryGame
 
 Navigate to `src/LotteryGame.cs`
 
-```csharp title= "src/LotteryGame.cs"
+```csharp
 using AElf.Contracts.MultiToken;
 using AElf.Sdk.CSharp;
 using AElf.Types;
