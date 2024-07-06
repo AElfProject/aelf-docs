@@ -15,17 +15,6 @@ cd lottery-game
 dotnet new aelf -n LotteryGame
 ```
 
-### Install ACS12.proto
-
-```bash
-mkdir Protobuf
-cd Protobuf
-mkdir reference
-cd ..
-export ACS_DIR=Protobuf/reference
-curl -O --output-dir $ACS_DIR https://raw.githubusercontent.com/AElfProject/AElf/dev/protobuf/acs12.proto
-```
-
 ### Adding Your Smart Contract Code
 
 Now that we have a template lottery game project, we can customise the template to incorporate our own contract logic.
@@ -37,7 +26,13 @@ cd src
 
 #### Defining Methods and Messages
 
-The implementation of file `src/Protobuf/contract/lottery_game_contract.proto` is as follows:
+Firstly, rename `Protobuf/contract/hello_world_contract.proto` to `lottery_game_contract.proto`:
+
+```
+mv Protobuf/contract/hello_world_contract.proto Protobuf/contract/lottery_game_contract.proto
+```
+
+Next, the implementation of file `src/Protobuf/contract/lottery_game_contract.proto` is as follows:
 
 ```csharp
 syntax = "proto3";
@@ -136,14 +131,8 @@ namespace AElf.Contracts.LotteryGame
 
 #### Contract Reference State
 
-Create a new folder **reference** under `src/Protobuf/`
-
-```bash
-cd /src/Protobuf/reference
-```
-
 Create a new file `token_contract.proto` under `src/Protobuf/reference/`
-The implementation of file `token_contract.proto`
+The implementation of file `token_contract.proto`:
 
 ```csharp
 /**
