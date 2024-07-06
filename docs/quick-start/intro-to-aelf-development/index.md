@@ -208,6 +208,12 @@ Please wait for approximately 1 to 2 minutes. If the deployment is successful, i
 
 NOTE: If aelf-deploy command returns "aelf-deploy not found", then uninstall and reinstall aelf.deploy.
 
+Export your smart contract address:
+
+```bash
+export CONTRACT_ADDRESS="YOUR_SMART_CONTRACT_ADDRESS e.g. 2LUmicHyH4RXrMjG4beDwuDsiWJESyLkgkwPdGTR8kahRzq5XS"
+```
+
 ## 4. Interact with Your Deployed Smart Contract
 
 Lets try to call methods on your newly-deployed smart contract using `aelf-command`.

@@ -10,3 +10,9 @@ aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH -e https://
 Please wait for approximately 1 to 2 minutes. If the deployment is successful, it will provide you with the contract address.
 
 ![result](/img/deploy-result.png)
+
+Export your smart contract address:
+
+```bash
+export CONTRACT_ADDRESS="YOUR_SMART_CONTRACT_ADDRESS e.g. 2LUmicHyH4RXrMjG4beDwuDsiWJESyLkgkwPdGTR8kahRzq5XS"
+```
