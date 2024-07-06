@@ -192,15 +192,13 @@ Go to this ![url](https://faucet-ui.aelf.dev). Enter your address and click `Get
 
 The smart contract needs to be deployed on the chain before users can interact with it.
 
-Run the following command to deploy a contract. Remember to export the path of HelloWorld.dll.patched to CONTRACT_PATH. For this you need to copy actual path src/bin/Debug/net6.0/HelloWorld.dll.patched of hello-world directory.
-For example: 
+Run the following command to deploy a contract. Remember to export the path of HelloWorld.dll.patched to CONTRACT_PATH.
 
 ```bash
-export CONTRACT_PATH = /Users/mohit/Desktop/aelf/hello-world/src/bin/Debug/net6.0/HelloWorld.dll.patched
+export CONTRACT_PATH=$(find ~+ . -path "*patched*" | head -n 1)
 ```
 
 ```bash
-export CONTRACT_PATH="SRC_DIRECTORY_PATH" + /bin/Debug/net6.0/HelloWorld.dll.patched
 aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH -e https://tdvw-test-node.aelf.io/
 ```
 
@@ -209,6 +207,12 @@ Please wait for approximately 1 to 2 minutes. If the deployment is successful, i
 ![result](/img/deploy-result.png)
 
 NOTE: If aelf-deploy command returns "aelf-deploy not found", then uninstall and reinstall aelf.deploy.
+
+Export your smart contract address:
+
+```bash
+export CONTRACT_ADDRESS="YOUR_SMART_CONTRACT_ADDRESS e.g. 2LUmicHyH4RXrMjG4beDwuDsiWJESyLkgkwPdGTR8kahRzq5XS"
+```
 
 ## 4. Interact with Your Deployed Smart Contract
 

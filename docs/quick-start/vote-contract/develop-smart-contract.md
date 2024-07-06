@@ -52,7 +52,7 @@ syntax = "proto3";
 import "aelf/core.proto";
 import "aelf/options.proto";
 import "google/protobuf/empty.proto";
-import "acs12.proto";
+import "Protobuf/reference/acs12.proto";
 
 // The namespace of this class
 option csharp_namespace = "AElf.Contracts.BuildersDAO";
@@ -61,7 +61,7 @@ service BuildersDAO {
   // The name of the state class the smart contract is going to use to access
   // blockchain state
   option (aelf.csharp_state) = "AElf.Contracts.BuildersDAO.BuildersDAOState";
-  option (aelf.base) = "acs12.proto";
+  option (aelf.base) = "Protobuf/reference/acs12.proto";
 
   // Actions -> Methods that change state of smart contract
   // This method sets up the initial state of our StackUpDAO smart contract

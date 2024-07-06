@@ -43,14 +43,14 @@ import "aelf/core.proto";
 import "aelf/options.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
-import "acs12.proto";
+import "Protobuf/reference/acs12.proto";
 // The namespace of this class
 option csharp_namespace = "AElf.Contracts.LotteryGame";
 
 service LotteryGame {
   // The name of the state class the smart contract is going to use to access blockchain state
   option (aelf.csharp_state) = "AElf.Contracts.LotteryGame.LotteryGameState";
-  option (aelf.base) = "acs12.proto";
+  option (aelf.base) = "Protobuf/reference/acs12.proto";
 
   rpc Initialize (google.protobuf.Empty) returns (google.protobuf.Empty) {
   }

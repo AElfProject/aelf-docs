@@ -82,20 +82,24 @@ Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). Enter y
 
 The smart contract needs to be deployed on the chain before users can interact with it.
 
-Run the following command to deploy a contract. Remember to export the path of BuildersDAO.dll.patched to CONTRACT_PATH. For this you need to copy actual path src/bin/Debug/net6.0/BuildersDAO.dll.patched of hello-world directory. For example:
+Run the following command to deploy a contract. Remember to export the path of BuildersDAO.dll.patched to CONTRACT_PATH.
 
 ```bash
-export CONTRACT_PATH = /Users/mohit/Desktop/aelf/capstone_aelf/src/bin/Debug/net6.0/BuildersDAO.dll.patched
+export CONTRACT_PATH=$(find ~+ . -path "*patched*" | head -n 1)
 ```
 
 ```bash title="Terminal"
-export CONTRACT_PATH="SRC_DIRECTORY_PATH" + /bin/Debug/net6.0
-export CONTRACT_FILE=BuildersDAO
-aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH/$CONTRACT_FILE.dll.patched -e https://tdvw-test-node.aelf.io/
+aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH -e https://tdvw-test-node.aelf.io/
 ```
 
 Please wait for approximately 1 to 2 minutes. If the deployment is successful, it will provide you with the contract address.
 
 ![result](/img/deploy-result.png)
+
+Export your smart contract address:
+
+```bash
+export CONTRACT_ADDRESS="YOUR_SMART_CONTRACT_ADDRESS e.g. 2LUmicHyH4RXrMjG4beDwuDsiWJESyLkgkwPdGTR8kahRzq5XS"
+```
 
 
