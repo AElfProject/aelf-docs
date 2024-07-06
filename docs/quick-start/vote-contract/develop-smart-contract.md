@@ -19,17 +19,6 @@ cd capstone_aelf
 dotnet new aelf -n BuildersDAO
 ```
 
-### Install ACS12.proto
-
-```bash
-mkdir Protobuf
-cd Protobuf
-mkdir reference
-cd ..
-export ACS_DIR=Protobuf/reference
-curl -O --output-dir $ACS_DIR https://raw.githubusercontent.com/AElfProject/AElf/dev/protobuf/acs12.proto
-```
-
 ### Adding Your Smart Contract Code
 
 * Open your project in your favorite IDE (like VSCode).
