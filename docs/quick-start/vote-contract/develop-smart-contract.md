@@ -1,21 +1,19 @@
 ---
-sidebar_position: 2
+sidebar_position: 4
 title: Develop smart contract
 description: Develop smart contract
 ---
-
 ### Project Setup
 
-- Open your `Terminal`.
-
-- Enter the following command to create a new project folder:
+* Open your `Terminal`.
+* Enter the following command to create a new project folder:
 
 ```bash
 mkdir capstone_aelf
 cd capstone_aelf
 ```
 
-- Enter this command to create the capstone project.
+* Enter this command to create the capstone project.
 
 ```bash
 dotnet new aelf -n BuildersDAO
@@ -34,24 +32,19 @@ curl -O --output-dir $ACS_DIR https://raw.githubusercontent.com/AElfProject/AElf
 
 ### Adding Your Smart Contract Code
 
-- Open your project in your favorite IDE (like VSCode).
-
-- Rename the `src/Protobuf/contract/hello_world_contract.proto` file to `BuildersDAO.proto`.
-
-- After renaming the file, your working directory should look like this.
+* Open your project in your favorite IDE (like VSCode).
+* Rename the `src/Protobuf/contract/hello_world_contract.proto` file to `BuildersDAO.proto`.
+* After renaming the file, your working directory should look like this.
 
   ![img](/img/vote-be-project-dir.png)
-
-- That's it! Your project is now set up and ready to go 🚀
-
+* That's it! Your project is now set up and ready to go 🚀
 
 ### Defining Methods and Messages
 
 Let's add the RPC methods and message definitions to our Voting dApp.
 
-- Open `src/Protobuf/contract/BuildersDAO.proto`
-
-- Replace its contents with this code snippet.
+* Open `src/Protobuf/contract/BuildersDAO.proto`
+* Replace its contents with this code snippet.
 
 ```csharp
 syntax = "proto3";
@@ -153,55 +146,38 @@ message ProposalList {
 
 #### Understanding the Code
 
-
 ##### 1. **Define Syntax & Imports**
 
-   - `proto3` version.
-   - Import necessary Protobuf definitions and libraries.
-
+* `proto3` version.
+* Import necessary Protobuf definitions and libraries.
 
 ##### 2. **RPC Methods**
 
-   - `Initialize` : Set up initial state
-
-   - `JoinDAO` : User joins DAO. User's `address` is the function parameter.
-
-   - `CreateProposal` : User creates a proposal. User's `address` , `title` , `description` , `vote threshold` are the function parameter.
-
-   - `VoteOnProposal` : User votes on a proposal. User's `address` , `proposal` `vote` is the function parameter.
-
-   - `GetAllProposals` : Fetch list of proposals
-
+* `Initialize` : Set up initial state
+* `JoinDAO` : User joins DAO. User's `address` is the function parameter.
+* `CreateProposal` : User creates a proposal. User's `address` , `title` , `description` , `vote threshold` are the function parameter.
+* `VoteOnProposal` : User votes on a proposal. User's `address` , `proposal` `vote` is the function parameter.
+* `GetAllProposals` : Fetch list of proposals
 
 ##### 3. **Getter Methods**
 
-   - `GetProposal` : Fetch proposal by ID
-   
-   - `GetMemberCount` : Fetch member count
-   
-   - `GetMemberExist` : Check if a member exists by address
+* `GetProposal` : Fetch proposal by ID
+* `GetMemberCount` : Fetch member count
+* `GetMemberExist` : Check if a member exists by address
 
 ##### 4. **Message Definitions**
 
-   - `Member` : DAO member (address)
-   
-   - `Proposal` : Proposal (title, description, votes, status, vote threshold)
-   
-   - `CreateProposalInput` : Fields for creating a proposal (title, description, vote threshold)
-   
-   - `VoteInput` : Fields for voting on a proposal (proposal ID, vote)
-   
-   - `MemberList` : List of DAO members
-   
-   - `ProposalList` : List of proposals
-
-
+* `Member` : DAO member (address)
+* `Proposal` : Proposal (title, description, votes, status, vote threshold)
+* `CreateProposalInput` : Fields for creating a proposal (title, description, vote threshold)
+* `VoteInput` : Fields for voting on a proposal (proposal ID, vote)
+* `MemberList` : List of DAO members
+* `ProposalList` : List of proposals
 
 ### Defining Contract State
 
-- Open the `src/BuildersDAOState.cs` file.
-
-- Replace its contents with this code snippet.
+* Open the `src/BuildersDAOState.cs` file.
+* Replace its contents with this code snippet.
 
 ```csharp
 using System.Collections.Generic;
@@ -227,23 +203,20 @@ namespace AElf.Contracts.BuildersDAO
 
 ##### 3. **State Variables**
 
-   - `Members` : Mapping each member to a boolean indicates if they joined the DAO
-   
-   - `Proposals` : Mapping each proposal to an ID for identification and retrieval
-    
-   - `MemberCountId` and `NextProposalId` : Track total number of members and proposals
+* `Members` : Mapping each member to a boolean indicates if they joined the DAO
+* `Proposals` : Mapping each proposal to an ID for identification and retrieval
+* `MemberCountId` and `NextProposalId` : Track total number of members and proposals
 
 #### Next Step
 
-- Implement the logic of our voting smart contract.
-
+* Implement the logic of our voting smart contract.
 
 ### Implement Voting Smart Contract Logic
 
 #### Checking Smart Contract Logics
 
-- Open `src/BuildersDAO.cs`
-- Replace the existing content with this code snippet.
+* Open `src/BuildersDAO.cs`
+* Replace the existing content with this code snippet.
 
 ```csharp
 using System.Collections.Generic;
@@ -288,14 +261,10 @@ namespace AElf.Contracts.BuildersDAO
 
 #### Implementing Initialize Function
 
-- Go to the comment `Implement Initialize Smart Contract Logic.`
-
-- Check if the smart contract is already initialized; return if true.
-
-- Define a hardcoded proposal with necessary parameters.
-
-- Update the Proposals state variable with the hardcoded proposal and increment the proposalId.
-
+* Go to the comment `Implement Initialize Smart Contract Logic.`
+* Check if the smart contract is already initialized; return if true.
+* Define a hardcoded proposal with necessary parameters.
+* Update the Proposals state variable with the hardcoded proposal and increment the proposalId.
 
 ```csharp
 // Implement Initialize Smart Contract Logic
@@ -320,19 +289,14 @@ public override Empty Initialize(Empty input)
 }
 ```
 
-
 #### Implementing Join DAO Function
 
-- Go to the comment `Implement Join DAO Logic`
-
-- Check if the member already exists in the DAO using the `Members` state variable.
-
-- If not found, update `Members` to include the user's address.
-
-- Increment `membersCount` to reflect the new member added.
+* Go to the comment `Implement Join DAO Logic`
+* Check if the member already exists in the DAO using the `Members` state variable.
+* If not found, update `Members` to include the user's address.
+* Increment `membersCount` to reflect the new member added.
 
 You'll implement this function. Once done, you can proceed to the next page to compare your code with the reference implementation.
-
 
 ```csharp
 // Implement Join DAO Logic
@@ -346,16 +310,12 @@ public override Empty JoinDAO(Address input)
 }
 ```
 
-
 #### Implementing Create Proposal Function
 
-- Go to the comment `Implement Create Proposal Logic`
-
-- Check if the user is a DAO member (required to create proposals).
-
-- Create a new proposal object using fields from `CreateProposalInput`.
-
-- `Update` Proposals with the new proposal, increment NextProposalId, and return the created proposal object.
+* Go to the comment `Implement Create Proposal Logic`
+* Check if the user is a DAO member (required to create proposals).
+* Create a new proposal object using fields from `CreateProposalInput`.
+* `Update` Proposals with the new proposal, increment NextProposalId, and return the created proposal object.
 
 Now, use the provided code snippet to fill in the `CreateProposal` function.
 
@@ -381,24 +341,19 @@ public override Proposal CreateProposal(CreateProposalInput input)
 }
 ```
 
-
-
 #### Implementing Vote On Proposal Function
 
-- Go to the comment `Implement Vote on Logic`
+* Go to the comment `Implement Vote on Logic`
+* Perform these checks:
 
-- Perform these checks:
+  * Verify if the member is a DAO member (required to vote).
+  * Confirm if the proposal exists; otherwise, display an error message.
+  * Check if the member has already voted on the proposal; members can vote only once.
+* If all checks pass, store the member’s vote and update the proposal state.
+* Update the proposal status based on vote thresholds:
 
-   - Verify if the member is a DAO member (required to vote).
-   - Confirm if the proposal exists; otherwise, display an error message.
-   - Check if the member has already voted on the proposal; members can vote only once.
-
-- If all checks pass, store the member’s vote and update the proposal state.
-
-- Update the proposal status based on vote thresholds:
-
-   - If `yesVotes` reach the threshold, update status to "PASSED".
-   - If `noVotes` reach the threshold, update status to "DENIED".
+  * If `yesVotes` reach the threshold, update status to "PASSED".
+  * If `noVotes` reach the threshold, update status to "DENIED".
 
 Now, use the provided code snippet to complete the `VoteOnProposal` function.
 
@@ -441,20 +396,15 @@ public override Proposal VoteOnProposal(VoteInput input)
 }
 ```
 
-
-
 #### Implementing Get All Proposals Function
 
-- Go to the comment `Implement Get All Proposals Logic`
+* Go to the comment `Implement Get All Proposals Logic`
+* Create a new `ProposalList` object from the message definition in `BuildersDAO.proto`.
+* Fetch and iterate through `Proposals`.
+* Update `ProposalList` with proposal objects and return the list of proposals.
 
-- Create a new `ProposalList` object from the message definition in `BuildersDAO.proto`.
-
-- Fetch and iterate through `Proposals`.
-
-- Update `ProposalList` with proposal objects and return the list of proposals.
-
-   - If `yesVotes` reach the threshold, update status to "PASSED".
-   - If `noVotes` reach the threshold, update status to "DENIED".
+  * If `yesVotes` reach the threshold, update status to "PASSED".
+  * If `noVotes` reach the threshold, update status to "DENIED".
 
 You'll implement this function. Once done, you can proceed to the next page to compare your code with the reference implementation.
 
@@ -469,31 +419,27 @@ public override ProposalList GetAllProposals(Empty input)
 }
 ```
 
-
-
 #### Implementing Get Proposal / Get Member Count / Get Member Exist Functions
 
 ##### 1. Get Proposal
 
-- Navigate to `Implement Get Proposal Logic`.
-- Retrieve a proposal by `proposalId`.
-- Use `proposalId` as the key to query `State.Proposals`.
-- Return the corresponding proposal value.
-
+* Navigate to `Implement Get Proposal Logic`.
+* Retrieve a proposal by `proposalId`.
+* Use `proposalId` as the key to query `State.Proposals`.
+* Return the corresponding proposal value.
 
 ##### 2. Get Member Count
 
-- Navigate to `Implement Get Member Count Logic`.
-- Retrieve the total member count.
-- Return the value of `MemberCount` from `State`.
-
+* Navigate to `Implement Get Member Count Logic`.
+* Retrieve the total member count.
+* Return the value of `MemberCount` from `State`.
 
 ##### 3. Get Member Exist
 
-- Navigate to `Implement Get Member Exist Logic`.
-- Check if a member exists by `address`.
-- Use `address` as the key to query `State.Members`.
-- Return the corresponding existence value.
+* Navigate to `Implement Get Member Exist Logic`.
+* Check if a member exists by `address`.
+* Use `address` as the key to query `State.Members`.
+* Return the corresponding existence value.
 
 Implement these methods to access different states effectively in your smart contract.
 
@@ -524,8 +470,6 @@ With that, we have implemented all the functionalities of our Voting dApp smart 
 
 In the next step, we will compile our smart contract and deploy our written smart contract to the aelf sidechain.
 
-
-
 <!-- ### Unit Test Voting Smart Contract Logic
 
 #### 1. Importance of Unit Testing
@@ -535,57 +479,54 @@ In the next step, we will compile our smart contract and deploy our written smar
 
 #### 2. Writing Unit Tests
 
-   - We'll now write unit tests for our Voting Smart Contract in `test/BuildersDAOTests.cs`.
-   - Replace the current contents of `test/BuildersDAOTests.cs` with the following code snippet.
+   - We'll now write unit tests for our Voting Smart Contract in \`test/BuildersDAOTests.cs\`.
+   - Replace the current contents of \`test/BuildersDAOTests.cs\` with the following code snippet.
 
 
 #### Implementing Unit Test for Initialize
 
-The `Initialize` method initializes the smart contract by setting up Proposal #1
+The \`Initialize\` method initializes the smart contract by setting up Proposal #1
 
 This process ensures thorough testing and readiness for deployment of our smart contract.
 
 
-  - **Positive Cases:**
+  - \*\*Positive Cases:\*\*
 
-    - Call `Initialize` once and verify the proposal title using `GetProposal` with `proposalId = "0"`. 
-    - Check if the title is "Proposal #1" using `ShouldBe` method.
+    - Call \`Initialize\` once and verify the proposal title using \`GetProposal\` with \`proposalId = "0"\`. 
+    - Check if the title is "Proposal #1" using \`ShouldBe\` method.
 
-```csharp
-[Fact]
+\`\`\`csharp
+\[Fact]
 public async Task InitializeTest_Success()
 {
     await BuildersDAOStub.Initialize.SendAsync(new Empty());
     var proposal = await BuildersDAOStub.GetProposal.CallAsync(new StringValue {Value = "0"});
     proposal.Title.ShouldBe("Proposal #1");
 }
-```
+\`\`\`
 
-  - **Negative cases:**
+  - \*\*Negative cases:\*\*
 
     - We call the initialize twice, when we make the second call, it will throw an exception containing already initialized.
-    - We can use `ShouldContain` method to verify the exception message.
+    - We can use \`ShouldContain\` method to verify the exception message.
 
-```csharp
-[Fact]
+\`\`\`csharp
+\[Fact]
 public async Task InitializeTest_Duplicate()
 {
     await BuildersDAOStub.Initialize.SendAsync(new Empty());
     var executionResult = await BuildersDAOStub.Initialize.SendWithExceptionAsync(new Empty());
     executionResult.TransactionResult.Error.ShouldContain("already initialized");
 }
-``` -->
-
+\`\`\` -->
 
 ### Complete Implementation
 
 #### Implementing Join DAO Function
 
-- **Check Membership** : See if the address has already joined the DAO by checking State.Members. Use the Assert method for this verification.
-
-- **Add New Member** : If the address isn't a member yet, add it to State.Members and set its value to true.
-
-- **Update Member Count** : Increase State.MemberCount by 1 and save the new value.
+* **Check Membership** : See if the address has already joined the DAO by checking State.Members. Use the Assert method for this verification.
+* **Add New Member** : If the address isn't a member yet, add it to State.Members and set its value to true.
+* **Update Member Count** : Increase State.MemberCount by 1 and save the new value.
 
 ```csharp
 public override Empty JoinDAO(Address input)
@@ -603,13 +544,10 @@ public override Empty JoinDAO(Address input)
 
 #### Implementing Get All Proposals Function
 
-- Create a list object called `ProposalList`.
-
-- Loop from 0 to the value of `State.NextProposalId`.
-
-- In each loop iteration, get the values from `State.Proposals` and add them to `ProposalList`.
-
-- Return `ProposalList`.
+* Create a list object called `ProposalList`.
+* Loop from 0 to the value of `State.NextProposalId`.
+* In each loop iteration, get the values from `State.Proposals` and add them to `ProposalList`.
+* Return `ProposalList`.
 
 ```csharp
 public override ProposalList GetAllProposals(Empty input)
@@ -628,4 +566,3 @@ public override ProposalList GetAllProposals(Empty input)
 ```
 
 Once you've implemented these two methods and run the unit tests again, you should see that all test cases pass.
-
