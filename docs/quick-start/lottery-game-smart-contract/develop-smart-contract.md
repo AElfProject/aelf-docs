@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Develop smart contract
 description: Developing a lottery game smart contract
 ---
