@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 
 **Install Required Packages**
 
-* [Install dotnet](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+* [Install dotnet SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 * Install aelf contract templates
 
 ```bash
@@ -49,7 +49,6 @@ Provide required permissions while installing aelf-command globally.
 * [Install Git](https://git-scm.com/downloads)
 
 As we will be using a ready made project, we will require git to clone from the project.
-
 
 </TabItem>
 
