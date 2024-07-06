@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Lottery Game
+title: Develop smart contract
 description: Developing a lottery game smart contract
 ---
 ### Start Your Smart Contract Project
