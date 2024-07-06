@@ -21,12 +21,12 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 ## 🏁 Quick Start
 
-- [Intro](/quick-start/intro-to-aelf-development/) to aelf Development
-- [Develop](/quick-start/develop-your-first-aelf-smart-contract/) your first aelf Smart Contract
+- [Creating](/quick-start/creating-your-first-contract/) your first contract
+- [Vote](/quick-start/vote-contract/) Contract
+- [Lottery Game](/quick-start/lottery-game-smart-contract/) Contract
 - [Become](/quick-start/become-a-node-operator/) a Node Operator
-- [Start](/quick-start/start-and-run-a-node-on-aelf-locally-or-on-cloud/) and run a node on aelf locally or on cloud
-- [Run](/quick-start/run-a-side-chain/) a Side Chain
-- [Explore](/quick-start/explore-running-aelf-side-chain/) running aelf's side chain
+- [Run](/quick-start/run-a-mainnet-node/) a Mainnet node
+- [Create](/quick-start/explore-running-aelf-side-chain/) a side chain
 
 </article>
 
@@ -38,6 +38,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 - [Cross-chain](/learn/cross-chain/) - aelf's cross-chain architecture
 - [Consensus](/learn/consensus/) - Understanding aelf's consensus mechanism
 - [Network](/learn/network/) - Exploring aelf's network architecture
+- [Boot Sequence](/learn/boot-sequence/) - Learn about aelf's boot sequence
 - [Addresses](/learn/addresses/) - Managing aelf's blockchain addresses
 - [Transactions](/learn/transactions/) - Handling transaction processes
 - [Smart Contract](/learn/smart-contract/) - aelf's smart contract architecture
@@ -49,12 +50,12 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 ## 📖 Tutorials
 
-- [Smart Contract](/quick-start/develop-your-first-aelf-smart-contract/) Development
+- [Smart Contract](/quick-start/creating-your-first-contract/) Development
 - [Operate a Node](/tutorials/operate-a-node/)
   - Run a [Testnet](/tutorials/operate-a-node/run-a-testnet-node/) Node
   - Run a [Mainnet](/tutorials/operate-a-node/run-a-mainnet-node/) Node
-  - Run a [Side Chain](/tutorials/operate-a-node/run-a-side-chain/)
   - Run aelf on [Cloud](/tutorials/operate-a-node/run-aelf-on-cloud/)
+  - Run a [Side Chain](/tutorials/run-a-side-chain/)
 
 </article>
 
@@ -69,6 +70,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 - [Faucet](/tools/faucet/) - Test your dApp with aelf test tokens
 - [Design](/tools/design/) - Explore aelf design library
 - [Playground](/tools/aelf-playground/) - Play with aelf in your browser
+- [Contract SDK](/tools/contract-sdk/) - C# SDKs
 
 </article>
 
@@ -76,8 +78,8 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 ## ⭐️ References
 
-- [Web API](/docs/web-api/) - Interact with the aelf blockchain through the web
 - [Smart Contract API](/docs/smart-contract-api/) - Access smart contract functionalities using API
+- [Web API](/docs/web-api/) - Interact with the aelf blockchain through the web
 
 </article>
 
