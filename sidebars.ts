@@ -44,6 +44,33 @@ const sidebars: SidebarsConfig = {
           type: "doc",
           id: "quick-start/explore-running-aelf-side-chain/index",
         },
+        {
+          type: "category",
+          label: "Lottery Game Contract",
+          description: "Tutorials on developing lottery game contract",
+          link: {
+            type: "generated-index",
+            slug: "/quick-start/lottery-game-smart-contract",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "quick-start/lottery-game-smart-contract/setup-environment",
+            },
+            {
+              type: "doc",
+              id: "quick-start/lottery-game-smart-contract/develop-smart-contract",
+            },
+            {
+              type: "doc",
+              id: "quick-start/lottery-game-smart-contract/deploy-smart-contract",
+            },
+            {
+              type: "doc",
+              id: "quick-start/lottery-game-smart-contract/interact-smart-contact",
+            },
+          ],
+        },
       ],
     },
   ],
@@ -204,33 +231,6 @@ const sidebars: SidebarsConfig = {
                 {
                   type: "doc",
                   id: "tutorials/dapp-development/vote-contract/create-dapp",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Lottery Game Contract",
-              description: "Tutorials on developing lottery game contract",
-              link: {
-                type: "generated-index",
-                slug: "/tutorials/dapp-development/lottery-game",
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "tutorials/dapp-development/lottery-game/setup-environment",
-                },
-                {
-                  type: "doc",
-                  id: "tutorials/dapp-development/lottery-game/develop-smart-contract",
-                },
-                {
-                  type: "doc",
-                  id: "tutorials/dapp-development/lottery-game/deploy-smart-contract",
-                },
-                {
-                  type: "doc",
-                  id: "tutorials/dapp-development/lottery-game/interact-smart-contact",
                 },
               ],
             },
