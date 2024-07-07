@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 title: Develop smart contract
 description: Develop smart contract
 ---
