@@ -17,10 +17,10 @@ git clone https://github.com/AElfProject/vote-contract-frontend.git
 - Next, navigate to the frontend project directory with this command:
 
 ```bash title="Terminal"
-cd Developer_DAO
+cd vote-contract-frontend
 ```
 
-- Once you're in the `Developer_DAO` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
+- Once you're in the `vote-contract-frontend` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
    ![result](/img/vote-fe-directory.png)
 
