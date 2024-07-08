@@ -1,0 +1,15 @@
+{
+  "position": 1,
+  "label": "Developers",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Developers",
+    "slug": "quick-start/developers",
+    "description": "Welcome to the technical documentation for developing smart contracts on aelf blockchain. This guide will walk you through writing your very first smart contracts, starting from a simple \"Hello\" contract to a more complex voting contract. Each section is designed to build on the knowledge from the previous one, ensuring a smooth learning curve."
+  },
+  "customProps": {
+    "description": "Become an aelf developer"
+  }
+}
