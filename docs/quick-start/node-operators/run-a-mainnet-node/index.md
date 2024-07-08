@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 2
 title: Run a Mainnet Node
 ---
 ## How to Join the Mainnet

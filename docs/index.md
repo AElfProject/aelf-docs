@@ -21,11 +21,15 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 ## 🏁 Quick Start
 
-- Smart contract Tutorials
+- For developers
   - [Hello World](/quick-start/developers/hello-world-contract) contract
   - [Lottery Game](/quick-start/developers/lottery-game-smart-contract/) contract
   - [Vote](/quick-start/developers/vote-contract/) contract
-- [Become](/quick-start/node-operators/) a Node Operator
+- For node operators
+  - [Operations](/quick-start/operations/)
+  - [Run](/quick-start/run-a-mainnet-node/) a mainnet node
+  - [Simulate](/quick-start/simulation-in-local-environment) in your local environment
+  - [Create](/quick-start/explore-running-aelf-side-chain) a side chain
 
 </article>
 

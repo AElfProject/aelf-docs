@@ -1,11 +1,11 @@
 {
   "position": 2,
-  "label": "Node Operator",
+  "label": "For Node Operators",
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Node Operator",
+    "title": "For Node Operators",
     "slug": "quick-start/node-operators"
   },
   "customProps": {
