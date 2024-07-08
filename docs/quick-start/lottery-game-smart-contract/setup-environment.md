@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
 * Install aelf contract templates
 
 ```bash
-dotnet new install AElf.ContractTemplates
+dotnet new --install AElf.ContractTemplates
 ```
 
 AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.

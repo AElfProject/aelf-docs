@@ -19,7 +19,7 @@ The Greeter contract includes an `AddGreeters` method to add a new greeter and a
 ### Install Template
 1. To install the template, run:
 ```sh
-dotnet new install AElf.ContractTemplates
+dotnet new --install AElf.ContractTemplates
 ```
 
 2. Verify installation with:
