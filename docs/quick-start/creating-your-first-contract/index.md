@@ -20,7 +20,7 @@ This guide provides step-by-step instructions to set up your local development e
 * Install aelf contract templates
 
 ```bash
-dotnet new install AELF.ContractTemplates
+dotnet new install AElf.ContractTemplates
 ```
 
 AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.
