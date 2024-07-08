@@ -3,6 +3,9 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import footerLinks from "./config/footer-links.json";
 import navbarLinks from "./config/navbar-links.json";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+
 import "dotenv/config";
 
 const config: Config = {
@@ -44,6 +47,8 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           // editUrl:
           //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
         },
         blog: false,
         theme: {
@@ -112,6 +117,12 @@ const config: Config = {
       contextualSearch: true,
     },
   } satisfies Preset.ThemeConfig,
+  stylesheets: [
+    {
+      href: "/katex/katex.min.css",
+      type: "text/css",
+    },
+  ],
 };
 
 export default config;
