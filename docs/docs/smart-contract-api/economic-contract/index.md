@@ -1,7 +1,7 @@
 ---
 sidebar_position: 13
 title: Economic Contract
-description: Establishes aelf's economic system. 
+description: aelf's economic system
 ---
 
 # Economic Contract

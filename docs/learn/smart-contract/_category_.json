@@ -1,0 +1,14 @@
+{
+  "position": 8,
+  "label": "Smart Contract",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Smart Contract",
+    "slug": "learn/smart-contract"
+  },
+  "customProps": {
+    "description": "How aelf smart contracts work"
+  }
+}

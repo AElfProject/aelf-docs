@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-title: ACS1 - Transaction Fee Standard
-description: ACS1 handles transaction fees.
+title: Transaction Fee
+description: ACS1
 ---
 
 # ACS1 - Transaction Fee Standard

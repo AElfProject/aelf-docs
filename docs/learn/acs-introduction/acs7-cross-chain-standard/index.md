@@ -1,7 +1,7 @@
 ---
 sidebar_position: 7
-title: ACS7 - Contract CrossChain Standard
-description: For implementing cross-chain contracts.
+title: Contract CrossChain
+description: ACS7
 ---
 
 # ACS7 - Contract CrossChain Standard

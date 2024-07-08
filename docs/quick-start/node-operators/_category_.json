@@ -1,0 +1,14 @@
+{
+  "position": 2,
+  "label": "For Node Operators",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "For Node Operators",
+    "slug": "quick-start/node-operators"
+  },
+  "customProps": {
+    "description": "Learn to set up and operate an aelf Node"
+  }
+}

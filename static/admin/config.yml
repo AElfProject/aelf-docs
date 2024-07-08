@@ -22,7 +22,7 @@ collections:
   folder: docs
   create: true
   nested:
-    depth: 4 
+    depth: 100
     summary: '{{title}}' 
   fields:
     - label: Sidebar position

@@ -1,0 +1,14 @@
+{
+  "position": 3,
+  "label": "Smart Contract",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "aelf CLI",
+    "slug": "tools/smart-contract-templates"
+  },
+  "customProps": {
+    "description": "Useful contract templates for aelf"
+  }
+}

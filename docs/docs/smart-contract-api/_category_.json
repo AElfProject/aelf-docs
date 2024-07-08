@@ -1,0 +1,14 @@
+{
+  "position": 1,
+  "label": "Smart Contract API",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Smart Contract API",
+    "slug": "docs/smart-contract-api"
+  },
+  "customProps": {
+    "description": "Useful references for smart contract."
+  }
+}

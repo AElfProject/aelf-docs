@@ -1,7 +1,7 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 title: Transactions
-description: This guide explains how transactions modify the state.
+description: How transactions modify state
 image: /img/Logo.aelf.svg
 ---
 

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Introduction to CLI
-description: Introduction to the aelf's Command Line Interface
+description: aelf's Command Line Interface
 ---
 
 # Introduction to the CLI

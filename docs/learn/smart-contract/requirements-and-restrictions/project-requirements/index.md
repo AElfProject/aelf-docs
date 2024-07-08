@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
-title: Contract Project Requirements
+title: Project Requirements
+description: Protobuf and Overflow Checks
 ---
 
 

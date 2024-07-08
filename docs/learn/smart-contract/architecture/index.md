@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
-title: Smart Contract Architecture
+title: Architecture
+description: The aelf smart contract
 ---
 
 # Smart Contract Architecture

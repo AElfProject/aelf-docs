@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
-title: ACS5 - Contract Threshold Standard
-description: To raise the threshold for using a contract.
+title: Contract Threshold
+description: ACS5
 ---
 
 # ACS5 - Contract Threshold Standard

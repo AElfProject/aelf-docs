@@ -1,0 +1,14 @@
+{
+  "position": 2,
+  "label": "Cross Chain",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Cross Chain",
+    "slug": "learn/cross-chain"
+  },
+  "customProps": {
+    "description": "Cross Chain mechanics"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "position": 1,
+  "label": "Node Operator",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Operate a node",
+    "slug": "tutorials/operate-a-node"
+  },
+  "customProps": {
+    "description": "Operate a node"
+  }
+}

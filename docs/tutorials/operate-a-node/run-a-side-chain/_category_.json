@@ -1,0 +1,14 @@
+{
+  "position": 4,
+  "label": "Side Chain",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Operate a side chain",
+    "slug": "tutorials/run-a-side-chain"
+  },
+  "customProps": {
+    "description": "Operate a side chain"
+  }
+}

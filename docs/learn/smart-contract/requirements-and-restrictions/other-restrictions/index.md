@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
 title: Other Restrictions
+description: Method, contract patcher & state size 
 ---
 
 # Other Restrictions

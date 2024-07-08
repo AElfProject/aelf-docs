@@ -1,7 +1,7 @@
 ---
 sidebar_position: 14
 title: Token Converter Contract
-description: Contract connects the base token with other tokens. 
+description: Connects aelf token with other tokens
 ---
 
 # Token Converter Contract

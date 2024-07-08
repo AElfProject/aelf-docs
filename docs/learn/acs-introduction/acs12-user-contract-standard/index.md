@@ -1,7 +1,7 @@
 ---
 sidebar_position: 12
-title: ACS12 - User Contract Standard
-description: Manage user contracts. Required on testnet.
+title: User Contract
+description: ACS12
 ---
 
 # ACS12 - User Contract Standard

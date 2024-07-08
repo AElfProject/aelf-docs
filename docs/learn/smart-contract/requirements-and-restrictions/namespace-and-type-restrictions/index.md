@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
-title: Type and Namespace Restrictions
+title: Type and Namespace
+description: Restrictions
 ---
 
 

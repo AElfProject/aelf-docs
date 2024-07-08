@@ -1,7 +1,7 @@
 ---
 sidebar_position: 15
 title: Configuration Contract
-description: Manage the configuration on the blockchain. 
+description: Blockchain configuration 
 ---
 
 # Configuration Contract 

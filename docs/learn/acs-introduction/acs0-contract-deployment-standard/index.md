@@ -1,7 +1,7 @@
 ---
 sidebar_position: 0
-title: ACS0 - Contract Deployment Standard
-description: ACS0 manages contract deployment and updates.
+title: Contract Deployment
+description: ACS0
 ---
 
 # ACS0 - Contract Deployment Standard
