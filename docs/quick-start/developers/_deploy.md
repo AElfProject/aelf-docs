@@ -10,6 +10,18 @@ aelf-command create
 
 ![result](/img/create_wallet_output.png)
 
+You will be prompted to save your account, please do **save** your account as shown below:
+
+```bash
+? Save account info into a file? (Y/n) Y
+```
+
+Next, enter and confirm your password. Then export your wallet password as shown below:
+
+```bash
+export WALLET_PASSWORD="YOUR_WALLET_PASSWORD"
+```
+
 #### Acquire Testnet Tokens (Faucet) for Development
 
 To deploy smart contracts or execute on-chain transactions on aelf, you'll require testnet ELF tokens.
@@ -32,7 +44,6 @@ curl -X POST "https://faucet.aelf.dev/api/claim?walletAddress=$WALLET_ADDRESS" -
 To check your wallet's current ELF balance:
 
 ```bash
-export WALLET_PASSWORD="YOUR_WALLET_PASSWORD"
 aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
 ```
 

@@ -26,7 +26,7 @@ import TabItem from '@theme/TabItem';
 
 **Install Required Packages**
 
-* [Install dotnet SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+* [Install dotnet 6.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 * Install aelf contract templates
 
 ```bash
