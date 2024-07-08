@@ -24,7 +24,7 @@ title: Operations
 
 ### Set up Nodes
 
-aelf doesn't have light nodes, so all nodes are full nodes. [Click here](#) to learn how to set up a full node.
+aelf doesn't have light nodes, so all nodes are full nodes. [Click here](/quick-start/node-operators/run-a-mainnet-node/) to learn how to set up a full node.
 
 **Note:** To become a BP, you need to run individual nodes for both MainChain aelf and all the SideChains.
 
@@ -32,7 +32,7 @@ aelf doesn't have light nodes, so all nodes are full nodes. [Click here](#) to l
 
 Stake 100,000 ELF to join the node election. Ensure you have enough balance.
 
-1. Go to the Governance page.
+1. Go to the [Governance](https://explorer.aelf.io/vote/election) page.
 2. Click "Become a candidate node."
 3. Stake 100,000 ELF.
 
@@ -46,8 +46,8 @@ Users can vote for candidate nodes at Governance -> Vote -> Node Table.
 
 ### BPs are Elected
 
-BPs are elected every seven days, starting at 7:23 (UTC) every Thursday. If your node ranks in the top 2N+1, it becomes a BP in the next term. If it ranks between top 2N+1 and top 5*(2N+1), it becomes a candidate node. Check the current elected BPs in real-time on the election page.
+BPs are elected every seven days, starting at 7:23 (UTC) every Thursday. If your node ranks in the top 2N+1, it becomes a BP in the next term. If it ranks between top 2N+1 and top 5*(2N+1), it becomes a candidate node. Check the current elected BPs in real-time on the [election](https://explorer.aelf.io/vote/election) page.
 
 ## Simulate in Local Environment
 
-To try setting up a node and running as a BP locally, follow the instructions to simulate it in the local environment.
+To try setting up a node and running as a BP locally, follow the instructions [here](/quick-start/node-operators/simulation-in-local-environment/) to simulate it in the local environment.
