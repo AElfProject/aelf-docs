@@ -424,4 +424,4 @@ createSideChain().then(() => {
 
 
 
-Next, we can move on to [Running a Side Chain](tutorials/operate-a-node/run-a-side-chain).
+Next, we can move on to [Running a Side Chain](/tutorials/operate-a-node/run-a-side-chain/).
