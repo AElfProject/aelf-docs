@@ -53,12 +53,11 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 ## 📖 Tutorials
 
-- [Smart Contract](/quick-start/creating-your-first-contract/) Development
 - [Operate a Node](/tutorials/operate-a-node/)
   - Run a [Testnet](/tutorials/operate-a-node/run-a-testnet-node/) Node
   - Run a [Mainnet](/tutorials/operate-a-node/run-a-mainnet-node/) Node
   - Run aelf on [Cloud](/tutorials/operate-a-node/run-aelf-on-cloud/)
-  - Run a [Side Chain](/tutorials/run-a-side-chain/)
+  - Run a [Side Chain](/tutorials/operate-a-node/run-a-side-chain/)
 
 </article>
 
