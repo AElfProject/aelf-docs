@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: Vote Contract
-description: Most complex contract
+description: Slightly more complex contract
 ---
 
 **Description**: This is the most complex contract in this guide. It covers voting
