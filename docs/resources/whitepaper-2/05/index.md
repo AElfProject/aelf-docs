@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: aelf's AI-enhanced architecture
+title: 5. aelf's AI-enhanced architecture
 description: ""
 ---
 # Overview of aelf's C# foundation
