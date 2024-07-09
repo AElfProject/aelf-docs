@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Background on aelf
+title: 2. Background on aelf
 description: ""
 ---
 The story of aelf began on 10 December 2017, when aelf's vision and plans were introduced to global investors at a Coindesk conference. aelf successfully completed its fund-raising significantly ahead of schedule, having secured investments from notable institutions such as Binance, Arrington XRP Capital, Draper Dragon, Galaxy Digital etc. In the same month, the ELF token was listed on six major exchanges, including Binance and OKEX. aelf Testnet was successfully launched in 2018, followed by another successful launch of the Mainnet in 2020.
