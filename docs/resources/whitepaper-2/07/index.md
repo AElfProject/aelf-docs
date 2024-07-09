@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-title: 6.1 Operational Excellence
+title: 6.1 Operational excellence
 description: ""
 ---
 # 1. Operational Excellence
