@@ -53,17 +53,23 @@ function CardLayout({
   href,
   icon,
   title,
+  isChild,
 }: {
   href: string;
   icon: ReactNode;
   title: string;
   description?: string;
+  isChild?: boolean;
 }): JSX.Element {
   return (
     <CardContainer href={href}>
       <Heading
         as="h2"
-        className={clsx("text--truncate", styles.cardTitle)}
+        className={clsx(
+          "text--truncate",
+          styles.cardTitle,
+          isChild ? styles.child : undefined
+        )}
         title={title}
       >
         {icon} {title}
@@ -104,10 +110,10 @@ function CardLink({ item }: { item: PropSidebarItemLink }): JSX.Element {
   return (
     <CardLayout
       href={item.href}
-      icon={
-        Number(item.label.split(".")[1]?.charAt(0)) !== 0 ? (
-          <>&nbsp;&nbsp;&nbsp;</>
-        ) : null
+      icon={null}
+      isChild={
+        item.label.split(".").length > 1 &&
+        Number(item.label.split(".")[1]?.charAt(0)) !== 0
       }
       title={item.label}
       description={item.description ?? doc?.description}
