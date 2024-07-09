@@ -5,62 +5,161 @@ description: Javascript SDK
 image: /img/Logo.aelf.svg
 ---
 
-# aelf-sdk.js - aelf JavaScript API
+# aelf-web3.js - aelf JavaScript API
 
 ## Introduction
 
-The `aelf-sdk.js` library for aelf is similar to web3.js for Ethereum. It allows you to interact with a local or remote aelf node using an HTTP connection.
+The `aelf-web3.js` library for aelf is similar to web3.js for Ethereum. It allows you to interact with a local or remote aelf node using an HTTP connection.
 
-This guide will help you install and use `aelf-sdk.js`, with an API reference and examples.
+This guide will help you install and use `aelf-web3.js`, with an API reference and examples.
 
-For more details, check out the repository: [aelf-sdk.js](https://github.com/AElfProject/aelf-web3.js).
+For more details, check out the repository: [aelf-web3.js](https://github.com/AElfProject/aelf-web3.js).
 
+## Quickstart
 
-## Adding aelf-sdk.js
+### Adding aelf-web3.js
 
-First, you need to add `aelf-sdk.js` to your project. You can do this using the following methods
+First you need to get aelf-sdk.js into your project. This can be done using the following methods:
 
+npm: `npm install aelf-sdk`
 
-### Using npm
+pure js: `link dist/aelf.umd.js`
+
+After that you need to create a aelf instance and set a provider.
+
+```js
+// 1.In node.js use: const AElf = require('aelf-sdk');
+// 2.FrontEnd freshman, add following tag in html
+// <script src="https://unpkg.com/aelf-sdk@lastest/dist/aelf.umd.js"></script>
+const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io'));
+```
+
+### Detail information for library files
+
+你可以跳过这一步，如果 Adding aelf-web3.js 这一步已经足够的话
+
+In our dist directory, we supply two kinds of packages for different platforms, such as Node and Browser.
+
+| packages         | usage                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| dist/aelf.cjs.js | built for node, remove node built-in modules such as crypto. |
+| dist/aelf.umd.js | built for browser, add some node built-in modules by webpack |
+
+You can choose any packages based on your need, for examples:
+
+if you are new to FrontEnd, you can use `AElf-sdk` by add a script tag in your html files.
+
+```html
+<!-- minified version with UMD module -->
+<script src="https://unpkg.com/aelf-sdk@lastest/dist/aelf.umd.js"></script>
+```
+
+if you want to use a bundle system such as webpack or rollup, and build your applications for Node.js and Browsers, just import the specified version of package files.
+
+#### For browser usage and use UMD
+
+Webpack:
+
+```javascript
+module.exports = {
+  // ...
+  resolve: {
+    alias: {
+      'aelf-sdk$': 'aelf-sdk/dist/aelf.umd.js'
+    }
+  }
+};
+```
+
+Rollup:
+
+```javascript
+const alias = require('rollup-plugin-alias');
+
+rollup({
+  // ...
+  plugins: [
+    alias({
+      'aelf-sdk': require.resolve('aelf-sdk/dist/aelf.umd.js')
+    })
+  ]
+});
+```
+
+#### For Node.js usage and use commonjs module system
+
+Webpack:
+
+```javascript
+module.exports = {
+  // ...
+  resolve: {
+    alias: {
+      'aelf-sdk$': 'aelf-sdk/dist/aelf.cjs.js'
+    }
+  }
+};
+```
+
+Rollup:
+
+```javascript
+const alias = require('rollup-plugin-alias');
+
+rollup({
+  // ...
+  plugins: [
+    alias({
+      'aelf-sdk': require.resolve('aelf-sdk/dist/aelf.cjs.js')
+    })
+  ]
+});
+```
+
+## 🔨Development
+
+1. Install dev dependencies
+
+```bash
+yarn install
+```
+
+2. 在 src 下创建你的文件，编写你的逻辑
+3. 在 src/index 下看一下是否需要将你新增的模块挂在 AElf 作为实例的一个属性
+4. 在根目录执行`yarn link`，这会创建一个全局的符号链接到本包，并将其存储在全局 node_modules 目录中
+5. 在其他目录使用`yarn link "aelf-sdk"`，请确保你 link 的包的版本是正确的，因为有时候 node 版本不一致也可能会导致 link 到的 aelf-web3.js 版本不对
+
+接着你就可以试一下自己的刚写的逻辑是否 ok
+
+### Lint
 
 ```sh
-npm install aelf-sdk
+yarn lint
 ```
 
-### Pure JS
+### Tests
 
-Add the script link in your HTML: 
-
-```javascript
-<script src="https://unpkg.com/aelf-sdk@latest/dist/aelf.umd.js"></script>
+```sh
+# Unit tests
+yarn test
 ```
 
-Then, create an aelf instance and set a provider.
+## Basic usage
 
-```javascript
-// In Node.js
-const AElf = require('aelf-sdk');
-const aelf = new AElf(new AElf.providers.HttpProvider('http://127.0.0.1:8000'));
+### Examples
 
-// In browser
-// <script src="https://unpkg.com/aelf-sdk@latest/dist/aelf.umd.js"></script>
-```
+You can also see full examples in `./examples`;
 
-
-## Examples
-
-You can find more examples in the `./examples` directory.
-
-### Create Instance
+#### Create Instance
 
 ```javascript
 import AElf from 'aelf-sdk';
 
 // Create a new instance of AElf
-const aelf = new AElf(new AElf.providers.HttpProvider('http://127.0.0.1:1235'));
+const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io'));
 ```
 
-### Create or Load a Wallet
+#### Create or Load a Wallet
 
 ```javascript
 // Create a new wallet
@@ -73,8 +172,7 @@ const privateKeyWallet = AElf.wallet.getWalletByPrivateKey('your-private-key');
 const mnemonicWallet = AElf.wallet.getWalletByMnemonic('your-mnemonic');
 ```
 
-
-### Get a System Contract Address
+#### Get a System Contract Address
 
 ```javascript
 const tokenContractName = 'AElf.ContractNames.Token';
@@ -92,8 +190,7 @@ let tokenContractAddress;
 })();
 ```
 
-
-### Get a Contract Instance
+#### Get a Contract Instance
 
 ```javascript
 const wallet = AElf.wallet.createNewWallet();
@@ -105,10 +202,9 @@ let tokenContract;
 })();
 
 // Promise method
-aelf.chain.contractAt(tokenContractAddress, wallet)
-  .then(result => {
-    tokenContract = result;
-  });
+aelf.chain.contractAt(tokenContractAddress, wallet).then(result => {
+  tokenContract = result;
+});
 
 // Callback method
 aelf.chain.contractAt(tokenContractAddress, wallet, (error, result) => {
@@ -117,8 +213,7 @@ aelf.chain.contractAt(tokenContractAddress, wallet, (error, result) => {
 });
 ```
 
-
-### Use Contract Instance
+#### Use Contract Instance
 
 How to use a contract instance. You can call methods in two ways: read-only and send transaction.
 
@@ -126,8 +221,8 @@ How to use a contract instance. You can call methods in two ways: read-only and 
 (async () => {
   // Read-only method: Get the balance of an address
   const balanceResult = await tokenContract.GetBalance.call({
-    symbol: "ELF",
-    owner: "7s4XoUHfPuqoZAwnTV7pHWZAaivMiL8aZrDSnY9brE1woa8vz"
+    symbol: 'ELF',
+    owner: '7s4XoUHfPuqoZAwnTV7pHWZAaivMiL8aZrDSnY9brE1woa8vz'
   });
   console.log(balanceResult);
   /**
@@ -140,10 +235,10 @@ How to use a contract instance. You can call methods in two ways: read-only and 
 
   // Send transaction method: Transfer tokens
   const transactionId = await tokenContract.Transfer({
-    symbol: "ELF",
-    to: "7s4XoUHfPuqoZAwnTV7pHWZAaivMiL8aZrDSnY9brE1woa8vz",
-    amount: "1000000000",
-    memo: "transfer in demo"
+    symbol: 'ELF',
+    to: '7s4XoUHfPuqoZAwnTV7pHWZAaivMiL8aZrDSnY9brE1woa8vz',
+    amount: '1000000000',
+    memo: 'transfer in demo'
   });
   console.log(transactionId);
   /**
@@ -154,24 +249,22 @@ How to use a contract instance. You can call methods in two ways: read-only and 
 })();
 ```
 
-
 ### Change the Node Endpoint
 
 ```javascript
 import AElf from 'aelf-sdk';
 
-const aelf = new AElf(new AElf.providers.HttpProvider('http://127.0.0.1:1235'));
-aelf.setProvider(new AElf.providers.HttpProvider('http://127.0.0.1:8000'));
+const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io'));
+aelf.setProvider(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io'));
 ```
-
 
 ## Web API
 
-You can access the Web API of your aelf node at `{chainAddress}/swagger/index.html`. 
+You can access the Web API of your aelf node at `{chainAddress}/swagger/index.html`.
 
 For example, if your local node address is `http://127.0.0.1:1235`, you can view the Web API at `http://127.0.0.1:1235/swagger/index.html`.
 
-parameters and returns based on the URL: [https://aelf-public-node.aelf.io/swagger/index.html](https://aelf-public-node.aelf.io/swagger/index.html)
+我们的测试网节点地址是：[https://aelf-test-node.aelf.io/swagger/index.html](https://aelf-test-node.aelf.io/swagger/index.html)（主链）、[https://tdvw-test-node.aelf.io/swagger/index.html](https://tdvw-test-node.aelf.io/swagger/index.html)（侧链），可以访问这两个地址找到对应的参数和返回值。
 
 The methods below use an instance of aelf. If you don't have one, create it as shown:
 
@@ -191,28 +284,25 @@ Get the current status of the blockchain.
 - **Parameters**: None
 - **Returns**: `Object`
 
-    - `ChainId` - String
-    - `Branches` - Object
-    - `NotLinkedBlocks` - Object
-    - `LongestChainHeight` - Number
-    - `LongestChainHash` - String
-    - `GenesisBlockHash` - String
-    - `GenesisContractAddress` - String
-    - `LastIrreversibleBlockHash` - String
-    - `LastIrreversibleBlockHeight` - Number
-    - `BestChainHash` - String
-    - `BestChainHeight` - Number
-
+  - `ChainId` - String
+  - `Branches` - Object
+  - `NotLinkedBlocks` - Object
+  - `LongestChainHeight` - Number
+  - `LongestChainHash` - String
+  - `GenesisBlockHash` - String
+  - `GenesisContractAddress` - String
+  - `LastIrreversibleBlockHash` - String
+  - `LastIrreversibleBlockHeight` - Number
+  - `BestChainHash` - String
+  - `BestChainHeight` - Number
 
 #### Example:
 
 ```javascript
-aelf.chain.getChainStatus()
-  .then(res => {
-    console.log(res);
-  });
+aelf.chain.getChainStatus().then(res => {
+  console.log(res);
+});
 ```
-
 
 ### 2. Get Contract File Descriptor Set
 
@@ -223,37 +313,30 @@ Get the protobuf definitions related to a contract.
 - **Parameters**: `contractAddress` (String)
 - **Returns**: `String`.
 
-
 #### Example:
 
 ```javascript
-aelf.chain.getContractFileDescriptorSet(contractAddress)
-  .then(res => {
-    console.log(res);
-  });
+aelf.chain.getContractFileDescriptorSet(contractAddress).then(res => {
+  console.log(res);
+});
 ```
-
 
 ### 3. Get Block Height
 
 Get the current best height of the chain.
-
 
 - **Web API Path**: `/api/blockChain/blockHeight`
 - **Method**: GET
 - **Parameters**: None
 - **Returns**: `Number`.
 
-
 #### Example:
 
 ```javascript
-aelf.chain.getBlockHeight()
-  .then(res => {
-    console.log(res);
-  });
+aelf.chain.getBlockHeight().then(res => {
+  console.log(res);
+});
 ```
-
 
 ### 4. Get Block
 
@@ -262,41 +345,39 @@ Get block information by block hash.
 - **Web API Path**: `/api/blockChain/block`
 - **Method**: GET
 - **Parameters**:
-   - **`blockHash`** (String)
-   - **`includeTransactions`** (Boolean)
-      - `true` require transaction ids list in the block
-      - `false` Doesn’t require transaction ids list in the block
+
+  - **`blockHash`** (String)
+  - **`includeTransactions`** (Boolean)
+    - `true` require transaction ids list in the block
+    - `false` Doesn’t require transaction ids list in the block
 
 - **Returns**: `Object`
-      
-      - `BlockHash` - String 
 
-      - `Header` - Object 
-          - `PreviousBlockHash` - String 
-          - `MerkleTreeRootOfTransactions` - String 
-          - `MerkleTreeRootOfWorldState` - String 
-          - `Extra` - Array 
-          - `Height` - Number 
-          - `Time` - google.protobuf.Timestamp 
-          - `ChainId` - String 
-          - `Bloom` - String 
-          - `SignerPubkey` - String 
+      - `BlockHash` - String
 
-      - `Body` - Object 
-          - `TransactionsCount` - Number 
-          - `Transactions` - Array 
-            - `transactionId` - String 
+      - `Header` - Object
+          - `PreviousBlockHash` - String
+          - `MerkleTreeRootOfTransactions` - String
+          - `MerkleTreeRootOfWorldState` - String
+          - `Extra` - Array
+          - `Height` - Number
+          - `Time` - google.protobuf.Timestamp
+          - `ChainId` - String
+          - `Bloom` - String
+          - `SignerPubkey` - String
 
+      - `Body` - Object
+          - `TransactionsCount` - Number
+          - `Transactions` - Array
+            - `transactionId` - String
 
 #### Example:
 
 ```javascript
-aelf.chain.getBlock(blockHash, false)
-  .then(res => {
-    console.log(res);
-  });
+aelf.chain.getBlock(blockHash, false).then(res => {
+  console.log(res);
+});
 ```
-
 
 ### 5. Get Block By Height
 
@@ -305,198 +386,190 @@ Get block information by block height.
 - **Web API Path**: `/api/blockChain/blockByHeight`
 - **Method**: GET
 - **Parameters**:
-   - **`blockHash`** (String)
-   - **`includeTransactions`** (Boolean)
-      - `true` require transaction ids list in the block
-      - `false` Doesn’t require transaction ids list in the block
+
+  - **`blockHash`** (String)
+  - **`includeTransactions`** (Boolean)
+    - `true` require transaction ids list in the block
+    - `false` Doesn’t require transaction ids list in the block
 
 - **Returns**: `Object`
-      
-      - `BlockHash` - String 
 
-      - `Header` - Object 
-          - `PreviousBlockHash` - String 
-          - `MerkleTreeRootOfTransactions` - String 
-          - `MerkleTreeRootOfWorldState` - String 
-          - `Extra` - Array 
-          - `Height` - Number 
-          - `Time` - google.protobuf.Timestamp 
-          - `ChainId` - String 
-          - `Bloom` - String 
-          - `SignerPubkey` - String 
+      - `BlockHash` - String
 
-      - `Body` - Object 
-          - `TransactionsCount` - Number 
-          - `Transactions` - Array 
-            - `transactionId` - String 
+      - `Header` - Object
+          - `PreviousBlockHash` - String
+          - `MerkleTreeRootOfTransactions` - String
+          - `MerkleTreeRootOfWorldState` - String
+          - `Extra` - Array
+          - `Height` - Number
+          - `Time` - google.protobuf.Timestamp
+          - `ChainId` - String
+          - `Bloom` - String
+          - `SignerPubkey` - String
 
-
+      - `Body` - Object
+          - `TransactionsCount` - Number
+          - `Transactions` - Array
+            - `transactionId` - String
 
 #### Example:
 
 ```javascript
-aelf.chain.getBlockByHeight(12, false)
-  .then(res => {
-    console.log(res);
-  });
+aelf.chain.getBlockByHeight(12, false).then(res => {
+  console.log(res);
+});
 ```
 
-### 6. Get Transaction Result
+### 6. Get Contract View Method List
 
+- **Web API Path**: `/api/blockChain/ContractViewMethodList`
+- **Method**: GET
+- **Parameters**: `address` (String)
+- **Returns**: `Array` - The array of view method name
+
+#### Example:
+
+```javascript
+aelf.chain.getContractViewMethodList('https://tdvw-test-node.aelf.io/').then(res => {
+  console.log(res);
+});
+```
+
+### 7. Get Transaction Result
 
 - **Web API Path**: `/api/blockChain/transactionResult`
 - **Method**: GET
 - **Parameters**: `transactionId` (String)
-- **Returns**: `Object`
-      
-      - `TransactionId` - String 
-      - `Status` - String 
-      - `Logs` - Array 
-          - `Address` - String 
-          - `Name` - String 
-          - `Indexed` - Array 
-          - `NonIndexed` - Number 
-      - `Bloom` - String 
-      - `BlockNumber` - Number 
-      - `Transaction` - Object 
-          - `From` - String 
-          - `To` - String 
-          - `RefBlockNumber` - Number 
-          - `RefBlockPrefix` - String 
-          - `MethodName` - String 
-          - `Params` - Object 
-          - `Signature` - String 
-      - `ReadableReturnValue` - Object 
-      - `Error` - String 
-
+- **Returns**: `Object` - `TransactionId` - String - `Status` - String - `Logs` - Array - `Address` - String - `Name` - String - `Indexed` - Array - `NonIndexed` - Number - `Bloom` - String - `BlockNumber` - Number - `Transaction` - Object - `From` - String - `To` - String - `RefBlockNumber` - Number - `RefBlockPrefix` - String - `MethodName` - String - `Params` - Object - `Signature` - String - `ReadableReturnValue` - Object - `Error` - String
 
 #### Example:
 
 ```javascript
-aelf.chain.getTxResult(transactionId)
-  .then(res => {
-    console.log(res);
-  });
+aelf.chain.getTxResult(transactionId).then(res => {
+  console.log(res);
+});
 ```
 
-### 7. Get Multiple Transaction Results
+### 8. Get Merkle Path By TxId
 
+- **Web API Path**: `/api/blockChain/merklePathByTransactionId`
+- **Method**: GET
+- **Parameters**:
+  - **`transactionId`** (String)
+- **Returns**:
+  - `MerklePathNodes` - The array of merklePathNodes:
+    - `Hash` - String
+    - `IsLeftChildNode` - String
+
+#### Example:
+
+```javascript
+aelf.chain.merklePathByTransactionId(txId).then(res => {
+  console.log(res);
+});
+```
+
+### 9. Get Multiple Transaction Results
 
 - **Web API Path**: `/api/blockChain/transactionResults`
 - **Method**: GET
 - **Parameters**:
-   - **`blockHash`** (String)
-   - **`offset`** (Number)
-   - **`limit`** (Number)
-- **Returns**: 
-   - `Array` - The array of method descriptions:
-      - the transaction result object
-
+  - **`blockHash`** (String)
+  - **`offset`** (Number)
+  - **`limit`** (Number)
+- **Returns**:
+  - `Array` - The array of method descriptions:
+    - the transaction result object
 
 #### Example:
 
 ```javascript
-aelf.chain.getTxResults(blockHash, 0, 2)
-  .then(res => {
-    console.log(res);
-  });
+aelf.chain.getTxResults(blockHash, 0, 2).then(res => {
+  console.log(res);
+});
 ```
 
-### 8. Get Transaction Pool Status
-
+### 10. Get Transaction Pool Status
 
 - **Web API Path**: `/api/blockChain/transactionPoolStatus`
 - **Method**: GET
 - **Parameters**: None
 
-
-### 9. Send Transaction
-
+### 11. Send Transaction
 
 - **Web API Path**: `/api/blockChain/sendTransaction`
 - **Method**: POST
 - **Parameters**: `Object` (Serialized protobuf data with RawTransaction string)
-   - `RawTransaction` - String
+  - `RawTransaction` - String
 
-
-### 10. Send Multiple Transactions
+### 12. Send Multiple Transactions
 
 - **Web API Path**: `/api/blockChain/sendTransactions`
 - **Method**: POST
 - **Parameters**: `Object` (Serialized protobuf data with RawTransaction string)
-   - `RawTransaction` - String
+  - `RawTransaction` - String
 
-
-### 11. Call Read-Only Method
+### 13. Call Read-Only Method
 
 Call a read-only method on a contract.
 
 - **Method**: POST
 - **Parameters**: `Object` (Serialized protobuf data with RawTransaction string)
-   - `RawTransaction` - String
+  - `RawTransaction` - String
 - **Returns**: Method call result
 
-
-### 12. Get Peers
+### 14. Get Peers
 
 Get peer info about the connected network nodes.
 
 - **Method**: GET
 - **Parameters**: `withMetrics` (Boolean)
-   - `true` with metrics
-   - `false` without metrics
-   
+  - `true` with metrics
+  - `false` without metrics
 
-### 13. Add Peer
+### 15. Add Peer
 
 Attempts to add a node to the connected network nodes
 
 - **Method**: POST
 - **Parameters**: `Object` The object with the following structure :
-   - `Address` - String
+  - `Address` - String
 
-### 14. Remove Peer
+### 16. Remove Peer
 
 Attempts to remove a node from the connected network nodes
 
 - **Method**: DELETE
 - **Parameters**: `address` (String)
 
-
-### 15. Calculate Transaction Fee
-
+### 17. Calculate Transaction Fee
 
 - **Web API Path**: `/api/blockChain/calculateTransactionFee`
 - **Method**: POST
-- **Parameters**:  `CalculateTransactionFeeInput` (Object with RawTransaction string):
-   - `RawTransaction` - String
+- **Parameters**: `CalculateTransactionFeeInput` (Object with RawTransaction string):
+  - `RawTransaction` - String
 - **Returns**: `CalculateTransactionFeeOutput` (Object with fee details):
-   - `Success` - Bool
-   - `TransactionFee` - Array
-   - `ResourceFee` - Array
-   
+  - `Success` - Bool
+  - `TransactionFee` - Array
+  - `ResourceFee` - Array
 
 #### Example
 
 ```javascript
-aelf.chain.calculateTransactionFee(rawTransaction)
-   .then(res => {
-      console.log(res);
-   });
+aelf.chain.calculateTransactionFee(rawTransaction).then(res => {
+  console.log(res);
+});
 ```
 
 ### 16. Network Info
-
 
 - **Method**: GET
 - **Parameters**: None
 - **Returns**: Network connection info
 
-
 ## AElf.wallet
 
 `AElf.wallet` is a static property of `AElf`.
-
 
 ### 1. createNewWallet
 
@@ -504,12 +577,12 @@ aelf.chain.calculateTransactionFee(rawTransaction)
 
 - **Object**
 
-   - **`mnemonic - String`**: The mnemonic phrase for the wallet.
-   - **`BIP44Path - String`**: The BIP44 path, formatted as m/purpose’/coin_type’/account’/change/address_index.
-   - **`childWallet - Object`**: The Hierarchical Deterministic (HD) wallet object.
-   - **`keyPair - String`**: The elliptic curve (EC) key pair.
-   - **`privateKey - String`**: The private key for the wallet.
-   - **`address - String`**: The wallet address.
+  - **`mnemonic - String`**: The mnemonic phrase for the wallet.
+  - **`BIP44Path - String`**: The BIP44 path, formatted as m/purpose’/coin_type’/account’/change/address_index.
+  - **`childWallet - Object`**: The Hierarchical Deterministic (HD) wallet object.
+  - **`keyPair - String`**: The elliptic curve (EC) key pair.
+  - **`privateKey - String`**: The private key for the wallet.
+  - **`address - String`**: The wallet address.
 
 #### Example:
 
@@ -519,11 +592,9 @@ const wallet = AElf.wallet.createNewWallet();
 console.log(wallet);
 ```
 
-
 ### 2. getWalletByMnemonic
 
 Retrieves a wallet using a mnemonic phrase.
-
 
 **Parameters:**
 
@@ -533,14 +604,12 @@ Retrieves a wallet using a mnemonic phrase.
 
 - **`Object`**: The complete wallet object.
 
-
 #### Example:
 
 ```javascript
 const wallet = AElf.wallet.getWalletByMnemonic(mnemonic);
 console.log(wallet);
 ```
-
 
 ### 3. getWalletByPrivateKey
 
@@ -554,14 +623,12 @@ Retrieves a wallet using a private key.
 
 - **`Object`**: The complete wallet object, with an empty mnemonic.
 
-
 #### Example:
 
 ```javascript
 const wallet = AElf.wallet.getWalletByPrivateKey(privateKey);
 console.log(wallet);
 ```
-
 
 ### 4. signTransaction
 
@@ -576,14 +643,12 @@ Signs a transaction using the wallet's key pair.
 
 - **`Object`**: The signed transaction object.
 
-
 #### Example:
 
 ```javascript
 const result = AElf.wallet.signTransaction(rawTxn, keyPair);
 console.log(result);
 ```
-
 
 ### 5. AESEncrypt
 
@@ -597,8 +662,6 @@ Encrypts a string using the AES algorithm.
 **Returns:**
 
 - **`String`**: The encrypted string.
-
-
 
 ### 6. AESDecrypt
 
@@ -615,22 +678,17 @@ Decrypts a string using the AES algorithm.
 
 These are the detailed functions and their usages for the AElf.wallet API. If you have any specific questions or need further clarification, feel free to ask!
 
-
-
 ## AElf.pbjs
 
 Reference to protobuf.js. For detailed usage, refer to the [protobuf.js documentation](https://github.com/protobufjs/protobuf.js).
-
 
 ## AElf.pbUtils
 
 Provides basic format methods for aelf. For detailed code, see `src/utils/proto.js`.
 
-
 ### AElf.utils
 
 Contains utility methods for aelf. For detailed code, see `src/utils/utils.js`.
-
 
 ### Check address
 
@@ -657,7 +715,6 @@ import AElf from 'aelf-sdk';
 console.log(AElf.version); // outputs the version, e.g., 3.2.23
 ```
 
-
 ## Requirements
 
 To use aelf SDK, you need:
@@ -665,18 +722,14 @@ To use aelf SDK, you need:
 - [Node.js](https://nodejs.org/en)
 - [NPM](https://www.npmjs.com/)
 
-
 ## Support
 
 ![browsers](https://img.shields.io/badge/browsers-latest%202%20versions-brightgreen.svg)
 ![node](https://img.shields.io/badge/node-%3E=10-green.svg)
 
-
-
 ## About contributing
 
 Read out [contributing guide]
-
 
 ## About Version
 
