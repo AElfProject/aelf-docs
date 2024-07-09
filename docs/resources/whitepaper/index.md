@@ -1,7 +1,7 @@
 ---
 sidebar_position: 8
-title: Whitepapers
-description: aelf Whitepapers
+title: Whitepaper 1.0 (Original)
+description: The original aelf Whitepaper
 ---
 
 # Whitepapers
