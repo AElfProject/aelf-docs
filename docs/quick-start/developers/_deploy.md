@@ -16,6 +16,11 @@ You will be prompted to save your account, please do **save** your account as sh
 ? Save account info into a file? (Y/n) Y
 ```
 
+**Make sure to choose Y to save your account information.**
+
+:::tip
+ℹ️ Note: If you do not save your account information (by selecting n or N), do not export the wallet password. Only **proceed to the next** step if you have saved your account information.
+:::
 Next, enter and confirm your password. Then export your wallet password as shown below:
 
 ```bash
