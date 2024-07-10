@@ -11,58 +11,83 @@ image: /img/Logo.aelf.svg
 
 The `aelf-web3.js` library for aelf is similar to web3.js for Ethereum. It allows you to interact with a local or remote aelf node using an HTTP connection.
 
-This guide will help you install and use `aelf-web3.js`, with an API reference and examples.
+#### This guide will help you:
+
+- Install `aelf-web3.js`.
+
+- Use the library.
+
+- Understand the available API.
 
 For more details, check out the repository: [aelf-web3.js](https://github.com/AElfProject/aelf-web3.js).
 
 ## Quickstart
 
-### Adding aelf-web3.js
+### 1. Adding aelf-web3.js
 
-First you need to get aelf-sdk.js into your project. This can be done using the following methods:
+Now, You can add `aelf-web3.js` using **npm** or directly in your **HTML**.
 
-npm: `npm install aelf-sdk`
+- #### Using npm
+```bash
+npm install aelf-sdk
+```
+- #### Using Pure js
+```bash
+link dist/aelf.umd.js
+```
 
-pure js: `link dist/aelf.umd.js`
+### 2. Create an AElf Instance
 
-After that you need to create a aelf instance and set a provider.
+Set up your AElf instance and connect to a provider.
 
+#### Node.js
 ```js
-// 1.In node.js use: const AElf = require('aelf-sdk');
-// 2.FrontEnd freshman, add following tag in html
-// <script src="https://unpkg.com/aelf-sdk@lastest/dist/aelf.umd.js"></script>
+const AElf = require('aelf-sdk');
 const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io'));
 ```
 
-### Detail information for library files
+#### Frontend (Using PureJs)
+
+- Include the script in your HTML file:
+
+```js
+<script src="https://unpkg.com/aelf-sdk@latest/dist/aelf.umd.js"></script>
+<script>
+  const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io'));
+</script>
+```
+
+
+### 3. Choose the Right Package
 
 You can skip this step, if Adding aelf-web3.js is enough
 
-In our dist directory, we supply two kinds of packages for different platforms, such as Node and Browser.
+The `dist` directory provides packages for different environments.
 
 | packages         | usage                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| dist/aelf.cjs.js | built for node, remove node built-in modules such as crypto. |
-| dist/aelf.umd.js | built for browser, add some node built-in modules by webpack |
+| dist/aelf.cjs.js | For Node.js, excludes Node built-in modules like crypto.     |
+| dist/aelf.umd.js | For Browsers, includes necessary Node built-in modules.      |
 
-You can choose any packages based on your need, for examples:
+#### For Beginner in Frontend
 
-if you are new to FrontEnd, you can use `AElf-sdk` by add a script tag in your html files.
+- Add the UMD package to your HTML:
 
 ```html
 <!-- minified version with UMD module -->
 <script src="https://unpkg.com/aelf-sdk@lastest/dist/aelf.umd.js"></script>
 ```
 
-if you want to use a bundle system such as webpack or rollup, and build your applications for Node.js and Browsers, just import the specified version of package files.
+### 4. Use with Bundlers
 
-#### For browser usage and use UMD
+If you want to use a bundler like Webpack or Rollup, import the specified version of the package files.
 
-Webpack:
+#### For Browser (Using UMD)
+
+- Set up Webpack:
 
 ```javascript
 module.exports = {
-  // ...
   resolve: {
     alias: {
       'aelf-sdk$': 'aelf-sdk/dist/aelf.umd.js'
@@ -71,7 +96,7 @@ module.exports = {
 };
 ```
 
-Rollup:
+- Set up Rollup:
 
 ```javascript
 const alias = require('rollup-plugin-alias');
@@ -86,9 +111,9 @@ rollup({
 });
 ```
 
-#### For Node.js usage and use commonjs module system
+#### For Node.js (Using CommonJS)
 
-Webpack:
+- Set up Webpack:
 
 ```javascript
 module.exports = {
@@ -101,7 +126,7 @@ module.exports = {
 };
 ```
 
-Rollup:
+- Set up Rollup:
 
 ```javascript
 const alias = require('rollup-plugin-alias');
@@ -116,28 +141,61 @@ rollup({
 });
 ```
 
-## 🔨Development
+#### Note
 
-1. Install dev dependencies
+- `aelf-web3.js` is the same as `aelf-sdk`.
+- `aelf-sdk` is the package name on npm.
 
+For more detailed usage and examples, refer to the [aelf-web3.js repository](https://github.com/AElfProject/aelf-web3.js).
+
+## Development 🔨
+
+### 1. Install Development Dependencies
+- install the required development dependencies:
 ```bash
 yarn install
 ```
 
-2. Create your file under `src` and write your logic
-3. Check under `src/index` whether you need to hang your new module on AElf as an attribute of the instance.
-4. Execute `yarn link` in the root directory. This will create a global symbolic link to this package and store it in the global `node_module` directory.
-5. When using yarn link `aelf-sdk` in other directories, please ensure that the version of the package you link is correct, because sometimes inconsistent node versions may also cause the incorrect version of aelf-web3.js to be linked.
+### 2. Write Your Code
 
-Then you can try to see if the logic you just wrote is OK.
+- Create your file under the `src` directory.
+- Write your logic in the newly created file.
 
-### Lint
+### 3. Integrate Your Module
+
+- Check `src/index` to see if you need to add your new module as an attribute to the `AElf` instance.
+
+### 4. Link the Package Globally
+
+- Execute `yarn link` in the root directory. This creates a global symbolic link to this package and stores it in the global `node_modules` directory.
+
+```sh
+yarn link
+```
+
+### 5. Link the Package in Other Directories
+
+- When using `yarn link aelf-sdk` in other directories, ensure the version of the package is correct. Inconsistent node versions can sometimes cause issues with linking the incorrect version of `aelf-web3.js`.
+
+```sh
+yarn link aelf-sdk
+```
+
+### 6. Test Your Code
+
+- Try out the logic you just wrote to make sure everything works as expected.
+
+### Linting
+
+- To lint your code, run:
 
 ```sh
 yarn lint
 ```
 
-### Tests
+### Running Tests
+
+- To run unit tests, execute:
 
 ```sh
 # Unit tests
@@ -260,20 +318,24 @@ aelf.setProvider(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io
 
 ## Web API
 
-You can access the Web API of your aelf node at `{chainAddress}/swagger/index.html`.
+Access the Web API of your aelf node at `{chainAddress}/swagger/index.html`
 
-For example, if your local node address is `http://127.0.0.1:1235`, you can view the Web API at `http://127.0.0.1:1235/swagger/index.html`.
+**Examples:**
 
-Our testnet node address is: [https://aelf-test-node.aelf.io/swagger/index.html](https://aelf-test-node.aelf.io/swagger/index.html)（
-main chain）、[https://tdvw-test-node.aelf.io/swagger/index.html](https://tdvw-test-node.aelf.io/swagger/index.html)（side chain），You can access these two addresses to find the corresponding parameters and return values.
+- Local node: `http://127.0.0.1:1235/swagger/index.html`
+- Testnet nodes:
+  - **Main Chain**: [https://aelf-test-node.aelf.io/swagger/index.html](https://aelf-test-node.aelf.io/swagger/index.html)
+  - **Side Chain**: [https://tdvw-test-node.aelf.io/swagger/index.html](https://tdvw-test-node.aelf.io/swagger/index.html)
 
-The methods below use an instance of aelf. If you don't have one, create it as shown:
+**Setup:**
+
+Create an instance of `AElf`:
 
 ```javascript
-import AElf from 'aelf-sdk';
+import AElf from "aelf-sdk";
 
-// Create a new instance of AElf, change the URL if needed
-const aelf = new AElf(new AElf.providers.HttpProvider('http://127.0.0.1:1235'));
+// Change the URL if needed
+const aelf = new AElf(new AElf.providers.HttpProvider("http://127.0.0.1:1235"));
 ```
 
 ### 1. Get Chain Status
