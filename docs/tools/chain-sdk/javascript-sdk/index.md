@@ -26,10 +26,13 @@ For more details, check out the repository: [aelf-web3.js](https://github.com/AE
 Now, You can add `aelf-web3.js` using **npm** or directly in your **HTML**.
 
 - #### Using npm
+
 ```bash
 npm install aelf-sdk
 ```
+
 - #### Using Pure js
+
 ```bash
 link dist/aelf.umd.js
 ```
@@ -39,9 +42,12 @@ link dist/aelf.umd.js
 Set up your AElf instance and connect to a provider.
 
 #### Node.js
+
 ```js
-const AElf = require('aelf-sdk');
-const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io'));
+const AElf = require("aelf-sdk");
+const aelf = new AElf(
+  new AElf.providers.HttpProvider("https://tdvw-test-node.aelf.io")
+);
 ```
 
 #### Frontend (Using PureJs)
@@ -55,17 +61,16 @@ const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.ae
 </script>
 ```
 
-
 ### 3. Choose the Right Package
 
 You can skip this step, if Adding aelf-web3.js is enough
 
 The `dist` directory provides packages for different environments.
 
-| packages         | usage                                                        |
-| ---------------- | ------------------------------------------------------------ |
-| dist/aelf.cjs.js | For node.js, excludes node built-in modules like crypto.     |
-| dist/aelf.umd.js | For browsers, includes necessary node built-in modules.      |
+| packages         | usage                                                    |
+| ---------------- | -------------------------------------------------------- |
+| dist/aelf.cjs.js | For node.js, excludes node built-in modules like crypto. |
+| dist/aelf.umd.js | For browsers, includes necessary node built-in modules.  |
 
 #### For Beginner in Frontend
 
@@ -88,24 +93,24 @@ If you want to use a bundler like Webpack or Rollup, import the specified versio
 module.exports = {
   resolve: {
     alias: {
-      'aelf-sdk$': 'aelf-sdk/dist/aelf.umd.js'
-    }
-  }
+      "aelf-sdk$": "aelf-sdk/dist/aelf.umd.js",
+    },
+  },
 };
 ```
 
 - Set up Rollup:
 
 ```javascript
-const alias = require('rollup-plugin-alias');
+const alias = require("rollup-plugin-alias");
 
 rollup({
   // ...
   plugins: [
     alias({
-      'aelf-sdk': require.resolve('aelf-sdk/dist/aelf.umd.js')
-    })
-  ]
+      "aelf-sdk": require.resolve("aelf-sdk/dist/aelf.umd.js"),
+    }),
+  ],
 });
 ```
 
@@ -118,24 +123,24 @@ module.exports = {
   // ...
   resolve: {
     alias: {
-      'aelf-sdk$': 'aelf-sdk/dist/aelf.cjs.js'
-    }
-  }
+      "aelf-sdk$": "aelf-sdk/dist/aelf.cjs.js",
+    },
+  },
 };
 ```
 
 - Set up Rollup:
 
 ```javascript
-const alias = require('rollup-plugin-alias');
+const alias = require("rollup-plugin-alias");
 
 rollup({
   // ...
   plugins: [
     alias({
-      'aelf-sdk': require.resolve('aelf-sdk/dist/aelf.cjs.js')
-    })
-  ]
+      "aelf-sdk": require.resolve("aelf-sdk/dist/aelf.cjs.js"),
+    }),
+  ],
 });
 ```
 
@@ -149,7 +154,9 @@ For more detailed usage and examples, refer to the [aelf-web3.js repository](htt
 ## Development 🔨
 
 ### 1. Install Development Dependencies
+
 - install the required development dependencies:
+
 ```bash
 yarn install
 ```
@@ -204,15 +211,17 @@ yarn test
 
 ### Examples
 
-You can also see full examples in `./examples`;
+You can also see full example here - [Examples](https://github.com/AElfProject/aelf-web3.js/tree/master/examples)
 
 #### Create Instance
 
 ```javascript
-import AElf from 'aelf-sdk';
+import AElf from "aelf-sdk";
 
 // Create a new instance of AElf
-const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io'));
+const aelf = new AElf(
+  new AElf.providers.HttpProvider("https://tdvw-test-node.aelf.io")
+);
 ```
 
 #### Create or Load a Wallet
@@ -222,16 +231,16 @@ const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.ae
 const newWallet = AElf.wallet.createNewWallet();
 
 // Load a wallet by private key
-const privateKeyWallet = AElf.wallet.getWalletByPrivateKey('your-private-key');
+const privateKeyWallet = AElf.wallet.getWalletByPrivateKey("your-private-key");
 
 // Load a wallet by mnemonic
-const mnemonicWallet = AElf.wallet.getWalletByMnemonic('your-mnemonic');
+const mnemonicWallet = AElf.wallet.getWalletByMnemonic("your-mnemonic");
 ```
 
 #### Get a System Contract Address
 
 ```javascript
-const tokenContractName = 'AElf.ContractNames.Token';
+const tokenContractName = "AElf.ContractNames.Token";
 let tokenContractAddress;
 
 (async () => {
@@ -240,9 +249,14 @@ let tokenContractAddress;
   // Get genesis contract address
   const GenesisContractAddress = chainStatus.GenesisContractAddress;
   // Get genesis contract instance
-  const zeroContract = await aelf.chain.contractAt(GenesisContractAddress, newWallet);
+  const zeroContract = await aelf.chain.contractAt(
+    GenesisContractAddress,
+    newWallet
+  );
   // Get contract address by the read-only method 'GetContractAddressByName' of genesis contract
-  tokenContractAddress = await zeroContract.GetContractAddressByName.call(AElf.utils.sha256(tokenContractName));
+  tokenContractAddress = await zeroContract.GetContractAddressByName.call(
+    AElf.utils.sha256(tokenContractName)
+  );
 })();
 ```
 
@@ -258,7 +272,7 @@ let tokenContract;
 })();
 
 // Promise method
-aelf.chain.contractAt(tokenContractAddress, wallet).then(result => {
+aelf.chain.contractAt(tokenContractAddress, wallet).then((result) => {
   tokenContract = result;
 });
 
@@ -277,8 +291,8 @@ How to use a contract instance. You can call methods in two ways: read-only and 
 (async () => {
   // Read-only method: Get the balance of an address
   const balanceResult = await tokenContract.GetBalance.call({
-    symbol: 'ELF',
-    owner: '7s4XoUHfPuqoZAwnTV7pHWZAaivMiL8aZrDSnY9brE1woa8vz'
+    symbol: "ELF",
+    owner: "7s4XoUHfPuqoZAwnTV7pHWZAaivMiL8aZrDSnY9brE1woa8vz",
   });
   console.log(balanceResult);
   /**
@@ -291,10 +305,10 @@ How to use a contract instance. You can call methods in two ways: read-only and 
 
   // Send transaction method: Transfer tokens
   const transactionId = await tokenContract.Transfer({
-    symbol: 'ELF',
-    to: '7s4XoUHfPuqoZAwnTV7pHWZAaivMiL8aZrDSnY9brE1woa8vz',
-    amount: '1000000000',
-    memo: 'transfer in demo'
+    symbol: "ELF",
+    to: "7s4XoUHfPuqoZAwnTV7pHWZAaivMiL8aZrDSnY9brE1woa8vz",
+    amount: "1000000000",
+    memo: "transfer in demo",
   });
   console.log(transactionId);
   /**
@@ -308,10 +322,14 @@ How to use a contract instance. You can call methods in two ways: read-only and 
 ### Change the Node Endpoint
 
 ```javascript
-import AElf from 'aelf-sdk';
+import AElf from "aelf-sdk";
 
-const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io'));
-aelf.setProvider(new AElf.providers.HttpProvider('https://tdvw-test-node.aelf.io'));
+const aelf = new AElf(
+  new AElf.providers.HttpProvider("https://tdvw-test-node.aelf.io")
+);
+aelf.setProvider(
+  new AElf.providers.HttpProvider("https://tdvw-test-node.aelf.io")
+);
 ```
 
 ## Web API
@@ -360,7 +378,7 @@ Get the current status of the blockchain.
 #### Example:
 
 ```javascript
-aelf.chain.getChainStatus().then(res => {
+aelf.chain.getChainStatus().then((res) => {
   console.log(res);
 });
 ```
@@ -377,7 +395,7 @@ Get the protobuf definitions related to a contract.
 #### Example:
 
 ```javascript
-aelf.chain.getContractFileDescriptorSet(contractAddress).then(res => {
+aelf.chain.getContractFileDescriptorSet(contractAddress).then((res) => {
   console.log(res);
 });
 ```
@@ -394,7 +412,7 @@ Get the current best height of the chain.
 #### Example:
 
 ```javascript
-aelf.chain.getBlockHeight().then(res => {
+aelf.chain.getBlockHeight().then((res) => {
   console.log(res);
 });
 ```
@@ -435,7 +453,7 @@ Get block information by block hash.
 #### Example:
 
 ```javascript
-aelf.chain.getBlock(blockHash, false).then(res => {
+aelf.chain.getBlock(blockHash, false).then((res) => {
   console.log(res);
 });
 ```
@@ -476,7 +494,7 @@ Get block information by block height.
 #### Example:
 
 ```javascript
-aelf.chain.getBlockByHeight(12, false).then(res => {
+aelf.chain.getBlockByHeight(12, false).then((res) => {
   console.log(res);
 });
 ```
@@ -491,9 +509,11 @@ aelf.chain.getBlockByHeight(12, false).then(res => {
 #### Example:
 
 ```javascript
-aelf.chain.getContractViewMethodList('https://tdvw-test-node.aelf.io/').then(res => {
-  console.log(res);
-});
+aelf.chain
+  .getContractViewMethodList("https://tdvw-test-node.aelf.io/")
+  .then((res) => {
+    console.log(res);
+  });
 ```
 
 ### 7. Get Transaction Result
@@ -501,31 +521,31 @@ aelf.chain.getContractViewMethodList('https://tdvw-test-node.aelf.io/').then(res
 - **Web API Path**: `/api/blockChain/transactionResult`
 - **Method**: GET
 - **Parameters**: `transactionId` (String)
-- **Returns**: `Object` 
-   - `TransactionId` - String
-   - `Status` - String 
-   - `Logs` - Array 
-   - `Address` - String 
-   - `Name` - String 
-   - `Indexed` - Array 
-   - `NonIndexed` - Number 
-   - `Bloom` - String 
-   - `BlockNumber` - Number 
-   - `Transaction` - Object 
-   - `From` - String 
-   - `To` - String 
-   - `RefBlockNumber` - Number 
-   - `RefBlockPrefix` - String 
-   - `MethodName` - String 
-   - `Params` - Object 
-   - `Signature` - String 
-   - `ReadableReturnValue` - Object 
-   - `Error` - String
+- **Returns**: `Object`
+  - `TransactionId` - String
+  - `Status` - String
+  - `Logs` - Array
+  - `Address` - String
+  - `Name` - String
+  - `Indexed` - Array
+  - `NonIndexed` - Number
+  - `Bloom` - String
+  - `BlockNumber` - Number
+  - `Transaction` - Object
+  - `From` - String
+  - `To` - String
+  - `RefBlockNumber` - Number
+  - `RefBlockPrefix` - String
+  - `MethodName` - String
+  - `Params` - Object
+  - `Signature` - String
+  - `ReadableReturnValue` - Object
+  - `Error` - String
 
 #### Example:
 
 ```javascript
-aelf.chain.getTxResult(transactionId).then(res => {
+aelf.chain.getTxResult(transactionId).then((res) => {
   console.log(res);
 });
 ```
@@ -544,7 +564,7 @@ aelf.chain.getTxResult(transactionId).then(res => {
 #### Example:
 
 ```javascript
-aelf.chain.merklePathByTransactionId(txId).then(res => {
+aelf.chain.merklePathByTransactionId(txId).then((res) => {
   console.log(res);
 });
 ```
@@ -564,7 +584,7 @@ aelf.chain.merklePathByTransactionId(txId).then(res => {
 #### Example:
 
 ```javascript
-aelf.chain.getTxResults(blockHash, 0, 2).then(res => {
+aelf.chain.getTxResults(blockHash, 0, 2).then((res) => {
   console.log(res);
 });
 ```
@@ -636,7 +656,7 @@ Attempts to remove a node from the connected network nodes
 #### Example
 
 ```javascript
-aelf.chain.calculateTransactionFee(rawTransaction).then(res => {
+aelf.chain.calculateTransactionFee(rawTransaction).then((res) => {
   console.log(res);
 });
 ```
@@ -667,7 +687,7 @@ aelf.chain.calculateTransactionFee(rawTransaction).then(res => {
 #### Example:
 
 ```javascript
-import AElf from 'aelf-sdk';
+import AElf from "aelf-sdk";
 const wallet = AElf.wallet.createNewWallet();
 console.log(wallet);
 ```
@@ -777,21 +797,21 @@ Example to check if an address is valid using `base58` utility from aelf.
 #### Example:
 
 ```javascript
-const AElf = require('aelf-sdk');
+const AElf = require("aelf-sdk");
 const { base58 } = AElf.utils;
 
 try {
-  base58.decode('$address'); // replace '$address' with actual address
-  console.log('Valid address');
+  base58.decode("$address"); // replace '$address' with actual address
+  console.log("Valid address");
 } catch (error) {
-  console.error('Invalid address', error);
+  console.error("Invalid address", error);
 }
 ```
 
 ## AElf.version
 
 ```javascript
-import AElf from 'aelf-sdk';
+import AElf from "aelf-sdk";
 console.log(AElf.version); // outputs the version, e.g., 3.2.23
 ```
 
