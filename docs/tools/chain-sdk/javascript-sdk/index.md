@@ -13,9 +13,7 @@ The `aelf-web3.js` library for aelf is similar to web3.js for Ethereum. It allow
 
 #### This guide will help you:
 
-- Install `aelf-web3.js`.
-
-- Use the library.
+- Install and use `aelf-web3.js`.
 
 - Understand the available API.
 
@@ -66,8 +64,8 @@ The `dist` directory provides packages for different environments.
 
 | packages         | usage                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| dist/aelf.cjs.js | For Node.js, excludes Node built-in modules like crypto.     |
-| dist/aelf.umd.js | For Browsers, includes necessary Node built-in modules.      |
+| dist/aelf.cjs.js | For node.js, excludes node built-in modules like crypto.     |
+| dist/aelf.umd.js | For browsers, includes necessary node built-in modules.      |
 
 #### For Beginner in Frontend
 
