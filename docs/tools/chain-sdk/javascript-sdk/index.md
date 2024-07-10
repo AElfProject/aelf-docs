@@ -441,7 +441,26 @@ aelf.chain.getContractViewMethodList('https://tdvw-test-node.aelf.io/').then(res
 - **Web API Path**: `/api/blockChain/transactionResult`
 - **Method**: GET
 - **Parameters**: `transactionId` (String)
-- **Returns**: `Object` - `TransactionId` - String - `Status` - String - `Logs` - Array - `Address` - String - `Name` - String - `Indexed` - Array - `NonIndexed` - Number - `Bloom` - String - `BlockNumber` - Number - `Transaction` - Object - `From` - String - `To` - String - `RefBlockNumber` - Number - `RefBlockPrefix` - String - `MethodName` - String - `Params` - Object - `Signature` - String - `ReadableReturnValue` - Object - `Error` - String
+- **Returns**: `Object` 
+   - `TransactionId` - String
+   - `Status` - String 
+   - `Logs` - Array 
+   - `Address` - String 
+   - `Name` - String 
+   - `Indexed` - Array 
+   - `NonIndexed` - Number 
+   - `Bloom` - String 
+   - `BlockNumber` - Number 
+   - `Transaction` - Object 
+   - `From` - String 
+   - `To` - String 
+   - `RefBlockNumber` - Number 
+   - `RefBlockPrefix` - String 
+   - `MethodName` - String 
+   - `Params` - Object 
+   - `Signature` - String 
+   - `ReadableReturnValue` - Object 
+   - `Error` - String
 
 #### Example:
 
