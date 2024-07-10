@@ -34,7 +34,7 @@ import TabItem from '@theme/TabItem';
 <Tabs>
   <TabItem value="cli" label="CLI" default>
 
-Run the following command to get testnet ELF tokens from faucet. Remember to either export your wallet address and wallet password or replace $WALLET_ADDRESS and $WALLET_ADDRESS with your wallet address and wallet password respectively.
+Run the following command to get testnet ELF tokens from faucet. Remember to either export your wallet address and wallet password or replace `$WALLET_ADDRESS` and `$WALLET_PASSWORD` with your wallet address and wallet password respectively.
 
 ```bash
 export WALLET_ADDRESS="YOUR_WALLET_ADDRESS"
@@ -59,7 +59,7 @@ You should see the result displaying your wallet's ELF balance.
   </TabItem>
   <TabItem value="web" label="Web" default>
 
-Go to this url `<https://faucet-ui.aelf.dev>`. Enter your address and click `Get Tokens`.
+Go to https://faucet-ui.aelf.dev Enter your address and click `Get Tokens`.
 
 ![result](/img/get-token-ui.png)
 
