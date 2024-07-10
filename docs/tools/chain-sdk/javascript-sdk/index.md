@@ -36,7 +36,7 @@ const aelf = new AElf(new AElf.providers.HttpProvider('https://tdvw-test-node.ae
 
 ### Detail information for library files
 
-你可以跳过这一步，如果 Adding aelf-web3.js 这一步已经足够的话
+You can skip this step, if Adding aelf-web3.js is enough
 
 In our dist directory, we supply two kinds of packages for different platforms, such as Node and Browser.
 
@@ -124,12 +124,12 @@ rollup({
 yarn install
 ```
 
-2. 在 src 下创建你的文件，编写你的逻辑
-3. 在 src/index 下看一下是否需要将你新增的模块挂在 AElf 作为实例的一个属性
-4. 在根目录执行`yarn link`，这会创建一个全局的符号链接到本包，并将其存储在全局 node_modules 目录中
-5. 在其他目录使用`yarn link "aelf-sdk"`，请确保你 link 的包的版本是正确的，因为有时候 node 版本不一致也可能会导致 link 到的 aelf-web3.js 版本不对
+2. Create your file under `src` and write your logic
+3. Check under `src/index` whether you need to hang your new module on AElf as an attribute of the instance.
+4. Execute `yarn link` in the root directory. This will create a global symbolic link to this package and store it in the global `node_module` directory.
+5. When using yarn link `aelf-sdk` in other directories, please ensure that the version of the package you link is correct, because sometimes inconsistent node versions may also cause the incorrect version of aelf-web3.js to be linked.
 
-接着你就可以试一下自己的刚写的逻辑是否 ok
+Then you can try to see if the logic you just wrote is OK.
 
 ### Lint
 
@@ -264,7 +264,8 @@ You can access the Web API of your aelf node at `{chainAddress}/swagger/index.ht
 
 For example, if your local node address is `http://127.0.0.1:1235`, you can view the Web API at `http://127.0.0.1:1235/swagger/index.html`.
 
-我们的测试网节点地址是：[https://aelf-test-node.aelf.io/swagger/index.html](https://aelf-test-node.aelf.io/swagger/index.html)（主链）、[https://tdvw-test-node.aelf.io/swagger/index.html](https://tdvw-test-node.aelf.io/swagger/index.html)（侧链），可以访问这两个地址找到对应的参数和返回值。
+Our testnet node address is: [https://aelf-test-node.aelf.io/swagger/index.html](https://aelf-test-node.aelf.io/swagger/index.html)（
+main chain）、[https://tdvw-test-node.aelf.io/swagger/index.html](https://tdvw-test-node.aelf.io/swagger/index.html)（side chain），You can access these two addresses to find the corresponding parameters and return values.
 
 The methods below use an instance of aelf. If you don't have one, create it as shown:
 

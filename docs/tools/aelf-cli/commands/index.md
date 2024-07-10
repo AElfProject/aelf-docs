@@ -6,7 +6,7 @@ description: aelf CLI Commands
 
 # Commands Overview
 
-## 具体配置
+## Specific configuration
 
 ### Common Options
 
@@ -108,7 +108,7 @@ $ aelf-command console -a sadaf -p yourpassword -e https://tdvw-test-node.aelf.i
 
 Options given in higher priority (e.g., CLI parameters) will overwrite those with lower priority (e.g., environment variables).
 
-## 具体命令(#command-details)
+## Specific orders(#command-details)
 
 ### Create a New Account
 
@@ -425,10 +425,10 @@ Transaction: ef17ac2078c2b31a702b9edc754bfa56f1c37931f52f9dd8e2b9dc65769966b1 is
 When you execute this command, you'll get details about the transaction with ID
 fe1974fde291e44e16c55db666f2c747323cdc584d616de05c88c8bae18ecceb. Here's what the output means:
 
-- **from**: 表示发送方的地址，即交易中的发起者
-- **to**: 表示接收方的地址，即交易中的接收者
-- **symbol**: 表示交易的代币符号
-- **amount**: 表示交易的数量或金额.
+- **from**: Indicates the address of the sender, the initiator in the transaction
+- **to**: Indicates the address of the recipient, that is, the recipient in the transaction
+- **symbol**: Token symbol representing the transaction
+- **amount**: Represents the quantity or amount of a transaction.
 - **Result**: Decoded information from the event, providing readable details such as author, code hash, and address.
 
 This command helps you understand what happened during a transaction, especially useful when dealing with events triggered by
@@ -602,7 +602,7 @@ Welcome to aelf interactive console. Ctrl + C to terminate the program. Double t
    ╚═══════════════════════════════════════════════════════════╝
 ```
 
-### dapp-server - Start a socket.io server for supplying services for dApps
+### dapp-server - Start a socket.io server for supplying services for dApps
 
 Are you developing a dApp and need an environment to manage wallet information and connect to the AElf chain? You can easily start
 a local development server using this sub-command.
