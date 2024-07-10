@@ -87,6 +87,9 @@ Please wait for approximately 1 to 2 minutes. If the deployment is successful, i
 
 ![result](/img/deploy-result.png)
 
+Copy the smart contract address from the `address` field
+![result](/img/Contract_Address.png)
+
 Export your smart contract address:
 
 ```bash
