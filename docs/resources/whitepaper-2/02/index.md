@@ -13,7 +13,7 @@ aelf is primarily a multi-chain parallel computing blockchain framework which wa
 4. Basic components for a minimum viable Block and Genesis Smart Contract Collection for each Chain, which reduces data complexity and allows for high customisation at the same time.
 5. Permission for stakeholders to approve amendments to the protocol, including redefining the Consensus Protocol; Permission for SideChains to join or exit from MainChain dynamically based on the Consensus Protocol. 
 
-![](/img/668b58322fd2fee2f2e37bd1_aelf_ecosystem.jpeg)
+![](/img/diagram_4.png)
 
 aelf's primary strength lies in its architecture, which utilizes a multi-layered structure comprising a MainChain and multiple SideChains. This differs from a traditional Single Chain system in that aelf is a "Branched Ecosystem", where the MainChain works as the backbone of the system and connects to multiple SideChains. Compared with the traditional "one Chain to any type of Contract", aelf's "One Chain to one type of Contract" design allows aelf to distribute tasks efficiently and process transactions in parallel, significantly enhancing scalability and reducing congestion. At the same time, the SideChains are easier to manage and can be tailored for specific applications, enabling aelf to support a wide range of use cases without compromising performance.
 
