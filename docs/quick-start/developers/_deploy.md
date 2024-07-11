@@ -16,6 +16,11 @@ You will be prompted to save your account, please do **save** your account as sh
 ? Save account info into a file? (Y/n) Y
 ```
 
+**Make sure to choose Y to save your account information.**
+
+:::tip
+ℹ️ Note: If you do not save your account information (by selecting n or N), do not export the wallet password. Only **proceed to the next** step if you have saved your account information.
+:::
 Next, enter and confirm your password. Then export your wallet password as shown below:
 
 ```bash
@@ -34,7 +39,7 @@ import TabItem from '@theme/TabItem';
 <Tabs>
   <TabItem value="cli" label="CLI" default>
 
-Run the following command to get testnet ELF tokens from faucet. Remember to either export your wallet address and wallet password or replace $WALLET_ADDRESS and $WALLET_ADDRESS with your wallet address and wallet password respectively.
+Run the following command to get testnet ELF tokens from faucet. Remember to either export your wallet address and wallet password or replace `$WALLET_ADDRESS` and `$WALLET_PASSWORD` with your wallet address and wallet password respectively.
 
 ```bash
 export WALLET_ADDRESS="YOUR_WALLET_ADDRESS"
@@ -59,7 +64,7 @@ You should see the result displaying your wallet's ELF balance.
   </TabItem>
   <TabItem value="web" label="Web" default>
 
-Go to this url `<https://faucet-ui.aelf.dev>`. Enter your address and click `Get Tokens`.
+Go to https://faucet-ui.aelf.dev Enter your address and click `Get Tokens`.
 
 ![result](/img/get-token-ui.png)
 
@@ -81,6 +86,9 @@ aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH -e https://
 Please wait for approximately 1 to 2 minutes. If the deployment is successful, it will provide you with the contract address.
 
 ![result](/img/deploy-result.png)
+
+Copy the smart contract address from the `address` field
+![result](/img/Contract_Address.png)
 
 Export your smart contract address:
 

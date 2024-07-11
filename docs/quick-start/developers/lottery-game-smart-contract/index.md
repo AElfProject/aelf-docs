@@ -15,7 +15,7 @@ management, event handling, and randomization in smart contracts.
 
 ## Step 1 - Setting up your development environment
 
-import Setup from "../_setup.md"
+import Setup from "../\_setup.md"
 
 <Setup />
 
@@ -50,7 +50,7 @@ Firstly, rename `Protobuf/contract/hello_world_contract.proto` to `lottery_game_
 mv Protobuf/contract/hello_world_contract.proto Protobuf/contract/lottery_game_contract.proto
 ```
 
-Next, open the project with your IDE. 
+Next, open the project with your IDE.
 
 The implementation of file `src/Protobuf/contract/lottery_game_contract.proto` is as follows:
 
@@ -1301,7 +1301,7 @@ You should see **LotteryGame.dll.patched** in the directory `lottery_game/src/bi
 
 ## Step 3 - Deploy Smart Contract
 
-import Deploy from "../_deploy.md"
+import Deploy from "../\_deploy.md"
 
 <Deploy />
 
@@ -1332,11 +1332,24 @@ Enter the params one by one, type `Enter` to skip optional param:
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Initialize
 ```
 
+Output:
+![result](/img/Initialize.png)
+
 ### Depositing funds into the Lottery Game Contract
 
 ```bash
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Deposit
 ```
+
+You will be prompted for the following:
+
+```terminal
+Enter the params one by one, type `Enter` to skip optional param:
+? Enter the required param <value>: 20000
+```
+
+Output:
+![result](/img/Deposit.png)
 
 ### Playing the Lottery Game
 
