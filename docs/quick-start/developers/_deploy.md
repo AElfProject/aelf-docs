@@ -95,3 +95,13 @@ Export your smart contract address:
 ```bash
 export CONTRACT_ADDRESS="YOUR_SMART_CONTRACT_ADDRESS e.g. 2LUmicHyH4RXrMjG4beDwuDsiWJESyLkgkwPdGTR8kahRzq5XS"
 ```
+
+:::tip
+ℹ️ Note: You are to copy the smart contract address as we will be referencing it in the next quest!
+:::
+
+:::info
+🎉 You have successfully deployed your Voting dApp smart contract on the aelf testnet! In the next quest, we will be building the frontend components that allow us to interact with our deployed smart contract!
+:::
+
+
