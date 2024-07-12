@@ -6,27 +6,27 @@ description: aelf's Command Line Interface
 
 # Introduction to the CLI
 
-The **aelf-command** tool is a Command Line Interface (CLI) designed for interacting with an aelf node. This guide will introduce you to its key features and show you how to install and use the tool.
+The **aelf-command** tool is a Command Line Interface (CLI) for interacting with an aelf node. This guide shows you its key features and how to use them.
 
 ## Features
 
-- **Configuration Management**: Easily get or set common configurations like `endpoint`, `account`, `data directory`, and `password`.
-- **User-Friendly Prompts**: For new users, missing parameters will be prompted interactively.
-- **Account Management**: Create new `accounts` or load existing ones using a private key or mnemonic.
-- **Wallet Information**: Display `wallet` details including private key, address, public key, and mnemonic.
-- **Encryption**: Encrypt account information into `keyStore` format and save it to a file.
-- **Blockchain Interaction**: 
-  - Retrieve the current `best height` of the chain.
-  - Get `block information` by `height` or `block hash`.
-  - Get `transaction results` by `transaction ID`.
-  - Send `transactions` or call `read-only methods` on smart `contracts`.
-  - Deploy smart `contracts`.
-  - Open a `REPL` (Read-Eval-Print Loop) for using `JavaScript` to interact with the chain.
-- **Friendly UI**: Enhanced user interactions with chalk and ora for a better visual experience.
-- **Chain Status**: Retrieve the current chain status.
+- **Configuration Management**: Set and get settings like `endpoint`, `account`, `data directory`, and `password`.
+- **Interactive Prompts**: Helps new users by asking for missing parameters.
+- **Account Management**: Create or load `accounts` with a private key or mnemonic.
+- **Wallet Information**: Show details like private key, address, public key, and mnemonic.
+- **Encryption**: Save account info in `keyStore` format.
+- **Blockchain Interaction**:
+  - Get the chain's `best height`.
+  - Get `block information` by height or block hash.
+  - Get `transaction results` by transaction ID.
+  - Send transactions or call read-only methods on smart contracts.
+  - Deploy smart contracts.
+  - Use `REPL` (Read-Eval-Print Loop) for JavaScript interactions with the chain.
+- **User Interface**: Uses chalk and ora for better visuals.
+- **Chain Status**: Get the current status of the chain.
 - **Proposal Management**: Create proposals on any contract method.
-- **Transaction Deserialization**: Deserialize results returned by executing a transaction.
-- **Socket.io Server**: Start a socket.io server to provide services for dApps.
+- **Transaction Deserialization**: Read results from transactions.
+- **Socket.io Server**: Start a server for dApps.
 
 ## Installation
 
@@ -40,7 +40,7 @@ npm install aelf-command -g
 
 ### First Step
 
-You need to create a new account or load an existing account using a `private key` or `mnemonic`.
+Create a new account or load an existing account using a `private key` or `mnemonic`.
 
 **Create a New Wallet**
 
@@ -48,7 +48,7 @@ You need to create a new account or load an existing account using a `private ke
 aelf-command create
 ```
 
-Output example:
+Example output:
 
 ```bash
 Your wallet info is:
@@ -69,14 +69,14 @@ Account info has been saved to "/Users/young/.local/share/aelf/keys/2Ue31YTuB5Sz
 aelf-command load e038eea7e151eb451ba2901f7...b08ba5b76d8f288
 ```
 
-Output example:
+Example output:
 
 ```bash
 Your wallet info is:
 Private Key:         e038eea7e151eb451ba2901f7...b08ba5b76d8f288
 Public Key:          0478903d96aa2c8c0...6a3e7d810cacd136117ea7b13d2c9337e1ec88288111955b76ea
 Address:             2Ue31YTuB5Szy7cnr3SCEGU2gtGi5uMQBYarYUR5oGin1sys6H
-✔ Save account info into a file?
+✔ Save account info into a file? … no / yes
 ✔ Enter a password … ********
 ✔ Confirm password … ********
 ✔
@@ -89,7 +89,7 @@ Account info has been saved to "/Users/young/.local/share/aelf/keys/2Ue31YTuB5Sz
 aelf-command wallet -a 2Ue31YTuB5Szy7cnr3SCEGU2gtGi5uMQBYarYUR5oGin1sys6H
 ```
 
-Output example:
+Example output:
 
 ```bash
 Your wallet info is:
@@ -98,11 +98,9 @@ Public Key:          0478903d96aa2c8c0...6a3e7d810cacd136117ea7b13d2c9337e1ec882
 Address:             2Ue31YTuB5Szy7cnr3SCEGU2gtGi5uMQBYarYUR5oGin1sys6H
 ```
 
-Here you can decide whether to encrypt the account info and save it to a file.
-
 ## Examples
 
-**Interactive Console**
+##### Interactive Console
 
 ```sh
 aelf-command console -a 2Ue31YTuB5Szy7cnr3SCEGU2gtGi5uMQBYarYUR5oGin1sys6H
@@ -123,10 +121,10 @@ Welcome to aelf interactive console. Ctrl + C to terminate the program. Double t
    ║              | 5oGin1sys6H                                ║
    ║                                                           ║
    ╚═══════════════════════════════════════════════════════════╝
-   
-``` 
 
-**Default Parameters**
+```
+
+##### Default Parameters
 
 ```sh
 aelf-command console
