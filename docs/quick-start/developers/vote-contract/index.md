@@ -327,7 +327,7 @@ namespace AElf.Contracts.BuildersDAO
 
 #### Implementing Initialize Function
 
-* Go to the comment `Implement Initialize Smart Contract Logic.`
+* Go to the comment `Implement Vote on Proposal Logic`.
 * Check if the smart contract is already initialized; return if true.
 * Define a hardcoded proposal with necessary parameters.
 * Update the Proposals state variable with the hardcoded proposal and increment the proposalId.
@@ -833,14 +833,12 @@ function onSubmit(values: z.infer<typeof formSchema>) {
     voteThreshold: values.voteThreshold,
   };
 
-  setCreateProposalInput(proposalInput);
-
   const createNewProposal = async () => {
     try {
       await DAOContract?.callSendMethod(
         "CreateProposal",
         currentWalletAddress,
-        createProposalInput
+        proposalInput
       );
 
       navigate("/");
