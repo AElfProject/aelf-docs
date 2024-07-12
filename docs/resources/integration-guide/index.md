@@ -13,19 +13,20 @@ description: Learn how to integrate with other tools and DApps
 # Install
 
 ```sh
-yarn add @aelf-web-login/wallet-adapter-night-elf @aelf-web-login/wallet-adapter-portkey-aa @aelf-web-login/wallet-adapter-portkey-discover @aelf-web-login/wallet-adapter-react @aelf-web-login/wallet-adapter-base @aelf-web-login/wallet-adapter-bridge
+yarn add @aelf-web-login/wallet-adapter-night-elf @aelf-web-login/wallet-adapter-portkey-aa @aelf-web-login/wallet-adapter-portkey-discover @aelf-web-login/wallet-adapter-react @aelf-web-login/wallet-adapter-base @aelf-web-login/wallet-adapter-bridge @aelf-web-login/utils
 ```
 
 Then the `package.json` will be like this
 
 ```json
 "dependencies": {
-    "@aelf-web-login/wallet-adapter-night-elf": "^0.0.2-alpha.7",
-    "@aelf-web-login/wallet-adapter-portkey-aa": "^0.0.2-alpha.7",
-    "@aelf-web-login/wallet-adapter-portkey-discover": "^0.0.2-alpha.7",
-    "@aelf-web-login/wallet-adapter-react": "^0.0.2-alpha.7",
-    "@aelf-web-login/wallet-adapter-base": "^0.0.2-alpha.7",
-    "@aelf-web-login/wallet-adapter-bridge": "^0.0.2-alpha.7",
+    "@aelf-web-login/wallet-adapter-night-elf": "^0.1.0",
+    "@aelf-web-login/wallet-adapter-portkey-aa": "^0.1.0",
+    "@aelf-web-login/wallet-adapter-portkey-discover": "^0.1.0",
+    "@aelf-web-login/wallet-adapter-react": "^0.1.0",
+    "@aelf-web-login/wallet-adapter-base": "^0.1.0",
+    "@aelf-web-login/wallet-adapter-bridge": "^0.1.0",
+    "@aelf-web-login/utils": "^0.1.0",
 }
 ```
 
@@ -51,14 +52,17 @@ const NETWORK_TYPE = NetworkEnum.TESTNET;
 const RPC_SERVER_AELF = 'https://aelf-test-node.aelf.io';
 const RPC_SERVER_TDVV = 'https://tdvv-public-node.aelf.io';
 const RPC_SERVER_TDVW = 'https://tdvw-test-node.aelf.io';
-const GRAPHQL_SERVER = 'https://dapp-aa-portkey-test.portkey.finance/Portkey_DID/PortKeyIndexerCASchema/graphql';
+const GRAPHQL_SERVER =
+  'https://dapp-aa-portkey-test.portkey.finance/Portkey_DID/PortKeyIndexerCASchema/graphql';
 const CONNECT_SERVER = 'https://auth-aa-portkey-test.portkey.finance';
-
+const SERVICE_SERVER = 'https://aa-portkey-test.portkey.finance';
+const TELEGRAM_BOT_ID = 'xxxx';
 const didConfig = {
   graphQLUrl: GRAPHQL_SERVER,
   connectUrl: CONNECT_SERVER,
+  serviceUrl: SERVICE_SERVER,
   requestDefaults: {
-    baseURL: 'https://aa-portkey-test.portkey.finance',
+    baseURL: SERVICE_SERVER,
     timeout: 30000,
   },
   socialLogin: {
@@ -66,10 +70,14 @@ const didConfig = {
       websiteName: APP_NAME,
       websiteIcon: WEBSITE_ICON,
     },
+    Telegram: {
+      botId: TELEGRAM_BOT_ID,
+    },
   },
 };
 
 const baseConfig = {
+  showVconsole: false,
   networkType: NETWORK_TYPE,
   chainId: CHAIN_ID,
   keyboard: true,
@@ -114,12 +122,12 @@ const wallets = [
       },
     },
   }),
-]
+];
 
 const config: IConfigProps = {
   didConfig,
   baseConfig,
-  wallets
+  wallets,
 };
 ```
 
@@ -155,9 +163,9 @@ const Demo = () => {
     getWalletSyncIsCompleted,
     getSignature,
     callSendMethod,
-    callViewMethod
+    callViewMethod,
   } = useConnectWallet();
-}
+};
 ```
 
 # API
@@ -165,7 +173,7 @@ const Demo = () => {
 ## connectWallet
 
 ```ts
-connectWallet: () => Promise<TWalletInfo>
+connectWallet: () => Promise<TWalletInfo>;
 ```
 
 > Connect wallet and return walletInfo
@@ -174,24 +182,22 @@ connectWallet: () => Promise<TWalletInfo>
 import { Button } from 'aelf-design';
 
 const Demo = () => {
-    const { connectWallet } = useConnectWallet();
-    const onConnectBtnClickHandler = async() => {
-        try {
-          const rs = await connectWallet();
-        } catch (e: any) {
-          console.log(e.message)
-        }
+  const { connectWallet } = useConnectWallet();
+  const onConnectBtnClickHandler = async () => {
+    try {
+      const rs = await connectWallet();
+    } catch (e: any) {
+      console.log(e.message);
     }
-    return (
-        <Button onClick={onConnectBtnClickHandler}>connect</Button>
-    )
-}
+  };
+  return <Button onClick={onConnectBtnClickHandler}>connect</Button>;
+};
 ```
 
 ## disConnectWallet
 
 ```ts
-disConnectWallet: () => Promise<void>
+disConnectWallet: () => Promise<void>;
 ```
 
 > Disconnect wallet
@@ -200,14 +206,12 @@ disConnectWallet: () => Promise<void>
 import { Button } from 'aelf-design';
 
 const Demo = () => {
-    const { disConnectWallet } = useConnectWallet();
-    const onDisConnectBtnClickHandler = () => {
-        disConnectWallet()
-    }
-    return (
-        <Button onClick={onDisConnectBtnClickHandler}>disConnect</Button>
-    )
-}
+  const { disConnectWallet } = useConnectWallet();
+  const onDisConnectBtnClickHandler = () => {
+    disConnectWallet();
+  };
+  return <Button onClick={onDisConnectBtnClickHandler}>disConnect</Button>;
+};
 ```
 
 ## lock
@@ -222,17 +226,15 @@ lock: () => void
 import { Button } from 'aelf-design';
 
 const Demo = () => {
-    const { lock } = useConnectWallet();
-    return (
-        <Button onClick={lock}>lock</Button>
-    )
-}
+  const { lock } = useConnectWallet();
+  return <Button onClick={lock}>lock</Button>;
+};
 ```
 
 ## getAccountByChainId
 
 ```ts
-getAccountByChainId: (chainId: TChainId) => Promise<string>
+getAccountByChainId: (chainId: TChainId) => Promise<string>;
 ```
 
 > Get account address of designative chainId
@@ -261,7 +263,7 @@ const Demo = () => {
 ## getWalletSyncIsCompleted
 
 ```ts
-getWalletSyncIsCompleted: (chainId: TChainId) => Promise<string | boolean>
+getWalletSyncIsCompleted: (chainId: TChainId) => Promise<string | boolean>;
 ```
 
 > Return account address of designative chainId if sync is competed, otherwise return false
@@ -336,7 +338,7 @@ const Demo = () => {
 ## callSendMethod
 
 ```ts
-callSendMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>
+callSendMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>;
 ```
 
 > Call contract's send method
@@ -353,39 +355,39 @@ interface ICallContractParams<T> {
 }
 
 const Demo = () => {
-    const { callSendMethod } = useConnectWallet();
-    const [result, setResult] = useState({});
+  const { callSendMethod } = useConnectWallet();
+  const [result, setResult] = useState({});
 
-    const onApproveHandler = async() => {
-        const res = await callSendMethod({
-          chainId: 'tDVW',
-          contractAddress: 'JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE',
-          methodName: 'Approve',
-          args: {
-            symbol: 'ELF',
-            spender: 'JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE',
-            amount: '100000000',
-          },
-        });
-        setResult(res);
-    }
+  const onApproveHandler = async () => {
+    const res = await callSendMethod({
+      chainId: 'tDVW',
+      contractAddress: 'JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE',
+      methodName: 'Approve',
+      args: {
+        symbol: 'ELF',
+        spender: 'JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE',
+        amount: '100000000',
+      },
+    });
+    setResult(res);
+  };
 
-    return (
+  return (
+    <div>
+      <Button onClick={onApproveHandler}>Approve in tDVW</Button>
       <div>
-        <Button onClick={onApproveHandler}>Approve in tDVW</Button>
-        <div>
-          <h4>Result</h4>
-          <pre className="result">{JSON.stringify(result, null, '  ')}</pre>
-        </div>
+        <h4>Result</h4>
+        <pre className="result">{JSON.stringify(result, null, '  ')}</pre>
       </div>
-    )
-}
+    </div>
+  );
+};
 ```
 
 ## callViewMethod
 
 ```ts
-callViewMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>
+callViewMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>;
 ```
 
 > Call contract's view method
@@ -402,38 +404,38 @@ interface ICallContractParams<T> {
 }
 
 const Demo = () => {
-    const { callViewMethod, getAccountByChainId } = useConnectWallet();
-    const [result, setResult] = useState({});
+  const { callViewMethod, getAccountByChainId } = useConnectWallet();
+  const [result, setResult] = useState({});
 
-    const onGetBalanceHandler = async() => {
-        const res = await callViewMethod({
-          chainId: 'tDVW',
-          contractAddress: 'ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx',
-          methodName: 'GetBalance',
-          args: {
-            symbol: 'ELF',
-            owner: await getAccountByChainId('tDVW'),
-          },
-        });
-        setResult(res);
-    }
+  const onGetBalanceHandler = async () => {
+    const res = await callViewMethod({
+      chainId: 'tDVW',
+      contractAddress: 'ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx',
+      methodName: 'GetBalance',
+      args: {
+        symbol: 'ELF',
+        owner: await getAccountByChainId('tDVW'),
+      },
+    });
+    setResult(res);
+  };
 
-    return (
+  return (
+    <div>
+      <Button onClick={onGetBalanceHandler}>GetBalance in tDVW</Button>
       <div>
-        <Button onClick={onGetBalanceHandler}>GetBalance in tDVW</Button>
-        <div>
-          <h4>Result</h4>
-          <pre className="result">{JSON.stringify(result, null, '  ')}</pre>
-        </div>
+        <h4>Result</h4>
+        <pre className="result">{JSON.stringify(result, null, '  ')}</pre>
       </div>
-    )
-}
+    </div>
+  );
+};
 ```
 
 ## walletInfo
 
 ```ts
-const walletInfo: TWalletInfo
+const walletInfo: TWalletInfo;
 ```
 
 > Wallet information after connecting wallet, can import `TWalletInfo` from `@aelf-web-login/wallet-adapter-base`
@@ -503,7 +505,7 @@ const Demo = () => {
 ## walletType
 
 ```ts
-const walletType: WalletTypeEnum
+const walletType: WalletTypeEnum;
 ```
 
 > The currently connected wallet type, can import `WalletTypeEnum` from `@aelf-web-login/wallet-adapter-base`
@@ -517,16 +519,16 @@ enum WalletTypeEnum {
 }
 
 const Demo = () => {
-    const { walletType } = useConnectWallet();
-    console.log(walletType)
-    return null
-}
+  const { walletType } = useConnectWallet();
+  console.log(walletType);
+  return null;
+};
 ```
 
 ## isLocking
 
 ```ts
-const isLocking: boolean
+const isLocking: boolean;
 ```
 
 > indicate whether the current state is locked, only portkeyAA wallet take effect, other wallets always return false
@@ -535,20 +537,16 @@ const isLocking: boolean
 import { Button } from 'aelf-design';
 
 const Demo = () => {
-    const { isLocking } = useConnectWallet();
+  const { isLocking } = useConnectWallet();
 
-    return (
-      <Button>
-        {isLocking ? 'unlock' : 'connect'}
-      </Button>
-    )
-}
+  return <Button>{isLocking ? 'unlock' : 'connect'}</Button>;
+};
 ```
 
 ## isConnected
 
 ```ts
-const isConnected: boolean
+const isConnected: boolean;
 ```
 
 > indicate whether the current state is connected
@@ -557,21 +555,21 @@ const isConnected: boolean
 import { Button } from 'aelf-design';
 
 const Demo = () => {
-    const { isConnected } = useConnectWallet();
+  const { isConnected } = useConnectWallet();
 
-    return (
-      <div>
-        <Button disabled={isConnected}>connect</Button>
-        <Button disabled={!isConnected}>disConnect</Button>
-      </div>
-    )
-}
+  return (
+    <div>
+      <Button disabled={isConnected}>connect</Button>
+      <Button disabled={!isConnected}>disConnect</Button>
+    </div>
+  );
+};
 ```
 
 ## loginError
 
 ```ts
-const loginError: TWalletError | null
+const loginError: TWalletError | null;
 ```
 
 > indicate are there any errors during the login/logout/unlock process
@@ -582,7 +580,7 @@ type TWalletError = {
   code: number;
   message: string;
   nativeError?: any;
-}
+};
 
 const Demo = () => {
   const { loginError } = useConnectWallet();
@@ -594,8 +592,8 @@ const Demo = () => {
     console.log(loginError.message);
   }, [loginError]);
 
-  return null
-}
+  return null;
+};
 ```
 
 # Development
