@@ -3,7 +3,7 @@ sidebar_position: 1
 title: 1. Executive Summary
 description: ""
 ---
-![aelf - AI blockchain](/img/diagram_3.png "aelf - AI blockchain")
+![aelf - AI blockchain](/img/chapter1.png "aelf - AI blockchain")
 
 aelf is a cutting-edge multi-chain blockchain framework launched in December 2017, utilizing the powerful C# programming language. Its multi-layered structure, featuring MainChain and SideChains, effectively tackles the challenges of traditional blockchain systems, such as performance bottlenecks and data complexity. This architecture improves scalability and reduces congestion by distributing tasks across multiple chains. With an emphasis on developer customization and parallel processing, aelf's framework is versatile, supporting a wide range of applications from digital asset management to DeFi.
 
