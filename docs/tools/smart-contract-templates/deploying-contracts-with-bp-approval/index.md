@@ -9,7 +9,7 @@ Contracts can be deployed or updated via two methods: aelf explorer or aelf-comm
 
 ## Overview
 
-In these cases, BP approval is needed for contract updates:
+In these cases, **BP approval is needed for contract updates:**
 
 - Upgrading system contracts on MainChain.
 - Upgrading system contracts on exclusive SideChains.

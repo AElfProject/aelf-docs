@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 * [Install dotnet 6.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 * Install aelf contract templates
 
-```bash
+```bash title="Terminal"
 dotnet new --install AElf.ContractTemplates
 ```
 
@@ -37,7 +37,7 @@ AELF.ContractTemplates contains various predefined templates for the ease of dev
 
 * Install aelf deploy tool
 
-```bash
+```bash title="Terminal"
 dotnet tool install --global aelf.deploy
 ```
 
@@ -46,12 +46,24 @@ Please remember to export PATH after installing aelf.deploy.
 
 **Install Node.js and Yarn**
 
-* [Install Node.js](https://nodejs.org/en)
-* Install aelf-command
+- [Install Node.js](https://nodejs.org/en)
+- [Install Yarn](https://classic.yarnpkg.com/lang/en/docs/install)
 
-```bash
+**Install aelf-command**
+
+<Tabs>
+<TabItem value="Linux and macOs" label="Linux and macOs" default>
+```bash title="Terminal"
 sudo npm i -g aelf-command
 ```
+</TabItem>
+
+<TabItem value="Window" label="Window">
+```bash title="Terminal"
+npm i -g aelf-command
+```
+</TabItem>
+</Tabs>
 
 aelf-command is a CLI tool for interacting with the aelf blockchain, enabling tasks like creating wallets and managing transactions.
 Provide required permissions while installing aelf-command globally.
@@ -85,14 +97,14 @@ As we will be using a ready made project, we will require git to clone from the 
 * Open your `Terminal`.
 * Enter the following command to create a new project folder:
 
-```bash
+```bash title="Terminal"
 mkdir capstone_aelf
 cd capstone_aelf
 ```
 
 * Enter this command to create the capstone project.
 
-```bash
+```bash title="Terminal"
 dotnet new aelf -n BuildersDAO
 ```
 
@@ -112,7 +124,7 @@ Let's add the RPC methods and message definitions to our Voting dApp.
 * Open `src/Protobuf/contract/BuildersDAO.proto`
 * Replace its contents with this code snippet.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 syntax = "proto3";
 
 import "aelf/core.proto";
@@ -245,7 +257,7 @@ message ProposalList {
 * Open the `src/BuildersDAOState.cs` file.
 * Replace its contents with this code snippet.
 
-```csharp
+```csharp title="BuildersDAOState.proto"
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using AElf.Sdk.CSharp.State;
@@ -284,7 +296,7 @@ namespace AElf.Contracts.BuildersDAO
 * Open `src/BuildersDAO.cs`
 * Replace the existing content with this code snippet.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 using System.Collections.Generic;
 using System.Security.Principal;
 using AElf.Sdk.CSharp;
@@ -336,7 +348,7 @@ Aelf sidechain does not allow duplicate identical smart contracts. Hence, we wil
 * Define a hardcoded proposal with necessary parameters.
 * Update the Proposals state variable with the hardcoded proposal and increment the proposalId.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Initialize Smart Contract Logic
 public override Empty Initialize(Empty input)
 {
@@ -368,7 +380,7 @@ public override Empty Initialize(Empty input)
 
 You'll implement this function. Once done, you can proceed to the next page to compare your code with the reference implementation.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Join DAO Logic
 public override Empty JoinDAO(Address input)
 {
@@ -389,7 +401,7 @@ public override Empty JoinDAO(Address input)
 
 Now, use the provided code snippet to fill in the `CreateProposal` function.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Create Proposal Logic
 public override Proposal CreateProposal(CreateProposalInput input)
 {
@@ -427,7 +439,7 @@ public override Proposal CreateProposal(CreateProposalInput input)
 
 Now, use the provided code snippet to complete the `VoteOnProposal` function.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Vote on Proposal Logic
 public override Proposal VoteOnProposal(VoteInput input)
 {
@@ -478,7 +490,7 @@ public override Proposal VoteOnProposal(VoteInput input)
 
 You'll implement this function. Once done, you can proceed to the next page to compare your code with the reference implementation.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Get All Proposals Logic
 public override ProposalList GetAllProposals(Empty input)
 {
@@ -513,7 +525,7 @@ public override ProposalList GetAllProposals(Empty input)
 
 Implement these methods to access different states effectively in your smart contract.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Get Proposal Logic
 public override Proposal GetProposal(StringValue input)
 {
@@ -598,7 +610,7 @@ public async Task InitializeTest_Duplicate()
 * **Add New Member** : If the address isn't a member yet, add it to State.Members and set its value to true.
 * **Update Member Count** : Increase State.MemberCount by 1 and save the new value.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 public override Empty JoinDAO(Address input)
 {
     // Based on the address, determine whether the address has joined the DAO. If it has, throw an exception
@@ -619,7 +631,7 @@ public override Empty JoinDAO(Address input)
 * In each loop iteration, get the values from `State.Proposals` and add them to `ProposalList`.
 * Return `ProposalList`.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 public override ProposalList GetAllProposals(Empty input)
 {
     // Create a new list called ProposalList
@@ -686,7 +698,7 @@ We'll set up our Portkey provider to let users connect their Portkey wallets to 
 
 3. Locate the comment `Step A - Setup Portkey Wallet Provider` and replace the existing **useEffect** hook with the following code snippet:
 
-```javascript title="src/useDAOSmartContract.ts"
+```javascript title="useDAOSmartContract.ts"
 //Step A - Setup Portkey Wallet Provider
 useEffect(() => {
   (async () => {

@@ -9,7 +9,10 @@ description: aelf consensus mechanism
 ## Overview
 Consensus is crucial for blockchains as it decides which transactions are included in the block and their order. aelf's block formation mechanism is more complex than Bitcoin and Ethereum due to its need to record Side Chain data and its cloud-based service design. Miners must update info from multiple parallel Chains. aelf uses AEDPoS consensus for high-frequency and predictable block formation.
 
-In aelf, the consensus protocol has two parts: election and scheduling. Election decides who produces blocks, and scheduling decides when.
+#### How aelf Consensus Works:
+
+1. **Election**: Determines who gets to produce blocks.
+2. **Scheduling**: Decides when those blocks are produced.
 
 ## Core Data Center
 Core Data Centers, also known as Miners or Block Producers, act like parliament members in the aelf blockchain. aelf has 2N+1 Core Data Centers, starting with 8 and increasing by 1 each year. These nodes enforce aelf’s consensus rules, relay transactions, confirm transactions, package blocks, and transfer data. They also act as miners for some Side Chains and are elected by ELF token holders.

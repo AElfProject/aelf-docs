@@ -26,7 +26,7 @@ To begin the aelf Blockchain, you need to start at least one initial node. It’
 - The default election period is 604800 seconds (7 days).
 - To see election results faster, modify the configuration file `appsettings.json` to set the `PeriodSeconds` to a smaller value:
 
-```json
+```json title="appsettings.json"
 {
   "Consensus": {
     "PeriodSeconds": 604800
@@ -42,13 +42,13 @@ By following these steps, you can successfully start the aelf Blockchain with in
 
 To create an account for the full node, use the following command:
 
-```bash
+```bash title="Terminal"
 aelf-command create
 ```
 
 You will receive your wallet information, which includes the mnemonic, private key, public key, and address. Here is an example of the output:
 
-```protobuf
+```protobuf title="Terminal"
    AElf [Info]: Your wallet info is : 
    AElf [Info]: Mnemonic            : major clap hurdle hammer push slogan ranch quantum reunion hope enroll repeat 
    AElf [Info]: Private Key         : 2229945cf294431183fd1d8101e27b17a1a590d3a1f7f2b9299850b24262ed8a 
@@ -77,7 +77,7 @@ After starting the full node, verify its status to ensure it's properly synchron
 #### Check Node State
 To check the current state of the node, use the following command:
 
-```base
+```base title="Terminal"
 aelf-command get-chain-status
 ```
 

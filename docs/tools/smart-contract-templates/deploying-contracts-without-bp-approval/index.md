@@ -9,7 +9,7 @@ Contracts can be deployed/updated via aelf explorer or aelf-command. Ensure npm 
 
 ## Overview
 
-In these 6 cases, BP approval is not needed for contract deployment/updates:
+In these 6 cases, **BP approval is not needed for contract deployment/updates:**
 
 - Deploying user contracts on shared SideChains (initiated by users or BPs).
 - Updating user contracts on shared SideChains (initiated by contract creators).
