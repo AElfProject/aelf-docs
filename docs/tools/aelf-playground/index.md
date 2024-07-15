@@ -12,7 +12,7 @@ aelf Playground is a sandbox for new developers who want to experience smart con
 
 ## 2. Setting up
 
-No setup is needed. Simply visit [aelf Playground](https://playground.test.aelf.dev) in your browser.
+No setup is needed. Simply visit [aelf Playground](https://playground.aelf.com) in your browser.
 
 ## 3. Using aelf Playground
 

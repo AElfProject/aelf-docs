@@ -21,6 +21,11 @@
       "position": "left"
     },
     {
+      "to": "https://playground.aelf.com",
+      "label": "Playground",
+      "position": "left"
+    },
+    {
       "to": "/resources",
       "label": "Resources",
       "position": "left"
