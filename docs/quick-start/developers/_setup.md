@@ -4,39 +4,53 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="local" label="Local" default>
 
-* Basic knowledge of terminal commands
-* **IDE** - Install [VS Code](https://code.visualstudio.com/)
+- Basic knowledge of terminal commands
+- **IDE** - Install [VS Code](https://code.visualstudio.com/)
 
 **Install Required Packages**
 
-* [Install dotnet 6.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-* Install aelf contract templates
+- [Install dotnet 6.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- Install aelf contract templates
 
-```bash
+```bash title="Terminal"
 dotnet new --install AElf.ContractTemplates
 ```
 
 AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.
 
-* Install aelf deploy tool
+- Install aelf deploy tool
 
-```bash
+```bash title="Terminal"
 dotnet tool install --global aelf.deploy
 ```
 
 aelf.deploy is a utility tool for deploying smart contracts on the aelf blockchain.
 Please remember to export PATH after installing aelf.deploy.
 
+:::info
 ℹ️ Note: If you have installed aelf.deploy and your terminal says that there is no such command available, please uninstall and install aelf.deploy.
+:::
 
 **Install Node.js and Yarn**
 
-* [Install Node.js](https://nodejs.org/en)
-* Install aelf-command
+- [Install Node.js](https://nodejs.org/en)
+- [Install Yarn](https://classic.yarnpkg.com/lang/en/docs/install)
 
-```bash
+**Install aelf-command**
+
+<Tabs>
+<TabItem value="Linux and macOs" label="Linux and macOs" default>
+```bash title="Terminal"
 sudo npm i -g aelf-command
 ```
+</TabItem>
+
+<TabItem value="Window" label="Window">
+```bash title="Terminal"
+npm i -g aelf-command
+```
+</TabItem>
+</Tabs>
 
 aelf-command is a CLI tool for interacting with the aelf blockchain, enabling tasks like creating wallets and managing transactions.
 Provide required permissions while installing aelf-command globally.

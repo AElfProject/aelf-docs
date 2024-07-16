@@ -11,7 +11,7 @@ To simulate BP nodes in a local environment, you need to set up at least three n
 
 1. Find the `appsettings.json` file in `/.../src/AElf.Launcher` and configure the public keys of the three nodes:
 
-    ```json
+    ```json title="appsettings.json"
     "Consensus": {
         "InitialMinerList": [
             "04884d9563b3b67a5*****526dd489e3805211cba710d956718*****",
@@ -32,25 +32,25 @@ To simulate BP nodes in a local environment, you need to set up at least three n
 
 1. Stake 100,000 ELF to join the node election. Ensure you have enough balance by checking with:
 
-    ```sh
+    ```sh title="Terminal"
     aelf-command call AElf.ContractNames.Token GetBalance '{"symbol": "ELF", "owner": "YOUR_ADDRESS"}'
     ```
 
 2. If balance < 100,005 ELF, transfer ELF tokens using:
 
-    ```sh
+    ```sh title="Terminal"
     aelf-command send AElf.ContractNames.Token Transfer '{"symbol": "ELF", "to": "YOUR_ADDRESS", "amount": "10000000000000"}'
     ```
 
 3. Announce your candidacy:
 
-    ```sh
+    ```sh title="Terminal"
     aelf-command send AElf.ContractNames.Election AnnounceElection '{"value": "YOUR_ADDRESS"}' -a YOUR_ADDRESS
     ```
 
 4. Check candidate information:
 
-    ```sh
+    ```sh title="Terminal"
     aelf-command call AElf.ContractNames.Election GetCandidateInformation '{"value":"YOUR_PUBLIC_KEY"}'
     ```
 
@@ -58,31 +58,31 @@ To simulate BP nodes in a local environment, you need to set up at least three n
 
 1. Create a user account:
 
-    ```sh
+    ```sh title="Terminal"
     aelf-command create
     ```
 
 2. Transfer ELF to the new account for voting (e.g., 2000 ELF):
 
-    ```sh
+    ```sh title="Terminal"
     aelf-command send AElf.ContractNames.Token Transfer '{"symbol": "ELF", "to": "USER_ADDRESS", "amount": "200000000000"}'
     ```
 
 3. Check balance of the new account:
 
-    ```sh
+    ```sh title="Terminal"
     aelf-command call AElf.ContractNames.Token GetBalance '{"symbol": "ELF", "owner": "USER_ADDRESS"}'
     ```
 
 4. Vote for the candidate node (e.g., 20 ELF):
 
-    ```sh
+    ```sh title="Terminal"
     aelf-command send AElf.ContractNames.Election Vote '{"candidatePubkey":"CANDIDATE_PUBLIC_KEY","amount":2000000000,"endTimestamp":{"seconds":1600271999,"nanos":999000}}' -a USER_ADDRESS
     ```
 
 5. Check candidate votes:
 
-    ```sh
+    ```sh title="Terminal"
     aelf-command call AElf.ContractNames.Election GetCandidateVote '{"value":"CANDIDATE_PUBLIC_KEY"}'
     ```
 
@@ -90,7 +90,7 @@ To simulate BP nodes in a local environment, you need to set up at least three n
 
 The top 2N+1 candidate nodes are elected as BPs in the next term. Get the list of current BPs:
 
-```sh
+```sh title="Terminal"
 aelf-command call AElf.ContractNames.Consensus GetCurrentMinerPubkeyList '{}'
 ```
 

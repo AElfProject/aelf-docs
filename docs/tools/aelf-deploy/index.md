@@ -12,7 +12,9 @@ The aelf-deploy tool simplifies the deployment and updating of aelf contracts us
 
 ## 2. Setting up
 
-To install the aelf-deploy tool globally, use the following command:
+- If you haven't installed the .NET SDK yet, please follow the official Microsoft documentation to install and set it up : [Install dotnet 6.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+
+- To install the aelf-deploy tool globally, use the following command:
 ```bash title="Terminal"
 dotnet tool install --global aelf.deploy
 ```

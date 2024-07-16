@@ -38,18 +38,18 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
 
 1. Create a snapshot directory and navigate to it:
 
-   ```sh
+   ```sh title="Terminal"
    mkdir snapshot
    cd snapshot
    ```
 2. Fetch the snapshot download script:
 
-   ```sh
+   ```sh title="Terminal"
    curl -O -s https://aelf-backup.s3.ap-northeast-2.amazonaws.com/snapshot/mainnet/download-mainchain-db.sh
    ```
 3. Execute the script (specify a date if needed):
 
-   ```sh
+   ```sh title="Terminal"
    sh download-mainchain-db.sh
    ```
 4. Restore the chain database from snapshot:
@@ -77,12 +77,12 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
 
 1. Install the `aelf-command` npm package:
 
-   ```sh
+   ```sh title="Terminal"
    npm i -g aelf-command
    ```
 2. Create an account/key-pair:
 
-   ```sh
+   ```sh title="Terminal"
    aelf-command create
    ```
 
@@ -92,7 +92,7 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
 
 1. Download the settings template and Docker script:
 
-   ```sh
+   ```sh title="Terminal"
    cd /tmp/
    wget https://github.com/aelfProject/aelf/releases/download/v1.6.0/aelf-mainnet-mainchain.zip
    unzip aelf-mainnet-mainchain.zip
@@ -100,7 +100,7 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
    ```
 2. Update the `appsettings.json` file with your account information:
 
-   ```json
+   ```json title="appsettings.json"
    {
        "Account": {
            "NodeAccount": "2Ue31YTuB5Szy7cnr3SCEGU2gtGi5uMQBYarYUR5oGin1sys6H",
@@ -128,14 +128,14 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
 
 1. Pull aelf’s Docker image and start the node:
 
-   ```sh
+   ```sh title="Terminal"
    docker pull aelf/node:mainnet-v1.6.0
    cd /opt/aelf-node
    sh aelf-node.sh start aelf/node:mainnet-v1.6.0
    ```
 2. To stop the node:
 
-   ```sh
+   ```sh title="Terminal"
    sh aelf-node.sh stop
    ```
 
@@ -144,7 +144,7 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
 1. Install the .NET Core SDK (version 6.0).
 2. Get the latest release and run the node:
 
-   ```sh
+   ```sh title="Terminal"
    cd /tmp/
    wget https://github.com/aelfProject/aelf/releases/download/v1.6.0/aelf.zip
    unzip aelf.zip
@@ -162,7 +162,7 @@ We support Redis and SSDB for storing node data. For mainnet, we provide snapsho
 
 Run the following command to check the node's block height:
 
-```sh
+```sh title="Terminal"
 aelf-command get-blk-height -e http://your node ip address:port
 ```
 
@@ -171,7 +171,7 @@ aelf-command get-blk-height -e http://your node ip address:port
 1. **Download and Restore Snapshot Data** (steps are the same as in Setup the Database).
 2. **Run Side-Chain Node:**
 
-   ```sh
+   ```sh title="Terminal"
    cd /tmp/
    wget https://github.com/aelfProject/aelf/releases/download/v1.6.0/aelf-mainnet-sidechain1.zip
    unzip aelf-mainnet-sidechain1.zip
@@ -179,7 +179,7 @@ aelf-command get-blk-height -e http://your node ip address:port
    ```
 3. **Update appsettings.SideChain.MainNet.json with your node information:**
 
-   ```json
+   ```json title="appsettings.SideChain.MainNet.json"
    {
        "CrossChain": {
            "Grpc": {

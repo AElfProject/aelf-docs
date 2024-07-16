@@ -8,7 +8,8 @@ description: UI component library based on Antd.
 
 <h1 align="left">aelf Design</h1>
 <h2 align="left">A UI component library based on Antd and compliant with aelf visual specifications</h2>
-<h2 align="left"> website: https://aelf-design.vercel.app/</h2>
+<p align="left"> **website**: https://aelf-design.vercel.app/</p>
+
 
 </div>
 
@@ -112,7 +113,7 @@ const App: React.FC = () => (
 export default App;
 ```
 
-Details: https://ant-design.antgroup.com/docs/react/customize-theme#design-token
+**Details**: https://ant-design.antgroup.com/docs/react/customize-theme#design-token
 
 ### antd-style
 

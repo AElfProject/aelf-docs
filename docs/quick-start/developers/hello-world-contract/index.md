@@ -24,11 +24,11 @@ import Setup from "../_setup.md"
 
 ### Start Your Smart Contract Project
 
-Open your `Terminal`.
+- Open your `Terminal`.
 
-Enter the following command to generate a new project:
+- Enter the following command to generate a new project:
 
-```bash
+```bash title="Terminal"
 mkdir hello-world
 cd hello-world
 dotnet new aelf -n HelloWorld
@@ -36,16 +36,17 @@ dotnet new aelf -n HelloWorld
 
 ### Adding Your Smart Contract Code
 
-Now that we have a template hello world project, we can customise the template to incorporate our own contract logic.
-Lets start by implementing methods to provide basic functionality for updating and reading a message stored persistently in the contract state.
+Now Hello World template ready, let's customize it to add our own contract logic. We'll start by creating methods to update and read a message stored in the contract.
 
-```bash
+- Enter this command in your `Terminal`.
+
+```bash title="Terminal"
 cd src
 ```
 
 The implementation of file `src/HelloWorldState.cs` is as follows:
 
-```csharp
+```csharp title="HelloWorldState.cs"
 using AElf.Sdk.CSharp.State;
 
 namespace AElf.Contracts.HelloWorld
@@ -62,7 +63,7 @@ namespace AElf.Contracts.HelloWorld
 
 The implementation of file `src/HelloWorld.cs` is as follows:
 
-```csharp
+```csharp title="HelloWorld.cs"
 // contract implementation starts here
 namespace AElf.Contracts.HelloWorld
 {
@@ -98,7 +99,7 @@ namespace AElf.Contracts.HelloWorld
 
 Build the new code with the following commands inside src folder:
 
-```bash
+```bash title="Terminal"
 dotnet build
 ```
 
@@ -116,13 +117,13 @@ Firstly, we will set a message using the `Update` method. Run the following comm
 and enter the message argument as `test`. This will set `test` into the Message contract state.
 Remember to export CONTRACT_ADDRESS equals to your deployed contract address.
 
-```bash
+```bash title="Terminal"
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Update
 ```
 
 After that, we can use `Read` method to retrieve the value previously set for the Message contract state.
 Running the following command should yield `test`.
 
-```bash
+```bash title="Terminal"
 aelf-command call $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Read
 ```
