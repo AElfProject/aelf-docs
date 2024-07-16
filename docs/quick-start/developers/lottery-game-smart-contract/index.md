@@ -1377,3 +1377,36 @@ aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_A
 Enter the required param <symbol>: ELF
 Enter the required param <owner>: $WALLET_ADDRESS
 ```
+
+
+## 🎯 Conclusion 
+
+#### 🎊 Congratulations!
+
+You've completed the Lottery Game Contract tutorial! Well done for mastering the steps and complexities involved. 🌟
+
+#### 📚 What You've Learned
+
+In this tutorial, you've explored:
+
+- 🛠️ Setting up your development environment for aelf blockchain.
+- 🎲 Developing a smart contract for a basic lottery game with state management and random number generation.
+- 🚀 Deploying and interacting with your Lottery Game Contract on the aelf network.
+
+#### 🔍 Final Output
+
+By now, you should have:
+
+- 📜 Successfully deployed your Lottery Game Contract on the aelf blockchain.
+- 🎉 Deposited funds and played the lottery game using smart contract interactions.
+
+Ensure you've seen your ELF balance updated after playing the game to verify the contract's functionality.
+
+#### ➡️ What's Next?
+
+Now that you've tackled the Lottery Game Contract, consider exploring more advanced topics or other tutorials to expand your aelf blockchain development skills. 
+
+🚀 Keep innovating and building awesome decentralized applications!
+
+Happy coding! 😊
+
