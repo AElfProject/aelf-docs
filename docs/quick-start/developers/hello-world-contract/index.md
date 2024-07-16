@@ -127,3 +127,35 @@ Running the following command should yield `test`.
 ```bash title="Terminal"
 aelf-command call $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Read
 ```
+
+## 🎯 Conclusion
+
+#### 🎊 Congratulations!
+
+You've successfully completed the Hello World Contract tutorial!
+Awesome job sticking with it until the end. 🌟
+
+#### 📚 What You've Learned
+
+In this tutorial, you've discovered:
+
+- 🛠️ How to set up your development environment for aelf.
+- 💻 The basics of writing a smart contract in C# for the aelf blockchain.
+- 🚀 How to deploy and interact with your Hello World Contract on the aelf network.
+
+#### 🔍 Final Output
+
+By now, you should have:
+
+- 📜 A deployed Hello World Contract on the aelf blockchain.
+- 🎉 Successfully invoked the contract to set and read a message.
+
+To verify, you should have seen the **`test`** message returned when you called the Read method after setting it using the Update method. If you see this message, you've nailed it! 🏆
+
+#### ➡️ What's Next?
+
+Now that you've got the basics down, why not dive into more advanced topics or other tutorials like the Lottery Game Contract or Voting Contract? 
+
+Keep experimenting and building to level up your aelf blockchain development skills. 🚀
+
+Happy coding! 😊

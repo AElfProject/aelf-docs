@@ -5,7 +5,7 @@ title: Deploying Contract without BP Approval
 
 # Deploying Contracts without BP Approval
 
-Contracts can be deployed/updated via aelf explorer or aelf-command. Ensure npm and aelf-command are installed before starting. Follow the [Deployment Environment guide](#) if needed.
+Contracts can be deployed/updated via aelf explorer or aelf-command. Ensure npm and aelf-command are installed before starting. Follow the [Deployment Environment guide](/tools/smart-contract-templates/development-environment) if needed.
 
 ## Overview
 
