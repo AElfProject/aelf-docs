@@ -5,6 +5,8 @@ description: ""
 ---
 # aelf as a modular blockchain
 
+![aelf as a modular blockchain](/img/chapter7.png "aelf as a modular blockchain")
+
 A modular blockchain is a design approach that focuses on handling a limited set of responsibilities while outsourcing the rest to one or more independent layers. It decomposes the various tasks or functions of a blockchain into distinct layers or modules. This segregation allows for improved performance, scalability, and customization.
 
 **Execution Layer:** This layer is where transactions and state changes occur, such as modifying wallet balances. Users interact with this layer through transaction operations, currency transfers, and smart contract deployments.
