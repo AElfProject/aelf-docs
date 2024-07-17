@@ -5,6 +5,8 @@ description: ""
 ---
 # 1. Operational Excellence
 
+![Operational excellence](/img/chapter6-1.png "Operational excellence")
+
 ## i) Machine Learning Models for Smart Contract Optimisation
 
 Integrating machine learning models into the aelf blockchain can significantly optimize gas usage and execution efficiency. We draw inspiration from existing rollup technologies but enhance them through advanced predictive modeling.
