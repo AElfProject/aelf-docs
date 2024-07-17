@@ -76,7 +76,7 @@ Additionally, the aelf AI Oracle offers traditional services such as price feeds
 
 ![](/img/screenshot_2024-07-17_at_3.38.45_pm.png)
 
- The aelf AI Oracle is committed to fostering the development of the AI Dapp ecosystem on aelf. This involves optimizing the SDK and framework to enhance the interaction capabilities between AI Dapps and AI, as well as strengthening collaborations with AI Agent platforms. Currently, aelf AI Oracle will integrate with the ChatGPT API, and in the future, it plans to incorporate more centralized LLMs and collaborate with other decentralized AI computing networks to meet the growing needs of developers.
+The aelf AI Oracle is committed to fostering the development of the AI Dapp ecosystem on aelf. This involves optimizing the SDK and framework to enhance the interaction capabilities between AI Dapps and AI, as well as strengthening collaborations with AI Agent platforms. Currently, aelf AI Oracle will integrate with the ChatGPT API, and in the future, it plans to incorporate more centralized LLMs and collaborate with other decentralized AI computing networks to meet the growing needs of developers.
 
 Beyond the aelf chain, aelf AI Oracle aims to expand to other major blockchains such as Ethereum, truly becoming the AI layer of Web3.
 
