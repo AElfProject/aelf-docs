@@ -27,15 +27,11 @@ Notwithstanding the aforementioned points, the current mainchain-sidechain archi
 
 We are building a ZK-rollup on aelf, based on the Polygon CDK, operating in the validium mode. Its primary components include:
 
-**1. Executor/Verifier:** zkEVM / ZKProver
-
-**2. Data Availability:** External DA + Data Availability Committee (DAC)
-
-**3. Consensus:** On-chain Smart Contracts
-
-**4. Sequencer**
-
-**5. Bridge**
+1. **[Executor/Verifier](https://docs.aelf.dev/resources/whitepaper-2/09/#zkevm--zkprover):** zkEVM / ZKProver
+2. **[Data Availability](https://docs.aelf.dev/resources/whitepaper-2/09/#data-availability):** External DA + Data Availability Committee (DAC)
+3. **[Consensus](https://docs.aelf.dev/resources/whitepaper-2/09/#consensus-contract):** On-chain Smart Contracts
+4. **[Sequencer](https://docs.aelf.dev/resources/whitepaper-2/09/#sequencer)**
+5. **[Bridge](https://docs.aelf.dev/resources/whitepaper-2/09/#bridge)**
 
 ### Verification Process
 
@@ -53,22 +49,19 @@ ZkEVM.cs is the underlying protocol that ensures the correctness of state change
 
 ZkEVM.cs is responsible for verifying validity proofs to confirm that each transaction has been executed correctly, using ZK-SNARK circuits for validation. For the system to function properly, two key processes are involved: **transaction batching** and **transaction verification**. To carry out these processes, aelf ZK-rollup involves two types of participants: **sequencers** and **aggregators**.
 
-**1. Sequencer:** Proposes transaction batches to the network, grouping and adding transaction requests to ZkEVM.cs.
-
-**2. Aggregator:** Reviews the validity of transaction batches and provides necessary validity proofs. Permissionless aggregators can submit these proofs to attest to the accuracy of state transition computations.
+1. **Sequencer:** Proposes transaction batches to the network, grouping and adding transaction requests to ZkEVM.cs.
+2. **Aggregator:** Reviews the validity of transaction batches and provides necessary validity proofs. Permissionless aggregators can submit these proofs to attest to the accuracy of state transition computations.
 
 ### Data Availability
 
 aelf ZK-rollup's validium mode incorporates a secure data availability layer managed by the DAC, which:
 
 1. Verifies the availability of data associated with specific blockchain blocks; and
-
 2. Ensures data robustness and computational efficiency for aelf ZK-rollup.
 
 Advantages of DAC include:
 
-1.  reduce transaction fees; less computation equals lower costs. 
-
+1. reduce transaction fees; less computation equals lower costs. 
 2. state privacy; maintaining secure records of state changes for data integrity.
 
 ### aelf ZK-rollup Node
@@ -80,11 +73,8 @@ aelf ZK-rollup Node is used to process transactions, synchronizes states, genera
 One of the core functionalities of aelf ZK-rollup's nodes is its zkEVM and ZKProver. The general operation flow is as follows: zkEVM / ZKProver receives a large batch of transactions from Layer 2, executes the transactions, and utilizes ZK (Zero-Knowledge) technology to generate zero-knowledge proofs. The proof generation process is outlined below:
 
 1. The node sends the contents of the Merkle tree to the database for storage.
-
 2. Subsequently, the node sends a batch of transactions to the ZKProver component.
-
 3. ZKProver accesses the database and retrieves necessary information to generate verifiable proofs for the transactions sent by the node. This information includes the Merkle root, keys, and hash values of relevant sibling nodes.
-
 4. Finally, ZKProver generates proofs for the transactions and sends them back to the node.
 
 ![](/img/screenshot_2024-07-17_at_10.58.59_am.png)
@@ -93,18 +83,15 @@ One of the core functionalities of aelf ZK-rollup's nodes is its zkEVM and ZKPro
 
 The Sequencer is responsible for ordering transactions and constantly updating the global state:
 
-1. Transaction Ordering: Retrieves transactions from the pool and adds them to the state.
-
-2. State Transition: Collaborates with the Executor to process transactions and update the state.
-
-3. Trustworthy Finality: Once the Sequencer adds a transaction to the state, it shares this information with other nodes, making the transaction final. Other nodes need to trust that the transaction has been added to the state until they receive data availability (DA) and validity (ZKP) confirmations, as detailed below in the **Transaction Journey on aelf ZK-Rollup section below.**
+1. **Transaction Ordering**: Retrieves transactions from the pool and adds them to the state.
+2. **State Transition**: Collaborates with the Executor to process transactions and update the state.
+3. **Trustworthy Finality**: Once the Sequencer adds a transaction to the state, it shares this information with other nodes, making the transaction final. Other nodes need to trust that the transaction has been added to the state until they receive data availability (DA) and validity (ZKP) confirmations, as detailed below in **[Transaction Journey on aelf ZK-Rollup](https://docs.aelf.dev/resources/whitepaper-2/09/#transaction-journey-on-aelf-zk-rollup).**
 
 #### Aggregator
 
 The Aggregator is responsible for submitting proofs of the validity of the Layer 2 state to Layer 1. To achieve this, it takes batches ordered by the Sequencer and interacts with Provers to generate Zero-Knowledge Proofs (ZKPs). To efficiently accomplish this, the Aggregator will:
 
 1. Coordinate with one or more Provers
-
 2. Aggregate proofs for multiple batches, where a single proof can validate multiple batches
 
 #### Bridge
