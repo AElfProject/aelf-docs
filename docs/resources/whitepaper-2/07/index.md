@@ -104,7 +104,7 @@ Intelligent load balancing also enhances fault tolerance and redundancy within t
 
 Intelligent load balancing, powered by AI and machine learning, offers substantial benefits for enhancing the scalability and performance of the aelf blockchain. By dynamically distributing traffic, optimizing resource utilization, enabling predictive scaling, and enhancing fault tolerance, AI-driven load balancing ensures that the aelf network can handle increasing transaction volumes efficiently. 
 
-## iii) AI-Facilitated Cross-Chain Interoperability for Aelf
+## iii) AI-Facilitated Cross-Chain Interoperability for aelf
 
 Incorporating AI into aelf's cross-chain interoperability framework can significantly enhance the efficiency and security of data transfer and validation processes. By leveraging AI-driven optimizations, aelf can ensure seamless communication and robust performance within itself between MainChain and SideChains, and more importantly with various other blockchain networks.
 
