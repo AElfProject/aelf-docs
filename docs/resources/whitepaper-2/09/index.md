@@ -97,7 +97,7 @@ The Sequencer is responsible for ordering transactions and constantly updating t
 
 2. State Transition: Collaborates with the Executor to process transactions and update the state.
 
-3. Trustworthy Finality: Once the Sequencer adds a transaction to the state, it shares this information with other nodes, making the transaction final. Other nodes need to trust that the transaction has been added to the state until they receive data availability (DA) and validity (ZKP) confirmations, as detailed in the **aelf ZK-Rollup Transactions section below (Pre-validated State - Committed State - Verified State).**
+3. Trustworthy Finality: Once the Sequencer adds a transaction to the state, it shares this information with other nodes, making the transaction final. Other nodes need to trust that the transaction has been added to the state until they receive data availability (DA) and validity (ZKP) confirmations, as detailed below in the **Transaction Journey on aelf ZK-Rollup section below.**
 
 #### Aggregator
 
@@ -134,13 +134,8 @@ aelf ZK-rollup involves two primary participants who both earn and pay ELF token
 Before conducting Layer 2 transactions, users need to transfer some ELF from L1 to L2 through the aelf ZK-rollup bridge for gas fees. The subsequent steps are as follows:
 
 1. Users initiate a transaction from their wallet (e.g. Portkey) and send it to the Sequencer.
-
 2. Once the Sequencer commits to adding the transaction, it is finalized on L2.
-
-3. At this point, the transaction is settled on L2, but its state has not yet propagated to L1. This state is known as the Pre-validated State.
-
-4. The Sequencer transfers batch data to a smart contract on L1, allowing any node to safely and trustlessly synchronize its state from L1. This state is called the Committed State.
-
+3. At this point, the transaction is settled on L2, but its state has not yet propagated to L1. This state is known as the **Pre-validated State**.
+4. The Sequencer transfers batch data to a smart contract on L1, allowing any node to safely and trustlessly synchronize its state from L1. This state is called the **Committed State**.
 5. The Aggregator collects pending transactions for validation and constructs proofs to achieve finality on L1.
-
-6. Once the proofs are verified, the user's transaction achieves finality on L1, a crucial step for withdrawals and other operations. This state is referred to as the Verified State.
+6. Once the proofs are verified, the user's transaction achieves finality on L1, a crucial step for withdrawals and other operations. This state is referred to as the **Verified State**.
