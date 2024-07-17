@@ -9,5 +9,5 @@ The integration of AI into the aelf ecosystem marks a significant advancement in
 
 The integration of AI into the aelf ecosystem can be broadly categorized into two main areas, which we will detail below:
 
-1. Operational Excellence
-2. Developer and User Experience
+1. **Operational Excellence**
+2. **Developer and User Experience**
