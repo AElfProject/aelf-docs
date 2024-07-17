@@ -3,7 +3,7 @@ sidebar_position: 5
 title: 5. aelf's AI-enhanced architecture
 description: ""
 ---
-![](/img/chapter5.png)
+![aelf's AI-enhanced architecture](/img/chapter5.png "aelf's AI-enhanced architecture")
 
 As mentioned earlier, aelf's underlying architecture is fundamentally written in C#. C# offers a powerful foundation for AI integration in blockchain development, primarily due to its alignment with the .NET ecosystem, which provides a wide range of libraries and tools that facilitate the development of sophisticated AI models, including the integration of machine learning algorithms, natural language processing (NLP), and data analytics. These capabilities are crucial for enhancing the functionality and intelligence of blockchain platforms. C#’s strong typing and object-oriented features ensure that code is reliable and maintainable, reducing the likelihood of errors that could compromise security. Furthermore, the seamless integration with cloud computing platforms such as Google Cloud featuring AI and machine learning services allows aelf developers to easily implement AI functionalities within the aelf blockchain. This includes capabilities such as automated smart contract execution, fraud detection, and enhanced data privacy through advanced encryption techniques. By leveraging C# and .NET's extensive libraries, aelf developers can incorporate AI models that predict network congestion and dynamically adjust the consensus process to maintain high performance. This not only ensures efficient network management but also enhances user experience by reducing transaction latency and costs.
 
