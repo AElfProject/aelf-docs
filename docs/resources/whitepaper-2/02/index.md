@@ -3,9 +3,9 @@ sidebar_position: 2
 title: 2. Background on aelf
 description: ""
 ---
-The story of aelf began on 10 December 2017, when aelf's vision and plans were introduced to global investors at a Coindesk conference. aelf successfully completed its fund-raising significantly ahead of schedule, having secured investments from notable institutions such as Binance, Arrington XRP Capital, Draper Dragon, Galaxy Digital etc. In the same month, the ELF token was listed on six major exchanges, including Binance and OKEX. aelf Testnet was successfully launched in 2018, followed by another successful launch of the Mainnet in 2020.
-
 ![aelf's architecture](/img/chapter2.png "aelf's architecture")
+
+The story of aelf began on 10 December 2017, when aelf's vision and plans were introduced to global investors at a Coindesk conference. aelf successfully completed its fund-raising significantly ahead of schedule, having secured investments from notable institutions such as Binance, Arrington XRP Capital, Draper Dragon, Galaxy Digital etc. In the same month, the ELF token was listed on six major exchanges, including Binance and OKEX. aelf Testnet was successfully launched in 2018, followed by another successful launch of the Mainnet in 2020.
 
 aelf is primarily a multi-chain parallel computing blockchain framework which was created to address several of the limitations of traditional blockchain systems, such as performance bottlenecks and data complexity. aelf's vision is to be a "Linux Ecosystem" equivalent for a blockchain that incorporates state of the art IT design principles, which in particular allows developers to customise Chains to meet their own needs. At its core, aelf contains the following main features: 
 
