@@ -40,7 +40,7 @@ aelf employs the following mechanisms to implement the AI oracle network:
 1. **TLSNotary Mechanism:** This ensures that the API provided by the underlying centralized or decentralized LLM remains untampered from the data source to the local endpoint.
 2. **SGX and Decentralized Computing Networks:** These technologies guarantee the trustworthy operation of AI agents.
 
-The AELF oracle architecture is primarily divided into two components: **1. on-chain** and **2. off-chain.**
+The aelf oracle architecture is primarily divided into two components: **1. on-chain** and **2. off-chain.**
 
 **1. On-Chain Components**
 
