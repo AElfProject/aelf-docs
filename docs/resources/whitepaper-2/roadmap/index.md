@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: 8. Roadmap
+title: Roadmap
 description: 10
 ---
 【placeholder]

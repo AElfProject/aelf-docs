@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: 2. Background on aelf
+title: Background on aelf
 description: ""
 ---
 ![aelf's architecture](/img/chapter2.png "aelf's architecture")

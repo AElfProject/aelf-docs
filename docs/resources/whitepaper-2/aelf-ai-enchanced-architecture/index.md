@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: 5. aelf's AI-enhanced architecture
+title: aelf's AI-enhanced architecture
 description: ""
 ---
 ![aelf's AI-enhanced architecture](/img/chapter5.png "aelf's AI-enhanced architecture")

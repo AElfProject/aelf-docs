@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: 1. Executive Summary
+title: Executive Summary
 description: ""
 ---
 ![aelf - AI blockchain](/img/chapter1.png "aelf - AI blockchain")

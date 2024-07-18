@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: 4. The AI revolution and its impact on blockchain
+title: The AI revolution and its impact on blockchain
 description: ""
 ---
 ![The AI revolution and its impact on blockchain](/img/chapter4.png "The AI revolution and its impact on blockchain")

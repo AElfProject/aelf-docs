@@ -1,9 +1,9 @@
 ---
-sidebar_position: 7
-title: 6.1 Operational excellence
+sidebar_position: 1
+title: Operational excellence
 description: ""
 ---
-# 1. Operational Excellence
+# Operational Excellence
 
 ![Operational excellence](/img/chapter6-1.png "Operational excellence")
 

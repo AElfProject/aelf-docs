@@ -1,9 +1,9 @@
 ---
-sidebar_position: 8
-title: 6.2 Developer and user experience
+sidebar_position: 2
+title: Developer and user experience
 description: 8
 ---
-# 2. Developer and User Experience
+# Developer and User Experience
 
 ![Developer and user experience](/img/chapter6-2.png "Developer and user experience")
 

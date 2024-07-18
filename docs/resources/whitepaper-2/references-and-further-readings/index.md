@@ -1,6 +1,6 @@
 ---
 sidebar_position: 11
-title: 9. References and further readings
+title: References and further readings
 description: ""
 ---
 1. aelf. Whitepaper V 1.7.0. October 25th, 2022. [[Link](https://docs.aelf.com/pdf/aelf_whitepaper_v1.7_en.pdf)]

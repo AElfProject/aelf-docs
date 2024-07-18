@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: 3. The evolving blockchain landscape
+title: The evolving blockchain landscape
 description: ""
 ---
 ![](/img/chapter3.png)

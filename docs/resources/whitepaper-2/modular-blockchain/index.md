@@ -1,6 +1,6 @@
 ---
 sidebar_position: 9
-title: 7. Technology developments beyond AI - A Modular Blockchain
+title: Technology developments beyond AI - A Modular Blockchain
 description: ""
 ---
 # aelf as a modular blockchain
