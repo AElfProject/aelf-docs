@@ -7,6 +7,8 @@ description: 10
 
 This roadmap outlines aelf's strategic integration of AI technologies, focusing on enhancing user and developer experiences, optimizing smart contract operations, and ensuring robust, scalable blockchain solutions that is on par with leading technologies. 
 
+![aelf Roadmap](/img/roadmap.png "aelf Roadmap")
+
 ## Q3 2024
 
 1. [Enhancing User and Developer Experience with AI-Powered Chatbots on aelf](https://docs.aelf.dev/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/developer-and-user-experience/#iii-enhancing-user-and-developer-experience-with-ai-powered-chatbots-on-aelf)
