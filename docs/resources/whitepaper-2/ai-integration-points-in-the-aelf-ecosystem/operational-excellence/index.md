@@ -27,7 +27,7 @@ Predictive models can evaluate the execution patterns of different smart contrac
 
 aelf's AI oracle positions itself as the AI layer of Web3, leveraging both oracle and security compute technology to facilitate the development of AI-powered dApps. It plays a crucial role in aelf's architecture, which comprises the aelf chains, the AI oracle network, and AI applications, serving as the bridge and hub for integrating AI capabilities into the blockchain.
 
-![](/img/screenshot_2024-07-17_at_3.21.58_pm.png)
+![AI Oracle on aelf](/img/6.1.1.png "AI Oracle on aelf")
 
 ### On-chain AI
 
@@ -54,7 +54,7 @@ The on-chain components (currently on the aelf chain, with potential future depl
 4. **AI Agent Scheduler**: Deploys and schedules AI Agent Service code based on network computing power load.
 5. **AI Agent Factory**: Generates custom contracts for any user-defined AI Agent logic. It acts as the intermediary between the foundational framework contract and the user-defined contract, forwarding the dApp call interface, and interacting with the fee and income settlement contract. Additionally, it mediates between the AI Agent Service and user-defined contracts, processing all calls and inference results of the AI Agent Services uniformly.
 
-![](/img/screenshot_2024-07-17_at_3.33.46_pm.png)
+![On-Chain Components](/img/6.1.2.png "On-Chain Components")
 
 **2. Off-Chain Components**
 
@@ -76,7 +76,7 @@ For simple AI call logic, this process is fully automated. However, for more com
 
 Additionally, the aelf AI Oracle offers traditional services such as price feeds and random number generation. Using the aelf AI Oracle SDK, developers can customize their code to create limitless on-chain AI application scenarios.
 
-![](/img/screenshot_2024-07-17_at_3.38.45_pm.png)
+![AI Oracle Use on aelf](/img/6.1.3.png "AI Oracle Use on aelf")
 
 The aelf AI Oracle is committed to fostering the development of the AI Dapp ecosystem on aelf. This involves optimizing the SDK and framework to enhance the interaction capabilities between AI Dapps and AI, as well as strengthening collaborations with AI Agent platforms. Currently, aelf AI Oracle will integrate with the ChatGPT API, and in the future, it plans to incorporate more centralized LLMs and collaborate with other decentralized AI computing networks to meet the growing needs of developers.
 
