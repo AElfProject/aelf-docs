@@ -31,11 +31,11 @@ Consequently, we have initiated the **Modular + ZK Rollup project** to address t
 
 We are building a ZK-rollup on aelf, based on the [Polygon CDK](https://polygon.technology/polygon-cdk#), operating in the validium mode. Its primary components include:
 
-1. **[Executor/Verifier](https://docs.aelf.dev/resources/whitepaper-2/09/#zkevm--zkprover):** zkEVM / ZKProver
-2. **[Data Availability](https://docs.aelf.dev/resources/whitepaper-2/09/#data-availability):** External DA + Data Availability Committee (DAC)
-3. **[Consensus](https://docs.aelf.dev/resources/whitepaper-2/09/#consensus-contract):** On-chain Smart Contracts
-4. **[Sequencer](https://docs.aelf.dev/resources/whitepaper-2/09/#sequencer)**
-5. **[Bridge](https://docs.aelf.dev/resources/whitepaper-2/09/#bridge)**
+1. **[Executor/Verifier](https://docs.aelf.dev/resources/whitepaper-2/modular-blockchain/#zkevm--zkprover):** zkEVM / ZKProver
+2. **[Data Availability](https://docs.aelf.dev/resources/whitepaper-2/modular-blockchain/#data-availability):** External DA + Data Availability Committee (DAC)
+3. **[Consensus](https://docs.aelf.dev/resources/whitepaper-2/modular-blockchain/#consensus-contract):** On-chain Smart Contracts
+4. **[Sequencer](https://docs.aelf.dev/resources/whitepaper-2/modular-blockchain/#sequencer)**
+5. **[Bridge](https://docs.aelf.dev/resources/whitepaper-2/modular-blockchain/#bridge)**
 
 ### Verification Process
 
@@ -89,7 +89,7 @@ The Sequencer is responsible for ordering transactions and constantly updating t
 
 1. **Transaction Ordering**: Retrieves transactions from the pool and adds them to the state.
 2. **State Transition**: Collaborates with the Executor to process transactions and update the state.
-3. **Trustworthy Finality**: Once the Sequencer adds a transaction to the state, it shares this information with other nodes, making the transaction final. Other nodes need to trust that the transaction has been added to the state until they receive data availability (DA) and validity (ZKP) confirmations, as detailed below in **[Transaction Journey on aelf ZK-Rollup](https://docs.aelf.dev/resources/whitepaper-2/09/#transaction-journey-on-aelf-zk-rollup).**
+3. **Trustworthy Finality**: Once the Sequencer adds a transaction to the state, it shares this information with other nodes, making the transaction final. Other nodes need to trust that the transaction has been added to the state until they receive data availability (DA) and validity (ZKP) confirmations, as detailed below in **[Transaction Journey on aelf ZK-Rollup](https://docs.aelf.dev/resources/whitepaper-2/modular-blockchain/#transaction-journey-on-aelf-zk-rollup).**
 
 #### Aggregator
 
