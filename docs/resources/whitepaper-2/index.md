@@ -4,6 +4,6 @@ title: Whitepaper 2.0
 description: The updated aelf Whitepaper
 ---
 
-## Contents
+## Table of Contents
 
 <DocCardListLinks />
