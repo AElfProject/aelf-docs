@@ -1,6 +1,6 @@
 ---
 sidebar_position: 9
-title: Technology developments beyond AI - A Modular Blockchain
+title: Beyond AI - A Modular + ZK Rollup Blockchain
 description: ""
 ---
 # aelf as a modular blockchain
