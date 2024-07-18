@@ -81,7 +81,7 @@ One of the core functionalities of aelf ZK-rollup's nodes is its zkEVM and ZKPro
 3. ZKProver accesses the database and retrieves necessary information to generate verifiable proofs for the transactions sent by the node. This information includes the Merkle root, keys, and hash values of relevant sibling nodes.
 4. Finally, ZKProver generates proofs for the transactions and sends them back to the node.
 
-![](/img/screenshot_2024-07-17_at_10.58.59_am.png)
+![](/img/7.1.png)
 
 #### Sequencer
 
