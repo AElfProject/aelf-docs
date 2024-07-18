@@ -118,7 +118,7 @@ AI can also enhance the security and accuracy of cross-chain transaction validat
 
 ## iv) AI-Driven Node Selection and Validation for aelf
 
-As part of a longer-term initiative, our research team is currently in the exploratory phase of evaluating how AI might be incorporated into Aelf's node selection and validation processes. This initiative, if pursued, can potentially significantly enhance both the speed and security of aelf consensus mechanisms. 
+As part of a longer-term initiative, our research team is currently in the exploratory phase of evaluating how AI might be incorporated into aelf's node selection and validation processes. This initiative, if pursued, can potentially significantly enhance both the speed and security of aelf consensus mechanisms. 
 
 ### Optimizing Node Selection
 
