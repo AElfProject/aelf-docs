@@ -71,63 +71,62 @@ service NFT {
   option (aelf.csharp_state) = "AElf.Contracts.NFT.NFTState";
   option (aelf.base) = "Protobuf/reference/acs12.proto";
 
-  rpc Initialize (google.protobuf.Empty) returns (google.protobuf.Empty) {
-  }
+    rpc Initialize(google.protobuf.Empty) returns (google.protobuf.Empty);
 
-  rpc CreateNFT (google.protobuf.MessageOptions) returns (google.protobuf.Int64Value) {
-  }
+    rpc CreateNFTToken(CreateNFTTokenInput) returns (google.protobuf.Int64Value);
 
-  rpc CreateNFTCollection() returns (google.protobuf.Int64Value){
-  }
+    rpc TransferNFT(TransferNFTInput) returns (google.protobuf.Empty);
 
-  rpc TransferNFT (google.protobuf.Int64Value, aelf.Address) returns (google.protobuf.Empty) {
-  }
+    rpc BurnNFT(google.protobuf.Int64Value) returns (google.protobuf.Empty);
 
-  rpc BurnNFT (google.protobuf.Int64Value) returns (google.protobuf.Empty) {
-  }
+    rpc GetNFTDetails(google.protobuf.Int64Value) returns (NFTDetails) {
+        option (aelf.is_view) = true;
+    }
 
-  }
+    rpc GetNFTBalance(aelf.Address) returns (google.protobuf.Int64Value) {
+        option (aelf.is_view) = true;
+    }
 
-  rpc GETNFTDetails (google.protobuf.Int64Value) returns (PlayAmountLimitMessage) {
-    option (aelf.is_view) = true;
-  }
-
-  rpc GetNFTBalance (aelf.Address) returns (google.protobuf.Int64Value) {
-    option (aelf.is_view) = true;
-  }
-
-  rpc GetOwner (google.protobuf.Int64Value) returns (google.protobuf.StringValue) {
-    option (aelf.is_view) = true;
-  }
+    rpc GetNFTOwner(google.protobuf.Int64Value) returns (aelf.Address) {
+        option (aelf.is_view) = true;
+    }
 }
 
 // An event that will be emitted from contract method call when CreateNFT is called.
+message CreateNFTTokenInput {
+    string name = 1;
+    string symbol = 2;
+}
+
+message TransferNFTInput {
+    int64 token_id = 1;
+    aelf.Address to = 2;
+}
+
+message NFTDetails {
+    int64 token_id = 1;
+    string name = 2;
+    string symbol = 3;
+    aelf.Address owner = 4;
+}
+
+// Event definitions
 message NFTCreated {
-  option (aelf.is_event) = true;
-  int64 nft_id = 1;
-  int64 details = 2;
-}
-// An event that will be emitted from contract method call when CreateNFTCollection is called
-message NFTCollectionCreated {
-  option (aelf.is_event) = true;
-  int64 nft_id = 1;
-  int64 details = 2;
+    option (aelf.is_event) = true;
+    int64 nft_id = 1;
 }
 
-// An event that will be emitted from contract method call when TransferNFT is called.
 message NFTTransferred {
-  option (aelf.is_event) = true;
-  int64 amount = 1;
-  aelf.Address from = 2;
-  aelf.Address to = 3;
+    option (aelf.is_event) = true;
+    int64 token_id = 1;
+    aelf.Address from = 2;
+    aelf.Address to = 3;
 }
 
-// An event that will be emitted from contract method call when BurnNFT is called.
 message NFTBurned {
-  option (aelf.is_event) = true;
-  int64 amount = 1;
-  aelf.Address from = 2;
-  aelf.Address to = 3;
+    option (aelf.is_event) = true;
+    int64 token_id = 1;
+    aelf.Address owner = 2;
 }
 ```
 
@@ -138,21 +137,34 @@ The implementation of file `src/NFTState.cs` is as follows:
 ```csharp title="src/NFTState.cs"
 using AElf.Sdk.CSharp.State;
 using AElf.Types;
+using Google.Protobuf.WellKnownTypes;
+using System.Collections.Generic;
 
 namespace AElf.Contracts.NFT
 {
-    // The state class is access the blockchain state
-    public partial class NFT : ContractState
+    public partial class NFTState : ContractState
     {
-        // A state to check if contract is initialized
         public BoolState Initialized { get; set; }
-        // A state to store the owner address
+
         public SingletonState<Address> Owner { get; set; }
+
+        public MappedState<long, NFTToken> NFTTokens { get; set; }
+
+        public MappedState<Address, Int64Value> NFTBalances { get; set; }
+    }
+
+    public class NFTToken
+    {
+        public string Name { get; set; }
+
+        public string Symbol { get; set; }
+
+        public Address Owner { get; set; }
     }
 }
 ```
 
-#### Contract Reference State
+    #### Contract Reference State
 
 - Create a new file `token_contract.proto` under `src/Protobuf/reference/`.
 
@@ -1096,200 +1108,71 @@ namespace AElf.Contracts.NFT
         private const long MaximumPlayAmount = 1_000_000_000; // 10 ELF
 
         // Initializes the contract
-        public override Empty Initialize(Empty input)
+       public override Empty Initialize(Empty input)
         {
-            // Check if the contract is already initialized
-            Assert(State.Initialized.Value == false, "Already initialized.");
-            // Set the contract state
+            Assert(!State.Initialized.Value, "Already initialized.");
             State.Initialized.Value = true;
-            // Set the owner address
             State.Owner.Value = Context.Sender;
-
-            // Initialize the token contract
-            State.TokenContract.Value = Address.FromBase58(TokenContractAddress);
-
             return new Empty();
         }
 
-        // Interact with the NFTMarketplace with a specified amount of tokens.
-        // The method checks if the play amount is within the limit.
-        // If the player wins, tokens are transferred from the contract to the sender and a PlayOutcomeEvent is fired with the won amount.
-        // If the player loses, tokens are transferred from the sender to the contract and a PlayOutcomeEvent is fired with the lost amount.
-        public override Empty Play(Int64Value input)
+        public override Int64Value CreateNFTToken(CreateNFTTokenInput input)
         {
-            var playAmount = input.Value;
-
-            // Check if input amount is within the limit
-            Assert(playAmount is >= MinimumPlayAmount and <= MaximumPlayAmount, "Invalid play amount.");
-
-            // Check if the sender has enough tokens
-            var balance = State.TokenContract.GetBalance.Call(new GetBalanceInput
+            var tokenId = State.NFTTokens.Count + 1;
+            State.NFTTokens[tokenId] = new NFTToken
             {
-                Owner = Context.Sender,
-                Symbol = TokenSymbol
-            }).Balance;
-            Assert(balance >= playAmount, "Insufficient balance.");
+                Name = input.Name,
+                Symbol = input.Symbol,
+                Owner = Context.Sender
+            };
+            Context.Fire(new NFTCreated { NftId = tokenId });
+            return new Int64Value { Value = tokenId };
+        }
 
-            // Check if the contract has enough tokens
-            var contractBalance = State.TokenContract.GetBalance.Call(new GetBalanceInput
-            {
-                Owner = Context.Self,
-                Symbol = TokenSymbol
-            }).Balance;
-            Assert(contractBalance >= playAmount, "Insufficient contract balance.");
-
-            if(IsWinner())
-            {
-                // Transfer the token from the contract to the sender
-                State.TokenContract.Transfer.Send(new TransferInput
-                {
-                    To = Context.Sender,
-                    Symbol = TokenSymbol,
-                    Amount = playAmount
-                });
-
-                // Emit an event to notify listeners about the outcome
-                Context.Fire(new PlayOutcomeEvent
-                {
-                    Amount = input.Value,
-                    Won = playAmount
-                });
-            }
-            else
-            {
-                // Transfer the token from the sender to the contract
-                State.TokenContract.TransferFrom.Send(new TransferFromInput
-                {
-                    From = Context.Sender,
-                    To = Context.Self,
-                    Symbol = TokenSymbol,
-                    Amount = playAmount
-                });
-
-                // Emit an event to notify listeners about the outcome
-                Context.Fire(new PlayOutcomeEvent
-                {
-                    Amount = input.Value,
-                    Won = -playAmount
-                });
-            }
-
+        public override Empty TransferNFT(TransferNFTInput input)
+        {
+            var nft = State.NFTTokens[input.TokenId];
+            Assert(nft != null, "Token does not exist.");
+            Assert(nft.Owner == Context.Sender, "Not the owner.");
+            nft.Owner = input.To;
+            State.NFTTokens[input.TokenId] = nft;
+            Context.Fire(new NFTTransferred { TokenId = input.TokenId, From = Context.Sender, To = input.To });
             return new Empty();
         }
 
-        // Withdraws a specified amount of tokens from the contract.
-        // This method can only be called by the owner of the contract.
-        // After the tokens are transferred, a WithdrawEvent is fired to notify any listeners about the withdrawal.
-        public override Empty Withdraw(Int64Value input)
+        public override Empty BurnNFT(Int64Value input)
         {
-            AssertIsOwner();
-
-            // Transfer the token from the contract to the sender
-            State.TokenContract.Transfer.Send(new TransferInput
-            {
-                To = Context.Sender,
-                Symbol = TokenSymbol,
-                Amount = input.Value
-            });
-
-            // Emit an event to notify listeners about the withdrawal
-            Context.Fire(new WithdrawEvent
-            {
-                Amount = input.Value,
-                From = Context.Self,
-                To = State.Owner.Value
-            });
-
+            var nft = State.NFTTokens[input.Value];
+            Assert(nft != null, "Token does not exist.");
+            Assert(nft.Owner == Context.Sender, "Not the owner.");
+            State.NFTTokens.Remove(input.Value);
+            Context.Fire(new NFTBurned { TokenId = input.Value, Owner = Context.Sender });
             return new Empty();
         }
 
-        // Deposits a specified amount of tokens into the contract.
-        // This method can only be called by the owner of the contract.
-        // After the tokens are transferred, a DepositEvent is fired to notify any listeners about the deposit.
-       public override Empty Deposit(Int64Value input)
+        public override NFTDetails GetNFTDetails(Int64Value input)
         {
-            AssertIsOwner();
-
-            // Transfer the token from the sender to the contract
-            State.TokenContract.TransferFrom.Send(new TransferFromInput
+            var nft = State.NFTTokens[input.Value];
+            Assert(nft != null, "Token does not exist.");
+            return new NFTDetails
             {
-                From = Context.Sender,
-                To = Context.Self,
-                Symbol = TokenSymbol,
-                Amount = input.Value
-            });
-
-            // Emit an event to notify listeners about the deposit
-            Context.Fire(new DepositEvent
-            {
-                Amount = input.Value,
-                From = Context.Sender,
-                To = Context.Self
-            });
-
-            return new Empty();
-        }
-
-        // Transfers the ownership of the contract to a new owner.
-        // This method can only be called by the current owner of the contract.
-        public override Empty TransferOwnership(Address input)
-        {
-            AssertIsOwner();
-
-            // Set the new owner address
-            State.Owner.Value = input;
-
-            return new Empty();
-        }
-
-        // A method that read the contract's play amount limit
-        public override PlayAmountLimitMessage GetPlayAmountLimit(Empty input)
-        {
-            // Wrap the value in the return type
-            return new PlayAmountLimitMessage
-            {
-                MinimumAmount = MinimumPlayAmount,
-                MaximumAmount = MaximumPlayAmount
+                TokenId = input.Value,
+                Name = nft.Name,
+                Symbol = nft.Symbol,
+                Owner = nft.Owner
             };
         }
 
-        // A method that read the contract's current balance
-        public override Int64Value GetContractBalance(Empty input)
+        public override Int64Value GetNFTBalance(Address input)
         {
-            // Get the balance of the contract
-            var balance = State.TokenContract.GetBalance.Call(new GetBalanceInput
-            {
-                Owner = Context.Self,
-                Symbol = TokenSymbol
-            }).Balance;
-
-            // Wrap the value in the return type
-            return new Int64Value
-            {
-                Value = balance
-            };
+            return State.NFTBalances[input] ?? new Int64Value { Value = 0 };
         }
 
-        // A method that read the contract's owner
-        public override StringValue GetOwner(Empty input)
+        public override Address GetNFTOwner(Int64Value input)
         {
-            return State.Owner.Value == null ? new StringValue() : new StringValue {Value = State.Owner.Value.ToBase58()};
-        }
-
-        // Determines if the player is a winner.
-        // This method generates a random number based on the current block height and checks if it's equal to 0.
-        // If the random number is 0, the player is considered a winner.
-        private bool IsWinner()
-        {
-            var randomNumber = Context.CurrentHeight % 2;
-            return randomNumber == 0;
-        }
-
-        // This method is used to ensure that only the owner of the contract can perform certain actions.
-        // If the context sender is not the owner, an exception is thrown with the message "Unauthorized to perform the action."
-        private void AssertIsOwner()
-        {
-            Assert(Context.Sender == State.Owner.Value, "Unauthorized to perform the action.");
+            var nft = State.NFTTokens[input.Value];
+            Assert(nft != null, "Token does not exist.");
+            return nft.Owner;
         }
     }
 
