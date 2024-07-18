@@ -7,7 +7,7 @@ description: ""
 
 ![aelf as a modular blockchain](/img/chapter7.png "aelf as a modular blockchain")
 
-A modular blockchain is a design approach that focuses on handling a limited set of responsibilities while outsourcing the rest to one or more independent layers. It decomposes the various tasks or functions of a blockchain into distinct layers or modules. This segregation allows for improved performance, scalability, and customization.
+A [modular blockchain](https://volt.capital/blog/modular-blockchains) is a design approach that focuses on handling a limited set of responsibilities while outsourcing the rest to one or more independent layers. It decomposes the various tasks or functions of a blockchain into distinct layers or modules. This segregation allows for improved performance, scalability, and customization.
 
 **Execution Layer:** This layer is where transactions and state changes occur, such as modifying wallet balances. Users interact with this layer through transaction operations, currency transfers, and smart contract deployments.
 
@@ -23,11 +23,13 @@ By separating these tasks, a modular blockchain enables independent optimization
 
 As elaborated before, aelf operates on a mainchain-sidechain architecture. Its sidechains resemble the consumer chains of Cosmos or the parachains of Polkadot. Similar to these platforms, aelf decouples functionality at the code level — a modular or deconstructed approach rooted in software engineering principles. The primary objectives of this architecture are to facilitate the development of modular plugins within the aelf ecosystem and to enable the loading of various modules in a pluggable manner, thereby enhancing aelf's scalability and flexibility. For instance, the consensus functionality can be treated as a pluggable/replaceable code package, making it convenient for developers to customize.
 
-Notwithstanding the aforementioned points, the current mainchain-sidechain architecture of aelf experiences performance bottlenecks, particularly in terms of its TPS capacity. aelf will be introducing a new Layer 2 chain utilizing ZK Rollup technology that would considerably enhance aelf's performance, scalability, and compatibility with the Ethereum Virtual Machine (EVM). Consequently, we have initiated the Modular + ZK Rollup project to address these challenges.
+Notwithstanding the aforementioned points, the current mainchain-sidechain architecture of aelf experiences performance bottlenecks, particularly in terms of its TPS capacity. aelf will be introducing a new Layer 2 chain utilizing [ZK Rollup technology](https://ethereum.org/en/developers/docs/scaling/zk-rollups/) that would considerably enhance aelf's performance, scalability, and compatibility with the Ethereum Virtual Machine (EVM). 
+
+Consequently, we have initiated the **Modular + ZK Rollup project** to address these challenges.
 
 ## The aelf solution
 
-We are building a ZK-rollup on aelf, based on the Polygon CDK, operating in the validium mode. Its primary components include:
+We are building a ZK-rollup on aelf, based on the [Polygon CDK](https://polygon.technology/polygon-cdk#), operating in the validium mode. Its primary components include:
 
 1. **[Executor/Verifier](https://docs.aelf.dev/resources/whitepaper-2/09/#zkevm--zkprover):** zkEVM / ZKProver
 2. **[Data Availability](https://docs.aelf.dev/resources/whitepaper-2/09/#data-availability):** External DA + Data Availability Committee (DAC)
