@@ -27,7 +27,7 @@ This roadmap outlines aelf's strategic integration of AI technologies, focusing 
 2. [AI Oracle on aelf](https://docs.aelf.dev/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/operational-excellence/#ii-ai-oracle-on-aelf)
 
    Deploy an AI based oracle to facilitate the development of AI-powered dApps, improve interaction capabilities, and support collaborations with AI Agent platforms on the aelf blockchain.
-3. [aelf as a Modular Blockchain + ZK-rollup as a Layer 2](https://docs.aelf.dev/resources/whitepaper-2/modular-blockchain/)
+3. [aelf as a Modular + ZK-rollup Layer 2 Blockchain](https://docs.aelf.dev/resources/whitepaper-2/modular-blockchain/)
 
    Advance aelf's modular architecture to allow for greater customization and scalability, catering to diverse application needs and enhancing overall network flexibility, while implementing ZK-Rollup as a Layer 2 solution for optimal TPS, efficiency and EVM compatability.
 
