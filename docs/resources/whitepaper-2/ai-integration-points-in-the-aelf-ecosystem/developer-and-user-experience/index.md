@@ -9,7 +9,7 @@ description: 8
 
 ## i) Enabling Non-Technical Users to Create Smart Contracts with NLP on aelf
 
-The complexity of creating smart contracts in aelf, presents significant challenges for non-technical users or even technical users who may not be familiar with the Web3 environment. Users often struggle with understanding programming languages, navigating development environments, and ensuring the security and functionality of their contracts. By leveraging Natural Language Processing (NLP), aelf can simplify this process, allowing users to create end to end smart contracts through intuitive natural language inputs.
+The complexity of creating smart contracts in aelf, presents significant challenges for non-technical users or even technical users who may not be familiar with the Web3 environment. Users often struggle with understanding programming languages, navigating development environments, and ensuring the security and functionality of their contracts. By leveraging [Natural Language Processing (NLP)](https://www.deeplearning.ai/resources/natural-language-processing/), aelf can simplify this process, allowing users to create end to end smart contracts through intuitive natural language inputs.
 
 ### Simplifying Smart Contract Creation
 
