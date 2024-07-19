@@ -104,7 +104,7 @@ Intelligent load balancing also enhances fault tolerance and redundancy within t
 
 Intelligent load balancing, powered by AI and machine learning, offers substantial benefits for enhancing the scalability and performance of the aelf blockchain. By dynamically distributing traffic, optimizing resource utilization, enabling predictive scaling, and enhancing fault tolerance, AI-driven load balancing ensures that the aelf network can handle increasing transaction volumes efficiently. 
 
-## iii) AI-Facilitated Cross-Chain Interoperability for aelf
+## iv) AI-Facilitated Cross-Chain Interoperability for aelf
 
 Incorporating AI into aelf's cross-chain interoperability framework can significantly enhance the efficiency and security of data transfer and validation processes. By leveraging AI-driven optimizations, aelf can ensure seamless communication and robust performance within itself between MainChain and SideChains, and more importantly with various other blockchain networks.
 
@@ -116,7 +116,7 @@ AI will be instrumental in streamlining the data transfer process between the va
 
 AI can also enhance the security and accuracy of cross-chain transaction validation. Machine learning models, trained on vast datasets of transaction histories, can identify patterns and anomalies that may indicate fraudulent activity or errors. AI-driven tools can flag transactions that deviate from typical behavior, such as unusually large transfers or repeated transactions from the same node, which could indicate a security breach or double-spending attempt. aelf is working with several potential strategic partners to implement similar AI-driven validation mechanisms to ensure the integrity and security of cross-chain interactions.
 
-## iv) AI-Driven Node Selection and Validation for aelf
+## v) AI-Driven Node Selection and Validation for aelf (TBD)
 
 As part of a longer-term initiative, our research team is currently in the exploratory phase of evaluating how AI might be incorporated into aelf's node selection and validation processes. This initiative, if pursued, can potentially significantly enhance both the speed and security of aelf consensus mechanisms. 
 
