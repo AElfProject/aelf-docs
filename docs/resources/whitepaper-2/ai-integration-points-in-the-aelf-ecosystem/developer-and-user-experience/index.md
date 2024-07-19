@@ -17,7 +17,7 @@ NLP can transform the way non-technical users interact with blockchain technolog
 
 ### Enhancing Accessibility and Usability
 
-By integrating NLP into its platform, aelf intends to significantly enhance the accessibility and usability of blockchain technology. This democratization of technology enables a broader audience to participate in the blockchain ecosystem, driving adoption and innovation. For example, consider a user who wants to set up a simple DeFi contract for staking tokens. Instead of hiring a developer, the owner can use an NLP-driven interface to describe the terms of the contract. The system interprets these terms and generates a smart contract that handles the various staking functionalities, ensuring that the DeFi protocol works as intended and most importantly, secure.
+By integrating NLP into its platform, aelf intends to significantly enhance the accessibility and usability of blockchain technology. This democratisation of technology enables a broader audience to participate in the blockchain ecosystem, driving adoption and innovation. For example, consider a user who wants to set up a simple DeFi contract for staking tokens. Instead of hiring a developer, the owner can use an NLP-driven interface to describe the terms of the contract. The system interprets these terms and generates a smart contract that handles the various staking functionalities, ensuring that the DeFi protocol works as intended and most importantly, secure.
 
 ### Real-Time Feedback and Validation
 
