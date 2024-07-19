@@ -5,7 +5,7 @@ description: 10
 ---
 # Roadmap
 
-This roadmap outlines aelf's strategic integration of AI technologies, focusing on enhancing user and developer experiences, optimizing smart contract operations, and ensuring robust, scalable blockchain solutions that is on par with leading technologies. 
+This roadmap outlines aelf's strategic integration of AI technologies, focusing on enhancing user and developer experiences, optimising smart contract operations, and ensuring robust, scalable blockchain solutions that is on par with leading technologies. 
 
 ![aelf Roadmap](/img/aelf_roadmap.png "aelf Roadmap")
 
@@ -14,12 +14,12 @@ This roadmap outlines aelf's strategic integration of AI technologies, focusing 
 1. [Enhancing User and Developer Experience with AI-Powered Chatbots on aelf](https://docs.aelf.dev/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/developer-and-user-experience/#iii-enhancing-user-and-developer-experience-with-ai-powered-chatbots-on-aelf)
 
    Integrating AI-powered chatbots into the aelf blockchain ecosystem enhances user and developer experiences by providing real-time support, automating routine tasks, and facilitating easy access to information.
-2. [Machine Learning Models for Smart Contract Optimization](https://docs.aelf.dev/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/operational-excellence/#i-machine-learning-models-for-smart-contract-optimisation)
+2. [Machine Learning Models for Smart Contract Optimisation](https://docs.aelf.dev/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/operational-excellence/#i-machine-learning-models-for-smart-contract-optimisation)
 
-   Develop and deploy machine learning models to optimize the execution and gas usage of smart contracts, improving overall efficiency and performance on the aelf platform.
+   Develop and deploy machine learning models to optimise the execution and gas usage of smart contracts, improving overall efficiency and performance on the aelf platform.
 3. [AI-Based Smart Contract Audit for Developers on aelf](https://docs.aelf.dev/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/developer-and-user-experience/#ii-ai-based-smart-contract-audit-for-developers-on-aelf)
 
-   Launch an aelf AI-powered auditing tool to analyze smart contract code, identify vulnerabilities, and offer remediation suggestions before deployment, enhancing security and reliability.
+   Launch an aelf AI-powered auditing tool to analyse smart contract code, identify vulnerabilities, and offer remediation suggestions before deployment, enhancing security and reliability.
 
 ## Q4 2024
 
@@ -31,13 +31,13 @@ This roadmap outlines aelf's strategic integration of AI technologies, focusing 
    Deploy an AI based oracle to facilitate the development of AI-powered dApps, improve interaction capabilities, and support collaborations with AI Agent platforms on the aelf blockchain.
 3. [aelf as a Modular + ZK-rollup Layer 2 Blockchain](https://docs.aelf.dev/resources/whitepaper-2/modular-blockchain/)
 
-   Advance aelf's modular architecture to allow for greater customization and scalability, catering to diverse application needs and enhancing overall network flexibility, while implementing ZK-Rollup as a Layer 2 solution for optimal TPS, efficiency and EVM compatability.
+   Advance aelf's modular architecture to allow for greater customization and scalability, catering to diverse application needs and enhancing overall network flexibility, while implementing ZK-Rollup as a Layer 2 solution for optimal TPS, efficiency and EVM compatibility.
 
 ## Q1 2025
 
 1. [Intelligent Load Balancing for aelf](https://docs.aelf.dev/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/operational-excellence/#iii-intelligent-load-balancing-for-aelf)
 
-   Integrate AI-driven intelligent load balancing on aelf to ensure efficient traffic distribution and resource utilization across the network, enhancing performance and reliability.
+   Integrate AI-driven intelligent load balancing on aelf to ensure efficient traffic distribution and resource utilisation across the network, enhancing performance and reliability.
 
 ## Q2 2025
 
