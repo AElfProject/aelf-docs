@@ -7,7 +7,7 @@ description: ""
 
 ![aelf as a modular blockchain](/img/chapter7.png "aelf as a modular blockchain")
 
-A [modular blockchain](https://volt.capital/blog/modular-blockchains) is a design approach that focuses on handling a limited set of responsibilities while outsourcing the rest to one or more independent layers. It decomposes the various tasks or functions of a blockchain into distinct layers or modules. This segregation allows for improved performance, scalability, and customization.
+A [modular blockchain](https://volt.capital/blog/modular-blockchains) is a design approach that focuses on handling a limited set of responsibilities while outsourcing the rest to one or more independent layers. It decomposes the various tasks or functions of a blockchain into distinct layers or modules. This segregation allows for improved performance, scalability, and customisation.
 
 **Execution Layer:** This layer is where transactions and state changes occur, such as modifying wallet balances. Users interact with this layer through transaction operations, currency transfers, and smart contract deployments.
 
@@ -17,13 +17,13 @@ A [modular blockchain](https://volt.capital/blog/modular-blockchains) is a desig
 
 **Data Availability Layer:** This layer contains data that has already been confirmed as valid. It ensures that the data required for verifying state transitions is available and easily verifiable.
 
-By separating these tasks, a modular blockchain enables independent optimization of each layer, leading to significant improvements across layers. This results in a more scalable, composable, and decentralized system. This is why Modular Blockchain is often considered the future of blockchain technology.
+By separating these tasks, a modular blockchain enables independent optimization of each layer, leading to significant improvements across layers. This results in a more scalable, composable, and decentralised system. This is why Modular Blockchain is often considered the future of blockchain technology.
 
 ## The present status of aelf
 
-As elaborated before, aelf operates on a mainchain-sidechain architecture. Its sidechains resemble the consumer chains of Cosmos or the parachains of Polkadot. Similar to these platforms, aelf decouples functionality at the code level — a modular or deconstructed approach rooted in software engineering principles. The primary objectives of this architecture are to facilitate the development of modular plugins within the aelf ecosystem and to enable the loading of various modules in a pluggable manner, thereby enhancing aelf's scalability and flexibility. For instance, the consensus functionality can be treated as a pluggable/replaceable code package, making it convenient for developers to customize.
+As elaborated before, aelf operates on a mainchain-sidechain architecture. Its sidechains resemble the consumer chains of Cosmos or the parachains of Polkadot. Similar to these platforms, aelf decouples functionality at the code level — a modular or deconstructed approach rooted in software engineering principles. The primary objectives of this architecture are to facilitate the development of modular plugins within the aelf ecosystem and to enable the loading of various modules in a pluggable manner, thereby enhancing aelf's scalability and flexibility. For instance, the consensus functionality can be treated as a pluggable/replaceable code package, making it convenient for developers to customise.
 
-Notwithstanding the aforementioned points, the current mainchain-sidechain architecture of aelf experiences performance bottlenecks, particularly in terms of its TPS capacity. aelf will be introducing a new Layer 2 chain utilizing [ZK Rollup technology](https://ethereum.org/en/developers/docs/scaling/zk-rollups/) that would considerably enhance aelf's performance, scalability, and compatibility with the Ethereum Virtual Machine (EVM). 
+Notwithstanding the aforementioned points, the current mainchain-sidechain architecture of aelf experiences performance bottlenecks, particularly in terms of its TPS capacity. aelf will be introducing a new Layer 2 chain utilising [ZK Rollup technology](https://ethereum.org/en/developers/docs/scaling/zk-rollups/) that would considerably enhance aelf's performance, scalability, and compatibility with the Ethereum Virtual Machine (EVM). 
 
 Consequently, we have initiated the **Modular + ZK Rollup project** to address these challenges.
 
@@ -39,7 +39,7 @@ We are building a ZK-rollup on aelf, based on the [Polygon CDK](https://polygon.
 
 ### Verification Process
 
-The aelf ZK-rollup utilizes Polygon CDK, an advanced open-source framework designed for rapidly deploying ZK-powered Layer 2 (L2) blockchains on Ethereum, with significant adaptation and optimization efforts. 
+The aelf ZK-rollup utilises Polygon CDK, an advanced open-source framework designed for rapidly deploying ZK-powered Layer 2 (L2) blockchains on Ethereum, with significant adaptation and optimization efforts. 
 
 Operating in the validium mode while maintaining seamless interoperability with all other EVM chains, aelf ZK-rollup offers a high-performance Layer 2 scaling solution. As transaction data is not stored on the aelf mainnet but executed and stored off-chain, this significantly enhances scalability. Validium, under the premise of ensuring security, reduces L1 gas storage costs, thereby lowering transaction costs for users on Layer 2 while significantly improving user privacy and experience.
 
@@ -74,7 +74,7 @@ aelf ZK-rollup Node is used to process transactions, synchronizes states, genera
 
 #### zkEVM / ZKProver
 
-One of the core functionalities of aelf ZK-rollup's nodes is its zkEVM and ZKProver. The general operation flow is as follows: zkEVM / ZKProver receives a large batch of transactions from Layer 2, executes the transactions, and utilizes ZK (Zero-Knowledge) technology to generate zero-knowledge proofs. The proof generation process is outlined below:
+One of the core functionalities of aelf ZK-rollup's nodes is its zkEVM and ZKProver. The general operation flow is as follows: zkEVM / ZKProver receives a large batch of transactions from Layer 2, executes the transactions, and utilises ZK (Zero-Knowledge) technology to generate zero-knowledge proofs. The proof generation process is outlined below:
 
 1. The node sends the contents of the Merkle tree to the database for storage.
 2. Subsequently, the node sends a batch of transactions to the ZKProver component.
@@ -100,7 +100,7 @@ The Aggregator is responsible for submitting proofs of the validity of the Layer
 
 #### Bridge
 
-Token asset access and contract invocations (message passing) between aelf's Layer 2 and Layer 1 are facilitated through the zkEVM Bridge smart contract. It achieves network interoperability by utilizing two distinct Global Exit Tree Root managers on Layer 1 and Layer 2, along with the bridging smart contract (ZkEVMBridge.cs).
+Token asset access and contract invocations (message passing) between aelf's Layer 2 and Layer 1 are facilitated through the zkEVM Bridge smart contract. It achieves network interoperability by utilising two distinct Global Exit Tree Root managers on Layer 1 and Layer 2, along with the bridging smart contract (ZkEVMBridge.cs).
 
 #### **Gas Fees**
 
@@ -116,7 +116,7 @@ aelf ZK-rollup involves two primary participants who both earn and pay ELF token
 
 \- Validates transactions proposed and batched by the Sequencer.
 
-\- Runs on the aelf ZK-rollup's ZKNode software and utilizes ZKProver to create zero-knowledge validity proofs.
+\- Runs on the aelf ZK-rollup's ZKNode software and utilises ZKProver to create zero-knowledge validity proofs.
 
 \- Provides validity proofs to verify transactions, earning ELF fees paid by the Sequencer for each successful verification.
 
