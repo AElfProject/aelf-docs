@@ -17,7 +17,7 @@ A [modular blockchain](https://volt.capital/blog/modular-blockchains) is a desig
 
 **Data Availability Layer:** This layer contains data that has already been confirmed as valid. It ensures that the data required for verifying state transitions is available and easily verifiable.
 
-By separating these tasks, a modular blockchain enables independent optimization of each layer, leading to significant improvements across layers. This results in a more scalable, composable, and decentralised system. This is why Modular Blockchain is often considered the future of blockchain technology.
+By separating these tasks, a modular blockchain enables independent optimisation of each layer, leading to significant improvements across layers. This results in a more scalable, composable, and decentralised system. This is why Modular Blockchain is often considered the future of blockchain technology.
 
 ## The present status of aelf
 
@@ -39,7 +39,7 @@ We are building a ZK-rollup on aelf, based on the [Polygon CDK](https://polygon.
 
 ### Verification Process
 
-The aelf ZK-rollup utilises Polygon CDK, an advanced open-source framework designed for rapidly deploying ZK-powered Layer 2 (L2) blockchains on Ethereum, with significant adaptation and optimization efforts. 
+The aelf ZK-rollup utilises Polygon CDK, an advanced open-source framework designed for rapidly deploying ZK-powered Layer 2 (L2) blockchains on Ethereum, with significant adaptation and optimisation efforts. 
 
 Operating in the validium mode while maintaining seamless interoperability with all other EVM chains, aelf ZK-rollup offers a high-performance Layer 2 scaling solution. As transaction data is not stored on the aelf mainnet but executed and stored off-chain, this significantly enhances scalability. Validium, under the premise of ensuring security, reduces L1 gas storage costs, thereby lowering transaction costs for users on Layer 2 while significantly improving user privacy and experience.
 
