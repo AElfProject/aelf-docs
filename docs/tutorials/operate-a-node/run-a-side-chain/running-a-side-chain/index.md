@@ -34,9 +34,8 @@ After the release of the side chain creation request, the ChainId of the new sid
 
 In this example, we will set up the side chain node with ChainId `tDVV` (1866392 converted to base58), connecting to Redis `db2`, and using web API port `1235`. Don’t forget to change the `account`, `password`, and `initial miner`.
 
-#### appsettings.json
 
-```json
+```json title="appsettings.json"
 {
   "ChainId": "tDVV",
   "ChainType": "SideChain",
@@ -63,9 +62,7 @@ In this example, we will set up the side chain node with ChainId `tDVV` (1866392
 }
 ```
 
-#### appsettings.SideChain.MainNet.json
-
-```json
+```json title="appsettings.SideChain.MainNet.json"
 {
   "CrossChain": {
     "Grpc": {
@@ -84,12 +81,12 @@ Change `ParentChainServerIp` and `ParentChainServerPort` depending on the listen
 
 Open a terminal and navigate to the folder where you created the side chain configuration:
 
-```sh
+```sh title="Terminal"
 dotnet ../AElf.Launcher.dll
 ```
 
 You can try out a few commands from another terminal to check if everything is fine, for example:
 
-```sh
+```sh title="Terminal"
 aelf-command get-blk-height -e http://127.0.0.1:1235
 ```

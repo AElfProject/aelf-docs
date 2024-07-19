@@ -5,11 +5,11 @@ title: Deploying Contract with BP Approval
 
 # Deploying Contract with BP Approval
 
-Contracts can be deployed or updated via two methods: aelf explorer or aelf-command. Ensure npm and aelf-command are installed before starting. Follow the [Deployment Environment guide](#) if needed.
+Contracts can be deployed or updated via two methods: aelf explorer or aelf-command. Ensure npm and aelf-command are installed before starting. Follow the [Deployment Environment guide](/tools/smart-contract-templates/development-environment) if needed.
 
 ## Overview
 
-In these cases, BP approval is needed for contract updates:
+In these cases, **BP approval is needed for contract updates:**
 
 - Upgrading system contracts on MainChain.
 - Upgrading system contracts on exclusive SideChains.

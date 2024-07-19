@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 * [Install dotnet 6.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 * Install aelf contract templates
 
-```bash
+```bash title="Terminal"
 dotnet new --install AElf.ContractTemplates
 ```
 
@@ -37,7 +37,7 @@ AELF.ContractTemplates contains various predefined templates for the ease of dev
 
 * Install aelf deploy tool
 
-```bash
+```bash title="Terminal"
 dotnet tool install --global aelf.deploy
 ```
 
@@ -46,12 +46,24 @@ Please remember to export PATH after installing aelf.deploy.
 
 **Install Node.js and Yarn**
 
-* [Install Node.js](https://nodejs.org/en)
-* Install aelf-command
+- [Install Node.js](https://nodejs.org/en)
+- [Install Yarn](https://classic.yarnpkg.com/lang/en/docs/install)
 
-```bash
+**Install aelf-command**
+
+<Tabs>
+<TabItem value="Linux and macOs" label="Linux and macOs" default>
+```bash title="Terminal"
 sudo npm i -g aelf-command
 ```
+</TabItem>
+
+<TabItem value="Window" label="Window">
+```bash title="Terminal"
+npm i -g aelf-command
+```
+</TabItem>
+</Tabs>
 
 aelf-command is a CLI tool for interacting with the aelf blockchain, enabling tasks like creating wallets and managing transactions.
 Provide required permissions while installing aelf-command globally.
@@ -85,14 +97,14 @@ As we will be using a ready made project, we will require git to clone from the 
 * Open your `Terminal`.
 * Enter the following command to create a new project folder:
 
-```bash
+```bash title="Terminal"
 mkdir capstone_aelf
 cd capstone_aelf
 ```
 
 * Enter this command to create the capstone project.
 
-```bash
+```bash title="Terminal"
 dotnet new aelf -n BuildersDAO
 ```
 
@@ -112,7 +124,7 @@ Let's add the RPC methods and message definitions to our Voting dApp.
 * Open `src/Protobuf/contract/BuildersDAO.proto`
 * Replace its contents with this code snippet.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 syntax = "proto3";
 
 import "aelf/core.proto";
@@ -245,7 +257,7 @@ message ProposalList {
 * Open the `src/BuildersDAOState.cs` file.
 * Replace its contents with this code snippet.
 
-```csharp
+```csharp title="BuildersDAOState.proto"
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using AElf.Sdk.CSharp.State;
@@ -284,7 +296,7 @@ namespace AElf.Contracts.BuildersDAO
 * Open `src/BuildersDAO.cs`
 * Replace the existing content with this code snippet.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 using System.Collections.Generic;
 using System.Security.Principal;
 using AElf.Sdk.CSharp;
@@ -325,14 +337,18 @@ namespace AElf.Contracts.BuildersDAO
 }
 ```
 
+:::danger
+Aelf sidechain does not allow duplicate identical smart contracts. Hence, we will be using the author variable as the unique identifier for our voting smart contract in order to deploy the smart contract successfully.
+:::
+
 #### Implementing Initialize Function
 
-* Go to the comment `Implement Initialize Smart Contract Logic.`
+* Go to the comment `Implement Vote on Proposal Logic`.
 * Check if the smart contract is already initialized; return if true.
 * Define a hardcoded proposal with necessary parameters.
 * Update the Proposals state variable with the hardcoded proposal and increment the proposalId.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Initialize Smart Contract Logic
 public override Empty Initialize(Empty input)
 {
@@ -364,7 +380,7 @@ public override Empty Initialize(Empty input)
 
 You'll implement this function. Once done, you can proceed to the next page to compare your code with the reference implementation.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Join DAO Logic
 public override Empty JoinDAO(Address input)
 {
@@ -385,7 +401,7 @@ public override Empty JoinDAO(Address input)
 
 Now, use the provided code snippet to fill in the `CreateProposal` function.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Create Proposal Logic
 public override Proposal CreateProposal(CreateProposalInput input)
 {
@@ -423,7 +439,7 @@ public override Proposal CreateProposal(CreateProposalInput input)
 
 Now, use the provided code snippet to complete the `VoteOnProposal` function.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Vote on Proposal Logic
 public override Proposal VoteOnProposal(VoteInput input)
 {
@@ -474,7 +490,7 @@ public override Proposal VoteOnProposal(VoteInput input)
 
 You'll implement this function. Once done, you can proceed to the next page to compare your code with the reference implementation.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Get All Proposals Logic
 public override ProposalList GetAllProposals(Empty input)
 {
@@ -509,7 +525,7 @@ public override ProposalList GetAllProposals(Empty input)
 
 Implement these methods to access different states effectively in your smart contract.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 // Implement Get Proposal Logic
 public override Proposal GetProposal(StringValue input)
 {
@@ -594,7 +610,7 @@ public async Task InitializeTest_Duplicate()
 * **Add New Member** : If the address isn't a member yet, add it to State.Members and set its value to true.
 * **Update Member Count** : Increase State.MemberCount by 1 and save the new value.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 public override Empty JoinDAO(Address input)
 {
     // Based on the address, determine whether the address has joined the DAO. If it has, throw an exception
@@ -615,7 +631,7 @@ public override Empty JoinDAO(Address input)
 * In each loop iteration, get the values from `State.Proposals` and add them to `ProposalList`.
 * Return `ProposalList`.
 
-```csharp
+```csharp title="BuildersDAO.proto"
 public override ProposalList GetAllProposals(Empty input)
 {
     // Create a new list called ProposalList
@@ -654,7 +670,7 @@ git clone https://github.com/AElfProject/vote-contract-frontend.git
 - Next, navigate to the frontend project directory with this command:
 
 ```bash title="Terminal"
-cd vote-contract-frontend
+cd `vote-contract`-frontend
 ```
 
 - Once you're in the `vote-contract-frontend` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
@@ -682,7 +698,7 @@ We'll set up our Portkey provider to let users connect their Portkey wallets to 
 
 3. Locate the comment `Step A - Setup Portkey Wallet Provider` and replace the existing **useEffect** hook with the following code snippet:
 
-```javascript title="src/useDAOSmartContract.ts"
+```javascript title="useDAOSmartContract.ts"
 //Step A - Setup Portkey Wallet Provider
 useEffect(() => {
   (async () => {
@@ -706,6 +722,14 @@ useEffect(() => {
   })();
 }, [provider]);
 ```
+
+:::tip
+ℹ️ Note: You are to replace the address placeholder with your deployed voting contract address from "Deploy Voting dApp Smart Contract"!
+
+example:
+//Replace with Address of Deployed Smart Contract
+const address = "your_deployed_voting_contract_address";
+:::
 
 - Next, go to the `src/HomeDAO.tsx` file.
 
@@ -808,6 +832,13 @@ const form = useForm<z.infer<typeof formSchema>>({
 });
 ```
 
+:::tip
+ℹ️ Note: We set `currentWalletAddress` as the default value because the wallet address is passed from the HomeDAO.tsx page when the user clicks "Create Proposal" on the landing page.
+
+Default value:
+`address: currentWalletAddress`
+:::
+
 #### Here's what the function does:
 
 1. Initializes a new form variable with default values needed to create a proposal.
@@ -833,14 +864,12 @@ function onSubmit(values: z.infer<typeof formSchema>) {
     voteThreshold: values.voteThreshold,
   };
 
-  setCreateProposalInput(proposalInput);
-
   const createNewProposal = async () => {
     try {
       await DAOContract?.callSendMethod(
         "CreateProposal",
         currentWalletAddress,
-        createProposalInput
+        proposalInput
       );
 
       navigate("/");
@@ -976,11 +1005,21 @@ In this step, we will run the Voting dApp application.
 npm run dev
 ```
 
+:::info
+
+ℹ️ Note: Ensure that you are running this command under the **Developer_DAO** folder.
+
+:::
+
 - You should observe the following as shown below.
 
    ![run-app-success](/img/vote-npm-run-console.png)
 
 - Upon clicking on the **localhost URL**, you should be directed to the StackUpDAO landing page as shown below.
+
+:::tip
+If you are developing and testing this with GitHub codespace, you can use Port Forward to test the web server that is running in codespace, here is the link on how to use Port forward for codespace https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
+:::
 
 - Usually codespace will automatically forward port, you should see a pop-up message at the bottom right of your codespace browser window as shown in the diagram below:
 
@@ -993,7 +1032,25 @@ npm run dev
 
 #### Create Portkey Wallet
 
+:::info
+Portkey is the first AA wallet from aelf's ecosystem, migrating users, developers and projects from Web2 to Web3 with DID solution.
+
+Users can swiftly log into Portkey via their Web2 social info with no private keys or mnemonics required. Underpinned by social recovery and decentralized guardian design, Portkey safeguards users' assets from centralized control and theft. Portkey has a unique payment delegation mechanism which enables interested parties to function as delegatees to pay for user activities on users' behalf. This means that users can create accounts for free and fees for other usages may also be covered in Portkey.
+
+Portkey also provides crypto on/off-ramp services, allowing users to exchange fiat with crypto freely. It supports the storage and management of various digital assets such as tokens, NFTs, etc. The compatibility with multi-chains and seamless connection to all kinds of DApps makes Portkey a great way to enter the world of Web3.
+
+With DID solution as its core, Portkey provides both Portkey Wallet and Portkey SDKs.
+
+For more information, you may visit the official documentation for Portkey at https://doc.portkey.finance/.
+:::
+
+
 - Download the Chrome extension for Portkey from https://chromewebstore.google.com/detail/portkey-wallet/iglbgmakmggfkoidiagnhknlndljlolb.
+
+:::info
+The Portkey extension supports Chrome browser only (for now). Please ensure that you are using Chrome browser.
+You may download Chrome from https://www.google.com/intl/en_sg/chrome/.
+:::
 
 - Once you have downloaded the extension, you should see the following on your browser as shown below.
 
@@ -1010,11 +1067,19 @@ npm run dev
 
    ![portkey-switch-to-testnet](/img/portkey-switch-to-testnet.png)
 
+:::danger
+Please make sure you are using `aelf Testnet` in order to be able to receive your testnet tokens from the Faucet.
+:::
+
 - Proceed to sign up with a Google Account or your preferred login method and complete the necessary accounts creation prompts and you should observe the following interface once you have signed up.
 
    ![success-login](/img/success-login.png)
 
 With that, you have successfully created your very first Portkey wallet within seconds. How easy was that?
+
+:::info
+It is highly recommended to pin the Portkey wallet extension for easier access and navigation to your Portkey wallet!
+:::
 
 - Next, click on ‘Open Portkey’ and you should now observe the following as shown below.
 
@@ -1032,6 +1097,10 @@ Once you have successfully joined the DAO, you should observe now that the landi
    ![vote-fe-ui-joineddao](/img/vote-fe-ui-joineddao.png)
 
 - Proposal #1 as defined in smart contract
+
+:::danger
+⚠️ Reminder: This proposal has been hard coded within our smart contract to test our vote functionality and is meant for educational purposes! In actual production settings, proposals should not be hardcoded within your smart contract!
+:::
 
 - Let’s test our Vote functionality next.
 
@@ -1069,5 +1138,39 @@ Upon a successful vote transaction, you should now observe that the proposal sta
 
    ![vote-fe-ui-new-proposal](/img/vote-fe-ui-new-proposal.png)
 
+:::success
+🎉 Congratulations Learners! You have successfully built your Voting dApp and this is no mean feat!
+:::
 
-🎉 Congratulations Learners! You have successfully built your Voting dApp and this is no mean feat.
+
+## 🎯 Conclusion 
+
+
+🎊 Congratulations on completing the Voting Contract tutorial! 🎊 You've reached an important milestone in your journey through aelf blockchain development. 🌟
+
+#### 📚 What You've Learned
+
+Throughout this tutorial, you've gained expertise in:
+
+- 🛠️ Setting up your development environment for aelf blockchain development.
+- 💻 Implementing complex smart contract logic for secure and transparent voting mechanisms.
+- 🚀 Deploying and interacting with your Voting Smart Contract on the aelf testnet, and integrating it into a frontend application. You've learned how to connect user interfaces with blockchain smart contracts, enabling users to participate in DAOs, create proposals, vote, and track outcomes in real-time.
+
+#### 🔍 Final Output
+
+By now, you should have:
+
+- 📜 Successfully deployed your Voting Smart Contract on the aelf blockchain.
+- 🎉 Interacted with the contract to join the DAO, create proposals, and participate in voting processes. Seeing your proposals progress based on votes is a testament to your understanding of decentralized decision-making! 🏆
+
+#### ➡️ What's Next?
+
+Now that you've mastered the intricacies of voting contracts, it's time to explore more advanced topics or consider enhancing your knowledge in specialized areas of blockchain development. Dive into topics like:
+
+- 📊 Implementing governance mechanisms for DAOs.
+- 🔒 Enhancing security protocols for smart contracts.
+- 🌐 Exploring cross-chain interoperability with aelf.
+
+Keep pushing the boundaries of blockchain technology with aelf. Your journey doesn't end here – it's just the beginning of even more exciting possibilities in decentralized applications and smart contracts. 🚀
+
+Happy coding and innovating with aelf! 😊

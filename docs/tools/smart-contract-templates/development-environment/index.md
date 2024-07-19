@@ -17,60 +17,60 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
    - Broadband internet
 
 2. **Apple M1 Support**: Install Rosetta:
-   ```bash
+   ```bash title="Terminal"
    /usr/sbin/softwareupdate --install-rosetta --agree-to-license
    ```
 
 3. Install Homebrew:
-    ```sh
+    ```sh title="Terminal"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew --version
     brew update
     ```
 
 4. Install Git:
-    ```sh
+    ```sh title="Terminal"
     brew install git
     git --version
     ```
     
 5. Install .NET SDK:
-    ```sh
+    ```sh title="Terminal"
     brew install --cask dotnet-sdk
     dotnet --version
     ```
 
 6. Install protoBuf:
-    ```sh
+    ```sh title="Terminal"
     brew install protobuf
     protoc --version
     ```
 
 7. Install Redis:
-    ```sh
+    ```sh title="Terminal"
     brew install redis
     redis-server
     ```
 ![mac_install_redis1](/img/mac_install_redis1.png)
 
 8. Install Node.js:
-    ```sh
+    ```sh title="Terminal"
     brew install node
     npm --version
     ```
 
 9. Install aelf-command:
-    ```sh
+    ```sh title="Terminal"
     npm i aelf-command -g
     ```
 
 10. Create an aelf Account:
-    ```sh
+    ```sh title="Terminal"
     aelf-command create
     ```   
 
     Similar Output:
-    ```sh
+    ```sh title="Terminal"
     AElf [Info]: Your wallet info is :
     AElf [Info]: Mnemonic            : mirror among battle muffin cattle plunge tuition buzz hip mad surround recall
     AElf [Info]: Private Key         : 4bf625afea60e21aa5afcab5ea682b3dfb614941245698632d72a09ae13*****
@@ -84,18 +84,18 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
     - Broadband internet
 
 2. Update Environment:
-    ```sh
+    ```sh title="Terminal"
     sudo apt-get update
     ```
 
 3. Install Git:
-    ```sh
+    ```sh title="Terminal"
     sudo apt-get install git -y
     git --version
     ```
 
 4. Install .NET SDK:
-    ```sh
+    ```sh title="Terminal"
     wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     sudo dpkg -i packages-microsoft-prod.deb
     sudo apt-get update
@@ -104,7 +104,7 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
     ```
 
 5. Install protoBuf:
-    ```sh
+    ```sh title="Terminal"
     curl -OL https://github.com/google/protobuf/releases/download/v21.9/protoc-21.9-linux-x86_64.zip
     unzip protoc-21.9-linux-x86_64.zip -d protoc3
     sudo mv protoc3/bin/* /usr/local/bin/
@@ -113,25 +113,25 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
     ```
 
 6. Install Redis:
-    ```sh
+    ```sh title="Terminal"
     sudo apt-get install redis -y
     redis-server
     ```
 
 7. Install Node.js:
-    ```sh
+    ```sh title="Terminal"
     curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
     sudo apt-get install -y nodejs
     npm --version
     ```
 
 8. Install aelf-command:
-    ```sh
+    ```sh title="Terminal"
     npm i aelf-command -g
     ```
 
 9. Create an aelf Account:
-    ```sh
+    ```sh title="Terminal"
     aelf-command create
     ```
 
@@ -141,49 +141,49 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
     - Broadband internet
 
 2. Install Chocolatey:
-    ```sh
+    ```sh title="Terminal"
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     choco
     ```
 
 3. Install Git:
-    ```sh
+    ```sh title="Terminal"
     choco install git -y
     git --version
     ```
 
 4. Install .NET SDK:
-    ```sh
+    ```sh title="Terminal"
     choco install dotnetcore-sdk -y
     dotnet --version
     ```
 
 5. Install protoBuf:
-    ```sh
+    ```sh title="Terminal"
     choco install protoc -y
     protoc --version
     ```
 
 6. Install Redis:
-    ```sh
+    ```sh title="Terminal"
     choco install redis-64 -y
     redis-server
     ```
 ![windows_install_redis1](/img/windows_install_redis1.webp)
 
 7. Install Node.js:
-    ```sh
+    ```sh title="Terminal"
     choco install nodejs -y
     npm --version
     ```
 
 8. Install aelf-command:
-    ```sh
+    ```sh title="Terminal"
     npm i aelf-command -g
     ```
 
 9. Create an aelf Account:
-    ```sh
+    ```sh title="Terminal"
     aelf-command create
     ```
 
@@ -197,18 +197,18 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
 ![codespaces21](/img/codespaces21.webp)
 
 4. Check Installed Versions:
-    ```sh
+    ```sh title="Terminal"
     git --version
     npm --version
     ```
 
 5. Update Environment:
-    ```sh
+    ```sh title="Terminal"
     sudo apt-get update
     ```
 
 6. Install .NET SDK:
-    ```sh
+    ```sh title="Terminal"
     wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     sudo dpkg -i packages-microsoft-prod.deb
     sudo apt-get update
@@ -217,7 +217,7 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
     ```
 
 7. Install protoBuf:
-    ```sh
+    ```sh title="Terminal"
     curl -OL https://github.com/google/protobuf/releases/download/v21.9/protoc-21.9-linux-x86_64.zip
     unzip protoc-21.9-linux-x86_64.zip -d protoc3
     sudo mv protoc3/bin/* /usr/local/bin/
@@ -226,17 +226,17 @@ To develop smart contracts, you need to install the .NET SDK. Other tools for st
     ```
 
 8. Install Redis:
-    ```sh
+    ```sh title="Terminal"
     sudo apt-get install redis -y
     redis-server
     ```
 
 9. Install aelf-command:
-    ```sh
+    ```sh title="Terminal"
     npm i aelf-command -g
     ```
 
 10. Create an aelf Account:
-    ```sh
+    ```sh title="Terminal"
     aelf-command create
     ```

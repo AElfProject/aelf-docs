@@ -8,70 +8,67 @@ description: Play with aelf in your browser.
 
 ## 1. Introduction
 
-aelf Playground is a sandbox for new developers who want to get a taste of smart contract development with aelf, without having to install tools in their local computer.
+aelf Playground is a sandbox for new developers who want to experience smart contract development with aelf without installing any tools on their local computer.
 
 ## 2. Setting up
 
-There is no set-up needed. Simply visit https://playground.test.aelf.dev in your browser.
+No setup is needed. Simply visit [aelf Playground](https://playground.aelf.com) in your browser.
 
-## 3. Using aelf-playground
+## 3. Using aelf Playground
 
-### Create a new project
+### 1. Create a New Project
 
-Click on the **Create a new project** button, as shown below:
+- Click on the **Create a New Project** button, as shown below:
 
-![](/img/playground-1.png)
+  ![](/img/playground-1.png)
 
-In the following step, enter a project name, and choose Native(CSharp) framework, then click **Create**:
+- Enter a project name and choose a specific template of your choice.
+- Press **Create**:
 
-![](/img/playground-2.png)
+  ![](/img/playground-2.png)
 
-After a short while, the following workspace is loaded:
+- After a short while, the workspace will load:
 
-![](/img/playground-3.png)
+  ![](/img/playground-3.png)
 
-### Write your smart contract
+### 2. Write Your Smart Contract
 
-Feel free to edit the files. 
+    Edit the files as needed to write your smart contract.
 
-### Build your smart contract
+### 3. Build Your Smart Contract
 
-Once you are ready, click on the **Build** button:
+- Once you are ready, click on the 🔧 **Build** button:
 
-![](/img/playground-4.png)
+  ![](/img/playground-4.png)
 
-After a while, the contract is built.
+- Wait for the contract to be built.
 
-### Connect your playground wallet
+### 4. Connect Your Playground Wallet
 
-Click on the button **Connect to Playground Wallet**.
+- Click on the **Connect to Playground Wallet** button:
 
-![](/img/playground-5.png)
+  ![](/img/playground-5.png)
 
-A pop-up appears.
+- A pop-up will appear.
 
-:::tip
+  :::tip
+  You may choose to click on **Save keypair** to save a copy of your keypair for use in subsequent sessions.
+  :::
 
-You may choose to click on **Save keypair** to save a copy of your keypair, so that you may use it in subsequent sessions.
+  ![](/img/playground-6.png)
 
-:::
+- Click **Continue**.
 
-![](/img/playground-6.png)
+### 5. Deploy Your Smart Contract
 
-Click **Continue**.
+- Click on the **Deploy** button to deploy your smart contract:
 
-### Deploy your smart contract
+  ![](/img/playground-7.png)
 
-Click on the Deploy button to deploy your smart contract.
+- Wait for about 1 minute for the contract to be deployed:
 
-![](/img/playground-7.png)
+  ![](/img/playground-8.png)
 
-After about 1 minute, the contract is deployed:
-
-![](/img/playground-8.png)
-
-You may click on the link below to view your contract on aelf explorer.
+- You may click on the **link** provided to view your contract on the aelf explorer.
 
 ### Done
-
-Congratulations! You have just deployed your first smart contract on the aelf blockchain (testnet).

@@ -15,7 +15,7 @@ management, event handling, and randomization in smart contracts.
 
 ## Step 1 - Setting up your development environment
 
-import Setup from "../_setup.md"
+import Setup from "../\_setup.md"
 
 <Setup />
 
@@ -23,11 +23,11 @@ import Setup from "../_setup.md"
 
 ### Start Your Smart Contract Project
 
-Open your `Terminal`.
+- Open your `Terminal`.
 
-Enter the following command to generate a new project:
+- Enter the following command to generate a new project:
 
-```bash
+```bash title="Terminal"
 mkdir lottery-game
 cd lottery-game
 dotnet new aelf -n LotteryGame
@@ -38,23 +38,25 @@ dotnet new aelf -n LotteryGame
 Now that we have a template lottery game project, we can customise the template to incorporate our own contract logic.
 Lets start by implementing methods to provide basic functionality for updating and reading a message stored persistently in the contract state.
 
-```bash
+- Enter this command in your `Terminal`.
+
+```bash title="Terminal"
 cd src
 ```
 
 #### Defining Methods and Messages
 
-Firstly, rename `Protobuf/contract/hello_world_contract.proto` to `lottery_game_contract.proto`:
+- Rename the file name from `Protobuf/contract/hello_world_contract.proto` to `lottery_game_contract.proto`:
 
-```
+```bash title="Terminal"
 mv Protobuf/contract/hello_world_contract.proto Protobuf/contract/lottery_game_contract.proto
 ```
 
-Next, open the project with your IDE. 
+- open the project with your IDE.
 
 The implementation of file `src/Protobuf/contract/lottery_game_contract.proto` is as follows:
 
-```csharp
+```csharp title="lottery_game_contract.proto"
 syntax = "proto3";
 
 import "aelf/core.proto";
@@ -132,7 +134,7 @@ message PlayAmountLimitMessage {
 
 The implementation of file `src/LotteryGameState.cs` is as follows:
 
-```csharp
+```csharp title="src/LotteryGameState.cs"
 using AElf.Sdk.CSharp.State;
 using AElf.Types;
 
@@ -151,10 +153,11 @@ namespace AElf.Contracts.LotteryGame
 
 #### Contract Reference State
 
-Create a new file `token_contract.proto` under `src/Protobuf/reference/`
-The implementation of file `token_contract.proto`:
+- Create a new file `token_contract.proto` under `src/Protobuf/reference/`.
 
-```csharp
+- Replace this code of implementation file of `token_contract.proto`:
+
+```csharp title="token_contract.proto"
 /**
  * MultiToken contract.
  */
@@ -1053,10 +1056,13 @@ message SymbolAliasDeleted {
 
 #### Contract Reference State
 
-Navigate to `src` and create a **new file** `ContractReferences.cs`
+- Navigate to `src`. 
+
+- create a **new file** `ContractReferences.cs`.
+
 The implementation of file `src/ContractRefefrence.cs` is as follows:
 
-```csharp
+```csharp title="ContractReferences.cs"
 using AElf.Contracts.MultiToken;
 
 namespace AElf.Contracts.LotteryGame
@@ -1070,9 +1076,9 @@ namespace AElf.Contracts.LotteryGame
 
 #### Implement Lottery Game Smart Contract
 
-Navigate to `src/LotteryGame.cs`
+- Navigate to `src/LotteryGame.cs`
 
-```csharp
+```csharp title="LotteryGame.cs"
 using AElf.Contracts.MultiToken;
 using AElf.Sdk.CSharp;
 using AElf.Types;
@@ -1291,9 +1297,9 @@ namespace AElf.Contracts.LotteryGame
 
 ### Building Smart Contract
 
-Build the new code with the following commands inside `src` folder:
+- Build the new code with the following commands inside `src` folder:
 
-```bash
+```bash title="Terminal"
 dotnet build
 ```
 
@@ -1301,7 +1307,7 @@ You should see **LotteryGame.dll.patched** in the directory `lottery_game/src/bi
 
 ## Step 3 - Deploy Smart Contract
 
-import Deploy from "../_deploy.md"
+import Deploy from "../\_deploy.md"
 
 <Deploy />
 
@@ -1309,7 +1315,7 @@ import Deploy from "../_deploy.md"
 
 ### Approving Smart Contract Spending
 
-```bash
+```bash title="Terminal"
 aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Approve
 ```
 
@@ -1319,7 +1325,7 @@ aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_A
 
 When prompted, enter the following parameters to approve the spending of 90 ELF tokens:
 
-```terminal
+```terminal title="Terminal"
 Enter the params one by one, type `Enter` to skip optional param:
 ? Enter the required param <spender>: "INSERT_YOUR_CONTRACT_ADDRESS_HERE"
 ? Enter the required param <symbol>: ELF
@@ -1328,31 +1334,79 @@ Enter the params one by one, type `Enter` to skip optional param:
 
 ### Initializing Lottery Game Contract
 
-```bash
+```bash title="Terminal"
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Initialize
 ```
 
+- Output:
+
+![result](/img/Initialize.png)
+
 ### Depositing funds into the Lottery Game Contract
 
-```bash
+```bash title="Terminal"
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Deposit
 ```
 
+- You will be prompted for the following:
+
+```terminal title="Terminal"
+Enter the params one by one, type `Enter` to skip optional param:
+? Enter the required param <value>: 20000
+```
+
+- Output:
+
+![result](/img/Deposit.png)
+
 ### Playing the Lottery Game
 
-```bash
+```bash title="Terminal"
 aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Play
 ```
 
-Let's check the `balance`
+- Let's check the `balance`
 
-```bash
+```bash title="Terminal"
 aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
 ```
 
-You will be prompted for the following:
+- You will be prompted for the following:
 
-```terminal
+```terminal title="Terminal"
 Enter the required param <symbol>: ELF
 Enter the required param <owner>: $WALLET_ADDRESS
 ```
+
+
+## 🎯 Conclusion 
+
+#### 🎊 Congratulations!
+
+You've completed the Lottery Game Contract tutorial! Well done for mastering the steps and complexities involved. 🌟
+
+#### 📚 What You've Learned
+
+In this tutorial, you've explored:
+
+- 🛠️ Setting up your development environment for aelf blockchain.
+- 🎲 Developing a smart contract for a basic lottery game with state management and random number generation.
+- 🚀 Deploying and interacting with your Lottery Game Contract on the aelf network.
+
+#### 🔍 Final Output
+
+By now, you should have:
+
+- 📜 Successfully deployed your Lottery Game Contract on the aelf blockchain.
+- 🎉 Deposited funds and played the lottery game using smart contract interactions.
+
+Ensure you've seen your ELF balance updated after playing the game to verify the contract's functionality.
+
+#### ➡️ What's Next?
+
+Now that you've tackled the Lottery Game Contract, consider exploring more advanced topics or other tutorials to expand your aelf blockchain development skills. 
+
+🚀 Keep innovating and building awesome decentralized applications!
+
+Happy coding! 😊
+

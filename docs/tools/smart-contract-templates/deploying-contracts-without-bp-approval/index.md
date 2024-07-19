@@ -5,11 +5,11 @@ title: Deploying Contract without BP Approval
 
 # Deploying Contracts without BP Approval
 
-Contracts can be deployed/updated via aelf explorer or aelf-command. Ensure npm and aelf-command are installed before starting. Follow the [Deployment Environment guide](#) if needed.
+Contracts can be deployed/updated via aelf explorer or aelf-command. Ensure npm and aelf-command are installed before starting. Follow the [Deployment Environment guide](/tools/smart-contract-templates/development-environment) if needed.
 
 ## Overview
 
-In these 6 cases, BP approval is not needed for contract deployment/updates:
+In these 6 cases, **BP approval is not needed for contract deployment/updates:**
 
 - Deploying user contracts on shared SideChains (initiated by users or BPs).
 - Updating user contracts on shared SideChains (initiated by contract creators).

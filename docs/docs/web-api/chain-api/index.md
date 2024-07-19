@@ -382,7 +382,7 @@ POST /api/blockChain/sendTransaction
 - `text/json; v=1.0`
 - `application/x-protobuf; v=1.0`
 
-\*\*Tags
+### Tags
 
 - BlockChain
 
@@ -528,7 +528,7 @@ GET /api/blockChain/transactionPoolStatus
 GET /api/blockChain/transactionResult
 ```
 
-**Parameters**
+### Parameters
 
 | Type      | Name              | Description                | Schema |
 | --------- | ----------------- | -------------------------- | ------ |
