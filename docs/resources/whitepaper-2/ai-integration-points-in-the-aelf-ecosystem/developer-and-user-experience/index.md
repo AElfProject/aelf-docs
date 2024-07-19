@@ -21,7 +21,7 @@ By integrating NLP into its platform, aelf intends to significantly enhance the 
 
 ### Real-Time Feedback and Validation
 
-Another key benefit of using NLP for smart contract creation on aelf is the provision of real-time feedback and validation. As users input their requirements, the NLP system can highlight potential issues, suggest optimizations, and explain complex logic in simple terms. This interactive process ensures that users understand the generated code and can make informed decisions about their contracts. For instance, if a user inputs a contract description that could lead to a security vulnerability, the NLP system can flag this and provide suggestions for improvement. This not only enhances the security of the contracts but also educates users about best practices in smart contract development.
+Another key benefit of using NLP for smart contract creation on aelf is the provision of real-time feedback and validation. As users input their requirements, the NLP system can highlight potential issues, suggest optimisations, and explain complex logic in simple terms. This interactive process ensures that users understand the generated code and can make informed decisions about their contracts. For instance, if a user inputs a contract description that could lead to a security vulnerability, the NLP system can flag this and provide suggestions for improvement. This not only enhances the security of the contracts but also educates users about best practices in smart contract development.
 
 ### Broadening the User Base
 
@@ -29,23 +29,23 @@ Implementing NLP for smart contract creation allows aelf to broaden its user bas
 
 ## ii) AI based Smart Contract Audit for Developers on aelf
 
-AI auditing of smart contracts leverages large-scale pre-trained models, such as GPT-4 and [BERT](https://www.geeksforgeeks.org/explanation-of-bert-model-nlp/), to automate the audit process. Unlike traditional audits, which rely on manual code reviews and static analysis tools, AI auditing utilizes natural language processing (NLP) and deep learning to deliver more comprehensive and accurate audit reports.
+AI auditing of smart contracts leverages large-scale pre-trained models, such as GPT-4 and [BERT](https://www.geeksforgeeks.org/explanation-of-bert-model-nlp/), to automate the audit process. Unlike traditional audits, which rely on manual code reviews and static analysis tools, AI auditing utilises natural language processing (NLP) and deep learning to deliver more comprehensive and accurate audit reports.
 
-In AI auditing, smart contract code is input into a pre-trained model, which analyzes the code's syntax and logical structure to identify security vulnerabilities and logical errors. Users interact with the model using prompts to guide the analysis, such as "Check for reentrancy attack vulnerabilities in this smart contract." The model then performs a detailed analysis and generates an audit report.
+In AI auditing, smart contract code is input into a pre-trained model, which analyses the code's syntax and logical structure to identify security vulnerabilities and logical errors. Users interact with the model using prompts to guide the analysis, such as "Check for reentrancy attack vulnerabilities in this smart contract." The model then performs a detailed analysis and generates an audit report.
 
 The audit report details potential vulnerabilities and provides corresponding remediation suggestions.
 
 ### Key Aspects of AI based Smart Contract Audits
 
-The primary goal is to review and analyze the code before deployment to identify vulnerabilities, inefficiencies, or potential leaks. This process is critical, as defects can lead to significant financial losses or security breaches. For instance, audits of DeFi application contracts rigorously test for exploits to protect user funds.
+The primary goal is to review and analyse the code before deployment to identify vulnerabilities, inefficiencies, or potential leaks. This process is critical, as defects can lead to significant financial losses or security breaches. For instance, audits of DeFi application contracts rigorously test for exploits to protect user funds.
 
 **Vulnerability Assessment:**
 
 Identifying potential security issues in the code. For example, an audit of a token issuance contract uncovered a vulnerability that could allow fund theft, enabling developers to resolve the issue pre-launch.
 
-**Code Optimization:**
+**Code Optimisation:**
 
-Improving efficiency and reducing gas fees. Auditors recommended optimizations for a game DApp's contract, significantly lowering transaction fees and enhancing accessibility and affordability for players.
+Improving efficiency and reducing gas fees. Auditors recommended optimisations for a game DApp's contract, significantly lowering transaction fees and enhancing accessibility and affordability for players.
 
 **Compliance Check:**
 
@@ -69,7 +69,7 @@ The prompt design approach involves constructing specific prompts to guide the m
 
    * Select a model that supports code analysis.
    * Input the prompts specifying the exact issues to be checked.
-4. **Generate Audit Report:** The model analyzes the input prompts and contract code, generating an audit report that typically includes:
+4. **Generate Audit Report:** The model analyses the input prompts and contract code, generating an audit report that typically includes:
 
    * **Vulnerability Description:** Detailed description of discovered vulnerabilities, including the exact location and trigger conditions.
    * **Risk Assessment:** Evaluation of the severity and potential impact of the vulnerability.
@@ -84,12 +84,12 @@ The fine-tuning approach involves retraining the large model to better adapt it 
 1. **Data Collection:** Gather a large dataset of smart contract codes, audit reports, and remediation cases.
 2. **Data Preprocessing:** Clean and format the data to ensure effective learning.
 3. **Model Fine-Tuning:** Train the large model on the preprocessed dataset to enhance its understanding and auditing capabilities.
-4. **Validation and Optimization:** Evaluate the model's performance using a validation set and make necessary optimizations.
+4. **Validation and Optimisation:** Evaluate the model's performance using a validation set and make necessary optimisations.
 5. **Model Deployment:** Deploy the fine-tuned model in the actual audit environment.
 
 This method can significantly enhance the model's performance in specific tasks but requires substantial computational resources and time. The fine-tuned model can more accurately identify complex vulnerabilities in smart contracts and provide targeted remediation suggestions. 
 
-Ultimately, this model will be integrated into a smart contract auditing tool, enabling both aelf and dApp developers to utilize it for thorough audits prior to deploying their smart contracts on the aelf chain.
+Ultimately, this model will be integrated into a smart contract auditing tool, enabling both aelf and dApp developers to utilise it for thorough audits prior to deploying their smart contracts on the aelf chain.
 
 ## iii) Enhancing User and Developer Experience with AI-Powered Chatbots on aelf
 
@@ -97,9 +97,9 @@ Integrating AI-powered chatbots into the aelf blockchain ecosystem can significa
 
 ### User Experience Improvement
 
-AI-powered chatbots can dramatically improve user experience by offering instant support and personalized assistance. For instance, users new to the aelf ecosystem often have questions about setting up wallets, conducting transactions, or understanding blockchain features. aelf has partnered with an industry leading strategic partner, [Chaingpt](https://www.chaingpt.org), to develop an AI chatbot that can provide 24/7 support, answering frequently asked questions, guiding users through processes step-by-step, and troubleshooting issues in real-time. This immediate assistance reduces frustration and enhances user satisfaction. This is commonplace in traditional businesses such as major banks like Bank of America that have implemented AI chatbots like [Erica](https://promotions.bankofamerica.com/digitalbanking/mobilebanking/erica) to assist customers with everyday banking needs, providing transaction histories, sending alerts, and offering financial advice. Similarly, an AI chatbot on aelf can help users navigate the platform more efficiently, providing information about token balances, transaction statuses, and smart contract functionalities. 
+AI-powered chatbots can dramatically improve user experience by offering instant support and personalised assistance. For instance, users new to the aelf ecosystem often have questions about setting up wallets, conducting transactions, or understanding blockchain features. aelf has partnered with an industry leading strategic partner, [Chaingpt](https://www.chaingpt.org), to develop an AI chatbot that can provide 24/7 support, answering frequently asked questions, guiding users through processes step-by-step, and troubleshooting issues in real-time. This immediate assistance reduces frustration and enhances user satisfaction. This is commonplace in traditional businesses such as major banks like Bank of America that have implemented AI chatbots like [Erica](https://promotions.bankofamerica.com/digitalbanking/mobilebanking/erica) to assist customers with everyday banking needs, providing transaction histories, sending alerts, and offering financial advice. Similarly, an AI chatbot on aelf can help users navigate the platform more efficiently, providing information about token balances, transaction statuses, and smart contract functionalities. 
 
-AI chatbots can also enhance personalized user engagement on the aelf platform. By analyzing user behavior and preferences, chatbots can offer tailored recommendations, such as suggesting new dApps or features that might interest the user. This personalized interaction can increase user engagement and retention, making the platform more attractive to both new and existing users. This is commonly done in e-commerce platforms like [Amazon](https://aws.amazon.com/lex/) that use AI chatbots to recommend products based on user browsing history and past purchases. Applying this to aelf, the chatbot could recommend specific dApps or new blockchain features based on the user’s activity, thus enhancing the user’s interaction with the platform
+AI chatbots can also enhance personalised user engagement on the aelf platform. By analysing user behaviour and preferences, chatbots can offer tailored recommendations, such as suggesting new dApps or features that might interest the user. This personalised interaction can increase user engagement and retention, making the platform more attractive to both new and existing users. This is commonly done in e-commerce platforms like [Amazon](https://aws.amazon.com/lex/) that use AI chatbots to recommend products based on user browsing history and past purchases. Applying this to aelf, the chatbot could recommend specific dApps or new blockchain features based on the user’s activity, thus enhancing the user’s interaction with the platform
 
 ### Developer Experience Enhancement
 
