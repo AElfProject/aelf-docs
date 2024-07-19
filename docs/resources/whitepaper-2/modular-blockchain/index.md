@@ -70,7 +70,7 @@ Advantages of DAC include:
 
 ### aelf ZK-rollup Node
 
-aelf ZK-rollup Node is used to process transactions, synchronizes states, generates, and submits proofs. Sequencers and aggregators manage L2 state and finality on L1. 
+aelf ZK-rollup Node is used to process transactions, synchronises states, generates, and submits proofs. Sequencers and aggregators manage L2 state and finality on L1. 
 
 #### zkEVM / ZKProver
 
@@ -125,8 +125,8 @@ aelf ZK-rollup involves two primary participants who both earn and pay ELF token
 Before conducting Layer 2 transactions, users need to transfer some ELF from L1 to L2 through the aelf ZK-rollup bridge for gas fees. The subsequent steps are as follows:
 
 1. Users initiate a transaction from their wallet (e.g. [Portkey](https://portkey.finance/)) and send it to the Sequencer.
-2. Once the Sequencer commits to adding the transaction, it is finalized on L2.
+2. Once the Sequencer commits to adding the transaction, it is finalised on L2.
 3. At this point, the transaction is settled on L2, but its state has not yet propagated to L1. This state is known as the **Pre-validated State**.
-4. The Sequencer transfers batch data to a smart contract on L1, allowing any node to safely and trustlessly synchronize its state from L1. This state is called the **Committed State**.
+4. The Sequencer transfers batch data to a smart contract on L1, allowing any node to safely and trustlessly synchronise its state from L1. This state is called the **Committed State**.
 5. The Aggregator collects pending transactions for validation and constructs proofs to achieve finality on L1.
 6. Once the proofs are verified, the user's transaction achieves finality on L1, a crucial step for withdrawals and other operations. This state is referred to as the **Verified State**.
