@@ -5,12 +5,14 @@ import type { WrapperProps } from "@docusaurus/types";
 import styles from "./index.module.css";
 import socialLinks from "@site/config/social-links.json";
 import Logo from "@site/src/theme/logo";
+import ChainGPT from '@site/src/theme/Footer/Copyright/ChainGPT';
 
 type Props = WrapperProps<typeof CopyrightType>;
 
 export default function CopyrightWrapper(props: Props): JSX.Element {
   return (
     <>
+      <ChainGPT />
       <div className={styles.wrap}>
         <div className={styles.copyright}>
           <div className={styles.logo}>
