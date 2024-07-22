@@ -63,32 +63,23 @@ import "aelf/options.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 import "Protobuf/reference/acs12.proto";
-// The namespace of this class
-option csharp_namespace = "AElf.Contracts.NFT";
 
-service NFT {
-  // The name of the state class the smart contract is going to use to access blockchain state
-  option (aelf.csharp_state) = "AElf.Contracts.NFT.NFTState";
+// The namespace of this class
+option csharp_namespace = "AElf.Contracts.nft_contract";
+
+service nft_contract {
+  option (aelf.csharp_state) = "AElf.Contracts.nft_contract.nft_contractState";
   option (aelf.base) = "Protobuf/reference/acs12.proto";
 
-  rpc Initialize (google.protobuf.Empty) returns (google.protobuf.Empty) {
-  }
+  rpc Initialize (google.protobuf.Empty) returns (google.protobuf.Empty) {}
 
-  rpc CreateNFT (google.protobuf.MessageOptions) returns (google.protobuf.Int64Value) {
-  }
+  rpc CreateNFTToken (CreateNFTTokenInput) returns (google.protobuf.Int64Value) {}
 
-  rpc CreateNFTCollection() returns (google.protobuf.Int64Value){
-  }
+  rpc TransferNFT (TransferNFTInput) returns (google.protobuf.Empty) {}
 
-  rpc TransferNFT (google.protobuf.Int64Value, aelf.Address) returns (google.protobuf.Empty) {
-  }
+  rpc BurnNFT (google.protobuf.Int64Value) returns (google.protobuf.Empty) {}
 
-  rpc BurnNFT (google.protobuf.Int64Value) returns (google.protobuf.Empty) {
-  }
-
-  }
-
-  rpc GETNFTDetails (google.protobuf.Int64Value) returns (PlayAmountLimitMessage) {
+  rpc GetNFTDetails (google.protobuf.Int64Value) returns (NFTDetails) {
     option (aelf.is_view) = true;
   }
 
@@ -101,23 +92,34 @@ service NFT {
   }
 }
 
+// Define request message for CreateNFTToken
+message CreateNFTTokenInput {
+  string name = 1;
+  string symbol = 2;
+}
+
+// Define request message for TransferNFT
+message TransferNFTInput {
+  int64 token_id = 1;
+  aelf.Address to = 2;
+}
+
 // An event that will be emitted from contract method call when CreateNFT is called.
 message NFTCreated {
   option (aelf.is_event) = true;
   int64 nft_id = 1;
-  int64 details = 2;
 }
+
 // An event that will be emitted from contract method call when CreateNFTCollection is called
 message NFTCollectionCreated {
   option (aelf.is_event) = true;
   int64 nft_id = 1;
-  int64 details = 2;
 }
 
 // An event that will be emitted from contract method call when TransferNFT is called.
 message NFTTransferred {
   option (aelf.is_event) = true;
-  int64 amount = 1;
+  int64 token_id = 1;
   aelf.Address from = 2;
   aelf.Address to = 3;
 }
@@ -125,9 +127,25 @@ message NFTTransferred {
 // An event that will be emitted from contract method call when BurnNFT is called.
 message NFTBurned {
   option (aelf.is_event) = true;
+  int64 token_id = 1;
+  aelf.Address owner = 2;
+}
+
+// Define message for NFT details
+message NFTDetails {
+  int64 token_id = 1;
+  string name = 2;
+  string symbol = 3;
+  aelf.Address owner = 4;
+}
+
+// An event that will be emitted from contract method call when Deposit is called.
+message DepositEvent {
+  option (aelf.is_event) = true;
   int64 amount = 1;
-  aelf.Address from = 2;
-  aelf.Address to = 3;
+  string symbol = 2;
+  aelf.Address from = 3;
+  aelf.Address to = 4;
 }
 ```
 
@@ -138,19 +156,18 @@ The implementation of file `src/NFTState.cs` is as follows:
 ```csharp title="src/NFTState.cs"
 using AElf.Sdk.CSharp.State;
 using AElf.Types;
+using Google.Protobuf.WellKnownTypes;
 
-namespace AElf.Contracts.NFT
+namespace AElf.Contracts.nft_contract
 {
     // The state class is access the blockchain state
-    public partial class NFT : ContractState
+    public partial class nft_contractState : ContractState
     {
-        // A state to check if contract is initialized
         public BoolState Initialized { get; set; }
-        // A state to store the owner address
         public SingletonState<Address> Owner { get; set; }
-
         public MappedState<long, NFTToken> NFTTokens { get; set; }
         public MappedState<Address, Int64Value> NFTBalances { get; set; }
+        public Int64State TokenCounter { get; set; }
     }
     public class NFTToken
     {
@@ -158,8 +175,8 @@ namespace AElf.Contracts.NFT
         public string Symbol { get; set; }
         public Address Owner { get; set; }
     }
-    }
 }
+
 ```
 
 #### Contract Reference State
@@ -1074,13 +1091,16 @@ message SymbolAliasDeleted {
 The implementation of file `src/ContractRefefrence.cs` is as follows:
 
 ```csharp title="ContractReferences.cs"
+using AElf.Contracts.Consensus.AEDPoS;
 using AElf.Contracts.MultiToken;
 
-namespace AElf.Contracts.NFT
+namespace AElf.Contracts.nft_contract
 {
-    public partial class NFTState : ContractState
+    public partial class nft_contractState
     {
         internal TokenContractContainer.TokenContractReferenceState TokenContract { get; set; }
+        internal AEDPoSContractContainer.AEDPoSContractReferenceState ConsensusContract { get; set; }
+    }
 }
 ```
 
@@ -1094,48 +1114,46 @@ using AElf.Sdk.CSharp;
 using AElf.Types;
 using Google.Protobuf.WellKnownTypes;
 
-namespace AElf.Contracts.NFT
+namespace AElf.Contracts.nft_contract
 {
     // Contract class must inherit the base class generated from the proto file
-    public class NFT : NFTContainer.NFTBase
+    public class nft_contract : nft_contractContainer.nft_contractBase
     {
         private const string TokenContractAddress = "ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx"; // tDVW token contract address
-        private const string TokenSymbol = "ELF";
-        private const long MinimumPlayAmount = 1_000_000; // 0.01 ELF
-        private const long MaximumPlayAmount = 1_000_000_000; // 10 ELF
 
-        // Initializes the contract
         public override Empty Initialize(Empty input)
         {
-            // Check if the contract is already initialized
             Assert(State.Initialized.Value == false, "Already initialized.");
-            // Set the contract state
             State.Initialized.Value = true;
-            // Set the owner address
             State.Owner.Value = Context.Sender;
-
-            // Initialize the token contract
             State.TokenContract.Value = Address.FromBase58(TokenContractAddress);
 
             return new Empty();
         }
+
         public override Int64Value CreateNFTToken(CreateNFTTokenInput input)
         {
-            var tokenId = State.NFTTokens.Count + 1;
+            // Increment the token counter
+            State.TokenCounter.Value += 1;
+            var tokenId = State.TokenCounter.Value;
+
+            // Create the new NFT token
             State.NFTTokens[tokenId] = new NFTToken
             {
                 Name = input.Name,
                 Symbol = input.Symbol,
                 Owner = Context.Sender
             };
+
+            // Fire an event for the creation of the NFT token
             Context.Fire(new NFTCreated { NftId = tokenId });
+
             return new Int64Value { Value = tokenId };
         }
 
-           public override Empty TransferNFT(TransferNFTInput input)
+        public override Empty TransferNFT(TransferNFTInput input)
         {
             var nft = State.NFTTokens[input.TokenId];
-//Q where to get the details for this above
             Assert(nft != null, "Token does not exist.");
             Assert(nft.Owner == Context.Sender, "Not the owner.");
             nft.Owner = input.To;
@@ -1151,14 +1169,12 @@ namespace AElf.Contracts.NFT
             Assert(nft.Owner == Context.Sender, "Not the owner.");
             State.NFTTokens.Remove(input.Value);
             Context.Fire(new NFTBurned { TokenId = input.Value, Owner = Context.Sender });
-//Q             where do I get the to address
             return new Empty();
         }
 
-        public override NFTDetails GETNFTDetails(Int64Value input)
+        public override NFTDetails GetNFTDetails(Int64Value input)
         {
             var nft = State.NFTTokens[input.Value];
-//where do I get the data from ?
             Assert(nft != null, "Token does not exist.");
             return new NFTDetails
             {
@@ -1174,15 +1190,15 @@ namespace AElf.Contracts.NFT
             return State.NFTBalances[input] ?? new Int64Value { Value = 0 };
         }
 
-        public override Address GetOwner(Int64Value input)
+        public override StringValue GetOwner(Int64Value input)
         {
             var nft = State.NFTTokens[input.Value];
             Assert(nft != null, "Token does not exist.");
-            return nft.Owner;
+            return new StringValue { Value = nft.Owner.ToString() };
         }
     }
-    }
 }
+
 ```
 
 ### Building Smart Contract
