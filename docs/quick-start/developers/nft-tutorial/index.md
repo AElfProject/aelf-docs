@@ -1257,7 +1257,9 @@ aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e ht
 ### Creating token into the NFT Marketplace Contract
 
 ```bash title="Terminal"
-aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io CreateNFT
+aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io CreateNFTToken --params '{"name": "NFT Name", "symbol": "NFTSYM"}'
+
+// aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io CreateNFTToken
 ```
 
 - You will be prompted for the following:
@@ -1274,17 +1276,23 @@ Enter the params one by one, type `Enter` to skip optional param:
 ### Get the NFT balance for an address
 
 ```bash title="Terminal"
-aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetNFTBalance
+aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetNFTBalance --params '{"address": "ADDRESS_TO_CHECK"}'
+
+// aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetNFTBalance
 ```
 
 ### Get the NFT details of an NFT
 
 ```bash title="Terminal"
-aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetNFTDetails
+aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetNFTDetails --params '{"value": NFT_ID}'
+
+// aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetNFTDetails
 ```
 
 ### Transfer NFT from one address to other address
 
 ```bash title="Terminal"
-aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io TransferNFT
+aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io TransferNFT --params '{"token_id": NFT_ID, "to": "RECIPIENT_ADDRESS"}'
+
+// aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io TransferNFT
 ```
