@@ -37,12 +37,12 @@
           "href": "/learn/"
         },
         {
-          "label": "Docs",
-          "href": "/docs/"
-        },
-        {
           "label": "Tools",
           "href": "/tools/"
+        },
+        {
+          "label": "Playground",
+          "href": "https://playground.aelf.com"
         },
         {
           "label": "Resources",
