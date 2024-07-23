@@ -34,7 +34,7 @@ Let's say you want to transfer token **FOO** from chain **A** to chain **B**. Be
 
 - **Register the token contract address of chain A on chain B**
 
-  Create a proposal for the `RegisterCrossChainTokenContractAddress` for the default parliament organization on chain B. Refer to the [Parliament contract documentation](/docs/smart-contract-api/parliament-contract/) for more details. Apart from cross chain verification context, you also need to provide the origin data of `tx_1` and the `Token Contract` address on chain A.
+  Create a proposal for the `RegisterCrossChainTokenContractAddress` for the default parliament organization on chain B. Refer to the [Parliament contract documentation](/tools/smart-contract-api/parliament-contract/) for more details. Apart from cross chain verification context, you also need to provide the origin data of `tx_1` and the `Token Contract` address on chain A.
 
   ```protobuf
   rpc RegisterCrossChainTokenContractAddress (RegisterCrossChainTokenContractAddressInput) returns (google.protobuf.Empty) {}
