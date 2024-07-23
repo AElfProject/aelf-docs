@@ -11,11 +11,6 @@
       "position": "left"
     },
     {
-      "to": "/docs",
-      "label": "Docs",
-      "position": "left"
-    },
-    {
       "to": "/tools",
       "label": "Tools",
       "position": "left"
