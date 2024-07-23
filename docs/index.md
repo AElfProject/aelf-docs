@@ -72,15 +72,8 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 - [Design](/tools/design/) - Explore aelf design library
 - [Playground](/tools/aelf-playground/) - Play with aelf in your browser
 - [Contract SDK](/tools/contract-sdk/) - C# SDKs
-
-</article>
-
-<article className="col col--4 margin-bottom--lg">
-
-## ⭐️ References
-
-- [Smart Contract API](/docs/smart-contract-api/) - Access smart contract functionalities using API
-- [Web API](/docs/web-api/) - Interact with the aelf blockchain through the web
+- [Smart Contract API](/tools/smart-contract-api/) - Access smart contract functionalities using API
+- [Web API](/tools/web-api/) - Interact with the aelf blockchain through the web
 
 </article>
 
