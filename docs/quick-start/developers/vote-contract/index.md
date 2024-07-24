@@ -58,7 +58,7 @@ sudo npm i -g aelf-command
 ```
 </TabItem>
 
-<TabItem value="Window" label="Window">
+<TabItem value="Windows" label="Windows">
 ```bash title="Terminal"
 npm i -g aelf-command
 ```

@@ -13,9 +13,9 @@ Anyone can request the creation of a side chain in the aelf ecosystem. The propo
 
 ### API for Proposing Side Chain Creation
 
-The fields in the `SideChainCreationRequest` determine the type of side chain that is created. For more details, follow `RequestSideChainCreation` in the [Crosschain contract documentation](/docs/smart-contract-api/cross-chain-contract/).
+The fields in the `SideChainCreationRequest` determine the type of side chain that is created. For more details, follow `RequestSideChainCreation` in the [Crosschain contract documentation](/tools/smart-contract-api/cross-chain-contract/).
 
-Upon creating a new proposal for the side chain, the `ProposalCreated` event containing the proposal ID will be fired. A parliament organization, specified since the chain's launch, will approve this proposal within 24 hours (refer to the [Parliament contract documentation](/docs/smart-contract-api/parliament-contract/) for details). The proposer can release the side chain creation request with the proposal ID once it can be released. Refer to `ReleaseSideChainCreation` in the [Crosschain contract documentation](/docs/smart-contract-api/cross-chain-contract/).
+Upon creating a new proposal for the side chain, the `ProposalCreated` event containing the proposal ID will be fired. A parliament organization, specified since the chain's launch, will approve this proposal within 24 hours (refer to the [Parliament contract documentation](/tools/smart-contract-api/parliament-contract/) for details). The proposer can release the side chain creation request with the proposal ID once it can be released. Refer to `ReleaseSideChainCreation` in the [Crosschain contract documentation](/tools/smart-contract-api/cross-chain-contract/).
 
 Once the side chain is created, the `SideChainCreatedEvent` containing the chain ID will be fired.
 

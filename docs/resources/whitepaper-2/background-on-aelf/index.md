@@ -7,6 +7,8 @@ description: ""
 
 The story of aelf began on 10 December 2017, when aelf's vision and plans were introduced to global investors at a Coindesk conference. aelf successfully completed its fund-raising significantly ahead of schedule, having secured investments from notable institutions such as [Binance](https://www.binance.com/en), [Arrington Capital](https://www.arringtoncapital.com/), [Draper Dragon](https://draperdragon.com/), [Galaxy Digital ](https://www.galaxy.com/)etc. In the same month, the ELF token was listed on six major exchanges, including [Binance](https://www.binance.com/en/price/aelf) and [OKEX](https://www.okx.com/trade-spot/elf-usdt). aelf Testnet was successfully launched in 2018, followed by another successful launch of the Mainnet in 2020.
 
+![aelf Chain Architecture](/img/aelf_chain_architecture_3_.png "aelf Chain Architecture")
+
 aelf is primarily a multi-chain parallel computing blockchain framework which was created to address several of the limitations of traditional blockchain systems, such as performance bottlenecks and data complexity. aelf's vision is to be a "Linux Ecosystem" equivalent for a blockchain that incorporates state of the art IT design principles, which in particular allows developers to customise Chains to meet their own needs. At its core, aelf contains the following main features: 
 
 1. MainChain and multi-layer SideChains to handle various user driven scenarios. One chain is designed for one use case, distributing different tasks on multiple chains, which improves processing efficiency.
@@ -21,4 +23,4 @@ For aelf's consensus mechanism, it utilises the Delegated Proof of Stake (DPoS) 
 
 Last but not least, the [C# programming language](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/) forms the foundation of the entire aelf blockchain. C# is a robust, object-oriented language with strong type-checking, which enhances code reliability and reduces runtime errors and are crucial for the immutable and secure nature of blockchain applications. Its performance characteristics, including efficient memory management and speed, are beneficial for blockchain's demanding requirements. Further, C#'s support for asynchronous programming and parallel processing helps optimise the performance of blockchain nodes, ensuring they can handle multiple transactions simultaneously without significant latency. This strong technical foundation underpins aelf's ability to handle high transaction volumes and complex operations with ease. 
 
-For further details on aelf's original design and architecture, please kindly refer to our [original whitepaper](https://docs.aelf.com/pdf/aelf_whitepaper_v1.7_en.pdf).
+For further details on aelf's original design and architecture, please kindly refer to our [original whitepaper](/pdf/aelf_whitepaper_v1.7_en.pdf).

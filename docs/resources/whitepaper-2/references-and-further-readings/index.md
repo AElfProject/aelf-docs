@@ -3,7 +3,7 @@ sidebar_position: 11
 title: References and further readings
 description: ""
 ---
-1. aelf. Whitepaper V 1.7.0. October 25th, 2022. [[Link](https://docs.aelf.com/pdf/aelf_whitepaper_v1.7_en.pdf)]
+1. aelf. Whitepaper V 1.7.0. October 25th, 2022. [[Link](/pdf/aelf_whitepaper_v1.7_en.pdf)]
 2. Blockchain Council. "How Blockchain and AI Can Work Together." Blockchain Council, January 22, 2024. Retrieved from [[Link](https://www.blockchain-council.org/blockchain/how-blockchain-and-ai-can-work-together/)]
 3. Buterin, V. (2024, January 30). Crypto AI. Retrieved from [[Link](https://vitalik.eth.limo/general/2024/01/30/cryptoai.html)] 
 4. Chen, Y., & Bellavitis, C. (2020). Blockchain disruption and decentralized finance: The rise of decentralized business models. Journal of Business Venturing Insights, 13, e00151. [[Link](https://doi.org/10.1016/j.jbvi.2019.e00151)] 

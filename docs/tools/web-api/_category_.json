@@ -1,0 +1,14 @@
+{
+  "position": 10,
+  "label": "Web API",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Web API",
+    "slug": "tools/web-api"
+  },
+  "customProps": {
+    "description": "Useful references for web."
+  }
+}
