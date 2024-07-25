@@ -41,9 +41,9 @@ This roadmap outlines aelf's strategic integration of AI technologies, focusing 
 
 ## Q2 2025
 
-1. [AI-Facilitated Cross-Chain Interoperability for aelf](/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/operational-excellence/#iii-ai-facilitated-cross-chain-interoperability-for-aelf)
+1. [AI-Facilitated Cross-Chain Interoperability for aelf](/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/operational-excellence/#iv-ai-facilitated-cross-chain-interoperability-for-aelf)
 
    Establish AI-driven mechanisms on aelf to facilitate seamless cross-chain interoperability, expanding aelf's connectivity with other blockchain networks and enhancing overall functionality.
-2. [AI-Driven Node Selection and Validation for aelf](/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/operational-excellence/#iv-ai-driven-node-selection-and-validation-for-aelf)
+2. [AI-Driven Node Selection and Validation for aelf](/resources/whitepaper-2/ai-integration-points-in-the-aelf-ecosystem/operational-excellence/#v-ai-driven-node-selection-and-validation-for-aelf)
 
    (TBD) Implement AI algorithms for node selection and validation, improving network security, efficiency, and reliability.
