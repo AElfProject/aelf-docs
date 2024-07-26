@@ -29,8 +29,9 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
   - [Operations](/quick-start/node-operators/operations/)
   - [Run a testnet](/quick-start/node-operators/run-a-testnet-node/) node
   - [Run a mainnet](/quick-start/node-operators/run-a-mainnet-node/) node
-  - [Simulate](/quick-start/node-operators/simulation-in-local-environment) in your local environment
-  - [Create](/quick-start/node-operators/explore-running-aelf-side-chain) a side chain
+  - [Simulate](/quick-start/node-operators/simulation-in-local-environment/) in your local environment
+  - [Create](/quick-start/node-operators/creation-of-a-side-chain/) a side chain
+  - [Run](/quick-start/node-operators/running-a-side-chain/) a side chain
 
 </article>
 
@@ -56,7 +57,6 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 - [Operate a Node](/tutorials/operate-a-node/)
   - Run aelf on [Cloud](/tutorials/operate-a-node/run-aelf-on-cloud/)
-  - Run a [Side Chain](/tutorials/operate-a-node/run-a-side-chain/)
 
 </article>
 
