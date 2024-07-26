@@ -8,11 +8,13 @@ image: /img/Logo.aelf.svg
 # aelf-sdk.php - aelf PHP API
 
 ## Introduction
+
 aelf-sdk.php for aelf is similar to web.js for Ethereum. It consists of libraries that enable interaction with a local or remote aelf node via HTTP.
 
 This documentation will guide you through the installation and usage of aelf-sdk.php, with examples included. For more information, visit the [aelf-sdk.php repository](https://github.com/AElfProject/aelf-sdk.php).
 
 ## Adding aelf PHP SDK
+
 To install the library via Composer, run the following commands in your console:
 
 ```sh
@@ -33,6 +35,7 @@ If you cloned the SDK directly, you must install Composer and run it in the root
 ## Examples
 
 ### 1. Create an Instance
+
 Create a new instance of AElf and connect to an AELF chain node. Using this instance, you can call the AElf APIs.
 
 ```php
@@ -44,6 +47,7 @@ $aelf = new AElf($url);
 ```
 
 ### 2. Get a System Contract Address
+
 Get a system contract address. For example, to get the address of `AElf.ContractNames.Token`:
 
 ```php
@@ -61,6 +65,7 @@ $contractAddress = $aelf->GetContractAddressByName($privateKey, $bytes);
 ```
 
 ### 3. Send a Transaction
+
 Get the contract address and then send a transaction.
 
 ```php
@@ -113,7 +118,6 @@ $url = '127.0.0.1:8000';
 $aelf = new AElf($url);
 ```
 
-
 ### 1. Get Chain Status
 
 - **API Path**: `/api/blockChain/chainStatus`
@@ -122,19 +126,18 @@ $aelf = new AElf($url);
 
 - **Returns**:
 
-   - `Array`
-      - `ChainId` - String
-      - `Branches` - Array
-      - `NotLinkedBlocks` - Array
-      - `LongestChainHeight` - Integer
-      - `LongestChainHash` - String
-      - `GenesisBlockHash` - String
-      - `GenesisContractAddress` - String
-      - `LastIrreversibleBlockHash` - String
-      - `LastIrreversibleBlockHeight` - Integer
-      - `BestChainHash` - String
-      - `BestChainHeight` - Integer
-
+  - `Array`
+    - `ChainId` - String
+    - `Branches` - Array
+    - `NotLinkedBlocks` - Array
+    - `LongestChainHeight` - Integer
+    - `LongestChainHash` - String
+    - `GenesisBlockHash` - String
+    - `GenesisContractAddress` - String
+    - `LastIrreversibleBlockHash` - String
+    - `LastIrreversibleBlockHeight` - Integer
+    - `BestChainHash` - String
+    - `BestChainHeight` - Integer
 
 - **Example** :
 
@@ -145,8 +148,6 @@ $aelf = new AElf($url);
 $chainStatus = $aelf->getChainStatus();
 print_r($chainStatus);
 ```
-
-
 
 ### 2. Get Block Height
 
@@ -165,34 +166,33 @@ $height = $aelf->getBlockHeight();
 print($height);
 ```
 
-
 ### 3. getBlock
 
 - **API Path**: `/api/blockChain/block`
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `block_hash` (String)
-   - `include_transactions` (Boolean)
+  - `block_hash` (String)
+  - `include_transactions` (Boolean)
 
-- **Returns**: 
+- **Returns**:
 
-   - `Array`
-      - `BlockHash` - String
-      - `Header` - Array
-         - `PreviousBlockHash` - String
-         - `MerkleTreeRootOfTransactions` - String
-         - `MerkleTreeRootOfWorldState` - String
-         - `Extra` - List
-         - `Height` - Integer
-         - `Time` - String
-         - `ChainId` - String
-         - `Bloom` - String
-         - `SignerPubkey` - String
-      - `Body` - Array
-         - `TransactionsCount` - Integer
-         - `Transactions` - Array
-            - `transactionId` - String
+  - `Array`
+    - `BlockHash` - String
+    - `Header` - Array
+      - `PreviousBlockHash` - String
+      - `MerkleTreeRootOfTransactions` - String
+      - `MerkleTreeRootOfWorldState` - String
+      - `Extra` - List
+      - `Height` - Integer
+      - `Time` - String
+      - `ChainId` - String
+      - `Bloom` - String
+      - `SignerPubkey` - String
+    - `Body` - Array
+      - `TransactionsCount` - Integer
+      - `Transactions` - Array
+        - `transactionId` - String
 
 - **Example** :
 
@@ -204,35 +204,33 @@ $block2 = $aelf->getBlockByHash($block['BlockHash'], false);
 print_r($block2);
 ```
 
-
 ### 4. Get Block by Height
 
 - **API Path**: `/api/blockChain/blockByHeight`
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `block_height` (Number)
-   - `include_transactions` (Boolean)
+  - `block_height` (Number)
+  - `include_transactions` (Boolean)
 
-- **Returns**: 
+- **Returns**:
 
-   - `Array`
-      - `BlockHash` - String
-      - `Header` - Array
-         - `PreviousBlockHash` - String
-         - `MerkleTreeRootOfTransactions` - String
-         - `MerkleTreeRootOfWorldState` - String
-         - `Extra` - List
-         - `Height` - Integer
-         - `Time` - String
-         - `ChainId` - String
-         - `Bloom` - String
-         - `SignerPubkey` - String
-      - `Body` - Array
-         - `TransactionsCount` - Integer
-         - `Transactions` - Array
-            - `transactionId` - String
-
+  - `Array`
+    - `BlockHash` - String
+    - `Header` - Array
+      - `PreviousBlockHash` - String
+      - `MerkleTreeRootOfTransactions` - String
+      - `MerkleTreeRootOfWorldState` - String
+      - `Extra` - List
+      - `Height` - Integer
+      - `Time` - String
+      - `ChainId` - String
+      - `Bloom` - String
+      - `SignerPubkey` - String
+    - `Body` - Array
+      - `TransactionsCount` - Integer
+      - `Transactions` - Array
+        - `transactionId` - String
 
 - **Example** :
 
@@ -243,38 +241,37 @@ $block = $aelf->getBlockByHeight(1, true);
 print_r($block);
 ```
 
-
 ### 5. Get Transaction Result
 
 - **API Path**: `/api/blockChain/transactionResult`
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `transactionId` (String)
+  - `transactionId` (String)
 
 - **Returns**:
 
-   - `Object`
-      - `TransactionId` - String
-      - `Status` - String
-      - `Logs` - Array
-         - `Address` - String
-         - `Name` - String
-         - `Indexed` - Array
-         - `NonIndexed` - String
-      - `Bloom` - String
-      - `BlockNumber` - Integer
-      - `Transaction` - Array
-         - `From` - String
-         - `To` - String
-         - `RefBlockNumber` - Integer
-         - `RefBlockPrefix` - String
-         - `MethodName` - String
-         - `Params` - json
-         - `Signature` - String
-            - `transactionId` - String
-      - `ReadableReturnValue` - String
-      - `Error` - String
+  - `Object`
+    - `TransactionId` - String
+    - `Status` - String
+    - `Logs` - Array
+      - `Address` - String
+      - `Name` - String
+      - `Indexed` - Array
+      - `NonIndexed` - String
+    - `Bloom` - String
+    - `BlockNumber` - Integer
+    - `Transaction` - Array
+      - `From` - String
+      - `To` - String
+      - `RefBlockNumber` - Integer
+      - `RefBlockPrefix` - String
+      - `MethodName` - String
+      - `Params` - json
+      - `Signature` - String
+        - `transactionId` - String
+    - `ReadableReturnValue` - String
+    - `Error` - String
 
 - **Example** :
 
@@ -286,21 +283,20 @@ $transactionResult = $aelf->getTransactionResult($block['Body']['Transactions'][
 print_r($transactionResult);
 ```
 
-
 ### 6. Get Multiple Transaction Results
 
 - **API Path**: `/api/blockChain/transactionResults`
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `blockHash` (String)
-   - `offset` (Number)
-   - `limit` (Number)
+  - `blockHash` (String)
+  - `offset` (Number)
+  - `limit` (Number)
 
-- **Returns**: 
+- **Returns**:
 
-   - `List` - The array of method descriptions:
-      - the transaction result object
+  - `List` - The array of method descriptions:
+    - the transaction result object
 
 - **Example** :
 
@@ -311,7 +307,6 @@ $block = $aelf->getBlockByHeight(1, true);
 $transactionResults = $aelf->getTransactionResults($block['Body']);
 print_r($transactionResults);
 ```
-
 
 ### 7. Get Transaction Pool Status
 
@@ -326,16 +321,15 @@ $status = $aelf->getTransactionPoolStatus();
 print_r($status);
 ```
 
-
 ### 8. Send Transaction
 
 - **API Path**: `/api/blockChain/sendTransaction`
 
 - **Method**: POST
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `transaction` (String)
+  - `transaction` (String)
 
 - **Example** :
 
@@ -348,16 +342,15 @@ $result = $aelf->sendTransaction($executeTransactionDtoObj);
 print_r($result);
 ```
 
-
 ### 9. Send Multiple Transactions
 
 - **API Path**: `/api/blockChain/sendTransactions`
 
 - **Method**:POST
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `transactions` (String)
+  - `transactions` (String)
 
 - **Example** :
 
@@ -376,7 +369,6 @@ $listString = $aelf->sendTransactions($sendTransactionsInputs);
 print_r($listString);
 ```
 
-
 ### 10. Get Peers
 
 - **API Path**: `/api/net/peers`
@@ -387,7 +379,6 @@ print_r($listString);
 print_r($aelf->getPeers(true));
 ```
 
-
 ### 11. Add Peer
 
 - **API Path**: `/api/net/peer`
@@ -396,7 +387,7 @@ print_r($aelf->getPeers(true));
 
 - **Parameters**:
 
-   - `peer_address` (String)
+  - `peer_address` (String)
 
 - **Example** :
 
@@ -404,14 +395,13 @@ print_r($aelf->getPeers(true));
 $aelf->addPeer($url);
 ```
 
-
 ### 12. Remove Peer
 
 - **API Path**: `/api/net/peer`
 
 - **Parameters**:
 
-   - `peer_address` (String)
+  - `peer_address` (String)
 
 - **Example** :
 
@@ -419,21 +409,20 @@ $aelf->addPeer($url);
 $aelf->removePeer($url);
 ```
 
-
 ### 13. Create Raw Transaction
 
 - **API Path**: `/api/blockchain/rawTransaction`
 
 - **Method**: POST
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `transaction` (Array)
+  - `transaction` (Array)
 
-- **Returns**: 
+- **Returns**:
 
-   - `Array`
-      - `RawTransaction` - hex string bytes generated by transaction information
+  - `Array`
+    - `RawTransaction` - hex string bytes generated by transaction information
 
 - **Example** :
 
@@ -455,16 +444,15 @@ $rawTransaction = $aelf->createRawTransaction($transaction);
 print_r($rawTransaction);
 ```
 
-
 ### 14. Send Raw Transaction
 
 - **API Path**: `/api/blockchain/sendRawTransaction`
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `Transaction` (raw transaction)
-   - `Signature` (signature)
-   - `ReturnTransaction` (indicates whether to return transaction)
+  - `Transaction` (raw transaction)
+  - `Signature` (signature)
+  - `ReturnTransaction` (indicates whether to return transaction)
 
 - **Example** :
 
@@ -479,19 +467,16 @@ $execute = $aelf->sendRawTransaction($transaction);
 print_r($execute);
 ```
 
-
-
 ### 15. Execute Raw Transaction
 
 - **API Path**: `/api/blockchain/executeRawTransaction`
 
 - **Method**: POST
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `RawTransaction` (raw transaction)
-   - `Signature` (signature)
-
+  - `RawTransaction` (raw transaction)
+  - `Signature` (signature)
 
 - **Example** :
 
@@ -506,14 +491,13 @@ $execute = $aelf->executeRawTransaction($transaction);
 print_r($execute);
 ```
 
-
 ### 16. Get Merkle Path by Transaction ID
 
 - **API Path**: `/api/blockchain/merklePathByTransactionId`
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `transactionId` (String)
+  - `transactionId` (String)
 
 - **Example** :
 
@@ -525,24 +509,23 @@ $merklePath = $aelf->getMerklePathByTransactionId($block['Body']['Transactions']
 print_r($merklePath);
 ```
 
-
 ### 17. Calculate Transaction Fee
 
 - **API Path**: `/api/blockChain/calculateTransactionFee`
 
 - **Method**: POST
 
-- **Parameters**: 
+- **Parameters**:
 
-   - `CalculateTransactionFeeInput` (Object)
+  - `CalculateTransactionFeeInput` (Object)
 
-- **Returns**: 
+- **Returns**:
 
-   - `CalculateTransactionFeeOutput (Object)`
+  - `CalculateTransactionFeeOutput (Object)`
 
-       - `Success` - bool
-       - `TransactionFee` - Array
-       - `ResourceFee` - Array
+    - `Success` - bool
+    - `TransactionFee` - Array
+    - `ResourceFee` - Array
 
 - **Example** :
 
@@ -556,7 +539,6 @@ $result = $aelf->calculateTransactionFee($calculateTransactionFeeInputParam);
 print_r($result);
 ```
 
-
 ### 18. Get Network Info
 
 - **API Path**: `/api/net/networkInfo`
@@ -568,7 +550,6 @@ $aelf = new AElf($url);
 
 print_r($aelf->getNetworkInfo());
 ```
-
 
 ### 19. Get Contract File Descriptor Set
 
@@ -587,7 +568,6 @@ foreach ($transactionResultDtoList as $v) {
 }
 ```
 
-
 ### 20. Get Task Queue Status
 
 - **API Path**: `/api/blockchain/taskQueueStatus`
@@ -600,7 +580,6 @@ $aelf = new AElf($url);
 $taskQueueStatus = $aelf->getTaskQueueStatus();
 print_r($taskQueueStatus);
 ```
-
 
 ### 21. Execute Transaction
 
@@ -626,8 +605,6 @@ $tokenInfo = new TokenInfo();
 $tokenInfo->mergeFromString(hex2bin($response));
 ```
 
-
-
 ## Other Tool Kit
 
 aelf supplies some APIs to simplify development.
@@ -641,8 +618,7 @@ $chainId = $aelf->getChainId();
 print_r($chainId);
 ```
 
-
-###  2. Generate Transaction
+### 2. Generate Transaction
 
 ```php
 $aelf = new AElf($url);
@@ -652,8 +628,7 @@ $param->setValue('');
 $transaction = $aelf->generateTransaction($fromAddress, $toAddress, $methodName, $param);
 ```
 
-
-###  3. Sign Transaction
+### 3. Sign Transaction
 
 ```php
 $aelf = new AElf($url);
@@ -661,7 +636,6 @@ $aelf = new AElf($url);
 $transaction = $aelf->generateTransaction($fromAddress, $toAddress, $methodName, $param);
 $signature = $aelf->signTransaction($privateKey, $transaction);
 ```
-
 
 ### 4. Get Genesis Contract Address
 
@@ -672,8 +646,8 @@ $genesisContractAddress = $aelf->getGenesisContractAddress();
 print_r($genesisContractAddress);
 ```
 
-
 ### 5. Get Address From PubKey
+
 Calculate the account address according to the public key.
 
 ```php
@@ -683,8 +657,8 @@ $pubKeyAddress = $aelf->getAddressFromPubKey('04166cf4be901dee1c21f3d97b9e4818f2
 print_r($pubKeyAddress);
 ```
 
-
 ### 6. Get Formatted Address
+
 Convert the address to the displayed string: symbol_base58-string_base58-string_chain_id.
 
 ```php
@@ -694,8 +668,8 @@ $addressVal = $aelf->getFormattedAddress($privateKey, $base58Address);
 print_r($addressVal);
 ```
 
-
 ### 7. Generate Key Pair Info
+
 Generate a new key pair using ECDSA.
 
 ```php
@@ -705,8 +679,7 @@ $pairInfo = $aelf->generateKeyPairInfo();
 print_r($pairInfo);
 ```
 
-
-###  8. Get Contract Address By Name
+### 8. Get Contract Address By Name
 
 ```php
 $aelf = new AElf($url);
@@ -717,7 +690,6 @@ $contractAddress = $aelf->GetContractAddressByName($privateKey, $bytes);
 print_r($contractAddress);
 ```
 
-
 ### 9. Get Address From Private Key
 
 ```php
@@ -726,7 +698,6 @@ $aelf = new AElf($url);
 $address = $aelf->getAddressFromPrivateKey($privateKey);
 print_r($address);
 ```
-
 
 ### 10. Get Signature With Private Key
 
@@ -737,7 +708,6 @@ $sign = $aelf->getSignatureWithPrivateKey($privateKey, $transactionId);
 print_r($sign);
 ```
 
-
 ### 11. Is Connected
 
 ```php
@@ -747,11 +717,11 @@ $isConnected = $this->aelf->isConnected();
 print_r($isConnected);
 ```
 
-
 ### 12. Get Transaction Fees
+
 Get the transaction fee from the transaction result.
 
-```php      
+```php
 $aelf = new AElf($url);
 
 $block = $aelf->getBlockByHeight(1, true);
@@ -769,18 +739,14 @@ $aelf = new AElf($url);
 $version = $aelf->version;
 ```
 
-
 ## Requirements
 
-- [**php**](https://php.orgwe67y8re8hufr54ff4ed3ed32ws2d3crf4cfsx2ws2e33333333333333333333333333333333dr34cf4c2q4cfuj7ji8o87hb6fv4d3ed3/)
-
-
+- [**php**](https://php.net)
 
 ## About contributing
-Read out [contributing guide]
+
+Read out [contributing guide](../../../resources/contribution/index.md)
 
 ## About Version
 
 [https://semver.org/](https://semver.org/)
-
-

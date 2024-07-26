@@ -16,7 +16,7 @@
       "position": "left"
     },
     {
-      "to": "https://playground.aelf.com",
+      "to": "/tools/aelf-playground/",
       "label": "Playground",
       "position": "left"
     },

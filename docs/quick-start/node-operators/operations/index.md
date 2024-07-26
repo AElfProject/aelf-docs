@@ -6,6 +6,10 @@ title: Operations
 
 # Operations
 
+**Description**: Guidelines for setting up nodes and participating in the Block Producer (BP) election process in the aelf blockchain ecosystem.
+
+**Purpose**: To provide step-by-step instructions for users to become Block Producers, participate in BP elections, and understand the voting and election outcomes within the aelf network.
+
 ## Steps to Become a BP
 
 1. Set up nodes.

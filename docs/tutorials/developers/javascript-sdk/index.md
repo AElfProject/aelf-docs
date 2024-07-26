@@ -829,7 +829,7 @@ To use aelf SDK, you need:
 
 ## About contributing
 
-Read out [contributing guide]
+Read out [contributing guide](../../../resources/contribution/index.md)
 
 ## About Version
 

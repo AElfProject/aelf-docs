@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
 title: Verify
+description: Verification methods for aelf cross-chain
 ---
 
 

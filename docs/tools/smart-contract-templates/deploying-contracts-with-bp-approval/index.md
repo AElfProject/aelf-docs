@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
-title: Deploying Contract with BP Approval
+title: Deploying Contracts with BP Approval
+description: Deploy contracts with Block Producer approval
 ---
 
 # Deploying Contract with BP Approval
