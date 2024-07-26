@@ -4,7 +4,7 @@ title: Run a Mainnet Node
 ---
 ## How to Join the Mainnet
 
-There are two ways to run an aelf node: using Docker (recommended) or running binaries from GitHub. Before starting, you need to install some tools and frameworks. Command line instructions are provided for most dependencies. For complex needs, see the Environment setup section.
+There are two ways to run an aelf node: using Docker (recommended) or running binaries from GitHub. Before starting, you need to install some tools and frameworks. Command line instructions are provided for most dependencies. For complex needs, see the [environment setup](/tools/smart-contract-templates/development-environment/) section.
 
 ### Steps to Set Up a Node
 

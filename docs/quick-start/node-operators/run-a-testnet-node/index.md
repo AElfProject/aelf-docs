@@ -6,7 +6,7 @@ description: How to join Testnet
 # How to Join the Testnet
 
 You can run an aelf node using Docker (recommended) or GitHub binaries. 
-Before starting, install the necessary tools and frameworks. Detailed instructions are in the environment setup section.
+Before starting, install the necessary tools and frameworks. Detailed instructions are in the [environment setup](/tools/smart-contract-templates/development-environment/) section.
 
 ## Steps to Set Up a Node:
 
