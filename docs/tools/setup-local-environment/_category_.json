@@ -1,0 +1,14 @@
+{
+  "position": 11,
+  "label": "Setup local environment",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Setup local environment",
+    "slug": "tools/setup-local-environment"
+  },
+  "customProps": {
+    "description": "For developers or node operators"
+  }
+}
