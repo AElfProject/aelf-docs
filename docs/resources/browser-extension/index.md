@@ -5,6 +5,10 @@ description: Explore Portkey wallet and other extensions
 image: /img/Logo.aelf.svg
 ---
 
+**Description**: aelf Web Extension is a tool for DApp developers to interact with the aelf blockchain.
+
+**Purpose**: This guide provides instructions for both users and developers on the installation, usage, and implementation of the aelf Web Extension.
+
 # aelf-web-extension
 
 ### Introduction

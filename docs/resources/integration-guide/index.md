@@ -4,6 +4,10 @@ title: Integration Guide
 description: Learn how to integrate with other tools and DApps
 ---
 
+**Description**: aelf-web-login: A modular React wallet collection and components library for aelf applications.
+
+**Purpose**: To provide installation and configuration instructions for integrating various aelf wallets into a React application using the aelf-web-login library.
+
 # Introduction
 
 **aelf-web-login**: Modular React wallet collection and components for aelf applications.

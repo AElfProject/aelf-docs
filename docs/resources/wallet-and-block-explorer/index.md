@@ -5,6 +5,22 @@ description: Manage your assets and explore aelf's blockchain data
 ---
 
 # Wallet and Block Explorer
+**Description**: A comprehensive blockchain explorer for viewing blocks and transactions, purchasing resources, voting, and more.
+**Purpose**: To provide users with easy access to blockchain data and functionalities, enhancing their interaction with the network.
+
+# iOS/Android Wallet
+**Description**: A mobile wallet app for managing assets and trading across blockchains on iOS and Android.
+**Purpose**: To offer users a convenient way to manage their digital assets and enable developers to integrate their applications with the wallet SDK.
+
+# Web Wallet
+**Description**: A web-based wallet for handling blockchain transactions directly from the browser.
+**Purpose**: To facilitate easy and basic transaction management for users via a web interface.
+
+# Explorer API
+**Description**: An API for interacting with blockchain data, including blocks, transactions, and TPS records.
+**Purpose**: To allow developers to retrieve detailed blockchain information programmatically, supporting various use cases such as monitoring and analysis.
+
+# Wallet and Block Explorer
 
 ## Explorer
 
