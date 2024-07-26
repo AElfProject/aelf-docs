@@ -16,9 +16,11 @@ export default function Logo(): JSX.Element {
           dark: useBaseUrl("/img/Logo.aelf.white.svg"),
         }}
       />
-      <div>
-        <ChainGPT />
-      </div>
+      {!window.location.host.includes("aelf.com") && (
+        <div>
+          <ChainGPT />
+        </div>
+      )}
     </>
   );
 }
