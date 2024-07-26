@@ -1,6 +1,7 @@
 ---
 sidebar_position: 5
-title: Deploying Contract without BP Approval
+title: Deploying Contracts without BP Approval
+description: Deploy contracts without Block Producer approval
 ---
 
 # Deploying Contracts without BP Approval

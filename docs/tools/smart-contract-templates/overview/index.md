@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: Smart Contracts Overview
+description: aelf's smart contract templates and tools
 ---
 
 ## Smart Contracts Overview

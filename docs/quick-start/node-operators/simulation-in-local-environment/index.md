@@ -3,6 +3,10 @@ sidebar_position: 3
 title: Simulation in the Local Environment
 ---
 
+**Description**: A guide for simulating a block producer (BP) election and running BP nodes in a local environment within the aelf blockchain ecosystem.
+
+**Purpose**: To instruct developers on how to set up, configure, and manage multiple nodes, participate in BP elections, and perform key operations for local environment simulations.
+
 # Simulation in the Local Environment
 
 ## Set up a Full Node
@@ -97,4 +101,4 @@ aelf-command call AElf.ContractNames.Consensus GetCurrentMinerPubkeyList '{}'
 ## Add More BPs
 Repeat the steps to add more BPs. No need to edit `appsettings.json` again. When candidate nodes exceed the max BPs, they replace genesis nodes, which cannot participate in elections again.
 
-Proceed to contract deployment and DApp development guides for more details.
+Proceed to [contract deployment](/tools/smart-contract-templates/deploying-contracts-without-bp-approval/) and [DApp development](/quick-start/developers/) guides for more details.

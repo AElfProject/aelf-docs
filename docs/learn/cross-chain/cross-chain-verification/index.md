@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 title: Cross Chain Verification
+description: aelf's cross-chain verification process
 ---
 
 

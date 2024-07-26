@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Architecture
+description: aelf's cross-chain system architecture
 ---
 
 # Side Chain and Main Chain Node Documentation
