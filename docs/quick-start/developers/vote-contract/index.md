@@ -21,13 +21,13 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="local" label="Local" default>
 
-* Basic knowledge of terminal commands
-* **IDE** - Install [VS Code](https://code.visualstudio.com/)
+- Basic knowledge of terminal commands
+- **IDE** - Install [VS Code](https://code.visualstudio.com/)
 
 **Install Required Packages**
 
-* [Install dotnet 6.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-* Install aelf contract templates
+- [Install dotnet 6.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- Install aelf contract templates
 
 ```bash title="Terminal"
 dotnet new --install AElf.ContractTemplates
@@ -35,7 +35,7 @@ dotnet new --install AElf.ContractTemplates
 
 AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.
 
-* Install aelf deploy tool
+- Install aelf deploy tool
 
 ```bash title="Terminal"
 dotnet tool install --global aelf.deploy
@@ -70,7 +70,7 @@ Provide required permissions while installing aelf-command globally.
 
 **Install Git**
 
-* [Install Git](https://git-scm.com/downloads)
+- [Install Git](https://git-scm.com/downloads)
 
 As we will be using a ready made project, we will require git to clone from the project.
 
@@ -94,15 +94,15 @@ As we will be using a ready made project, we will require git to clone from the 
 
 ### Project Setup
 
-* Open your `Terminal`.
-* Enter the following command to create a new project folder:
+- Open your `Terminal`.
+- Enter the following command to create a new project folder:
 
 ```bash title="Terminal"
 mkdir capstone_aelf
 cd capstone_aelf
 ```
 
-* Enter this command to create the capstone project.
+- Enter this command to create the capstone project.
 
 ```bash title="Terminal"
 dotnet new aelf -n BuildersDAO
@@ -110,21 +110,22 @@ dotnet new aelf -n BuildersDAO
 
 ### Adding Your Smart Contract Code
 
-* Open your project in your favorite IDE (like VSCode).
-* Rename the `src/Protobuf/contract/hello_world_contract.proto` file to `BuildersDAO.proto`.
-* After renaming the file, your working directory should look like this.
+- Open your project in your favorite IDE (like VSCode).
+- Rename the `src/Protobuf/contract/hello_world_contract.proto` file to `BuildersDAO.proto`.
+- After renaming the file, your working directory should look like this.
 
   ![img](/img/vote-be-project-dir.png)
-* That's it! Your project is now set up and ready to go 🚀
+
+- That's it! Your project is now set up and ready to go 🚀
 
 ### Defining Methods and Messages
 
 Let's add the RPC methods and message definitions to our Voting dApp.
 
-* Open `src/Protobuf/contract/BuildersDAO.proto`
-* Replace its contents with this code snippet.
+- Open `src/Protobuf/contract/BuildersDAO.proto`
+- Replace its contents with this code snippet.
 
-```csharp title="BuildersDAO.proto"
+```csharp title="src/Protobuf/contract/BuildersDAO.proto"
 syntax = "proto3";
 
 import "aelf/core.proto";
@@ -144,17 +145,17 @@ service BuildersDAO {
   // Actions -> Methods that change state of smart contract
   // This method sets up the initial state of our StackUpDAO smart contract
   rpc Initialize(google.protobuf.Empty) returns (google.protobuf.Empty);
-  
+
   // This method allows a user to become a member of the DAO by taking in their
   // address as an input parameter
   rpc JoinDAO(aelf.Address) returns (google.protobuf.Empty);
-  
+
   // This method allows a user to create a proposal for other users to vote on.
   // The method takes in a "CreateProposalInput" message which comprises of an
   // address, a title, description and a vote threshold (i.e how many votes
   // required for the proposal to pass)
   rpc CreateProposal(CreateProposalInput) returns (Proposal);
-  
+
   // This method allows a user to vote on proposals towards a specific proposal.
   // This method takes in a "VoteInput" message which takes in the address of
   // the voter, specific proposal and a boolean which represents their vote
@@ -166,8 +167,8 @@ service BuildersDAO {
   rpc GetAllProposals(google.protobuf.Empty) returns (ProposalList) {
     option (aelf.is_view) = true;
   }
-  
-  // aelf requires explicit getter methods to access the state value, 
+
+  // aelf requires explicit getter methods to access the state value,
   // so we provide these three getter methods for accessing the state
   // This method allows a user to fetch a proposal by proposalId
   rpc GetProposal (google.protobuf.StringValue) returns (Proposal) {
@@ -226,38 +227,38 @@ message ProposalList {
 
 ##### 1. **Define Syntax & Imports**
 
-* `proto3` version.
-* Import necessary Protobuf definitions and libraries.
+- `proto3` version.
+- Import necessary Protobuf definitions and libraries.
 
 ##### 2. **RPC Methods**
 
-* `Initialize` : Set up initial state
-* `JoinDAO` : User joins DAO. User's `address` is the function parameter.
-* `CreateProposal` : User creates a proposal. User's `address` , `title` , `description` , `vote threshold` are the function parameter.
-* `VoteOnProposal` : User votes on a proposal. User's `address` , `proposal` `vote` is the function parameter.
-* `GetAllProposals` : Fetch list of proposals
+- `Initialize` : Set up initial state
+- `JoinDAO` : User joins DAO. User's `address` is the function parameter.
+- `CreateProposal` : User creates a proposal. User's `address` , `title` , `description` , `vote threshold` are the function parameter.
+- `VoteOnProposal` : User votes on a proposal. User's `address` , `proposal` `vote` is the function parameter.
+- `GetAllProposals` : Fetch list of proposals
 
 ##### 3. **Getter Methods**
 
-* `GetProposal` : Fetch proposal by ID
-* `GetMemberCount` : Fetch member count
-* `GetMemberExist` : Check if a member exists by address
+- `GetProposal` : Fetch proposal by ID
+- `GetMemberCount` : Fetch member count
+- `GetMemberExist` : Check if a member exists by address
 
 ##### 4. **Message Definitions**
 
-* `Member` : DAO member (address)
-* `Proposal` : Proposal (title, description, votes, status, vote threshold)
-* `CreateProposalInput` : Fields for creating a proposal (title, description, vote threshold)
-* `VoteInput` : Fields for voting on a proposal (proposal ID, vote)
-* `MemberList` : List of DAO members
-* `ProposalList` : List of proposals
+- `Member` : DAO member (address)
+- `Proposal` : Proposal (title, description, votes, status, vote threshold)
+- `CreateProposalInput` : Fields for creating a proposal (title, description, vote threshold)
+- `VoteInput` : Fields for voting on a proposal (proposal ID, vote)
+- `MemberList` : List of DAO members
+- `ProposalList` : List of proposals
 
 ### Defining Contract State
 
-* Open the `src/BuildersDAOState.cs` file.
-* Replace its contents with this code snippet.
+- Open the `src/BuildersDAOState.cs` file.
+- Replace its contents with this code snippet.
 
-```csharp title="BuildersDAOState.proto"
+```csharp title="src/BuildersDAOState.cs"
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using AElf.Sdk.CSharp.State;
@@ -281,22 +282,22 @@ namespace AElf.Contracts.BuildersDAO
 
 ##### 3. **State Variables**
 
-* `Members` : Mapping each member to a boolean indicates if they joined the DAO
-* `Proposals` : Mapping each proposal to an ID for identification and retrieval
-* `MemberCountId` and `NextProposalId` : Track total number of members and proposals
+- `Members` : Mapping each member to a boolean indicates if they joined the DAO
+- `Proposals` : Mapping each proposal to an ID for identification and retrieval
+- `MemberCountId` and `NextProposalId` : Track total number of members and proposals
 
 #### Next Step
 
-* Implement the logic of our voting smart contract.
+- Implement the logic of our voting smart contract.
 
 ### Implement Voting Smart Contract Logic
 
 #### Checking Smart Contract Logics
 
-* Open `src/BuildersDAO.cs`
-* Replace the existing content with this code snippet.
+- Open `src/BuildersDAO.cs`
+- Replace the existing content with this code snippet.
 
-```csharp title="BuildersDAO.proto"
+```csharp title="src/BuildersDAO.cs"
 using System.Collections.Generic;
 using System.Security.Principal;
 using AElf.Sdk.CSharp;
@@ -324,13 +325,13 @@ namespace AElf.Contracts.BuildersDAO
 
         // Implement Get All Proposals Logic
         public override ProposalList GetAllProposals(Empty input) { }
-        
+
         // Implement Get Proposal Logic
         public override Proposal GetProposal(StringValue input) { }
-        
+
         // Implement Get Member Count Logic
         public override Int32Value GetMemberCount(Empty input) { }
-        
+
         // Implement Get Member Exist Logic
         public override BoolValue GetMemberExist(Address input) { }
     }
@@ -343,12 +344,12 @@ Aelf sidechain does not allow duplicate identical smart contracts. Hence, we wil
 
 #### Implementing Initialize Function
 
-* Go to the comment `Implement Vote on Proposal Logic`.
-* Check if the smart contract is already initialized; return if true.
-* Define a hardcoded proposal with necessary parameters.
-* Update the Proposals state variable with the hardcoded proposal and increment the proposalId.
+- Go to the comment `Implement Vote on Proposal Logic`.
+- Check if the smart contract is already initialized; return if true.
+- Define a hardcoded proposal with necessary parameters.
+- Update the Proposals state variable with the hardcoded proposal and increment the proposalId.
 
-```csharp title="BuildersDAO.proto"
+```csharp title="src/BuildersDAO.cs"
 // Implement Initialize Smart Contract Logic
 public override Empty Initialize(Empty input)
 {
@@ -364,23 +365,23 @@ public override Empty Initialize(Empty input)
     State.Proposals[initialProposal.Id] = initialProposal;
     State.NextProposalId.Value = 1;
     State.MemberCount.Value = 0;
-    
+
     State.Initialized.Value = true;
-    
+
     return new Empty();
 }
 ```
 
 #### Implementing Join DAO Function
 
-* Go to the comment `Implement Join DAO Logic`
-* Check if the member already exists in the DAO using the `Members` state variable.
-* If not found, update `Members` to include the user's address.
-* Increment `membersCount` to reflect the new member added.
+- Go to the comment `Implement Join DAO Logic`
+- Check if the member already exists in the DAO using the `Members` state variable.
+- If not found, update `Members` to include the user's address.
+- Increment `membersCount` to reflect the new member added.
 
 You'll implement this function. Once done, you can proceed to the next page to compare your code with the reference implementation.
 
-```csharp title="BuildersDAO.proto"
+```csharp title="src/BuildersDAO.cs"
 // Implement Join DAO Logic
 public override Empty JoinDAO(Address input)
 {
@@ -394,14 +395,14 @@ public override Empty JoinDAO(Address input)
 
 #### Implementing Create Proposal Function
 
-* Go to the comment `Implement Create Proposal Logic`
-* Check if the user is a DAO member (required to create proposals).
-* Create a new proposal object using fields from `CreateProposalInput`.
-* `Update` Proposals with the new proposal, increment NextProposalId, and return the created proposal object.
+- Go to the comment `Implement Create Proposal Logic`
+- Check if the user is a DAO member (required to create proposals).
+- Create a new proposal object using fields from `CreateProposalInput`.
+- `Update` Proposals with the new proposal, increment NextProposalId, and return the created proposal object.
 
 Now, use the provided code snippet to fill in the `CreateProposal` function.
 
-```csharp title="BuildersDAO.proto"
+```csharp title="src/BuildersDAO.cs"
 // Implement Create Proposal Logic
 public override Proposal CreateProposal(CreateProposalInput input)
 {
@@ -425,21 +426,22 @@ public override Proposal CreateProposal(CreateProposalInput input)
 
 #### Implementing Vote On Proposal Function
 
-* Go to the comment `Implement Vote on Logic`
-* Perform these checks:
+- Go to the comment `Implement Vote on Logic`
+- Perform these checks:
 
-  * Verify if the member is a DAO member (required to vote).
-  * Confirm if the proposal exists; otherwise, display an error message.
-  * Check if the member has already voted on the proposal; members can vote only once.
-* If all checks pass, store the member’s vote and update the proposal state.
-* Update the proposal status based on vote thresholds:
+  - Verify if the member is a DAO member (required to vote).
+  - Confirm if the proposal exists; otherwise, display an error message.
+  - Check if the member has already voted on the proposal; members can vote only once.
 
-  * If `yesVotes` reach the threshold, update status to "PASSED".
-  * If `noVotes` reach the threshold, update status to "DENIED".
+- If all checks pass, store the member’s vote and update the proposal state.
+- Update the proposal status based on vote thresholds:
+
+  - If `yesVotes` reach the threshold, update status to "PASSED".
+  - If `noVotes` reach the threshold, update status to "DENIED".
 
 Now, use the provided code snippet to complete the `VoteOnProposal` function.
 
-```csharp title="BuildersDAO.proto"
+```csharp title="src/BuildersDAO.cs"
 // Implement Vote on Proposal Logic
 public override Proposal VoteOnProposal(VoteInput input)
 {
@@ -480,17 +482,17 @@ public override Proposal VoteOnProposal(VoteInput input)
 
 #### Implementing Get All Proposals Function
 
-* Go to the comment `Implement Get All Proposals Logic`
-* Create a new `ProposalList` object from the message definition in `BuildersDAO.proto`.
-* Fetch and iterate through `Proposals`.
-* Update `ProposalList` with proposal objects and return the list of proposals.
+- Go to the comment `Implement Get All Proposals Logic`
+- Create a new `ProposalList` object from the message definition in `BuildersDAO.proto`.
+- Fetch and iterate through `Proposals`.
+- Update `ProposalList` with proposal objects and return the list of proposals.
 
-  * If `yesVotes` reach the threshold, update status to "PASSED".
-  * If `noVotes` reach the threshold, update status to "DENIED".
+  - If `yesVotes` reach the threshold, update status to "PASSED".
+  - If `noVotes` reach the threshold, update status to "DENIED".
 
 You'll implement this function. Once done, you can proceed to the next page to compare your code with the reference implementation.
 
-```csharp title="BuildersDAO.proto"
+```csharp title="src/BuildersDAO.cs"
 // Implement Get All Proposals Logic
 public override ProposalList GetAllProposals(Empty input)
 {
@@ -505,27 +507,27 @@ public override ProposalList GetAllProposals(Empty input)
 
 ##### 1. Get Proposal
 
-* Navigate to `Implement Get Proposal Logic`.
-* Retrieve a proposal by `proposalId`.
-* Use `proposalId` as the key to query `State.Proposals`.
-* Return the corresponding proposal value.
+- Navigate to `Implement Get Proposal Logic`.
+- Retrieve a proposal by `proposalId`.
+- Use `proposalId` as the key to query `State.Proposals`.
+- Return the corresponding proposal value.
 
 ##### 2. Get Member Count
 
-* Navigate to `Implement Get Member Count Logic`.
-* Retrieve the total member count.
-* Return the value of `MemberCount` from `State`.
+- Navigate to `Implement Get Member Count Logic`.
+- Retrieve the total member count.
+- Return the value of `MemberCount` from `State`.
 
 ##### 3. Get Member Exist
 
-* Navigate to `Implement Get Member Exist Logic`.
-* Check if a member exists by `address`.
-* Use `address` as the key to query `State.Members`.
-* Return the corresponding existence value.
+- Navigate to `Implement Get Member Exist Logic`.
+- Check if a member exists by `address`.
+- Use `address` as the key to query `State.Members`.
+- Return the corresponding existence value.
 
 Implement these methods to access different states effectively in your smart contract.
 
-```csharp title="BuildersDAO.proto"
+```csharp title="src/BuildersDAO.cs"
 // Implement Get Proposal Logic
 public override Proposal GetProposal(StringValue input)
 {
@@ -574,7 +576,7 @@ This process ensures thorough testing and readiness for deployment of our smart 
 
   - \*\*Positive Cases:\*\*
 
-    - Call \`Initialize\` once and verify the proposal title using \`GetProposal\` with \`proposalId = "0"\`. 
+    - Call \`Initialize\` once and verify the proposal title using \`GetProposal\` with \`proposalId = "0"\`.
     - Check if the title is "Proposal #1" using \`ShouldBe\` method.
 
 \`\`\`csharp
@@ -606,11 +608,11 @@ public async Task InitializeTest_Duplicate()
 
 #### Implementing Join DAO Function
 
-* **Check Membership** : See if the address has already joined the DAO by checking State.Members. Use the Assert method for this verification.
-* **Add New Member** : If the address isn't a member yet, add it to State.Members and set its value to true.
-* **Update Member Count** : Increase State.MemberCount by 1 and save the new value.
+- **Check Membership** : See if the address has already joined the DAO by checking State.Members. Use the Assert method for this verification.
+- **Add New Member** : If the address isn't a member yet, add it to State.Members and set its value to true.
+- **Update Member Count** : Increase State.MemberCount by 1 and save the new value.
 
-```csharp title="BuildersDAO.proto"
+```csharp title="src/BuildersDAO.cs"
 public override Empty JoinDAO(Address input)
 {
     // Based on the address, determine whether the address has joined the DAO. If it has, throw an exception
@@ -626,12 +628,12 @@ public override Empty JoinDAO(Address input)
 
 #### Implementing Get All Proposals Function
 
-* Create a list object called `ProposalList`.
-* Loop from 0 to the value of `State.NextProposalId`.
-* In each loop iteration, get the values from `State.Proposals` and add them to `ProposalList`.
-* Return `ProposalList`.
+- Create a list object called `ProposalList`.
+- Loop from 0 to the value of `State.NextProposalId`.
+- In each loop iteration, get the values from `State.Proposals` and add them to `ProposalList`.
+- Return `ProposalList`.
 
-```csharp title="BuildersDAO.proto"
+```csharp title="src/BuildersDAO.cs"
 public override ProposalList GetAllProposals(Empty input)
 {
     // Create a new list called ProposalList
@@ -651,7 +653,7 @@ Once you've implemented these two methods and run the unit tests again, you shou
 
 ## Step 3 - Deploy Smart Contract
 
-import Deploy from "../_deploy.md"
+import Deploy from "../\_deploy.md"
 
 <Deploy />
 
@@ -659,7 +661,7 @@ import Deploy from "../_deploy.md"
 
 ### Project Setup
 
-Let's start by cloning the frontend project repository from GitHub. 
+Let's start by cloning the frontend project repository from GitHub.
 
 - Run the following command in the `capstone_aelf` directory:
 
@@ -675,7 +677,7 @@ cd `vote-contract`-frontend
 
 - Once you're in the `vote-contract-frontend` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
-   ![result](/img/vote-fe-directory.png)
+  ![result](/img/vote-fe-directory.png)
 
 #### Install necessary libraries
 
@@ -686,7 +688,6 @@ npm install
 ```
 
 We are now ready to build the frontend components of our Voting dApp.
-
 
 ### Configure Portkey Provider & Write Connect Wallet Function
 
@@ -757,7 +758,6 @@ In this code, we fetch the Portkey wallet account using the provider and update 
 
 With the Connect Wallet function defined, we're ready to write the remaining functions in the next steps.
 
-
 ### Write Initialize Smart Contract & Join DAO Functions
 
 Let's write the Initialize and Join DAO functions.
@@ -765,7 +765,6 @@ Let's write the Initialize and Join DAO functions.
 1. Find the comment `Step C - Write Initialize Smart Contract and Join DAO Logic`.
 
 2. Replace the existing `initializeAndJoinDAO` function with this code snippet:
-
 
 ```javascript title="src/HomeDAO.ts"
 const initializeAndJoinDAO = async () => {
@@ -804,10 +803,9 @@ const initializeAndJoinDAO = async () => {
 
 Now, wrap the `initializeAndJoinDAO` function in the "Join DAO" button to trigger both Initialize and JoinDAO when clicked.
 
-   ![jao-button](/img/fe-join-dao-button.png)
+![jao-button](/img/fe-join-dao-button.png)
 
 Next, we'll write the **Create Proposal** function.
-
 
 ### Write Create Proposal Function
 
@@ -821,15 +819,19 @@ Let's write the Create Proposal function.
 
 ```javascript title="src/CreateProposal.tsx"
 //Step D - Configure Proposal Form
-const form = useForm<z.infer<typeof formSchema>>({
-  resolver: zodResolver(formSchema),
-  defaultValues: {
-    address: currentWalletAddress,
-    title: "",
-    description: "",
-    voteThreshold: 0,
-  },
-});
+const form =
+  useForm <
+  z.infer <
+  typeof formSchema >>
+    {
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        address: currentWalletAddress,
+        title: "",
+        description: "",
+        voteThreshold: 0,
+      },
+    };
 ```
 
 :::tip
@@ -846,7 +848,6 @@ Default value:
 2. Fields include: `address` , `title` , `description` , and `vote threshold`.
 
 Now your form is ready for users to fill in the necessary details for their proposal.
-
 
 Now, let's write the Create Proposal function for the form submission.
 
@@ -892,8 +893,6 @@ function onSubmit(values: z.infer<typeof formSchema>) {
 3. If successful, navigates the user to the landing page and shows an alert that the proposal was created.
 
 Next, we'll write the **Vote** and **Fetch Proposal** functions to complete the frontend components of our Voting dApp.
-
-
 
 ### Write Vote & Fetch Proposals Function
 
@@ -950,7 +949,6 @@ const voteYes = async (index: number) => {
 
 The `voteNo` function works similarly but sets the vote to `false`.
 
-
 - Scroll down to the `Step G - Use Effect to Fetch Proposals` comment and replace the `useEffect` hook with this code snippet:
 
 ```javascript title="src/HomeDAO.tsx"
@@ -968,10 +966,10 @@ useEffect(() => {
 
       if (!account) throw new Error("No account");
 
-      const proposalResponse = await DAOContract?.callViewMethod<IProposals>(
-        "GetAllProposals",
-        ""
-      );
+      const proposalResponse =
+        (await DAOContract?.callViewMethod) <
+        IProposals >
+        ("GetAllProposals", "");
 
       setProposals(proposalResponse?.data);
       alert("Fetched Proposals");
@@ -994,7 +992,6 @@ useEffect(() => {
 
 Now that we've written all the necessary frontend functions and components, we're ready to run the Voting dApp application in the next step.
 
-
 ### Run Application
 
 In this step, we will run the Voting dApp application.
@@ -1013,7 +1010,7 @@ npm run dev
 
 - You should observe the following as shown below.
 
-   ![run-app-success](/img/vote-npm-run-console.png)
+  ![run-app-success](/img/vote-npm-run-console.png)
 
 - Upon clicking on the **localhost URL**, you should be directed to the StackUpDAO landing page as shown below.
 
@@ -1023,12 +1020,11 @@ If you are developing and testing this with GitHub codespace, you can use Port F
 
 - Usually codespace will automatically forward port, you should see a pop-up message at the bottom right of your codespace browser window as shown in the diagram below:
 
-   ![open-in-browser](/img/codespace-forwarded-port.png)
+  ![open-in-browser](/img/codespace-forwarded-port.png)
 
 - Click the link to open the Voting dApp in the browser.
 
-   ![vote-fe-ui](/img/vote-fe-ui-1.png)
-
+  ![vote-fe-ui](/img/vote-fe-ui-1.png)
 
 #### Create Portkey Wallet
 
@@ -1044,7 +1040,6 @@ With DID solution as its core, Portkey provides both Portkey Wallet and Portkey 
 For more information, you may visit the official documentation for Portkey at https://doc.portkey.finance/.
 :::
 
-
 - Download the Chrome extension for Portkey from https://chromewebstore.google.com/detail/portkey-wallet/iglbgmakmggfkoidiagnhknlndljlolb.
 
 :::info
@@ -1054,18 +1049,17 @@ You may download Chrome from https://www.google.com/intl/en_sg/chrome/.
 
 - Once you have downloaded the extension, you should see the following on your browser as shown below.
 
-   ![welcome-to-portkey](/img/welcome-to-portkey.png)
+  ![welcome-to-portkey](/img/welcome-to-portkey.png)
 
 - Click on `Get Start` and you should see the following interface as shown below.
 
-   ![portkey-login](/img/portkey-login.png)
+  ![portkey-login](/img/portkey-login.png)
 
-
-**Sign up** 
+**Sign up**
 
 - Switch to **aelf Testnet** network by selecting it:
 
-   ![portkey-switch-to-testnet](/img/portkey-switch-to-testnet.png)
+  ![portkey-switch-to-testnet](/img/portkey-switch-to-testnet.png)
 
 :::danger
 Please make sure you are using `aelf Testnet` in order to be able to receive your testnet tokens from the Faucet.
@@ -1073,7 +1067,7 @@ Please make sure you are using `aelf Testnet` in order to be able to receive you
 
 - Proceed to sign up with a Google Account or your preferred login method and complete the necessary accounts creation prompts and you should observe the following interface once you have signed up.
 
-   ![success-login](/img/success-login.png)
+  ![success-login](/img/success-login.png)
 
 With that, you have successfully created your very first Portkey wallet within seconds. How easy was that?
 
@@ -1083,8 +1077,7 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 - Next, click on ‘Open Portkey’ and you should now observe the following as shown below.
 
-   ![portkey-wallet-preview](/img/portkey-wallet-preview.png)
-
+  ![portkey-wallet-preview](/img/portkey-wallet-preview.png)
 
 **Connect Portkey Wallet**
 
@@ -1094,7 +1087,7 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 Once you have successfully joined the DAO, you should observe now that the landing page renders the proposal we have defined in our smart contract as shown below.
 
-   ![vote-fe-ui-joineddao](/img/vote-fe-ui-joineddao.png)
+![vote-fe-ui-joineddao](/img/vote-fe-ui-joineddao.png)
 
 - Proposal #1 as defined in smart contract
 
@@ -1106,45 +1099,43 @@ Once you have successfully joined the DAO, you should observe now that the landi
 
 - Proceed to click on **"Vote Yes"** and you should observe the following as shown below prompting you to sign the **"Vote Yes"** transaction.
 
-   ![fe-dapp-trans-sign](/img/fe-dapp-trans-sign.png)
+  ![fe-dapp-trans-sign](/img/fe-dapp-trans-sign.png)
 
 - Proceed to click on **"Sign"**.
 
 Upon a successful vote transaction, you should now observe that the proposal status has been updated to **"PASSED"** as shown below as the Yes vote count has reached the vote threshold.
 
-   ![vote-fe-ui-proposal-voted](/img/vote-fe-ui-proposal-voted.png)
+![vote-fe-ui-proposal-voted](/img/vote-fe-ui-proposal-voted.png)
 
 - Proposal status updated to **"PASSED"** Lastly, we will be creating a proposal to wrap up our demonstration of our Voting dApp.
 
 - Click on **"Create Proposal"** for Proceed and you should be directed to the Create Proposal page as shown below.
 
-   ![fe-dapp-create-proposal](/img/fe-dapp-create-proposal.png)
+  ![fe-dapp-create-proposal](/img/fe-dapp-create-proposal.png)
 
 - Proceed to fill in the following fields under the Create Proposal form:
- 
-   - **Title** - Proposal #2
 
-   - **Description** - Proposal to onboard Developer DAO
+  - **Title** - Proposal #2
 
-   - **Vote Threshold** - 10
+  - **Description** - Proposal to onboard Developer DAO
+
+  - **Vote Threshold** - 10
 
 - click on **"Submit"** and you should observe the following as shown below.
 
-   ![fe-submit-proposal-verify](/img/fe-submit-proposal-verify.png)
+  ![fe-submit-proposal-verify](/img/fe-submit-proposal-verify.png)
 
 - Click on **"Sign"** to Proceed.
 
 - Upon a successful proposal creation, you should be directed back to the landing page with the newly created proposal rendered on the landing page as shown below.
 
-   ![vote-fe-ui-new-proposal](/img/vote-fe-ui-new-proposal.png)
+  ![vote-fe-ui-new-proposal](/img/vote-fe-ui-new-proposal.png)
 
 :::success
 🎉 Congratulations Learners! You have successfully built your Voting dApp and this is no mean feat!
 :::
 
-
-## 🎯 Conclusion 
-
+## 🎯 Conclusion
 
 🎊 Congratulations on completing the Voting Contract tutorial! 🎊 You've reached an important milestone in your journey through aelf blockchain development. 🌟
 

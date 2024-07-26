@@ -29,7 +29,6 @@ from aelf import AElf
 chain = AElf('http://127.0.0.1:8000')
 ```
 
-
 ## Examples
 
 You can find more examples in the `./test` directory of the repository.
@@ -44,7 +43,6 @@ from aelf import AElf
 # Create a new instance of AElf
 aelf = AElf('http://127.0.0.1:8000')
 ```
-
 
 ### 2. Get a System Contract Address
 
@@ -62,7 +60,6 @@ genesis_contract_address = aelf.get_genesis_contract_address_string()
 # The get_system_contract_address method calls 'GetContractAddressByName' in the genesis contract to get other contracts' addresses
 multi_token_contract_address = aelf.get_system_contract_address('AElf.ContractNames.Token')
 ```
-
 
 ### 3. Send a Transaction
 
@@ -93,9 +90,7 @@ aelf.sign_transaction(private_key, transaction)
 aelf.execute_transaction(transaction)
 ```
 
-By following these instructions, you can effectively interact with the aelf blockchain using the `aelf-sdk.py`   library. For more detailed examples and information, please refer to the [aelf-sdk.py repository](https://github.com/AElfProject/aelf-sdk.py).
-
-
+By following these instructions, you can effectively interact with the aelf blockchain using the `aelf-sdk.py` library. For more detailed examples and information, please refer to the [aelf-sdk.py repository](https://github.com/AElfProject/aelf-sdk.py).
 
 ## Web API
 
@@ -105,7 +100,6 @@ For example, if your local address is `http://127.0.0.1:1235`, you can access it
 
 Before using these methods, make sure you have an `AElf` instance. If not, create one as shown below:
 
-
 ```python
 from aelf import AElf
 
@@ -113,28 +107,27 @@ from aelf import AElf
 aelf = AElf('http://127.0.0.1:8000')
 ```
 
-
 ### 1. Get Chain Status
 
 **Web API Path**: `/api/blockChain/chainStatus`
 
 **Parameters**: None
 
-**Returns**: 
+**Returns**:
 
-   - `JSON`
+- `JSON`
 
-      - `ChainId` - String
-      - `Branches` - JSON
-      - `NotLinkedBlocks` - JSON
-      - `LongestChainHeight` - Number
-      - `LongestChainHash` - String
-      - `GenesisBlockHash` - String
-      - `GenesisContractAddress` - String
-      - `LastIrreversibleBlockHash` - String
-      - `LastIrreversibleBlockHeight` - Number
-      - `BestChainHash` - String
-      - `BestChainHeight` - Number
+  - `ChainId` - String
+  - `Branches` - JSON
+  - `NotLinkedBlocks` - JSON
+  - `LongestChainHeight` - Number
+  - `LongestChainHash` - String
+  - `GenesisBlockHash` - String
+  - `GenesisContractAddress` - String
+  - `LastIrreversibleBlockHash` - String
+  - `LastIrreversibleBlockHeight` - Number
+  - `BestChainHash` - String
+  - `BestChainHeight` - Number
 
 **Example**:
 
@@ -143,7 +136,6 @@ aelf = AElf(url)
 chain_status = aelf.get_chain_status()
 print('# get_chain_status', chain_status)
 ```
-
 
 ### 2. Get Block Height
 
@@ -161,35 +153,34 @@ block_height = aelf.get_block_height()
 print('# get_block_height', block_height)
 ```
 
-
 ### 3. Get Block
 
 **Web API Path**: /api/blockChain/block
 
 **Parameters**: None
 
-   - `block_hash` - String
-   - `include_transactions` - Boolean (true to include transaction IDs list, false otherwise)
+- `block_hash` - String
+- `include_transactions` - Boolean (true to include transaction IDs list, false otherwise)
 
-**Returns**: 
+**Returns**:
 
-   - `JSON`
+- `JSON`
 
-   - `BlockHash` - String
-   - `Header` - JSON
-      - `PreviousBlockHash` - String
-      - `MerkleTreeRootOfTransactions` - String
-      - `MerkleTreeRootOfWorldState` - String
-      - `Extra` - List
-      - `Height` - Number
-      - `Time` - JSON
-      - `ChainId` - String
-      - `Bloom` - String
-      - `SignerPubkey` - String
-   - `Body` - JSON
-      - `TransactionsCount` - Number
-      - `Transactions` - List
-         - `transactionId` - String
+- `BlockHash` - String
+- `Header` - JSON
+  - `PreviousBlockHash` - String
+  - `MerkleTreeRootOfTransactions` - String
+  - `MerkleTreeRootOfWorldState` - String
+  - `Extra` - List
+  - `Height` - Number
+  - `Time` - JSON
+  - `ChainId` - String
+  - `Bloom` - String
+  - `SignerPubkey` - String
+- `Body` - JSON
+  - `TransactionsCount` - Number
+  - `Transactions` - List
+    - `transactionId` - String
 
 **Example**:
 
@@ -199,35 +190,34 @@ block = aelf.get_block(blockHash)
 print('# get_block', block)
 ```
 
-
 ### 4. Get Block by Height
 
 **Web API Path**: /api/blockChain/blockByHeight
 
-**Parameters**: 
+**Parameters**:
 
-   - `block_height` - Number
-   - `include_transactions` - Boolean (true to include transaction IDs list, false otherwise)
+- `block_height` - Number
+- `include_transactions` - Boolean (true to include transaction IDs list, false otherwise)
 
-**Returns**: 
+**Returns**:
 
-   - `JSON`
+- `JSON`
 
-   - `BlockHash` - String
-   - `Header` - JSON
-      - `PreviousBlockHash` - String
-      - `MerkleTreeRootOfTransactions` - String
-      - `MerkleTreeRootOfWorldState` - String
-      - `Extra` - List
-      - `Height` - Number
-      - `Time` - JSON
-      - `ChainId` - String
-      - `Bloom` - String
-      - `SignerPubkey` - String
-   - `Body` - JSON
-      - `TransactionsCount` - Number
-      - `Transactions` - List
-         - `transactionId` - String
+- `BlockHash` - String
+- `Header` - JSON
+  - `PreviousBlockHash` - String
+  - `MerkleTreeRootOfTransactions` - String
+  - `MerkleTreeRootOfWorldState` - String
+  - `Extra` - List
+  - `Height` - Number
+  - `Time` - JSON
+  - `ChainId` - String
+  - `Bloom` - String
+  - `SignerPubkey` - String
+- `Body` - JSON
+  - `TransactionsCount` - Number
+  - `Transactions` - List
+    - `transactionId` - String
 
 **Example**:
 
@@ -237,38 +227,37 @@ block_by_height = aelf.get_block_by_height(12, False)
 print('# get_block_by_height', block_by_height)
 ```
 
-
 ### 5. Get Transaction Result
 
 **Web API Path**: /api/blockChain/transactionResult
 
 **Parameters**:
 
-   - `transactionId` - String
+- `transactionId` - String
 
-**Returns**: 
+**Returns**:
 
-   - `JSON`
+- `JSON`
 
-      - `TransactionId` - String
-      - `Status` - String
-      - `Logs` - List
-         - `Address` - String
-         - `Name` - String
-         - `Indexed` - List
-         - `NonIndexed` - String
-      - `Bloom` - String
-      - `BlockNumber` - Number
-      - `Transaction` - List
-         - `From` - Number
-         - `To` -  Number
-         - `RefBlockNumber` - Number
-         - `RefBlockPrefix` - String
-         - `MethodName` - String
-         - `Params` - JSON
-         - `Signature` - String
-      - `ReadableReturnValue` - JSON
-      - `Error` - String
+  - `TransactionId` - String
+  - `Status` - String
+  - `Logs` - List
+    - `Address` - String
+    - `Name` - String
+    - `Indexed` - List
+    - `NonIndexed` - String
+  - `Bloom` - String
+  - `BlockNumber` - Number
+  - `Transaction` - List
+    - `From` - Number
+    - `To` - Number
+    - `RefBlockNumber` - Number
+    - `RefBlockPrefix` - String
+    - `MethodName` - String
+    - `Params` - JSON
+    - `Signature` - String
+  - `ReadableReturnValue` - JSON
+  - `Error` - String
 
 **Example**:
 
@@ -278,17 +267,15 @@ transaction_result = aelf.get_transaction_result(transactionId)
 print('# get_transaction_result', transaction_result)
 ```
 
-
 ### 6. Get Transaction Results
 
 **Web API Path**: /api/blockChain/transactionResults
 
 **Parameters**:
 
-   - `blockHash` - String
-   - `offset` - Number
-   - `limit` - Number
-
+- `blockHash` - String
+- `offset` - Number
+- `limit` - Number
 
 **Returns**: `List` of transaction result objects
 
@@ -299,8 +286,6 @@ aelf = AElf(url)
 transaction_results = aelf.get_transaction_results(blockHash, 0, 2)
 print('# get_transaction_results', transaction_results)
 ```
-
-
 
 ### 7. Get Transaction Pool Status
 
@@ -314,7 +299,6 @@ tx_pool_status = aelf.get_transaction_pool_status()
 print('# get_transaction_pool_status', tx_pool_status)
 ```
 
-
 ### 8. Send Transaction
 
 **Web API Path**: `/api/blockChain/sendTransaction`
@@ -323,7 +307,7 @@ print('# get_transaction_pool_status', tx_pool_status)
 
 **Parameters**:
 
-   - `transaction` - String (serialized data)
+- `transaction` - String (serialized data)
 
 **Example**:
 
@@ -341,8 +325,6 @@ result = aelf.send_transaction(transaction.SerializePartialToString().hex())
 print('# send_transaction', result)
 ```
 
-
-
 ### 9. Send Transactions
 
 **Web API Path**: `/api/blockChain/sendTransaction`
@@ -351,7 +333,7 @@ print('# send_transaction', result)
 
 **Parameters**:
 
-   - `transactions` - String (serialized data)
+- `transactions` - String (serialized data)
 
 **Example**:
 
@@ -365,7 +347,6 @@ result = aelf.send_transaction(transaction1 + ',' + transaction2)
 print('# send_transactions', result)
 ```
 
-
 ### 10. Get Peers
 
 **Web API Path**: `/api/net/peers`
@@ -378,7 +359,6 @@ peers = aelf.get_peers()
 print('# get_peers', peers)
 ```
 
-
 ### 11. Add Peer
 
 **Web API Path**: `/api/net/peers`
@@ -387,7 +367,7 @@ print('# get_peers', peers)
 
 **Parameters**:
 
-   - `peer_address` - String (peer’s endpoint)
+- `peer_address` - String (peer’s endpoint)
 
 **Example**:
 
@@ -397,8 +377,6 @@ add_peer = aelf.add_peer(endpoint)
 print('# add_peer', add_peer)
 ```
 
-
-
 ### 12. Remove Peer
 
 **Web API Path**: `/api/net/peer?address=`
@@ -407,7 +385,7 @@ print('# add_peer', add_peer)
 
 **Parameters**:
 
-   - `peer_address` - String (peer’s endpoint)
+- `peer_address` - String (peer’s endpoint)
 
 **Example**:
 
@@ -425,12 +403,12 @@ print('# remove_peer', remove_peer)
 
 **Parameters**:
 
-   - `transaction` - JSON format transaction
+- `transaction` - JSON format transaction
 
-**Returns**: 
+**Returns**:
 
-   - `JSON`
-      - `RawTransaction` - hex string bytes generated by transaction information
+- `JSON`
+  - `RawTransaction` - hex string bytes generated by transaction information
 
 **Example**:
 
@@ -448,7 +426,6 @@ raw_transaction = aelf.create_raw_transaction(transaction)
 print('# create_raw_transaction', raw_transaction)
 ```
 
-
 ### 14. Send Raw Transaction
 
 **Web API Path**: `/api/blockchain/sendRawTransaction`
@@ -457,9 +434,9 @@ print('# create_raw_transaction', raw_transaction)
 
 **Parameters**:
 
-   - `Transaction` - raw transaction
-   - `Signature` - signature
-   - `ReturnTransaction` - indicates whether to return the transaction
+- `Transaction` - raw transaction
+- `Signature` - signature
+- `ReturnTransaction` - indicates whether to return the transaction
 
 **Example**:
 
@@ -499,8 +476,8 @@ print('# send_raw_transaction', result)
 
 **Parameters**:
 
-   - `RawTransaction` - raw transaction
-   - `Signature` - signature
+- `RawTransaction` - raw transaction
+- `Signature` - signature
 
 **Example**:
 
@@ -531,7 +508,6 @@ result = aelf.execute_raw_transaction(transaction_1)
 print('# execute_raw_transaction', result)
 ```
 
-
 ### 16. Get Merkle Path
 
 **Web API Path**: `/api/blockchain/merklePathByTransactionId?transactionId=`
@@ -540,7 +516,7 @@ print('# execute_raw_transaction', result)
 
 **Parameters**:
 
-   - `transactionId` - String
+- `transactionId` - String
 
 **Example**:
 
@@ -552,7 +528,6 @@ merkle_path = aelf.get_merkle_path(transaction_id)
 print('# get_merkle_path', merkle_path)
 ```
 
-
 ### 17. Calculate Transaction Fee
 
 **Web API Path**: `/api/blockchain/calculateTransactionFee`
@@ -561,15 +536,15 @@ print('# get_merkle_path', merkle_path)
 
 **Parameters**:
 
-   - `CalculateTransactionFeeInput` - JSON with the following structure:
-      - `RawTransaction` - String
+- `CalculateTransactionFeeInput` - JSON with the following structure:
+  - `RawTransaction` - String
 
-**Returns**: 
+**Returns**:
 
-   - `CalculateTransactionFeeOutput` - `json` - The json with the following structure :
-      - `Success` - Boolean
-      - `TransactionFee` - Array
-      - `ResourceFee` - Array
+- `CalculateTransactionFeeOutput` - `json` - The json with the following structure :
+  - `Success` - Boolean
+  - `TransactionFee` - Array
+  - `ResourceFee` - Array
 
 **Example**:
 
@@ -583,8 +558,6 @@ calculate_transaction_fee_input = {
 calculate_transaction_fee_output = aelf.calculate_transaction_fee(calculate_transaction_fee_input)
 print('# calculate_transaction_fee', calculate_transaction_fee_output)
 ```
-
-
 
 ### 18. Get Network Info
 
@@ -600,8 +573,6 @@ aelf = AElf(url)
 network_info = aelf.get_network_info()
 print('# get_network_info', network_info)
 ```
-
-
 
 ## AElf.client
 
@@ -619,16 +590,15 @@ aelf = AElf(url)
 genesis_contract_address = aelf.get_genesis_contract_address_string()
 ```
 
-
 ### 2. get_system_contract_address
 
 **Parameters:**
 
-   - `contract_name` - String: system contract’s name
+- `contract_name` - String: system contract’s name
 
 **Returns:**
 
-   - `Address`: system contract’s address
+- `Address`: system contract’s address
 
 **Example:**
 
@@ -638,16 +608,15 @@ aelf = AElf(url)
 multi_token_contract_address = aelf.get_system_contract_address('AElf.ContractNames.Token')
 ```
 
-
 ### 3. get_system_contract_address_string
 
 **Parameters:**
 
-   - `contract_name` - String: system contract’s name
+- `contract_name` - String: system contract’s name
 
 **Returns:**
 
-   - `String`: system contract’s address
+- `String`: system contract’s address
 
 **Example:**
 
@@ -657,14 +626,13 @@ aelf = AElf(url)
 multi_token_contract_address_string = aelf.get_system_contract_address_string('AElf.ContractNames.Token')
 ```
 
-
 ### 4. create_transaction
 
 **Parameters:**
 
-   - `to_address` - Address or String: target contract’s address
-   - `method_name` - String: method name
-   - `params` - String: serialize parameters into String
+- `to_address` - Address or String: target contract’s address
+- `method_name` - String: method name
+- `params` - String: serialize parameters into String
 
 **Example:**
 
@@ -676,15 +644,14 @@ params.value = hashlib.sha256(contract_name.encode('utf8')).digest()
 transaction = aelf.create_transaction(genesisContractAddress, 'GetContractAddressByName', params.SerializeToString())
 ```
 
-
 ### 5. sign_transaction
 
 Sign a transaction with the user’s private key.
 
 **Parameters:**
 
-   - `private_key` - String: user’s private key
-   - `transaction` - Transaction: transaction
+- `private_key` - String: user’s private key
+- `transaction` - Transaction: transaction
 
 **Example:**
 
@@ -698,18 +665,17 @@ transaction = aelf.create_transaction(to_address_string, 'GetContractAddressByNa
 transaction = aelf.sign_transaction(private_key, transaction)
 ```
 
-
 ### 6. get_address_from_public_key
 
 Generate an address from a public key.
 
 **Parameters:**
 
-   - `public_key` - bytes: user’s public key
+- `public_key` - bytes: user’s public key
 
 **Returns:**
 
-   - `Address`
+- `Address`
 
 **Example:**
 
@@ -718,18 +684,17 @@ aelf = AElf(url)
 address = aelf.get_address_from_public_key(public_key)
 ```
 
-
 ### 7. get_address_string_from_public_key
 
 Generate an address string from a public key.
 
 **Parameters:**
 
-   - `public_key` - bytes: user’s public key
+- `public_key` - bytes: user’s public key
 
 **Returns:**
 
-   - `String`
+- `String`
 
 **Example:**
 
@@ -738,14 +703,11 @@ aelf = AElf(url)
 address = aelf.get_address_string_from_public_key(public_key)
 ```
 
-
-
 ### 8. get_chain_id
-
 
 **Returns:**
 
-   - `Number`
+- `Number`
 
 **Example:**
 
@@ -756,18 +718,16 @@ chain_id = aelf.get_chain_id()
 print('# get_chain_id', chain_id)
 ```
 
-
-
 ### 9. get_formatted_address
 
 **Parameters:**
 
-   - `address` - Address: address
+- `address` - Address: address
 
 **Returns:**
 
-   - `String`
- 
+- `String`
+
 **Example:**
 
 ```python
@@ -776,7 +736,6 @@ address = aelf.chain.get_system_contract_address("AElf.ContractNames.Consensus")
 formatted_address = aelf.get_formatted_address(address)
 print('formatted address', formatted_address)
 ```
-
 
 ### 9. is_connected
 
@@ -789,12 +748,9 @@ aelf = AElf(url)
 is_connected = aelf.is_connected()
 ```
 
-
-
 ## Tookkits.py
 
 AElfToolkit Encapsulate AElf and user’s private key. It simplifies the procedures of sending some transactions. You can find it in src/aelf/toolkits.py.
-
 
 ### Create a Toolkit
 
@@ -810,7 +766,6 @@ private_key = PrivateKey(bytes(bytearray.fromhex(private_key_string)))
 # create a toolkit
 toolkit = AElfToolkit('http://127.0.0.1:8000', private_key)
 ```
-
 
 ### Send a Transaction
 
@@ -832,13 +787,10 @@ toolkit = AElfToolkit('http://127.0.0.1:8000', private_key)
 toolkit.cross_chain_transfer(to_address_string, symbol, amount, memo, to_chain_id)
 ```
 
-
-
 ## Requirements
 
 - [Python](https://www.python.org/)
 - [Docker](https://www.docker.com/)
-
 
 ## Support
 
@@ -846,7 +798,7 @@ toolkit.cross_chain_transfer(to_address_string, symbol, amount, memo, to_chain_i
 
 ## About Contributing
 
-Read out [contributing guide].
+Read out [contributing guide](../../../resources/contribution/index.md).
 
 ## About Version
 
