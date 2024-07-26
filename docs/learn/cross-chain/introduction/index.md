@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: Introduction
+description: aelf's cross-chain functionalities
 ---
 
 # Introduction
