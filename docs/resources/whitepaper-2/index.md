@@ -1,7 +1,6 @@
 ---
-sidebar_position: 8
 title: Whitepaper 2.0
-description: The updated aelf Whitepaper
+description: aelf's updated Whitepaper v2.0 featuring AI + Blockchain
 ---
 
 ## Table of Contents
