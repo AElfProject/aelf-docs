@@ -97,4 +97,4 @@ aelf-command call AElf.ContractNames.Consensus GetCurrentMinerPubkeyList '{}'
 ## Add More BPs
 Repeat the steps to add more BPs. No need to edit `appsettings.json` again. When candidate nodes exceed the max BPs, they replace genesis nodes, which cannot participate in elections again.
 
-Proceed to contract deployment and DApp development guides for more details.
+Proceed to [contract deployment](/tools/smart-contract-templates/deploying-contracts-without-bp-approval/) and [DApp development](/quick-start/developers/) guides for more details.
