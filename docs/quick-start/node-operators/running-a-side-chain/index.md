@@ -4,6 +4,10 @@ title: Run a Side Chain
 description: Operational details.
 ---
 
+**Description**: A tutorial on how to configure and run a side chain node in the aelf blockchain ecosystem after its creation has been approved.
+
+**Purpose**: To guide developers through the setup and launch process of a side chain node, ensuring correct configuration and successful integration with the main chain.
+
 # Running a Side Chain 
 
 This tutorial explains how to run a side chain node after it has been approved by the producers and released by the creator. After creating the side chain, producers need to run a side chain node.
