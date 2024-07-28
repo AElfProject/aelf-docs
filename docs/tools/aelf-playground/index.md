@@ -18,12 +18,11 @@ No setup is needed. Simply visit [aelf Playground](https://playground.aelf.com) 
 
 ### 1. Create a New Project
 
-- Click on the **Create a New Project** button, as shown below:
+- Click on one of the templates:
 
   ![](/img/playground-1.png)
 
-- Enter a project name and choose a specific template of your choice.
-- Press **Create**:
+- Enter a project name and click Submit.
 
   ![](/img/playground-2.png)
 
@@ -37,38 +36,18 @@ No setup is needed. Simply visit [aelf Playground](https://playground.aelf.com) 
 
 ### 3. Build Your Smart Contract
 
-- Once you are ready, click on the 🔧 **Build** button:
+- Once you are ready, click on the **Build** button:
 
   ![](/img/playground-4.png)
 
 - Wait for the contract to be built.
 
-### 4. Connect Your Playground Wallet
+### 4. Deploy Your Smart Contract
 
-- Click on the **Connect to Playground Wallet** button:
+- Click on the **Deploy** button to deploy your smart contract.
 
-  ![](/img/playground-5.png)
+- Wait for about 1 minute for the contract to be deployed.
 
-- A pop-up will appear.
-
-  :::tip
-  You may choose to click on **Save keypair** to save a copy of your keypair for use in subsequent sessions.
-  :::
-
-  ![](/img/playground-6.png)
-
-- Click **Continue**.
-
-### 5. Deploy Your Smart Contract
-
-- Click on the **Deploy** button to deploy your smart contract:
-
-  ![](/img/playground-7.png)
-
-- Wait for about 1 minute for the contract to be deployed:
-
-  ![](/img/playground-8.png)
-
-- You may click on the **link** provided to view your contract on the aelf explorer.
+- You may copy the contract address, or visit the **Deployments** page to view your newly-deployed contract.
 
 ### Done
