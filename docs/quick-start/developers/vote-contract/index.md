@@ -817,21 +817,17 @@ Let's write the Create Proposal function.
 
 3. Replace the form variable with this code snippet:
 
-```javascript title="src/CreateProposal.tsx"
+```tsx title="src/CreateProposal.tsx"
 //Step D - Configure Proposal Form
-const form =
-  useForm <
-  z.infer <
-  typeof formSchema >>
-    {
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-        address: currentWalletAddress,
-        title: "",
-        description: "",
-        voteThreshold: 0,
-      },
-    };
+const form = useForm<z.infer<typeof formSchema>>({
+  resolver: zodResolver(formSchema),
+  defaultValues: {
+    address: currentWalletAddress,
+    title: "",
+    description: "",
+    voteThreshold: 0,
+  },
+});
 ```
 
 :::tip
@@ -951,7 +947,7 @@ The `voteNo` function works similarly but sets the vote to `false`.
 
 - Scroll down to the `Step G - Use Effect to Fetch Proposals` comment and replace the `useEffect` hook with this code snippet:
 
-```javascript title="src/HomeDAO.tsx"
+```tsx title="src/HomeDAO.tsx"
 useEffect(() => {
   // Step G - Use Effect to Fetch Proposals
   const fetchProposals = async () => {
@@ -966,12 +962,15 @@ useEffect(() => {
 
       if (!account) throw new Error("No account");
 
-      const proposalResponse =
-        (await DAOContract?.callViewMethod) <
-        IProposals >
-        ("GetAllProposals", "");
+      if (!DAOContract) return;
 
-      setProposals(proposalResponse?.data);
+      const proposalResponse =
+        await (DAOContract?.callViewMethod)<IProposals>(
+          "GetAllProposals",
+          ""
+        );
+
+      setProposals(proposalResponse.data);
       alert("Fetched Proposals");
     } catch (error) {
       console.error(error);
