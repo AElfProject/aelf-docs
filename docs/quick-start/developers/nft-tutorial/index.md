@@ -54,7 +54,31 @@ aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_A
 ℹ️ Note: `JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE` is the contract address of the Multi-Token Contract on aelf Testnet AELF.
 :::
 
-    ### Creating an NFT for the NFT Collection
+### Validating Token Info
+
+```bash
+aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io ValidateTokenInfoExists --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": 1, "decimals": 18, "issuer": "address", "isBurnable": true, "lockWhiteList": [], "issueChainId": AELF, "externalInfo": {}, "owner": "address"}'
+```
+
+### Get Parent Height
+
+```bash
+aelf-command call 2PC7Jhb5V6iZXxz8uQUWvWubYkAoCVhtRGSL7VhTWX85R8DBuN -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io GetParentChainHeight
+```
+
+### Get the Market Path
+
+```bash
+https://aelf-test-node.aelf.io/api/blockChain/merklePathByTransactionId?transactionId=<Transaction2>
+```
+
+### Get Parent Chain Height
+
+```bash
+aelf-command call 2PC7Jhb5V6iZXxz8uQUWvWubYkAoCVhtRGSL7VhTWX85R8DBuN -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io GetParentChainHeight
+```
+
+### Creating an NFT for the NFT Collection
 
 Run the following command:
 
