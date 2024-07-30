@@ -4,11 +4,11 @@ title: Run a Testnet Node
 description: How to join Testnet
 ---
 
+# How to Join the Testnet
+
 **Description**: Instructions for setting up and running an aelf testnet node using Docker or binaries, including database setup and configuration.
 
 **Purpose**: To provide detailed guidance on configuring, deploying, and maintaining an aelf testnet node, facilitating testing and development of decentralized applications.
-
-# How to Join the Testnet
 
 You can run an aelf node using Docker (recommended) or GitHub binaries. 
 Before starting, install the necessary tools and frameworks. Detailed instructions are in the [environment setup](/tools/smart-contract-templates/development-environment/) section.

@@ -3,13 +3,12 @@ sidebar_position: 4
 title: Creation of a Side Chain
 description: How to create a side chain ?
 ---
+# Creation of a Side Chain
 
 **Description**: 
 Detailed guidelines and API documentation for creating and managing side chains in the aelf blockchain ecosystem.
 
 **Purpose**: To provide developers with step-by-step instructions and code examples for proposing, approving, and deploying side chains, enhancing scalability and customization within the aelf network.
-
-# Creation of a Side Chain
 
 Side chains can be created in the aelf ecosystem to enable scalability. This section introduces the process in detail.
 
