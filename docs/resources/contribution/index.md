@@ -1,7 +1,7 @@
 ---
-sidebar_position: 10
+sidebar_position: 11
 title: Contribution Guide
-description: contribution guide
+description: Contribute to aelf
 ---
 
 aelf is an [open source](https://github.com/aelfproject) and community driven project. This guide is aims to help anyone wants to contribute to the project.

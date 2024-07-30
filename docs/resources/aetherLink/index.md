@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 6
 title: AetherLink
 description: Transfer tamper-proof data from off-chain to on-chain
 ---

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 5
 title: Wallet and Block Explorer
 description: Manage your assets and explore aelf's blockchain data
 ---

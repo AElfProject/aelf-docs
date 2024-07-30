@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 10
 title: Protobuf Extension
 description: An open-source gRPC
 ---

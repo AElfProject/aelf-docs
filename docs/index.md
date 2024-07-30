@@ -72,13 +72,16 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 ## 🔖 Resources
 
+- [Whitepaper 2.0](/resources/whitepaper-2/) - Featuring AI + Blockchain
+- [Whitepaper 1.0](/resources/whitepaper/) - The original aelf Whitepaper
+- [Tokenomics](/resources/tokenomics/) - Economic and Governance
 - [Integration Guide](/resources/integration-guide/) - Learn how to integrate with other tools and DApps
 - [Wallet and Block Explorer](/resources/wallet-and-block-explorer/) - Manage your assets and explore aelf's blockchain data
 - [AetherLink](/resources/aetherLink/) - Transfer tamper-proof data from off-chain to on-chain
 - [Browser Extension](/resources/browser-extension/) - Explore Portkey wallet and other extensions
 - [DevOps](/resources/devops/) - Tools to build and deploy efficiently
 - [Protobuf Extension](/resources/protobuf-extension/) - An open-source gRPC
-- [Whitepapers](/resources/whitepaper-2/) - aelf Whitepapers
+- [Contribution Guide](/resources/contribution/) - Contribute to aelf
 
 </article>
 
