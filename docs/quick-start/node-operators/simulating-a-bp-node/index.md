@@ -1,13 +1,12 @@
 ---
-sidebar_position: 3
-title: Simulation in the Local Environment
+sidebar_position: 1
+title: Simulating a BP node
+description: Running BP nodes in a local environment
 ---
 
 **Description**: A guide for simulating a block producer (BP) election and running BP nodes in a local environment within the aelf blockchain ecosystem.
 
 **Purpose**: To instruct developers on how to set up, configure, and manage multiple nodes, participate in BP elections, and perform key operations for local environment simulations.
-
-# Simulation in the Local Environment
 
 ## Set up a Full Node
 

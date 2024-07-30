@@ -651,6 +651,16 @@ public override ProposalList GetAllProposals(Empty input)
 
 Once you've implemented these two methods and run the unit tests again, you should see that all test cases pass.
 
+### Building Smart Contract
+
+- Build the new code with the following commands inside `src` folder:
+
+```bash title="Terminal"
+dotnet build
+```
+
+You should see **BuildersDAO.dll.patched** in the directory `src/bin/Debug/net.6.0`
+
 ## Step 3 - Deploy Smart Contract
 
 import Deploy from "../\_deploy.md"
@@ -964,11 +974,10 @@ useEffect(() => {
 
       if (!DAOContract) return;
 
-      const proposalResponse =
-        await (DAOContract?.callViewMethod)<IProposals>(
-          "GetAllProposals",
-          ""
-        );
+      const proposalResponse = await (DAOContract?.callViewMethod)<IProposals>(
+        "GetAllProposals",
+        ""
+      );
 
       setProposals(proposalResponse.data);
       alert("Fetched Proposals");
