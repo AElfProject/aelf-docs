@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: Development Environment
-description: development environment for smart contracts
+description: Install the .NET SDK
 ---
 
 ## Development Environment
