@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 9
 title: DevOps
 description: Tools to build and deploy efficiently
 image: /img/Logo.aelf.svg
