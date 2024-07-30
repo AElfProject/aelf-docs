@@ -1,14 +1,12 @@
 ---
-sidebar_position: 1
-title: Operations
-
+sidebar_position: 4
+title: Apply to be a BP
+description: Participate in BP election
 ---
 
 **Description**: Guidelines for setting up nodes and participating in the Block Producer (BP) election process in the aelf blockchain ecosystem.
 
 **Purpose**: To provide step-by-step instructions for users to become Block Producers, participate in BP elections, and understand the voting and election outcomes within the aelf network.
-
-# Operations
 
 ## Steps to Become a BP
 
@@ -28,7 +26,7 @@ title: Operations
 
 ### Set up Nodes
 
-aelf doesn't have light nodes, so all nodes are full nodes. [Click here](/quick-start/node-operators/run-a-mainnet-node/) to learn how to set up a full node.
+aelf doesn't have light nodes, so all nodes are full nodes. [Click here](/quick-start/node-operators/set-up-a-node-on-mainnet/) to learn how to set up a full node.
 
 **Note:** To become a BP, you need to run individual nodes for both MainChain aelf and all the SideChains.
 
@@ -54,4 +52,4 @@ BPs are elected every seven days, starting at 7:23 (UTC) every Thursday. If your
 
 ## Simulate in Local Environment
 
-To try setting up a node and running as a BP locally, follow the instructions [here](/quick-start/node-operators/simulation-in-local-environment/) to simulate it in the local environment.
+To try setting up a node and running as a BP locally, follow the instructions [here](/quick-start/node-operators/simulating-a-bp-node/) to simulate it in the local environment.

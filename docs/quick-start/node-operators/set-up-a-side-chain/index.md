@@ -1,9 +1,8 @@
 ---
-sidebar_position: 4
-title: Creation of a Side Chain
-description: How to create a side chain ?
+sidebar_position: 5
+title: Set up a side chain
+description: Proposing, approving & deploying side chains
 ---
-# Creation of a Side Chain
 
 **Description**: 
 Detailed guidelines and API documentation for creating and managing side chains in the aelf blockchain ecosystem.
@@ -24,7 +23,7 @@ Upon creating a new proposal for the side chain, the `ProposalCreated` event con
 
 Once the side chain is created, the `SideChainCreatedEvent` containing the chain ID will be fired.
 
-The side chain node can be launched once it is created on the main chain. Ensure the side chain ID from the creation result is configured correctly before launching the side chain node. Make sure the cross-chain communication context is correctly set, as the side chain node will request main chain node for chain initialization data. For more details, check the [side chain node running tutorial](/quick-start/node-operators/running-a-side-chain/).
+The side chain node can be launched once it is created on the main chain. Ensure the side chain ID from the creation result is configured correctly before launching the side chain node. Make sure the cross-chain communication context is correctly set, as the side chain node will request main chain node for chain initialization data.
 
 ## Side Chain Types
 
@@ -427,6 +426,91 @@ createSideChain().then(() => {
 
 **Note**: Replace the placeholders in the script with actual values and logic for your use case.
 
+## Running a Side Chain
+
+**Description**: A tutorial on how to configure and run a side chain node in the aelf blockchain ecosystem after its creation has been approved.
+
+**Purpose**: To guide developers through the setup and launch process of a side chain node, ensuring correct configuration and successful integration with the main chain.
+
+This tutorial explains how to run a side chain node after it has been approved by the producers and released by the creator. After creating the side chain, producers need to run a side chain node.
+
+### Prerequisites
+
+- You already have a main-chain node running.
+- The creation of the side chain has been approved and released.
+
+### Important Note
+
+The key-pair (account) used for mining on the side chain must be the same as the one used on the main-chain node. Both production nodes need to be launched with the same key-pair.
+
+### Side Chain Configuration
+
+#### Configuration Files
+
+Two configuration files must be placed in the configuration folder of the side chain, from which you will launch the node:
+
+- `appsettings.json`
+- `appsettings.SideChain.MainNet.json`
+
+#### Chain ID and Settings
+
+After the release of the side chain creation request, the ChainId of the new side chain will be accessible in the SideChainCreatedEvent logged by the transaction that released it.
+
+In this example, we will set up the side chain node with ChainId `tDVV` (1866392 converted to base58), connecting to Redis `db2`, and using web API port `1235`. Don’t forget to change the `account`, `password`, and `initial miner`.
 
 
-Next, we can move on to [Running a Side Chain](/quick-start/node-operators/running-a-side-chain/).
+```json title="appsettings.json"
+{
+  "ChainId": "tDVV",
+  "ChainType": "SideChain",
+  "NetType": "MainNet",
+  "ConnectionStrings": {
+    "BlockchainDb": "redis://localhost:6379?db=2",
+    "StateDb": "redis://localhost:6379?db=2"
+  },
+  "Account": {
+    "NodeAccount": "YOUR PRODUCER ACCOUNT",
+    "NodeAccountPassword": "YOUR PRODUCER PASSWORD"
+  },
+  "Kestrel": {
+    "EndPoints": {
+      "Http": {
+        "Url": "http://*:1235/"
+      }
+    }
+  },
+  "Consensus": {
+    "MiningInterval": 4000,
+    "StartTimestamp": 0
+  }
+}
+```
+
+```json title="appsettings.SideChain.MainNet.json"
+{
+  "CrossChain": {
+    "Grpc": {
+      "ParentChainServerPort": 5010,
+      "ListeningPort": 5000,
+      "ParentChainServerIp": "127.0.0.1"
+    },
+    "ParentChainId": "AELF"
+  }
+}
+```
+
+Change `ParentChainServerIp` and `ParentChainServerPort` depending on the listening address of your mainchain node.
+
+### Launching the Side Chain Node
+
+Open a terminal and navigate to the folder where you created the side chain configuration:
+
+```sh title="Terminal"
+dotnet ../AElf.Launcher.dll
+```
+
+You can try out a few commands from another terminal to check if everything is fine, for example:
+
+```sh title="Terminal"
+aelf-command get-blk-height -e http://127.0.0.1:1235
+```

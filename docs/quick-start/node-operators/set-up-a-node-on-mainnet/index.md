@@ -1,15 +1,14 @@
 ---
-sidebar_position: 2
-title: Run a Mainnet Node
+sidebar_position: 3
+title: Set up a node on mainnet
+description: Configuration, deployment & maintenance
 ---
-
-## How to Join the Mainnet
 
 **Description**: Instructions on how to join the aelf mainnet by setting up and running a node using Docker or binaries, along with necessary configuration and database setup.
 
 **Purpose**: To guide users through the process of configuring, deploying, and maintaining an aelf mainnet node, ensuring proper setup for node communication and blockchain synchronization.
 
-There are two ways to run an aelf node: using Docker (recommended) or running binaries from GitHub. Before starting, you need to install some tools and frameworks. Command line instructions are provided for most dependencies. For complex needs, see the [environment setup](/tools/smart-contract-templates/development-environment/) section.
+There are two ways to run an aelf node: using Docker (recommended) or running binaries from GitHub. Before starting, you need to install some tools and frameworks. Command line instructions are provided for most dependencies. For complex needs, see the [environment setup](/tools/setup-local-environment/node-operator/) section.
 
 ### Steps to Set Up a Node
 

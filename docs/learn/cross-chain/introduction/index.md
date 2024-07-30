@@ -26,4 +26,4 @@ Side chains are isolated but still need a way to interact with each other. To en
 The following sections of this documentation will provide:
 
 - An overview of the [architecture](/learn/cross-chain/architecture/) of aelf's side chains.
-- A guide explaining how to set up a [main-chain](/quick-start/node-operators/run-a-mainnet-node) and a [side chain](/quick-start/node-operators/running-a-side-chain/) node.
+- A guide explaining how to set up a [main-chain](/quick-start/node-operators/set-up-a-node-on-mainnet) and a [side chain](/quick-start/node-operators/set-up-a-side-chain/) node.
