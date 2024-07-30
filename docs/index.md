@@ -17,7 +17,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 <section className="row margin-top--xl">
 
-<article className="col col--4 margin-bottom--lg">
+<article className="col col--6 margin-bottom--lg">
 
 ## 🏁 Quick Start
 
@@ -31,10 +31,11 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
   - [Set up](/quick-start/node-operators/set-up-a-node-on-mainnet/) a node on mainnet
   - [Apply](/quick-start/node-operators/apply-to-be-a-bp/) to be a BP
   - [Set up](/quick-start/node-operators/set-up-a-side-chain/) a side chain
+  - [Run](/quick-start/node-operators/run-aelf-on-cloud/) aelf on Cloud
 
 </article>
 
-<article className="col col--4 margin-bottom--lg">
+<article className="col col--6 margin-bottom--lg">
 
 ## 📚 Understanding aelf
 
@@ -50,16 +51,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 </article>
 
-<article className="col col--4 margin-bottom--lg">
-
-## 📖 Tutorials
-
-- [Operate a Node](/tutorials/operate-a-node/)
-  - Run aelf on [Cloud](/tutorials/operate-a-node/run-aelf-on-cloud/)
-
-</article>
-
-<article className="col col--4 margin-bottom--lg">
+<article className="col col--6 margin-bottom--lg">
 
 ## 🛠️ Tools
 
@@ -76,7 +68,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 
 </article>
 
-<article className="col col--4 margin-bottom--lg">
+<article className="col col--6 margin-bottom--lg">
 
 ## 🔖 Resources
 

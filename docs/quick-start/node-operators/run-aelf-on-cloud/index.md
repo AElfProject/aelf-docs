@@ -1,9 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 6
 title: Run aelf on Cloud
 description: Google Cloud Platform (GCP)
 ---
-# Getting Started with Google Cloud
 
 This guide will walk you through the steps required to run an aelf node on Google Cloud Platform (GCP).
 
