@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: Developing Smart Contracts
-description: developing smart contracts with aelf templates
+description: GreeterContract example
 ---
 
 
