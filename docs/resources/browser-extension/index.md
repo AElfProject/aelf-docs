@@ -9,7 +9,7 @@ image: /img/Logo.aelf.svg
 
 **Purpose**: This guide provides instructions for both users and developers on the installation, usage, and implementation of the aelf Web Extension.
 
-# aelf-web-extension
+## aelf-web-extension
 
 ### Introduction
 
@@ -47,33 +47,33 @@ For those using QQ Browser and similar, you can add the extension manually.
 To access the complete data structure, [click here](#data-format). For an extension demo, refer to the provided examples.
 
 - [aelf-web-extension](#aelf-web-extension)
-    - [Introduction](#introduction)
-    - [For Users](#for-users)
-      - [Release Version](#release-version)
-      - [Development Version](#development-version)
-      - [Notice](#notice)
-    - [For DApp Developers](#for-dapp-developers)
-      - [Interaction Flow](#interaction-flow)
-    - [How to Use](#how-to-use)
-  - [Data Format](#data-format)
-  - [Demo of Checking the Extension](#demo-of-checking-the-extension)
-  - [GET\_CHAIN\_STATUS](#get_chain_status)
-      - [Token Transfer](#token-transfer)
-        - [Expected Result :](#expected-result-)
-  - [CALL\_AELF\_CHAIN](#call_aelf_chain)
-        - [Expected Result :](#expected-result--1)
-  - [LOGIN](#login)
-  - [INIT\_AELF\_CONTRACT](#init_aelf_contract)
-        - [Expected Result :](#expected-result--2)
-  - [CALL\_AELF\_CONTRACT / CALL\_AELF\_CONTRACT\_READONLY](#call_aelf_contract--call_aelf_contract_readonly)
-  - [CHECK\_PERMISSION](#check_permission)
-        - [Expected Result :](#expected-result--3)
-  - [SET\_CONTRACT\_PERMISSION](#set_contract_permission)
-        - [Expected Result](#expected-result)
-  - [REMOVE\_METHODS\_WHITELIST](#remove_methods_whitelist)
-        - [Expected Result](#expected-result-1)
-  - [For Extension Developers](#for-extension-developers)
-  - [Project Information](#project-information)
+  - [Introduction](#introduction)
+  - [For Users](#for-users)
+    - [Release Version](#release-version)
+    - [Development Version](#development-version)
+    - [Notice](#notice)
+  - [For DApp Developers](#for-dapp-developers)
+    - [Interaction Flow](#interaction-flow)
+  - [How to Use](#how-to-use)
+- [Data Format](#data-format)
+- [Demo of Checking the Extension](#demo-of-checking-the-extension)
+- [GET\_CHAIN\_STATUS](#get_chain_status)
+    - [Token Transfer](#token-transfer)
+      - [Expected Result :](#expected-result-)
+- [CALL\_AELF\_CHAIN](#call_aelf_chain)
+      - [Expected Result :](#expected-result--1)
+- [LOGIN](#login)
+- [INIT\_AELF\_CONTRACT](#init_aelf_contract)
+      - [Expected Result :](#expected-result--2)
+- [CALL\_AELF\_CONTRACT / CALL\_AELF\_CONTRACT\_READONLY](#call_aelf_contract--call_aelf_contract_readonly)
+- [CHECK\_PERMISSION](#check_permission)
+      - [Expected Result :](#expected-result--3)
+- [SET\_CONTRACT\_PERMISSION](#set_contract_permission)
+      - [Expected Result](#expected-result)
+- [REMOVE\_METHODS\_WHITELIST](#remove_methods_whitelist)
+      - [Expected Result](#expected-result-1)
+- [For Extension Developers](#for-extension-developers)
+- [Project Information](#project-information)
 
 
 ## Data Format
