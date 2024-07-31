@@ -8,13 +8,13 @@ description: Learn how to integrate with other tools and DApps
 
 **Purpose**: To provide installation and configuration instructions for integrating various aelf wallets into a React application using the aelf-web-login library.
 
-# Introduction
+## Introduction
 
 **aelf-web-login**: Modular React wallet collection and components for aelf applications.
 
 **website**: https://aelf-web-login.vercel.app/
 
-# Install
+## Install
 
 ```sh
 yarn add @aelf-web-login/wallet-adapter-night-elf @aelf-web-login/wallet-adapter-portkey-aa @aelf-web-login/wallet-adapter-portkey-discover @aelf-web-login/wallet-adapter-react @aelf-web-login/wallet-adapter-base @aelf-web-login/wallet-adapter-bridge
@@ -33,7 +33,7 @@ Then the `package.json` will be like this
 }
 ```
 
-# Config
+## Config
 
 1. Import `PortkeyDiscoverWallet`, `PortkeyAAWallet` and `NightElfWallet` and generate instance
 2. Create `didConfig` (internal invoke: `ConfigProvider.setGlobalConfig(didConfig)`)
@@ -127,7 +127,7 @@ const config: IConfigProps = {
 };
 ```
 
-# Usage
+## Usage
 
 1. Import `WebLoginProvider`, `init` and `useConnectWallet`
 2. invoke `init` with upper config as params
@@ -164,9 +164,9 @@ const Demo = () => {
 }
 ```
 
-# API
+## API
 
-## connectWallet
+### connectWallet
 
 ```ts
 connectWallet: () => Promise<TWalletInfo>
@@ -192,7 +192,7 @@ const Demo = () => {
 }
 ```
 
-## disConnectWallet
+### disConnectWallet
 
 ```ts
 disConnectWallet: () => Promise<void>
@@ -214,7 +214,7 @@ const Demo = () => {
 }
 ```
 
-## lock
+### lock
 
 ```ts
 lock: () => void
@@ -233,7 +233,7 @@ const Demo = () => {
 }
 ```
 
-## getAccountByChainId
+### getAccountByChainId
 
 ```ts
 getAccountByChainId: (chainId: TChainId) => Promise<string>
@@ -262,7 +262,7 @@ const Demo = () => {
 }
 ```
 
-## getWalletSyncIsCompleted
+### getWalletSyncIsCompleted
 
 ```ts
 getWalletSyncIsCompleted: (chainId: TChainId) => Promise<string | boolean>
@@ -291,7 +291,7 @@ const Demo = () => {
 }
 ```
 
-## getSignature
+### getSignature
 
 ```ts
 const getSignature: (params: TSignatureParams) => Promise<{ ``    error: number; ``    errorMessage: string; ``    signature: string; ``    from: string; ``} | null>
@@ -337,7 +337,7 @@ const Demo = () => {
 }
 ```
 
-## callSendMethod
+### callSendMethod
 
 ```ts
 callSendMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>
@@ -386,7 +386,7 @@ const Demo = () => {
 }
 ```
 
-## callViewMethod
+### callViewMethod
 
 ```ts
 callViewMethod: <T, R>(props: ICallContractParams<T>) => Promise<R>
@@ -434,7 +434,7 @@ const Demo = () => {
 }
 ```
 
-## walletInfo
+### walletInfo
 
 ```ts
 const walletInfo: TWalletInfo
@@ -504,7 +504,7 @@ const Demo = () => {
 }
 ```
 
-## walletType
+### walletType
 
 ```ts
 const walletType: WalletTypeEnum
@@ -527,7 +527,7 @@ const Demo = () => {
 }
 ```
 
-## isLocking
+### isLocking
 
 ```ts
 const isLocking: boolean
@@ -549,7 +549,7 @@ const Demo = () => {
 }
 ```
 
-## isConnected
+### isConnected
 
 ```ts
 const isConnected: boolean
@@ -572,7 +572,7 @@ const Demo = () => {
 }
 ```
 
-## loginError
+### loginError
 
 ```ts
 const loginError: TWalletError | null
@@ -602,7 +602,7 @@ const Demo = () => {
 }
 ```
 
-# Development
+## Development
 
 1. Install dependencies in the project root directory
 
@@ -617,7 +617,7 @@ cd packages/starter
 pnpm dev
 ```
 
-# Publish
+## Publish
 
 1. Upgrade the version numbers of each sub package
 2. execute release command in the project root directory
