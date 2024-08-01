@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 title: aelf Testnet Faucet
 description: Get your free test aelf tokens.
 ---
