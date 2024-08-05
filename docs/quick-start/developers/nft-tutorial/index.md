@@ -40,99 +40,80 @@ For creating an NFT collection, the deployer wallet must have an **NFT SEED**.
 
 For this NFT contract, you don't need to write a separate contract. Instead, you'll use an already deployed Multi-Token Contract with the following functions.
 
-### Creating an NFT Collection
+### 3.1 Creating an NFT Collection on MainChain
 
 Open your terminal and run:
 
 ```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Create --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": 1, "decimals": 18, "issuer": "address", "isBurnable": true, "lockWhiteList": [], "issueChainId": AELF, "externalInfo": {}, "owner": "address"}'
+aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Create --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": "1", "decimals": 0, "issuer": "wallet_address", "isBurnable": true, "issueChainId": 1931928, "owner": "wallet_address"}'
 ```
 
 - Replace the placeholder values with your actual details.
 
 :::tip
-ℹ️ Note: `JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE` is the contract address of the Multi-Token Contract on aelf Testnet AELF.
+ℹ️ Note: `JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE` is the contract address of the Multi-Token Contract on **aelf Testnet Mainchain**.
 :::
 
-### Validating Token Info
+### 3.2 Validate TokenInfoExist on MainChain
 
 ```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io ValidateTokenInfoExists --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": 1, "decimals": 18, "issuer": "address", "isBurnable": true, "lockWhiteList": [], "issueChainId": AELF, "externalInfo": {}, "owner": "address"}'
+aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io ValidateTokenInfoExists --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": "1", "decimals": 0, "issuer": "address", "isBurnable": true, "issueChainId": 1931928, "owner": "wallet_address"}'
 ```
 
-### Get Parent Height
+:::tip
+ℹ️ Note: `transactionId` Note down the trasnactionId from the above transaction will be used in **step 3**.
+:::
+
+### 3.3 Create NFT Collection on SideChain
 
 ```bash
-aelf-command call 2PC7Jhb5V6iZXxz8uQUWvWubYkAoCVhtRGSL7VhTWX85R8DBuN -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io GetParentChainHeight
+aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io CrossChainCreateToken --params '{"fromChainId":9992731, "parentChainHeight": blocknumber_of_2nd_transaction,"transactionBytes": bytes, "merklePath":{}}'
 ```
 
-### Get the Market Path
-
 ```bash
-https://aelf-test-node.aelf.io/api/blockChain/merklePathByTransactionId?transactionId=<Transaction2>
+transactionBytes = Buffer.from(signedTx, "hex").toString("base64")
 ```
 
-### Get Parent Chain Height
+:::tip
+ℹ️ Note: Replace the placeholder values with your actual details.
+:::
+
+:::tip
+ℹ️ Note: `ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx` is the contract address of the Multi-Token Contract on **aelf Testnet Sidechain**.
+:::
+
+### 3.4 Create NFT Token on MainChain
 
 ```bash
-aelf-command call 2PC7Jhb5V6iZXxz8uQUWvWubYkAoCVhtRGSL7VhTWX85R8DBuN -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io GetParentChainHeight
+aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Create --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": "100", "decimals": 0, "issuer": "wallet_address", "isBurnable": true, "issueChainId": 1931928, "owner": "wallet_address", "externalInfo":{}}'
 ```
 
-### Creating an NFT for the NFT Collection
-
-Run the following command:
+### 3.5 Validate Nft Token on MainChain
 
 ```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Create --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-1", "totalSupply": 20000, "decimals": 18, "issuer": "address", "isBurnable": true, "lockWhiteList": [], "issueChainId": AELF, "externalInfo": {}, "owner": "address"}'
+aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io ValidateTokenInfoExists --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": "1", "decimals": 0, "issuer": "address", "isBurnable": true, "issueChainId": 1931928, "owner": "wallet_address", "externalInfo":{}}'
 ```
 
-- Replace the placeholder values with your actual details.
-
-### Issuing an NFT to an Address
-
-Run the following command:
+### 3.6 Create NFT Token on SideChain
 
 ```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Issue --params '{"symbol": "ULJVFKQGKX-1", "amount": 12, "memo": "Test", "to": "address"}'
+aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io CrossChainCreateToken --params '{"fromChainId":9992731, "parentChainHeight": blocknumber_of_5th_transaction,"transactionBytes": bytes, "merklePath":{}}'
 ```
 
-### Transferring an NFT
-
-Run the following command:
-
 ```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Transfer --params '{"symbol": "ULJVFKQGKX-1", "amount": 12, "memo": "Test", "to": "address"}'
+transactionBytes = Buffer.from(signedTx, "hex").toString("base64")
 ```
 
-You will be prompted for the following:
+### 3.7 Issue NFT Token on SideChain
 
 ```bash
-Enter the params one by one, type `Enter` to skip optional param:
-? Enter the required param <value>: 20000
+aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Issue --params '{"symbol":"ULJVFKQGKX-2", "amount": 2,"memo": "Testing Issuance", "to":to_address}'
 ```
 
-### NFT Balance for an Address
-
-Run the following command:
+### 3.8 Transfer NFT
 
 ```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io GetBalance --params '{"symbol": "ULJVFKQGKX-1", "owner": "address"}'
-```
-
-### Burning the NFT
-
-Run the following command:
-
-```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Burn --params '{"symbol": "ULJVFKQGKX-0", "amount": 12}'
-```
-
-### Getting NFT Details
-
-Run the following command:
-
-```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io GetTokenInfo --params '{"symbol": "ULJVFKQGKX-0"}'
+aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Transfer --params '{"symbol":"ULJVFKQGKX-2", "amount": 2,"memo": "Testing Issuance", "to":to_address}'
 ```
 
 ## Step 4 - Interact with Your Deployed Smart Contract
@@ -336,25 +317,29 @@ With the Connect Wallet function defined, we're ready to write the remaining fun
 
 **Step 1: Locate the File**
 
-   1. go to the `src/pages/create-nft/index.tsx` file. This file is the "Create NFTs" page where users can enter details like the `tokenName`, `symbol`, `totalSupply` and `decimals`.
+1.  go to the `src/pages/create-nft/index.tsx` file. This file is the "Create NFTs" page where users can enter details like the `tokenName`, `symbol`, `totalSupply` and `decimals`.
 
 **Step 2: Write the Create New NFT Collection on MainChain Function**
 
-   1. Find the comment `// Step D - Configure NFT Form`.
-   
-   2. Replace the form variable with this code snippet:
+1.  Find the comment `// Step D - Configure NFT Form`.
+
+2.  Replace the form variable with this code snippet:
 
 ```javascript title="src/CreateProposal.tsx"
-  // Step D - Configure NFT Form
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      tokenName: "",
-      symbol: "",
-      totalSupply: "",
-      decimals: "",
-    },
-  });
+// Step D - Configure NFT Form
+const form =
+  useForm <
+  z.infer <
+  typeof formSchema >>
+    {
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        tokenName: "",
+        symbol: "",
+        totalSupply: "",
+        decimals: "",
+      },
+    };
 ```
 
 #### Here's what the function does:
@@ -440,7 +425,7 @@ Let's write the Create New NFT Collection on MainChain Function
   - Click on that SEED to see details
   - You will find the **Token Symbol** on **Token Creation via This Seed** section.
   - Copy add use that value of Token Symbol.
-:::
+    :::
 
 #### What This Function Does:
 
@@ -535,19 +520,19 @@ Next, we'll write the **Get the parent chain height** function.
   const GetParentChainHeight = async () => {
     try {
       // Set the transaction status to indicate the process of fetching the parent chain height.
-      setTransactionStatus("Fetching Parent Chain Height");  
+      setTransactionStatus("Fetching Parent Chain Height");
 
       // Log the side chain smart contract for debugging purposes.
-      console.log("sideChainSmartContract", sideChainSmartContract);  
+      console.log("sideChainSmartContract", sideChainSmartContract);
 
       // Call the smart contract method to get the parent chain height.
       const result = await sideChainSmartContract?.callViewMethod(
         "GetParentChainHeight",
         ""
-      );  
+      );
 
       // Log the result of fetching the parent chain height for debugging purposes.
-      console.log("========= result of GetParentChainHeight =========", result);  
+      console.log("========= result of GetParentChainHeight =========", result);
 
       // Return the parent chain height if it exists, otherwise return an empty string.
       return result ? (result.data.value as string) : "";
@@ -581,27 +566,27 @@ Next, we'll write the **Fetch the Merkle path** function.
 - Replace the existing **`getMarkelPath`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-  // Step G: Fetch the Merkle path
-  const getMarkelPath = async () => {
-    try {
-      // Set the transaction status to indicate the process of fetching the Merkle path.
-      setTransactionStatus("Fetching Markel Path");
-      
-      // Fetch the Merkle path using the transaction ID.
-      const response = await fetch(merkelApiUrl + transactionId);
-      
-      // Parse the response as JSON.
-      const json = await response.json();
-      
-      // Return the Merkle path nodes from the JSON response.
-      return json.MerklePathNodes;
-    } catch (error) {
-      // If there's an error, clear the transaction status and log the error.
-      setTransactionStatus("");
-      console.error(error, "=====error in getMarkelPath");
-      return "error";
-    }
-  };
+// Step G: Fetch the Merkle path
+const getMarkelPath = async () => {
+  try {
+    // Set the transaction status to indicate the process of fetching the Merkle path.
+    setTransactionStatus("Fetching Markel Path");
+
+    // Fetch the Merkle path using the transaction ID.
+    const response = await fetch(merkelApiUrl + transactionId);
+
+    // Parse the response as JSON.
+    const json = await response.json();
+
+    // Return the Merkle path nodes from the JSON response.
+    return json.MerklePathNodes;
+  } catch (error) {
+    // If there's an error, clear the transaction status and log the error.
+    setTransactionStatus("");
+    console.error(error, "=====error in getMarkelPath");
+    return "error";
+  }
+};
 ```
 
 #### What This Function Does:
@@ -631,7 +616,7 @@ const createTokenOnCrossChain = async (
   try {
     // Set the transaction status to indicate the process of creating a token on the cross-chain.
     setTransactionStatus("Creating Token on CrossChain");
-    
+
     // Convert transaction details object to a JSON string.
     const jsonString = JSON.stringify(transactionDetails);
 
@@ -663,7 +648,6 @@ const createTokenOnCrossChain = async (
     return "error";
   }
 };
-
 ```
 
 #### What This Function Does:
@@ -675,7 +659,6 @@ const createTokenOnCrossChain = async (
 3. **Returns Merkle Path Nodes** : It extracts and returns the Merkle path nodes from the JSON response.
 
 4. **Handles Errors** : If an error occurs, it clears the transaction status and logs the error.
-
 
 Now, let's write the Create NFT function for the form submission.
 
@@ -729,24 +712,24 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
 #### Here's what the function does:
 
 1. **Create New NFT Collection** : It calls `createNewNftCollectionOnMainChain` with the provided form values to create a new NFT collection on the main chain.
-   
+
    - If the creation fails, the function returns early and does not proceed further.
 
 2. **Validate Token Information** : It calls `validateTokenInfoExist` to validate that the created token information exists.
-   
+
    - If the validation fails, the function returns early and does not proceed further.
 
 3. **Fetch Parent Chain Height** : It calls `GetParentChainHeight` to get the height of the parent chain.
-   
+
    - If fetching the parent chain height fails, the function returns early and does not proceed further.
 
 4. **Fetch Merkle Path** : It calls getMarkelPath to fetch the Merkle path for the transaction.
-    
-	- If fetching the Merkle path fails, the function returns early and does not proceed further.
+
+   - If fetching the Merkle path fails, the function returns early and does not proceed further.
 
 5. **Create Token on Cross-Chain** : It calls `createTokenOnCrossChain` with the parent chain height and Merkle path to create the token on the cross-chain.
-    
-	- If creating the token on the cross-chain fails, the function returns early.
+
+   - If creating the token on the cross-chain fails, the function returns early.
 
 ### Run Application
 
@@ -760,7 +743,7 @@ npm run dev
 
 - You should observe the following as shown below.
 
-   ![run-app-success](/img/vote-npm-run-console.png)
+  ![run-app-success](/img/vote-npm-run-console.png)
 
 - Upon clicking on the **localhost URL**, you should be directed to the NFTs landing page as shown below.
 
@@ -770,6 +753,6 @@ If you are developing and testing this with GitHub codespace, you can use Port F
 
 - Usually codespace will automatically forward port, you should see a pop-up message at the bottom right of your codespace browser window as shown in the diagram below:
 
-   ![open-in-browser](/img/codespace-forwarded-port.png)
+  ![open-in-browser](/img/codespace-forwarded-port.png)
 
 - Click the link to open the NFT dApp in the browser.
