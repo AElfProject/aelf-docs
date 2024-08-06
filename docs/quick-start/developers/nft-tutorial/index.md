@@ -36,87 +36,7 @@ For creating an NFT collection, the deployer wallet must have an **NFT SEED**.
 
 - Please note down this symbol value, as we will need it later when creating the NFT collection and NFT. This will become our **Token Symbol**.
 
-## Step 3 - Interact with Deployed Multi-Token Smart Contract
-
-For this NFT contract, you don't need to write a separate contract. Instead, you'll use an already deployed Multi-Token Contract with the following functions.
-
-### 3.1 Creating an NFT Collection on MainChain
-
-Open your terminal and run:
-
-```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Create --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": "1", "decimals": 0, "issuer": "wallet_address", "isBurnable": true, "issueChainId": 1931928, "owner": "wallet_address"}'
-```
-
-- Replace the placeholder values with your actual details.
-
-:::tip
-ℹ️ Note: `JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE` is the contract address of the Multi-Token Contract on **aelf Testnet Mainchain**.
-:::
-
-### 3.2 Validate TokenInfoExist on MainChain
-
-```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io ValidateTokenInfoExists --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": "1", "decimals": 0, "issuer": "address", "isBurnable": true, "issueChainId": 1931928, "owner": "wallet_address"}'
-```
-
-:::tip
-ℹ️ Note: `transactionId` Note down the trasnactionId from the above transaction will be used in **step 3**.
-:::
-
-### 3.3 Create NFT Collection on SideChain
-
-```bash
-aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io CrossChainCreateToken --params '{"fromChainId":9992731, "parentChainHeight": blocknumber_of_2nd_transaction,"transactionBytes": bytes, "merklePath":{}}'
-```
-
-```bash
-transactionBytes = Buffer.from(signedTx, "hex").toString("base64")
-```
-
-:::tip
-ℹ️ Note: Replace the placeholder values with your actual details.
-:::
-
-:::tip
-ℹ️ Note: `ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx` is the contract address of the Multi-Token Contract on **aelf Testnet Sidechain**.
-:::
-
-### 3.4 Create NFT Token on MainChain
-
-```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Create --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": "100", "decimals": 0, "issuer": "wallet_address", "isBurnable": true, "issueChainId": 1931928, "owner": "wallet_address", "externalInfo":{}}'
-```
-
-### 3.5 Validate Nft Token on MainChain
-
-```bash
-aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io ValidateTokenInfoExists --params '{"tokenName": "NFT Name", "symbol": "ULJVFKQGKX-0", "totalSupply": "1", "decimals": 0, "issuer": "address", "isBurnable": true, "issueChainId": 1931928, "owner": "wallet_address", "externalInfo":{}}'
-```
-
-### 3.6 Create NFT Token on SideChain
-
-```bash
-aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io CrossChainCreateToken --params '{"fromChainId":9992731, "parentChainHeight": blocknumber_of_5th_transaction,"transactionBytes": bytes, "merklePath":{}}'
-```
-
-```bash
-transactionBytes = Buffer.from(signedTx, "hex").toString("base64")
-```
-
-### 3.7 Issue NFT Token on SideChain
-
-```bash
-aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Issue --params '{"symbol":"ULJVFKQGKX-2", "amount": 2,"memo": "Testing Issuance", "to":to_address}'
-```
-
-### 3.8 Transfer NFT
-
-```bash
-aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Transfer --params '{"symbol":"ULJVFKQGKX-2", "amount": 2,"memo": "Testing Issuance", "to":to_address}'
-```
-
-## Step 4 - Interact with Your Deployed Smart Contract
+## Step 3 - Interact with Your Deployed Smart Contract
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -756,3 +676,83 @@ If you are developing and testing this with GitHub codespace, you can use Port F
   ![open-in-browser](/img/codespace-forwarded-port.png)
 
 - Click the link to open the NFT dApp in the browser.
+
+## Step 4 - Interact with Deployed Multi-Token Smart Contract
+
+For this NFT contract, you don't need to write a separate contract. Instead, you'll use an already deployed Multi-Token Contract with the following functions.
+
+### 4.1 Creating an NFT Collection on MainChain
+
+Open your terminal and run:
+
+```bash
+aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Create
+```
+
+- Replace the placeholder values with your actual details.
+
+:::tip
+ℹ️ Note: `JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE` is the contract address of the Multi-Token Contract on **aelf Testnet Mainchain**.
+:::
+
+### 4.2 Validate TokenInfoExist on MainChain
+
+```bash
+aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io ValidateTokenInfoExists
+```
+
+:::tip
+ℹ️ Note: `transactionId` Note down the trasnactionId from the above transaction will be used in **step 3**.
+:::
+
+### 4.3 Create NFT Collection on SideChain
+
+```bash
+aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io CrossChainCreateToken
+```
+
+```bash
+transactionBytes = Buffer.from(signedTx, "hex").toString("base64")
+```
+
+:::tip
+ℹ️ Note: Replace the placeholder values with your actual details.
+:::
+
+:::tip
+ℹ️ Note: `ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx` is the contract address of the Multi-Token Contract on **aelf Testnet Sidechain**.
+:::
+
+### 4.4 Create NFT Token on MainChain
+
+```bash
+aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Create
+```
+
+### 4.5 Validate Nft Token on MainChain
+
+```bash
+aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io ValidateTokenInfoExists
+```
+
+### 4.6 Create NFT Token on SideChain
+
+```bash
+aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io CrossChainCreateToken
+```
+
+```bash
+transactionBytes = Buffer.from(signedTx, "hex").toString("base64")
+```
+
+### 4.7 Issue NFT Token on SideChain
+
+```bash
+aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Issue
+```
+
+### 4.8 Transfer NFT
+
+```bash
+aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Transfer
+```
