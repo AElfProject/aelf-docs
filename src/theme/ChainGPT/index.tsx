@@ -9,6 +9,10 @@ export default function ChainGPT(): JSX.Element {
       <div className={styles.chainGPTContainer}>
         <ChatBoxButton
           apiUri="/api/chaingpt"
+          options={{
+            questionPrefix: '',
+            questionSuffix: '.Respond in a single paragraph.'
+          }}
         />
       </div>
     </>
