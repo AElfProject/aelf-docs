@@ -167,7 +167,7 @@ const fetchContract = async (
 
 By following these steps, you'll configure the Portkey provider to connect users' wallets to your app and interact with the NFT smart contract. This setup will enable our frontend components to perform actions like creating NFTs, validating NFTs, and transferring NFTs.
 
-### Write the Connect Wallet Function
+### Configure Connect Wallet Function
 
 **Step 1: Locate the File**
 
@@ -215,7 +215,7 @@ In this code, we fetch the Portkey wallet account using the provider and update 
 
 With the Connect Wallet function defined, we're ready to write the remaining functions in the next steps.
 
-### Write Configure NFT Form Code
+### Configure Create NFT Form Code
 
 **Step 1: Locate the File**
 
@@ -249,9 +249,9 @@ const form = useForm<z.infer<typeof formSchema>>({
 
 Now your form is ready for users to fill in the necessary details for their NFTs function Interaction.
 
-### Write The Functions for Create NFT Collection
+### Create NFT Collection
 
-Let's write the Create New NFT Collection on MainChain Function
+Let's write the Create New NFT Collection on MainChain and SideChain Functions
 
 **Step 1: Locate the File**
 
@@ -266,54 +266,54 @@ Let's write the Create New NFT Collection on MainChain Function
 - Replace the existing **`createNftCollectionOnMainChain`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-   // step - 1 Create New NFT Collection on MainChain Function
-  const createNftCollectionOnMainChain = async (values: {
-    tokenName: string;
-    symbol: string;
-    totalSupply: string;
-    decimals: string;
-  }) => {
-    try {
-      const createLoadingId = toast.loading("Creating NFT Collection..");
+ // step - 1 Create New NFT Collection on MainChain Function
+const createNftCollectionOnMainChain = async (values: {
+  tokenName: string;
+  symbol: string;
+  totalSupply: string;
+  decimals: string;
+}) => {
+  try {
+    const createLoadingId = toast.loading("Creating NFT Collection..");
 
-      // Create an object with the necessary information for the new NFT collection.
-      const createNtfInput: INftInput = {
-        tokenName: values.tokenName, // Name of the nft Collection
-        symbol: values.symbol, // Symbol of the token (You have to get it from your PortKey wallet on NFT seed from NFT section)
-        totalSupply: values.totalSupply, // Total supply of the token
-        decimals: values.decimals, // Decimals of the token
-        issuer: currentWalletAddress, // Address of the token issuer
-        isBurnable: true, // Indicates if the token can be burned
-        issueChainId: sidechain_from_chain_id, // ID of the issuing chain
-        owner: currentWalletAddress, // Owner's wallet address
-      };
+    // Create an object with the necessary information for the new NFT collection.
+    const createNtfInput: INftInput = {
+      tokenName: values.tokenName, // Name of the nft Collection
+      symbol: values.symbol, // Symbol of the token (You have to get it from your PortKey wallet on NFT seed from NFT section)
+      totalSupply: values.totalSupply, // Total supply of the token
+      decimals: values.decimals, // Decimals of the token
+      issuer: currentWalletAddress, // Address of the token issuer
+      isBurnable: true, // Indicates if the token can be burned
+      issueChainId: sidechain_from_chain_id, // ID of the issuing chain
+      owner: currentWalletAddress, // Owner's wallet address
+    };
 
-      // Call the smart contract method to create the new NFT collection on the main chain.
-      const result = await mainChainSmartContract?.callSendMethod(
-        "Create",
-        currentWalletAddress,
-        createNtfInput
-      );
+    // Call the smart contract method to create the new NFT collection on the main chain.
+    const result = await mainChainSmartContract?.callSendMethod(
+      "Create",
+      currentWalletAddress,
+      createNtfInput
+    );
 
-      // Log the result of the creation for debugging purposes.
-      console.log("========= result of createNewNft =========", result);
+    // Log the result of the creation for debugging purposes.
+    console.log("========= result of createNewNft =========", result);
 
-      toast.update(createLoadingId, {
-        render: "NFT Collection Created Successfully On MainChain",
-        type: "success",
-        isLoading: false,
-      });
-      removeNotification(createLoadingId);
+    toast.update(createLoadingId, {
+      render: "NFT Collection Created Successfully On MainChain",
+      type: "success",
+      isLoading: false,
+    });
+    removeNotification(createLoadingId);
 
-      // Return the input data for further use.
-      return createNtfInput;
-    } catch (error: any) {
-      // If there's an error, log it and alert the user.
-      console.error(error.message, "=====error");
-      toast.error(error.message);
-      return "error";
-    }
-  };
+    // Return the input data for further use.
+    return createNtfInput;
+  } catch (error: any) {
+    // If there's an error, log it and alert the user.
+    console.error(error.message, "=====error");
+    toast.error(error.message);
+    return "error";
+  }
+};
 ```
 
 :::tip
@@ -326,8 +326,8 @@ Let's write the Create New NFT Collection on MainChain Function
   - You will find the SEED that you already got from above steps.
   - Click on that SEED to see details
   - You will find the **Token Symbol** on **Token Creation via This Seed** section.
-  - Copy add use that value of Token Symbol.
-    :::
+  - Copy add use that value of Token Symbol.    
+:::
 
 #### What This Function Does:
 
@@ -337,16 +337,18 @@ Let's write the Create New NFT Collection on MainChain Function
 
 3. **Logs Information** : It logs the result for debugging purposes.
 
+4. **Return Values of Object** : It returns necessary values as a object.
+
 Next, we'll write the **Validate Collection Info Exist** function.
 
-**Step 3: Write the Collection Token Info Exist Function**
+**Step 3: Write the Validates Collection Info Exist Function**
 
-- Scroll up to find the comment `// step 2 - Validate token information existence`.
+- Scroll up to find the comment `// step 2 - Validate Collection information existence`.
 
 - Replace the existing **`validateNftCollectionInfo`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 2 - Validate token information existence
+// step 2 - Validate Collection information existence
 // This function validates if the token collection information already exists on the main blockchain.
 const validateNftCollectionInfo = async (values: INftInput) => {
   try {
@@ -430,11 +432,11 @@ const validateNftCollectionInfo = async (values: INftInput) => {
 
 #### What This Function Does:
 
-1. **Creates an Object with NFT Details** : It prepares the data needed to validate the token information.
+1. **Creates an Object with Validate Collection Details** : It prepares the data needed to validate the token information.
 
 2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to check if the token information already exists using the prepared data.
 
-3. **Logs Information** : It logs the validation result for debugging purposes.
+3. **Return Values of Object** : It returns necessary values as a object
 
 Next, we'll write the **Get the parent chain height** function.
 
@@ -508,23 +510,23 @@ const getMerklePathByTxId = async (aelf: any, txId: string) => {
 
 Next, we'll write the **Create a Collection on the cross-chain** function.
 
-**Step 6: Create a Collection on the cross-chain Function**
+**Step 6: Write a Function for Create Collection on the Side Chain**
 
 - Scroll up to find the comment `// step 5 - Create a Collection on SideChain`.
 
 - Replace the existing **`createCollectionOnSideChain`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-  // step 5 - Create a Collection on SideChain
-  const createCollectionOnSideChain = async (
-    transactionId: string,
-    signedTx: string,
-    BlockNumber: number
-  ) => {
-    try {
-      const crossChainLoadingId = toast.loading(
-        "Creating Collection on SideChain..."
-      );
+// step 5 - Create a Collection on SideChain
+const createCollectionOnSideChain = async (
+  transactionId: string,
+  signedTx: string,
+  BlockNumber: number
+) => {
+  try {
+    const crossChainLoadingId = toast.loading(
+      "Creating Collection on SideChain..."
+    );
 
       const merklePath = await getMerklePathByTxId(aelf, transactionId);
 
@@ -584,7 +586,9 @@ Next, we'll write the **Create a Collection on the cross-chain** function.
 ---
 ```
 
-**Step 7: Write a Create NFT on MainChain Function**
+### Create NFT Token
+
+**Step 1: Write a Function for Create NFT on MainChain**
 
 Now, let's write the Create NFT on MainChain function for the form submission.
 
@@ -658,7 +662,7 @@ const createNFTOnMainChain = async (values: {
 ---
 ```
 
-**Step 8: Write the Validate NFT Info Exist Function**
+**Step 2: Write the Function for Validate NFT Info Exist**
 
 Now, let's write the Validate NFT Info Exist function.
 
@@ -679,69 +683,66 @@ const validateNftToken = async (values: INftParams) => {
       />
     );
 
-    // Create an object with the necessary information for token validation.
-    const validateInput = {
-      symbol: values.symbol,
-      tokenName: values.tokenName,
-      totalSupply: values.totalSupply,
-      issuer: currentWalletAddress,
-      isBurnable: true,
-      issueChainId: sidechain_from_chain_id,
-      owner: currentWalletAddress,
-      externalInfo: {},
-    };
+  // Create an object with the necessary information for token validation.
+  const validateInput = {
+    symbol: values.symbol,
+    tokenName: values.tokenName,
+    totalSupply: values.totalSupply,
+    issuer: currentWalletAddress,
+    isBurnable: true,
+    issueChainId: sidechain_from_chain_id,
+    owner: currentWalletAddress,
+    externalInfo: {},
+  };
 
-    // get mainnet contract
-    const aelfTokenContract = await getTokenContract(aelf, wallet);
+  // get mainnet contract
+  const aelfTokenContract = await getTokenContract(aelf, wallet);
 
-    // prepare Sign the transaction using contract method (ValidateTokenInfoExists Function)
-    const signedTx =
-      aelfTokenContract.ValidateTokenInfoExists.getSignedTx(validateInput);
+  // prepare Sign the transaction using contract method (ValidateTokenInfoExists Function)
+  const signedTx = aelfTokenContract.ValidateTokenInfoExists.getSignedTx(validateInput);
 
-    // send the transaction using signed Transaction
-    const { TransactionId: VALIDATE_TXID } = await aelf.chain.sendTransaction(
-      signedTx
-    );
+  // send the transaction using signed Transaction
+  const { TransactionId: VALIDATE_TXID } = await aelf.chain.sendTransaction(signedTx);
 
-    await delay(3000);
+  await delay(3000);
 
-    // get Validate Result
-    let VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
+  // get Validate Result
+  let VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
 
-    await delay(3000);
+  await delay(3000);
 
-    // if SideChain index has a MainChain height greater than validateTokenInfoExist's
-    let heightDone = false;
+  // if SideChain index has a MainChain height greater than validateTokenInfoExist's
+  let heightDone = false;
 
-    while (!heightDone) {
-      // get latest index Hight
-      const sideIndexMainHeight = await GetParentChainHeight();
-      if (
-        // check the latest index Hight is grater than or equal 
-        sideIndexMainHeight >= VALIDATE_TXRESULT.Transaction.RefBlockNumber
-      ) {
-        VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
-        heightDone = true;
-      }
+  while (!heightDone) {
+    // get latest index Hight
+    const sideIndexMainHeight = await GetParentChainHeight();
+    if (
+      // check the latest index Hight is grater than or equal 
+      sideIndexMainHeight >= VALIDATE_TXRESULT.Transaction.RefBlockNumber
+    ) {
+      VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
+      heightDone = true;
     }
+  }
 
-    console.log(VALIDATE_TXRESULT, "VALIDATE_TXRESULT=====2");
+  console.log(VALIDATE_TXRESULT, "VALIDATE_TXRESULT=====2");
 
-    const merklePath = await getMerklePathByTxId(aelf, VALIDATE_TXID);
+  const merklePath = await getMerklePathByTxId(aelf, VALIDATE_TXID);
 
-    toast.update(validateNFTLoadingId, {
-      render: "Validating NFT Successfully Executed",
-      type: "success",
-      isLoading: false,
-    });
-    removeNotification(validateNFTLoadingId);
+  toast.update(validateNFTLoadingId, {
+    render: "Validating NFT Successfully Executed",
+    type: "success",
+    isLoading: false,
+  });
+  removeNotification(validateNFTLoadingId);
 
-    // return necessary values
-    return {
-      parentChainHeight: VALIDATE_TXRESULT.BlockNumber,
-      signedTx: signedTx,
-      merklePath: merklePath,
-    };
+  // return necessary values
+  return {
+    parentChainHeight: VALIDATE_TXRESULT.BlockNumber,
+    signedTx: signedTx,
+    merklePath: merklePath,
+  };
   } catch (error) {
     console.log("error======", error);
     return "error";
@@ -755,7 +756,7 @@ const validateNftToken = async (values: INftParams) => {
 ---
 ```
 
-**Step 9: Write a Create NFT on SideChain Function**
+**Step 3: Write a Function for Create NFT on SideChain**
 
 Now, let's write the Create NFT on SideChain function.
 
@@ -806,7 +807,7 @@ const createNftTokenOnSideChain = async (values: INftValidateResult) => {
 ---
 ```
 
-**Step 10: Write a Issue NFT Function which has been Created on SideChain.**
+**Step 4: Write a Function for Issue NFT Token which has been Created on SideChain.**
 
 Now, let's write the Issue NFT Function.
 
@@ -862,7 +863,7 @@ const issueNftOnSideChain = async (values: {
 ---
 ```
 
-**Step 11: Create a Function to Call Necessary Functions for NFT Creation**
+**Step 4: Create a Function to Call Necessary Functions for NFT Creation**
 
 Now, let's write the createNftToken Function.
 
@@ -872,30 +873,29 @@ Now, let's write the createNftToken Function.
 
 ```javascript title="src/CreateProposal.tsx"
 // step 10 - Call Necessary Function for Create NFT
-  const createNftToken = async (values: INftParams) => {
-    try {
-      const mainChainResult = await createNFTOnMainChain(values);
+const createNftToken = async (values: INftParams) => {
+  try {
+    const mainChainResult = await createNFTOnMainChain(values);
 
-      if (mainChainResult === "error") {
-        setTransactionStatus(false);
-        return;
-      }
-      await delay(3000);
+    if (mainChainResult === "error") {
+      setTransactionStatus(false);
+      return;
+    }
+    await delay(3000);
 
-      const validateNFTData: INftValidateResult | "error" =
-        await validateNftToken(values);
+    const validateNFTData: INftValidateResult | "error" = await validateNftToken(values);
 
-      if (validateNFTData === "error") {
-        setTransactionStatus(false);
-        return;
-      }
+    if (validateNFTData === "error") {
+      setTransactionStatus(false);
+      return;
+    }
 
-      const sideChainResult = await createNftTokenOnSideChain(validateNFTData);
+    const sideChainResult = await createNftTokenOnSideChain(validateNFTData);
 
-      if (sideChainResult === "error") {
-        setTransactionStatus(false);
-        return;
-      }
+    if (sideChainResult === "error") {
+      setTransactionStatus(false);
+      return;
+    }
 
     await issueNftOnSideChain({
       symbol: values.symbol,
@@ -918,9 +918,9 @@ Now, let's write the createNftToken Function.
 ---
 ```
 
-**Step 12: Write a Function to Call Necessary Functions for NFT Creation**
+### Configure Submit Form
 
-Now, let's write the createNftToken Function.
+Now, let's Write a Function to Call Necessary Functions for NFT Creation.
 
 1. Scroll down to find the comment `// Step 11 - Handle Submit Form`.
 
@@ -969,6 +969,7 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
 ```
 ---
 ```
+
 
 Now that we've written all the necessary frontend functions and components, we're ready to run the NFT dApp application in the next step.
 
