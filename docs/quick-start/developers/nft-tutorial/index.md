@@ -222,7 +222,7 @@ With the Connect Wallet function defined, we're ready to write the remaining fun
 
 1. go to the `src/pages/create-nft/index.tsx` file. This file is the **Create NFTs** page where users can enter details like the `tokenName`, `symbol`, `totalSupply` and `decimals`.
 
-**Step 2: Write the Create New NFT Collection on MainChain Function**
+**Step 2: Prepare Form for Create NFT**
 
 1.  Find the comment `// Step D - Configure NFT Form`.
 
@@ -970,6 +970,269 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
 ---
 ```
 
+### Fetch NFT Data
+
+Let's write the Function for the fetch NFT data from user's Wallet using API.
+
+**Step 1: Locate the File**
+
+- go to the `src/lib/commonFunctions.ts` file.
+
+**Step 2: Write the Helper Functions for fetch the NFT data**
+
+- The `commonFunctions.ts` file is contains the helpers function for fetch NFT and etc.
+
+- Find the comment `// Function to get the balance of a specific NFT`.
+
+- Replace the existing **`getBalanceOfNft`** function with this code snippet:
+
+```javascript title="commonFunctions.ts"
+// Function to get the balance of a specific NFT
+const getBalanceOfNft = async (
+  values: {
+    symbol: string;
+    owner: string;
+  },
+  sideChainSmartContract: any
+): Promise<number> => {
+  // @ts-ignore
+  const { data }: { data: { balance: number } } =
+    await sideChainSmartContract?.callViewMethod("getBalance", values);
+  return data.balance;
+};
+```
+
+- Find the comment `// Function to fetch balance information for an array of NFTs`.
+
+- Replace the existing **`fetchNftBalances`** function with this code snippet:
+
+```javascript title="commonFunctions.ts"
+// Function to fetch balance information for an array of NFTs
+const fetchNftBalances = async (
+  nfts: Nft[],
+  ownerAddress: string,
+  sideChainSmartContract: any
+): Promise<Nft[]> => {
+  const nftDataWithBalances = await Promise.all(
+    nfts.map(async (nft) => {
+      const balance = await getBalanceOfNft(
+        {
+          symbol: nft.nftSymbol,
+          owner: ownerAddress,
+        },
+        sideChainSmartContract
+      );
+      return { ...nft, balance };
+    })
+  );
+
+  return nftDataWithBalances;
+};
+```
+
+- Find the comment `// fetch NFT Data from eforest API`.
+
+- Replace the existing **`fetchUserNftData`** function with this code snippet:
+
+```javascript title="commonFunctions.ts"
+// fetch NFT Data from eforest API
+export const fetchUserNftData = async (
+  currentWalletAddress: string,
+  sideChainSmartContract: any
+) => {
+  try {
+    const response = await fetch(
+      "https://test.eforest.finance/api/app/nft/nft-infos-user-profile/myhold",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ChainList: ["tDVV"],
+          hasListingFlag: false,
+          hasAuctionFlag: false,
+          hasOfferFlag: false,
+          collectionIds: [],
+          address: currentWalletAddress,
+          sorting: "ListingTime DESC",
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const responseData = await response.json();
+
+    const newNftData = await fetchNftBalances(
+      responseData.data.items,
+      currentWalletAddress as string,
+      sideChainSmartContract
+    );
+
+    return newNftData;
+  } catch (error) {
+    console.log(error);
+    return "error"
+  }
+};
+```
+
+We have Prepared all necessary function for fetch NFT Data from User's Wallet.
+
+Now, Let's call **`fetchUserNftData`** on necessary page.
+
+
+**Step 3: Call fetchUserNftData Functions on Home Page**
+
+- go to the `src/pages/home/index.tsx` file.
+
+- The `home/index.tsx` file contains the Home Page of NFT dApp
+
+- Find the comment `// get NFT Data from User's wallet`.
+
+- Replace the existing **`getNFTData`** function with this code snippet:
+
+```javascript title="home/index.tsx"
+// get NFT Data from User's wallet
+const getNFTData = async () => {
+  const result = await fetchUserNftData(
+    currentWalletAddress as string,
+    sideChainSmartContract
+  );
+  if (result !== "error") {
+    setUserNfts(result);
+  }
+  setLoading(false);
+};
+```
+
+**Step 4: Call fetchUserNftData Functions on Profile Page**
+
+- go to the `src/pages/profile/index.tsx` file.
+
+- The `profile/index.tsx` file contains the Home Page of NFT dApp
+
+- Find the comment `// get NFT Data from User's wallet`.
+
+- Replace the existing **`getNFTData`** function with this code snippet:
+
+```javascript title="profile/index.tsx"
+// get NFT Data from User's wallet
+const getNFTData = async () => {
+  const result = await fetchUserNftData(
+    currentWalletAddress as string,
+    sideChainSmartContract
+  );
+  if (result !== "error") {
+    setUserNfts(result);
+  }
+  setLoading(false);
+};
+```
+
+### Transfer NFT Token
+
+As we have completed `Create` and `Fetch NFT` so now it's time to `Transfer NFT`. 
+
+So now let's **Transfer NFT** to other wallet now.
+
+**Step 1: Locate the File**
+
+1. go to the `src/pages/transfer-nft/index.tsx` file. This file is the **Transfer NFT** page where users can enter details like the `address`, `amount` and `memo`.
+
+**Step 2: Prepare Form for Transfer NFT**
+
+1.  Find the comment `// Configure NFT Transfer Form`.
+
+2.  Replace the form variable with this code snippet:
+
+```javascript title="transfer-nft/index.tsx"
+// Configure NFT Transfer Form
+const form = useForm<z.infer<typeof formSchema>>({
+  resolver: zodResolver(formSchema),
+  defaultValues: {
+    address: "",
+    amount: 0,
+    memo: "",
+  },
+});
+```
+
+#### Here's what the function does:
+
+1. Initializes a new form variable with default values needed to transfer a nft.
+
+2. Fields include: `address` , `amount` , and `memo`.
+
+Now your form is ready for users to fill in the necessary details for their NFTs Transfer function Interaction.
+
+**Step 3: Create NFT Transfer Function**
+
+1.  Find the comment `// Transfer NFT to Other Wallet`.
+
+2.  Replace the form variable with this code snippet:
+
+```javascript title="transfer-nft/index.tsx"
+// Transfer NFT to Other Wallet
+const transferNftToOtherAccount = async (values: {
+  address: string;
+  amount: number;
+  memo: string;
+}) => {
+
+  if (Number(values.amount) > Number(nftBalance)) {
+    toast.error("Amount must be Less than or Equal to Supply Balance");
+    return;
+  }
+
+  const transferNFTLoadingId = toast.loading("Transfer Transaction Executing");
+
+  try {
+    const transferNtfInput = {
+      to: values.address,
+      symbol: nftSymbol,
+      amount: +values.amount,
+      memo: values.memo,
+    };
+
+    await sideChainSmartContract?.callSendMethod(
+      "Transfer",
+      currentWalletAddress,
+      transferNtfInput
+    );
+
+    toast.update(transferNFTLoadingId, {
+      render: "NFT Transferred Successfully!",
+      type: "success",
+      isLoading: false,
+    });
+    removeNotification(transferNFTLoadingId);
+
+    await delay(3000);
+
+    handleReturnClick();
+  } catch (error: any) {
+    console.error(error.message, "=====error");
+    toast.error(error.message);
+  }
+};
+```
+
+**Step 4: Configure on handle Submit Form**
+
+1.  Find the comment `// Handle Transfer Submit Form`.
+
+2.  Replace the form variable with this code snippet:
+
+```javascript title=""
+  // Handle Transfer Submit Form
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    transferNftToOtherAccount(values);
+  }
+```
 
 Now that we've written all the necessary frontend functions and components, we're ready to run the NFT dApp application in the next step.
 
@@ -983,6 +1246,12 @@ In this step, we will run the NFT dApp application.
 ```bash title="Terminal"
 npm run dev
 ```
+
+:::info
+
+ℹ️ Note: Ensure that you are running this command under the **NFT Tutorial** folder.
+
+:::
 
 - You should observe the following as shown below.
 
@@ -1000,6 +1269,7 @@ If you are developing and testing this with GitHub codespace, you can use Port F
 
 - Click the link to open the NFT dApp in the browser.
 
+  ![nft-home-page](/img/nft-home-page.png)
 ## Step 4 - Interact with Deployed Multi-Token Smart Contract
 
 For this NFT contract, you don't need to write a separate contract. Instead, you'll use an already deployed Multi-Token Contract with the following functions.
