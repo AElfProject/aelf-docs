@@ -186,15 +186,12 @@ By following these steps, you'll configure the Portkey provider to connect users
 ```javascript title="header/index.tsx"
 const connect = async (walletProvider?: IPortkeyProvider) => {
   // Step C - Connect Portkey Wallet
-  const accounts = await (walletProvider
-    ? walletProvider
-    : provider
-  )?.request({
+  const accounts = await (walletProvider ? walletProvider : provider)?.request({
     method: MethodsBase.REQUEST_ACCOUNTS,
   });
   const account = accounts?.AELF && accounts?.AELF[0];
   if (account) {
-    setCurrentWalletAddress(account.replace(/^ELF_/, '').replace(/_AELF$/, ''));
+    setCurrentWalletAddress(account.replace(/^ELF_/, "").replace(/_AELF$/, ""));
     setIsConnected(true);
   }
   !walletProvider && toast.success("Successfully connected");
@@ -219,7 +216,6 @@ With the Connect Wallet function defined, we're ready to write the remaining fun
 
 **Step 1: Locate the File**
 
-
 1. go to the `src/pages/create-nft/index.tsx` file. This file is the **Create NFTs** page where users can enter details like the `tokenName`, `symbol`, `totalSupply` and `decimals`.
 
 **Step 2: Prepare Form for Create NFT**
@@ -230,15 +226,19 @@ With the Connect Wallet function defined, we're ready to write the remaining fun
 
 ```javascript title="create-nft/index.tsx"
 // Step D - Configure NFT Form
-const form = useForm<z.infer<typeof formSchema>>({
-  resolver: zodResolver(formSchema),
-  defaultValues: {
-    tokenName: "",
-    symbol: "",
-    totalSupply: "",
-    decimals: "",
-  },
-});
+const form =
+  useForm <
+  z.infer <
+  typeof formSchema >>
+    {
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        tokenName: "",
+        symbol: "",
+        totalSupply: "",
+        decimals: "",
+      },
+    };
 ```
 
 #### Here's what the function does:
@@ -318,6 +318,7 @@ const createNftCollectionOnMainChain = async (values: {
 
 :::tip
 ℹ️ Note: You need to get **symbol** from wallet like Portkey.
+:::
 
 - **Follow Steps to get NFT symbol from Portkey Wallet:**
 
@@ -326,8 +327,7 @@ const createNftCollectionOnMainChain = async (values: {
   - You will find the SEED that you already got from above steps.
   - Click on that SEED to see details
   - You will find the **Token Symbol** on **Token Creation via This Seed** section.
-  - Copy add use that value of Token Symbol.    
-:::
+  - Copy add use that value of Token Symbol.
 
 #### What This Function Does:
 
@@ -394,7 +394,7 @@ const validateNftCollectionInfo = async (values: INftInput) => {
       // get latest index Hight
       const sideIndexMainHeight = await GetParentChainHeight();
       if (
-        // check the latest index Hight is grater than or equal 
+        // check the latest index Hight is grater than or equal
         sideIndexMainHeight >= VALIDATE_TXRESULT.Transaction.RefBlockNumber
       ) {
         VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
@@ -403,7 +403,7 @@ const validateNftCollectionInfo = async (values: INftInput) => {
     }
 
     console.log("VALIDATE_TXRESULT", VALIDATE_TXRESULT);
-    
+
     // Update the Loading Message
     toast.update(validateLoadingId, {
       render: "Validating Token Successfully Executed",
@@ -452,7 +452,7 @@ Next, we'll write the **Get the parent chain height** function.
 const GetParentChainHeight = async () => {
   try {
     // Call the smart contract method to get the parent chain height.
-    const result = await sideChainSmartContract?.callViewMethod("GetParentChainHeight","");  
+    const result = await sideChainSmartContract?.callViewMethod("GetParentChainHeight","");
     // Return the parent chain height if it exists, otherwise return an empty string.
     return result ? (result.data.value as string) : "";
   } catch (error: any) {
@@ -484,7 +484,13 @@ const getMerklePathByTxId = async (aelf: any, txId: string) => {
     const { MerklePathNodes } = await aelf.chain.getMerklePathByTxId(txId);
 
     const formattedMerklePathNodes = MerklePathNodes.map(
-      ({ Hash, IsLeftChildNode }: { Hash: string; IsLeftChildNode: boolean }) => ({
+      ({
+        Hash,
+        IsLeftChildNode,
+      }: {
+        Hash: string,
+        IsLeftChildNode: boolean,
+      }) => ({
         hash: Hash,
         isLeftChildNode: IsLeftChildNode,
       })
@@ -492,8 +498,8 @@ const getMerklePathByTxId = async (aelf: any, txId: string) => {
 
     return { merklePathNodes: formattedMerklePathNodes };
   } catch (error) {
-    console.error('Error fetching Merkle path:', error);
-    throw new Error('Failed to get Merkle path by transaction ID.');
+    console.error("Error fetching Merkle path:", error);
+    throw new Error("Failed to get Merkle path by transaction ID.");
   }
 };
 ```
@@ -582,9 +588,17 @@ const createCollectionOnSideChain = async (
 
 #### What This Function Does:
 
-```
----
-```
+1. **Displays Loading Toast**: Shows a notification indicating the creation process of the collection on the SideChain.
+
+2. **Fetches Merkle Path**: Retrieves the Merkle path using the provided transactionId.
+
+3. **Prepares and Signs Transaction**: Constructs parameters for the cross-chain transaction and signs it.
+
+4. **Sends Transaction and Checks Status**: Sends the signed transaction and polls for its status every 10 seconds.Updates the notification and state if successful.
+
+5. **Handles Errors**: Logs errors and returns "error" if something goes wrong.
+
+6. **Final Return**: Returns "success" upon successful completion.
 
 ### Create NFT Token
 
@@ -656,11 +670,19 @@ const createNFTOnMainChain = async (values: {
 };
 ```
 
-#### Here's what the function does:
+#### What this function does:
 
-```
----
-```
+1. **Displays Loading Toast:** Shows a notification indicating the creation process of the NFT on the MainChain.
+
+2. **Prepares Parameters:** Constructs input parameters for creating the NFT, including token details and issuer information.
+
+3. **Calls Smart Contract:** Sends a request to the MainChain smart contract to create the NFT using the prepared parameters.
+
+4. **Handles Success:** Updates the notification to show successful NFT creation.
+
+5. **Handles Errors:** Displays an error message if the operation fails and logs the error.
+
+6. **Final Return:** Returns `"success"` if the NFT is created successfully; otherwise, returns `"error"`.
 
 **Step 2: Write the Function for Validate NFT Info Exist**
 
@@ -674,7 +696,6 @@ Now, let's write the Validate NFT Info Exist function.
 // step 7 - Validate a NFT Token on MainChain
 const validateNftToken = async (values: INftParams) => {
   try {
-
     // Start Loading before initiate the transaction
     const validateNFTLoadingId = toast.loading(
       <CustomToast
@@ -683,66 +704,69 @@ const validateNftToken = async (values: INftParams) => {
       />
     );
 
-  // Create an object with the necessary information for token validation.
-  const validateInput = {
-    symbol: values.symbol,
-    tokenName: values.tokenName,
-    totalSupply: values.totalSupply,
-    issuer: currentWalletAddress,
-    isBurnable: true,
-    issueChainId: sidechain_from_chain_id,
-    owner: currentWalletAddress,
-    externalInfo: {},
-  };
+    // Create an object with the necessary information for token validation.
+    const validateInput = {
+      symbol: values.symbol,
+      tokenName: values.tokenName,
+      totalSupply: values.totalSupply,
+      issuer: currentWalletAddress,
+      isBurnable: true,
+      issueChainId: sidechain_from_chain_id,
+      owner: currentWalletAddress,
+      externalInfo: {},
+    };
 
-  // get mainnet contract
-  const aelfTokenContract = await getTokenContract(aelf, wallet);
+    // get mainnet contract
+    const aelfTokenContract = await getTokenContract(aelf, wallet);
 
-  // prepare Sign the transaction using contract method (ValidateTokenInfoExists Function)
-  const signedTx = aelfTokenContract.ValidateTokenInfoExists.getSignedTx(validateInput);
+    // prepare Sign the transaction using contract method (ValidateTokenInfoExists Function)
+    const signedTx =
+      aelfTokenContract.ValidateTokenInfoExists.getSignedTx(validateInput);
 
-  // send the transaction using signed Transaction
-  const { TransactionId: VALIDATE_TXID } = await aelf.chain.sendTransaction(signedTx);
+    // send the transaction using signed Transaction
+    const { TransactionId: VALIDATE_TXID } = await aelf.chain.sendTransaction(
+      signedTx
+    );
 
-  await delay(3000);
+    await delay(3000);
 
-  // get Validate Result
-  let VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
+    // get Validate Result
+    let VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
 
-  await delay(3000);
+    await delay(3000);
 
-  // if SideChain index has a MainChain height greater than validateTokenInfoExist's
-  let heightDone = false;
+    // if SideChain index has a MainChain height greater than validateTokenInfoExist's
+    let heightDone = false;
 
-  while (!heightDone) {
-    // get latest index Hight
-    const sideIndexMainHeight = await GetParentChainHeight();
-    if (
-      // check the latest index Hight is grater than or equal 
-      sideIndexMainHeight >= VALIDATE_TXRESULT.Transaction.RefBlockNumber
-    ) {
-      VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
-      heightDone = true;
+    while (!heightDone) {
+      // get latest index Hight
+      const sideIndexMainHeight = await GetParentChainHeight();
+      if (
+        // check the latest index Hight is grater than or equal
+        sideIndexMainHeight >= VALIDATE_TXRESULT.Transaction.RefBlockNumber
+      ) {
+        VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
+        heightDone = true;
+      }
     }
-  }
 
-  console.log(VALIDATE_TXRESULT, "VALIDATE_TXRESULT=====2");
+    console.log(VALIDATE_TXRESULT, "VALIDATE_TXRESULT=====2");
 
-  const merklePath = await getMerklePathByTxId(aelf, VALIDATE_TXID);
+    const merklePath = await getMerklePathByTxId(aelf, VALIDATE_TXID);
 
-  toast.update(validateNFTLoadingId, {
-    render: "Validating NFT Successfully Executed",
-    type: "success",
-    isLoading: false,
-  });
-  removeNotification(validateNFTLoadingId);
+    toast.update(validateNFTLoadingId, {
+      render: "Validating NFT Successfully Executed",
+      type: "success",
+      isLoading: false,
+    });
+    removeNotification(validateNFTLoadingId);
 
-  // return necessary values
-  return {
-    parentChainHeight: VALIDATE_TXRESULT.BlockNumber,
-    signedTx: signedTx,
-    merklePath: merklePath,
-  };
+    // return necessary values
+    return {
+      parentChainHeight: VALIDATE_TXRESULT.BlockNumber,
+      signedTx: signedTx,
+      merklePath: merklePath,
+    };
   } catch (error) {
     console.log("error======", error);
     return "error";
@@ -752,9 +776,21 @@ const validateNftToken = async (values: INftParams) => {
 
 #### Here's what the function does:
 
-```
----
-```
+1. **Displays Loading Toast:** Shows a notification indicating that the NFT validation is in progress on the blockchain.
+
+2. **Prepares Validation Input:** Constructs the input parameters needed for validating the NFT token.
+
+3. **Gets Token Contract:** Retrieves the token contract instance from the MainChain.
+
+4. **Signs and Sends Transaction:** Signs the transaction to validate the token info and sends it to the blockchain.
+
+5. **Polls for Transaction Result:** Waits for the transaction result and ensures the transaction has reached the required block height.
+
+6. **Fetches Merkle Path:** Retrieves the Merkle path for the validated transaction.
+
+7. **Handles Success:** Updates the notification to show successful validation and returns necessary values.
+
+8. **Handles Errors:** Logs errors and returns `"error"` if something goes wrong.
 
 **Step 3: Write a Function for Create NFT on SideChain**
 
@@ -775,9 +811,7 @@ const createNftTokenOnSideChain = async (values: INftValidateResult) => {
     const CROSS_CHAIN_CREATE_TOKEN_PARAMS = {
       fromChainId: mainchain_from_chain_id,
       parentChainHeight: values.parentChainHeight,
-      transactionBytes: Buffer.from(values.signedTx, "hex").toString(
-        "base64"
-      ),
+      transactionBytes: Buffer.from(values.signedTx, "hex").toString("base64"),
       merklePath: values.merklePath,
     };
 
@@ -803,9 +837,15 @@ const createNftTokenOnSideChain = async (values: INftValidateResult) => {
 
 #### Here's what the function does:
 
-```
----
-```
+1. **Displays Loading Toast:** Shows a notification indicating that the NFT is being created on the SideChain.
+
+2. **Prepares Cross-Chain Transaction Parameters:** Constructs the parameters needed for creating the NFT on the SideChain, including chain IDs, block height, transaction data, and Merkle path.
+
+3. **Calls Smart Contract Method:** Sends the transaction to the SideChain smart contract to create the NFT.
+
+4. **Handles Success:** Updates the notification to show successful NFT creation on the SideChain.
+
+5. **Handles Errors:** Logs errors and returns `"error"` if something goes wrong.
 
 **Step 4: Write a Function for Issue NFT Token which has been Created on SideChain.**
 
@@ -859,9 +899,15 @@ const issueNftOnSideChain = async (values: {
 
 #### Here's what the function does:
 
-```
----
-```
+1. **Displays Loading Toast:** Shows a notification indicating that the NFT is being issued on the SideChain.
+
+2. **Prepares Issuance Input:** Constructs the input parameters for issuing the NFT, including symbol, amount, memo, and recipient address.
+
+3. **Calls Smart Contract Method:** Sends the transaction to the SideChain smart contract to issue the NFT.
+
+4. **Handles Success:** Updates the notification to show successful issuance and notifies the user that the NFT will appear in their wallet.
+
+5. **Handles Errors:** Logs and displays any error messages, updates the transaction status, and returns `"error"`.
 
 **Step 4: Create a Function to Call Necessary Functions for NFT Creation**
 
@@ -914,9 +960,15 @@ const createNftToken = async (values: INftParams) => {
 
 #### Here's what the function does:
 
-```
----
-```
+1. **Creates NFT on MainChain:** Calls `createNFTOnMainChain` to create the NFT on the MainChain. If it fails, it updates the transaction status and exits.
+
+2. **Validates NFT Token:** Waits for 3 seconds, then calls `validateNftToken` to validate the NFT. If validation fails, it updates the transaction status and exits.
+
+3. **Creates NFT on SideChain:** Calls `createNftTokenOnSideChain` to create the NFT on the SideChain using the validated data. If it fails, it updates the transaction status and exits.
+
+4. **Issues NFT on SideChain:** Calls `issueNftOnSideChain` to issue the NFT. Updates the transaction status to false after completion.
+
+5. **Handles Errors:** Catches and logs any errors, updates the transaction status, and displays an error notification.
 
 ### Configure Submit Form
 
@@ -931,12 +983,11 @@ Now, let's Write a Function to Call Necessary Functions for NFT Creation.
 const onSubmit = async (values: z.infer<typeof formSchema>) => {
   setTransactionStatus(true);
 
-  if (isNftCollectionCreated) { // Already Collection Created
+  if (isNftCollectionCreated) {
+    // Already Collection Created
     // create NFT Token
     await createNftToken(values);
-      
   } else {
-      
     // create NFT Collection on MainChain
     const createResult = await createNftCollectionOnMainChain(values);
 
@@ -966,9 +1017,15 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
 
 #### Here's what the function does:
 
-```
----
-```
+1. **Starts Transaction:** Sets the transaction status to true.
+
+2. **Checks NFT Collection Status:** If the NFT collection is already created, calls `createNftToken` to create the NFT token.
+
+3. **Creates and Validates NFT Collection:** If the collection isn’t created, calls `createNftCollectionOnMainChain` to create it. If successful, validates the NFT collection with `validateNftCollectionInfo`.
+
+4. **Creates Collection on SideChain:** If validation is successful, calls `createCollectionOnSideChain` to create the collection on the SideChain.
+
+5. **Handles Errors:** Updates the transaction status to false and exits if any step fails.
 
 ### Fetch NFT Data
 
@@ -990,8 +1047,8 @@ Let's write the Function for the fetch NFT data from user's Wallet using API.
 // Function to get the balance of a specific NFT
 const getBalanceOfNft = async (
   values: {
-    symbol: string;
-    owner: string;
+    symbol: string,
+    owner: string,
   },
   sideChainSmartContract: any
 ): Promise<number> => {
@@ -1084,7 +1141,6 @@ We have Prepared all necessary function for fetch NFT Data from User's Wallet.
 
 Now, Let's call **`fetchUserNftData`** on necessary page.
 
-
 **Step 3: Call fetchUserNftData Functions on Home Page**
 
 - go to the `src/pages/home/index.tsx` file.
@@ -1135,7 +1191,7 @@ const getNFTData = async () => {
 
 ### Transfer NFT Token
 
-As we have completed `Create` and `Fetch NFT` so now it's time to `Transfer NFT`. 
+As we have completed `Create` and `Fetch NFT` so now it's time to `Transfer NFT`.
 
 So now let's **Transfer NFT** to other wallet now.
 
@@ -1151,14 +1207,18 @@ So now let's **Transfer NFT** to other wallet now.
 
 ```javascript title="transfer-nft/index.tsx"
 // Configure NFT Transfer Form
-const form = useForm<z.infer<typeof formSchema>>({
-  resolver: zodResolver(formSchema),
-  defaultValues: {
-    address: "",
-    amount: 0,
-    memo: "",
-  },
-});
+const form =
+  useForm <
+  z.infer <
+  typeof formSchema >>
+    {
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        address: "",
+        amount: 0,
+        memo: "",
+      },
+    };
 ```
 
 #### Here's what the function does:
@@ -1228,14 +1288,13 @@ const transferNftToOtherAccount = async (values: {
 2.  Replace the form variable with this code snippet:
 
 ```javascript title=""
-  // Handle Transfer Submit Form
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    transferNftToOtherAccount(values);
-  }
+// Handle Transfer Submit Form
+function onSubmit(values: z.infer<typeof formSchema>) {
+  transferNftToOtherAccount(values);
+}
 ```
 
 Now that we've written all the necessary frontend functions and components, we're ready to run the NFT dApp application in the next step.
-
 
 ### Run Application
 
@@ -1270,6 +1329,7 @@ If you are developing and testing this with GitHub codespace, you can use Port F
 - Click the link to open the NFT dApp in the browser.
 
   ![nft-home-page](/img/nft-home-page.png)
+
 ## Step 4 - Interact with Deployed Multi-Token Smart Contract
 
 For this NFT contract, you don't need to write a separate contract. Instead, you'll use an already deployed Multi-Token Contract with the following functions.
@@ -1299,6 +1359,10 @@ aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_A
 :::
 
 ### 4.3 Create NFT Collection on SideChain
+
+:::tip
+ℹ️ Note: This step cannot be executed via the command line interface (CLI).
+:::
 
 ```bash
 aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io CrossChainCreateToken
