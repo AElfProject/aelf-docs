@@ -451,10 +451,11 @@ Next, we'll write the **Get the parent chain height** function.
 // This function fetches the current height of the parent blockchain.
 const GetParentChainHeight = async () => {
   try {
+    const tdvwCrossChainContract = await getCrossChainContract(tdvw, wallet);
     // Call the smart contract method to get the parent chain height.
-    const result = await sideChainSmartContract?.callViewMethod("GetParentChainHeight","");
+    const result = await tdvwCrossChainContract.GetParentChainHeight.call() 
     // Return the parent chain height if it exists, otherwise return an empty string.
-    return result ? (result.data.value as string) : "";
+    return result ? (result.value as string) : "";
   } catch (error: any) {
     // If there's an error, log it and return an error status.
     console.error(error, "=====error in GetParentChainHeight");
