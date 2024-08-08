@@ -48,18 +48,18 @@ Let's start by cloning the frontend project repository from GitHub.
 - Run the following command in the `nft_aelf` directory:
 
 ```bash title="Terminal"
-git clone ---
+git clone https://github.com/AElfProject/nft-tutorial.git
 ```
 
 - Next, navigate to the frontend project directory with this command:
 
 ```bash title="Terminal"
-cd `nft-contract`-frontend
+cd `nft-tutorial`
 ```
 
-- Once you're in the `nft-contract-frontend` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
+- Once you're in the `nft-tutorial` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
-  ![result](/img/vote-fe-directory.png)
+  ![result](/img/nft-fe-directory.png)
 
 #### Install necessary libraries
 
@@ -610,7 +610,7 @@ Now, let's write the Create NFT on MainChain function for the form submission.
 
 2. Replace the existing **`createNFTOnMainChain`** function with this code snippet:
 
-```javascript title="src/CreateProposal.tsx"
+```javascript title="create-nft/index.tsx"
 // step 6 - Create a NFT on MainChain
 const createNFTOnMainChain = async (values: {
   tokenName: string;
@@ -692,7 +692,7 @@ Now, let's write the Validate NFT Info Exist function.
 
 2. Replace the existing **`validateNftToken`** function with this code snippet:
 
-```javascript title="src/CreateProposal.tsx"
+```javascript title="create-nft/index.tsx"
 // step 7 - Validate a NFT Token on MainChain
 const validateNftToken = async (values: INftParams) => {
   try {
@@ -800,7 +800,7 @@ Now, let's write the Create NFT on SideChain function.
 
 2. Replace the existing **`createNftTokenOnSideChain`** function with this code snippet:
 
-```javascript title="src/CreateProposal.tsx"
+```javascript title="create-nft/index.tsx"
 // step 8 - Create a NFT on SideChain.
 const createNftTokenOnSideChain = async (values: INftValidateResult) => {
   try {
@@ -855,7 +855,7 @@ Now, let's write the Issue NFT Function.
 
 2. Replace the existing **`issueNftOnSideChain`** function with this code snippet:
 
-```javascript title="src/CreateProposal.tsx"
+```javascript title="create-nft/index.tsx"
 // step 9 - Issue a NFT Function which has been Created on SideChain
 const issueNftOnSideChain = async (values: {
   symbol: string;
@@ -909,7 +909,7 @@ const issueNftOnSideChain = async (values: {
 
 5. **Handles Errors:** Logs and displays any error messages, updates the transaction status, and returns `"error"`.
 
-**Step 4: Create a Function to Call Necessary Functions for NFT Creation**
+**Step 5: Create a Function to Call Necessary Functions for NFT Creation**
 
 Now, let's write the createNftToken Function.
 
@@ -917,7 +917,7 @@ Now, let's write the createNftToken Function.
 
 2. Replace the existing **`createNftToken`** function with this code snippet:
 
-```javascript title="src/CreateProposal.tsx"
+```javascript title="create-nft/index.tsx"
 // step 10 - Call Necessary Function for Create NFT
 const createNftToken = async (values: INftParams) => {
   try {
@@ -978,7 +978,7 @@ Now, let's Write a Function to Call Necessary Functions for NFT Creation.
 
 2. Replace the existing **`onSubmit`** function with this code snippet:
 
-```javascript title="src/CreateProposal.tsx"
+```javascript title="create-nft/index.tsx"
 //Step 11 - Handle Submit Form
 const onSubmit = async (values: z.infer<typeof formSchema>) => {
   setTransactionStatus(true);
@@ -1058,11 +1058,6 @@ const getBalanceOfNft = async (
   return data.balance;
 };
 ```
-
-- Find the comment `// Function to fetch balance information for an array of NFTs`.
-
-- Replace the existing **`fetchNftBalances`** function with this code snippet:
-
 #### Here's what the function does:
 
 1. **Retrieves NFT Balance:** The function `getBalanceOfNft` fetches the balance of a specific NFT for a given owner.
@@ -1071,6 +1066,11 @@ const getBalanceOfNft = async (
    - `sideChainSmartContract`: An instance of the side chain smart contract.
 3. **Calls View Method:** It calls the `getBalance` view method on the side chain smart contract with the provided `values`.
 4. **Returns Balance:** It extracts the `balance` from the response and returns it as a number.
+---
+- Find the comment `// Function to fetch balance information for an array of NFTs`.
+
+- Replace the existing **`fetchNftBalances`** function with this code snippet:
+
 
 ```javascript title="commonFunctions.ts"
 // Function to fetch balance information for an array of NFTs
@@ -1095,11 +1095,6 @@ const fetchNftBalances = async (
   return nftDataWithBalances;
 };
 ```
-
-- Find the comment `// fetch NFT Data from eforest API`.
-
-- Replace the existing **`fetchUserNftData`** function with this code snippet:
-
 #### Here's what the function does:
 
 1. **Fetches Balances for Multiple NFTs:** The function `fetchNftBalances` retrieves balance information for an array of NFTs for a specific owner.
@@ -1110,6 +1105,12 @@ const fetchNftBalances = async (
 3. **Maps NFTs to Balances:** It uses `Promise.all` to concurrently fetch the balance for each NFT by calling the `getBalanceOfNft` function.
 4. **Combines NFT Data with Balances:** For each NFT, it combines the existing NFT data with the fetched balance.
 5. **Returns Updated NFT Array:** It returns a new array of `Nft` objects, each including its respective balance.
+
+--- 
+
+- Find the comment `// fetch NFT Data from eforest API`.
+
+- Replace the existing **`fetchUserNftData`** function with this code snippet:
 
 ```javascript title="commonFunctions.ts"
 // fetch NFT Data from eforest API
@@ -1157,10 +1158,6 @@ export const fetchUserNftData = async (
 };
 ```
 
-We have Prepared all necessary function for fetch NFT Data from User's Wallet.
-
-Now, Let's call **`fetchUserNftData`** on necessary page.
-
 #### Here's what the function does:
 
 1. **Fetches User NFT Data:** The function `fetchUserNftData` retrieves NFT data for a specific user from the eforest API and fetches balance information for each NFT.
@@ -1173,6 +1170,10 @@ Now, Let's call **`fetchUserNftData`** on necessary page.
 6. **Fetches NFT Balances:** It calls `fetchNftBalances` to get the balance for each NFT in the response data.
 7. **Returns Updated NFT Data:** It returns the updated NFT data, each including its respective balance.
 8. **Handles Errors:** If any error occurs during the process, it logs the error and returns the string "error".
+
+We have Prepared all necessary function for fetch NFT Data from User's Wallet.
+
+Now, Let's call **`fetchUserNftData`** on necessary page.
 
 
 **Step 3: Call fetchUserNftData Functions on Home Page**
@@ -1264,7 +1265,7 @@ const form =
       resolver: zodResolver(formSchema),
       defaultValues: {
         address: "",
-        amount: 0,
+        amount: "",
         memo: "",
       },
     };
@@ -1288,7 +1289,7 @@ Now your form is ready for users to fill in the necessary details for their NFTs
 // Transfer NFT to Other Wallet
 const transferNftToOtherAccount = async (values: {
   address: string;
-  amount: number;
+  amount: string;
   memo: string;
 }) => {
 
@@ -1504,6 +1505,8 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
     - Validating Token Successfully Executed.
     - Collection was Created Successfully On SideChain.
 
+**Create NFT Token**
+
 - Once you done with create collection process the Now, It's time to Create NFT.
 
   ![create-nft-form](/img/create-nft-form.png)
@@ -1529,7 +1532,32 @@ Please make sure the Symbol will be change to `[your_symbol]-id`. ie `VARBFUXYTY
 
   ![home-nft-page](/img/home-nft-page.png)
 
+- You will also able you access you NFT data on your **Profile Page**.
+
+  ![profile-page](/img/profile-page.png)
   
+**Transfer NFT Token**
+
+- Once you get NFT in your account like above image then it's time to transfer NFT to another account.
+
+- Please Click on **"Transfer NFT"** Button.
+
+  ![transfer-button](/img/transfer-button.png)
+
+- Now you will be redirected to **Transfer NFT page**.
+
+- Please Fill all the Necessary Fields for Transfer NFT to another account like below image 👇.
+
+  ![transfer-nft-page](/img/transfer-nft-page.png)
+
+- Click on **Transfer NFT** button.
+
+- Your NFT Transfer Successfully to another account.
+
+:::success
+🎉 Congratulations Learners! You have successfully built your NFT dApp and this is no mean feat!
+:::
+
 ## Step 4 - Interact with Deployed Multi-Token Smart Contract
 
 For this NFT contract, you don't need to write a separate contract. Instead, you'll use an already deployed Multi-Token Contract with the following functions.
@@ -1613,3 +1641,43 @@ aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_A
 ```bash
 aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Transfer
 ```
+
+
+## 🎯 Conclusion
+
+🎊 Congratulations on successfully setting up your development environment and interacting with your deployed smart contract! 🎊 You've laid a strong foundation for creating innovative applications on the aelf blockchain. 🌟
+
+**📚 What You've Learned**
+
+Throughout this section, you've acquired essential skills in:
+
+  - **🛠️ Setting Up Your Development Environment**: You installed necessary tools like the .NET SDK, aelf contract templates, and the aelf deploy tool to prepare for smart contract development.
+
+  - **📦 Installing Node.js, Yarn, and aelf-command**: These tools enable efficient interaction with the aelf blockchain, facilitating wallet creation and transaction management.
+
+  - **💡 Getting NFT Seed**: You learned how to obtain an NFT seed from the NFT Faucet, a critical step for creating NFT collections.
+
+  - **🔧 Configuring Frontend Integration**: You cloned a frontend project and configured it to connect with your smart contract, allowing for seamless user interaction with your dApp.
+
+**🔍 Final Output**
+
+By now, you should have:
+
+  - 📜 Successfully set up your development environment and installed all required packages.
+
+  - 💻 Configured your frontend to interact with the NFT smart contract, enabling functionalities like creating and transferring NFTs.
+
+**➡️ What's Next?**
+
+With a solid understanding of environment setup and contract interaction, you're ready to explore more advanced aspects of blockchain development. Consider delving into:
+
+  - **📊 Advanced Smart Contract Logic**: Enhance your contracts with complex features and security measures.
+
+  - **🔒 Security Protocols**: Implement robust security protocols to safeguard your applications and smart contracts.
+
+  - **🌐 Cross-Chain Interoperability**: Explore how aelf facilitates communication between different blockchains, broadening your development capabilities.
+
+Keep pushing the boundaries of blockchain technology with aelf. Your journey is just beginning, and the potential for innovation in decentralized applications is vast. 🚀
+
+Happy coding and building on the aelf blockchain! 😊
+
