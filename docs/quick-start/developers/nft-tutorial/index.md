@@ -1063,6 +1063,15 @@ const getBalanceOfNft = async (
 
 - Replace the existing **`fetchNftBalances`** function with this code snippet:
 
+#### Here's what the function does:
+
+1. **Retrieves NFT Balance:** The function `getBalanceOfNft` fetches the balance of a specific NFT for a given owner.
+2. **Parameters:** It takes two parameters:
+   - `values`: An object containing the `symbol` of the NFT and the `owner` address.
+   - `sideChainSmartContract`: An instance of the side chain smart contract.
+3. **Calls View Method:** It calls the `getBalance` view method on the side chain smart contract with the provided `values`.
+4. **Returns Balance:** It extracts the `balance` from the response and returns it as a number.
+
 ```javascript title="commonFunctions.ts"
 // Function to fetch balance information for an array of NFTs
 const fetchNftBalances = async (
@@ -1090,6 +1099,17 @@ const fetchNftBalances = async (
 - Find the comment `// fetch NFT Data from eforest API`.
 
 - Replace the existing **`fetchUserNftData`** function with this code snippet:
+
+#### Here's what the function does:
+
+1. **Fetches Balances for Multiple NFTs:** The function `fetchNftBalances` retrieves balance information for an array of NFTs for a specific owner.
+2. **Parameters:** It takes three parameters:
+   - `nfts`: An array of `Nft` objects, each representing an NFT.
+   - `ownerAddress`: A string representing the address of the owner.
+   - `sideChainSmartContract`: An instance of the side chain smart contract.
+3. **Maps NFTs to Balances:** It uses `Promise.all` to concurrently fetch the balance for each NFT by calling the `getBalanceOfNft` function.
+4. **Combines NFT Data with Balances:** For each NFT, it combines the existing NFT data with the fetched balance.
+5. **Returns Updated NFT Array:** It returns a new array of `Nft` objects, each including its respective balance.
 
 ```javascript title="commonFunctions.ts"
 // fetch NFT Data from eforest API
@@ -1141,6 +1161,20 @@ We have Prepared all necessary function for fetch NFT Data from User's Wallet.
 
 Now, Let's call **`fetchUserNftData`** on necessary page.
 
+#### Here's what the function does:
+
+1. **Fetches User NFT Data:** The function `fetchUserNftData` retrieves NFT data for a specific user from the eforest API and fetches balance information for each NFT.
+2. **Parameters:** It takes two parameters:
+   - `currentWalletAddress`: A string representing the wallet address of the user.
+   - `sideChainSmartContract`: An instance of the side chain smart contract.
+3. **API Request:** It makes a POST request to the eforest API endpoint `https://test.eforest.finance/api/app/nft/nft-infos-user-profile/myhold` with the user's wallet address and some other parameters.
+4. **Checks Response:** It checks if the response from the API is okay. If not, it throws an error.
+5. **Parses Response:** It parses the JSON response from the API.
+6. **Fetches NFT Balances:** It calls `fetchNftBalances` to get the balance for each NFT in the response data.
+7. **Returns Updated NFT Data:** It returns the updated NFT data, each including its respective balance.
+8. **Handles Errors:** If any error occurs during the process, it logs the error and returns the string "error".
+
+
 **Step 3: Call fetchUserNftData Functions on Home Page**
 
 - go to the `src/pages/home/index.tsx` file.
@@ -1164,6 +1198,13 @@ const getNFTData = async () => {
   setLoading(false);
 };
 ```
+#### Here's what the function does:
+
+1. **Fetches NFT Data:** The function `getNFTData` retrieves NFT data from the user's wallet.
+2. **Calls Fetch Function:** It calls the `fetchUserNftData` function with the `currentWalletAddress` and `sideChainSmartContract` parameters.
+3. **Handles Result:** It checks the result:
+   - If the result is not "error", it updates the state with the fetched NFT data by calling `setUserNfts(result)`.
+4. **Updates Loading State:** Regardless of the result, it sets the loading state to false by calling `setLoading(false)`.
 
 **Step 4: Call fetchUserNftData Functions on Profile Page**
 
@@ -1188,6 +1229,14 @@ const getNFTData = async () => {
   setLoading(false);
 };
 ```
+#### Here's what the function does:
+
+1. **Fetches NFT Data:** The function `getNFTData` retrieves NFT data from the user's wallet.
+2. **Calls Fetch Function:** It calls the `fetchUserNftData` function with `currentWalletAddress` and `sideChainSmartContract` as arguments.
+3. **Handles Successful Result:** If the result from `fetchUserNftData` is not "error":
+   - It updates the user's NFTs by calling `setUserNfts(result)`.
+4. **Updates Loading State:** It sets the loading state to false by calling `setLoading(false)`, regardless of whether the fetch was successful or not.
+
 
 ### Transfer NFT Token
 
@@ -1280,6 +1329,25 @@ const transferNftToOtherAccount = async (values: {
   }
 };
 ```
+#### Here's what the function does:
+
+1. **Transfers NFT to Another Wallet:** The function `transferNftToOtherAccount` transfers a specified amount of an NFT to another wallet.
+2. **Parameters:** It takes a `values` object containing:
+   - `address`: The destination wallet address.
+   - `amount`: The amount of NFT to transfer.
+   - `memo`: An optional memo for the transfer.
+3. **Checks Balance:** It checks if the transfer amount is greater than the available `nftBalance`. If it is, it shows an error message and exits the function.
+4. **Displays Loading Toast:** It displays a loading toast notification indicating that the transfer transaction is executing.
+5. **Prepares Transfer Data:** It prepares the transfer data in the `transferNtfInput` object, which includes the destination address, NFT symbol, transfer amount, and memo.
+6. **Executes Transfer:** It calls the `Transfer` method on the side chain smart contract to execute the transfer.
+7. **Success Handling:** If the transfer is successful:
+   - It updates the toast notification to indicate success.
+   - It removes the loading notification.
+   - It waits for 3 seconds using `await delay(3000)`.
+   - It calls `handleReturnClick` to handle any post-transfer actions.
+8. **Error Handling:** If an error occurs during the transfer:
+   - It logs the error message to the console.
+   - It displays an error toast notification with the error message.
 
 **Step 4: Configure on handle Submit Form**
 
@@ -1293,6 +1361,11 @@ function onSubmit(values: z.infer<typeof formSchema>) {
   transferNftToOtherAccount(values);
 }
 ```
+#### Here's what the function does:
+
+1. **Handles Form Submission:** The function `onSubmit` handles the submission of a transfer form.
+2. **Parameters:** It takes `values`, which is inferred from the `formSchema` and represents the form's data.
+3. **Calls Transfer Function:** It calls the `transferNftToOtherAccount` function with the form values to initiate the NFT transfer.
 
 Now that we've written all the necessary frontend functions and components, we're ready to run the NFT dApp application in the next step.
 
