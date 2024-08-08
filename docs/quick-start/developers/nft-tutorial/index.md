@@ -4,7 +4,7 @@ title: NFT Tutorial Contract
 description: Moderate smart contract
 ---
 
-**Description**: This tutorial demonstrates using a multi-token contract for NFT collection creation, NFT creation, NFT transfers, and NFT burning to eventually create a basic NFT.
+**Description**: This tutorial demonstrates using a multi-token contract for NFT collection creation, NFT creation, and NFT transfers to eventually create a basic NFT.
 
 **Purpose**: To introduce you to multi-token contracts, NFT creation, and transfer in smart contracts.
 
