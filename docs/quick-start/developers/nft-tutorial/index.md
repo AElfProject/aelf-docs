@@ -226,19 +226,15 @@ With the Connect Wallet function defined, we're ready to write the remaining fun
 
 ```javascript title="create-nft/index.tsx"
 // Step D - Configure NFT Form
-const form =
-  useForm <
-  z.infer <
-  typeof formSchema >>
-    {
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-        tokenName: "",
-        symbol: "",
-        totalSupply: "",
-        decimals: "",
-      },
-    };
+const form = useForm<z.infer<typeof formSchema>>({
+  resolver: zodResolver(formSchema),
+  defaultValues: {
+    tokenName: "",
+    symbol: "",
+    totalSupply: "",
+    decimals: "",
+  },
+}); 
 ```
 
 #### Here's what the function does:
@@ -253,11 +249,7 @@ Now your form is ready for users to fill in the necessary details for their NFTs
 
 Let's write the Create New NFT Collection on MainChain and SideChain Functions
 
-**Step 1: Locate the File**
-
-- go to the `src/pages/create-nft/index.tsx` file.
-
-**Step 2: Write the Create New NFT Collection on MainChain Function**
+**Step 1: Write the Create New NFT Collection on MainChain Function**
 
 - The `create-nft/index.tsx` file is create page of our NFT dApp. It allows users to create a new NFTs.
 
@@ -341,7 +333,7 @@ const createNftCollectionOnMainChain = async (values: {
 
 Next, we'll write the **Validate Collection Info Exist** function.
 
-**Step 3: Write the Validates Collection Info Exist Function**
+**Step 2: Write the Validates Collection Info Exist Function**
 
 - Scroll up to find the comment `// step 2 - Validate Collection information existence`.
 
@@ -440,7 +432,7 @@ const validateNftCollectionInfo = async (values: INftInput) => {
 
 Next, we'll write the **Get the parent chain height** function.
 
-**Step 4: Write the Get the parent chain height Function**
+**Step 3: Write the Get the parent chain height Function**
 
 - Scroll up to find the comment `// Step 3: Get the parent chain height`.
 
@@ -472,7 +464,7 @@ const GetParentChainHeight = async () => {
 
 Next, we'll write the **Fetch the Merkle path** function.
 
-**Step 5: Write the Fetch the Merkle path Function**
+**Step 4: Write the Fetch the Merkle path Function**
 
 - Scroll up to find the comment `// step 4 - Fetch the Merkle path by Transaction Id`.
 
@@ -517,7 +509,7 @@ const getMerklePathByTxId = async (aelf: any, txId: string) => {
 
 Next, we'll write the **Create a Collection on the cross-chain** function.
 
-**Step 6: Write a Function for Create Collection on the Side Chain**
+**Step 5: Write a Function for Create Collection on the Side Chain**
 
 - Scroll up to find the comment `// step 5 - Create a Collection on SideChain`.
 
@@ -1258,18 +1250,14 @@ So now let's **Transfer NFT** to other wallet now.
 
 ```javascript title="transfer-nft/index.tsx"
 // Configure NFT Transfer Form
-const form =
-  useForm <
-  z.infer <
-  typeof formSchema >>
-    {
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-        address: "",
-        amount: "",
-        memo: "",
-      },
-    };
+const form = useForm<z.infer<typeof formSchema>>({
+  resolver: zodResolver(formSchema),
+  defaultValues: {
+    address: "",
+    amount: 0,
+    memo: "",
+  },
+});
 ```
 
 #### Here's what the function does:
