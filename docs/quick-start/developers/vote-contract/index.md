@@ -13,6 +13,8 @@ practices, and efficient data management in smart contracts.
 
 **Difficulty Level**: Difficult
 
+<iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/ZiMAG7gprUY?si=Lg2MfHNpKApdgHc2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Step 1 - Setting up your development environment
 
 import Tabs from '@theme/Tabs';
