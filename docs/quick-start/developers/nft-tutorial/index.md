@@ -56,19 +56,19 @@ cd nft_aelf
 git clone https://github.com/AElfProject/nft-tutorial.git
 ```
 
-- Next, navigate to the frontend project directory with the following command:
+- Next, navigate to the frontend project directory, `nft-tutorial` with the following command:
 
 ```bash title="Terminal"
-cd `nft-tutorial`
+cd nft-tutorial
 ```
 
-- Once you're in the `nft-tutorial` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
+- Once you're inside the `nft-tutorial` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
   ![result](/img/nft-fe-directory.png)
 
-#### Install necessary libraries
+#### Install necessary packages and libraries
 
-- Run this command in the terminal:
+- Run teh following command in the terminal:
 
 <Tabs>
 <TabItem value="Linux and macOs" label="Linux and macOs" default>
@@ -88,7 +88,7 @@ We are now ready to build the frontend components of our NFT dApp.
 
 ### Configure Portkey Provider & Write Connect Wallet Function
 
-We'll set up our Portkey provider to allow users to connect their Portkey wallets to our app and interact with our NFT smart contract.
+We'll set up our Portkey provider to allow users to connect their Portkey wallets to our app and interact with the aelf smart contracts. We'll be interacting with the already deployed multi-token contract for this tutorial.
 
 **Step 1. Locate the File:**
 
@@ -96,12 +96,12 @@ We'll set up our Portkey provider to allow users to connect their Portkey wallet
 
 **Step 2. Fetch the Smart Contract:**
 
-- Find the comment `//Step A - Function to fetch a smart contract based on chain symbol and contract address.`
+- Find the comment `//Step A - Function to fetch a smart contract based on the chain symbol and the contract address.`
 
 - Replace the existing **`fetchContract`** function with this updated code:
 
 ```javascript title="useNFTSmartContract.ts"
-//Step A - Function to fetch a smart contract based on chain symbol and contract address
+//Step A - Function to fetch a smart contract based on the chain symbol and the contract address
 const fetchContract = async (
   symbol: "AELF" | "tDVW",
   contractAddress: string
@@ -127,7 +127,7 @@ const fetchContract = async (
 
 **Explanation:**
 
-- **`fetchContract`** **Function**: This function fetches a smart contract based on the given chain symbol (e.g., "AELF" or "tDVW") and contract address.
+- **`fetchContract`** **Function**: This function fetches a smart contract based on the given chain symbol (e.g., "AELF" or "tDVW") and the contract address.
 
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Chain** : The function fetches chain information using the provider.
@@ -170,19 +170,19 @@ const fetchContract = async (
     - **MainChain Contract** : Fetches the MainChain Testnet Contract and sets it in the state.
     - **SideChain Contract** : Fetches the SideChain Testnet Contract and sets it in the state.
 
-By following these steps, you'll configure the Portkey provider to connect users' wallets to your app and interact with the NFT smart contract. This setup will enable our frontend components to perform actions like creating NFTs, validating NFTs, and transferring NFTs.
+By following these steps, we'll configure the Portkey provider to connect users' wallets to your app and interact with the multi-token smart contract including NFT related functionalities. This setup will enable our frontend components to perform actions like `create NFTs`, `validate NFTs`, and `transfer NFTs`.
 
 ### Configure Connect Wallet Function
 
 **Step 1: Locate the File**
 
-- go to the `src/components/layout/header/index.tsx` file.
+- Go to the `src/components/layout/header/index.tsx` file.
 
 **Step 2: Write the Connect Wallet Function**
 
-- The `header/index.tsx` file is the header of our NFT dApp. It allows users to interact with the wallet connection.
+- The `header/index.tsx` file is the header of our NFT dApp. It allows users to connect their Portkey wallet with the NFT dApp.
 
-- Before users can interact with the smart contract, we need to write the Connect Wallet function.
+- Before users can interact with the smart contract, we need to write the `Connect Wallet` function.
 
 - Find the comment `// Step C - Connect Portkey Wallet`.
 
@@ -205,7 +205,7 @@ const connect = async (walletProvider?: IPortkeyProvider) => {
 
 **Explanation:**
 
-- **`connect`** **Function** : This function connects the user's Portkey wallet.
+- **`connect`** **Function** : This function connects the user's Portkey wallet with the dApp.
 
   - **Fetch Accounts** : It fetches the wallet accounts using the provider.
   - **Log Accounts** : Logs the accounts to the console for debugging.
@@ -221,9 +221,9 @@ With the Connect Wallet function defined, we're ready to write the remaining fun
 
 **Step 1: Locate the File**
 
-1. go to the `src/pages/create-nft/index.tsx` file. This file is the **Create NFTs** page where users can enter details like the `tokenName`, `symbol`, `totalSupply` and `decimals`.
+1. Go to the `src/pages/create-nft/index.tsx` file. This file is the **Create NFTs** page where users can enter details like the `tokenName`, `symbol`, `totalSupply` and `decimals`.
 
-**Step 2: Prepare Form for Create NFT**
+**Step 2: Prepare Form to Create NFTs**
 
 1.  Find the comment `// Step D - Configure NFT Form`.
 
@@ -248,22 +248,22 @@ const form = useForm<z.infer<typeof formSchema>>({
 
 2. Fields include: `tokenName` , `symbol` , `totalSupply` , and `decimals`.
 
-Now your form is ready for users to fill in the necessary details for their NFTs function Interaction.
+Now the form is ready for users to fill in the necessary details for their NFT function interaction.
 
 ### Create NFT Collection
 
-Let's write the Create New NFT Collection on MainChain and SideChain Functions
+Let's write the functions to `Create New NFT Collection` on the aelf mainchain and the sidechain.
 
-**Step 1: Write the Create New NFT Collection on MainChain Function**
+**Step 1: Write the function to `Create New NFT Collection` on the MainChain**
 
-- The `create-nft/index.tsx` file is create page of our NFT dApp. It allows users to create a new NFTs.
+- The `create-nft/index.tsx` file includes the code to create NFTs. It allows users to create new NFTs.
 
-- Find the comment `// step 1 - Create New NFT Collection on MainChain Function`.
+- Find the comment `// step 1 - Create New NFT Collection on the mainchain`.
 
 - Replace the existing **`createNftCollectionOnMainChain`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
- // step - 1 Create New NFT Collection on MainChain Function
+ // step - 1 Create New NFT Collection on the mainchain
 const createNftCollectionOnMainChain = async (values: {
   tokenName: string;
   symbol: string;
@@ -314,17 +314,17 @@ const createNftCollectionOnMainChain = async (values: {
 ```
 
 :::tip
-ℹ️ Note: You need to get **symbol** from wallet like Portkey.
+ℹ️ Note: You need to get **symbol** from the Portkey wallet.
 :::
 
 - **Follow Steps to get NFT symbol from Portkey Wallet:**
 
   - Open Portkey Wallet.
   - Go to the NFTs tab.
-  - You will find the SEED that you already got from above steps.
-  - Click on that SEED to see details
-  - You will find the **Token Symbol** on **Token Creation via This Seed** section.
-  - Copy add use that value of Token Symbol.
+  - You will find the SEED that you already got from the above **seed generation** step.
+  - Click on the SEED to see details.
+  - You will find the **Token Symbol** inside the **Token Creation via This Seed** section.
+  - Copy and use that value of the token symbol.
 
 #### What This Function Does:
 
@@ -340,12 +340,12 @@ Next, we'll write the **Validate Collection Info Exist** function.
 
 **Step 2: Write the Validates Collection Info Exist Function**
 
-- Scroll up to find the comment `// step 2 - Validate Collection information existence`.
+- Scroll up to find the comment `// step 2 - Validate Collection information exist`.
 
 - Replace the existing **`validateNftCollectionInfo`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 2 - Validate Collection information existence
+// step 2 - Validate Collection information exist
 // This function validates if the token collection information already exists on the main blockchain.
 const validateNftCollectionInfo = async (values: INftInput) => {
   try {
@@ -431,9 +431,9 @@ const validateNftCollectionInfo = async (values: INftInput) => {
 
 1. **Creates an Object with Validate Collection Details** : It prepares the data needed to validate the token information.
 
-2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to check if the token information already exists using the prepared data.
+2. **Calls Smart Contract Method** : It interacts with the multi-token smart contract method to check if the token information already exists using the prepared data.
 
-3. **Return Values of Object** : It returns necessary values as a object
+3. **Return Values** : It returns necessary values as an object.
 
 Next, we'll write the **Get the parent chain height** function.
 
