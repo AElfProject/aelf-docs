@@ -4,9 +4,9 @@ title: NFT Tutorial Contract
 description: Moderate smart contract
 ---
 
-**Description**: This tutorial demonstrates using a multi-token contract for NFT collection creation, NFT creation, and NFT transfers to eventually create a basic NFT.
+**Description**: This tutorial demonstrates the usage of the aelf's multi-token contract for non-fungible token's (NFT) collection creation, NFT creation, and NFT transfers among various token holders.
 
-**Purpose**: To introduce you to multi-token contracts, NFT creation, and transfer in smart contracts.
+**Purpose**: To introduce you to multi-token contract, NFT collection creation, token generation and transfer with aelf's multi-token smart contracts.
 
 **Difficulty Level**: Moderate
 
@@ -18,7 +18,7 @@ import Setup from "../\_setup.md"
 
 ## Step 2 - Getting NFT Seed
 
-For creating an NFT collection, the deployer wallet must have an **NFT SEED**.
+In order to create an NFT collection on the aelf blockchain, the deployer wallet must have an **NFT SEED**.
 
 - Visit [NFT Faucet](https://faucet-ui.aelf.dev/) to get your NFT SEED.
 
@@ -26,7 +26,7 @@ For creating an NFT collection, the deployer wallet must have an **NFT SEED**.
 
 ![result](/img/Seed.png)
 
-- You will receive the **SEED** in your wallet.
+- After the request is successfully processed, the requestor wallet will receive the **SEED**.
 
 ---
 
@@ -34,24 +34,29 @@ For creating an NFT collection, the deployer wallet must have an **NFT SEED**.
 
 ---
 
-- Please note down this symbol value, as we will need it later when creating the NFT collection and NFT. This will become our **Token Symbol**.
+- Please note this **SEED** symbol value, as it will be needed later while creating the NFT collection and NFT generation. This will become our **Token Symbol**.
 
-## Step 3 - Interact with Your Deployed Smart Contract
+## Step 3 - Interact with aelf's multi-token contract
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ### Project Setup
 
-Let's start by cloning the frontend project repository from GitHub.
+Let's start by creating a separate folder called `nft_aelf`. Move to `nft_aelf` directory using following commands.
 
-- Run the following command in the `nft_aelf` directory:
+```bash title="Terminal"
+mkdir nft_aelf
+cd nft_aelf
+```
+
+- Clone the NFT tutorial github project using the following command inside the `nft_aelf` directory:
 
 ```bash title="Terminal"
 git clone https://github.com/AElfProject/nft-tutorial.git
 ```
 
-- Next, navigate to the frontend project directory with this command:
+- Next, navigate to the frontend project directory with the following command:
 
 ```bash title="Terminal"
 cd `nft-tutorial`
