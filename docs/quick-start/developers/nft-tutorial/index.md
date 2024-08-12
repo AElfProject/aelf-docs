@@ -338,7 +338,7 @@ const createNftCollectionOnMainChain = async (values: {
 
 Next, we'll write the **Validate Collection Info Exist** function.
 
-**Step 2: Write the Validates Collection Info Exist Function**
+**Step 2: Write the validates collection info exist function**
 
 - Scroll up to find the comment `// step 2 - Validate Collection information exist`.
 
@@ -437,11 +437,11 @@ const validateNftCollectionInfo = async (values: INftInput) => {
 
 Next, we'll write the **Get the parent chain height** function.
 
-**Step 3: Write the Get the parent chain height Function**
+**Step 3: Write the get the parent chain height function**
 
 - Scroll up to find the comment `// Step 3: Get the parent chain height`.
 
-- Replace the existing **`GetParentChainHeight`** function with this code snippet:
+- Replace the existing **`GetParentChainHeight`** function with the following code snippet:
 
 ```javascript title="create-nft/index.tsx"
 // Step 3: Get the parent chain height
@@ -463,20 +463,20 @@ const GetParentChainHeight = async () => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the side chain smart contract to fetch the current height of the parent blockchain.
+1. **Calls Smart Contract Method** : It interacts with the side chain smart contract method to fetch the current height of the parent blockchain.
 
-2. **Returns Parent Chain Height** : It returns the parent chain height if it exists.
+2. **Returns Parent Chain's Height** : It returns the parent chain's height if it exists.
 
 Next, we'll write the **Fetch the Merkle path** function.
 
-**Step 4: Write the Fetch the Merkle path Function**
+**Step 4: Write the fetch the merkle path function**
 
-- Scroll up to find the comment `// step 4 - Fetch the Merkle path by Transaction Id`.
+- Scroll up to find the comment `// step 4 - Fetch the merkle path by transaction Id`.
 
 - Replace the existing **`getMerklePathByTxId`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 4 - Fetch the Merkle path by Transaction Id
+// step 4 - Fetch the merkle path by transaction Id
 const getMerklePathByTxId = async (aelf: any, txId: string) => {
   try {
     const { MerklePathNodes } = await aelf.chain.getMerklePathByTxId(txId);
@@ -504,24 +504,24 @@ const getMerklePathByTxId = async (aelf: any, txId: string) => {
 
 #### What This Function Does:
 
-1. **Fetches Merkle Path** : It sends a request to fetch the Merkle path using the transaction ID.
+1. **Fetches Merkle Path** : It sends a request to fetch the merkle path using the transaction ID.
 
 2. **Parses Response** : It parses the response from the server as JSON.
 
-3. **Returns Merkle Path Nodes** : It extracts and returns the Merkle path nodes from the JSON response.
+3. **Returns Merkle Path Nodes** : It extracts and returns the merkle path of the nodes from the JSON response.
 
 4. **Handles Errors** : If an error occurs, it clears the transaction status and logs the error.
 
 Next, we'll write the **Create a Collection on the cross-chain** function.
 
-**Step 5: Write a Function for Create Collection on the Side Chain**
+**Step 5: Write a function to create a collection on the side chain**
 
-- Scroll up to find the comment `// step 5 - Create a Collection on SideChain`.
+- Scroll up to find the comment `// step 5 - Create a collection on the sidechain`.
 
 - Replace the existing **`createCollectionOnSideChain`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 5 - Create a Collection on SideChain
+// step 5 - Create a collection on the sidechain
 const createCollectionOnSideChain = async (
   transactionId: string,
   signedTx: string,
@@ -586,13 +586,13 @@ const createCollectionOnSideChain = async (
 
 #### What This Function Does:
 
-1. **Displays Loading Toast**: Shows a notification indicating the creation process of the collection on the SideChain.
+1. **Displays Loading Toast**: Shows a notification indicating the creation process of the collection on the sidechain.
 
-2. **Fetches Merkle Path**: Retrieves the Merkle path using the provided transactionId.
+2. **Fetches Merkle Path**: Retrieves the merkle path using the provided transactionId.
 
 3. **Prepares and Signs Transaction**: Constructs parameters for the cross-chain transaction and signs it.
 
-4. **Sends Transaction and Checks Status**: Sends the signed transaction and polls for its status every 10 seconds.Updates the notification and state if successful.
+4. **Sends Transaction and Checks Status**: Sends the signed transaction and polls for its status every 10 seconds. Updates the notification and state, if successful.
 
 5. **Handles Errors**: Logs errors and returns "error" if something goes wrong.
 
@@ -600,16 +600,16 @@ const createCollectionOnSideChain = async (
 
 ### Create NFT Token
 
-**Step 1: Write a Function for Create NFT on MainChain**
+**Step 1: Write a Function to create NFTs on the mainchain**
 
-Now, let's write the Create NFT on MainChain function for the form submission.
+Now, let's write the create NFTs on mainchain function.
 
-1. Scroll down to find the comment `// step 6 - Create a NFT on MainChain`.
+1. Scroll down to find the comment `// step 6 - Create an NFT on the mainchain`.
 
 2. Replace the existing **`createNFTOnMainChain`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 6 - Create a NFT on MainChain
+// step 6 - Create an NFT on the mainchain
 const createNFTOnMainChain = async (values: {
   tokenName: string;
   symbol: string;
