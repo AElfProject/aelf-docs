@@ -670,11 +670,11 @@ const createNFTOnMainChain = async (values: {
 
 #### What this function does:
 
-1. **Displays Loading Toast:** Shows a notification indicating the creation process of the NFT on the MainChain.
+1. **Displays Loading Toast:** Shows a notification indicating the creation process of the NFT on the mainchain.
 
-2. **Prepares Parameters:** Constructs input parameters for creating the NFT, including token details and issuer information.
+2. **Prepares Parameters:** Constructs input parameters for creating the NFT, including token details and the issuer's information.
 
-3. **Calls Smart Contract:** Sends a request to the MainChain smart contract to create the NFT using the prepared parameters.
+3. **Calls Smart Contract:** Sends a request to the mainchain smart contract to create the NFT using the prepared parameters.
 
 4. **Handles Success:** Updates the notification to show successful NFT creation.
 
@@ -686,12 +686,12 @@ const createNFTOnMainChain = async (values: {
 
 Now, let's write the Validate NFT Info Exist function.
 
-1. Scroll down to find the comment `// step 7 - Validate a NFT Token on MainChain`.
+1. Scroll down to find the comment `// step 7 - Validate an NFT token on the mainchain`.
 
 2. Replace the existing **`validateNftToken`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 7 - Validate a NFT Token on MainChain
+// step 7 - Validate an NFT token on the maincgit stashhain
 const validateNftToken = async (values: INftParams) => {
   try {
     // Start Loading before initiate the transaction
