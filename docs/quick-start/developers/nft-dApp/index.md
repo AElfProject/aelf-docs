@@ -1,12 +1,12 @@
 ---
 sidebar_position: 4
-title: NFT Tutorial Contract
-description: Moderate smart contract
+title: NFT dApp
+description: Moderately complex smart contract
 ---
 
-**Description**: This tutorial demonstrates the usage of the aelf's multi-token contract for non-fungible token's (NFT) collection creation, NFT creation, and NFT transfers among various token holders.
+**Description**: This tutorial provides a comprehensive guide to building an NFT dApp using aelf's multi-token contract. It covers the entire process from creating NFT collections to generating non-fungible tokens and enabling seamless transfers between token holders on the aelf blockchain.
 
-**Purpose**: To introduce you to multi-token contract, NFT collection creation, token generation and transfer with aelf's multi-token smart contracts.
+**Purpose**: The tutorial aims to introduce users to the world of NFTs on aelf by demonstrating the use of aelf's multi-token contract for creating NFT collections, minting unique tokens, and performing token transfers. This hands-on approach allows developers to explore and harness the power of aelf's decentralized infrastructure for NFT development.
 
 **Difficulty Level**: Moderate
 
