@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: NFT dApp Tutorial
+title: NFT dApp
 description: Very complex dApp 
 ---
 
