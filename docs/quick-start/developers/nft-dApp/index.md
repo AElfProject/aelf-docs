@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: NFT dApp Tutorial
-description: Moderately complex smart contract
+description: Very complex dApp 
 ---
 
 **Description**: This tutorial provides a comprehensive guide to building an NFT dApp using aelf's multi-token contract. It covers the entire process from creating NFT collections to generating non-fungible tokens and enabling seamless transfers between token holders on the aelf blockchain.
