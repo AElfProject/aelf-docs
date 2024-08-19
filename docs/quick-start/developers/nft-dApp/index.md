@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: NFT dApp
+title: NFT dApp Tutorial
 description: Moderately complex smart contract
 ---
 
