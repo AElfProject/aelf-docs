@@ -659,7 +659,7 @@ Next, we'll write the **Update Task Status (completeTask)** function.
 
 Write the Function for Update Task Status (completeTask).
 
-- Scroll down to find the comment `// step 5- Update Status from Pending to Completed of the Taskt`.
+- Scroll down to find the comment `// step 5- Update Status from Pending to Completed of the Task`.
 
 - Replace the existing **`completeTask`** function with the following code snippet:
 
