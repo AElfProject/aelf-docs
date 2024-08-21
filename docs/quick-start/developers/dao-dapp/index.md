@@ -1012,7 +1012,7 @@ npm run dev
 
 :::info
 
-ℹ️ Note: Ensure that you are running this command under the **vote-dapp-tutorial** folder.
+ℹ️ Note: Ensure that you are running this command under the **2-dapp** folder.
 
 :::
 
