@@ -9,7 +9,7 @@ import rehypeKatex from "rehype-katex";
 import "dotenv/config";
 
 const config: Config = {
-  title: "AELF Docs",
+  title: "aelf Docs",
   tagline: "Official documentation for AElfProject.",
   favicon: "img/favicon.ico",
   trailingSlash: true,
