@@ -2,9 +2,7 @@
 slug: /
 sidebar_position: 0
 title: Home
-description: Explore aelf's documentation for in-depth guides on its
-  high-performance AI blockchain, scalable infrastructure & tools for building &
-  managing Web3 DApps.
+description: Start building on aelf with our detailed documentation and development resources.
 image: /img/aelficon.png
 hide_table_of_contents: true
 ---
