@@ -1,8 +1,9 @@
 import React from "react";
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import ChainGPT from '@site/src/theme/ChainGPT';
+// import ChainGPT from '@site/src/theme/ChainGPT';
 import BrowserOnly from "@docusaurus/BrowserOnly";
+import ChatComponent from '@site/src/theme/ChatPAAL';
 
 /**
  * Reference: https://docusaurus.io/docs/markdown-features/assets#themed-images
@@ -20,7 +21,8 @@ export default function Logo(): JSX.Element {
       <BrowserOnly>
         {() => (
           <div>
-            {!window.location.host.includes("aelf.com") ? <ChainGPT /> : null}
+            {/*{!window.location.host.includes("aelf.com") ? <ChainGPT /> : null}*/}
+            {!window.location.host.includes("aelf.com") ? <ChatComponent /> : null}
           </div>
         )}
       </BrowserOnly>
