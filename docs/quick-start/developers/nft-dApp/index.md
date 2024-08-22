@@ -43,28 +43,23 @@ import TabItem from '@theme/TabItem';
 
 ### Project Setup
 
-Let's start by creating a separate folder called `nft_aelf`. Move to `nft_aelf` directory using following commands.
+Let's start by cloning the frontend project repository from GitHub.
+
+
+- Run the following command your Terminal:
 
 ```bash title="Terminal"
-mkdir nft_aelf
-cd nft_aelf
+git clone https://github.com/AElfProject/aelf-samples.git
 ```
 
-- Clone the NFT tutorial github project using the following command inside the `nft_aelf` directory:
+- Next, navigate to the frontend project directory with this command:
 
 ```bash title="Terminal"
-git clone https://github.com/AElfProject/nft-tutorial.git
+cd aelf-samples/nft/2-dapp
 ```
+- Once you're in the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
-- Next, navigate to the frontend project directory, `nft-tutorial` with the following command:
-
-```bash title="Terminal"
-cd nft-tutorial
-```
-
-- Once you're inside the `nft-tutorial` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
-
-  ![result](/img/nft-fe-directory.png)
+  ![result](/img/nft-fe-directory.jpg)
 
 #### Install necessary packages and libraries
 
@@ -1376,7 +1371,7 @@ npm run dev
 
 :::info
 
-ℹ️ Note: Ensure that you are running this command under the **NFT Tutorial** folder.
+ℹ️ Note: Ensure that you are running this command under the **nft/2-dapp** folder.
 
 :::
 

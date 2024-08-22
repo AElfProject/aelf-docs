@@ -687,7 +687,8 @@ cd aelf-samples/vote/2-dapp
 
 - Once you're in the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
-  ![result](/img/vote-fe-directory.png)
+  ![result](/img/nft-fe-directory.jpg)
+
 
 #### Install necessary libraries
 
@@ -1012,7 +1013,7 @@ npm run dev
 
 :::info
 
-ℹ️ Note: Ensure that you are running this command under the **2-dapp** folder.
+ℹ️ Note: Ensure that you are running this command under the **vote/2-dapp** folder.
 
 :::
 
