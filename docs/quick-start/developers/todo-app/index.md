@@ -284,21 +284,19 @@ import Deploy from "../\_deploy.md"
 
 Let's start by cloning the frontend project repository from GitHub.
 
-- Run the following command in the `todo_dapp_aelf` directory:
-
 ```bash title="Terminal"
-git clone 
+git clone https://github.com/AElfProject/aelf-samples.git
 ```
 
 - Next, navigate to the frontend project directory with this command:
 
 ```bash title="Terminal"
-cd 
+cd aelf-samples/todo/2-dapp
 ```
 
-- Once you're in the `=====` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
+- Once you're in the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
-  ![result](/img/vote-fe-directory.png)
+  <!-- ![result](/img/nft-fe-directory.jpg) -->
 
 #### Install necessary libraries
 
@@ -840,7 +838,7 @@ npm run dev
 
 :::info
 
-**Note**: Ensure that you are running this command under the **AXXXXX** folder.
+**Note**: Ensure that you are running this command under the **todo/2-dapp** folder.
 
 :::
 
