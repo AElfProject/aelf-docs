@@ -2935,14 +2935,16 @@ ccount@^2.0.0:
   resolved "https://registry.npmjs.org/ccount/-/ccount-2.0.1.tgz"
   integrity sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==
 
-chaingpt-component@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.npmjs.org/chaingpt-component/-/chaingpt-component-0.1.9.tgz"
-  integrity sha512-qsH8S8zzsB7YJX3EDHnkhICX8hhQmFBQDfa+SZnX8gjb7YpycGQA3sr5e2FnqmVu/AV7s6tB2NuEUx9HRu6zFw==
+chaingpt-component@^0.2.0-beta.3:
+  version "0.2.0-beta.3"
+  resolved "https://registry.npmjs.org/chaingpt-component/-/chaingpt-component-0.2.0-beta.3.tgz"
+  integrity sha512-bzFa2uNWGN0Ynn26eymCN5JYzJXfBlVSKhBlBMRHk3KcFVyLu9LEVsM4Z6N3QTKHwZ7UjUBCB/aTpT66y/8PXg==
   dependencies:
     "@microsoft/fetch-event-source" "^2.0.1"
+    linkify-it "^5.0.0"
     react "^18.3.1"
     react-dom "^18.3.1"
+    tlds "^1.254.0"
 
 chalk@^2.4.2:
   version "2.4.2"
@@ -5310,6 +5312,13 @@ lines-and-columns@^1.1.6:
   version "1.2.4"
   resolved "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.2.4.tgz"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
+
+linkify-it@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/linkify-it/-/linkify-it-5.0.0.tgz"
+  integrity sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==
+  dependencies:
+    uc.micro "^2.0.0"
 
 loader-runner@^4.2.0:
   version "4.3.0"
@@ -8135,6 +8144,11 @@ tiny-warning@^1.0.0:
   resolved "https://registry.npmjs.org/tiny-warning/-/tiny-warning-1.0.3.tgz"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
 
+tlds@^1.254.0:
+  version "1.254.0"
+  resolved "https://registry.npmjs.org/tlds/-/tlds-1.254.0.tgz"
+  integrity sha512-YY4ei7K7gPGifqNSrfMaPdqTqiHcwYKUJ7zhLqQOK2ildlGgti5TSwJiXXN1YqG17I2GYZh5cZqv2r5fwBUM+w==
+
 to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-2.0.0.tgz"
@@ -8232,6 +8246,11 @@ typesense@^1.7.2:
   dependencies:
     axios "^1.6.0"
     loglevel "^1.8.1"
+
+uc.micro@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/uc.micro/-/uc.micro-2.1.0.tgz"
+  integrity sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==
 
 undici-types@~5.26.4:
   version "5.26.5"

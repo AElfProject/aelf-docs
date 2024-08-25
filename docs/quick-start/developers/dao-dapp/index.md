@@ -1,12 +1,10 @@
 ---
 sidebar_position: 3
-title: Vote Contract
-description: Slightly more complex contract
+title: DAO dApp
+description: Slightly more complex dApp
 ---
 
-**Description**: This is the most complex contract in this guide. It covers voting
-mechanisms, security considerations, and advanced data structures to
-ensure a fair and transparent voting process.
+**Description**: This is the slightly more complex dApp in this guide. It covers mechanisms of a decentralized autonomous organization (DAO) dApp including creating a proposal, vote on a proposal, fetch all proposals, security considerations, and advanced data structures to ensure a fair and transparent DAO processes.
 
 **Purpose**: To teach you about complex logic implementation, security best
 practices, and efficient data management in smart contracts.
