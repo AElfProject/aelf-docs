@@ -1392,25 +1392,28 @@ In this section, we'll explore how inter-contract calls work in the aelf blockch
    - **Initiating Purchase**: When a user wants to buy a lottery ticket, they interact with the Lottery Contract.
    - **Token Transfer Requirement**: The Lottery Contract must verify that the user has enough tokens and transfer those tokens to the lottery’s account to complete the purchase.
 
-### 3. **Making an Inter-Contract Call**
+### 3. **Initialising Contract Reference State**
+   - **Setting Contract Address**: The Lottery Contract must first initialize its reference to the Token Contract by setting the correct contract address in its state.
+
+### 4. **Making an Inter-Contract Call**
    - **Calling Token Contract**: The Lottery Contract needs to interact with the Token Contract to transfer tokens. 
      - **Method Invocation**: It calls a method in the Token Contract, such as `Transfer`.
      - **Parameters**: The call includes details like the sender’s address, the recipient’s address (the lottery account), and the amount of tokens.
    - **Encoding and Sending**: The parameters are encoded into a transaction format and sent to the Token Contract.
 
-### 4. **Processing in the Token Contract**
+### 5. **Processing in the Token Contract**
    - **Token Transfer**: The Token Contract processes the transfer request by deducting tokens from the user’s account and adding them to the lottery account.
    - **Return Response**: The Token Contract then returns a result indicating whether the transfer was successful or if it failed.
 
-### 5. **Handling the Response**
+### 6. **Handling the Response**
    - **Lottery Contract’s Role**: Once the Lottery Contract receives the response from the Token Contract, it checks if the transfer was successful.
    - **Next Steps**: If successful, the Lottery Contract updates the user's lottery ticket entries and continues with the game logic.
 
-#### 6. **Authorization and Security**
+### 7. **Authorization and Security**
    - **Permission Checks**: Ensures that the Lottery Contract is authorized to invoke methods in the Token Contract.
    - **Secure Transactions**: Ensures that token transfers are secure and correctly authorized.
 
-### 7. **Error Handling**
+### 8. **Error Handling**
    - **Failure Management**: If the token transfer fails (e.g., due to insufficient funds), the Lottery Contract handles the error by potentially reverting the transaction or notifying the user.
 
 By following these steps, you can see how inter-contract calls in aelf allow different contracts to work together smoothly. This modular approach helps in building complex applications like a lottery game by ensuring secure and authorized interactions between contracts.
