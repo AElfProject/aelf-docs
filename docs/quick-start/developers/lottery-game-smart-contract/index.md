@@ -1392,7 +1392,7 @@ In this section, we'll explore how inter-contract calls work in the aelf blockch
    - **Initiating Purchase**: When a user wants to buy a lottery ticket, they interact with the Lottery Contract.
    - **Token Transfer Requirement**: The Lottery Contract must verify that the user has enough tokens and transfer those tokens to the lottery’s account to complete the purchase.
 
-### 3. **Initialising Contract Reference State**
+### 3. **Initializing Contract Reference State**
    - **Setting Contract Address**: The Lottery Contract must first initialize its reference to the Token Contract by setting the correct contract address in its state.
 
 ### 4. **Making an Inter-Contract Call**
