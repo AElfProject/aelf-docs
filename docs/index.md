@@ -2,9 +2,7 @@
 slug: /
 sidebar_position: 0
 title: Home
-description: Explore aelf's documentation for in-depth guides on its
-  high-performance AI blockchain, scalable infrastructure & tools for building &
-  managing Web3 DApps.
+description: Start building on aelf with our detailed documentation and development resources.
 image: /img/aelficon.png
 hide_table_of_contents: true
 ---
@@ -24,8 +22,10 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 - For developers
   - [Hello World](/quick-start/developers/hello-world-contract) contract
   - [Lottery Game](/quick-start/developers/lottery-game-smart-contract/) contract
-  - [Vote](/quick-start/developers/vote-contract/) contract
+  - [DAO](/quick-start/developers/dao-dapp/) dApp
+  - [NFT](/quick-start/developers/nft-dapp/) dApp
   - [ToDo](/quick-start/developers/todo-app/)contract
+
 - For node operators
   - [Simulate](/quick-start/node-operators/simulating-a-bp-node/) a BP node
   - [Set up](/quick-start/node-operators/set-up-a-node-on-testnet/) a node on testnet

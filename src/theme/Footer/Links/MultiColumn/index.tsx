@@ -2,6 +2,7 @@ import React from "react";
 import LinkItem from "@theme/Footer/LinkItem";
 import type { Props } from "@theme/Footer/Links/MultiColumn";
 import Logo from "@site/src/theme/logo";
+import Social from "../../Social";
 
 type ColumnType = Props["columns"][number];
 type ColumnItemType = ColumnType["items"][number];
@@ -30,6 +31,11 @@ function Column({ column }: { column: ColumnType }) {
           <ColumnLinkItem key={i} item={item} />
         ))}
       </ul>
+      {column.title === "Connect" ? (
+        <div className="mobile-only" style={{ marginTop: 10, marginLeft: -10 }}>
+          <Social />
+        </div>
+      ) : null}
     </div>
   );
 }
