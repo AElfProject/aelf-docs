@@ -68,6 +68,10 @@
         {
           "label": "Blog",
           "href": "https://blog.aelf.com/"
+        },
+        {
+          "label": "About aelf",
+          "href": "/about-aelf/"
         }
       ]
     },
