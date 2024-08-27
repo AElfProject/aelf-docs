@@ -1,19 +1,16 @@
 ---
 sidebar_position: 5
-title: ToDo Tutorial Contract
-description: Moderately difficult smart contract
+title: ToDo dApp Contract
+description: Moderately difficult smart contract and dApp
 ---
 
-**Description**: This contract is moderately difficult. It demonstrates the use of
-state variables, user interactions, and smart contract integration to create a
-basic ToDo App.
+**Description**: This contract is moderately complex, demonstrating task management functionalities such as creating, updating, and deleting tasks. It also includes features for task prioritization and user interaction.
 
-**Purpose**: To introduce you to more advanced concepts such as state
-management, event handling, and randomization in smart contracts.
+**Purpose**: To introduce you to task management systems in smart contracts, focusing on state management, user interactions, and contract updates for efficient handling of to-do tasks.
 
 **Difficulty Level**: Moderate
 
-<iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/sBNfFADQMXg?si=wbCGIIxez-nh0PC-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!-- <iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/sBNfFADQMXg?si=wbCGIIxez-nh0PC-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
 
 ## Step 1 - Setting up your development environment
 
@@ -38,13 +35,12 @@ dotnet new aelf -n ToDoApp
 ### Adding Your Smart Contract Code
 
 Now that we have a template todo list project, we can customise the template to incorporate our own contract logic.
-Lets start by implementing methods to provide basic functionality for updating and reading a message stored persistently in the contract state.
-ToDoApp includes the below functionalities like:
-1. Create a Task (Name, category, description, createAt, updatedAt)
-2. Task Completed 
+Let's start by implementing methods to handle the basic functionality of creating, editing, listing, deleting, and marking tasks as complete within the contract state. ToDo dApp includes the below functionalities like:
+1. Create a task (Name, category, description, createAt, updatedAt)
+2. Mark task as completed 
 3. Delete a task 
-4. List the tasks
-5. Edit the task
+4. List all the tasks
+5. Edit a task
 
 - Enter this command in your `Terminal`.
 
@@ -54,15 +50,17 @@ cd src
 
 #### Defining Methods and Messages
 
-- Rename the file name from `Protobuf/contract/hello_world_contract.proto` to `todo_app.proto`:
+- Rename the proto file name `hello_world_contract.proto` inside folder `Protobuf/contract/` to `todo_app.proto`:
 
 ```bash title="Terminal"
 mv Protobuf/contract/hello_world_contract.proto Protobuf/contract/todo_app.proto
 ```
 
-- open the project with your IDE.
+The `.proto` file defines the structure and serialization of data, ensuring consistent communication and data exchange between the contract and external systems.
 
-The implementation of file `src/Protobuf/contract/todo_app.proto` is as follows:
+- Open the project with your IDE.
+
+The implementation of `todo_app.proto` file inside folder `src/Protobuf/contract/` is as follows:
 
 ```csharp title="todo_app.proto"
 syntax = "proto3";
@@ -125,9 +123,12 @@ message TaskList {
 }
 ```
 
+- `rpc` methods define the callable functions within the contract, allowing external systems to interact with the contract's logic.
+- `message` represent the structured data exchanged between the contract and external systems.
+
 #### Define Contract States
 
-The implementation of file `src/ToDoAppState.cs` is as follows:
+The implementation of the ToDo app state inside file `src/ToDoAppState.cs` is as follows:
 
 ```csharp title="src/ToDoAppState.cs"
 using AElf.Sdk.CSharp.State;
@@ -147,9 +148,11 @@ namespace AElf.Contracts.ToDo
 }
 ```
 
+- The `State.cs` file in an aelf blockchain smart contract holds the variables that store the contract's data, making sure this data is saved and accessible whenever the contract needs it.
+
 #### Implement ToDo Smart Contract 
 
-The implementation of file `src/ToDoApp.cs` is as follows:
+The implementation of the ToDo App smart contract inside file `src/ToDoApp.cs` is as follows:
 
 ```csharp title="src/ToDoApp.cs"
 using Google.Protobuf.WellKnownTypes;
@@ -264,7 +267,7 @@ namespace AElf.Contracts.ToDo
 
 ### Building Smart Contract
 
-- Build the new code with the following commands inside `src` folder:
+- Build the smart contract code with the following command inside `src` folder:
 
 ```bash title="Terminal"
 dotnet build
@@ -278,11 +281,11 @@ import Deploy from "../\_deploy.md"
 
 <Deploy />
 
-## Step 4 - Interact with Your Deployed Smart Contract
+## Step 4 - Interact with Your Deployed Smart Contract through dApp
 
 ### Project Setup
 
-Let's start by cloning the frontend project repository from GitHub.
+Let's start by cloning the frontend project repository from github.
 
 ```bash title="Terminal"
 git clone https://github.com/AElfProject/aelf-samples.git
@@ -294,23 +297,23 @@ git clone https://github.com/AElfProject/aelf-samples.git
 cd aelf-samples/todo/2-dapp
 ```
 
-- Once you're in the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
+- Once you're inside the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
-  <!-- ![result](/img/nft-fe-directory.jpg) -->
+  ![result](/img/nft-fe-directory.png)
 
 #### Install necessary libraries
 
-- Run this command in the terminal:
+- Run this command in the terminal to install all necessary packages and libraries:
 
 ```bash title="Terminal"
 npm install
 ```
 
-We are now ready to build the frontend components of our Voting dApp.
+We are now ready to build the frontend components of our ToDo dApp.
 
 ### Configure Portkey Provider & Write Connect Wallet Function
 
-We'll set up our Portkey provider to allow users to connect their Portkey wallets to our app and interact with the aelf smart contracts. We'll be interacting with the already deployed multi-token contract for this tutorial.
+Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed ToDo smart contract for this tutorial.
 
 **Step 1. Locate the File:**
 
@@ -318,12 +321,12 @@ We'll set up our Portkey provider to allow users to connect their Portkey wallet
 
 **Step 2. Fetch the Smart Contract:**
 
-- Find the comment ` //Step A - Function to fetch a Smart Contract based on deployed wallet address`
+- Find the comment ` //Step A - Function to fetch a smart contract based on deployed wallet address`
 
 - Replace the existing **`fetchContract`** function with this updated code:
 
 ```javascript title="useTodoSmartContract.ts"
-//Step A - Function to fetch a Smart Contract based on deployed wallet address
+//Step A - Function to fetch a smart contract based on deployed wallet address
 const fetchContract = async () => {
   if (!provider) return null;
 
@@ -346,11 +349,11 @@ const fetchContract = async () => {
 ```
 
 :::tip
-ℹ️ Note: You are to replace the address placeholder with your deployed todo contract address from "Building Smart Contract"!
+ℹ️ Note: You are to replace the address placeholder with your deployed ToDo smart contract address from "Deploy Smart Contract" step!
 
 example:
 //Replace with Address of Deployed Smart Contract
-const address = "your_deployed_todo_contract_address";
+const address = "your_deployed_todo__smart_contract_address";
 :::
 
 **Explanation:**
@@ -360,29 +363,28 @@ const address = "your_deployed_todo_contract_address";
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Chain** : The function fetches chain information using the provider.
   - **Get Contract** : It retrieves the smart contract instance from the chain.
-  - **Error Handling** : If an error occurs, it logs the error to the console.
+   
+`AELF` represents the mainnet chain and `tDVW` represents the testnet chain respectively on aelf blockchain.
 
 **Step 3. Initialize and Fetch the Smart Contracts:**
 
-- Find the comment `// Step B - Effect hook to initialize and fetch the smart contracts when the provider changes.`
+- Find the comment `// Step B - Effect hook to initialize and fetch the smart contract when the provider changes.`
 
 - Replace the existing **`useEffect`** hook with this updated code:
 
 ```javascript title="useTodoSmartContract.ts"
-  // Step B -  Effect hook to initialize and fetch the smart contracts when the provider changes
+  // Step B -  Effect hook to initialize and fetch the smart contract when the provider changes
   useEffect(() => {
     fetchContract();
   }, [provider]); // Dependency array ensures this runs when the provider changes
 ```
 
 **Explanation:**
-
-- **`useEffect`** **Hook** : This hook initializes and fetches the smart contracts when the provider changes.
-
+- **`useEffect` Hook** : This hook initializes and fetches the smart contracts when the provider changes.
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Contracts** : It fetches and sets the smart contracts.
 
-By following these steps, we'll configure the Portkey provider to connect users' wallets to your app and interact with the todo smart contract including Task management related functionalities. This setup will enable our frontend components to perform actions like `Create Task`, `Update Task`, and `Delete Task`.
+By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the ToDo smart contract including task management related functionalities. This setup will enable our frontend components to perform actions like `Create Task`, `Edit Task`, and `Delete Task`.
 
 ### Configure Connect Wallet Function
 
@@ -417,8 +419,7 @@ const connect = async (walletProvider?: IPortkeyProvider) => {
 
 **Explanation:**
 
-- **`connect`** **Function** : This function connects the user's Portkey wallet with the dApp.
-
+- **`connect` Function** : This function connects the user's Portkey wallet with the dApp.
   - **Fetch Accounts** : It fetches the wallet accounts using the provider.
   - **Log Accounts** : Logs the accounts to the console for debugging.
   - **Set Wallet Address** : Sets the current wallet address state variable with the fetched account.
@@ -427,15 +428,15 @@ const connect = async (walletProvider?: IPortkeyProvider) => {
 
 In this code, we fetch the Portkey wallet account using the provider and update the wallet address state variable. An alert notifies the user that their wallet is successfully connected.
 
-With the Connect Wallet function defined, we're ready to write the remaining functions in the next steps.
+With the connect wallet function defined, we're ready to write the remaining functions in the next steps.
 
-### Configure Create Task Form Code
+### Configure Create Task Form 
 
 **Step 1: Locate the File**
 
-1. Go to the `src/pages/home/index.tsx` file. This file is contains all the  functionalities like show User's Task, CreateTask, Update Task, Delete task and Filter all Task and etc.
+1. Go to the `src/pages/home/index.tsx` file. This file contains all the  functionalities like show user's Task, CreateTask, UpdateTask, DeleteTask and Filter all Tasks, etc.
 
-**Step 2: Prepare Form to Creat and Update Tasks**
+**Step 2: Prepare Form to Create and Update Tasks**
 
 1.  Find the comment `// Step D - Configure Todo Form`.
 
@@ -454,20 +455,20 @@ const form = useForm<z.infer<typeof formSchema>>({
 
 #### Here's what the function does:
 
-1. Initializes a new form variable with default values needed to create a Task.
+1. Initializes a new form variable with default values needed to create a task.
 
 2. Fields include: `name` and `description`.
 
-Now the form is ready for users to fill in the necessary details for their ToDo function interaction.
+Now the form is ready for users to fill in the necessary details.
 
 ### Check Contract Initialization
 
-- Scroll down to find the comment `// step 1 - Check If Contract is Initialized or not`.
+- Scroll down to find the comment `// step 1 - Check if contract is initialized or not`.
 
 - Replace the existing **`checkIsContractInitialized`** function with this code snippet:
  
 ```javascript title="home/index.tsx"
-// step 1 - Check If Contract is Initialized or not 
+// step 1 - Check if contract is initialized or not
 const checkIsContractInitialized = async () => {
   const result = await smartContract?.callViewMethod("GetInitialStatus", ""); // Call the GetInitialStatus method which is present on Smart Contract
   setIsContractInitialized(result?.data?.value); // Expect value True if it's Initialized otherwise NULL if it's not
@@ -476,12 +477,14 @@ const checkIsContractInitialized = async () => {
 
 ### Initialize Contract
 
-- Scroll down to find the comment `// step 2 - Intitialize The Contract Very First Time`.
+- Scroll down to find the comment `// step 2 - Initialize the smart contract`.
 
 - Replace the existing **`checkIsContractInitialized`** function with this code snippet:
+
+<!-- checkIsContractInitialized and initializeContract are different here -->
  
 ```javascript title="home/index.tsx"
-// step 2 - Intitialize The Contract Very First Time
+// step 2 - Initialize the smart contract
 const initializeContract = async () => {
   let initializeLoadingId;
   try {
@@ -514,11 +517,11 @@ const initializeContract = async () => {
 };
 ```
 
-### Create New Task
+### Create a New Task
 
-- Write the function for `Create New Task`**
+- Write the function to `Create a New Task`**
 
-- The `home/index.tsx` file includes the code to create Taks. It allows users to create new Taks.
+- The `home/index.tsx` file includes the code to create tasks. It allows users to create new tasks.
 
 - Find the comment `// step 3 - Create a New Task using Smart Contract`.
 
@@ -580,22 +583,22 @@ const createNewTask = async (values: {
 
 #### What This Function Does:
 
-1. **Creates an Object with Task Details** : It prepares the data needed to create a new Task.
+1. **Creates an Object with Task Details** : It prepares the data needed to create a new task.
 
-2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to create the new Task using the prepared data.
+2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to create the new task using the prepared data.
 
-Next, we'll write the **Update Task** function.
+Next, we'll write the **Update an Existing Task** function.
 
-### Update the Task
+### Update an Existing Task
 
-Write the function for Update the Existing Task.
+Write the function for update an existing task.
 
-- Scroll down to find the comment `// step 4 - Update the Task`.
+- Scroll down to find the comment `// step 4 - Update an Existing Task`.
 
 - Replace the existing **`updateTask`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-// step 4 - Update the Task
+// step 4 - Update an Existing Task
 const updateTask = async (values: { name: string; description: string }) => {
   let updateLoadingId;
   try {
@@ -647,15 +650,15 @@ const updateTask = async (values: { name: string; description: string }) => {
 
 #### What This Function Does:
 
-1. **Creates an Object with Updated Task Details** : It prepares the data needed to Updated Task Details
+1. **Creates an Object with Updated Task Details** : It prepares the data needed for the updated task details
 
-2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the existing Task using the prepared data.
+2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the existing task using the prepared data.
 
 Next, we'll write the **Update Task Status (completeTask)** function.
 
 ### Update the Task Status
 
-Write the Function for Update Task Status (completeTask).
+Write the Function to update the task status (completeTask).
 
 - Scroll down to find the comment `// step 5- Update Status from Pending to Completed of the Task`.
 
@@ -703,13 +706,13 @@ const completeTask = async (data: ITodoObject) => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the task Status by pass the `completed` status as an Argument.
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the task status by passind the `completed` status as an argument.
 
 Next, we'll write the **Delete the Task** function.
 
 ### Delete the Task
 
-Write Function for Delete the existing Task.
+Write a function to delete an existing task.
 
 - Scroll down to find the comment `// step 6 - Delete the Task`.
 
@@ -757,7 +760,7 @@ const deleteTask = async (data: ITodoObject) => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Delete the existing task by passing Status as "removed".
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to delete the existing task by passing status as "removed".
 
 Next, we'll write the **Handle Submit Form** function.
 
@@ -787,22 +790,22 @@ const onSubmit = async (values: { name: string; description: string }) => {
 
 #### What This Function Does:
 
-1. **Check initialized contract**: It's Checks Whether Contract Initialized or not buy using `initializeContract` function.
+1. **Check initialized contract**: It checks whether the smart contract is initialized or not by using `initializeContract` function.
 
 2. **Update Task**: Call the `updateTask` function if updatedId has any value.
 
-3. **Create Task**: Call the `createNewTask` function if updatedId has not any value.
+3. **Create Task**: Call the `createNewTask` function if updatedId does not have any value.
 
-So we completed functions for **Create Task**, **Update Task** and **Delete Task** and now it's time to write Function for the **Fetch Tasks** from Contract so Let's write that.
+Here, we have completed functions to **Create Task**, **Update Task** and **Delete Task** and now it's time to write a function to **Fetch Tasks** from the smart contract.
 
-### Fetch Task Data
+### Fetch All Tasks
 
-- Scroll up to find the comment `// step 8 - Get Todo Data from User's wallet using contract`.
+- Scroll up to find the comment `// step 8 - Fetch All Tasks`.
 
 - Replace the existing **`getTodoData`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-// step 8 - Get Todo Data from User's wallet using contract
+// step 8 - Fetch All Tasks
 const getTodoData = async () => {
   try {
     const result = await smartContract?.callViewMethod("ListTasks", {
@@ -819,10 +822,10 @@ const getTodoData = async () => {
 ```
 #### Here's what the function does:
 
-1. **Fetches Task Data:** It calls `ListTasks` to get List of Task data from the ToDo contract.
-2. **Set Tasks on State:** Get the Result data from Contract and Set Array of Data into `todoData` State.
+1. **Fetches Task Data:** It calls `ListTasks` to get the list of all ToDo tasks from the ToDo smart contract.
+2. **Set Tasks on State:** Get the result data from the smart contract and set an array of all tasks into `todoData` State.
 
-We have Prepared necessary function for fetch Tasks Data from User's Wallet.
+We have prepared necessary function to fetch all the tasks created from a connected user's wallet.
 
 Now that we've written all the necessary frontend functions and components, we're ready to run the ToDo dApp application in the next step.
 
@@ -846,10 +849,10 @@ npm run dev
 
   ![run-app-success](/img/vote-npm-run-console.png)
 
-- Upon clicking on the **localhost URL**, you should be directed to the ToDo landing page as shown below.
+- Upon clicking on the **localhost URL**, you should be directed to the ToDo dApp landing page as shown below.
 
 :::tip
-If you are developing and testing this with GitHub codespace, you can use Port Forward to test the web server that is running in codespace, here is the link on how to use Port forward for codespace https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
+If you are developing and testing this with github codespace, you can use port forward to test the web server that is running in codespace, here is the link on how to use port forward for codespace https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
 :::
 
 - Usually codespace will automatically forward port, you should see a pop-up message at the bottom right of your codespace browser window as shown in the diagram below:
@@ -929,107 +932,106 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 **Create a New Task**
 
-- Click on **"Add New"** button to create new Task.
+- Click on **"Add New"** button to create a new task.
 
    ![create-task](/img/create-task.png)
 
-- You will get this Popup Modal with Form of Create a new Task. so Please Fill all other Necessary Fields like Name, Description and Type of Category.
+- You will see the pop-up modal with form to create a new task. Please fill all the necessary fields like `Name`, `Description` and `Category`.
 
    ![create-task-form](/img/create-task-form.png)
 
 - Click on **Create New Task** Button.
 
-- Now, You will get Transaction Request on your Portkey Wallet so **Sign In** the Transaction.
+- Now, You will receive a transaction request on your portkey wallet to  **Sign** the transaction.
 
    ![create-task-sign-request](/img/create-task-sign-request.jpg)
 
-- Click on **Sign In** the Transaction.
+- Click on **Sign** the transaction.
 
-- After Successfull Transaction, Your First Task will be created✅.
+- After the transaction is successfully processed, your first task will be created✅.
 
    ![create-task-success](/img/create-task-success.jpg)
 
-- Your Task Item Look like below with these following Details -  **`Name`** , **`Description`** , **`Last Updated Time`** , **`Create Date and Time`**,
+- Your task item looks like below with the following details -  **`Name`** , **`Description`** , **`Last Updated Time`** , **`Create Date and Time`**,
 
    ![todo-item.jpg](/img/todo-item.jpg)
 
-- You will be able to perform these following action for perticular task - **`Edit`** , **`Complete`** , and **`Remove`** .
+- You will be able to perform these following action for a selected task - **`Edit`** , **`Complete`** , and **`Remove`** .
 
-As we have **Created Task** Successfully so Let's Update Task Details and Perform the Edit Task Functionality.
+As we have **Created a Task** successfully, let's update the task details.
 
 ---
 
 **Edit the Task**
 
-- Click on **"Edit"** button to edit the Task.
+- Click on the **"Edit"** button to edit the task.
 
    ![update-task](/img/update-task.png)
 
-- You will get this Popup Modal with Form of Edit the Task. so Edit the Necessary Fields as per you want.
+- You will see the pop-up modal with form to edit the task. Edit the necessary fields according to your need.
 
    ![edit-task-form](/img/edit-task-form.jpg)
 
 - Click on **Update Task** Button.
  
-- Now, You will get Transaction Request on your Portkey Wallet so **Sign In** the Transaction.
+- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
 
    ![update-task-sign-request](/img/update-task-request.jpg)
 
-- Click on **Sign In** the Transaction.
+- Click on **Sign** the transaction.
 
-- After Successfull Transaction, Your Task details will be Updated✅.
+- After the transaction is successfully processed, your task details will be Updated✅.
 
    ![update-task-success](/img/update-task-success.jpg)
 
-As we have **Edit Task** Successfully so Let's Move That Task to Completed and Perform the Complete Task Functionality.
+As we have **Edited a Task** successfully. Let's move that task to completed state.
 
 ---
 
 **Complete the Task**
 
-- Click on **"Complete"** button to to Move Task to as `Completed`.
+- Click on the **"Complete"** button to move the task to `Completed` status.
 
    ![complete-task-button](/img/complete-task-button.jpg)
 
-- Now, You will get Transaction Request on your Portkey Wallet so **Sign In** the Transaction.
+- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
 
    ![complete-task-sign-request](/img/complete-task-request.jpg)
 
-- Click on **Sign In** the Transaction.
+- Click on **Sign** the transaction.
 
-
-- After Successfull Transaction, Your Task will be moved to the Completed status✅.
+- After the transaction is successfully processed, your task will be moved to the completed tab✅.
 
    ![complete-task-success](/img/complete-task-success.jpg)
 
-As we have **Complete Task** Successfully so Let's Move Completed Task to Removed and Perform the Removed Task Functionality.
+As we have performed **Complete Task** successfully. Let's remove the completed task.
 
 ---
 
 **Remove the Task**
 
-- Click on **"Remove"** button to to Move Task to as `Removed`.
+- Click on **"Remove"** button to remove the task.
 
    ![remove-task-button](/img/delete-task-button.jpg)
  
-- Now, You will get Transaction Request on your Portkey Wallet so **Sign In** the Transaction.
+- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
 
    ![remove-task-sign-request](/img/delete-task-request.jpg)
 
-- Click on **Sign In** the Transaction.
+- Click on **Sign** the transaction.
 
-- After Successfull Transaction, Your Task will be moved to the Removed status✅.
+- After the transaction is successfully processed, your task will be moved to the removed tab✅.
 
    ![remove-task-success](/img/delete-task-success.jpg)
 
 :::success
-🎉 Congratulations Learners! You have successfully built your ToDo dApp and this is no mean feat!
+🎉 Congratulations Learners! You have successfully built your ToDo dApp.
 :::
 
 
 ## 🎯 Conclusion
 
-🎉 Congratulations on successfully completing the **ToDo dApp** tutorial! 🎉 You've taken important steps in setting up your development environment, developing and deploying a smart contract, and building a fully functional decentralized application on the aelf blockchain. 🌟
+🎉 Congratulations on successfully completing the **ToDo dApp** tutorial! 🎉 You've taken important steps in setting up your development environment, developing and deploying a smart contract on ToDo dApp, and building a fully functional ToDo decentralized application on the aelf blockchain. 🌟
 
 **📚 What You've Learned**
 
