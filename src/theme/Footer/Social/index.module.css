@@ -1,0 +1,17 @@
+span.icon {
+  width: 15px;
+  height: 15px;
+  margin: 0 10px;
+  padding: 3px;
+}
+
+.img {
+  margin: 0 0 0 10px;
+}
+
+@media screen and (max-width: 996px) {
+  .social {
+    order: -1;
+    padding-bottom: 0.5rem;
+  }
+}
