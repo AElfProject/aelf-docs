@@ -24,7 +24,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
   - [Lottery Game](/quick-start/developers/lottery-game-smart-contract/) contract
   - [DAO](/quick-start/developers/dao-dapp/) dApp
   - [NFT](/quick-start/developers/nft-dapp/) dApp
-  - [ToDo](/quick-start/developers/todo-app/)contract
+  - [ToDo](/quick-start/developers/todo-app/) dApp
 
 - For node operators
   - [Simulate](/quick-start/node-operators/simulating-a-bp-node/) a BP node
