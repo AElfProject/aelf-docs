@@ -12,12 +12,12 @@
           "href": "https://github.com/AElfProject/aelf-audit-reports"
         },
         {
-          "label": "Privacy",
-          "href": "/legal/privacy-policy/"
-        },
-        {
           "label": "Terms of Use",
           "href": "/legal/terms-of-use/"
+        },
+        {
+          "label": "Privacy Policy",
+          "href": "/legal/privacy-policy/"
         },
         {
           "label": "Cookie Policy",
@@ -64,20 +64,20 @@
         {
           "label": "aelf Ventures",
           "href": "https://aelf.com/ecosystem#ECOSYSTEM_VENTURES"
+        }
+      ]
+    },
+    {
+      "title": "General",
+      "items": [
+        {
+          "label": "About aelf",
+          "href": "/about-aelf/"
         },
         {
           "label": "Blog",
           "href": "https://blog.aelf.com/"
         },
-        {
-          "label": "About aelf",
-          "href": "/about-aelf/"
-        }
-      ]
-    },
-    {
-      "title": "Connect",
-      "items": [
         {
           "label": "Contact Us",
           "href": "https://form.aelf.com/contact"
