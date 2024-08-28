@@ -4,7 +4,9 @@ title: Introduction
 description: What is aelf?
 ---
 
-<section itemscope itemtype="https://schema.org/FAQPage">
+<head>
+  <html itemscope itemtype="https://schema.org/FAQPage" />
+</head>
 
 ### 1. What is aelf?
 
@@ -178,5 +180,3 @@ To achieve mass adoption, aelf plans to form strategic partnerships with key ind
 In 2024, we also announced our plans to focus our endeavours on improving AI capabilities and integration within our blockchain. All these efforts are driven by the aelf team to enhance our user experience and broaden our technology spectrum, ensuring that our developers can build state-of-the-art decentralised applications (dApps) with robust AI assistance, and drive adoption of blockchain technology.
 
 :::
-
-</section>
