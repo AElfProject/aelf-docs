@@ -4,18 +4,35 @@ title: Introduction
 description: What is aelf?
 ---
 
+<section itemscope itemtype="https://schema.org/FAQPage">
+
 ### 1. What is aelf?
+
+:::faq[What is aelf?]
+
 aelf, an AI-enhanced Layer 1 blockchain network, leverages the robust C# programming language for efficiency and scalability across its sophisticated multi-layered architecture. Founded in 2017 with its global hub in Singapore, aelf is a pioneer in the industry, leading Asia in evolving blockchain with state-of-the-art AI integration and modular Layer 2 ZK Rollup technology, ensuring an efficient, low-cost, and highly secure platform that is both developer and end-user friendly. Aligned with its progressive vision, aelf is committed to fostering innovation within its ecosystem and advancing Web3 and AI technology adoption. For more information about aelf, please refer to our [Whitepaper V2.0](https://docs.aelf.com/resources/whitepaper-2/).
 
+:::
+
 ### 2. Who is the founder of aelf? What is his background?
+
+:::faq[Who is the founder of aelf?]
+
 Auric is the Co-founder and CEO of aelf. He is a prominent member of the Blockchain Experts' Commission of the Chinese Institute of Electronics and the China Computer Federation. Auric graduated from Tianjin University with a B.S. in computer science in 2012. His journey into the cryptocurrency world began during his university years when he started Bitcoin trading and, by 2013, was actively engaged in Litecoin and Bitcoin mining.
 
 In 2016, Auric developed GemPay, a Bitcoin payment platform similar to BitPay, and an off-chain Gem wallet. This venture was followed by the establishment of a crypto exchange named Allcoin. In the same year, he founded Hoopox, a company that provides blockchain services to notable clients, including Hainan Airlines. 
 
 In 2017, Auric co-founded aelf, further solidifying his impact on the blockchain industry.
 
-### 3. Who is running aelf? Who is managing aelf, and where is aelf's management team based in? 
+:::
+
+### 3. Who is running aelf? Who is managing aelf, and where is aelf's management team based in?
+
+:::faq[Who is running aelf? Who is managing aelf, and where is aelf's management team based in?]
+
 aelf is operated by a team of highly experienced Web3 veterans led by its founder and CEO, Auric. Together, they bring a wealth of experience, expertise, innovation and drive to the blockchain platform. The core management team is based in Singapore, ensuring that aelf is at the forefront of blockchain technology and development. To find out more about the key people running aelf, please visit or connect with us on [LinkedIn](https://www.linkedin.com/company/aelfblockchain).
+
+:::
 
 ### 4. What is the history of aelf? 
 The story of aelf began on 10 December 2017, when aelf's vision and plans were introduced to global investors at a Coindesk conference. aelf successfully completed its fund-raising significantly ahead of schedule, having secured investments from notable institutions such as [Arrington Capital](https://www.arringtoncapital.com/), [Draper Dragon](https://draperdragon.com/), [Galaxy Digital](https://www.galaxy.com/) etc.
@@ -86,3 +103,5 @@ Currently, aelf is not required and therefore not specifically regulated by eith
 To achieve mass adoption, aelf plans to form strategic partnerships with key industry players, providing educational resources and tutorials to help users and developers understand and utilise the platform. The company also focuses on continuously improving scalability and performance to handle increased user demand, ensuring that its technology remains accessible and efficient for a broad audience.
 
 In 2024, we also announced our plans to focus our endeavours on improving AI capabilities and integration within our blockchain. All these efforts are driven by the aelf team to enhance our user experience and broaden our technology spectrum, ensuring that our developers can build state-of-the-art decentralised applications (dApps) with robust AI assistance, and drive adoption of blockchain technology.
+
+</section>
