@@ -60,4 +60,14 @@
   .mobile-hidden {
     display: none;
   }
+
+  .col.footer__col {
+    --ifm-col-width: 50%;
+  }
+}
+
+@media screen and (min-width: 996px) {
+  .mobile-only {
+    display: none;
+  }
 }
