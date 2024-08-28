@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: ToDo dApp Contract
+title: ToDo dApp Tutorial
 description: Moderately difficult smart contract and dApp
 ---
 
