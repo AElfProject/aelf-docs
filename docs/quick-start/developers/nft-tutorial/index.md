@@ -53,7 +53,7 @@ cd nft_aelf
 - Clone the NFT tutorial github project using the following command inside the `nft_aelf` directory:
 
 ```bash title="Terminal"
-git clone https://github.com/AElfProject/nft-tutorial.git
+git clone https://github.com/AElfProject/nft-tutorial.git nft-tutorial
 ```
 
 - Next, navigate to the frontend project directory, `nft-tutorial` with the following command:
@@ -64,7 +64,71 @@ cd nft-tutorial
 
 - Once you're inside the `nft-tutorial` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
-  ![result](/img/nft-fe-directory.png)
+export const tree = {
+  "type": "directory",
+  "uri": "nft-tutorial",
+  "expanded": true,
+  "children": [
+    {
+      "type": "directory",
+      "uri": "app"
+    },
+    {
+      "type": "directory",
+      "uri": "assets"
+    },
+    {
+      "type": "directory",
+      "uri": "public"
+    },
+    {
+      "type": "directory",
+      "uri": "src"
+    },
+    {
+      "type": "file",
+      "uri": ".gitignore"
+    },
+    {
+      "type": "file",
+      "uri": "components.json"
+    },
+    {
+      "type": "file",
+      "uri": "index.html"
+    },
+    {
+      "type": "file",
+      "uri": "package.json"
+    },
+    {
+      "type": "file",
+      "uri": "postcss.config.js"
+    },
+    {
+      "type": "file",
+      "uri": "README.md"
+    },
+    {
+      "type": "file",
+      "uri": "tailwind.config.js"
+    },
+    {
+      "type": "file",
+      "uri": "tsconfig.json"
+    },
+    {
+      "type": "file",
+      "uri": "tsconfig.node.json"
+    },
+    {
+      "type": "file",
+      "uri": "vite.config.ts"
+    }
+  ]
+}
+
+<div style={{height: 500}}><FileTree tree={tree} /></div>
 
 #### Install necessary packages and libraries
 
