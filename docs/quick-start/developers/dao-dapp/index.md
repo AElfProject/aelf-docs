@@ -676,18 +676,82 @@ Let's start by cloning the frontend project repository from GitHub.
 - Run the following command in the `capstone_aelf` directory:
 
 ```bash title="Terminal"
-git clone https://github.com/AElfProject/vote-contract-frontend.git
+git clone https://github.com/AElfProject/aelf-samples.git
 ```
 
 - Next, navigate to the frontend project directory with this command:
 
 ```bash title="Terminal"
-cd vote-contract-frontend
+cd aelf-samples/vote/2-dapp
 ```
 
-- Once you're in the `vote-contract-frontend` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
+- Once you're in the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
-  ![result](/img/vote-fe-directory.png)
+export const tree = {
+  "type": "directory",
+  "uri": "2-dapp",
+  "expanded": true,
+  "children": [
+    {
+      "type": "directory",
+      "uri": "app"
+    },
+    {
+      "type": "directory",
+      "uri": "assets"
+    },
+    {
+      "type": "directory",
+      "uri": "public"
+    },
+    {
+      "type": "directory",
+      "uri": "src"
+    },
+    {
+      "type": "file",
+      "uri": ".gitignore"
+    },
+    {
+      "type": "file",
+      "uri": "components.json"
+    },
+    {
+      "type": "file",
+      "uri": "index.html"
+    },
+    {
+      "type": "file",
+      "uri": "package.json"
+    },
+    {
+      "type": "file",
+      "uri": "postcss.config.js"
+    },
+    {
+      "type": "file",
+      "uri": "README.md"
+    },
+    {
+      "type": "file",
+      "uri": "tailwind.config.js"
+    },
+    {
+      "type": "file",
+      "uri": "tsconfig.json"
+    },
+    {
+      "type": "file",
+      "uri": "tsconfig.node.json"
+    },
+    {
+      "type": "file",
+      "uri": "vite.config.ts"
+    }
+  ]
+}
+
+<div style={{height: 500}}><FileTree tree={tree} /></div>
 
 #### Install necessary libraries
 
@@ -1012,7 +1076,7 @@ npm run dev
 
 :::info
 
-ℹ️ Note: Ensure that you are running this command under the **Developer_DAO** folder.
+ℹ️ Note: Ensure that you are running this command under the **vote/2-dapp** folder.
 
 :::
 

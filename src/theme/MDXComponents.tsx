@@ -4,6 +4,7 @@ import MDXComponents from "@theme-original/MDXComponents";
 import DocCardListLinks from "@site/src/theme/DocCardListLinks";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import FileTree from "./FileTree";
 
 export default {
   // Re-use the default mapping
@@ -13,4 +14,5 @@ export default {
   DocCardListLinks,
   Tabs,
   TabItem,
+  FileTree,
 };
