@@ -435,15 +435,15 @@ export const tree = {
 npm install
 ```
 
-We are now ready to build the frontend components of our ToDo dApp.
+We are now ready to build the frontend components of our Tic Tac Toe dApp.
 
 ### Configure Portkey Provider & Write Connect Wallet Function
 
-Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed ToDo smart contract for this tutorial.
+Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed Tic Tac Toe smart contract for this tutorial.
 
 **Step 1. Locate the File:**
 
-- Go to the `src/hooks/useTodoSmartContract.ts` file.
+- Go to the `src/hooks/useSmartContract.ts` file.
 
 **Step 2. Fetch the Smart Contract:**
 
@@ -451,7 +451,7 @@ Now, we'll set up our Portkey wallet provider to allow users to connect their Po
 
 - Replace the existing **`fetchContract`** function with this updated code:
 
-```javascript title="useTodoSmartContract.ts"
+```javascript title="useSmartContract.ts"
 //Step A - Function to fetch a smart contract based on deployed wallet address
 const fetchContract = async () => {
   if (!provider) return null;
@@ -461,13 +461,13 @@ const fetchContract = async () => {
     const chain = await provider?.getChain("tDVW");
     if (!chain) throw new Error("No chain");
 
-    //Address of ToDo Smart Contract
+    //Address of TicTacTeo Smart Contract
     //Replace with Address of Deployed Smart Contract
-    const address = "your_deployed_todo_contract_address";
+    const address = "your_deployed_tic_tac_teo_contract_address";
 
-    // 2. get the ToDo contract
-    const todoContract = chain?.getContract(address);
-    setSmartContract(todoContract);
+    // 2. get the TicTacTeo contract
+    const contract = chain?.getContract(address);
+    setSmartContract(contract);
   } catch (error) {
     console.log(error, "====error");
   }
@@ -475,11 +475,11 @@ const fetchContract = async () => {
 ```
 
 :::tip
-ℹ️ Note: You are to replace the address placeholder with your deployed ToDo smart contract address from "Deploy Smart Contract" step!
+ℹ️ Note: You are to replace the address placeholder with your deployed Tic Tac Toe smart contract address from "Deploy Smart Contract" step!
 
 example:
 //Replace with Address of Deployed Smart Contract
-const address = "your_deployed_todo__smart_contract_address";
+const address = "your_deployed_tic_tac_teo_contract_address";
 :::
 
 **Explanation:**
@@ -498,7 +498,7 @@ const address = "your_deployed_todo__smart_contract_address";
 
 - Replace the existing **`useEffect`** hook with this updated code:
 
-```javascript title="useTodoSmartContract.ts"
+```javascript title="useSmartContract.ts"
   // Step B -  Effect hook to initialize and fetch the smart contract when the provider changes
   useEffect(() => {
     fetchContract();
@@ -510,7 +510,7 @@ const address = "your_deployed_todo__smart_contract_address";
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Contracts** : It fetches and sets the smart contracts.
 
-By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the ToDo smart contract including task management related functionalities. This setup will enable our frontend components to perform actions like `Create Task`, `Edit Task`, and `Delete Task`.
+By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the TicTacTeo smart contract including Tic Tac Toe Game Play related functionalities. This setup will enable our frontend components to perform actions like `initializeContract`, `startGame`, `makeMove`, `getGameStatus` and `getLatestBoard` etc.
 
 ### Configure Connect Wallet Function
 
@@ -520,7 +520,7 @@ By following these steps, we'll configure the Portkey provider to connect users'
 
 **Step 2: Write the Connect Wallet Function**
 
-- The `header/index.tsx` file is the header of our ToDo dApp. It allows users to connect their Portkey wallet with the ToDo dApp.
+- The `header/index.tsx` file is the header of our TicTacTeo dApp. It allows users to connect their Portkey wallet with the TicTacTeo dApp.
 
 - Before users can interact with the smart contract, we need to write the `Connect Wallet` function.
 
@@ -549,52 +549,25 @@ const connect = async (walletProvider?: IPortkeyProvider) => {
   - **Fetch Accounts** : It fetches the wallet accounts using the provider.
   - **Log Accounts** : Logs the accounts to the console for debugging.
   - **Set Wallet Address** : Sets the current wallet address state variable with the fetched account.
-  - **Update Connection Status** : Updates the state to indicate that the wallet is connected.
-  - **User Notification** : Displays an alert to notify the user that their wallet is successfully connected.
 
 In this code, we fetch the Portkey wallet account using the provider and update the wallet address state variable. An alert notifies the user that their wallet is successfully connected.
 
 With the connect wallet function defined, we're ready to write the remaining functions in the next steps.
 
-### Configure Create Task Form 
+### Check Contract Initialization
 
 **Step 1: Locate the File**
 
-1. Go to the `src/pages/home/index.tsx` file. This file contains all the  functionalities like show user's Task, CreateTask, UpdateTask, DeleteTask and Filter all Tasks, etc.
+- Go to the `src/pages/home/index.tsx` file. This file contains all the  functionalities like show `initializeContract`, `startGame`, `makeMove`, `getGameStatus` and `getLatestBoard` etc.
 
-**Step 2: Prepare Form to Create and Update Tasks**
+**Step 2: Prepare Function to Check Whether Contract Initialized or not**
 
-1.  Find the comment `// Step D - Configure Todo Form`.
-
-2.  Replace the form variable with this code snippet:
-
-```javascript title="home/index.tsx"
-// Step D - Configure Todo Form
-const form = useForm<z.infer<typeof formSchema>>({
-  resolver: zodResolver(formSchema),
-  defaultValues: {
-    name: "",
-    description: "",
-  },
-});
-```
-
-#### Here's what the function does:
-
-1. Initializes a new form variable with default values needed to create a task.
-
-2. Fields include: `name` and `description`.
-
-Now the form is ready for users to fill in the necessary details.
-
-### Check Contract Initialization
-
-- Scroll down to find the comment `// step 1 - Check if contract is initialized or not`.
+- Scroll down to find the comment `// step 1 - Check If Contract is Initialized or not `.
 
 - Replace the existing **`checkIsContractInitialized`** function with this code snippet:
  
 ```javascript title="home/index.tsx"
-// step 1 - Check if contract is initialized or not
+// step 1 - Check If Contract is Initialized or not 
 const checkIsContractInitialized = async () => {
   const result = await smartContract?.callViewMethod("GetInitialStatus", ""); // Call the GetInitialStatus method which is present on Smart Contract
   setIsContractInitialized(result?.data?.value); // Expect value True if it's Initialized otherwise NULL if it's not
@@ -619,23 +592,27 @@ const initializeContract = async () => {
 
     await smartContract?.callSendMethod(
       "Initialize", // Function Name
-      currentWalletAddress as string, // User Wallet Address 
+      currentWalletAddress as string, // User Wallet Address
       {} // No Arguments
     );
-
+    
     // Update Loading Message with Success
     toast.update(initializeLoadingId, {
       render: "Contract Successfully Initialized",
       type: "success",
       isLoading: false,
     });
+    
+    return;
   } catch (error: any) {
+
     // Update Loading Message with Error
     toast.update(initializeLoadingId as Id, {
       render: error.message,
       type: "error",
       isLoading: false,
     });
+    return;
   } finally {
     // Remove Loading Message
     removeNotification(initializeLoadingId as Id);
@@ -643,321 +620,163 @@ const initializeContract = async () => {
 };
 ```
 
-### Create a New Task
+### Fetch Game Status
 
-- Write the function to `Create a New Task`**
+- Write the function to `Fetch Game Status`**
 
-- The `home/index.tsx` file includes the code to create tasks. It allows users to create new tasks.
+- Find the comment `// step 3 - Fetch Game Status function` on same file.
 
-- Find the comment `// step 3 - Create a New Task using Smart Contract`.
-
-- Replace the existing **`createNewTask`** function with this code snippet:
+- Replace the existing **`getGameStatus`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-// step 3 - Create a New Task using Smart Contract
-const createNewTask = async (values: {
-  name: string;
-  description: string;
-}) => {
-  let createLoadingId;
+// step 3 - Fetch Game Status function
+const getGameStatus = async (isFirstCheck?: boolean) => {
   try {
-    // Start Loading
-    createLoadingId = toast.loading("Creating a New Task..");
-    setFormLoading(true);
-
-    // Prepare Arguments for Create a New Task
-    const sendData = {
-      name: values.name,
-      description: values.description,
-      category: selectedCategory?.value,
-      status: TASK_STATUS.pending,
-    };
-
-    // Call CreateTask Function of Smart Contract
-    await smartContract?.callSendMethod(
-      "CreateTask",
-      currentWalletAddress as string,
-      sendData
-    );
-
-    // Update Loading Message with Success
-    toast.update(createLoadingId, {
-      render: "New Task Successfully Created",
-      type: "success",
-      isLoading: false,
-    });      
-
-    // Get New Data from Contract
-    getTodoData();
+    const result = await smartContract?.callViewMethod("GetGameStatus", "");
+    console.log("result", result);
+    if (result?.data.status === "finished") {
+      if (!isFirstCheck) {
+        toast.success(`${result.data.winner} is Winner 🥳 🏆`);
+        setWinner(result.data.winner);
+      }
+    } else {
+      setIsStarted(true);
+      getLatestBoard();
+    }
   } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(createLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    // Close Form Modal
-    handleCloseModal();
-
-    // Remove Loading Message
-    removeNotification(createLoadingId as Id);
-    setFormLoading(false);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Creates an Object with Task Details** : It prepares the data needed to create a new task.
-
-2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to create the new task using the prepared data.
-
-Next, we'll write the **Update an Existing Task** function.
-
-### Update an Existing Task
-
-Write the function for update an existing task.
-
-- Scroll down to find the comment `// step 4 - Update an Existing Task`.
-
-- Replace the existing **`updateTask`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 4 - Update an Existing Task
-const updateTask = async (values: { name: string; description: string }) => {
-  let updateLoadingId;
-  try {
-    // Start Loading
-    updateLoadingId = toast.loading("Updating a Task..");
-    setFormLoading(true);
-
-    // Prepare Arguments for Update the Task
-    const sendData = {
-      taskId: updateId,
-      name: values.name,
-      description: values.description,
-      category: selectedCategory?.value,
-      status: TASK_STATUS.pending,
-    };
-
-    // Call UpdateTask Function of Smart Contract
-    await smartContract?.callSendMethod(
-      "UpdateTask",
-      currentWalletAddress as string,
-      sendData
-    );
-
-    // Update Loading Message with Success
-    toast.update(updateLoadingId, {
-      render: "Task Successfully Updated",
-      type: "success",
-      isLoading: false,
-    });
-
-    // Get New Data from Contract
-    getTodoData();
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(updateLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    // Close Form Modal
-    handleCloseModal();
-    // Remove Loading Message
-    removeNotification(updateLoadingId as Id);
-    setFormLoading(false);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Creates an Object with Updated Task Details** : It prepares the data needed for the updated task details
-
-2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the existing task using the prepared data.
-
-Next, we'll write the **Update Task Status (completeTask)** function.
-
-### Update the Task Status
-
-Write the Function to update the task status (completeTask).
-
-- Scroll down to find the comment `// step 5- Update Status from Pending to Completed of the Task`.
-
-- Replace the existing **`completeTask`** function with the following code snippet:
-
-```javascript title="home/index.tsx"
-// step 5- Update Status from Pending to Completed of the Task
-const completeTask = async (data: ITodoObject) => {
-  let completeLoadingId;
-  try {
-    // Start Loading
-    completeLoadingId = toast.loading("Moving to Completed Task..");
-    setUpdateId(data.taskId); // set Update Id for Loading on Button
-
-    // Call UpdateTask Function of Smart Contract
-    await smartContract?.callSendMethod(
-      "UpdateTask",
-      currentWalletAddress as string,
-      { ...data, status: TASK_STATUS.completed }
-    );
-
-    // Update Loading Message with Success
-    toast.update(completeLoadingId, {
-      render: "Task Moved to Completed",
-      type: "success",
-      isLoading: false,
-    });
-
-    // Get New Data from Contract
-    await getTodoData();
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(completeLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    setUpdateId(null);
-    // Remove Loading Message
-    removeNotification(completeLoadingId as Id);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the task status by passind the `completed` status as an argument.
-
-Next, we'll write the **Delete the Task** function.
-
-### Delete the Task
-
-Write a function to delete an existing task.
-
-- Scroll down to find the comment `// step 6 - Delete the Task`.
-
-- Replace the existing **`deleteTask`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 6 - Delete the Task
-const deleteTask = async (data: ITodoObject) => {
-  let deleteLoadingId;
-  try {
-    // Start Loading
-    deleteLoadingId = toast.loading("Removing a Task..");
-    setDeletingId(data.taskId); // set Deleting Id for Loading on Button
-
-    // Call UpdateTask Function of Smart Contract and update the status as "Removed"
-    await smartContract?.callSendMethod(
-      "UpdateTask",
-      currentWalletAddress as string,
-      { ...data, status: TASK_STATUS.removed }
-    );
-    
-    // Update Loading Message with Success
-    toast.update(deleteLoadingId, {
-      render: "Task Successfully Removed",
-      type: "success",
-      isLoading: false,
-    });
-
-    // Get New Data from Contract
-    await getTodoData();
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(deleteLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    setDeletingId(null);
-    // Remove Loading Message
-    removeNotification(deleteLoadingId as Id);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to delete the existing task by passing status as "removed".
-
-Next, we'll write the **Handle Submit Form** function.
-
-### Configure Submit Form
-
-- Scroll down to find the comment `// step 7 - Handle Submit Form`.
-
-- Replace the existing **`onSubmit`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 7 - Handle Submit Form
-const onSubmit = async (values: { name: string; description: string }) => {
-  
-  // Check Whether Contract Initialized or not
-  if (isContractInitialized !== true) {
-    await initializeContract(); // initialize the contract if it's not initialized before
-  }
-  
-  // Check Whether Form is for Create or Update the Task
-  if (!!updateId) {
-    await updateTask(values); // Call updateTask for Update the task
-  } else {
-    await createNewTask(values); // Call createNewTask for Create a new task
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Check initialized contract**: It checks whether the smart contract is initialized or not by using `initializeContract` function.
-
-2. **Update Task**: Call the `updateTask` function if updatedId has any value.
-
-3. **Create Task**: Call the `createNewTask` function if updatedId does not have any value.
-
-Here, we have completed functions to **Create Task**, **Update Task** and **Delete Task** and now it's time to write a function to **Fetch Tasks** from the smart contract.
-
-### Fetch All Tasks
-
-- Scroll up to find the comment `// step 8 - Fetch All Tasks`.
-
-- Replace the existing **`getTodoData`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 8 - Fetch All Tasks
-const getTodoData = async () => {
-  try {
-    const result = await smartContract?.callViewMethod("ListTasks", {
-      value: currentWalletAddress,
-    });
-    console.log("result", result?.data);
-    setTodoData(result?.data ? result?.data.tasks : []);
-  } catch (error) {
-    console.log("error======", error);
+    toast.error(error.message);
   } finally {
     setLoading(false);
+    return;
   }
 };
 ```
-#### Here's what the function does:
 
-1. **Fetches Task Data:** It calls `ListTasks` to get the list of all ToDo tasks from the ToDo smart contract.
-2. **Set Tasks on State:** Get the result data from the smart contract and set an array of all tasks into `todoData` State.
+#### What This Function Does:
 
-We have prepared necessary function to fetch all the tasks created from a connected user's wallet.
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Fetch Game Status using `GetGameStatus` Function.
 
-Now that we've written all the necessary frontend functions and components, we're ready to run the ToDo dApp application in the next step.
+Next, we'll write the **Fetch Board Data** function.
+
+### Fetch Board Data
+
+Write the function for Fetch Board Data.
+
+- Scroll down to find the comment `// step 4 - Fetch Latest Board Data from Contract`.
+
+- Replace the existing **`getLatestBoard`** function with this code snippet:
+
+```javascript title="home/index.tsx"
+  // step 4 - Fetch Latest Board Data from Contract 
+  const getLatestBoard = async () => {
+    try {
+      const result = await smartContract?.callViewMethod("GetBoard", "");
+      const arrayData = result?.data.rows
+        .map((rowData: any) =>
+          rowData.split(",").map((item: string) => (item === "" ? null : item))
+        )
+        .flat();
+      getNextTurn(arrayData);
+      setBoard(arrayData);
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      return;
+    }
+  };
+```
+
+#### What This Function Does:
+
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Fetch Latest Board Data using `GetBoard` Function.
+
+3. **Convert Respnose Data into Array** : It's convert object of responsce to Array for adjust every move into UI board.
+
+Next, we'll write the **Start Game** function.
+
+### Start Game
+
+Write the Function to start the Tic-Tac-Toe Game.
+
+- Scroll down to find the comment `// step 5 - Start Game function`.
+
+- Replace the existing **`startGame`** function with the following code snippet:
+
+```javascript title="home/index.tsx"
+// step 5 - Start Game function
+const startGame = async () => {
+  try {
+    if (!currentWalletAddress) {
+      toast.info("Please Login First");
+      return;
+    }
+    if (!isContractInitialized) {
+      await initializeContract();
+    }
+    await smartContract?.callSendMethod("StartGame", currentWalletAddress);
+    setTurnType("X");
+    setIsStarted(true);
+    getLatestBoard();
+    toast.success("Game Has been Started ✅");
+  } catch (error: any) {
+    toast.error(error.message);
+  }
+};
+```
+
+#### What This Function Does:
+
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Start Game by using the `StartGame` Function.
+
+Next, we'll write the **Perform the Move** function.
+
+### Perform the Move
+
+Write a function to Perform the Move.
+
+- Scroll down to find the comment `// step 6 - Perform the Make Move Function`.
+
+- Replace the existing **`makeMove`** function with this code snippet:
+
+```javascript title="home/index.tsx"
+// step 6 - Perform the Make Move Function 
+const makeMove = async (x: number, y: number) => {
+  try {
+    if (!currentWalletAddress) {
+      toast.info("Please Login First");
+      return;
+    }
+    const moveIndex = getIndexFromPosition(x, y);
+    setMoveLoadingIndex(moveIndex as number);
+    const params = {
+      x: x,
+      y: y,
+    };
+    await smartContract?.callSendMethod(
+      "MakeMove",
+      currentWalletAddress,
+      params
+    );
+    // toast.success("Your Move Submitted");
+    changeTurn();
+    await getLatestBoard();
+    await getGameStatus();
+  } catch (error: any) {
+    toast.error(error.message);
+  } finally {
+  }
+};
+```
+
+#### What This Function Does:
+
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Perform the Move using `MakeMove` function by passing **X** and **Y** value of the Board.
+
+Now that we've written all the necessary frontend functions and components for play the Tic-Tac-Toe page, we're ready to run the Tic-Tac-Toe dApp application in the next step.
 
 ### Run Application
 
-In this step, we will run the ToDo dApp application.
+In this step, we will run the Tic-Tac-Toe dApp application.
 
 - To begin, run the following command on your terminal.
 
@@ -967,7 +786,7 @@ npm run dev
 
 :::info
 
-**Note**: Ensure that you are running this command under the **todo/2-dapp** folder.
+**Note**: Ensure that you are running this command under the **tic-tac-toe/2-dapp** folder.
 
 :::
 
@@ -975,7 +794,7 @@ npm run dev
 
   ![run-app-success](/img/vote-npm-run-console.png)
 
-- Upon clicking on the **localhost URL**, you should be directed to the ToDo dApp landing page as shown below.
+- Upon clicking on the **localhost URL**, you should be directed to the Tic-Tac-Toe dApp landing page as shown below.
 
 :::tip
 If you are developing and testing this with github codespace, you can use port forward to test the web server that is running in codespace, here is the link on how to use port forward for codespace https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
@@ -985,9 +804,9 @@ If you are developing and testing this with github codespace, you can use port f
 
   ![open-in-browser](/img/codespace-forwarded-port.png)
 
-- Click the link to open the ToDo dApp in the browser.
+- Click the link to open the Tic-Tac-Toe dApp in the browser.
 
-  ![todo-home-page](/img/todo-homepage.jpg)
+  ![tic-tac-toe-home-page](/img/tic-tac-toe-home-page.png)
 
 #### Create Portkey Wallet
 
@@ -1048,147 +867,119 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 - Click on **"Connect Wallet"** to connect your Portkey wallet.
 
-   ![connect-wallet](/img/todo-connect-wallet.jpg)
+   ![connect-wallet](/img/tic-tac-toe-connect-wallet.png)
 
 - The button will change to **"Your Wallet Address"** when the connection is successful.
 
-   ![collect-wallet-success](/img/todo-wallet-connect-success.jpg)
+   ![collect-wallet-success](/img/tic-tac-toe-wallet-connect-success.png)
 
 --- 
 
-**Create a New Task**
+**Start The Game**
 
-- Click on **"Add New"** button to create a new task.
+- Click on **"Get Started The Game"** button to Start The Tic Tac Teo Game.
 
-   ![create-task](/img/create-task.png)
+   ![start-game](/img/start-game-button.png)
 
-- You will see the pop-up modal with form to create a new task. Please fill all the necessary fields like `Name`, `Description` and `Category`.
+- You will receive a transaction request on your portkey wallet to  **Sign** the transaction.
 
-   ![create-task-form](/img/create-task-form.png)
-
-- Click on **Create New Task** Button.
-
-- Now, You will receive a transaction request on your portkey wallet to  **Sign** the transaction.
-
-   ![create-task-sign-request](/img/create-task-sign-request.jpg)
+   ![start-game-sign-request](/img/start-game-sign-request.png)
 
 - Click on **Sign** the transaction.
 
-- After the transaction is successfully processed, your first task will be created✅.
+- After the transaction is successfully processed, your game will be started ✅.
 
-   ![create-task-success](/img/create-task-success.jpg)
+   ![start-game-success](/img/start-game-success.png)
 
-- Your task item looks like below with the following details -  **`Name`** , **`Description`** , **`Last Updated Time`** , **`Create Date and Time`**,
-
-   ![todo-item.jpg](/img/todo-item.jpg)
-
-- You will be able to perform these following action for a selected task - **`Edit`** , **`Complete`** , and **`Remove`** .
-
-As we have **Created a Task** successfully, let's update the task details.
+As we have **Started the Game** successfully, let's start to Perform the Move and Enjoy the Game.
 
 ---
 
-**Edit the Task**
+**Perform the Move**
 
-- Click on the **"Edit"** button to edit the task.
+  Let's start to perform the action move and play the game.
 
-   ![update-task](/img/update-task.png)
+:::tip
+Your first move aloways will be **"X"** as you can see below image.
+:::
 
-- You will see the pop-up modal with form to edit the task. Edit the necessary fields according to your need.
+- Click on the first square of the board, as shown in the picture below.
 
-   ![edit-task-form](/img/edit-task-form.jpg)
+   ![make-move](/img/make-move.png)
 
-- Click on **Update Task** Button.
- 
-- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
+- You will receive a transaction request on your Portkey wallet to **Sign** for making the move.
 
-   ![update-task-sign-request](/img/update-task-request.jpg)
+   ![make-move-sign-request](/img/make-move-sign-request.png)
 
-- Click on **Sign** the transaction.
+- After the transaction is successfully processed, your first move will be submitted to blockchain ✅.
 
-- After the transaction is successfully processed, your task details will be Updated✅.
+- Now it's Turn of move will be change from **"X"** to **"O"**. Your active Turn is **"O"** now, as shown in the picture below.
 
-   ![update-task-success](/img/update-task-success.jpg)
+- Click on the Middle square of the board for **"O"**, as shown in the picture below.
 
-As we have **Edited a Task** successfully. Let's move that task to completed state.
+   ![second-move](/img/second-move.png)
 
----
+- You will receive a transaction request on your Portkey wallet to **Sign** for the second move.
 
-**Complete the Task**
-
-- Click on the **"Complete"** button to move the task to `Completed` status.
-
-   ![complete-task-button](/img/complete-task-button.jpg)
-
-- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
-
-   ![complete-task-sign-request](/img/complete-task-request.jpg)
+   ![second-move-request](/img/second-move-request.png)
 
 - Click on **Sign** the transaction.
 
-- After the transaction is successfully processed, your task will be moved to the completed tab✅.
+- After the transaction is successfully processed, your second move will be submitted to the blockchain ✅.
 
-   ![complete-task-success](/img/complete-task-success.jpg)
+- Now you can continue making other moves as demonstrated above.
 
-As we have performed **Complete Task** successfully. Let's remove the completed task.
+- After winning the game, you will see this winning screen with the corresponding move (**X** or **O**).
 
----
+   ![winner-view](/img/winner-view.png)
 
-**Remove the Task**
+- Click on the **Start Again** button to continue playing the Tic-Tac-Toe game with aelf blockchain. Enjoy!
 
-- Click on **"Remove"** button to remove the task.
+   ![start-again](/img/start-again.png)
 
-   ![remove-task-button](/img/delete-task-button.jpg)
- 
-- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
+- You will  be redirect  to again **Welcome screen** of the Game.
 
-   ![remove-task-sign-request](/img/delete-task-request.jpg)
-
-- Click on **Sign** the transaction.
-
-- After the transaction is successfully processed, your task will be moved to the removed tab✅.
-
-   ![remove-task-success](/img/delete-task-success.jpg)
+   ![welcome-screen](/img/welcome-screen.png)
 
 :::success
-🎉 Congratulations Learners! You have successfully built your ToDo dApp.
+🎉 Congratulations Learners! You have successfully built your Tic Tac Toe dApp with aelf Blockchain.
 :::
 
 
 ## 🎯 Conclusion
 
-🎉 Congratulations on successfully completing the **ToDo dApp** tutorial! 🎉 You've taken important steps in setting up your development environment, developing and deploying a smart contract on ToDo dApp, and building a fully functional ToDo decentralized application on the aelf blockchain. 🌟
+🎉 Congratulations on successfully completing the **Tic Tac Toe dApp** tutorial! 🎉 You've achieved significant milestones, from setting up your development environment to deploying and interacting with your Tic Tac Toe smart contract on the aelf blockchain. 🌟
 
 **📚 What You've Learned**
 
 Throughout this tutorial, you've mastered:
 
-  - **🛠️ Setting Up Your Development Environment:** You prepared your workspace by installing and configuring all the necessary tools to kickstart your smart contract project.
+  - **🛠️ Setting Up Your Development Environment:** You equipped your workspace by installing and configuring all the necessary tools to get your smart contract project off the ground.
 
-  - **💻 Developing Your Smart Contract:** You created the foundation of your ToDo dApp by writing and building the smart contract that manages tasks, from creation to deletion.
+  - **💻 Developing Your Smart Contract:** You built the core logic of your Tic Tac Toe game, writing and compiling the smart contract that manages game states, moves, and outcomes.
 
-  - **🚀 Deploying the Smart Contract:** You deployed your smart contract to the aelf blockchain, enabling its functionalities to be used in a live environment.
+  - **🚀 Deploying the Smart Contract:** You successfully deployed your Tic Tac Toe smart contract to the aelf blockchain, making it live and ready for gameplay.
 
-  - **🔧 Interacting with Your Deployed Smart Contract:** You connected your frontend to the blockchain, integrated Portkey for wallet connectivity, and implemented functions to manage tasks such as creating, updating, and deleting directly through the dApp.
+  - **🔧 Interacting with Your Deployed Smart Contract through the dApp:** You connected your frontend to the blockchain, configured the Portkey provider, and implemented essential functions like wallet connectivity, game initialization, and move management.
 
 **🔍 Final Output**
 
 By now, you should have:
 
-   - 📜 A deployed smart contract that powers your ToDo dApp, managing tasks with functionalities for creation, updating, status management, and deletion.
+  - 📜 A deployed Tic Tac Toe smart contract that governs the game's rules and manages players' moves on the blockchain.
 
-   - 💻 A fully operational ToDo dApp, allowing users to interact with the smart contract to efficiently manage their tasks.
+  - 💻 A fully functional Tic Tac Toe dApp, allowing users to connect their wallets, start a game, make moves, and determine the winner, all in a decentralized manner.
 
 **➡️ What's Next?**
 
-With the basics under your belt, consider exploring more advanced topics:
+With the foundation laid, consider advancing your Tic Tac Toe dApp with more sophisticated features:
 
-  - **📈 Enhancing Smart Contract Logic:** Introduce more complex features to your ToDo dApp, such as prioritization, deadlines, or collaboration tools.
+  - **📈 Enhancing Game Logic:** Add more features like AI opponents, multiplayer functionality, or scoring systems to make the game more engaging.
 
-  - **🔒 Improving Security:** Ensure your dApp and smart contract are secure by implementing best practices and security measures.
+  - **🔒 Improving Security:** Secure your game by applying best practices in smart contract security to protect user data and gameplay integrity.
 
-  - **🌍 Exploring Cross-Chain Features:** Expand your dApp’s capabilities by exploring aelf’s cross-chain interoperability, enabling interaction with other blockchains.
+  - **🌍 Exploring Cross-Chain Capabilities:** Expand your dApp’s reach by exploring aelf’s cross-chain interoperability, enabling interactions with other blockchains.
 
-The possibilities with blockchain technology and decentralized applications are endless. You're now well-equipped to take your ToDo dApp to the next level. Keep building, innovating, and exploring with aelf. 🚀
+Blockchain technology and decentralized applications offer limitless possibilities. With your Tic Tac Toe dApp, you're now poised to continue innovating and exploring new horizons with aelf. 🚀
 
-Happy coding and expanding your **ToDo dApp! 😊**
+Happy coding and expanding your **Tic Tac Toe dApp!** 😊
