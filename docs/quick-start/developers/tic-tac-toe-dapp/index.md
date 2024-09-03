@@ -868,7 +868,7 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 **Start The Game**
 
-- Click on **"Start The Game"** button to start The Tic-Tac-Toe Game.
+- Click on **"Start The Game"** button to Start The Tic Tac Toe Game.
 
    ![start-game](/img/start-game-button.png)
 
