@@ -36,6 +36,8 @@ const config: Config = {
     locales: ["en"],
   },
 
+  plugins: ["docusaurus-plugin-hotjar"],
+
   presets: [
     [
       "classic",
@@ -119,6 +121,9 @@ const config: Config = {
       },
       typesenseSearchParameters: {},
       contextualSearch: true,
+    },
+    hotjar: {
+      applicationId: process.env.HOTJAR_ID,
     },
   } satisfies Preset.ThemeConfig,
   stylesheets: [
