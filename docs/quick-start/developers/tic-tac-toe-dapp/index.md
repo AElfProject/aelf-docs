@@ -461,11 +461,11 @@ const fetchContract = async () => {
     const chain = await provider?.getChain("tDVW");
     if (!chain) throw new Error("No chain");
 
-    //Address of TicTacTeo Smart Contract
+    //Address of TicTacToe Smart Contract
     //Replace with Address of Deployed Smart Contract
-    const address = "your_deployed_tic_tac_teo_contract_address";
+    const address = "your_deployed_tic_tac_toe_contract_address";
 
-    // 2. get the TicTacTeo contract
+    // 2. get the TicTacToe contract
     const contract = chain?.getContract(address);
     setSmartContract(contract);
   } catch (error) {
@@ -479,7 +479,7 @@ const fetchContract = async () => {
 
 example:
 //Replace with Address of Deployed Smart Contract
-const address = "your_deployed_tic_tac_teo_contract_address";
+const address = "your_deployed_tic_tac_toe_contract_address";
 :::
 
 **Explanation:**
@@ -510,7 +510,7 @@ const address = "your_deployed_tic_tac_teo_contract_address";
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Contracts** : It fetches and sets the smart contracts.
 
-By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the TicTacTeo smart contract including Tic Tac Toe Game Play related functionalities. This setup will enable our frontend components to perform actions like `initializeContract`, `startGame`, `makeMove`, `getGameStatus` and `getLatestBoard` etc.
+By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the TicTacToe smart contract including Tic Tac Toe Game Play related functionalities. This setup will enable our frontend components to perform actions like `initializeContract`, `startGame`, `makeMove`, `getGameStatus` and `getLatestBoard` etc.
 
 ### Configure Connect Wallet Function
 
@@ -520,7 +520,7 @@ By following these steps, we'll configure the Portkey provider to connect users'
 
 **Step 2: Write the Connect Wallet Function**
 
-- The `header/index.tsx` file is the header of our TicTacTeo dApp. It allows users to connect their Portkey wallet with the TicTacTeo dApp.
+- The `header/index.tsx` file is the header of our TicTacToe dApp. It allows users to connect their Portkey wallet with the TicTacToe dApp.
 
 - Before users can interact with the smart contract, we need to write the `Connect Wallet` function.
 
@@ -877,7 +877,7 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 **Start The Game**
 
-- Click on **"Get Started The Game"** button to Start The Tic Tac Teo Game.
+- Click on **"Get Started The Game"** button to Start The Tic Tac Toe Game.
 
    ![start-game](/img/start-game-button.png)
 
