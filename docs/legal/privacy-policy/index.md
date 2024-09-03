@@ -2,7 +2,7 @@
 sidebar_position: 2
 title: Privacy Policy
 ---
-**Last updated: 25 June 2024**
+**Last updated: 3 September 2024**
 
 This privacy policy ("Privacy Policy") elucidates the procedures by which Aelf Pte Ltd("Aelf", "our", "Company", "we", or "us") gathers, employs, and divulges information about you. 
 
