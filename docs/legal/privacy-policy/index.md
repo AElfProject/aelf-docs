@@ -140,9 +140,9 @@ We only share and disclose your information with the following categories of thi
 
 \- Website Hosting Service Providers
 
-**7. Use Cookies And Other Tracking Technologies?**
+**7. Use of Cookies And Other Tracking Technologies
 
-We do not use cookies or tracking technologies. Rather, we utilise anonymous page view tracking information provided by third-party analytics providers which do not collect or store any personal data. As such, we make no use of cookies.
+While we do not directly utilize cookies or other tracking technologies on our Website, we may engage with third-party service providers who deploy such technologies as part of their service offerings. For instance, we use Hotjar in order to better understand our users' needs and to optimize this service and experience. Hotjar is a technology service that helps us better understand our users' experience (eg how much time they spend on which pages, which links they choose to click, what users do and don't like, etc.) and this enables us to build and maintain our service with user feedback. Hotjar uses cookies and other technologies to collect data on our users' behavior and their devices device's IP address (processed during your session and stored in a de-identified form), device screen size, device type (unique device identifiers), browser information, geographic location (country only), and the preferred language used to display our website. Hotjar stores this information on our behalf in a pseudonymized user profile. Hotjar is contractually forbidden to sell any of the data collected on our behalf. By interacting with our Website, you may be subject to these third-party technologies, which are governed by the respective provider's privacy policies. We recommend reviewing these policies to understand how your information may be collected and used. For further details, please see the 'about Hotjar' section of [Hotjar's support site](https://help.hotjar.com/hc/en-us/categories/115001323967-About-Hotjar).
 
 **8. Transfer of Information to Other Jurisdictions**
 
