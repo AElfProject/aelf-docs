@@ -6,7 +6,7 @@ description: Moderately difficult smart contract and dApp
 
 **Description**: The Tic-Tac-Toe dApp is a decentralized gamify application that allows users to play the classic game of Tic-Tac-Toe on the aelf blockchain. It offers a simple and interactive interface where two players can compete against each other, with game data securely stored and verified on the aelf blockchain.
 
-**Purpose**: The purpose of the Tic-Tac-Toe Gamify dApp is to demonstrate how traditional games can be implemented on the aelf blockchain, ensuring transparency and immutability of game outcomes. It serves as an educational tool for learning smart contract development and the basics of decentralized application functionality.
+**Purpose**: The purpose of the Tic-Tac-Toe gamify dApp is to demonstrate how traditional games can be implemented on the aelf blockchain, ensuring transparency and immutability of game outcomes. It serves as an educational tool for learning smart contract development and the basics of decentralized application functionality.
 
 **Difficulty Level**: Moderate
 
@@ -30,21 +30,13 @@ import Setup from "../\_setup.md"
 ```bash title="Terminal"
 mkdir tic-tac-toe-dapp
 cd tic-tac-toe-dapp
-dotnet new aelf -n TicTacToeDapp
+dotnet new aelf -n TicTacToe
 ```
 
 ### Adding Your Smart Contract Code
 
-Now that we have a template tic-tac-toe project, we can customise the template to incorporate our own contract logic.
-Initialize(): This sets up the game by marking the contract as initialized, setting the contract creator as the owner, and resetting the game board.
-StartGame(): This resets the game board, starts a new game, and sets the first player (X) to make a move.
-MakeMove(input): This allows a player to make a move on the board. It checks if the move is valid, updates the board, and determines if there is a winner or a draw.
-GetBoard(): This returns the current state of the Tic Tac Toe board.
-GetGameStatus(): This returns the current game status, including the winner (if any).
-GetInitialStatus(): This checks if the contract has been initialized.
-
-Let's start by implementing methods to handle the basic functionality of starting the game, making a move by participating players, getting the game board's data and current status and getting initial game status. Tic-Tac-Toe dApp includes the below functionalities like:
-1. Start a game
+Now that we have a template tic-tac-toe project, we can customise the template to incorporate our own contract logic. Let's start by implementing methods to handle the basic functionality for starting the Tic-Tac-Toe game, allowing players to make moves, retrieving the game board data and current status, and checking if the game has been initialized. Tic-Tac-Toe dApp includes the below functionalities:
+1. Start a new game
 2. Make a move in the ongoing game
 3. Get the board details
 4. Get the current status of the board
@@ -435,11 +427,11 @@ export const tree = {
 npm install
 ```
 
-We are now ready to build the frontend components of our Tic Tac Toe dApp.
+We are now ready to build the frontend components of our Tic-Tac-Toe dApp.
 
 ### Configure Portkey Provider & Write Connect Wallet Function
 
-Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed Tic Tac Toe smart contract for this tutorial.
+Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed Tic-Tac-Toe smart contract for this tutorial.
 
 **Step 1. Locate the File:**
 
@@ -477,8 +469,7 @@ const fetchContract = async () => {
 :::tip
 ℹ️ Note: You are to replace the address placeholder with your deployed Tic Tac Toe smart contract address from "Deploy Smart Contract" step!
 
-example:
-//Replace with Address of Deployed Smart Contract
+example: Replace with Address of Deployed Smart Contract  
 const address = "your_deployed_tic_tac_toe_contract_address";
 :::
 
@@ -490,7 +481,7 @@ const address = "your_deployed_tic_tac_toe_contract_address";
   - **Fetch Chain** : The function fetches chain information using the provider.
   - **Get Contract** : It retrieves the smart contract instance from the chain.
    
-`AELF` represents the mainnet chain and `tDVW` represents the testnet chain respectively on aelf blockchain.
+`AELF` represents the mainnet chain and `tDVW` represents the testnet chain respectively on the aelf blockchain.
 
 **Step 3. Initialize and Fetch the Smart Contracts:**
 
@@ -510,7 +501,7 @@ const address = "your_deployed_tic_tac_toe_contract_address";
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Contracts** : It fetches and sets the smart contracts.
 
-By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the TicTacToe smart contract including Tic Tac Toe Game Play related functionalities. This setup will enable our frontend components to perform actions like `initializeContract`, `startGame`, `makeMove`, `getGameStatus` and `getLatestBoard` etc.
+By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the Tic-Tac-Toe smart contract including Tic-Tac-Toe Game Play related functionalities. This setup will enable our frontend components to perform actions like `initializeContract`, `startGame`, `makeMove`, `getGameStatus` and `getLatestBoard` etc.
 
 ### Configure Connect Wallet Function
 
@@ -520,13 +511,13 @@ By following these steps, we'll configure the Portkey provider to connect users'
 
 **Step 2: Write the Connect Wallet Function**
 
-- The `header/index.tsx` file is the header of our TicTacToe dApp. It allows users to connect their Portkey wallet with the TicTacToe dApp.
+- The `header/index.tsx` file is the header of our Tic-Tac-Toe dApp. It allows users to connect their Portkey wallet with the Tic-Tac-Toe dApp.
 
 - Before users can interact with the smart contract, we need to write the `Connect Wallet` function.
 
 - Find the comment `// Step C - Connect Portkey Wallet`.
 
-- Replace the existing connect function with this code snippet:
+- Replace the existing **`connect`** function with this code snippet:
 
 ```javascript title="header/index.tsx"
 const connect = async (walletProvider?: IPortkeyProvider) => {
@@ -560,7 +551,7 @@ With the connect wallet function defined, we're ready to write the remaining fun
 
 - Go to the `src/pages/home/index.tsx` file. This file contains all the  functionalities like show `initializeContract`, `startGame`, `makeMove`, `getGameStatus` and `getLatestBoard` etc.
 
-**Step 2: Prepare Function to Check Whether Contract Initialized or not**
+**Step 2: Prepare a Function to Check Whether the Contract is Initialized or not**
 
 - Scroll down to find the comment `// step 1 - Check If Contract is Initialized or not `.
 
@@ -622,7 +613,7 @@ const initializeContract = async () => {
 
 ### Fetch Game Status
 
-- Write the function to `Fetch Game Status`**
+- Write the function to fetch the game status.
 
 - Find the comment `// step 3 - Fetch Game Status function` on same file.
 
@@ -654,20 +645,20 @@ const getGameStatus = async (isFirstCheck?: boolean) => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Fetch Game Status using `GetGameStatus` Function.
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to fetch the game status using `getGameStatus` Function.
 
 Next, we'll write the **Fetch Board Data** function.
 
 ### Fetch Board Data
 
-Write the function for Fetch Board Data.
+Write the function to fetch the board data.
 
-- Scroll down to find the comment `// step 4 - Fetch Latest Board Data from Contract`.
+- Scroll down to find the comment `// step 4 - Fetch Latest Board Data from the Contract`.
 
 - Replace the existing **`getLatestBoard`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-  // step 4 - Fetch Latest Board Data from Contract 
+  // step 4 - Fetch Latest Board Data from the Contract 
   const getLatestBoard = async () => {
     try {
       const result = await smartContract?.callViewMethod("GetBoard", "");
@@ -688,15 +679,15 @@ Write the function for Fetch Board Data.
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Fetch Latest Board Data using `GetBoard` Function.
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to fetch the latest board data using `getLatestBoard` Function.
 
-3. **Convert Respnose Data into Array** : It's convert object of responsce to Array for adjust every move into UI board.
+3. **Convert Respnose Data into Array** : It converts object of the response data to an array to adjust every move into the UI board.
 
 Next, we'll write the **Start Game** function.
 
 ### Start Game
 
-Write the Function to start the Tic-Tac-Toe Game.
+Write the Function to start the Tic-Tac-Toe game.
 
 - Scroll down to find the comment `// step 5 - Start Game function`.
 
@@ -726,20 +717,20 @@ const startGame = async () => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Start Game by using the `StartGame` Function.
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to start the game by using the `startGame` Function.
 
-Next, we'll write the **Perform the Move** function.
+Next, we'll write the **Make the Move** function.
 
 ### Perform the Move
 
-Write a function to Perform the Move.
+Write a function to make the move.
 
-- Scroll down to find the comment `// step 6 - Perform the Make Move Function`.
+- Scroll down to find the comment `// step 6 - Make the Move Function`.
 
 - Replace the existing **`makeMove`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-// step 6 - Perform the Make Move Function 
+// step 6 - Make the Move Function 
 const makeMove = async (x: number, y: number) => {
   try {
     if (!currentWalletAddress) {
@@ -770,7 +761,7 @@ const makeMove = async (x: number, y: number) => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Perform the Move using `MakeMove` function by passing **X** and **Y** value of the Board.
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to make the move by an input from a player using `makeMove` function by passing **X** and **Y** value of the Board.
 
 Now that we've written all the necessary frontend functions and components for play the Tic-Tac-Toe page, we're ready to run the Tic-Tac-Toe dApp application in the next step.
 
@@ -797,10 +788,10 @@ npm run dev
 - Upon clicking on the **localhost URL**, you should be directed to the Tic-Tac-Toe dApp landing page as shown below.
 
 :::tip
-If you are developing and testing this with github codespace, you can use port forward to test the web server that is running in codespace, here is the link on how to use port forward for codespace https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
+If you are developing and testing this with github codespace, you can use `port forward` to test the web server that is running in codespace, here is the link on how to use `port forward` for codespace https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
 :::
 
-- Usually codespace will automatically forward port, you should see a pop-up message at the bottom right of your codespace browser window as shown in the diagram below:
+- Usually codespaces automatically forward ports, you should see a pop-up message at the bottom right of your codespace browser window as shown in the diagram below:
 
   ![open-in-browser](/img/codespace-forwarded-port.png)
 
@@ -877,7 +868,7 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 **Start The Game**
 
-- Click on **"Get Started The Game"** button to Start The Tic Tac Toe Game.
+- Click on **"Start The Game"** button to start The Tic-Tac-Toe Game.
 
    ![start-game](/img/start-game-button.png)
 
@@ -887,20 +878,20 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 - Click on **Sign** the transaction.
 
-- After the transaction is successfully processed, your game will be started ✅.
+- After the transaction is successfully processed, your game will start ✅.
 
    ![start-game-success](/img/start-game-success.png)
 
-As we have **Started the Game** successfully, let's start to Perform the Move and Enjoy the Game.
+As we have **Started the Game** successfully, let's start to perform the moves and enjoy the game.
 
 ---
 
 **Perform the Move**
 
-  Let's start to perform the action move and play the game.
+  Let's start to make the moves and play the game.
 
 :::tip
-Your first move aloways will be **"X"** as you can see below image.
+Your first move will always be **"X"** as shown in the picture below.
 :::
 
 - Click on the first square of the board, as shown in the picture below.
@@ -913,9 +904,9 @@ Your first move aloways will be **"X"** as you can see below image.
 
 - After the transaction is successfully processed, your first move will be submitted to blockchain ✅.
 
-- Now it's Turn of move will be change from **"X"** to **"O"**. Your active Turn is **"O"** now, as shown in the picture below.
+- Now it's turn of move by the opponent and the move sign will change from **"X"** to **"O"**. Your active turn is **"O"** now, as shown in the picture below.
 
-- Click on the Middle square of the board for **"O"**, as shown in the picture below.
+- Click on the middle square of the board for **"O"**, as shown in the picture below.
 
    ![second-move](/img/second-move.png)
 
@@ -937,18 +928,18 @@ Your first move aloways will be **"X"** as you can see below image.
 
    ![start-again](/img/start-again.png)
 
-- You will  be redirect  to again **Welcome screen** of the Game.
+- You will  be redirected again to the **Welcome screen** of the Game.
 
    ![welcome-screen](/img/welcome-screen.png)
 
 :::success
-🎉 Congratulations Learners! You have successfully built your Tic Tac Toe dApp with aelf Blockchain.
+🎉 Congratulations Learners! You have successfully built your Tic-Tac-Toe dApp with aelf Blockchain.
 :::
 
 
 ## 🎯 Conclusion
 
-🎉 Congratulations on successfully completing the **Tic Tac Toe dApp** tutorial! 🎉 You've achieved significant milestones, from setting up your development environment to deploying and interacting with your Tic Tac Toe smart contract on the aelf blockchain. 🌟
+🎉 Congratulations on successfully completing the **Tic Tac Toe dApp** tutorial! 🎉 You've achieved significant milestones, from setting up your development environment to deploying and interacting with your Tic-Tac-Toe smart contract on the aelf blockchain. 🌟
 
 **📚 What You've Learned**
 
@@ -966,20 +957,20 @@ Throughout this tutorial, you've mastered:
 
 By now, you should have:
 
-  - 📜 A deployed Tic Tac Toe smart contract that governs the game's rules and manages players' moves on the blockchain.
+  - 📜 A deployed Tic-Tac-Toe smart contract that governs the game's rules and manages players' moves on the blockchain.
 
-  - 💻 A fully functional Tic Tac Toe dApp, allowing users to connect their wallets, start a game, make moves, and determine the winner, all in a decentralized manner.
+  - 💻 A fully functional Tic-Tac-Toe dApp, allowing users to connect their wallets, start a game, make moves, and determine the winner, all in a decentralized manner.
 
 **➡️ What's Next?**
 
-With the foundation laid, consider advancing your Tic Tac Toe dApp with more sophisticated features:
+With the foundation laid, consider advancing your Tic-Tac-Toe dApp with more sophisticated features:
 
   - **📈 Enhancing Game Logic:** Add more features like AI opponents, multiplayer functionality, or scoring systems to make the game more engaging.
 
-  - **🔒 Improving Security:** Secure your game by applying best practices in smart contract security to protect user data and gameplay integrity.
+  - **🔒 Improving Security:** Secure your game by applying best practices in smart contract security to protect users' data and gameplay integrity.
 
   - **🌍 Exploring Cross-Chain Capabilities:** Expand your dApp’s reach by exploring aelf’s cross-chain interoperability, enabling interactions with other blockchains.
 
-Blockchain technology and decentralized applications offer limitless possibilities. With your Tic Tac Toe dApp, you're now poised to continue innovating and exploring new horizons with aelf. 🚀
+Blockchain technology and decentralized applications offer limitless possibilities. With your Tic-Tac-Toe dApp, you're now poised to continue innovating and exploring new horizons with aelf. 🚀
 
-Happy coding and expanding your **Tic Tac Toe dApp!** 😊
+Happy coding and expanding your **Tic-Tac-Toe dApp!** 😊
