@@ -103,11 +103,11 @@ aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH -e https://
     ```
 
 :::tip
-ℹ️ Note: You are to copy the smart contract address as we will be referencing it in the next quest!
+ℹ️ Note: You are to copy the smart contract address as we will be referencing it in the next steps!
 :::
 
 :::info
-🎉 You have successfully deployed your Voting dApp smart contract on the aelf testnet! In the next quest, we will be building the frontend components that allow us to interact with our deployed smart contract!
+🎉 You have successfully deployed your ToDo dApp smart contract on the aelf testnet! In the next steps, we will be building the frontend components that allow us to interact with our deployed smart contract!
 :::
 
 
