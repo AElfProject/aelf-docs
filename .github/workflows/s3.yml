@@ -25,6 +25,7 @@ jobs:
         echo TYPESENSE_COLLECTION_NAME=${{ vars.TYPESENSE_COLLECTION_NAME }} >> .env
         echo TYPESENSE_SERVER_HOST=${{ vars.TYPESENSE_SERVER_HOST }} >> .env
         echo TYPESENSE_SEARCH_ONLY_APIKEY=${{ vars.TYPESENSE_SEARCH_ONLY_APIKEY }} >> .env
+        echo HOTJAR_ID=${{ vars.HOTJAR_ID }} >> .env
     - run: npm run build
     
     - name: Configure AWS Credentials
