@@ -13,6 +13,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 18
+        cache: 'npm'
+    - run: npm install
+    - name: create env file
+      run: |
+        touch .env
+        echo TYPESENSE_COLLECTION_NAME=${{ vars.TYPESENSE_COLLECTION_NAME }} >> .env
+        echo TYPESENSE_SERVER_HOST=${{ vars.TYPESENSE_SERVER_HOST }} >> .env
+        echo TYPESENSE_SEARCH_ONLY_APIKEY=${{ vars.TYPESENSE_SEARCH_ONLY_APIKEY }} >> .env
+    - run: npm run build
     - name: Deploy
       env:
         AWS_DEFAULT_REGION: "ap-northeast-1"
@@ -46,16 +58,6 @@ jobs:
         echo "[default]
         aws_access_key_id = ${AWS_ACCESS_KEY_ID}
         aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
-        
-        
-        echo "Install yarn"
-        npm install -g yarn
-        
-        echo "Install dependencies"
-        yarn install
-        
-        echo "Run yarn build"
-        yarn run build
         
         echo "Copying to website folder"
         aws s3 sync ./build s3://${AWS_S3_BUCKET} --exact-timestamps --delete --region ${AWS_DEFAULT_REGION} $*
