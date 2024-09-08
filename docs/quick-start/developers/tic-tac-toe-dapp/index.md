@@ -12,7 +12,6 @@ description: Moderately difficult smart contract and dApp
 
 <iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/Cs_uwSoHgXM?si=RIINFfgqmLlNZhE9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-
 ## Step 1 - Setting up your development environment
 
 import Setup from "../\_setup.md"
