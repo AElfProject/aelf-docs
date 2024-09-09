@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
-title: Wallet
+sidebar_position: 4
+title: Integration Guide
 description: Learn how to integrate with other tools and DApps
 ---
 
