@@ -58,7 +58,7 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 ## 🛠️ Tools
 
 - [Playground](/tools/aelf-playground/) - Play with aelf in your browser
-- [Wallet](/resources/integration-guide/) - Integrate your dApp with aelf wallets
+- [Wallet](https://portkey.finance/) - Integrate your dApp with Portkey wallet
 - [Faucet](/tools/faucet/) - Test your dApp with aelf test tokens
 - [Oracle](/resources/aetherLink/) - Transfer tamper-proof data from off-chain to on-chain
 - [Indexer](https://www.aefinder.io/) - Query blockchain data from a database

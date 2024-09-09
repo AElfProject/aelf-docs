@@ -59,7 +59,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         { type: "doc", id: "tools/aelf-playground/index" },
-        { type: "doc", id: "tools/wallet/index" },
+        { type: "link", label: "Wallet", href: "https://portkey.finance/", description: "Integrate your dApp with Portkey wallet" },
         { type: "doc", id: "tools/faucet/index" },
         { type: "doc", id: "tools/oracle/index" },
         {
