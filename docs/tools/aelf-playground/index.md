@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: aelf Playground
+title: Playground
 description: Play with aelf in your browser.
 ---
 
