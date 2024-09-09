@@ -1,11 +1,11 @@
 {
-  "position": 2,
-  "label": "Chain SDK",
+  "position": 6,
+  "label": "aelf SDK",
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "title": "Chain SDK",
+    "title": "aelf SDK",
     "slug": "tools/chain-sdk"
   },
   "customProps": {

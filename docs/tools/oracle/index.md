@@ -1,6 +1,6 @@
 ---
-sidebar_position: 6
-title: AetherLink
+sidebar_position: 4
+title: Oracle
 description: Transfer tamper-proof data from off-chain to on-chain
 ---
 

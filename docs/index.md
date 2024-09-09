@@ -58,16 +58,12 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 ## 🛠️ Tools
 
 - [Playground](/tools/aelf-playground/) - Play with aelf in your browser
-- [Chain SDK](/tools/chain-sdk/) - Develop blockchain specific applications using ChainSDK
-- [aelf-deploy](/tools/aelf-deploy/) - Deploy your smart contract using this CLI
-- [aelf CLI](/tools/aelf-cli/) - Execute blockchain operations via CLI
-- [Smart Contract Templates](/tools/smart-contract-templates/) - Templates to quickly build your smart contract
+- [Wallet](/resources/integration-guide/) - Integrate your dApp with aelf wallets
 - [Faucet](/tools/faucet/) - Test your dApp with aelf test tokens
-- [Design](/tools/design/) - Explore aelf design library
-- [Contract SDK](/tools/contract-sdk/) - C# SDKs
-- [Smart Contract API](/tools/smart-contract-api/) - Access smart contract functionalities using API
-- [Web API](/tools/web-api/) - Interact with the aelf blockchain through the web
-- [Setup Local Environment](/tools/setup-local-environment/) - Node operator and developer setup guides
+- [Oracle](/resources/aetherLink/) - Transfer tamper-proof data from off-chain to on-chain
+- [Indexer](https://www.aefinder.io/) - Query blockchain data from a database
+- [aelf SDK](/tools/chain-sdk/) - Develop blockchain specific applications using aelf SDK
+- [aelf CLI](/tools/aelf-cli/) - Execute blockchain operations via CLI
 
 </article>
 
@@ -76,15 +72,8 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
 ## 🔖 Resources
 
 - [Whitepaper 2.0](/resources/whitepaper-2/) - Featuring AI + Blockchain
-- [Whitepaper 1.0](/resources/whitepaper/) - The original aelf Whitepaper
 - [Tokenomics](/resources/tokenomics/) - Economic and Governance
-- [Integration Guide](/resources/integration-guide/) - Learn how to integrate with other tools and DApps
-- [Wallet and Block Explorer](/resources/wallet-and-block-explorer/) - Manage your assets and explore aelf's blockchain data
-- [AetherLink](/resources/aetherLink/) - Transfer tamper-proof data from off-chain to on-chain
-- [Browser Extension](/resources/browser-extension/) - Explore Portkey wallet and other extensions
-- [DevOps](/resources/devops/) - Tools to build and deploy efficiently
-- [Protobuf Extension](/resources/protobuf-extension/) - An open-source gRPC
-- [Contribution Guide](/resources/contribution/) - Contribute to aelf
+- [Other](/resources/) - Other resources
 
 </article>
 

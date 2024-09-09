@@ -1,7 +1,7 @@
 ---
-sidebar_position: 6
-title: aelf Testnet Faucet
-description: Get your free test aelf tokens.
+sidebar_position: 3
+title: Faucet
+description: Test your dApp with aelf test tokens
 ---
 
 import Tabs from '@theme/Tabs';
