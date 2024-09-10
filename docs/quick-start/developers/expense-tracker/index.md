@@ -128,7 +128,7 @@ message ExpenseList {
 
 #### Define Contract States
 
-The implementation of the Expense Tracker app state inside file `src/ExpenseTrackerState.cs` is as follows:
+The implementation of the Expense Tracker smart contract state inside file `src/ExpenseTrackerState.cs` is as follows:
 
 ```csharp title="src/ExpenseTrackerState.cs"
 using AElf.Sdk.CSharp.State;
@@ -148,7 +148,7 @@ namespace AElf.Contracts.ExpenseTracker
 }
 ```
 
-- The `State.cs` file in an aelf blockchain smart contract holds the variables that store the contract's data, making sure this data is saved and accessible whenever the contract needs it.
+- The `State.cs` file in the aelf blockchain smart contract holds the variables that store the contract's data, making sure this data is saved and accessible whenever the contract needs it.
 
 #### Implement Expense Tracker Smart Contract 
 
