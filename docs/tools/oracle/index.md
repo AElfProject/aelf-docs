@@ -13,7 +13,6 @@ AetherLink offers several key products that enhance the functionality of smart c
 1. Datafeeds: AetherLink Datafeeds provide decentralized, real-time data from multiple sources, enabling smart contracts to access highly reliable and accurate off-chain information, such as asset prices, for secure decision-making in decentralized applications.
 2. VRF (Verifiable Random Function): AetherLink VRF delivers provably fair and verifiable random numbers, ensuring the randomness used in smart contracts is tamper-proof and transparent. This is particularly useful for gaming, lotteries, and any application that requires trusted randomness.
 3. Automation: AetherLink Automation allows developers to automate smart contract functions by triggering actions based on specific events or conditions. This reduces the need for manual intervention and ensures contracts execute efficiently and reliably when certain criteria are met.
-4. CCIP (Cross-Chain Interoperability Protocol): AetherLink's CCIP enables seamless communication and interaction between different blockchains, allowing smart contracts to operate across multiple networks. This interoperability expands the capabilities of decentralized applications, making them more versatile and powerful.
 
 ## 2. Purpose
 
