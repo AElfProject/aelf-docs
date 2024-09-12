@@ -2,6 +2,8 @@
 sidebar_position: 3
 ---
 
+# Automation
+
 AetherLink Automation allows developers to automate smart contract functions by triggering actions based on specific events or conditions. This reduces the need for manual intervention and ensures contracts execute efficiently and reliably when certain criteria are met.
 
 ## 1. Preparation

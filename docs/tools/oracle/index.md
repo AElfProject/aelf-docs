@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Oracle
+title: Introduction
 description: Transfer tamper-proof data from off-chain to on-chain
 ---
 
@@ -22,3 +22,4 @@ The go-to place for developers who want to learn how to build applications using
 ## 3. What's Next?
 
 You have now understood the basic functions of Oracle. Next, you can choose the appropriate Oracle product based on your scenario to make your DApp contract more secure and efficient.
+

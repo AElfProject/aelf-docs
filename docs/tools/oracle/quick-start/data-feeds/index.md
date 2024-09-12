@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # DataFeeds
 
 AetherLink Datafeeds provide decentralized, real-time data from multiple sources, enabling smart contracts to access highly reliable and accurate off-chain information, such as asset prices, for secure decision-making in decentralized applications.

@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # VRF
 
 AetherLink VRF delivers provably fair and verifiable random numbers, ensuring the randomness used in smart contracts is tamper-proof and transparent. This is particularly useful for gaming, lotteries, and any application that requires trusted randomness.
