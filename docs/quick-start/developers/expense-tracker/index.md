@@ -386,7 +386,7 @@ We are now ready to build the frontend components of our Expense-Tracker dApp.
 
 ### Configure Portkey Provider & Write Connect Wallet Function
 
-Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed Expense-Tracker smart contract for this tutorial.
+Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed Expense Tracker smart contract for this tutorial.
 
 **Step 1. Locate the File:**
 
@@ -457,7 +457,7 @@ useEffect(() => {
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Contracts** : It fetches and sets the smart contracts.
 
-By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the Expense Tracker smart contract including Track and Manage Expenses related functionalities. This setup will enable our frontend components to perform actions like **`checkIsContractInitialized`** , **`initializeContract`** , **`addNewExpense`** , **`updateExpense`** , **`deleteExpense`** and **`getExpenseData`** etc.
+By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the Expense Tracker smart contract which includes the tracking and management of expenses functionalities. This setup will enable our frontend components to perform actions like **`addNewExpense`** , **`updateExpense`** , **`deleteExpense`** and **`getExpenseData`** etc.
 
 ### Configure Connect Wallet Function
 
@@ -505,7 +505,7 @@ With the connect wallet function defined, we're ready to write the remaining fun
 
 **Step 1: Locate the File**
 
-- Go to the `src/pages/home/index.tsx` file. This file contains all the functionalities like show user's Expense, AddExpense , UpdateExpense, DeleteExpense etc.
+- Go to the `src/pages/home/index.tsx` file. This file contains all the functionalities like show user's Expense, AddExpense, UpdateExpense, DeleteExpense, etc.
 
 **Step 2: Prepare Form to Add and Update Expenses**
 
@@ -526,7 +526,7 @@ const form = useForm<z.infer<typeof formSchema>>({
 
 #### Here's what the function does:
 
-1. Initializes a new form variable with default values needed to add a new Expenses.
+1. Initializes a new form variable with default values needed to add a new expense.
 
 2. Fields include: `description` and `amount`.
 
@@ -536,7 +536,7 @@ Now the form is ready for users to fill in the necessary details.
 
 **Step 1: Locate the File**
 
-- Go to the `src/pages/home/index.tsx` file. This file contains all the functionalities like show **`checkIsContractInitialized`** , **`initializeContract`** , **`addNewExpense`** , **`updateExpense`** , **`deleteExpense`** and **`getExpenseData`** etc.
+- Go to the `src/pages/home/index.tsx` file. This file contains all the functionalities like **`checkIsContractInitialized`** , **`initializeContract`** , **`addNewExpense`** , **`updateExpense`** , **`deleteExpense`** and **`getExpenseData`**.
 
 **Step 2: Prepare a Function to Check Whether the Contract is Initialized or not**
 
@@ -557,8 +557,6 @@ const checkIsContractInitialized = async () => {
 - Scroll down to find the comment `// step 2 - Initialize the smart contract`.
 
 - Replace the existing **`checkIsContractInitialized`** function with this code snippet:
-
-<!-- checkIsContractInitialized and initializeContract are different here -->
 
 ```javascript title="home/index.tsx"
 // step 2 - Initialize the smart contract
@@ -600,9 +598,9 @@ const initializeContract = async () => {
 
 ### Add New Expense
 
-- Write the function to fetch the game status.
+- Write the function to add a new expense.
 
-- Find the comment `// step 3 - Add a New Expense using Smart Contract` on same file.
+- Find the comment `// step 3 - Add a New Expense using Smart Contract`.
 
 - Replace the existing **`addNewExpense`** function with this code snippet:
 
@@ -662,13 +660,13 @@ const addNewExpense = async (values: {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to add the new Expense using `AddExpense` Function.
+1. **Calls Smart Contract Method** : It interacts with the aelf blockchain's smart contract to add a new Expense using `AddExpense` Function.
 
 Next, we'll write the **Update Expense** function.
 
 ### Update Expense
 
-Write the function to fetch the board data.
+Write the function to update a selected expense.
 
 - Scroll down to find the comment `// step 4 - Update the Expense`.
 
@@ -730,15 +728,15 @@ const updateExpense = async (values: {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Update the Existing Expense using `UpdateExpense` Function.
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Update the existing expense using `UpdateExpense` function.
 
-2. **Get New Data from Contract** : it calls the `getExpenseData` function to get updated data from Smart contract.
+2. **Get New Data from Contract** : It calls the `getExpenseData` function to get updated data from the smart contract.
 
 Next, we'll write the **Delete Expense** function.
 
 ### Delete Expense
 
-Write the Function to Delete the Existing Expense.
+Write the Function to delete an existing expense.
 
 - Scroll down to find the comment `// step 5 - Delete the Expense`.
 
@@ -786,9 +784,9 @@ const deleteExpense = async (data: IExpenseObject) => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to Delete the Existing Expenses using the `DeleteExpense` Function.
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to delete an existing expense using the `DeleteExpense` function.
 
-2. **Get New Data from Contract** : it calls the `getExpenseData` function to get updated data from Smart contract.
+2. **Get New Data from Contract** : It calls the `getExpenseData` function to get updated data from the smart contract.
 
 Next, we'll write the **Handle Submit Form** function.
 
@@ -851,10 +849,10 @@ const getExpenseData = async () => {
 ```
 #### Here's what the function does:
 
-1. **Fetches Expense Data:** It calls `ListExpenses` to get the list of All Expenses from the Expense Tracker smart contract.
-2. **Set Expense on State:** Get the result data from the smart contract and set an array of all Expenses into `expenseData` State.
+1. **Fetches Expense Data:** It calls `ListExpenses` to get the list of all expenses from the Expense Tracker smart contract.
+2. **Set Expense on State:** Get the result data from the smart contract and set an array of all expenses into `expenseData` State.
 
-We have prepared necessary function to fetch all the Expenses created from a connected user's wallet.
+We have prepared necessary function to fetch all the expenses created from a connected user's wallet.
 
 Now that we've written all the necessary frontend functions and components, we're ready to run the Expense Tracker dApp application in the next step.
 
@@ -931,7 +929,7 @@ You may download Chrome from https://www.google.com/intl/en_sg/chrome/.
 Please make sure you are using `aelf Testnet` in order to be able to receive your testnet tokens from the Faucet.
 :::
 
-- Proceed to sign up with a Google Account or your preferred login method and complete the necessary accounts creation prompts and you should observe the following interface once you have signed up.
+- Proceed to sign up with a Google account or your preferred login method and complete the necessary accounts creation prompts and you should observe the following interface once you have signed up.
 
   ![success-login](/img/success-login.png)
 
@@ -964,15 +962,15 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 **Add New Expense**
 
-- Click on **"Add Expense"** button to Add New Expense Game.
+- Click on **"Add Expense"** button to add a new expense.
 
   ![add-expense](/img/expense-tracker-add-expense-button.png)
 
-- You will see the pop-up modal with form to Add New Expense. Please fill all the necessary fields like **`Description`**, **`Amount`** and **`Select Category`**.
+- You will see the pop-up modal with form to add a new expense. Please fill all the necessary fields like **`Description`**, **`Amount`** and **`Select Category`**.
 
    ![add-expense-form](/img/expense-tracker-add-expense-form.png)
 
-- Click on **Add New Expense** Button as shown below.
+- Click on **Add New Expense** button as shown below.
 
    ![add-expense-form](/img/expense-tracker-add-expense-form-submit-button.png)
 
@@ -986,17 +984,17 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
   ![add-expense-success](/img/expense-tracker-add-expense-success.png)
 
-As we have **Added Expense** successfully, You will be able to see the Expense card and Total Amount of **Outcome** as well.
+As we have **Added an Expense** successfully, You will be able to see the expense card and the total Amount of the **Outcome**.
 
 ---
 
 **Edit the Expense**
 
-- Click on the **"Edit"** button to edit the Expense.
+- Click on the **"Edit"** button to edit a selected expense.
 
    ![edit-expense](/img/expense-tracker-edit-expense-button.png)
 
-- You will see the pop-up modal with form to edit the Expense. Edit the necessary fields according to your need.
+- You will see the pop-up modal with form to edit the expense. Edit the necessary fields according to your need.
 
    ![edit-expense-form](/img/expense-tracker-edit-expense-form.png)
 
@@ -1008,17 +1006,17 @@ As we have **Added Expense** successfully, You will be able to see the Expense c
 
 - Click on **Sign** the transaction.
 
-- After the transaction is successfully processed, your Expense details will be Updated✅.
+- After the transaction is successfully processed, your expense details will be updated✅.
 
    ![update-expense-success](/img/expense-tracker-edit-expense-success.png)
 
-As we have **Edited the Expense** successfully. Let's move that Expense to Remove.
+As we have **Edited an Expense** successfully. Let's test remove expense functionality.
 
 ---
 
 **Remove the Expense**
 
-- Click on **"Remove"** button to remove the expense.
+- Click on **"Remove"** button to remove the selected expense.
 
    ![remove-expense-button](/img/expense-tracker-remove-expense-button.png)
  
@@ -1028,7 +1026,7 @@ As we have **Edited the Expense** successfully. Let's move that Expense to Remov
 
 - Click on **Sign** the transaction.
 
-- After the transaction is successfully processed, your Expense will be Removed from the list.
+- After the transaction is successfully processed, your expense will be removed from the list.
 
    ![remove-expense-success](/img/expense-tracker-remove-expense-success.png)
 
