@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: NFT dApp
-description: Very complex dApp
+description: Very complex dApp 
 ---
 
 **Description**: This tutorial provides a comprehensive guide to building an NFT dApp using aelf's multi-token contract. It covers the entire process from creating NFT collections to generating non-fungible tokens and enabling seamless transfers between token holders on the aelf blockchain.
@@ -62,67 +62,67 @@ cd aelf-samples/nft/2-dapp
 - Once you're in the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
 export const tree = {
-"type": "directory",
-"uri": "2-dapp",
-"expanded": true,
-"children": [
-{
-"type": "directory",
-"uri": "app"
-},
-{
-"type": "directory",
-"uri": "assets"
-},
-{
-"type": "directory",
-"uri": "public"
-},
-{
-"type": "directory",
-"uri": "src"
-},
-{
-"type": "file",
-"uri": ".gitignore"
-},
-{
-"type": "file",
-"uri": "components.json"
-},
-{
-"type": "file",
-"uri": "index.html"
-},
-{
-"type": "file",
-"uri": "package.json"
-},
-{
-"type": "file",
-"uri": "postcss.config.js"
-},
-{
-"type": "file",
-"uri": "README.md"
-},
-{
-"type": "file",
-"uri": "tailwind.config.js"
-},
-{
-"type": "file",
-"uri": "tsconfig.json"
-},
-{
-"type": "file",
-"uri": "tsconfig.node.json"
-},
-{
-"type": "file",
-"uri": "vite.config.ts"
-}
-]
+  "type": "directory",
+  "uri": "2-dapp",
+  "expanded": true,
+  "children": [
+    {
+      "type": "directory",
+      "uri": "app"
+    },
+    {
+      "type": "directory",
+      "uri": "assets"
+    },
+    {
+      "type": "directory",
+      "uri": "public"
+    },
+    {
+      "type": "directory",
+      "uri": "src"
+    },
+    {
+      "type": "file",
+      "uri": ".gitignore"
+    },
+    {
+      "type": "file",
+      "uri": "components.json"
+    },
+    {
+      "type": "file",
+      "uri": "index.html"
+    },
+    {
+      "type": "file",
+      "uri": "package.json"
+    },
+    {
+      "type": "file",
+      "uri": "postcss.config.js"
+    },
+    {
+      "type": "file",
+      "uri": "README.md"
+    },
+    {
+      "type": "file",
+      "uri": "tailwind.config.js"
+    },
+    {
+      "type": "file",
+      "uri": "tsconfig.json"
+    },
+    {
+      "type": "file",
+      "uri": "tsconfig.node.json"
+    },
+    {
+      "type": "file",
+      "uri": "vite.config.ts"
+    }
+  ]
 }
 
 <div style={{height: 500}}><FileTree tree={tree} /></div>
@@ -292,19 +292,15 @@ With the Connect Wallet function defined, we're ready to write the remaining fun
 
 ```javascript title="create-nft/index.tsx"
 // Step D - Configure NFT Form
-const form =
-  useForm <
-  z.infer <
-  typeof formSchema >>
-    {
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-        tokenName: "",
-        symbol: "",
-        totalSupply: "",
-        decimals: "",
-      },
-    };
+const form = useForm<z.infer<typeof formSchema>>({
+  resolver: zodResolver(formSchema),
+  defaultValues: {
+    tokenName: "",
+    symbol: "",
+    totalSupply: "",
+    decimals: "",
+  },
+}); 
 ```
 
 #### Here's what the function does:
@@ -1357,18 +1353,14 @@ So now let's **Transfer NFT** to other wallet now.
 
 ```javascript title="transfer-nft/index.tsx"
 // Configure NFT Transfer Form
-const form =
-  useForm <
-  z.infer <
-  typeof formSchema >>
-    {
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-        address: "",
-        amount: 0,
-        memo: "",
-      },
-    };
+const form = useForm<z.infer<typeof formSchema>>({
+  resolver: zodResolver(formSchema),
+  defaultValues: {
+    address: "",
+    amount: 0,
+    memo: "",
+  },
+});
 ```
 
 #### Here's what the function does:
