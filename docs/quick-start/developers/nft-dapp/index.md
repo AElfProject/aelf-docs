@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: NFT dApp
-description: Very complex dApp 
+description: Very complex dApp
 ---
 
 **Description**: This tutorial provides a comprehensive guide to building an NFT dApp using aelf's multi-token contract. It covers the entire process from creating NFT collections to generating non-fungible tokens and enabling seamless transfers between token holders on the aelf blockchain.
@@ -47,7 +47,6 @@ import TabItem from '@theme/TabItem';
 
 Let's start by cloning the frontend project repository from GitHub.
 
-
 - Run the following command your Terminal:
 
 ```bash title="Terminal"
@@ -59,70 +58,71 @@ git clone https://github.com/AElfProject/aelf-samples.git
 ```bash title="Terminal"
 cd aelf-samples/nft/2-dapp
 ```
+
 - Once you're in the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
 export const tree = {
-  "type": "directory",
-  "uri": "2-dapp",
-  "expanded": true,
-  "children": [
-    {
-      "type": "directory",
-      "uri": "app"
-    },
-    {
-      "type": "directory",
-      "uri": "assets"
-    },
-    {
-      "type": "directory",
-      "uri": "public"
-    },
-    {
-      "type": "directory",
-      "uri": "src"
-    },
-    {
-      "type": "file",
-      "uri": ".gitignore"
-    },
-    {
-      "type": "file",
-      "uri": "components.json"
-    },
-    {
-      "type": "file",
-      "uri": "index.html"
-    },
-    {
-      "type": "file",
-      "uri": "package.json"
-    },
-    {
-      "type": "file",
-      "uri": "postcss.config.js"
-    },
-    {
-      "type": "file",
-      "uri": "README.md"
-    },
-    {
-      "type": "file",
-      "uri": "tailwind.config.js"
-    },
-    {
-      "type": "file",
-      "uri": "tsconfig.json"
-    },
-    {
-      "type": "file",
-      "uri": "tsconfig.node.json"
-    },
-    {
-      "type": "file",
-      "uri": "vite.config.ts"
-    }
-  ]
+"type": "directory",
+"uri": "2-dapp",
+"expanded": true,
+"children": [
+{
+"type": "directory",
+"uri": "app"
+},
+{
+"type": "directory",
+"uri": "assets"
+},
+{
+"type": "directory",
+"uri": "public"
+},
+{
+"type": "directory",
+"uri": "src"
+},
+{
+"type": "file",
+"uri": ".gitignore"
+},
+{
+"type": "file",
+"uri": "components.json"
+},
+{
+"type": "file",
+"uri": "index.html"
+},
+{
+"type": "file",
+"uri": "package.json"
+},
+{
+"type": "file",
+"uri": "postcss.config.js"
+},
+{
+"type": "file",
+"uri": "README.md"
+},
+{
+"type": "file",
+"uri": "tailwind.config.js"
+},
+{
+"type": "file",
+"uri": "tsconfig.json"
+},
+{
+"type": "file",
+"uri": "tsconfig.node.json"
+},
+{
+"type": "file",
+"uri": "vite.config.ts"
+}
+]
 }
 
 <div style={{height: 500}}><FileTree tree={tree} /></div>
@@ -292,15 +292,19 @@ With the Connect Wallet function defined, we're ready to write the remaining fun
 
 ```javascript title="create-nft/index.tsx"
 // Step D - Configure NFT Form
-const form = useForm<z.infer<typeof formSchema>>({
-  resolver: zodResolver(formSchema),
-  defaultValues: {
-    tokenName: "",
-    symbol: "",
-    totalSupply: "",
-    decimals: "",
-  },
-}); 
+const form =
+  useForm <
+  z.infer <
+  typeof formSchema >>
+    {
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        tokenName: "",
+        symbol: "",
+        totalSupply: "",
+        decimals: "",
+      },
+    };
 ```
 
 #### Here's what the function does:
@@ -331,8 +335,9 @@ const createNftCollectionOnMainChain = async (values: {
   totalSupply: string;
   decimals: string;
 }) => {
+  let createLoadingId;
   try {
-    const createLoadingId = toast.loading("Creating NFT Collection..");
+    createLoadingId = toast.loading("Creating NFT Collection..");
 
     // Create an object with the necessary information for the new NFT collection.
     const createNtfInput: INftInput = {
@@ -368,7 +373,12 @@ const createNftCollectionOnMainChain = async (values: {
   } catch (error: any) {
     // If there's an error, log it and alert the user.
     console.error(error.message, "=====error");
-    toast.error(error.message);
+    toast.update(createLoadingId, {
+      render: error.message,
+      type: "error",
+      isLoading: false,
+    });
+    removeNotification(createLoadingId);
     return "error";
   }
 };
@@ -409,10 +419,10 @@ Next, we'll write the **Validate Collection Info Exist** function.
 // step 2 - Validate Collection information exist
 // This function validates if the token collection information already exists on the main blockchain.
 const validateNftCollectionInfo = async (values: INftInput) => {
+  let validateLoadingId
   try {
-
     // Start Loading before initiate the transaction
-    const validateLoadingId = toast.loading(
+    validateLoadingId = toast.loading(
       <CustomToast
         title="Transaction is getting validated on aelf blockchain. Please wait!"
         message="Validation means transaction runs through a consensus algorithm to be selected or rejected. Once the status changes process will complete. It usually takes some time in distributed systems."
@@ -482,7 +492,12 @@ const validateNftCollectionInfo = async (values: INftInput) => {
   } catch (error: any) {
     // If there's an error, log it and alert the user.
     console.error(error.message, "=====error in validateTokenInfoExist");
-    toast.error(`error in validateTokenInfoExist ${error.message}`);
+    toast.update(validateLoadingId, {
+      render: error.message,
+      type: "error",
+      isLoading: false,
+    });
+    removeNotification(validateLoadingId);
     return "error";
   }
 };
@@ -511,7 +526,7 @@ const GetParentChainHeight = async () => {
   try {
     const tdvwCrossChainContract = await getCrossChainContract(tdvw, wallet);
     // Call the smart contract method to get the parent chain height.
-    const result = await tdvwCrossChainContract.GetParentChainHeight.call() 
+    const result = await tdvwCrossChainContract.GetParentChainHeight.call()
     // Return the parent chain height if it exists, otherwise return an empty string.
     return result ? (result.value as string) : "";
   } catch (error: any) {
@@ -588,8 +603,9 @@ const createCollectionOnSideChain = async (
   signedTx: string,
   BlockNumber: number
 ) => {
+  let crossChainLoadingId;
   try {
-    const crossChainLoadingId = toast.loading(
+    crossChainLoadingId = toast.loading(
       "Creating Collection on SideChain..."
     );
 
@@ -638,8 +654,13 @@ const createCollectionOnSideChain = async (
         }
       }
       return "success";
-    } catch (error) {
-      console.log("error====", error);
+    } catch (error:any) {
+      toast.update(crossChainLoadingId, {
+        render: error.message,
+        type: "error",
+        isLoading: false,
+      });
+      removeNotification(validateLoadingId);
       return "error";
     }
   };
@@ -754,9 +775,10 @@ Now, let's write the Validate NFT Info Exist function.
 ```javascript title="create-nft/index.tsx"
 // step 7 - Validate an NFT token on the maincgit stashhain
 const validateNftToken = async (values: INftParams) => {
+  let validateNFTLoadingId;
   try {
     // Start Loading before initiate the transaction
-    const validateNFTLoadingId = toast.loading(
+    validateNFTLoadingId = toast.loading(
       <CustomToast
         title="Transaction is getting validated on aelf blockchain. Please wait!"
         message="Validation means transaction runs through a consensus algorithm to be selected or rejected. Once the status changes process will complete. It usually takes some time in distributed systems."
@@ -827,7 +849,12 @@ const validateNftToken = async (values: INftParams) => {
       merklePath: merklePath,
     };
   } catch (error) {
-    console.log("error======", error);
+    toast.update(validateNFTLoadingId, {
+      render: error.message,
+      type: "error",
+      isLoading: false,
+    });
+    removeNotification(validateLoadingId);
     return "error";
   }
 };
@@ -862,8 +889,9 @@ Now, let's write the Create NFT on SideChain function.
 ```javascript title="create-nft/index.tsx"
 // step 8 - Create a NFT on SideChain.
 const createNftTokenOnSideChain = async (values: INftValidateResult) => {
+  let createSideChainNFTLoadingId;
   try {
-    const createSideChainNFTLoadingId = toast.loading(
+    createSideChainNFTLoadingId = toast.loading(
       "Creating NFT on SideChain..."
     );
 
@@ -888,7 +916,12 @@ const createNftTokenOnSideChain = async (values: INftValidateResult) => {
     removeNotification(createSideChainNFTLoadingId);
     return "success";
   } catch (error) {
-    console.log("error====", error);
+    toast.update(createSideChainNFTLoadingId, {
+      render: error.message,
+      type: "error",
+      isLoading: false,
+    });
+    removeNotification(createSideChainNFTLoadingId);
     return "error";
   }
 };
@@ -921,8 +954,9 @@ const issueNftOnSideChain = async (values: {
   amount: string;
   memo: string;
 }) => {
+  let issuingNFTLoadingId
   try {
-    const createSideChainNFTLoadingId = toast.loading(
+    issuingNFTLoadingId = toast.loading(
       "Issuing NFT on SideChain..."
     );
     const issueNftInput = {
@@ -938,18 +972,22 @@ const issueNftOnSideChain = async (values: {
     );
     console.log("========= result of createNewNft =========", result);
 
-    toast.update(createSideChainNFTLoadingId, {
+    toast.update(issuingNFTLoadingId, {
       render: "NFT Issue Successfully Executed",
       type: "success",
       isLoading: false,
     });
-    removeNotification(createSideChainNFTLoadingId);
+    removeNotification(issuingNFTLoadingId);
     toast.success("You will get NFT on your Wallet! It can take sometimes to get into your wallet");
     handleReturnClick();
     return "success";
   } catch (error: any) {
-    console.error(error.message, "=====error");
-    toast.error(error.message);
+    toast.update(issuingNFTLoadingId, {
+      render: error.message,
+      type: "error",
+      isLoading: false,
+    });
+    removeNotification(issuingNFTLoadingId);
     setTransactionStatus(false);
     return "error";
   }
@@ -1117,6 +1155,7 @@ const getBalanceOfNft = async (
   return data.balance;
 };
 ```
+
 #### Here's what the function does:
 
 1. **Retrieves NFT Balance:** The function `getBalanceOfNft` fetches the balance of a specific NFT for a given owner.
@@ -1125,11 +1164,12 @@ const getBalanceOfNft = async (
    - `sideChainSmartContract`: An instance of the side chain smart contract.
 3. **Calls View Method:** It calls the `getBalance` view method on the side chain smart contract with the provided `values`.
 4. **Returns Balance:** It extracts the `balance` from the response and returns it as a number.
+
 ---
+
 - Find the comment `// Function to fetch balance information for an array of NFTs`.
 
 - Replace the existing **`fetchNftBalances`** function with this code snippet:
-
 
 ```javascript title="commonFunctions.ts"
 // Function to fetch balance information for an array of NFTs
@@ -1154,6 +1194,7 @@ const fetchNftBalances = async (
   return nftDataWithBalances;
 };
 ```
+
 #### Here's what the function does:
 
 1. **Fetches Balances for Multiple NFTs:** The function `fetchNftBalances` retrieves balance information for an array of NFTs for a specific owner.
@@ -1165,7 +1206,7 @@ const fetchNftBalances = async (
 4. **Combines NFT Data with Balances:** For each NFT, it combines the existing NFT data with the fetched balance.
 5. **Returns Updated NFT Array:** It returns a new array of `Nft` objects, each including its respective balance.
 
---- 
+---
 
 - Find the comment `// fetch NFT Data from eforest API`.
 
@@ -1234,7 +1275,6 @@ We have Prepared all necessary function for fetch NFT Data from User's Wallet.
 
 Now, Let's call **`fetchUserNftData`** on necessary page.
 
-
 **Step 3: Call fetchUserNftData Functions on Home Page**
 
 - go to the `src/pages/home/index.tsx` file.
@@ -1258,6 +1298,7 @@ const getNFTData = async () => {
   setLoading(false);
 };
 ```
+
 #### Here's what the function does:
 
 1. **Fetches NFT Data:** The function `getNFTData` retrieves NFT data from the user's wallet.
@@ -1289,6 +1330,7 @@ const getNFTData = async () => {
   setLoading(false);
 };
 ```
+
 #### Here's what the function does:
 
 1. **Fetches NFT Data:** The function `getNFTData` retrieves NFT data from the user's wallet.
@@ -1296,7 +1338,6 @@ const getNFTData = async () => {
 3. **Handles Successful Result:** If the result from `fetchUserNftData` is not "error":
    - It updates the user's NFTs by calling `setUserNfts(result)`.
 4. **Updates Loading State:** It sets the loading state to false by calling `setLoading(false)`, regardless of whether the fetch was successful or not.
-
 
 ### Transfer NFT Token
 
@@ -1316,14 +1357,18 @@ So now let's **Transfer NFT** to other wallet now.
 
 ```javascript title="transfer-nft/index.tsx"
 // Configure NFT Transfer Form
-const form = useForm<z.infer<typeof formSchema>>({
-  resolver: zodResolver(formSchema),
-  defaultValues: {
-    address: "",
-    amount: 0,
-    memo: "",
-  },
-});
+const form =
+  useForm <
+  z.infer <
+  typeof formSchema >>
+    {
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        address: "",
+        amount: 0,
+        memo: "",
+      },
+    };
 ```
 
 #### Here's what the function does:
@@ -1385,6 +1430,7 @@ const transferNftToOtherAccount = async (values: {
   }
 };
 ```
+
 #### Here's what the function does:
 
 1. **Transfers NFT to Another Wallet:** The function `transferNftToOtherAccount` transfers a specified amount of an NFT to another wallet.
@@ -1417,6 +1463,7 @@ function onSubmit(values: z.infer<typeof formSchema>) {
   transferNftToOtherAccount(values);
 }
 ```
+
 #### Here's what the function does:
 
 1. **Handles Form Submission:** The function `onSubmit` handles the submission of a transfer form.
@@ -1473,7 +1520,6 @@ With DID solution as its core, Portkey provides both Portkey Wallet and Portkey 
 For more information, you may visit the official documentation for Portkey at https://doc.portkey.finance/.
 :::
 
-
 - Download the Chrome extension for Portkey from https://chromewebstore.google.com/detail/portkey-wallet/iglbgmakmggfkoidiagnhknlndljlolb.
 
 :::info
@@ -1483,18 +1529,17 @@ You may download Chrome from https://www.google.com/intl/en_sg/chrome/.
 
 - Once you have downloaded the extension, you should see the following on your browser as shown below.
 
-   ![welcome-to-portkey](/img/welcome-to-portkey.png)
+  ![welcome-to-portkey](/img/welcome-to-portkey.png)
 
 - Click on `Get Start` and you should see the following interface as shown below.
 
-   ![portkey-login](/img/portkey-login.png)
+  ![portkey-login](/img/portkey-login.png)
 
-
-**Sign up** 
+**Sign up**
 
 - Switch to **aelf Testnet** network by selecting it:
 
-   ![portkey-switch-to-testnet](/img/portkey-switch-to-testnet.png)
+  ![portkey-switch-to-testnet](/img/portkey-switch-to-testnet.png)
 
 :::danger
 Please make sure you are using `aelf Testnet` in order to be able to receive your testnet tokens from the Faucet.
@@ -1502,7 +1547,7 @@ Please make sure you are using `aelf Testnet` in order to be able to receive you
 
 - Proceed to sign up with a Google Account or your preferred login method and complete the necessary accounts creation prompts and you should observe the following interface once you have signed up.
 
-   ![success-login](/img/success-login.png)
+  ![success-login](/img/success-login.png)
 
 With that, you have successfully created your very first Portkey wallet within seconds. How easy was that?
 
@@ -1512,37 +1557,35 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 - Next, click on ‘Open Portkey’ and you should now observe the following as shown below.
 
-   ![portkey-wallet-preview](/img/portkey-wallet-preview.png)
-
+  ![portkey-wallet-preview](/img/portkey-wallet-preview.png)
 
 **Connect Portkey Wallet**
 
 - Click on **"Connect Wallet"** to connect your Portkey wallet.
 
-   ![connect-wallet](/img/connect-wallet.png)
+  ![connect-wallet](/img/connect-wallet.png)
 
 - The button will change to **"Your Wallet Address"** when the connection is successful.
 
-   ![collect-wallet-success](/img/collect-wallet-success.png)
-
+  ![collect-wallet-success](/img/collect-wallet-success.png)
 
 **Create NFT Collection**
 
 - Click on **"Create NFT Collection"** button to create new NFT Collection.
 
-   ![collect-wallet-success](/img/create-collection-button.png)
+  ![collect-wallet-success](/img/create-collection-button.png)
 
 - You will be redirect this create NFT Collection page
 
-   ![create-collection-form](/img/create-collection-form.png)
+  ![create-collection-form](/img/create-collection-form.png)
 
-- Now you need **NFT Seed** for create the new collection. 
+- Now you need **NFT Seed** for create the new collection.
 
 - If you Don't have **NFT Seed** then please follow this [steps](#step-2---getting-nft-seed) to get it.
 
 - Open you Portkey Wallet and you will find the **NFT Seed** on **NFT** Tab.
 
-  ![portkey-nft-seed.png](/img/portkey-nft-seed.png) 
+  ![portkey-nft-seed.png](/img/portkey-nft-seed.png)
   ![copy-nft-seed](/img/copy-nft-seed.png)
 
 - Copy the **Token Symbol** and use it on **`Symbol`** field of Form Submission of Create Collection.
@@ -1555,10 +1598,9 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 - You will get Transaction Request on your Portkey Wallet so **Sign In** the Transaction.
   ![signin-transaction](/img/signin-transaction.png)
 - After **Sign In** the Transaction, Please wait to complete these steps. It will take approx 3-4 minutes.
-   
-    - NFT Collection Created Successfully On MainChain.
-    - Validating Token Successfully Executed.
-    - Collection was Created Successfully On SideChain.
+  - NFT Collection Created Successfully On MainChain.
+  - Validating Token Successfully Executed.
+  - Collection was Created Successfully On SideChain.
 
 **Create NFT Token**
 
@@ -1576,12 +1618,12 @@ Please make sure the Symbol will be change to `[your_symbol]-id`. ie `VARBFUXYTY
 
 - You will get Transaction Request on your Portkey Wallet so **Sign In** the Transaction for Create NFT as above you got for Create NFT Collection
 
-- After **Sign In** the Transaction, Please wait to complete these steps. It will take approx 3-4 minutes. 
+- After **Sign In** the Transaction, Please wait to complete these steps. It will take approx 3-4 minutes.
 
-    - NFT Created Successfully on MainChain.
-    - Validating NFT Successfully Executed.
-    - NFT Created Successfully On SideChain.
-    - You will get NFT on your Wallet! It can take sometimes to get into your wallet.
+  - NFT Created Successfully on MainChain.
+  - Validating NFT Successfully Executed.
+  - NFT Created Successfully On SideChain.
+  - You will get NFT on your Wallet! It can take sometimes to get into your wallet.
 
 - After Successfully Create NFT, Now you redirected to Home page and as you can see you will get the NFT in your account. (It' take some time to store your NFT in your wallet so please reload the page multiple times till you get the NFT).
 
@@ -1590,7 +1632,7 @@ Please make sure the Symbol will be change to `[your_symbol]-id`. ie `VARBFUXYTY
 - You will also able you access you NFT data on your **Profile Page**.
 
   ![profile-page](/img/profile-page.png)
-  
+
 **Transfer NFT Token**
 
 - Once you get NFT in your account like above image then it's time to transfer NFT to another account.
@@ -1697,7 +1739,6 @@ aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_A
 aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Transfer
 ```
 
-
 ## 🎯 Conclusion
 
 🎊 Congratulations on successfully setting up your development environment and interacting with your deployed smart contract! 🎊 You've laid a strong foundation for creating innovative applications on the aelf blockchain. 🌟
@@ -1706,33 +1747,32 @@ aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_A
 
 Throughout this section, you've acquired essential skills in:
 
-  - **🛠️ Setting Up Your Development Environment**: You installed necessary tools like the .NET SDK, aelf contract templates, and the aelf deploy tool to prepare for smart contract development.
+- **🛠️ Setting Up Your Development Environment**: You installed necessary tools like the .NET SDK, aelf contract templates, and the aelf deploy tool to prepare for smart contract development.
 
-  - **📦 Installing Node.js, Yarn, and aelf-command**: These tools enable efficient interaction with the aelf blockchain, facilitating wallet creation and transaction management.
+- **📦 Installing Node.js, Yarn, and aelf-command**: These tools enable efficient interaction with the aelf blockchain, facilitating wallet creation and transaction management.
 
-  - **💡 Getting NFT Seed**: You learned how to obtain an NFT seed from the NFT Faucet, a critical step for creating NFT collections.
+- **💡 Getting NFT Seed**: You learned how to obtain an NFT seed from the NFT Faucet, a critical step for creating NFT collections.
 
-  - **🔧 Configuring Frontend Integration**: You cloned a frontend project and configured it to connect with your smart contract, allowing for seamless user interaction with your dApp.
+- **🔧 Configuring Frontend Integration**: You cloned a frontend project and configured it to connect with your smart contract, allowing for seamless user interaction with your dApp.
 
 **🔍 Final Output**
 
 By now, you should have:
 
-  - 📜 Successfully set up your development environment and installed all required packages.
+- 📜 Successfully set up your development environment and installed all required packages.
 
-  - 💻 Configured your frontend to interact with the NFT smart contract, enabling functionalities like creating and transferring NFTs.
+- 💻 Configured your frontend to interact with the NFT smart contract, enabling functionalities like creating and transferring NFTs.
 
 **➡️ What's Next?**
 
 With a solid understanding of environment setup and contract interaction, you're ready to explore more advanced aspects of blockchain development. Consider delving into:
 
-  - **📊 Advanced Smart Contract Logic**: Enhance your contracts with complex features and security measures.
+- **📊 Advanced Smart Contract Logic**: Enhance your contracts with complex features and security measures.
 
-  - **🔒 Security Protocols**: Implement robust security protocols to safeguard your applications and smart contracts.
+- **🔒 Security Protocols**: Implement robust security protocols to safeguard your applications and smart contracts.
 
-  - **🌐 Cross-Chain Interoperability**: Explore how aelf facilitates communication between different blockchains, broadening your development capabilities.
+- **🌐 Cross-Chain Interoperability**: Explore how aelf facilitates communication between different blockchains, broadening your development capabilities.
 
 Keep pushing the boundaries of blockchain technology with aelf. Your journey is just beginning, and the potential for innovation in decentralized applications is vast. 🚀
 
 Happy coding and building on the aelf blockchain! 😊
-
