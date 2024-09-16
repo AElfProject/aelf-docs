@@ -56,7 +56,7 @@ After submitting your partnership application, you can expect an initial acknowl
 
 :::faq[What are aelf's marketing channels?]
 
-At aelf, we care about our community. We have several marketing channels for our community to reach out and interact with us. We would love builders, developers and users to join the community on [X](https://x.com/aelfblockchain/), [Telegram](https://t.me/aelfblockchain), [Discord](https://discord.gg/bgysa9xjvD) and [LinkedIn](https://www.linkedin.com/company/aelfblockchain/).
+At aelf, we care about our community. We have several marketing channels for our community to reach out and interact with us. We would love builders, developers and users to join the community on [X](https://x.com/aelfblockchain/), [Telegram](https://t.me/aelfblockchain), [Discord](https://discord.gg/aelfblockchain) and [LinkedIn](https://www.linkedin.com/company/aelfblockchain/).
 
 :::
 
@@ -129,7 +129,7 @@ Currently, we are focusing our endeavours on improving AI capabilities and integ
 
 Recently, aelf announced its partnership with ChainGPT, a top provider of AI-powered infrastructure for the blockchain industry. This collaboration aims to accelerate aelf's transformation into an AI-enhanced blockchain with ChainGPT's advanced AI chatbots, NFT and smart-contract generators, AI trading assistants, and AI-focused launchpad.  aelf is also working with other industry-leading AI innovators to explore integrating AI solutions into its blockchain. 
 
-Follow our official channels to stay updated: [X](https://x.com/aelfblockchain/), [Telegram](https://t.me/aelfblockchain), [Discord](https://discord.gg/bgysa9xjvD) and [LinkedIn](https://www.linkedin.com/company/aelfblockchain/).
+Follow our official channels to stay updated: [X](https://x.com/aelfblockchain/), [Telegram](https://t.me/aelfblockchain), [Discord](https://discord.gg/aelfblockchain) and [LinkedIn](https://www.linkedin.com/company/aelfblockchain/).
 
 :::
 
