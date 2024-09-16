@@ -30,7 +30,7 @@ Joining the aelf community offers numerous benefits, including access to the lat
 
 aelf holds regular campaigns and airdrops to distribute tokens to community members, incentivising participation and support. aelf community members can also participate in various bounty programs to earn tokens. Follow aelf official channels to get the latest campaign details!
 
-[X](https://x.com/aelfblockchain/) | [Telegram](https://t.me/aelfblockchain) | [Discord](https://discord.gg/bgysa9xjvD) | [LinkedIn](https://www.linkedin.com/company/aelfblockchain/)
+[X](https://x.com/aelfblockchain/) | [Telegram](https://t.me/aelfblockchain) | [Discord](https://discord.gg/aelfblockchain) | [LinkedIn](https://www.linkedin.com/company/aelfblockchain/)
 
 :::
 
