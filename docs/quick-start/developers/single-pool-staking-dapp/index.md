@@ -356,46 +356,40 @@ import Deploy from "../\_deploy_single_pool_staking.md"
 
 ## Step 4 - Getting TOKEN Seed
 
-In order to create an Fungible Token on the aelf blockchain, the deployer wallet must have an **TOKEN SEED**.
+In order to create a fungible token on the aelf blockchain, the deployer wallet must have a **TOKEN SEED**.
 
-- Visit [TOKEN Faucet](https://faucet-ui.aelf.dev/) to get your TOKEN SEED.
-
----
+- Visit [TOKEN Faucet](https://faucet-ui.aelf.dev/) to get your TOKEN SEED. 
 
 ![result](/img/token-seed.png)
 
-- After the request is successfully processed, the requestor wallet will receive the **SEED**.
+- After the request is successfully processed, the requestor wallet will receive the **SEED**. 
 
----
+![result](/img/symbol.png) 
 
-![result](/img/symbol.png)
+- Please note this **SEED** symbol value separately as it will be needed while creating the fungible token and staking integration. This will become our **Token Symbol**.
 
----
-
-- Please note this **SEED** symbol value, as it will be needed later while creating the Fungible Token and Staking integration. This will become our **Token Symbol**.
-
-## Step 5 - Interact with aelf's multi-token contract and staking contract
+## Step 5 - Interact with Your Deployed Smart Contracts
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ### Project Setup
 
-Let's start by cloning the frontend project repository from GitHub.
+Let's start by cloning the frontend project repository from github.
 
 
-- Run the following command your Terminal:
+- Run the following command in your Terminal:
 
 ```bash title="Terminal"
 git clone https://github.com/AElfProject/aelf-samples.git
 ```
 
-- Next, navigate to the frontend project directory with this command:
+- Next, navigate to the staking frontend project directory with this command:
 
 ```bash title="Terminal"
 cd aelf-samples/staking/2-dapp
 ```
-- Once you're in the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
+- Once you're inside the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
 export const tree = {
   "type": "directory",
@@ -465,7 +459,7 @@ export const tree = {
 
 #### Install necessary packages and libraries
 
-- Run teh following command in the terminal:
+- Run this command in the terminal to install all necessary packages and libraries.
 
 <Tabs>
 <TabItem value="Linux and macOs" label="Linux and macOs" default>
@@ -485,9 +479,9 @@ We are now ready to build the frontend components of our Staking dApp.
 
 ### Configure Portkey Provider & Write Contract Hooks Function
 
-We'll set up our Portkey provider to allow users to connect their Portkey wallets to our app and interact with the aelf smart contracts. We'll be interacting with Stakinng contract and the Multi-token contract (Already deployed ) for this tutorial.
+We'll set up our Portkey provider to allow users to connect their Portkey wallets to the dApp and interact with the aelf smart contracts. We'll be interacting with the Stakinng contract and the Multi-token contract.
 
-#### Write Functions for MainChain and SideChain Contract's.
+#### Write Functions for MainChain and SideChain Contracts
 
 **Step 1. Locate the File:**
 
@@ -497,7 +491,7 @@ We'll set up our Portkey provider to allow users to connect their Portkey wallet
 
 - Find the comment `//Step A - Function to fetch a smart contract based on the chain symbol and the contract address`
 
-- Replace the existing **`fetchContract`** function with this updated code:
+- Replace the existing **`fetchContract`** function with the below code:
 
 ```javascript title="useSmartContract.ts"
 //Step A - Function to fetch a smart contract based on the chain symbol and the contract address
@@ -529,7 +523,7 @@ const fetchContract = async (
 - **`fetchContract`** **Function**: This function fetches a smart contract based on the given chain symbol (e.g., "AELF" or "tDVW") and the contract address.
 
   - **Check Provider** : If no provider is available, the function returns null.
-  - **Fetch Chain** : The function fetches chain information using the provider.
+  - **Fetch Chain** : This function fetches chain information using the provider.
   - **Get Contract** : It retrieves the smart contract instance from the chain.
 
 **Step 3. Initialize and Fetch the Smart Contracts:**
@@ -565,10 +559,10 @@ const fetchContract = async (
 
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Contracts** : It fetches and sets the smart contracts for the main chain, side chain.
-  - **MainChain Contract** : Fetches the MainChain Testnet Contract and sets it in the state.
-  - **SideChain Contract** : Fetches the SideChain Testnet Contract and sets it in the state.
+  - **MainChain Contract** : Fetches the mainchain testnet contract and sets it in the state.
+  - **SideChain Contract** : Fetches the sidechain testnet contract and sets it in the state.
 
-#### Write Functions for Staking Contract.
+#### Write Functions for Staking Contract
   
 **Step 4. Locate the File:**
 
@@ -635,12 +629,12 @@ useEffect(() => {
 
 **Explanation:**
 
-- **`useEffect`** **Hook** : This hook initializes and fetches the smart contracts when the provider changes.
+- **`useEffect`** **Hook** : This hook initializes and fetches the staking smart contract when the provider changes.
 
   - **Check Provider** : If no provider is available, the function returns null.
-  - **Fetch Contracts** : It fetches and sets the smart contracts for the staking.
+  - **Fetch Contracts** : It fetches and sets the smart contract for the staking.
 
-By following these steps, we'll configure the Portkey provider to connect users' wallets to your app and interact with the multi-token and stainng smart contract including Fungible Token and Staing related functionalities. This setup will enable our frontend components to perform actions like `create Token`, `transfer Token`, and `stakinng Token`, `withdraw Token`, `emergency withdraw Token` and etc.
+By following these steps, we'll configure the Portkey provider to connect users' wallets to the dApp and interact with the multi-token and staking smart contract including interaction with the fungible token and the staking functionalities. This setup will enable our frontend components to perform actions like `create tokens`, `transfer tokens`, and `stake tokens`, `withdraw tokens`, `emergency withdraw tokens`, etc.
 
 ### Configure Connect Wallet Function
 
@@ -650,7 +644,7 @@ By following these steps, we'll configure the Portkey provider to connect users'
 
 **Step 2: Write the Connect Wallet Function**
 
-- The `header/index.tsx` file is the header of our Staking dApp. It allows users to connect their Portkey wallet with the Staking dApp.
+- The `header/index.tsx` file is the header of our Staking dApp. It allows users to connect their Portkey wallet with the staking dApp.
 
 - Before users can interact with the smart contract, we need to write the `Connect Wallet` function.
 
@@ -684,13 +678,13 @@ const connect = async (walletProvider?: IPortkeyProvider) => {
 
 In this code, we fetch the Portkey wallet account using the provider and update the wallet address state variable. An alert notifies the user that their wallet is successfully connected.
 
-With the Connect Wallet function defined, we're ready to write the remaining functions in the next steps.
+With the `ConnectWallet` function defined, we're ready to write the remaining functions in the next steps.
 
-### Configure Create TOKEN Form Code
+### Configure Create TOKEN Form
 
 **Step 1: Locate the File**
 
-1. Go to the `src/components/create-token-modal/index.tsx` file. This file is the **Create Fungible TOKEN** popup modal where users can create a new TOKEN by submit the details like `tokenName`, `symbol` and `totalSupply`.
+1. Go to the `src/components/create-token-modal/index.tsx` file. This file is the **Create Fungible TOKEN** popup modal where users can create a new TOKEN by submitting the details like `tokenName`, `symbol` and `totalSupply`.
 
 **Step 2: Prepare Form to Create TOKEN**
 
@@ -712,19 +706,19 @@ const form = useForm<z.infer<typeof formSchema>>({
 
 #### Here's what the function does:
 
-1. Initializes a new form variable with default values needed to create a TOKEN.
+1. Initializes a new form variable with default values needed to create a token.
 
 2. Fields include: `tokenName` , `symbol` and `totalSupply`.
 
-Now the form is ready for users to fill in the necessary details for their TOKEN function interaction.
+Now the form is ready for users to fill in the necessary details for their token related function interaction.
 
 ### Get CrossChain Contract
 
-Let's write the functions to `Get CrossChain Contract` for Parent chain height.
+Let's write the helper function to `Get CrossChain Contract` to fetch the parent chain height later.
 
 **Write the function to Get CrossChain Contract**
 
-- The `create-token-modal/index.tsx` file includes the code to create Fungible TOKEN.
+- The `create-token-modal/index.tsx` file includes the code to create a fungible token.
 
 - Find the comment `// Step G - Get CrossChain Contract`.
 
@@ -757,7 +751,7 @@ const getCrossChainContract = async (aelf: any, wallet: any) => {
 
 2. **Get GenesisContractAddress** : It gets GenesisContractAddress from chainStatus.
 
-3. **fetch zeroContract** : It fetch zeroContract using GenesisContractAddress and wallet.
+3. **fetch zeroContract** : It fetches zeroContract using GenesisContractAddress and wallet.
 
 4. **fetch crossChainContractAddress** : It fetch crossChainContractAddress by calling GetContractAddressByName method from zeroContract.
 
@@ -765,7 +759,7 @@ Next, we'll write the **Get the parent chain height** function.
 
 ### Get the parent chain height
 
-**Write the get the parent chain height function**
+**Write the function to get the parent chain height**
 
 - Scroll down to find the comment `// Step H - Get the parent chain height`.
 
@@ -873,17 +867,17 @@ const getTokenContract = async (aelf: any, wallet: any) => {
 
 #### What This Function Does:
 
-1. **Get chainStatus** : It gets chainStatus from getChainStatus function which is there in aelf.
+1. **Get chainStatus** : It gets chainStatus from getChainStatus function.
 
 2. **Get GenesisContractAddress** : It gets GenesisContractAddress from chainStatus.
 
-3. **fetch zeroContract** : It fetch zeroContract using GenesisContractAddress and wallet.
+3. **fetch zeroContract** : It fetches zeroContract using GenesisContractAddress and wallet.
 
-4. **fetch tokenContractAddress** : It fetch tokenContractAddress by calling GetContractAddressByName method from zeroContract.
+4. **fetch tokenContractAddress** : It fetches tokenContractAddress by calling GetContractAddressByName method from zeroContract.
 
-### Create Fungible Token on MainChain
+### Create Fungible Token on the MainChain
 
-**Write a function to Create a new Fungible Token on MainChain**
+**Write a function to Create a new Fungible Token on the MainChain**
 
 - Scroll down to find the comment `// Step K - Create Token on MainChain`.
 
@@ -965,16 +959,16 @@ const createTokenOnMainChain = async (values: {
 
 #### What this function does:
 
-1. **Prepares Parameters :** Constructs input parameters for creating the TOKEN, including token details and the issuer's information.
+1. **Prepares Parameters :** Constructs input parameters for creating the token, including token details and the issuer's information.
 
-2. **Calls Smart Contract :** Sends a request to the mainchain smart contract to create the TOKEN using the prepared parameters.
+2. **Calls Smart Contract :** Sends a request to the mainchain smart contract to create the token using the prepared parameters.
 
-3. **Return Status :** Returns `"success"` if the TOKEN is created successfully; otherwise, returns `"error"`.
+3. **Return Status :** Returns `"success"` if the token is created successfully; otherwise, returns `"error"`.
 
 
-**Write the Function for Validate TOKEN Info Exist**
+**Write the Function to Validate Token Info**
 
-Now, let's write the Validate TOKEN Info Exist function.
+Now, let's write the Validate TOKEN Info function.
 
 - Scroll down to find the comment `// Step L - Validate Mainchain Token Create's Transaction`.
 
@@ -1075,20 +1069,20 @@ const validateToken = async (values: ITokenParams) => {
 
 3. **Signs and Sends Transaction:** Signs the transaction to validate the token info and sends it to the blockchain.
 
-4. **Polls for Transaction Result:** Waits for the transaction result and ensures the transaction has reached the required block height.
+4. **Polls for Transaction Result:** Waits for the transaction result and ensures that the transaction has reached the required block height.
 
 5. **Fetches Merkle Path:** Retrieves the Merkle path for the validated transaction.
 
 ### Create Fungible Token on SideChain
 
-**Write a Function for Create Token on SideChain**
+**Write a Function to Create Token on the SideChain**
 
-- Scroll down to find the comment `// Step M - Create a Token on SideChain.`.
+- Scroll down to find the comment `// Step M - Create a Token on the SideChain.`.
 
 - Replace the existing **`createTokenOnSideChain`** function with this code snippet:
 
 ```javascript title="create-token-modal/index.tsx"
-// Step M - Create a Token on SideChain.
+// Step M - Create a Token on the SideChain.
 const createTokenOnSideChain = async (values: ITokenValidateResult) => {
   let createSideChainTokenLoadingId;
   try {
@@ -1135,14 +1129,14 @@ const createTokenOnSideChain = async (values: ITokenValidateResult) => {
 
 #### Here's what the function does:
 
-1. **Prepares Parameters:** Constructs the parameters needed for creating the TOKEN on the SideChain, including chain IDs, block height, transaction data, and Merkle path.
+1. **Prepares Parameters:** Constructs the parameters needed for creating the token on the sidechain, including chain IDs & block height, transaction data, and Merkle path.
 
-2. **Calls Smart Contract Method:** Sends the transaction to the SideChain smart contract to create the TOKEN.
+2. **Calls Smart Contract Method:** Sends the transaction to the sidechain smart contract to create the token.
 
 
-### Issue the created TOKEN on sidechain
+### Issue the created token on the SideChain
 
-**Write a Function for Issue Token which has been Created on SideChain.**
+**Write a Function to Issue Token which has been Created on the SideChain.**
 
 - Scroll down to find the comment `// Step N - Issue Token on SideChain`.
 
@@ -1206,16 +1200,16 @@ const issueTokenOnSideChain = async (values: {
 
 #### Here's what the function does:
 
-1. **Prepares Issuance Input:** Constructs the input parameters for issuing the TOKEN, including symbol, amount, memo, and recipient address.
+1. **Prepares Issuance Input:** Constructs the input parameters for issuing the token including symbol, amount, memo, and recipient address.
 
-2. **Calls Smart Contract Method:** Sends the transaction to the SideChain smart contract to issue the TOKEN.
+2. **Calls Smart Contract Method:** Sends the transaction to the sidechain smart contract to issue the token.
 
-3. **Handles Success:** Updates the notification to show successful issuance and notifies the user that the TOKEN will appear in their wallet.
+3. **Handles Success:** Updates the notification to show successful issuance and notifies the user that the token will appear in their wallet.
 
 
-### Transfer TOKEN to Staking Contract
+### Transfer Token to Staking Contract
 
-**Create a Function to Transfer TOKEN to Staking Contract for Reward Balance**
+**Create a Function to Transfer Token to the Staking Contract for Reward Balance**
 
 - Scroll down to find the comment `// Step O - Transfer TOKEN to Staking Contract`.
 
@@ -1268,14 +1262,14 @@ const transferTokenToStakingContract = async (
 
 #### Here's what the function does:
 
-1. **Prepares Transfer Input:** Constructs the input parameters for transferring the TOKEN, including to address, symbol, amount, memo.
+1. **Prepares Transfer Input:** Constructs the input parameters to transfer the token including to address, symbol, amount & memo.
 
-2. **Calls Smart Contract Method:** Sends the transaction to the SideChain smart contract to Transfer the TOKEN.
+2. **Calls Smart Contract Method:** Sends the transaction to the sidechain smart contract to transfer the token.
 
 
-### Initializing the staking contract
+### Initialize the staking contract
 
-**Create a Function to Initializing the staking contract using Token Address**
+**Create a Function to Initialize the Staking Contract using Token Address**
 
 - Scroll down to find the comment `// Step P - Initializing the staking contract`.
 
@@ -1317,13 +1311,13 @@ const initializedContract = async (tokenContractAddress: string) => {
 
 #### Here's what the function does:
 
-1. **Calls Smart Contract Method:** Sends the transaction to the Staking smart contract to Initialize the contract using Token Address.
+1. **Calls Smart Contract Method:** Sends the transaction to the staking smart contract to initialize the contract using the token address.
 
 ### Configure Submit Form
 
-**Create a Function to handle Submit of Create form**
+**Create a Function to Handle Submit of Create form**
 
-Now, let's write the create Token Function.
+Now, let's write the create token function.
 
 1. Scroll down to find the comment `// Step Q - handle Submit of Create Token`.
 
@@ -1395,28 +1389,28 @@ const onSubmit = async (values: {
 
 #### Here's what the function does:
 
-1. **Creates TOKEN on MainChain:** Calls `createTokenOnMainChain` to create the TOKEN on the MainChain. If it fails, it updates the transaction status and exits.
+1. **Creates Token on the MainChain:** Calls `createTokenOnMainChain` to create the token on the mainchain. If it fails, it updates the transaction status and exits.
 
-2. **Validates Create Token Transaction:** Waits for 3 seconds, then calls `validateToken` to validate the TOKEN. If validation fails, it updates the transaction status and exits.
+2. **Validates Create Token Transaction:** Waits for 3 seconds, then calls `validateToken` to validate the token. If validation fails, it updates the transaction status and exits.
 
-3. **Creates TOKEN on SideChain:** Calls `createTokenOnSideChain` to create the TOKEN on the SideChain using the validated data. If it fails, it updates the transaction status and exits.
+3. **Creates Token on the SideChain:** Calls `createTokenOnSideChain` to create the token on the sidechain using the validated data. If it fails, it updates the transaction status and exits.
 
-4. **Issues TOKEN on SideChain:** Calls `issueTokenOnSideChain` to issue the TOKEN. Updates the transaction status to false after completion.
+4. **Issues Token on the SideChain:** Calls `issueTokenOnSideChain` to issue the token. Updates the transaction status to false after completion.
 
-5. **Transferring Reward Amount on Staking Contract :** Calls `transferTokenToStakingContract` to Transferring Reward Amount on Staking Contract.
+5. **Transferring Reward Amount to the Staking Contract :** Calls `transferTokenToStakingContract` to transfer the reward amount to the staking contract.
 
-6. **Initializing Staking smart contract:** Calls `initializedContract` to Initializing Staking smart contract using Token Address.
+6. **Initializing Staking smart contract:** Calls `initializedContract` to initialize the staking smart contract using the token address.
 
 
-### Fetch TOKEN Data
+### Fetch Token Data
 
-Let's write the Function for the fetch Token data from user's Wallet using Graphql API.
+Let's write the function to fetch the token data from user's wallet using graphql API.
 
 **Step 1: Locate the File**
 
 - go to the `/src/pages/home/index.tsx` file.
 
-**Step 2: Write Function for fetch the Fungible Token data**
+**Step 2: Write Function to fetch the fungible token data**
 
 - Find the comment `// Step R - fetch Fungible Token data`.
 
@@ -1491,30 +1485,28 @@ const fetchTokenData = async () => {
 ```
 #### Here's what the function does:
 
-1. **Fetch TOKEN balance Data:** Fetching TOKEN balance Data using graphql api.
+1. **Fetch Token balance:** Fetches token balance using graphql api.
 
-2. **Filter Token Details:** It finds the Token details from API response.
+2. **Filter Token Details:** It finds the token details from the API response.
 
-now' it's time to start to implement the functions for staking functionnlity.
+Now, it's time to start the implementation of the staking functionality.  
 
---- 
+### Deposit Stake Amount on the Staking Contract
 
-### Deposit Stake amount on Staking contract
+As we have completed `Create Token` and `Fetch Token balance` functionality, it's time to acheive `Stake Token` functionality using the staking smart contract.
 
-As we have completed `Create TOEKN` and `Fetch TOKEN balane` functionalit so now it's time to achive Stake Token functionality using Staking smartcontract.
+Now, let's prepare the **Deposit Stake Amount** related functions.
 
-So now let's prepare the **Deposit Stake Amount** related functions.
+#### Transfer Tokens to the Staking Contract
 
-#### Transfer TOKEN to the Staking Contract
+First, we need to transfer stake amount to the staking contract address using sidechain contract and then we can call the `GetDeposits` function on the staking contract.
 
-First we need to transfer stake amount to Staking address using sidechain contract and then we can call the `GetDeposits` function on Stakking contract.
-
-- Scroll down to find the comment `// Step S - Function to transfer TOKEN to the Staking Contract`.
+- Scroll down to find the comment `// Step S - Function to transfer tokens to the staking contract`.
 
 - Replace the existing **`transferTokenToStakingContract`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-// Step S - Function to transfer TOKEN to the Staking Contract
+// Step S - Function to transfer tokens to the staking contract
 const transferTokenToStakingContract = async (amount: string) => {
   // Show a loading toast notification while the transfer is in progress
   let transferTokenLoadingId = toast.loading("$TOKEN Deposit Transaction Executing");
@@ -1556,16 +1548,16 @@ const transferTokenToStakingContract = async (amount: string) => {
 };
 ```
 
-#### Creat handle Staking function
+#### Create Handle Staking function
 
-Now let's create the handle Staking function for staking as we completed **`transferTokenToStakingContract`** function creation.
+Now, let's create the function to handle staking, as we have already completed **`transferTokenToStakingContract`** function.
 
-- Scroll down to find the comment `// Step T - Function to handle staking of the token`.
+- Scroll down to find the comment `// Step T - Function to handle staking of the tokens`.
 
 - Replace the existing **`handleStaking`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-// Step T - Function to handle staking of the token
+// Step T - Function to handle staking of the tokens
 const handleStaking = async () => {
   // Validate the amount and handle any errors
   const isError = handleAmountError(amount);
@@ -1628,13 +1620,11 @@ const handleStaking = async () => {
     return "error"; // Return error status
   }
 };
-```
+``` 
 
----
+### Fetch Deposited (Staked) Tokens
 
-### Fetch Deposit (Staked) Data
-
-- Find the comment `// Step U - Function to fetch deposit data for the current wallet address`.
+- Find the comment `// Step U - Function to fetch deposited (staked) tokens for the connected wallet address`.
 
 - Replace the existing **`fetchDepositData`** function with this code snippet:
 
@@ -1657,9 +1647,7 @@ const fetchDepositData = async () => {
     return "error";
   }
 };
-```
-
----
+``` 
 
 ### Fetch Total Staked Amount
 
@@ -1686,13 +1674,11 @@ const fetchTotalStakedAmount = async () => {
     return "error";
   }
 };
-```
-
----
+``` 
 
 ### Withdraw Staked Tokens
 
-User can withdraw the staked amount after the staking period is over for the specific deposit.
+Users can withdraw the staked amount after the staking period is over for a specific deposit.
 
 - Find the comment `// Step W - Function to withdraw staked tokens based on a deposit ID`.
 
@@ -1738,13 +1724,11 @@ const withdrawStake = async (depositId: string) => {
     setIsWithdrawing(false); // Set the withdrawing state to false
   }
 };
-```
-
----
+``` 
 
 ### Emergency Withdraw Staked Tokens
 
-Users can withdraw their staked amount at any time through an Emergency Withdrawal, even before the staking period is over.
+Users can withdraw their staked amount at any time through the `emergency withdrawal` function before the staking period gets over.
 
 - Find the comment `// Step X - Function to perform an emergency withdrawal of staked tokens based on a deposit ID`.
 
@@ -1789,23 +1773,26 @@ const emergencyWithdrawStake = async (depositId: string) => {
     setIsWithdrawing(false); // Set the withdrawing state to false
   }
 };
-```
-
----
+``` 
 
 ### Set Staking Contract Address
 
-You needs to set your deployed Staking contract Address in utils file so let's set it now.
+You need to set your deployed Staking contract Address in utils file so let's set it now.
 
 **Step 1: Locate the File**
 
-- go to the `/src/lib/utils.tsx` file.
+- Go to the `/src/lib/utils.tsx` file.
 
 **Step 2: Set Deployed Staking Contract Address**
 
-- Find the comment `// Step Y - Staking contract` on below of page.
+- Find the comment `// Step Y - Staking contract address` on below of page.
 
 - Replace your deployed staking contract with value of **stakingContractAddress** (`your_deployed_stakinng_contract`).
+
+```javascript title="src/lib/utils.tsx"
+// Step Y - Staking contract address
+export const stakingContractAddress = "your_deployed_staking_contract_address"
+```
 
 As we've written all the necessary frontend functions and components, we're ready to run the Staking dApp application in the next step.
 
@@ -1829,7 +1816,7 @@ npm run dev
 
   ![run-app-success](/img/vote-npm-run-console.png)
 
-- Upon clicking on the **localhost URL**, you should be directed to the Staking app landing page as shown below.
+- Upon clicking on the **localhost URL**, you should be directed to the Staking dApp landing page as shown below.
 
 :::tip
 If you are developing and testing this with GitHub codespace, you can use Port Forward to test the web server that is running in codespace, here is the link on how to use Port forward for codespace https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
@@ -1848,9 +1835,9 @@ If you are developing and testing this with GitHub codespace, you can use Port F
 :::info
 Portkey is the first AA wallet from aelf's ecosystem, migrating users, developers and projects from Web2 to Web3 with DID solution.
 
-Users can swiftly log into Portkey via their Web2 social info with no private keys or mnemonics required. Underpinned by social recovery and decentralized guardian design, Portkey safeguards users' assets from centralized control and theft. Portkey has a unique payment delegation mechanism which enables interested parties to function as delegatees to pay for user activities on users' behalf. This means that users can create accounts for free and fees for other usages may also be covered in Portkey.
+Users can swiftly log into Portkey via their Web2 social info with no private keys or mnemonics required. Underpinned by social recovery and decentralized guardian design, Portkey safeguards users' assets from centralized control and theft. Portkey has a unique payment delegation mechanism which enables interested parties to function as delegates to pay for user activities on users' behalf. This means that users can create accounts for free and fees for other usages may also be covered in Portkey.
 
-Portkey also provides crypto on/off-ramp services, allowing users to exchange fiat with crypto freely. It supports the storage and management of various digital assets such as tokens, NFTs, etc. The compatibility with multi-chains and seamless connection to all kinds of DApps makes Portkey a great way to enter the world of Web3.
+Portkey also provides crypto on/off-ramp services, allowing users to exchange fiat with crypto freely. It supports the storage and management of various digital assets such as tokens, NFTs, etc. The compatibility with multi-chains and seamless connection to all kinds of dApps makes Portkey a great way to enter the world of Web3.
 
 With DID solution as its core, Portkey provides both Portkey Wallet and Portkey SDKs.
 
@@ -1905,7 +1892,7 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
    ![connect-wallet](/img/staking-connect-wallet-buton.png)
 
-- You will get Connection Request on Portkey wallet as you can see in below image.
+- You will get a connection request on Portkey wallet as you can see in the below image.
 - Click on **Approve** button.
 
    ![connect-wallet](/img/staking-connect-wallet-request.png)
@@ -1921,140 +1908,132 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
    ![collect-wallet-success](/img/staking-create-token-button.png)
 
-- The Create Token Popup modal will be appear with prefilled Token name in Form. (You can Modify the Token name)
+- The `Create Token` Popup modal will appear with prefilled token name. (You can modify the token name)
 
    ![create-collection-form](/img/staking-create-token-form.png)
 
-- Now you need **TOKEN Seed** for create the new Token. 
+- Now, you need **Token Seed** to create the new token. 
 
-- If you Don't have **TOKEN Seed** then please follow this [steps](#step-2---getting-token-seed) to get it.
+- If you don't have **Token Seed** then please follow this [steps](#step-2---getting-token-seed) to get it.
 
-- Open you Portkey Wallet and you will find the **TOKEN Symbol** on **NFT** Tab.
+- Open your Portkey Wallet and you will find the **TOKEN Symbol** on the **NFT** Tab.
 
   ![portkey-token-seed-1.png](/img/staking-portkey-tone-seed-1.png) 
   ![portkey-token-seed-2.png](/img/staking-portkey-tone-seed-2.png) 
 
-- Copy the **Token Symbol** and use it on **`Symbol`** field of Form Submission of Create Token.
-- Fill other Necessary like **`Total Supply`**.
+- Copy the **Token Symbol** and use it inside the **`Symbol`** field of the token creation form.
+- Fill other necessary details like **`Total Supply`**.
 
   ![staking-create-token-form-button](/img/staking-create-token-form-button.png)
 
-- Click on **Create Token** Button.
+- Click on the **Create Token** Button.
 
-- You will get Transaction Request on your Portkey Wallet so **Sign In** the Transaction.
+- You will get a transaction request on your Portkey wallet. Proceed to **Sign** the transaction.
 
   ![staking-create-token-request](/img/staking-create-token-request.png)
   
-- After **Sign In** the Transaction, You will get successful transaction notification.
+- After transaction is succesfully signed, you will get a successful/failed transaction notification.
 
   ![staking-create-token-success](/img/staking-create-token-success.png)
    
-- Now your Transaction will be Validating on aelf blockchain so wait for few minuts. it will take approx 2-3 minutes to complete this validation. 
+- Now, the transaction will be validated on the aelf blockchain. Let's wait till the transaction gets validated. 
 
   ![staking-create-token-validating](/img/staking-create-token-validating.png)
 
-- After Successful Validate your transaction, you will get new **Sign In** Transaction request on Portkey for **Create Token On Side Chain**.
+- Once the transaction is successfully validated, a new **Sign** transaction request will pop-up on Portkey to **Create Token on the SideChain**.
 
-- Click on **Approve** button and wait for the complete the Transaction.
+- Click on the **Approve** button and wait for the transaction to complete.
 
   ![staking-create-token-sidechain-request](/img/staking-create-token-sidechain-request.png)
 
-- After **Created Token on Sidechain** Successfully, you will get new **Sign In** Transaction request on Portkey for **Issue Token On Side Chain**.
+- After the successful creation of the token on the sidechain, a new **Sign** transaction request will pop-up on Portkey to **Issue Tokens On the SideChain**.
 
-- Click on **Approve** button and wait for the complete the Transaction.
+- Click on the **Approve** button and wait for the transaction to complete.
 
   ![staking-issue-token-request](/img/staking-issue-token-request.png)
 
-- After **Issued Token on Sidechain** Successfully, you will get new **Sign In** Transaction request on Portkey for **Transfer $TOKEN to Staking Contract for Reward Balance**.
+- Once tokens are issued successfully on the sidechain, a new **Sign** transaction request will pop-up on Portkey to **Transfer Tokens to the Staking Contract** to distribute future staking rewards.
 
-- Click on **Approve** button and wait for the complete the Transaction.
+- Click on the **Approve** button and wait for the transaction to complete.
 
   ![staking-token-transfer-reward-request](/img/staking-token-transfer-reward-request.png)
 
-- After **Transfer Reward Token** Successfully, you will get last  **Sign In** Transaction request on Portkey for **Staking Contract Initializing**.
+- Once the reward tokens are transferred successfully, a new **Sign** transaction request will pop-up on Portkey to **Initialize the Staking Contract**.
 
-- Click on **Approve** button and wait for the complete the Transaction.
+- Click on the **Approve** button and wait for the transaction to complete.
 
   ![staking-contract-initialize-request](/img/staking-contract-initialize-request.png)
 
-- You will get successfull transaction notification and Now you will be also able to see **Token balance** on Staking Widget like below.
+- Once the transaction is suceessfully completed, a notification will pop-up and the **Token balance** will be visible on the staking widget like below.
 
-  ![staking-contract-initialize-success](/img/staking-contract-initialize-success.png)
-
----
+  ![staking-contract-initialize-success](/img/staking-contract-initialize-success.png) 
 
 **Stake Tokens**
 
-- Enter the Amount for Stake the Tokens and Click on **Stake $TOKEN** Button. 
+- Enter the amount to stake the tokens and click on the **Stake $TOKEN** Button. 
 
   ![staking-form-button](/img/staking-form-button.png)
 
-- You will get the **$TOKEN Transfer amount to staking contract** Transaction Request on your Portkey Wallet.
-- Click on **Sign** Button. 
+- A new **Sign** transaction request will pop-up on Portkey to **Transfer $TOKEN amount to the staking contract**. Click on the **Sign** Button. 
 
   ![staking-deposite-amount-request](/img/staking-deposite-amount-request.png)
 
-- Now You will get the another Transaction request for **Deposit $TOKEN on staking contract** (For store the deposit records) on your Portkey Wallet.
-- Click on **Sign** Button. 
+- Now You will get another transaction request to **Deposit $TOKEN on the staking contract** on the Portkey Wallet. Click on the **Sign** Button. 
 
   ![stake-token-on-smart-contract-request](/img/stake-token-on-smart-contract-request.png)
 
-- You will get notification of **$TOKEN Staked Succesfully** Trasanction and your **Token balance** will be updated.
+- A notification will pop-up that the **$TOKEN are Staked Succesfully**. The **Token balance** will be updated.
 
   ![stake-amount-success](/img/stake-amount-success.png)
 
-As we completed all necessary steps for the Stake Token, now it's time to withdraw the Tokens.
+As we have completed all the necessary steps to stake the token, now it's time to withdraw the tokens.
 
-- There are two ways to withdraw Stake amount.
+- There are two ways to withdraw the staked amount.
 
-1. **Emergency Withdraw Token** : User can withdraw stake tokens at anytime before Lock time period. 
+1. **Emergency Withdraw Token** : User can withdraw staked tokens at anytime before the staking (lock) time period ends. 
 2. **Withdraw Token** : User can withdraw staked tokens once the lock time period is over.
 
-Let's do **Emergency Withdraw Token** on next Stap.
-
---- 
+Let's do **Emergency Withdraw Token** in the next step.  
 
 **Emergency Withdraw Tokens**
 
-- After Staked Token, You will be get Staked Token Entry on **Staked $TOKEN** Section like below.
+- After clicking on the staked token, A staked token entry will be visible on the **Staked $TOKEN** section like below.
 - Click on **Emergency Withdraw** Button.
 
  ![staked-amount-entry](/img/staked-amount-entry.png)
 
-- Now, You will get the transaction request on Portkey Wallet.
+- Now, a transaction request will pop-up on the Portkey wallet.
 
  ![staking-emergency-withdraw-request](/img/staking-emergency-withdraw-request.png)
 
-- You will get the Staked amount back without get any rewards and your Token balance will be updated.
+- The staked amount will be returned without any rewards and the token balance will be updated.
 
  ![post-emergency-withdrawal](/img/staking-post-emergency-withdrawal.png)
 
-As we have completed **Emergency Withdraw Tokens** Functioanlity so now it's time to try **Withdraw Token** Functionality.
-
---- 
+As we have completed **Emergency Withdraw Tokens** functioanlity. It's time to try **Withdraw Token** functionality. 
 
 **Withdraw Token**
 
-- First You needs to Stake Tokens on contract as we already completed on **Stake Tokens** step.
+- First, the connected wallet needs to stake the tokens on the staking contract as we have already completed this during **Stake Tokens** step.
 
-- You need to wait till the lock time period is over for Staked Amount **(1 Hour)**.
+- You need to wait till the lock time period is over for the staked amount.
 
-- After **1 Hour**, You will be able to see your Staked amount in **Available to Withdraw $TOKEN** section as like Below.
+- After the lock period is over, you will be able to see your staked amount in **Available to Withdraw $TOKEN** section as shown below.
 
-- Click on **Withdraw** button to withdraw the Amount with **Rewads (1.1x Tokens)**.
+- Click on **Withdraw** button to withdraw the amount including staking **Rewards**.  1.1 times the amount of the staked tokens.
 
  ![staking-available-withdraw-entery](/img/staking-available-withdraw-entery.png)
 
-- Now, You will get the transaction request on Portkey Wallet for Withdraw the Staked Amount.
+- Now, You will get the transaction request on the Portkey wallet to withdraw the staked amount.
 
-- Click on **Sign** request Button.
+- Click on the **Sign** button.
 
-- Your $TOKEN will be successfully withdraw in your wallet with Rewards.
+- Your staked tokens including rewards will be transferred to the connected wallet once the withdrawal request completes.
 
  ![staking-withdraw-stake-success](/img/staking-withdraw-stake-success.png)
 
 :::success
-🎉 Congratulations Learners! You have successfully built your Staking dApp and this is no mean feat!
+🎉 Congratulations Learners! You have successfully built your Staking dApp!
 :::
 
 ## 🎯 Conclusion
@@ -2069,11 +2048,9 @@ Throughout this section, you've gained vital skills in:
 
   - **📦 Installing Node.js, Yarn, and aelf-command**: These tools enable efficient interaction with the aelf blockchain, facilitating wallet creation and transaction management.
 
-  - **💡 Getting TOKEN Seed**: You learned how to obtain a TOKEN seed from the faucet, a fundamental step in creating fungible tokens.
+  - **💡 Getting Token Seed**: You obtained a TOKEN seed from the testnet faucet, a fundamental step in creating fungible tokens.
 
-  - **🔧 Configuring Frontend Integration**: You set up a frontend that interacts with both the multi-token and staking contracts, enabling user-friendly functionality in your dApp.
-
-  - **🔗 Smart Contract Interaction:**: You successfully integrated with aelf’s multi-token contract and staking contract, setting up functions like token creation, token issuance, staking deposits, and withdrawals.
+  - **🔧 Configuring Frontend Integration**: You set up a frontend that interacts with both the multi-token and staking contracts, enabling user-friendly functionality including functions like token creation, token issuance, stake tokens, and withdraw tokens in your dApp.
 
 **🔍 Final Output**
 
@@ -2081,7 +2058,7 @@ By now, you should have:
 
   - 📜 Successfully set up your development environment and installed all required packages.
 
-  - 💻 Configured your frontend to interact with both the multi-token and staking smart contracts, enabling functionalities like creating tokens, issuing them, staking, and withdrawing tokens.
+  - 💻 Configured your frontend to interact with both the multi-token and staking smart contracts, enabling functionalities like creating tokens, issuing them on the sidechain, staking, and withdrawing tokens.
 
 **➡️ What's Next?**
 
