@@ -1583,7 +1583,7 @@ const handleStaking = async () => {
     const DEPOSIT_PARAMS = {
       tokenSymbol: tokenInfo?.tokenInfo.symbol, // Symbol of the token being staked
       amount: amount, // Amount being staked
-      lockTime: 3600, // Time for which the tokens are locked
+      lockTime: 300, // Time for which the tokens are locked
     };
 
     // Call the deposit method on the staking contract
