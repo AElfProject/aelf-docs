@@ -690,7 +690,7 @@ With the Connect Wallet function defined, we're ready to write the remaining fun
 
 **Step 1: Locate the File**
 
-1. Go to the `src/components/create-token-modal/index.tsx` file. This file is the **Create Fungible TOKEN** popup modal where users can enter details like the `tokenName`, `symbol` and `totalSupply`.
+1. Go to the `src/components/create-token-modal/index.tsx` file. This file is the **Create Fungible TOKEN** popup modal where users can create a new TOKEN by submit the details like `tokenName`, `symbol` and `totalSupply`.
 
 **Step 2: Prepare Form to Create TOKEN**
 
