@@ -570,11 +570,11 @@ const fetchContract = async (
 
 #### Write Functions for Staking Contract.
   
-**Step 1. Locate the File:**
+**Step 4. Locate the File:**
 
 - Go to the `src/hooks/useStakingContract.ts` file.
 
-**Step 2. Fetch the Smart Contract:**
+**Step 5. Fetch the Smart Contract:**
 
 - Find the comment `//Step C - Function to fetch a smart contract based on the chain symbol and the contract address`
 
@@ -613,7 +613,7 @@ const fetchContract = async (
   - **Fetch Chain** : The function fetches chain information using the provider.
   - **Get Contract** : It retrieves the smart contract instance from the chain.
 
-**Step 3. Initialize and Fetch the Smart Contracts:**
+**Step 6. Initialize and Fetch the Smart Contracts:**
 
 - Find the comment `// Step D -  Effect hook to initialize and fetch the smart contracts when the provider changes`
 
