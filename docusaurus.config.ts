@@ -44,11 +44,11 @@ const config: Config = {
     },
     {
       src: "https://www.googletagmanager.com/gtag/js?id=G-PFZ0BCQHMY",
-      async: true,
+      defer: true,
     },
     {
       src: "/js/google-analytics.js",
-      async: true,
+      defer: true,
     },
   ],
   presets: [
