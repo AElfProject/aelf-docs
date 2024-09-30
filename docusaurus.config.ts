@@ -1,6 +1,6 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
-import type * as Preset from '@docusaurus/preset-classic';
+import { themes as prismThemes } from "prism-react-renderer";
+import type { Config } from "@docusaurus/types";
+import type * as Preset from "@docusaurus/preset-classic";
 import footerLinks from "./config/footer-links.json";
 import navbarLinks from "./config/navbar-links.json";
 import remarkMath from "remark-math";
@@ -37,7 +37,20 @@ const config: Config = {
   },
 
   plugins: ["docusaurus-plugin-hotjar"],
-
+  scripts: [
+    {
+      src: "/js/amplitude.js",
+      async: true,
+    },
+    {
+      src: "https://www.googletagmanager.com/gtag/js?id=G-PFZ0BCQHMY",
+      defer: true,
+    },
+    {
+      src: "/js/google-analytics.js",
+      defer: true,
+    },
+  ],
   presets: [
     [
       "classic",
