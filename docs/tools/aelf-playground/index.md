@@ -362,7 +362,6 @@ namespace AElf.Contracts.ToDo
 
   ![gas-fees-example-playground](/img/gas-fees-example-playground.png)
 
-
 ### Building Smart Contract
 
 - Click on Build Icon for generate the build.
