@@ -141,4 +141,33 @@
   })(window, document);
 })();
 
-amplitude.init("7652218546e8f6cc3d045e43a68830f6");
+// https://amplitude.com/docs/session-replay/session-replay-google-tag-manager
+function loadAsync(src, callback) {
+  var script = document.createElement("script");
+  script.src = src;
+  if (script.readyState) {
+    // IE, incl. IE9
+    script.onreadystatechange = function () {
+      if (script.readyState === "loaded" || script.readyState === "complete") {
+        script.onreadystatechange = null;
+        callback();
+      }
+    };
+  } else {
+    script.onload = function () {
+      // Other browsers
+      callback();
+    };
+  }
+  document.getElementsByTagName("head")[0].appendChild(script);
+}
+
+loadAsync(
+  "https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.6.24-min.js.gz",
+  function () {
+    var sessionReplayTracking = window.sessionReplay.plugin({ sampleRate: 1 });
+    window.amplitude.add(sessionReplayTracking).promise;
+
+    window.amplitude.init("7652218546e8f6cc3d045e43a68830f6");
+  }
+);
