@@ -138,6 +138,10 @@ description: A tool to simplify building, testing, and deploying smart contracts
     ![check-ai-audit-report-aelf-studio](/img/check-ai-audit-report-aelf-studio.png)
 
   - It's advised to wait for sometime and click on **Check Audit Report** button to see the audit report.
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e77459 (fix: Reviewed and updated aelf-Studio tutorial)
 
 ### Deploy the smart contract:
 
@@ -169,4 +173,8 @@ description: A tool to simplify building, testing, and deploying smart contracts
 
 ### Conclusion
 
+<<<<<<< HEAD
 aelf-Studio simplifies the process of developing, testing, and deploying smart contracts on the aelf blockchain, offering an intuitive in-IDE experience. With features like AI audits, transaction tracking, and testnet token retrieval, it ensures developers can efficiently manage the entire smart contract lifecycle without leaving VS Code.
+=======
+aelf-Studio simplifies the process of developing, testing, and deploying smart contracts on the aelf blockchain, offering an intuitive in-IDE experience. With features like AI audits, transaction tracking, and testnet token retrieval, it ensures developers can efficiently manage the entire smart contract lifecycle without leaving VS Code.
+>>>>>>> 1e77459 (fix: Reviewed and updated aelf-Studio tutorial)
