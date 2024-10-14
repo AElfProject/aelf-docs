@@ -10,7 +10,17 @@ description: A brief guide to installing, creating, and deploying aelf smart con
 
 **aelf Studio** is an extension for Visual Studio Code (VS Code). It helps you write and deploy smart contracts (which are like programs) on the AElf blockchain. This guide will show you how to set it up, create a simple contract, and deploy it.
 
-## 2. Setting Up aelf Studio
+## 2. aelf Studio Features
+
+- **Build Smart Contracts:** Compile your aelf smart contracts directly within VS Code using simple terminal commands.
+- **Test Smart Contracts:** Run tests and validate the functionality of your smart contracts before deployment.
+- **Get Testnet Tokens:** Easily claim testnet tokens for testing your contracts without leaving your development environment.
+- **Deploy Smart Contracts:** Deploy your contracts to the aelf testnet or mainnet with a few clicks.
+- **Check Transaction Status:** Track the status of contract deployment and other blockchain transactions directly from the extension.
+- **AI Audits:** Leverage built-in AI tools to audit your smart contracts for vulnerabilities and potential issues before deployment.
+- **Deploy from Local:** Deploy your locally built smart contracts directly to the aelf blockchain.
+
+## 3. Setting Up aelf Studio
 
 ### What you need before you start:
 
@@ -48,7 +58,7 @@ description: A brief guide to installing, creating, and deploying aelf smart con
 
    ![bottom-icon-aelf-studio](/img/bottom-icon-aelf-studio.png)
 
-## 3. How to Use aelf Studio
+## 4. How to Use aelf Studio
 
 ### Creating a new project:
 
@@ -78,9 +88,39 @@ description: A brief guide to installing, creating, and deploying aelf smart con
 
     ![create-build-aelf-studio](/img/create-build-aelf-studio.png)
 
-### Get test tokens:
+### Test Smart Contract:
 
-- **Get tokens:**
+  - Click the **aelf icon** in the bottom right corner.
+  - Select **Test Smart Contract** from the menu.
+    
+    ![test-build-aelf-studio](/img/test-build-aelf-studio.png)
+
+  - You will again get one more select menu option. Please select respective test file for Testing the contract.
+
+    ![text-build-select-file-aelf-studio](/img/text-build-select-file-aelf-studio.png)
+
+  - Once test is completed, you will get below result in output tab.
+
+    ![test-build-success-report-aelf-studio](/img/test-build-success-report-aelf-studio.png)
+
+### Generate AI Audit Report:
+
+  - Click the **aelf icon** in the bottom right corner.
+  - Select **AI Audit** from the menu.
+    
+    ![select-ai-audit-aelf-studio](/img/select-ai-audit-aelf-studio.png)
+
+  - You will again get one more select menu option. Please select respective file for generate Report.
+
+    ![select-file-ai-audit-aelf-studio](/img/select-file-ai-audit-aelf-studio.png)
+
+  - Once file is uploaded, you will get notification on bottom right of screenin with **Check Audit Report** Button.
+
+    ![check-ai-audit-report-aelf-studio](/img/check-ai-audit-report-aelf-studio.png)
+
+  - wait sometime and click on **Check Audit Report** Button to see the Audit Report.
+
+### Get test tokens:
 
   - Click the **aelf icon** in the bottom right corner.
   - Select **Get Testnet Tokens** from the menu.
@@ -89,30 +129,33 @@ description: A brief guide to installing, creating, and deploying aelf smart con
 
   - Follow the steps on the screen to get some tokens for testing.
 
-
 ### Deploy the smart contract:
-
-- **Deploy the contract:**
 
   - Click the **aelf icon** again in the bottom right corner.
   - Select **Deploy from Local** from the menu.
 
     ![deploy-from-local-aelf-studio](/img/deploy-from-local-aelf-studio.png)
 
-  - Follow the instructions to deploy your contract to the testnet (this is like a sandbox for testing).
+  - Follow the instructions to deploy your contract and wait sometimes to deploy contract successfully.
+
+### Check Transaction Status:
+
+  - After deploying contract, wait sometime and Click the **aelf icon** in the bottom right corner.
+  - Select **Check Transaction Status** from the menu.
+    
+    ![select-check-transaction-aelf-studio](/img/select-check-transaction-aelf-studio.png)
+
+  - Click on **Check proposal status** button from bottom right notification.
+
+    ![check-proposal-status-aelf-studio](/img/check-proposal-status-aelf-studio.png)
   
-- **See the contract on aelf Scan:**
+  - After then, Click on **View on aelf Scan** button from on notification.
 
-  - After deploying, you can view your contract on [aelf Scan](https://explorer-test-side02.aelf.io/), which shows information about contracts on the blockchain.
+    ![view-aelf-scan-aelf-studio](/img/view-aelf-scan-aelf-studio.png)
 
+  - After Open it on brower, You will get all the deployment details on aelf Scan.
 
-
-## 4. aelf Studio Features
-
-- **Contract Templates:** Quickly create smart contracts with built-in templates.
-- **Easy Build & Deploy:** Build and deploy contracts directly from VS Code.
-- **Testnet Tokens:** Get test tokens for free to try out your contract.
-- **View Contracts:** After deploying, you can check your contract on the AElf blockchain using AElf Scan.
+    ![aelf-sacn-result-aelf-studio](/img/aelf-sacn-result-aelf-studio.png)
 
 ### Conclusion
 
