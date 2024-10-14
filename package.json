@@ -50,5 +50,8 @@
   },
   "engines": {
     "node": ">=18.0"
+  },
+  "overrides": {
+    "path-to-regexp": "^1.9.0"
   }
 }
