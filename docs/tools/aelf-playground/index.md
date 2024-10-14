@@ -354,6 +354,13 @@ namespace AElf.Contracts.ToDo
 }
 ```
 
+### Save Gas Fee
+
+- Click on Save Gas Fee Button and It will suggest to make changes if contract need to be optimised otherwise it shows result like below.
+
+  ![gas-fees-example-playground](/img/gas-fees-example-playground.png)
+
+
 ### Building Smart Contract
 
 - Click on Build Icon for generate the build.
