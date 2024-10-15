@@ -168,6 +168,8 @@ loadAsync(
     var sessionReplayTracking = window.sessionReplay.plugin({ sampleRate: 1 });
     window.amplitude.add(sessionReplayTracking).promise;
 
-    window.amplitude.init("7652218546e8f6cc3d045e43a68830f6");
+    window.amplitude.init("7652218546e8f6cc3d045e43a68830f6", {
+      defaultTracking: true,
+    });
   }
 );
