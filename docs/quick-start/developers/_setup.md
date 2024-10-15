@@ -12,9 +12,19 @@ import TabItem from '@theme/TabItem';
 - [Install dotnet 8.0.x SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - Install aelf contract templates
 
+<Tabs>
+<TabItem value="Linux and macOs" label="Linux and macOs" default>
 ```bash title="Terminal"
 dotnet new --install AElf.ContractTemplates
 ```
+</TabItem>
+
+<TabItem value="Windows" label="Windows">
+```bash title="Terminal"
+dotnet new install AElf.ContractTemplates
+```
+</TabItem>
+</Tabs>
 
 AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.
 
