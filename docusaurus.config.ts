@@ -37,12 +37,6 @@ const config: Config = {
   },
 
   plugins: ["docusaurus-plugin-hotjar"],
-  scripts: [
-    {
-      src: "/js/amplitude.js",
-      async: true,
-    },
-  ],
   presets: [
     [
       "classic",
