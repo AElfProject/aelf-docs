@@ -6,7 +6,7 @@ import TagManager from "react-gtm-module";
 export const analytics = () => {
   const gaEventsForwarder = gaEventsForwarderPlugin();
   amplitude.add(gaEventsForwarder);
-  amplitude.init("7652218546e8f6cc3d045e43a68830f6", { defaultTracking: true });
+  amplitude.init("7652218546e8f6cc3d045e43a68830f6", { autocapture: true });
   ReactGA.initialize("G-PFZ0BCQHMY");
   TagManager.initialize({
     gtmId: "GTM-NKWDMQ52",
