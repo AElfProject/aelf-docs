@@ -3,6 +3,7 @@
 import BrowserOnly from "@docusaurus/BrowserOnly";
 import React from "react";
 import ChatComponent from "./ChatPAAL";
+import "./analytics";
 
 // Default implementation, that you can customize
 export default function Root({ children }) {
