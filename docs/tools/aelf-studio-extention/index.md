@@ -73,20 +73,30 @@ description: A tool to simplify building, testing, and deploying smart contracts
 
     ![cd-aelf-studio](/img/cd-aelf-studio.png)
 
-  - Then type `code .` to open that folder in VS Code.
-
-    ![code-aelf-studio](/img/code-aelf-studio.png)
-
 - **Create a new smart contract:**
   - In the terminal, type `dotnet new aelf -n HelloWorld` and press enter. This will create a `HelloWorld` smart contract template project.
 
     ![create-hello-world-aelf-studio](/img/create-hello-world-aelf-studio.png)
 
-- **Build the contract:**
+### Build the contract:
+
   - Go to the "src" folder by typing `cd src`.
-  - Then type `dotnet build` to build (compile) the smart contract.
+  - Click the **aelf icon** in the bottom right corner.
+  - Select **Build Smart Contract** from the menu to build (compile) the smart contract
 
     ![create-build-aelf-studio](/img/create-build-aelf-studio.png)
+  
+  - Notification will appear with preferance question. Click on **"No"** option.
+
+    ![create-build-ask-notification-aelf-studio](/img/create-build-ask-notification-aelf-studio.png)
+
+  - You will again get one more select menu option. Please select respective file for Build the project.
+
+    ![select-file-create-build-aelf-studio](/img/select-file-create-build-aelf-studio.png)
+
+  - You will see the success message below after the build is created successfully.
+
+    ![build-success-aelf-studio](/img/build-success-aelf-studio.png)
 
 ### Test Smart Contract:
 
