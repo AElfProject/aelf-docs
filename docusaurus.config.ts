@@ -42,14 +42,6 @@ const config: Config = {
       src: "/js/amplitude.js",
       async: true,
     },
-    {
-      src: "https://www.googletagmanager.com/gtag/js?id=G-PFZ0BCQHMY",
-      defer: true,
-    },
-    {
-      src: "/js/google-analytics.js",
-      defer: true,
-    },
   ],
   presets: [
     [
@@ -72,6 +64,12 @@ const config: Config = {
         blog: false,
         theme: {
           customCss: "./src/css/custom.css",
+        },
+        gtag: {
+          trackingID: "G-PFZ0BCQHMY",
+        },
+        googleTagManager: {
+          containerId: "GTM-W8D6DHQZ",
         },
       } satisfies Preset.Options,
     ],
