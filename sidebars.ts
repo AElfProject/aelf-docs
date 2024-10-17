@@ -59,6 +59,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         { type: "doc", id: "tools/aelf-playground/index" },
+        { type: "doc", id: "tools/aelf-studio-extention/index" },
         {
           type: "link",
           label: "Wallet",
