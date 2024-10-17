@@ -139,7 +139,7 @@ sudo npm install
 </TabItem>
 
 <TabItem value="Windows" label="Windows">
-```bash title="Terminal"
+```bash title="Command Prompt"
 npm install
 ```
 </TabItem>

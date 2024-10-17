@@ -20,7 +20,7 @@ dotnet new --install AElf.ContractTemplates
 </TabItem>
 
 <TabItem value="Windows" label="Windows">
-```bash title="Terminal"
+```bash title="Command Prompt"
 dotnet new install AElf.ContractTemplates
 ```
 </TabItem>
@@ -56,7 +56,7 @@ sudo npm i -g aelf-command
 </TabItem>
 
 <TabItem value="Windows" label="Windows">
-```bash title="Terminal"
+```bash title="Command Prompt"
 npm i -g aelf-command
 ```
 </TabItem>

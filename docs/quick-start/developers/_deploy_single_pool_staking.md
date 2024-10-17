@@ -32,7 +32,7 @@ export WALLET_PASSWORD="YOUR_WALLET_PASSWORD"
 </TabItem>
 
 <TabItem value="Windows" label="Windows">
-```bash title="Terminal"
+```bash title="Command Prompt"
 $env:WALLET_PASSWORD = "YOUR_WALLET_PASSWORD"
 ```
 </TabItem>
@@ -64,7 +64,7 @@ curl -X POST "https://faucet.aelf.dev/api/claim?walletAddress=$WALLET_ADDRESS" -
 
 <TabItem value="Windows" label="Windows">
 
-```bash title="Terminal"
+```bash title="Command Prompt"
 $headers = @{
     "accept" = "application/json"
 }
@@ -89,7 +89,7 @@ aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_A
 </TabItem>
 
 <TabItem value="Windows" label="Windows">
-```bash title="Terminal"
+```bash title="Command Prompt"
 aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
 ```
 </TabItem>
@@ -97,21 +97,10 @@ aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $env:WALL
 
 You will be prompted for the following:
 
-<Tabs>
-<TabItem value="Linux and macOs" label="Linux and macOs" default>
 ```sh title="Terminal"
 Enter the required param <symbol>: ELF
 Enter the required param <owner>: **$WALLET_ADDRESS**
 ```
-</TabItem>
-
-<TabItem value="Windows" label="Windows">
-```sh title="Terminal"
-Enter the required param <symbol>: ELF
-Enter the required param <owner>: "YOUR_WALLET_ADDRESS"
-```
-</TabItem>
-</Tabs>
 
 You should see the result displaying your wallet's ELF balance.
 
@@ -129,7 +118,7 @@ Go to https://faucet-ui.aelf.dev Enter your address and click `Get Tokens`.
 
 The smart contract needs to be deployed on the chain before users can interact with it.
 
-Run the following command to deploy a contract. Remember to export the path of ToDoApp.dll.patched to CONTRACT_PATH.
+Run the following command to deploy a contract. Remember to export the path of SinglePoolStaking.dll.patched to CONTRACT_PATH.
 
 <Tabs>
 <TabItem value="Linux and macOs" label="Linux and macOs" default>
@@ -144,12 +133,12 @@ aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH -e https://
 </TabItem>
 
 <TabItem value="Windows" label="Windows">
-```bash title="Terminal"
+```bash title="Command Prompt"
 $CONTRACT_PATH = Get-ChildItem -Recurse -Filter "*patched*" | Select-Object -First 1 -ExpandProperty FullName
 $env:CONTRACT_PATH = $CONTRACT_PATH
 ```
 
-```bash title="Terminal"
+```bash title="Command Prompt"
 aelf-deploy -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -c $env:CONTRACT_PATH -e https://tdvw-test-node.aelf.io/
 ```
 
@@ -172,7 +161,7 @@ aelf-deploy -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -c $env:CONTRACT_PATH
 </TabItem>
 
 <TabItem value="Windows" label="Windows">
-  ```bash title="Terminal"
+  ```bash title="Command Prompt"
   $env:CONTRACT_ADDRESS="YOUR_SMART_CONTRACT_ADDRESS e.g. 2LUmicHyH4RXrMjG4beDwuDsiWJESyLkgkwPdGTR8kahRzq5XS"
   ```
 </TabItem>

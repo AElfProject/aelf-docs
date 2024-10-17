@@ -59,7 +59,7 @@ sudo npm i -g aelf-command
 </TabItem>
 
 <TabItem value="Windows" label="Windows">
-```bash title="Terminal"
+```bash title="Command Prompt"
 npm i -g aelf-command
 ```
 </TabItem>
@@ -663,7 +663,7 @@ You should see **BuildersDAO.dll.patched** in the directory `src/bin/Debug/net.6
 
 ## Step 3 - Deploy Smart Contract
 
-import Deploy from "../\_deploy.md"
+import Deploy from "../\_deploy_dao.md"
 
 <Deploy />
 
