@@ -24,9 +24,19 @@ aelf-command create
 
 - Next, enter and confirm your password. Then export your wallet password as shown below:
 
+<Tabs>
+<TabItem value="Linux and macOs" label="Linux and macOs" default>
 ```bash title="Terminal"
 export WALLET_PASSWORD="YOUR_WALLET_PASSWORD"
 ```
+</TabItem>
+
+<TabItem value="Windows" label="Windows">
+```bash title="Command Prompt"
+$env:WALLET_PASSWORD = "YOUR_WALLET_PASSWORD"
+```
+</TabItem>
+</Tabs>
 
 #### Acquire Testnet Tokens (Faucet) for Development
 
@@ -44,18 +54,46 @@ import TabItem from '@theme/TabItem';
 
 To receive testnet ELF tokens, run this command after replacing `$WALLET_ADDRESS` and `$WALLET_PASSWORD` with your wallet details:
 
+<Tabs>
+<TabItem value="Linux and macOs" label="Linux and macOs" default>
 ```bash title="Terminal"
 export WALLET_ADDRESS="YOUR_WALLET_ADDRESS"
 curl -X POST "https://faucet.aelf.dev/api/claim?walletAddress=$WALLET_ADDRESS" -H "accept: application/json" -d ""
 ```
+</TabItem>
+
+<TabItem value="Windows" label="Windows">
+
+```bash title="Command Prompt"
+$headers = @{
+    "accept" = "application/json"
+}
+
+$env:WALLET_ADDRESS = "YOUR_WALLET_ADDRESS"
+
+Invoke-WebRequest -Uri "https://faucet.aelf.dev/api/claim?walletAddress=$env:WALLET_ADDRESS" -Method POST -Headers $headers -Body ""
+```
+
+</TabItem>
+</Tabs>
 
 **2. Check ELF Balance:**
 
 To check your ELF balance, use:
 
+<Tabs>
+<TabItem value="Linux and macOs" label="Linux and macOs" default>
 ```bash title="Terminal"
 aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
 ```
+</TabItem>
+
+<TabItem value="Windows" label="Windows">
+```bash title="Command Prompt"
+aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
+```
+</TabItem>
+</Tabs>
 
 You will be prompted for the following:
 
@@ -82,6 +120,8 @@ The smart contract needs to be deployed on the chain before users can interact w
 
 Run the following command to deploy a contract. Remember to export the path of SinglePoolStaking.dll.patched to CONTRACT_PATH.
 
+<Tabs>
+<TabItem value="Linux and macOs" label="Linux and macOs" default>
 ```bash title="Terminal"
 export CONTRACT_PATH=$(find ~+ . -path "*patched*" | head -n 1)
 ```
@@ -90,17 +130,42 @@ export CONTRACT_PATH=$(find ~+ . -path "*patched*" | head -n 1)
 aelf-deploy -a $WALLET_ADDRESS -p $WALLET_PASSWORD -c $CONTRACT_PATH -e https://tdvw-test-node.aelf.io/
 ```
 
+</TabItem>
+
+<TabItem value="Windows" label="Windows">
+```bash title="Command Prompt"
+$CONTRACT_PATH = Get-ChildItem -Recurse -Filter "*patched*" | Select-Object -First 1 -ExpandProperty FullName
+$env:CONTRACT_PATH = $CONTRACT_PATH
+```
+
+```bash title="Command Prompt"
+aelf-deploy -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -c $env:CONTRACT_PATH -e https://tdvw-test-node.aelf.io/
+```
+
+</TabItem>
+</Tabs>
+
 - Please wait for approximately 1 to 2 minutes. If the deployment is successful, it will provide you with the contract address.
-![result](/img/deploy-result.png)
+  ![result](/img/deploy-result.png)
 
 - Copy the smart contract address from the `address` field
-![result](/img/Contract_Address.png)
+  ![result](/img/Contract_Address.png)
 
 - Export your smart contract address:
 
-    ```bash title="Terminal"
-    export CONTRACT_ADDRESS="YOUR_SMART_CONTRACT_ADDRESS e.g. 2LUmicHyH4RXrMjG4beDwuDsiWJESyLkgkwPdGTR8kahRzq5XS"
-    ```
+<Tabs>
+<TabItem value="Linux and macOs" label="Linux and macOs" default>
+  ```bash title="Terminal"
+  export CONTRACT_ADDRESS="YOUR_SMART_CONTRACT_ADDRESS e.g. 2LUmicHyH4RXrMjG4beDwuDsiWJESyLkgkwPdGTR8kahRzq5XS"
+  ```
+</TabItem>
+
+<TabItem value="Windows" label="Windows">
+  ```bash title="Command Prompt"
+  $env:CONTRACT_ADDRESS="YOUR_SMART_CONTRACT_ADDRESS e.g. 2LUmicHyH4RXrMjG4beDwuDsiWJESyLkgkwPdGTR8kahRzq5XS"
+  ```
+</TabItem>
+</Tabs>
 
 :::tip
 ℹ️ Note: You are to copy the smart contract address as we will be referencing it in the next steps!

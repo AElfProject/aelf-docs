@@ -118,7 +118,7 @@ Go to https://faucet-ui.aelf.dev Enter your address and click `Get Tokens`.
 
 The smart contract needs to be deployed on the chain before users can interact with it.
 
-Run the following command to deploy a contract. Remember to export the path of ExpenseTracker.dll.patched to CONTRACT_PATH.
+Run the following command to deploy a contract. Remember to export the path of LotteryGame.dll.patched to CONTRACT_PATH.
 
 <Tabs>
 <TabItem value="Linux and macOs" label="Linux and macOs" default>
@@ -172,7 +172,7 @@ aelf-deploy -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -c $env:CONTRACT_PATH
 :::
 
 :::info
-🎉 You have successfully deployed your Expense Tracker dApp smart contract on the aelf testnet! In the next steps, we will be building the frontend components that allow us to interact with our deployed smart contract!
+🎉 You have successfully deployed your dApp smart contract on the aelf testnet! In the next steps, we will be building the frontend components that allow us to interact with our deployed smart contract!
 :::
 
 
