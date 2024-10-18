@@ -62,7 +62,6 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-  themes: ["docusaurus-theme-search-typesense"],
   themeConfig: {
     // Replace with your project's social card
     image: "img/aelficon.png",
@@ -106,20 +105,10 @@ const config: Config = {
         hideable: true, // https://docusaurus.io/docs/sidebar#hideable-sidebar
       },
     },
-    typesense: {
-      typesenseCollectionName: process.env.TYPESENSE_COLLECTION_NAME,
-      typesenseServerConfig: {
-        nodes: [
-          {
-            host: process.env.TYPESENSE_SERVER_HOST,
-            port: 443,
-            protocol: "https",
-          },
-        ],
-        apiKey: process.env.TYPESENSE_SEARCH_ONLY_APIKEY,
-      },
-      typesenseSearchParameters: {},
-      contextualSearch: true,
+    algolia: {
+      appId: "IG99ZJRXDW",
+      apiKey: "0e3c2389292b3d211032f3843fa8eb6d",
+      indexName: "aelf",
     },
     hotjar: {
       applicationId: process.env.HOTJAR_ID,
