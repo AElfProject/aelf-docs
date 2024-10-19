@@ -14,7 +14,7 @@ export const analytics = () => {
   });
   amplitude.add(sessionReplayTracking);
 
-  hotjar.initialize({ id: 5101939, sv: 6 });
+  hotjar.initialize({ id: 5120800, sv: 6 });
   ReactGA.initialize("G-PFZ0BCQHMY");
   TagManager.initialize({
     gtmId: "GTM-NKWDMQ52",
