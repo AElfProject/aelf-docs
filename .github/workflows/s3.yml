@@ -2,38 +2,30 @@ name: Deploy to S3
 
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: ["main", "develop"]
   workflow_dispatch:
 
 jobs:
-
   build:
     environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
     permissions:
       contents: read
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 18
-        cache: 'npm'
-    - run: npm install
-    - name: create env file
-      run: |
-        touch .env
-        echo TYPESENSE_COLLECTION_NAME=${{ vars.TYPESENSE_COLLECTION_NAME }} >> .env
-        echo TYPESENSE_SERVER_HOST=${{ vars.TYPESENSE_SERVER_HOST }} >> .env
-        echo TYPESENSE_SEARCH_ONLY_APIKEY=${{ vars.TYPESENSE_SEARCH_ONLY_APIKEY }} >> .env
-        echo HOTJAR_ID=${{ vars.HOTJAR_ID }} >> .env
-    - run: npm run build
-    
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-northeast-1
-    
-    - name: Sync to S3
-      run: aws s3 sync ./build s3://${{ secrets.AWS_S3_BUCKET }}
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+      - run: npm install
+      - run: npm run build
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      - name: Sync to S3
+        run: aws s3 sync ./build s3://${{ secrets.AWS_S3_BUCKET }}

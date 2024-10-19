@@ -3,6 +3,7 @@ import { gaEventsForwarderPlugin } from "@amplitude/plugin-ga-events-forwarder-b
 import { sessionReplayPlugin } from "@amplitude/plugin-session-replay-browser";
 import ReactGA from "react-ga4";
 import TagManager from "react-gtm-module";
+import { hotjar } from "react-hotjar";
 
 export const analytics = () => {
   const gaEventsForwarder = gaEventsForwarderPlugin();
@@ -13,6 +14,7 @@ export const analytics = () => {
   });
   amplitude.add(sessionReplayTracking);
 
+  hotjar.initialize({ id: 5101939, sv: 6 });
   ReactGA.initialize("G-PFZ0BCQHMY");
   TagManager.initialize({
     gtmId: "GTM-NKWDMQ52",

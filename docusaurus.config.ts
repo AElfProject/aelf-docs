@@ -35,8 +35,6 @@ const config: Config = {
     defaultLocale: "en",
     locales: ["en"],
   },
-
-  plugins: ["docusaurus-plugin-hotjar"],
   presets: [
     [
       "classic",
@@ -109,9 +107,6 @@ const config: Config = {
       appId: "IG99ZJRXDW",
       apiKey: "0e3c2389292b3d211032f3843fa8eb6d",
       indexName: "aelf",
-    },
-    hotjar: {
-      applicationId: process.env.HOTJAR_ID,
     },
   } satisfies Preset.ThemeConfig,
   stylesheets: [
