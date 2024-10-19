@@ -10,7 +10,7 @@ export const analytics = () => {
   amplitude.add(gaEventsForwarder);
   amplitude.init("7652218546e8f6cc3d045e43a68830f6", { autocapture: true });
   const sessionReplayTracking = sessionReplayPlugin({
-    sampleRate: 0.01,
+    sampleRate: 1,
   });
   amplitude.add(sessionReplayTracking);
 
