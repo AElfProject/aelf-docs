@@ -8,14 +8,6 @@ This website is built using [Docusaurus](https://docusaurus.io/), a modern stati
 $ npm install
 ```
 
-### Environment Variables
-
-| Name                         | Description                                                                                                                    |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| TYPESENSE_COLLECTION_NAME    | The [collection name](https://typesense.org/docs/guide/docsearch.html#create-a-docsearch-scraper-config-file).                 |
-| TYPESENSE_SERVER_HOST        | The host of the typesense server.                                                                                              |
-| TYPESENSE_SEARCH_ONLY_APIKEY | The [search-only api key](https://typesense.org/docs/26.0/api/api-keys.html#search-only-api-key) for searching the collection. |
-
 ### Local Development
 
 ```
