@@ -66,7 +66,7 @@ Now as the workspace setup is done and project is setup inside aelf's playground
 - src/`ContractName`State.cs
 
 Once all the changes are done in the above files and all other required files (whereever nacessary). Then below operations can be performed on the selected workspace project: 
-1. **AI Audit**: Complete the AI audit of the writtwn smart contract. Result similar to below image will be visible once the AI audit completes. The interpretation of the AI audit results will be shown when you hover over the smart contract code once the audit finishes.
+1. **AI Audit**: Complete the AI audit of the written smart contract. Result similar to below image will be visible once the AI audit completes. The interpretation of the AI audit results will be shown when you hover over the smart contract code once the audit finishes.
   
   ![AI-Audit](/img/playground-9.png)
 
@@ -143,6 +143,8 @@ Now it's time to creat a Todo-dApp using playground.
 - You will be redirect to workspace page with specific folders like **`src`** and **`test`**.
 
   ![playground-example-img-3](/img/playground-example-img-3.png)
+
+### Rename File Name
 
 - Rename the proto file name `hello_world_contract.proto` inside folder `src/Protobuf/contract/` to `todo_app.proto`
 
@@ -356,9 +358,20 @@ namespace AElf.Contracts.ToDo
 }
 ```
 
+### Ai Audit Report
+
+- Click on AI Audit Icon to generate the AI Audit report.
+
+  ![ai-audit-button-playground](/img/ai-audit-button-playground.png)
+
+- The Report will be visible once the AI audit completes. It will provides suggestion for Todo functions as shown below so apply the suggetion and make your Todo smart contract more better. 
+
+  ![ai-audit-suggestion-playground](/img/ai-audit-suggestion-playground.png)
+
+
 ### Save Gas Fee
 
-- Click on Save Gas Fee Button and It will suggest to make changes if contract need to be optimised otherwise it shows result like below.
+- Click on Save Gas Fee Icon and It will suggest to make changes if contract need to be optimised otherwise it shows result like below.
 
   ![gas-fees-example-playground](/img/gas-fees-example-playground.png)
 
@@ -372,6 +385,15 @@ namespace AElf.Contracts.ToDo
 
   ![playground-example-img-7](/img/playground-example-img-7.png)
 
+<!-- ### Test Smart Contract
+
+- Click on Test Icon for run the test cases.
+
+  ![test-button-playground](/img/test-button-playground.png)
+
+- Once Test cases run successfully, You will get result in terminal. -->
+
+
 ### Deploy Smart Contract
 
 - Click on Deploy Icon for deploy the smart contract.
@@ -382,6 +404,16 @@ namespace AElf.Contracts.ToDo
 
   ![playground-example-img-9](/img/playground-example-img-9.png)
 
+### Export Smart Contract
+
+- Click on Export Icon for download the smart contract.
+
+  ![export-button-playground](/img/export-button-playground.png)
+
+- Once your smart contract exported successfully, You will get it in zip format like below.
+
+  ![export-success-playground](/img/export-success-playground.png)
+  
 🎉 Congratulations, We got the contract address after successful deployment of todo-dapp smart contract using playground. 
 
 ## Conclusion
