@@ -74,11 +74,11 @@ import "Protobuf/reference/acs12.proto";
 option csharp_namespace = "AElf.Contracts.RoleContract";
 
 service RoleContract {
-  
+
   // The name of the state class the smart contract is going to use to access blockchain state
   option (aelf.csharp_state) = "AElf.Contracts.RoleContract.RoleContractState";
   option (aelf.base) = "Protobuf/reference/acs12.proto";
-  
+
   rpc Initialize (google.protobuf.Empty) returns (google.protobuf.Empty){
 
   }
@@ -106,12 +106,13 @@ service RoleContract {
 
 }
 ```
+
 - `rpc` methods define the callable functions within the contract, allowing external systems to interact with the contract's logic.
 - `message` represent the structured data exchanged between the contract and external systems.
 
 #### Define Contract States
 
-The implementation of the ToDo app state inside file `src/RoleContractState.cs` is as follows:
+The implementation of the Role app state inside file `src/RoleContractState.cs` is as follows:
 
 ```csharp title="src/RoleContractState.cs"
 using AElf.Sdk.CSharp.State;
@@ -123,19 +124,19 @@ namespace AElf.Contracts.RoleContract
     {
         public BoolState Initialized { get; set; }
 
-        public SingletonState<Address> AdminAddress { get; set; }  
+        public SingletonState<Address> AdminAddress { get; set; }
 
-        public SingletonState<Address> ParentAddress { get; set; }  
+        public SingletonState<Address> ParentAddress { get; set; }
 
-        public SingletonState<Address> ChildAddress { get; set; }  
-    
+        public SingletonState<Address> ChildAddress { get; set; }
+
     }
 }
 ```
 
 - The `State.cs` file in an aelf blockchain smart contract holds the variables that store the contract's data, making sure this data is saved and accessible whenever the contract needs it.
 
-#### Implement ToDo Smart Contract 
+#### Implement Role Smart Contract
 
 The implementation of the Role smart contract inside file `src/RoleContract.cs` is as follows:
 
@@ -148,7 +149,7 @@ namespace AElf.Contracts.RoleContract
 {
     public class RoleContract : RoleContractContainer.RoleContractBase
     {
-      
+
       //private const string DefaultAdmin = "ELF_TbHa4XcKkTz1wd5zmLWE3RGwkRt2FdZyt3ryxmkKepo8QWTj9_AELF";
 
       public override Empty Initialize(Empty input)
@@ -238,9 +239,9 @@ You should see **RoleContract.dll.patched** in the directory `RoleContract/src/b
 
 ## Step 3 - Deploy Smart Contract
 
-import Deploy from "../\_deploy_role_contract.md"
+import DeployRoleContract from "../\_deploy_role_contract.md"
 
-<Deploy />
+<DeployRoleContract />
 
 ## Step 4 - Develop Allowance Smart Contract
 
@@ -300,11 +301,11 @@ import "google/protobuf/wrappers.proto"; //extra
 option csharp_namespace = "AElf.Contracts.AllowanceContract";
 
 service AllowanceContract {
-  
+
   // The name of the state class the smart contract is going to use to access blockchain state
   option (aelf.csharp_state) = "AElf.Contracts.AllowanceContract.AllowanceContractState";
   option (aelf.base) = "Protobuf/reference/acs12.proto";
-  
+
   rpc Initialize (google.protobuf.Empty) returns (google.protobuf.Empty){
 
   }
@@ -326,12 +327,13 @@ service AllowanceContract {
 
 }
 ```
+
 - `rpc` methods define the callable functions within the contract, allowing external systems to interact with the contract's logic.
 - `message` represent the structured data exchanged between the contract and external systems.
 
 #### Define Contract States
 
-The implementation of the ToDo app state inside file `src/AllowanceContractState.cs` is as follows:
+The implementation of the Allowance app state inside file `src/AllowanceContractState.cs` is as follows:
 
 ```csharp title="src/AllowanceContractState.cs"
 using AElf.Sdk.CSharp.State;
@@ -343,21 +345,21 @@ namespace AElf.Contracts.AllowanceContract
     {
         public BoolState Initialized { get; set; }
 
-        public SingletonState<Address> AdminAddress { get; set; }  
+        public SingletonState<Address> AdminAddress { get; set; }
 
-        public SingletonState<Address> ParentAddress { get; set; }  
+        public SingletonState<Address> ParentAddress { get; set; }
 
         public SingletonState<Address> ChildAddress { get; set; }
 
         public Int32State CurrentAllowance { get; set; }
-    
+
     }
 }
 ```
 
 - The `State.cs` file in an aelf blockchain smart contract holds the variables that store the contract's data, making sure this data is saved and accessible whenever the contract needs it.
 
-#### Implement ToDo Smart Contract 
+#### Implement Allowance Smart Contract
 
 The implementation of the Role smart contract inside file `src/AllowanceContract.cs` is as follows:
 
@@ -373,7 +375,7 @@ namespace AElf.Contracts.AllowanceContract
     {
 
         private const string RoleContractAddress = "2MBUZHRCruLuUDSXncPp4D6mnF8aK7LXjmAgHgWDgw6vQXmJ19"; // tDVW role contract address
-      
+
         public override Empty Initialize(Empty input)
         {
             // Check if the contract is already initialized
@@ -408,7 +410,7 @@ namespace AElf.Contracts.AllowanceContract
             //Assert(Context.Sender == State.ChildAddress.Value || Context.Sender == State.ParentAddress.Value, "Unauthorized(Not Parent or Child) to perform the action.");
 
             var allowance = State.CurrentAllowance.Value;
-          
+
             return new Int64Value
             {
                 Value = allowance
@@ -433,7 +435,7 @@ namespace AElf.Contracts.AllowanceContract
       }
 
     }
-    
+
 }
 ```
 
@@ -449,9 +451,9 @@ You should see **AllowanceContract.dll.patched** in the directory `AllowanceCont
 
 ## Step 5 - Deploy Smart Contract
 
-import Deploy from "../\_deploy_allowance_contract.md"
+import DeployAllowanceContract from "../\_deploy_allowance_contract.md"
 
-<Deploy />
+<DeployAllowanceContract /> 
 
 ## Step 6 - Interact with Your Deployed Smart Contract through dApp
 
@@ -466,73 +468,73 @@ git clone https://github.com/AElfProject/aelf-samples.git
 - Next, navigate to the frontend project directory with this command:
 
 ```bash title="Terminal"
-cd aelf-samples/todo/2-dapp
+cd aelf-samples/allowance/2-dapp
 ```
 
 - Once you're inside the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
 export const tree = {
-  "type": "directory",
-  "uri": "2-dapp",
-  "expanded": true,
-  "children": [
-    {
-      "type": "directory",
-      "uri": "app"
-    },
-    {
-      "type": "directory",
-      "uri": "assets"
-    },
-    {
-      "type": "directory",
-      "uri": "public"
-    },
-    {
-      "type": "directory",
-      "uri": "src"
-    },
-    {
-      "type": "file",
-      "uri": ".gitignore"
-    },
-    {
-      "type": "file",
-      "uri": "components.json"
-    },
-    {
-      "type": "file",
-      "uri": "index.html"
-    },
-    {
-      "type": "file",
-      "uri": "package.json"
-    },
-    {
-      "type": "file",
-      "uri": "postcss.config.js"
-    },
-    {
-      "type": "file",
-      "uri": "README.md"
-    },
-    {
-      "type": "file",
-      "uri": "tailwind.config.js"
-    },
-    {
-      "type": "file",
-      "uri": "tsconfig.json"
-    },
-    {
-      "type": "file",
-      "uri": "tsconfig.node.json"
-    },
-    {
-      "type": "file",
-      "uri": "vite.config.ts"
-    }
-  ]
+"type": "directory",
+"uri": "2-dapp",
+"expanded": true,
+"children": [
+{
+"type": "directory",
+"uri": "app"
+},
+{
+"type": "directory",
+"uri": "assets"
+},
+{
+"type": "directory",
+"uri": "public"
+},
+{
+"type": "directory",
+"uri": "src"
+},
+{
+"type": "file",
+"uri": ".gitignore"
+},
+{
+"type": "file",
+"uri": "components.json"
+},
+{
+"type": "file",
+"uri": "index.html"
+},
+{
+"type": "file",
+"uri": "package.json"
+},
+{
+"type": "file",
+"uri": "postcss.config.js"
+},
+{
+"type": "file",
+"uri": "README.md"
+},
+{
+"type": "file",
+"uri": "tailwind.config.js"
+},
+{
+"type": "file",
+"uri": "tsconfig.json"
+},
+{
+"type": "file",
+"uri": "tsconfig.node.json"
+},
+{
+"type": "file",
+"uri": "vite.config.ts"
+}
+]
 }
 
 <div style={{height: 500}}><FileTree tree={tree} /></div>
@@ -545,25 +547,25 @@ export const tree = {
 npm install
 ```
 
-We are now ready to build the frontend components of our ToDo dApp.
+We are now ready to build the frontend components of our Allowance dApp.
 
 ### Configure Portkey Provider & Write Connect Wallet Function
 
-Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed ToDo smart contract for this tutorial.
+Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed Role contract and Allowance contract for this tutorial.
 
-**Step 1. Locate the File:**
+**Step 1: Locate the File:**
 
-- Go to the `src/hooks/useTodoSmartContract.ts` file.
+- Go to the `src/hooks/useSmartContract.ts` file.
 
-**Step 2. Fetch the Smart Contract:**
+**Step 2: Fetch the Smart Contract:**
 
-- Find the comment ` //Step A - Function to fetch a smart contract based on deployed wallet address`
+- Find the comment `//Step A - Function to fetch a smart contract based on deployed wallet address`
 
 - Replace the existing **`fetchContract`** function with this updated code:
 
-```javascript title="useTodoSmartContract.ts"
+```javascript title="useSmartContract.ts"
 //Step A - Function to fetch a smart contract based on deployed wallet address
-const fetchContract = async () => {
+const fetchContract = async (address: string) => {
   if (!provider) return null;
 
   try {
@@ -571,25 +573,51 @@ const fetchContract = async () => {
     const chain = await provider?.getChain("tDVW");
     if (!chain) throw new Error("No chain");
 
-    //Address of ToDo Smart Contract
-    //Replace with Address of Deployed Smart Contract
-    const address = "your_deployed_todo_contract_address";
-
-    // 2. get the ToDo contract
-    const todoContract = chain?.getContract(address);
-    setSmartContract(todoContract);
+    // 2. return contract
+    return chain?.getContract(address);
   } catch (error) {
     console.log(error, "====error");
+    return;
   }
-}
+};
+```
+
+- Find the comment `// Step B - fetch role-contract`
+
+- Replace the existing **`getRoleContract`** function with this updated code:
+
+```javascript title="useSmartContract.ts"
+// Step B - fetch role-contract
+const getRoleContract = async () => {
+  //Replace with Address of Deployed Allowance Smart Contract
+  const contract = await fetchContract(
+    "your_deployed_role_smart_contract_address"
+  );
+  contract && setRoleContract(contract);
+};
+```
+
+- Find the comment `// Step C - fetch allowance-contract`
+
+- Replace the existing **`getAllowanceContract`** function with this updated code:
+
+```javascript title="useSmartContract.ts"
+// Step C - fetch allowance-contract
+const getAllowanceContract = async () => {
+  //Replace with Address of Deployed Allowance Smart Contract
+  const contract = await fetchContract(
+    "your_deployed_allowance_smart_contract_address"
+  );
+  contract && setAllowanceContract(contract);
+};
 ```
 
 :::tip
-ℹ️ Note: You are to replace the address placeholder with your deployed ToDo smart contract address from "Deploy Smart Contract" step!
+ℹ️ Note: You are to replace the address placeholder with your deployed Role and Allowance smart contract address from "Deploy Smart Contract" step!
 
 example:
-//Replace with Address of Deployed Smart Contract
-const address = "your_deployed_todo__smart_contract_address";
+**"your_deployed_role_smart_contract_address"**,
+**"your_deployed_allowance_smart_contract_address"**
 :::
 
 **Explanation:**
@@ -599,28 +627,33 @@ const address = "your_deployed_todo__smart_contract_address";
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Chain** : The function fetches chain information using the provider.
   - **Get Contract** : It retrieves the smart contract instance from the chain.
-   
+
+- **`getRoleContract`** **Function**: This function fetches the Role contract.
+- **`getAllowanceContract`** **Function**: This function fetches the Allowance contract.
+
 `AELF` represents the mainnet chain and `tDVW` represents the testnet chain respectively on aelf blockchain.
 
 **Step 3. Initialize and Fetch the Smart Contracts:**
 
-- Find the comment `// Step B - Effect hook to initialize and fetch the smart contract when the provider changes.`
+- Find the comment `// Step D - Effect hook to initialize and fetch the smart contract when the provider changes`
 
-- Replace the existing **`useEffect`** hook with this updated code:
+- Replace the existing **`useEffect`** with this updated code:
 
-```javascript title="useTodoSmartContract.ts"
-  // Step B -  Effect hook to initialize and fetch the smart contract when the provider changes
-  useEffect(() => {
-    fetchContract();
-  }, [provider]); // Dependency array ensures this runs when the provider changes
+```javascript title="useSmartContract.ts"
+// Step D - Effect hook to initialize and fetch the smart contract when the provider changes
+useEffect(() => {
+  getRoleContract();
+  getAllowanceContract();
+}, [provider]); // Dependency array ensures this runs when the provider changes
 ```
 
 **Explanation:**
+
 - **`useEffect` Hook** : This hook initializes and fetches the smart contracts when the provider changes.
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Contracts** : It fetches and sets the smart contracts.
 
-By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the ToDo smart contract including task management related functionalities. This setup will enable our frontend components to perform actions like `Create Task`, `Edit Task`, and `Delete Task`.
+By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the Role and Allowance contract including assign role and allowance related functionalities. This setup will enable our frontend components to perform actions like `Set Roles` , `Get Roles` , `Set Allowance` , `Get Allowance` and `Spend Funds`.
 
 ### Configure Connect Wallet Function
 
@@ -630,17 +663,17 @@ By following these steps, we'll configure the Portkey provider to connect users'
 
 **Step 2: Write the Connect Wallet Function**
 
-- The `header/index.tsx` file is the header of our ToDo dApp. It allows users to connect their Portkey wallet with the ToDo dApp.
+- The `header/index.tsx` file is the header of our Allowance dApp. It allows users to connect their Portkey wallet with the Allowance dApp.
 
 - Before users can interact with the smart contract, we need to write the `Connect Wallet` function.
 
-- Find the comment `// Step C - Connect Portkey Wallet`.
+- Find the comment `// Step E - Connect Portkey Wallet`.
 
 - Replace the existing connect function with this code snippet:
 
 ```javascript title="header/index.tsx"
+// Step E - Connect Portkey Wallet
 const connect = async (walletProvider?: IPortkeyProvider) => {
-  // Step C - Connect Portkey Wallet
   const accounts = await (walletProvider ? walletProvider : provider)?.request({
     method: MethodsBase.REQUEST_ACCOUNTS,
   });
@@ -666,152 +699,132 @@ In this code, we fetch the Portkey wallet account using the provider and update 
 
 With the connect wallet function defined, we're ready to write the remaining functions in the next steps.
 
-### Configure Create Task Form 
+### Configure Set Role Form (Admin)
 
 **Step 1: Locate the File**
 
-1. Go to the `src/pages/home/index.tsx` file. This file contains all the  functionalities like show user's Task, CreateTask, UpdateTask, DeleteTask and Filter all Tasks, etc.
+1. Go to the `src/pages/home/index.tsx` file. This file contains all the functionalities like show Initialize Contract, Set Authority, Get Authority Data etc.
 
-**Step 2: Prepare Form to Create and Update Tasks**
+**Step 2: Prepare Form to set Roles**
 
-1.  Find the comment `// Step D - Configure Todo Form`.
+1.  Find the comment `// Step F - Configure Role Form`.
 
 2.  Replace the form variable with this code snippet:
 
 ```javascript title="home/index.tsx"
-// Step D - Configure Todo Form
-const form = useForm<z.infer<typeof formSchema>>({
+// Step F - Configure Role Form
+const form = useForm <z.infer <typeof formSchema>>{
   resolver: zodResolver(formSchema),
   defaultValues: {
-    name: "",
-    description: "",
+    address: "",
   },
-});
+};
 ```
 
 #### Here's what the function does:
 
-1. Initializes a new form variable with default values needed to create a task.
+1. Initializes a new form variable with default values needed to set roles.
 
-2. Fields include: `name` and `description`.
+2. Field include: `address`.
 
 Now the form is ready for users to fill in the necessary details.
 
-### Check Contract Initialization
+### Initialize Contract (Admin)
 
-- Scroll down to find the comment `// step 1 - Check if contract is initialized or not`.
+- Scroll down to find the comment `// Step G - Initialize Role Contract`.
 
-- Replace the existing **`checkIsContractInitialized`** function with this code snippet:
- 
+- Replace the existing **`initializeContract`** function with this code snippet:
+
 ```javascript title="home/index.tsx"
-// step 1 - Check if contract is initialized or not
-const checkIsContractInitialized = async () => {
-  const result = await smartContract?.callViewMethod("GetInitialStatus", ""); // Call the GetInitialStatus method which is present on Smart Contract
-  setIsContractInitialized(result?.data?.value); // Expect value True if it's Initialized otherwise NULL if it's not
-};
-```
-
-### Initialize Contract
-
-- Scroll down to find the comment `// step 2 - Initialize the smart contract`.
-
-- Replace the existing **`checkIsContractInitialized`** function with this code snippet:
-
-<!-- checkIsContractInitialized and initializeContract are different here -->
- 
-```javascript title="home/index.tsx"
-// step 2 - Initialize the smart contract
+// Step G - Initialize Role Contract
 const initializeContract = async () => {
-  let initializeLoadingId;
+  let loadingId;
   try {
     // Start Loading
-    initializeLoadingId = toast.loading("Initializing a Contract..");
-
-    await smartContract?.callSendMethod(
+    loadingId = toast.loading("Contract Initializing InProgress..");
+    await roleContract?.callSendMethod(
       "Initialize", // Function Name
-      currentWalletAddress as string, // User Wallet Address 
+      currentWalletAddress as string, // User Wallet Address
       {} // No Arguments
     );
-
     // Update Loading Message with Success
-    toast.update(initializeLoadingId, {
-      render: "Contract Successfully Initialized",
+    toast.update(loadingId, {
+      render: `Contract Initialize Successful`,
       type: "success",
       isLoading: false,
     });
+    setIsContractInitialize(true);
   } catch (error: any) {
     // Update Loading Message with Error
-    toast.update(initializeLoadingId as Id, {
+    toast.update(loadingId as Id, {
       render: error.message,
       type: "error",
       isLoading: false,
     });
+    return "error";
   } finally {
     // Remove Loading Message
-    removeNotification(initializeLoadingId as Id);
+    removeNotification(loadingId as Id);
+    return;
   }
 };
 ```
 
-### Create a New Task
+### Set Users Role (Admin)
 
-- Write the function to `Create a New Task`**
+- Write the function to **`Set Users Role`**
 
-- The `home/index.tsx` file includes the code to create tasks. It allows users to create new tasks.
+- Find the comment `// Step H - Set User Role`.
 
-- Find the comment `// step 3 - Create a New Task using Smart Contract`.
-
-- Replace the existing **`createNewTask`** function with this code snippet:
+- Replace the existing **`setAuthority`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-// step 3 - Create a New Task using Smart Contract
-const createNewTask = async (values: {
-  name: string;
-  description: string;
-}) => {
-  let createLoadingId;
+// Step H - Set User Role
+const setAuthority = async (values: { address: string }, type: string) => {
+  let loadingId;
   try {
     // Start Loading
-    createLoadingId = toast.loading("Creating a New Task..");
+    loadingId = toast.loading("Set Authority InProgress..");
     setFormLoading(true);
 
-    // Prepare Arguments for Create a New Task
-    const sendData = {
-      name: values.name,
-      description: values.description,
-      category: selectedCategory?.value,
-      status: TASK_STATUS.pending,
-    };
+    // Prepare Arguments for set Admin
+    const sendData = values.address;
 
-    // Call CreateTask Function of Smart Contract
-    await smartContract?.callSendMethod(
-      "CreateTask",
+    // Call the appropriate smart contract method based on the type (Admin, Parent, or Child)
+    await roleContract?.callSendMethod(
+      type === ROLE.admin
+        ? "SetAdmin"
+        : type === ROLE.parent
+        ? "SetParent"
+        : "SetChild",
       currentWalletAddress as string,
-      sendData
+      sendData // Pass the address as the argument
     );
 
-    // Update Loading Message with Success
-    toast.update(createLoadingId, {
-      render: "New Task Successfully Created",
-      type: "success",
-      isLoading: false,
-    });      
+   // Update Loading Message with Success
+   toast.update(loadingId, {
+     render: `Set ${type} Successful`,
+     type: "success",
+     isLoading: false,
+   });
 
-    // Get New Data from Contract
-    getTodoData();
+    // Fetch and update the role data from the contract after successful execution
+    getAuthorityData();
+    return "success";
   } catch (error: any) {
     // Update Loading Message with Error
-    toast.update(createLoadingId as Id, {
+    toast.update(loadingId as Id, {
       render: error.message,
       type: "error",
       isLoading: false,
     });
+    return "error";
   } finally {
     // Close Form Modal
     handleCloseModal();
 
     // Remove Loading Message
-    removeNotification(createLoadingId as Id);
+    removeNotification(loadingId as Id);
     setFormLoading(false);
   }
 };
@@ -819,255 +832,430 @@ const createNewTask = async (values: {
 
 #### What This Function Does:
 
-1. **Creates an Object with Task Details** : It prepares the data needed to create a new task.
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to set Admin, Parent and child using the their wallet address.
 
-2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to create the new task using the prepared data.
+Next, we'll write the **Handle submit set Role form** function.
 
-Next, we'll write the **Update an Existing Task** function.
+### Submit Set Role Form (Admin)
 
-### Update an Existing Task
+Write the function for handle submit form for set the user role.
 
-Write the function for update an existing task.
-
-- Scroll down to find the comment `// step 4 - Update an Existing Task`.
-
-- Replace the existing **`updateTask`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 4 - Update an Existing Task
-const updateTask = async (values: { name: string; description: string }) => {
-  let updateLoadingId;
-  try {
-    // Start Loading
-    updateLoadingId = toast.loading("Updating a Task..");
-    setFormLoading(true);
-
-    // Prepare Arguments for Update the Task
-    const sendData = {
-      taskId: updateId,
-      name: values.name,
-      description: values.description,
-      category: selectedCategory?.value,
-      status: TASK_STATUS.pending,
-    };
-
-    // Call UpdateTask Function of Smart Contract
-    await smartContract?.callSendMethod(
-      "UpdateTask",
-      currentWalletAddress as string,
-      sendData
-    );
-
-    // Update Loading Message with Success
-    toast.update(updateLoadingId, {
-      render: "Task Successfully Updated",
-      type: "success",
-      isLoading: false,
-    });
-
-    // Get New Data from Contract
-    getTodoData();
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(updateLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    // Close Form Modal
-    handleCloseModal();
-    // Remove Loading Message
-    removeNotification(updateLoadingId as Id);
-    setFormLoading(false);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Creates an Object with Updated Task Details** : It prepares the data needed for the updated task details
-
-2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the existing task using the prepared data.
-
-Next, we'll write the **Update Task Status (completeTask)** function.
-
-### Update the Task Status
-
-Write the Function to update the task status (completeTask).
-
-- Scroll down to find the comment `// step 5- Update Status from Pending to Completed of the Task`.
-
-- Replace the existing **`completeTask`** function with the following code snippet:
-
-```javascript title="home/index.tsx"
-// step 5- Update Status from Pending to Completed of the Task
-const completeTask = async (data: ITodoObject) => {
-  let completeLoadingId;
-  try {
-    // Start Loading
-    completeLoadingId = toast.loading("Moving to Completed Task..");
-    setUpdateId(data.taskId); // set Update Id for Loading on Button
-
-    // Call UpdateTask Function of Smart Contract
-    await smartContract?.callSendMethod(
-      "UpdateTask",
-      currentWalletAddress as string,
-      { ...data, status: TASK_STATUS.completed }
-    );
-
-    // Update Loading Message with Success
-    toast.update(completeLoadingId, {
-      render: "Task Moved to Completed",
-      type: "success",
-      isLoading: false,
-    });
-
-    // Get New Data from Contract
-    await getTodoData();
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(completeLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    setUpdateId(null);
-    // Remove Loading Message
-    removeNotification(completeLoadingId as Id);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the task status by passind the `completed` status as an argument.
-
-Next, we'll write the **Delete the Task** function.
-
-### Delete the Task
-
-Write a function to delete an existing task.
-
-- Scroll down to find the comment `// step 6 - Delete the Task`.
-
-- Replace the existing **`deleteTask`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 6 - Delete the Task
-const deleteTask = async (data: ITodoObject) => {
-  let deleteLoadingId;
-  try {
-    // Start Loading
-    deleteLoadingId = toast.loading("Removing a Task..");
-    setDeletingId(data.taskId); // set Deleting Id for Loading on Button
-
-    // Call UpdateTask Function of Smart Contract and update the status as "Removed"
-    await smartContract?.callSendMethod(
-      "UpdateTask",
-      currentWalletAddress as string,
-      { ...data, status: TASK_STATUS.removed }
-    );
-    
-    // Update Loading Message with Success
-    toast.update(deleteLoadingId, {
-      render: "Task Successfully Removed",
-      type: "success",
-      isLoading: false,
-    });
-
-    // Get New Data from Contract
-    await getTodoData();
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(deleteLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    setDeletingId(null);
-    // Remove Loading Message
-    removeNotification(deleteLoadingId as Id);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to delete the existing task by passing status as "removed".
-
-Next, we'll write the **Handle Submit Form** function.
-
-### Configure Submit Form
-
-- Scroll down to find the comment `// step 7 - Handle Submit Form`.
+- Scroll down to find the comment `// Step I - Handle Submit Form`.
 
 - Replace the existing **`onSubmit`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-// step 7 - Handle Submit Form
-const onSubmit = async (values: { name: string; description: string }) => {
-  
-  // Check Whether Contract Initialized or not
-  if (isContractInitialized !== true) {
-    await initializeContract(); // initialize the contract if it's not initialized before
+// Step I - Handle Submit Form
+const onSubmit = async (values: { address: string }) => {
+  // Set form loading state
+  setFormLoading(true);
+  // Check if the contract is initialized, if not, initialize it
+  if (!isContractInitialize) {
+    await initializeContract(); // Initialize the smart contract if not already done
   }
-  
-  // Check Whether Form is for Create or Update the Task
-  if (!!updateId) {
-    await updateTask(values); // Call updateTask for Update the task
-  } else {
-    await createNewTask(values); // Call createNewTask for Create a new task
+  // Call the setAuthority function to set the authority (Admin/Parent/Child) based on the roleType
+  await setAuthority(values, roleType); // Pass the form values and role type (Admin/Parent/Child)
+};
+```
+
+Next, we'll write the **Get Role Data** function.
+
+### Get Role Data (Admin)
+
+- Write the function to **`Get Roles Data`**
+
+- Find the comment `// Step J - Get Role Data`.
+
+- Replace the existing **`getAuthorityData`** function with this code snippet:
+
+```javascript title="home/index.tsx"
+// Step J - Get Role Data
+const getAuthorityData = async () => {
+  setLoading(true);
+  try {
+    // Fetch admin, parent, and child roles simultaneously using Promise.all
+    const [admin, parent, child] = await Promise.all([
+      roleContract?.callViewMethod("GetAdmin", ""),
+      roleContract?.callViewMethod("GetParent", ""),
+      roleContract?.callViewMethod("GetChild", ""),
+    ]);
+
+    // If all roles are successfully fetched
+    if (admin && parent && child) {
+      // Set the role state with the retrieved admin, parent, and child values
+      setRole({
+        Admin: admin?.data?.value,
+        Parent: parent?.data?.value,
+        Child: child?.data?.value,
+      });
+    }
+  } catch (error) {
+    // Log any error that occurs during the process
+    console.log("error======", error);
+  } finally {
+    // Stop the loading indicator, whether or not the request was successful
+    setLoading(false);
   }
 };
 ```
 
 #### What This Function Does:
 
-1. **Check initialized contract**: It checks whether the smart contract is initialized or not by using `initializeContract` function.
+1. **Calls Smart Contract Methods** : It interacts with the blockchain smart contract to get Admin's, Parent's and Child's wallet address.
 
-2. **Update Task**: Call the `updateTask` function if updatedId has any value.
+Once we have the wallet addresses based on the roles, we will display different components for each user role, like Admin, Parent, and Child. Each role has specific actions they can perform:
 
-3. **Create Task**: Call the `createNewTask` function if updatedId does not have any value.
+- **Admin Role** : The Admin can assign roles to both Parent and Child.
+- **Parent Role** : The Parent can assign the Child role and set an allowance for the Child.
+- **Child Role** : The Child can spend money, but only up to the allowance set by the Parent.
 
-Here, we have completed functions to **Create Task**, **Update Task** and **Delete Task** and now it's time to write a function to **Fetch Tasks** from the smart contract.
+Now that we've finished the **Role** contract's functions, let's move on to the functions of the **Allowance** contract.
 
-### Fetch All Tasks
+### Configure Set Allowance Form (Parent)
 
-- Scroll up to find the comment `// step 8 - Fetch All Tasks`.
+**Step 1: Locate the File**
 
-- Replace the existing **`getTodoData`** function with this code snippet:
+- Go to the `src/components/parent/index.tsx` file. This file contains functionalities like initialize contract, set allowance and get allowance.
 
-```javascript title="home/index.tsx"
-// step 8 - Fetch All Tasks
-const getTodoData = async () => {
+**Step 2: Configure form**
+
+Write the Function of configure the set allowance form.
+
+- Find the comment `// Step K - Configure Set Allowance Form`.
+
+- Replace the existing code snippet:
+
+```javascript title="parent/index.tsx"
+// Step K - Configure Set Allowance Form
+const form = useForm <z.infer <typeof formSchema>>{
+  resolver: zodResolver(formSchema),
+  defaultValues: {
+    amount: "",
+  },
+};
+```
+
+### Check Contract Initialize Status (Parent)
+
+Write the Function for check contract Initialize status of **Allowance Contract**.
+
+- Scroll down to find the comment `// step L - Check if Allowance Contract is initialized or not`.
+
+- Replace the existing **`checkIsContractInitialized`** function with this code snippet:
+
+```javascript title="parent/index.tsx"
+// step L - Check if Allowance Contract is initialized or not
+const checkIsContractInitialized = async () => {
   try {
-    const result = await smartContract?.callViewMethod("ListTasks", {
-      value: currentWalletAddress,
-    });
-    console.log("result", result?.data);
-    setTodoData(result?.data ? result?.data.tasks : []);
+    const result = await allowanceContract?.callViewMethod("IfInitialized", ""); // Call the IfInitialized method which is present on Smart Contract
+    if (result?.data) {
+      setIsContractInitialize(true);
+    }
   } catch (error) {
-    console.log("error======", error);
-  } finally {
-    setLoading(false);
+    console.log("error", error);
   }
 };
 ```
-#### Here's what the function does:
 
-1. **Fetches Task Data:** It calls `ListTasks` to get the list of all ToDo tasks from the ToDo smart contract.
-2. **Set Tasks on State:** Get the result data from the smart contract and set an array of all tasks into `todoData` State.
+#### What This Function Does:
 
-We have prepared necessary function to fetch all the tasks created from a connected user's wallet.
+1. **Calls Smart Contract Methods** : It interacts with the allowance contract to get status of contract initialize.
 
-Now that we've written all the necessary frontend functions and components, we're ready to run the ToDo dApp application in the next step.
+### Initialize Allowance Contract (Parent)
+
+Write the function for Initialize the **Allowance Contract**.
+
+- Scroll down to find the comment `// Step M - Initialize Allowance Contract`.
+
+- Replace the existing **`initializeContract`** function with this code snippet:
+
+```javascript title="parent/index.tsx"
+// Step M - Initialize Allowance Contract
+const initializeContract = async () => {
+  let loadingId;
+  try {
+    // Start Loading
+    loadingId = toast.loading("Contract Initializing InProgress..");
+    await allowanceContract?.callSendMethod(
+      "Initialize", // Function Name
+      currentWalletAddress as string, // User Wallet Address
+      {} // No Arguments
+    );
+
+    // Update Loading Message with Success
+    toast.update(loadingId, {
+      render: `Contract Initialize Successful`,
+      type: "success",
+      isLoading: false,
+    });
+    setIsContractInitialize(true);
+  } catch (error: any) {
+    // Update Loading Message with Error
+    toast.update(loadingId as Id, {
+      render: error.message,
+      type: "error",
+      isLoading: false,
+    });
+    return "error";
+  } finally {
+    // Remove Loading Message
+    removeNotification(loadingId as Id);
+    return;
+  }
+};
+```
+
+#### What This Function Does:
+
+1. **Calls Smart Contract Methods** : It call the Initialize of the allowance contract.
+
+Now that we've finished initialize contract functionality. let's move on to the Set Allowance functionality.
+
+### Set Allowance (Parent)
+
+Write the function for set the allowance value for child.
+
+- Scroll down to find the comment `// step N - Set AllowanceValue`.
+
+- Replace the existing **`initializeContract`** function with this code snippet:
+
+```javascript title="parent/index.tsx"
+// step N - Set AllowanceValue
+const setAllowance = async (value: { amount: string }) => {
+  setFormLoading(true);
+  let loadingId;
+  try {
+    // Start Loading
+    loadingId = toast.loading("SetAllowance InProgress..");
+    await allowanceContract?.callSendMethod(
+      "SetAllowance", // Function Name
+      currentWalletAddress as string, // User Wallet Address
+      { value: value.amount } // Allowance Amount
+    );
+
+    // fetch updated allowance value
+    getAllowance();
+
+    // Update Loading Message with Success
+    toast.update(loadingId, {
+      render: `SetAllowance Successful`,
+      type: "success",
+      isLoading: false,
+    });
+  } catch (error: any) {
+    console.error(error);
+    // Update Loading Message with Error
+    toast.update(loadingId as Id, {
+      render: error.message,
+      type: "error",
+      isLoading: false,
+    });
+    return "error";
+  } finally {
+    // Close Form Modal
+    handleCloseModal();
+    // Remove Loading Message
+    removeNotification(loadingId as Id);
+    setFormLoading(false);
+  }
+};
+```
+
+#### What This Function Does:
+
+1. **Calls Smart Contract Methods** : It call the Initialize of the allowance contract.
+
+Let's handle the submit form for set allowance.
+
+### Submit Set Allowance Form (Parent)
+
+Write the function for handle the set Allowance form.
+
+- Scroll down to find the comment `// Step O - Handle Set Allowance Submit Form`.
+
+- Replace the existing **`onSubmit`** function with this code snippet:
+
+```javascript title="parent/index.tsx"
+// Step O - Handle Set Allowance Submit Form
+const onSubmit = async (value: { amount: string }) => {
+  if (!isContractInitialize) {
+    await initializeContract();
+  }
+  setAllowance(value);
+};
+```
+
+As we completed the step of set Allowance value, now it's time to get that Allowance value form the contract.
+
+### Ge Allowance Value (Parent)
+
+Write the function for get the Allowance value.
+
+- Scroll down to find the comment `// step P - Get AllowanceValue`.
+
+- Replace the existing **`getAllowance`** function with this code snippet:
+
+```javascript title="parent/index.tsx"
+// step P - Get AllowanceValue
+const getAllowance = async () => {
+  try {
+    // Call the smart contract method "GetAllowance" for the child role
+    const result = await allowanceContract?.callViewMethod(
+      "GetAllowance",
+      role.Child
+    );
+
+    // If the result contains a valid allowance value, set it in the state
+    if (result?.data?.value) {
+      setAllowanceValue(result?.data?.value);
+    } else {
+      // If no valid allowance is returned, set the allowance value to null
+      setAllowanceValue(null);
+    }
+  } catch (error) {
+    // Log any errors that occur during the process
+    console.log("error", error);
+  }
+};
+```
+
+We completed all functionalities for Parent component and now it's time to prepare functionalities for Child component.
+
+### Configure Spend Allowance Form
+
+**Step 1: Locate the File**
+
+1. Go to the `src/components/child/index.tsx` file. This file contains functionalities like spend allowance and get allowance value.
+
+**Step 2: Prepare Form for Spend Allowance**
+
+1.  Find the comment `// Step Q - Configure Spend Allowance Form`.
+
+2.  Replace the form variable with this code snippet:
+
+```javascript title="child/index.tsx"
+// Step Q - Configure Spend Allowance Form
+const form =useForm <z.infer <typeof formSchema>>{
+  resolver: zodResolver(formSchema),
+  defaultValues: {
+    amount: "0",
+  },
+};
+```
+
+### Ge Allowance Value (Child)
+
+Write the function for get the Allowance value.
+
+- Scroll down to find the comment `// step R - Get AllowanceValue`.
+
+- Replace the existing **`getAllowance`** function with this code snippet:
+
+```javascript title="child/index.tsx"
+// step R - Get AllowanceValue
+const getAllowance = async () => {
+  try {
+    // Call the smart contract method "GetAllowance" for the child role
+    const result = await allowanceContract?.callViewMethod(
+      "GetAllowance",
+      currentWalletAddress
+    );
+
+    // If the result contains a valid allowance value, set it in the state
+    if (result?.data?.value) {
+      setAllowanceValue(result?.data?.value);
+    }
+  } catch (error) {
+    // Log any errors that occur during the process
+    console.log("error", error);
+  }
+};
+```
+
+### Spend Funds (Child)
+
+Write the function for spend the funds value for child.
+
+- Scroll down to find the comment `// step S - Spend Allowance`.
+
+- Replace the existing **`spendFunds`** function with this code snippet:
+
+```javascript title="child/index.tsx"
+// step S - Spend Funds
+const spendFunds = async (value: { amount: string }) => {
+  if(value.amount === "0"){
+    return
+  }
+
+  let loadingId;
+  try {
+    if (Number(allowanceValue) < Number(value.amount)) {
+      toast.info("Amount should be less then or equal to Allowance value");
+      return;
+    }
+
+  setFormLoading(true);
+
+    // Start Loading
+    loadingId = toast.loading("Spending Funds InProgress..");
+    await allowanceContract?.callSendMethod(
+      "useFunds", // Function Name
+      currentWalletAddress as string, // User Wallet Address
+      { value: value.amount } // Allowance Amount
+    );
+
+    form.reset();
+    getAllowance();
+
+    // Update Loading Message with Success
+    toast.update(loadingId, {
+      render: `Funds Spent Successful`,
+      type: "success",
+      isLoading: false,
+    });
+  } catch (error: any) {
+    console.error(error);
+    // Update Loading Message with Error
+    toast.update(loadingId as Id, {
+      render: error.message,
+      type: "error",
+      isLoading: false,
+    });
+    return "error";
+  } finally {
+    // Remove Loading Message
+    removeNotification(loadingId as Id);
+    setFormLoading(false);
+  }
+};
+```
+
+#### What This Function Does:
+
+1. **Calls Smart Contract Methods** : It call the useFunds for spend the allowance value.
+
+Let's handle the submit form for spend allowance.
+
+### Submit Spend Funds Form (Child)
+
+Write the function for handle the spend Funds form.
+
+- Scroll down to find the comment `// Step T - Handle Spend Funds Submit Form`.
+
+- Replace the existing **`onSubmit`** function with this code snippet:
+
+```javascript title="child/index.tsx"
+// Step T - Handle Spend Funds Submit Form
+const onSubmit = (values: { amount: string }) => {
+  spendFunds(values);
+};
+```
+
+Now that we've written all the necessary frontend functions and components, we're ready to run the Allowance dApp application in the next step.
 
 ### Run Application
 
-In this step, we will run the ToDo dApp application.
+In this step, we will run the Allowance dApp application.
 
 - To begin, run the following command on your terminal.
 
@@ -1077,7 +1265,7 @@ npm run dev
 
 :::info
 
-**Note**: Ensure that you are running this command under the **todo/2-dapp** folder.
+**Note**: Ensure that you are running this command under the **allowance/2-dapp** folder.
 
 :::
 
@@ -1085,7 +1273,7 @@ npm run dev
 
   ![run-app-success](/img/vote-npm-run-console.png)
 
-- Upon clicking on the **localhost URL**, you should be directed to the ToDo dApp landing page as shown below.
+- Upon clicking on the **localhost URL**, you should be directed to the Allowance dApp landing page as shown below.
 
 :::tip
 If you are developing and testing this with github codespace, you can use port forward to test the web server that is running in codespace, here is the link on how to use port forward for codespace https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
@@ -1095,9 +1283,9 @@ If you are developing and testing this with github codespace, you can use port f
 
   ![open-in-browser](/img/codespace-forwarded-port.png)
 
-- Click the link to open the ToDo dApp in the browser.
+- Click the link to open the Allowance dApp in the browser.
 
-  ![todo-home-page](/img/todo-homepage.jpg)
+  ![allowance-home-page](/img/allowance-home-page.png)
 
 #### Create Portkey Wallet
 
@@ -1113,7 +1301,6 @@ With DID solution as its core, Portkey provides both Portkey Wallet and Portkey 
 For more information, you may visit the official documentation for Portkey at https://doc.portkey.finance/.
 :::
 
-
 - Download the Chrome extension for Portkey from https://chromewebstore.google.com/detail/portkey-wallet/iglbgmakmggfkoidiagnhknlndljlolb.
 
 :::info
@@ -1123,18 +1310,17 @@ You may download Chrome from https://www.google.com/intl/en_sg/chrome/.
 
 - Once you have downloaded the extension, you should see the following on your browser as shown below.
 
-   ![welcome-to-portkey](/img/welcome-to-portkey.png)
+  ![welcome-to-portkey](/img/welcome-to-portkey.png)
 
 - Click on `Get Start` and you should see the following interface as shown below.
 
-   ![portkey-login](/img/portkey-login.png)
+  ![portkey-login](/img/portkey-login.png)
 
-
-**Sign up** 
+**Sign up**
 
 - Switch to **aelf Testnet** network by selecting it:
 
-   ![portkey-switch-to-testnet](/img/portkey-switch-to-testnet.png)
+  ![portkey-switch-to-testnet](/img/portkey-switch-to-testnet.png)
 
 :::danger
 Please make sure you are using `aelf Testnet` in order to be able to receive your testnet tokens from the Faucet.
@@ -1142,7 +1328,7 @@ Please make sure you are using `aelf Testnet` in order to be able to receive you
 
 - Proceed to sign up with a Google Account or your preferred login method and complete the necessary accounts creation prompts and you should observe the following interface once you have signed up.
 
-   ![success-login](/img/success-login.png)
+  ![success-login](/img/success-login.png)
 
 With that, you have successfully created your very first Portkey wallet within seconds. How easy was that?
 
@@ -1152,153 +1338,144 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
 - Next, click on ‘Open Portkey’ and you should now observe the following as shown below.
 
-   ![portkey-wallet-preview](/img/portkey-wallet-preview.png)
+  ![portkey-wallet-preview](/img/portkey-wallet-preview.png)
 
 **Connect Portkey Wallet**
 
 - Click on **"Connect Wallet"** to connect your Portkey wallet.
 
-   ![connect-wallet](/img/todo-connect-wallet.jpg)
+  ![connect-wallet](/img/allowance-connect-wallet.png)
 
 - The button will change to **"Your Wallet Address"** when the connection is successful.
 
-   ![collect-wallet-success](/img/todo-wallet-connect-success.jpg)
+  ![collect-wallet-success](/img/allowance-wallet-connect-success.png)
+Now we have  successfully connected our portkey wallet with Allowance dApp so let's move into set Roles functionality throgh Admin wallet.
+---
 
---- 
+**Set Roles (Admin)**
 
-**Create a New Task**
+- Click on **"Set Admin"** button assign the admin role.
 
-- Click on **"Add New"** button to create a new task.
+  ![step-1-allowance](/img/step-1-allowance.png)
 
-   ![create-task](/img/create-task.png)
+- A pop-up form will appear to set the admin role. Please enter the wallet address you want to assign as Admin. You can then use this wallet to perform other admin functions.
 
-- You will see the pop-up modal with form to create a new task. Please fill all the necessary fields like `Name`, `Description` and `Category`.
+  ![step-2-allowance](/img/step-2-allowance.png)
 
-   ![create-task-form](/img/create-task-form.png)
+- Click on **Set Admin** Button.
 
-- Click on **Create New Task** Button.
+- You will now receive two transaction requests in your Portkey wallet to **sign**. The first request is to initialize the Role contract, and the second is to set the Admin role.
 
-- Now, You will receive a transaction request on your portkey wallet to  **Sign** the transaction.
+- Click on **Sign** for both the transaction.
 
-   ![create-task-sign-request](/img/create-task-sign-request.jpg)
+  ![step-3-allowance](/img/step-3-allowance.png)
+  ![step-4-allowance](/img/step-4-allowance.png)
 
-- Click on **Sign** the transaction.
+- After the transaction is successfully processed, you will be able to see the wallet address for **Admin role**.
 
-- After the transaction is successfully processed, your first task will be created✅.
+  ![step-5-allowance](/img/step-5-allowance.png)
 
-   ![create-task-success](/img/create-task-success.jpg)
+- As Admin role has been assigned, Please follow same steps for assign the **Parent** and **Child** role.
 
-- Your task item looks like below with the following details -  **`Name`** , **`Description`** , **`Last Updated Time`** , **`Create Date and Time`**,
+  ![step-6-allowance](/img/step-6-allowance.png)
 
-   ![todo-item.jpg](/img/todo-item.jpg)
+- After assign the Parent and Child role, you will be able to see the wallet addresses for each role.
 
-- You will be able to perform these following action for a selected task - **`Edit`** , **`Complete`** , and **`Remove`** .
+  ![step-7-allowance](/img/step-7-allowance.png)
 
-As we have **Created a Task** successfully, let's update the task details.
+We have now assigned the role using the Role contract, and as an Admin, you can update the Parent and Child roles. Next, we need to work with the Allowance contract. To access the Parent component, connect your Parent wallet, and you will automatically switch to the Parent role.
 
 ---
 
-**Edit the Task**
+**Set Allowance (Parent)**
 
-- Click on the **"Edit"** button to edit the task.
+As a Parent, you can manage Child role functions, such as set a Child, edit the Child's address, and set an allowance for the Child. 
 
-   ![update-task](/img/update-task.png)
+  ![step-8-allowance](/img/step-8-allowance.png)
 
-- You will see the pop-up modal with form to edit the task. Edit the necessary fields according to your need.
+- Click on **Set Allowance** button to set the allowance for Child.
 
-   ![edit-task-form](/img/edit-task-form.jpg)
+  ![step-9-allowance](/img/step-9-allowance.png)
 
-- Click on **Update Task** Button.
- 
-- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
+- A pop-up form will appear to set the Allowance. Please enter the amount you want to set as an allowance and Click on **Set Allowance** button on the form.
 
-   ![update-task-sign-request](/img/update-task-request.jpg)
+  ![step-10-allowance](/img/step-10-allowance.png)
 
-- Click on **Sign** the transaction.
+- You will now receive two transaction requests in your Portkey wallet to **sign** . The first request is to initialize the Allowance contract, and the second is to set the Allowance.
 
-- After the transaction is successfully processed, your task details will be Updated✅.
+- Click on **Sign** for both the transaction.
 
-   ![update-task-success](/img/update-task-success.jpg)
+  ![step-11-allowance](/img/step-11-allowance.png)
+  ![step-12-allowance](/img/step-12-allowance.png)
 
-As we have **Edited a Task** successfully. Let's move that task to completed state.
+- After the transaction is successfully processed, Allowance value will be appear as shown below.
 
----
+  ![step-13-allowance](/img/step-13-allowance.png)
 
-**Complete the Task**
-
-- Click on the **"Complete"** button to move the task to `Completed` status.
-
-   ![complete-task-button](/img/complete-task-button.jpg)
-
-- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
-
-   ![complete-task-sign-request](/img/complete-task-request.jpg)
-
-- Click on **Sign** the transaction.
-
-- After the transaction is successfully processed, your task will be moved to the completed tab✅.
-
-   ![complete-task-success](/img/complete-task-success.jpg)
-
-As we have performed **Complete Task** successfully. Let's remove the completed task.
+As we have **Set Allowance Value** successfully. Let's move to the other functionalities for Child. To access the Child component, connect your Child wallet, and you will automatically switch to the Child role.
 
 ---
 
-**Remove the Task**
+**Spend Funds (Child)**
 
-- Click on **"Remove"** button to remove the task.
+As a Child, you can view the allowance amount and spend funds within the assigned allowance limit.
 
-   ![remove-task-button](/img/delete-task-button.jpg)
- 
+  ![step-14-allowance](/img/step-14-allowance.png)
+
+- Enter the amount you want to spend and Click on **Spend** button.
+
+  ![step-15-allowance](/img/step-15-allowance.png)
+
 - Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
 
-   ![remove-task-sign-request](/img/delete-task-request.jpg)
+  ![step-16-allowance](/img/step-16-allowance.png)
 
 - Click on **Sign** the transaction.
 
-- After the transaction is successfully processed, your task will be moved to the removed tab✅.
+- After the transaction is successfully processed, your allowance value will be updated.
 
-   ![remove-task-success](/img/delete-task-success.jpg)
+  ![step-17-allowance](/img/step-17-allowance.png)
 
 :::success
-🎉 Congratulations Learners! You have successfully built your ToDo dApp.
+🎉 Congratulations Learners! You have successfully built your Allowance dApp.
 :::
-
 
 ## 🎯 Conclusion
 
-🎉 Congratulations on successfully completing the **ToDo dApp** tutorial! 🎉 You've taken important steps in setting up your development environment, developing and deploying a smart contract on ToDo dApp, and building a fully functional ToDo decentralized application on the aelf blockchain. 🌟
+🎉 Congratulations on completing the **Allowance dApp** tutorial! 🎉 You’ve taken significant steps in setting up your development environment, building and deploying two smart contracts, and creating a fully functional Allowance dApp on the aelf blockchain. 🌟
 
 **📚 What You've Learned**
 
 Throughout this tutorial, you've mastered:
 
-  - **🛠️ Setting Up Your Development Environment:** You prepared your workspace by installing and configuring all the necessary tools to kickstart your smart contract project.
+- **🛠️ Setting Up Your Development Environment:** You prepared your workspace by installing and configuring all the necessary tools to kickstart your smart contract project.
 
-  - **💻 Developing Your Smart Contract:** You created the foundation of your ToDo dApp by writing and building the smart contract that manages tasks, from creation to deletion.
+- **💻 Developing the Role Smart Contract:** You created a Role contract that defines roles and permissions, including Admin, Parent, and Child roles, which allow users to interact according to assigned roles.
 
-  - **🚀 Deploying the Smart Contract:** You deployed your smart contract to the aelf blockchain, enabling its functionalities to be used in a live environment.
+- **💻 Developing the Allowance Smart Contract:** You built the Allowance contract to enable Parents to set spending limits for Children, creating the foundation of a decentralized allowance management system.
 
-  - **🔧 Interacting with Your Deployed Smart Contract:** You connected your frontend to the blockchain, integrated Portkey for wallet connectivity, and implemented functions to manage tasks such as creating, updating, and deleting directly through the dApp.
+- **🚀 Deploying Both Smart Contracts:** You deployed both contracts to the aelf blockchain, enabling your dApp to use the features in a live environment.
+
+- **🔧 Interacting with Your Deployed Smart Contract:**  You connected the dApp frontend to the blockchain, integrated Portkey for wallet connectivity, and set up functions for managing roles and allowances directly through the dApp interface.
 
 **🔍 Final Output**
 
 By now, you should have:
 
-   - 📜 A deployed smart contract that powers your ToDo dApp, managing tasks with functionalities for creation, updating, status management, and deletion.
+- 📜 **Two deployed smart contracts** — one for managing user roles (Admin, Parent, and Child) and another for setting and managing allowances within the dApp.
 
-   - 💻 A fully operational ToDo dApp, allowing users to interact with the smart contract to efficiently manage their tasks.
+- 💻 **A fully functional Allowance dApp** — allowing users to assign roles, set allowances, and spend funds within set limits, all through a secure and intuitive interface.
 
 **➡️ What's Next?**
 
-With the basics under your belt, consider exploring more advanced topics:
+With the foundation in place, consider exploring advanced topics:
 
-  - **📈 Enhancing Smart Contract Logic:** Introduce more complex features to your ToDo dApp, such as prioritization, deadlines, or collaboration tools.
+- **📈 Enhancing Smart Contract Logic:** Add new features, such as notifications for spending limits, allowance resets, or reports on spending habits.
 
-  - **🔒 Improving Security:** Ensure your dApp and smart contract are secure by implementing best practices and security measures.
+- **🔒 Improving Security:** Ensure your dApp and smart contract are secure by implementing best practices and security measures.
 
-  - **🌍 Exploring Cross-Chain Features:** Expand your dApp’s capabilities by exploring aelf’s cross-chain interoperability, enabling interaction with other blockchains.
+- **🌍 Exploring Cross-Chain Features:** Expand your dApp’s reach by exploring aelf’s cross-chain interoperability, enabling interactions with other blockchain networks
 
-The possibilities with blockchain technology and decentralized applications are endless. You're now well-equipped to take your ToDo dApp to the next level. Keep building, innovating, and exploring with aelf. 🚀
+You’ve now acquired the tools to take your Allowance dApp to the next level! Keep building, innovating, and exploring with aelf. 🚀
 
-Happy coding and expanding your **ToDo dApp! 😊**
+Happy coding and growing your **Allowance dApp! 😊**
