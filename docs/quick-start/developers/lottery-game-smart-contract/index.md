@@ -1309,7 +1309,7 @@ You should see **LotteryGame.dll.patched** in the directory `lottery_game/src/bi
 
 ## Step 3 - Deploy Smart Contract
 
-import Deploy from "../\_deploy.md"
+import Deploy from "../\_deploy_lottery.md"
 
 <Deploy />
 
