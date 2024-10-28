@@ -20,33 +20,11 @@ To deploy smart contracts or execute on-chain transactions on aelf, you'll requi
 
 **Get ELF Tokens**
 
-<Tabs>
-  <TabItem value="cli" label="CLI" default>
-
-Run the following command to get testnet ELF tokens from faucet. Remember to either export your wallet address or replace $WALLET_ADDRESS with your wallet address.
-
-```bash title="Terminal"
-curl -X POST "https://faucet.aelf.dev/api/claim?walletAddress=$WALLET_ADDRESS" -H "accept: application/json" -d ""
-```
-To check your wallet's current ELF balance:
-```bash title="Terminal"
-aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
-```
-You will be prompted for the following:  
-Enter the required param \<symbol\>: **ELF**  
-Enter the required param \<owner\>: **$WALLET_ADDRESS**
-
-You should see the Result displaying your wallet's ELF balance.
-
-  </TabItem>
-  <TabItem value="web" label="Web" default>
-
-Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). Enter your address and click `Get Tokens`.
+- Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). 
+- Enter your address and click `Get Tokens`.
 
 ![result](/img/get-token-ui.png)
 
-  </TabItem>
-</Tabs>
 
 ### 2.2 Getting Testnet Token Type SEED Token
 
@@ -54,24 +32,12 @@ To acquire testnet Token type SEED for creating fungible or non-fungible tokens 
 
 **Get Token Type Seed Token**
 
-<Tabs>
-  <TabItem value="cli" label="CLI" default>
-
-Run the following command to get testnet SEED token from faucet. Remember to either export your wallet address or replace $WALLET_ADDRESS with your wallet address.
-
-```bash title="Terminal"
-curl -X POST "https://faucet.aelf.dev/api/claim-seed?walletAddress=$WALLET_ADDRESS" -H "accept: application/json" -d ""
-```
-
-  </TabItem>
-  <TabItem value="web" label="Web" default>
-
-Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). Click on the dropdown to select "Token Seed". Enter your address and click `Get Seed`.
+- Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). 
+- Click on the dropdown to select **"Token Seed"**. 
+- Enter your address and click `Get Seed`.
 
 ![result](/img/get-testnet-token-seed.png)
 
-  </TabItem>
-</Tabs>
 
 ### 2.3 Getting Testnet NFT Type SEED Token
 
@@ -79,21 +45,9 @@ To acquire testnet NFT type SEED for creating fungible or non-fungible tokens on
 
 **Get NFT Type Seed Token**
 
-<Tabs>
-  <TabItem value="cli" label="CLI" default>
-
-Run this command to get testnet NFT type SEED token from faucet. Remember to either export your wallet address or replace $WALLET_ADDRESS with your wallet address.
-
-```bash title="Terminal"
-curl -X POST "https://faucet.aelf.dev/api/claim-nft-seed?walletAddress=$WALLET_ADDRESS" -H "accept: application/json" -d ""
-```
-
-  </TabItem>
-  <TabItem value="web" label="Web" default>
-
-Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). Click on the dropdown to select "NFT Seed". Enter your address and click `Get Seed`.
+- Go to this url [https://faucet-ui.aelf.dev](https://faucet-ui.aelf.dev). 
+- Click on the dropdown to select **"NFT Seed"**.
+- Enter your address and click `Get Seed`.
 
 ![result](/img/get-testnet-nft-seed.png)
 
-  </TabItem>
-</Tabs>
