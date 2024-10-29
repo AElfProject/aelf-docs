@@ -126,7 +126,7 @@ Navigating the platform might be difficult for new users.
 
 **Solution**: User-friendly interfaces and tutorials are provided to ease the onboarding process.
 
-:::
+<!-- :::
 
 ### 9. How does aelf's Layer 2 ZK Rollup technology work, and what benefits does it offer?
 
@@ -142,13 +142,13 @@ Benefits of implementing ZK rollups on aelf include:
 - **Reduced Data Storage**: Since only a small amount of data needs to be stored on-chain (mainly the proof and the batch's final state), it helps in reducing blockchain's storage.
 - **Interoperability**: ZK rollups can be designed to work with various layer-1 blockchains, enhancing cross-chain compatibility and communication.
 
-:::
+::: -->
 
 ### 10. How does aelf compare to other blockchain platforms in terms of transaction speed and scalability?
 
 :::faq[How does aelf compare to other blockchain platforms in terms of transaction speed and scalability?]
 
-aelf stands out in the blockchain landscape with its exceptional transaction speed and scalability. Its multi-sidechain architecture enables parallel processing of transactions, significantly enhancing both speed and scalability compared to traditional single-chain systems. Furthermore, aelf leverages advanced Layer 2 solutions such as ZK Rollups to further improve performance and efficiency. In terms of benchmarking, aelf consistently performs favourably against other leading blockchain platforms in transaction throughput and network efficiency. Additionally, aelf integrates artificial intelligence (AI) to optimise various aspects of its operations, including smart contract execution and network management, which further boosts its performance and scalability. This combination of multi-sidechain architecture, advanced Layer 2 solutions, and AI integration positions aelf as a superior choice in the blockchain arena.
+aelf stands out in the blockchain landscape with its exceptional transaction speed and scalability. Its multi-sidechain architecture enables parallel processing of transactions, significantly enhancing both speed and scalability compared to traditional single-chain systems. In terms of benchmarking, aelf consistently performs favourably against other leading blockchain platforms in transaction throughput and network efficiency. Additionally, aelf integrates artificial intelligence (AI) to optimise various aspects of its operations, including smart contract execution and network management, which further boosts its performance and scalability. This combination of multi-sidechain architecture, advanced Layer 2 solutions, and AI integration positions aelf as a superior choice in the blockchain arena.
 
 :::
 
