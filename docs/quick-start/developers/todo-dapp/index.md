@@ -544,7 +544,7 @@ const checkIsContractInitialized = async () => {
 
 - Scroll down to find the comment `// step 2 - Initialize the smart contract`.
 
-- Replace the existing **`checkIsContractInitialized`** function with this code snippet:
+- Replace the existing **`initializeContract`** function with this code snippet:
 
 <!-- checkIsContractInitialized and initializeContract are different here -->
  
