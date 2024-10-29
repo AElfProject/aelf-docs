@@ -21,6 +21,6 @@ description: aelf's updated Whitepaper v2.0 featuring AI + Blockchain
     - [Enabling Non-Technical Users to Create Smart Contracts with NLP on aelf](./ai-integration-points-in-the-aelf-ecosystem/developer-and-user-experience/#i-enabling-non-technical-users-to-create-smart-contracts-with-nlp-on-aelf)
     - [AI based Smart Contract Audit for Developers on aelf](./ai-integration-points-in-the-aelf-ecosystem/developer-and-user-experience/#ii-ai-based-smart-contract-audit-for-developers-on-aelf)
     - [Enhancing User and Developer Experience with AI-Powered Chatbots on aelf](./ai-integration-points-in-the-aelf-ecosystem/developer-and-user-experience/#iii-enhancing-user-and-developer-experience-with-ai-powered-chatbots-on-aelf)
-- [Beyond AI - A Modular + ZK Rollup Blockchain](./modular-blockchain/)
+- [Beyond AI - A Modular Blockchain](./modular-blockchain/)
 - [Roadmap](./roadmap/)
 - [References and further readings](./references-and-further-readings/)
