@@ -144,7 +144,7 @@ Benefits of implementing ZK rollups on aelf include:
 
 ::: -->
 
-### 10. How does aelf compare to other blockchain platforms in terms of transaction speed and scalability?
+### 9. How does aelf compare to other blockchain platforms in terms of transaction speed and scalability?
 
 :::faq[How does aelf compare to other blockchain platforms in terms of transaction speed and scalability?]
 
@@ -152,7 +152,7 @@ aelf stands out in the blockchain landscape with its exceptional transaction spe
 
 :::
 
-### 11. What is the difference between aelf's MainChain and SideChains?
+### 10. What is the difference between aelf's MainChain and SideChains?
 
 :::faq[What is the difference between aelf's MainChain and SideChains?]
 
@@ -160,7 +160,7 @@ aelf's MainChain and SideChains serve distinct but complementary roles within it
 
 :::
 
-### 12. What is the transaction gas fee on the aelf blockchain? Are there any addresses that are exempt from fees?
+### 11. What is the transaction gas fee on the aelf blockchain? Are there any addresses that are exempt from fees?
 
 :::faq[What is the transaction gas fee on the aelf blockchain? Are there any addresses that are exempt from fees?]
 
@@ -183,7 +183,7 @@ If address A has a balance of 10 ELF at 1:00 UTC today but transfers out 7 ELF a
 
 :::
 
-### 13. At what block confirmation number on the aelf blockchain can we consider it unlikely that a chain becomes reversible?
+### 12. At what block confirmation number on the aelf blockchain can we consider it unlikely that a chain becomes reversible?
 
 :::faq[At what block confirmation number on the aelf blockchain can we consider it unlikely that a chain becomes reversible?]
 
@@ -193,7 +193,7 @@ The most accurate method is to follow the calculation based on the LIB (Last Irr
 
 :::
 
-### 14. What is the RPC service address for the SideChain tDVV?
+### 13. What is the RPC service address for the SideChain tDVV?
 
 :::faq[What is the RPC service address for the SideChain tDVV?]
 
@@ -201,7 +201,7 @@ You can access it via the following link: https://tdvv-public-node.aelf.io/
 
 :::
 
-### 15. Is a cross-chain transaction on the aelf blockchain considered a single transaction or two? Are there any examples?
+### 14. Is a cross-chain transaction on the aelf blockchain considered a single transaction or two? Are there any examples?
 
 :::faq[Is a cross-chain transaction on the aelf blockchain considered a single transaction or two? Are there any examples?]
 
@@ -213,7 +213,7 @@ Then, a transaction called CrossChainReceiveToken is generated on the MainChain:
 
 :::
 
-### 16. How to become a Block Producer (BP)? How to run a full node?
+### 15. How to become a Block Producer (BP)? How to run a full node?
 
 :::faq[How to become a Block Producer (BP)? How to run a full node?]
 
