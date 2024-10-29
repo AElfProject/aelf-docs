@@ -44,75 +44,9 @@ To deploy smart contracts or execute on-chain transactions on aelf, you'll requi
 
 **Get ELF Tokens**
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs>
-  <TabItem value="cli" label="CLI" default>
-
-**1. Get Testnet ELF Tokens:**
-
-To receive testnet ELF tokens, run this command after replacing `$WALLET_ADDRESS` and `$WALLET_PASSWORD` with your wallet details:
-
-<Tabs>
-<TabItem value="Linux and macOs" label="Linux and macOs" default>
-```bash title="Terminal"
-export WALLET_ADDRESS="YOUR_WALLET_ADDRESS"
-curl -X POST "https://faucet.aelf.dev/api/claim?walletAddress=$WALLET_ADDRESS" -H "accept: application/json" -d ""
-```
-</TabItem>
-
-<TabItem value="Windows" label="Windows">
-
-```bash title="Command Prompt"
-$headers = @{
-    "accept" = "application/json"
-}
-
-$env:WALLET_ADDRESS = "YOUR_WALLET_ADDRESS"
-
-Invoke-WebRequest -Uri "https://faucet.aelf.dev/api/claim?walletAddress=$env:WALLET_ADDRESS" -Method POST -Headers $headers -Body ""
-```
-
-</TabItem>
-</Tabs>
-
-**2. Check ELF Balance:**
-
-To check your ELF balance, use:
-
-<Tabs>
-<TabItem value="Linux and macOs" label="Linux and macOs" default>
-```bash title="Terminal"
-aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
-```
-</TabItem>
-
-<TabItem value="Windows" label="Windows">
-```bash title="Command Prompt"
-aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetBalance
-```
-</TabItem>
-</Tabs>
-
-You will be prompted for the following:
-
-```sh title="Terminal"
-Enter the required param <symbol>: ELF
-Enter the required param <owner>: **$WALLET_ADDRESS**
-```
-
-You should see the result displaying your wallet's ELF balance.
-
-  </TabItem>
-  <TabItem value="web" label="Web" default>
-
 Go to https://faucet-ui.aelf.dev Enter your address and click `Get Tokens`.
 
 ![result](/img/get-token-ui.png)
-
-  </TabItem>
-</Tabs>
 
 **Deploy Smart Contract:**
 
