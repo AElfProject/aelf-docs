@@ -172,5 +172,5 @@ aelf-deploy -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -c $env:CONTRACT_PATH
 :::
 
 :::info
-🎉 You have successfully deployed your ToDo dApp smart contract on the aelf testnet! In the next steps, we will be building the frontend components that allow us to interact with our deployed smart contract!
+🎉 You have successfully deployed your Allowance smart contract on the aelf testnet! In the next steps, we will be building the frontend components that allow us to interact with our deployed smart contract!
 :::

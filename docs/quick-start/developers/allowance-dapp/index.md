@@ -4,12 +4,12 @@ title: Allowance dApp
 description: Smart contracts explaining inter-contract calls
 ---
 
-**Description**: This project demonstrates the integration of two smart contracts, RoleContract and AllowanceContract, focusing on role-based access and fund management. It highlights inter-contract calls, where the allowance logic depends on roles retrieved dynamically from the role contract.
+**Description**: This project demonstrates the integration of two smart contracts, RoleContract and AllowanceContract, focusing on role-based access and fund management. It highlights **inter-contract calls**, where the allowance logic depends on roles retrieved dynamically from the role contract.
 
-**Purpose**: The purpose is to teach state management, access control, and smart contract collaboration. This example models how multi-contract systems work together to securely manage roles and funds in a blockchain environment.
+**Purpose**: The purpose of this dApp is to teach state management, access control, and inter smart contract calls on the aelf blockchain. This example models how multi-contract systems work together and call each other to securely manage roles and funds in a blockchain environment.
 **Difficulty Level**: Moderate
 
-<iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/sBNfFADQMXg?si=wbCGIIxez-nh0PC-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!-- <iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/sBNfFADQMXg?si=wbCGIIxez-nh0PC-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
 
 ## Step 1 - Setting up your development environment
 
@@ -36,7 +36,7 @@ dotnet new aelf -n RoleContract
 Now that we have a RoleContract template, we can customize it to implement role-based permissions for various use cases. Below are the core functionalities of the RoleContract:
 
 1. Set Admin: Allows the current admin to assign a new admin address.
-2. Assign Parent/Child: Grants parent or child roles with appropriate permissions.
+2. Set Parent/Child: Grants parent or child roles with appropriate permissions.
 3. Retrieve Role Addresses: Methods to fetch the current admin, parent, and child addresses.
 4. Role-based Access Control: Ensures only admins or parents can assign roles using access validation logic.
 
@@ -50,25 +50,25 @@ cd src
 
 #### Defining Methods and Messages
 
-- Rename the file name from `Protobuf/contract/hello_world_contract.proto` to `role_contract.proto`:
+- Rename the file name from `Protobuf/contract/hello_world_contract.proto` to `role_contract.proto` manually or by using the following command:
 
 ```bash title="Terminal"
 mv Protobuf/contract/hello_world_contract.proto Protobuf/contract/role_contract.proto
 ```
 
-- open the project with your IDE.
+- Open the project with your IDE.
 
 The implementation of file `src/Protobuf/contract/role_contract.proto` is as follows:
 
 ```csharp title="role_contract.proto"
 syntax = "proto3";
 
-import "aelf/core.proto"; //extra_o
+import "aelf/core.proto"; 
 
 import "google/protobuf/empty.proto";
 import "Protobuf/reference/acs12.proto";
-//import "aelf/options.proto";  //extra
-//import "google/protobuf/wrappers.proto"; //extra
+import "aelf/options.proto";  
+import "google/protobuf/wrappers.proto"; 
 
 // The namespace of this class
 option csharp_namespace = "AElf.Contracts.RoleContract";
@@ -112,7 +112,7 @@ service RoleContract {
 
 #### Define Contract States
 
-The implementation of the Role app state inside file `src/RoleContractState.cs` is as follows:
+The implementation of the role contract's state inside file `src/RoleContractState.cs` is as follows:
 
 ```csharp title="src/RoleContractState.cs"
 using AElf.Sdk.CSharp.State;
@@ -134,11 +134,11 @@ namespace AElf.Contracts.RoleContract
 }
 ```
 
-- The `State.cs` file in an aelf blockchain smart contract holds the variables that store the contract's data, making sure this data is saved and accessible whenever the contract needs it.
+- The `State.cs` file on the aelf blockchain smart contract holds the variables that store the contract's data, making sure this data is saved and accessible whenever the contract needs it.
 
 #### Implement Role Smart Contract
 
-The implementation of the Role smart contract inside file `src/RoleContract.cs` is as follows:
+The implementation of the role contract inside file `src/RoleContract.cs` is as follows:
 
 ```csharp title="src/RoleContract.cs"
 using AElf.Sdk.CSharp;
@@ -150,7 +150,7 @@ namespace AElf.Contracts.RoleContract
     public class RoleContract : RoleContractContainer.RoleContractBase
     {
 
-      //private const string DefaultAdmin = "ELF_TbHa4XcKkTz1wd5zmLWE3RGwkRt2FdZyt3ryxmkKepo8QWTj9_AELF";
+      private const string DefaultAdmin = "ENTER_YOUR_PORTKEY_ADDRESS";
 
       public override Empty Initialize(Empty input)
         {
@@ -159,8 +159,8 @@ namespace AElf.Contracts.RoleContract
                 return new Empty();
             }
             State.Initialized.Value = true;
-            State.AdminAddress.Value = Context.Sender;
-            //State.AdminAddress.Value = Address.FromBase58(DefaultAdmin);
+            State.AdminAddress.Value = Context.Sender; //Can set Deployer as admin
+            State.AdminAddress.Value = Address.FromBase58(DefaultAdmin); // Can set YOUR_PORTKEY_ADDRESS as admin 
             return new Empty();
         }
 
@@ -168,7 +168,7 @@ namespace AElf.Contracts.RoleContract
         {
             AssertIsAdmin();
 
-            // Set the new owner address
+            // Set the new admin address
             State.AdminAddress.Value = input;
 
             return new Empty();
@@ -178,7 +178,7 @@ namespace AElf.Contracts.RoleContract
         {
             AssertIsAdminOrParent();
 
-            // Set the new owner address
+            // Set the parent address
             State.ParentAddress.Value = input;
 
             return new Empty();
@@ -188,7 +188,7 @@ namespace AElf.Contracts.RoleContract
         {
             AssertIsAdminOrParent();
 
-            // Set the new owner address
+            // Set the chlid address
             State.ChildAddress.Value = input;
 
             return new Empty();
@@ -201,11 +201,13 @@ namespace AElf.Contracts.RoleContract
             return State.AdminAddress.Value == null ? new StringValue() : new StringValue {Value = State.AdminAddress.Value.ToBase58()};
         }
 
+         // Get the current parent address
         public override StringValue GetParent(Empty input)
         {
             return State.ParentAddress.Value == null ? new StringValue() : new StringValue {Value = State.ParentAddress.Value.ToBase58()};
         }
 
+         // Get the current child address
         public override StringValue GetChild(Empty input)
         {
             return State.ChildAddress.Value == null ? new StringValue() : new StringValue {Value = State.ChildAddress.Value.ToBase58()};
@@ -237,7 +239,7 @@ dotnet build
 
 You should see **RoleContract.dll.patched** in the directory `RoleContract/src/bin/Debug/net.6.0`
 
-## Step 3 - Deploy Smart Contract
+## Step 3 - Deploy Role Smart Contract
 
 import DeployRoleContract from "../\_deploy_role_contract.md"
 
@@ -265,9 +267,9 @@ Now that we have an AllowanceContract template, it can be customized to manage f
 1. Set Allowance: Increases the current allowance, with permissions verified through parent and child roles fetched from the RoleContract.
 2. Use Funds: Allows a child role to spend funds, reducing the current allowance.
 3. Get Allowance: Retrieves the remaining allowance.
-4. Role-based Permissions: Ensures only authorized roles, like parent or child, can modify or use the allowance.
+4. Role-based Permissions: Ensures only authorized roles, like parent of a child can modify or the child use the allowance.
 
-This contract showcases inter-contract calls and role-based fund management, demonstrating how multiple smart contracts work together for secure, controlled financial operations.
+This contract showcases **inter-contract calls** and role-based fund management, demonstrating how multiple smart contracts work together for secure, controlled financial operations on the aelf blockchain. It helps in understanding *how the AllowanceContract calls the RoleContract* to check which sender (either of Parent, Child & Admin) is calling the methods of the AllowanceContract to put control on the access of the functions.
 
 - Enter this command in your `Terminal`.
 
@@ -283,19 +285,19 @@ cd src
 mv Protobuf/contract/hello_world_contract.proto Protobuf/contract/allowance_contract.proto
 ```
 
-- open the project with your IDE.
+- Open the project with your IDE.
 
 The implementation of file `src/Protobuf/contract/allowance_contract.proto` is as follows:
 
 ```csharp title="allowance_contract.proto"
 syntax = "proto3";
 
-import "aelf/core.proto"; //extra_o
+import "aelf/core.proto"; 
 
 import "google/protobuf/empty.proto";
 import "Protobuf/reference/acs12.proto";
-import "aelf/options.proto";  //extra
-import "google/protobuf/wrappers.proto"; //extra
+import "aelf/options.proto"; 
+import "google/protobuf/wrappers.proto";
 
 // The namespace of this class
 option csharp_namespace = "AElf.Contracts.AllowanceContract";
@@ -333,7 +335,7 @@ service AllowanceContract {
 
 #### Define Contract States
 
-The implementation of the Allowance app state inside file `src/AllowanceContractState.cs` is as follows:
+The implementation of the allowance contract state inside file `src/AllowanceContractState.cs` is as follows:
 
 ```csharp title="src/AllowanceContractState.cs"
 using AElf.Sdk.CSharp.State;
@@ -361,7 +363,7 @@ namespace AElf.Contracts.AllowanceContract
 
 #### Implement Allowance Smart Contract
 
-The implementation of the Role smart contract inside file `src/AllowanceContract.cs` is as follows:
+The implementation of the AllowanceContract inside file `src/AllowanceContract.cs` is as follows:
 
 ```csharp title="src/AllowanceContract.cs"
 using AElf.Sdk.CSharp;
@@ -374,7 +376,7 @@ namespace AElf.Contracts.AllowanceContract
     public class AllowanceContract : AllowanceContractContainer.AllowanceContractBase
     {
 
-        private const string RoleContractAddress = "2MBUZHRCruLuUDSXncPp4D6mnF8aK7LXjmAgHgWDgw6vQXmJ19"; // tDVW role contract address
+        private const string RoleContractAddress = "YOUR_ROLE_CONTRACT_ADDRESS"; // tDVW role contract address
 
         public override Empty Initialize(Empty input)
         {
@@ -385,7 +387,7 @@ namespace AElf.Contracts.AllowanceContract
             // Set the owner address
             State.AdminAddress.Value = Context.Sender;
 
-            // Initialize the token contract
+            // Initialize the role contract
             State.RoleContract.Value = Address.FromBase58(RoleContractAddress);
 
             return new Empty();
@@ -395,7 +397,7 @@ namespace AElf.Contracts.AllowanceContract
         {
             State.ParentAddress.Value = Address.FromBase58(State.RoleContract.GetParent.Call(new Empty()).Value);
 
-            //Assert(Context.Sender == State.ParentAddress.Value, "Unauthorized(Not Parent) to perform the action.");
+            Assert(Context.Sender == State.ParentAddress.Value, "Unauthorized(Not Parent) to perform the action.");
 
             State.ChildAddress.Value = Address.FromBase58(State.RoleContract.GetChild.Call(new Empty()).Value);
 
@@ -407,7 +409,7 @@ namespace AElf.Contracts.AllowanceContract
         public override Int64Value GetAllowance(Address input)
         {
 
-            //Assert(Context.Sender == State.ChildAddress.Value || Context.Sender == State.ParentAddress.Value, "Unauthorized(Not Parent or Child) to perform the action.");
+            Assert(Context.Sender == State.ChildAddress.Value || Context.Sender == State.ParentAddress.Value, "Unauthorized(Not Parent or Child) to perform the action.");
 
             var allowance = State.CurrentAllowance.Value;
 
@@ -421,14 +423,14 @@ namespace AElf.Contracts.AllowanceContract
         {
             State.ChildAddress.Value = Address.FromBase58(State.RoleContract.GetChild.Call(new Empty()).Value);
 
-            //Assert(Context.Sender == State.ChildAddress.Value, "Unauthorized(Not Child) to perform the action.");
+            Assert(Context.Sender == State.ChildAddress.Value, "Unauthorized(Not Child) to perform the action.");
 
             State.CurrentAllowance.Value = (int)(State.CurrentAllowance.Value - input.Value) ;
 
             return new Empty();
         }
 
-      // New function to check if initialized
+      // Function to check if the allowance contract is already initialized or not
       public override BoolValue IfInitialized(Empty input)
       {
             return new BoolValue { Value = State.Initialized.Value };
@@ -449,7 +451,7 @@ dotnet build
 
 You should see **AllowanceContract.dll.patched** in the directory `AllowanceContract/src/bin/Debug/net.6.0`
 
-## Step 5 - Deploy Smart Contract
+## Step 5 - Deploy Allowance Smart Contract
 
 import DeployAllowanceContract from "../\_deploy_allowance_contract.md"
 
@@ -551,7 +553,7 @@ We are now ready to build the frontend components of our Allowance dApp.
 
 ### Configure Portkey Provider & Write Connect Wallet Function
 
-Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed Role contract and Allowance contract for this tutorial.
+Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed RoleContract and AllowanceContract for this tutorial.
 
 **Step 1: Locate the File:**
 
@@ -589,7 +591,7 @@ const fetchContract = async (address: string) => {
 ```javascript title="useSmartContract.ts"
 // Step B - fetch role-contract
 const getRoleContract = async () => {
-  //Replace with Address of Deployed Allowance Smart Contract
+  //Replace with Address of Deployed Role Smart Contract
   const contract = await fetchContract(
     "your_deployed_role_smart_contract_address"
   );
@@ -613,7 +615,7 @@ const getAllowanceContract = async () => {
 ```
 
 :::tip
-ℹ️ Note: You are to replace the address placeholder with your deployed Role and Allowance smart contract address from "Deploy Smart Contract" step!
+ℹ️ Note: You are to replace the address placeholder with your deployed Role and Allowance smart contract address from "Deploy Smart Contract" steps (Step 3 and 5)!
 
 example:
 **"your_deployed_role_smart_contract_address"**,
@@ -628,8 +630,8 @@ example:
   - **Fetch Chain** : The function fetches chain information using the provider.
   - **Get Contract** : It retrieves the smart contract instance from the chain.
 
-- **`getRoleContract`** **Function**: This function fetches the Role contract.
-- **`getAllowanceContract`** **Function**: This function fetches the Allowance contract.
+- **`getRoleContract`** **Function**: This function fetches the *role smart contract*.
+- **`getAllowanceContract`** **Function**: This function fetches the *allowance smart contract*.
 
 `AELF` represents the mainnet chain and `tDVW` represents the testnet chain respectively on aelf blockchain.
 
@@ -653,7 +655,7 @@ useEffect(() => {
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Contracts** : It fetches and sets the smart contracts.
 
-By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the Role and Allowance contract including assign role and allowance related functionalities. This setup will enable our frontend components to perform actions like `Set Roles` , `Get Roles` , `Set Allowance` , `Get Allowance` and `Spend Funds`.
+By following these steps, we'll configure the Portkey provider to connect users' wallets to our dApp and interact with the Role and Allowance smart contracts including assigning specific roles and allowance related functionalities. This setup will enable our frontend components to perform actions like `Set Roles` , `Get Roles` , `Set Allowance` , `Get Allowance` and `Spend Allowed Funds`.
 
 ### Configure Connect Wallet Function
 
@@ -663,7 +665,7 @@ By following these steps, we'll configure the Portkey provider to connect users'
 
 **Step 2: Write the Connect Wallet Function**
 
-- The `header/index.tsx` file is the header of our Allowance dApp. It allows users to connect their Portkey wallet with the Allowance dApp.
+- The `header/index.tsx` file is the header of our allowance dApp. It allows users to connect their Portkey wallet with the allowance dApp.
 
 - Before users can interact with the smart contract, we need to write the `Connect Wallet` function.
 
@@ -699,11 +701,11 @@ In this code, we fetch the Portkey wallet account using the provider and update 
 
 With the connect wallet function defined, we're ready to write the remaining functions in the next steps.
 
-### Configure Set Role Form (Admin)
+### Configure Set Admin Role 
 
 **Step 1: Locate the File**
 
-1. Go to the `src/pages/home/index.tsx` file. This file contains all the functionalities like show Initialize Contract, Set Authority, Get Authority Data etc.
+1. Go to the `src/pages/home/index.tsx` file. This file contains all the functionalities like initialize Contract, SetAdmin, GetAdmin etc.
 
 **Step 2: Prepare Form to set Roles**
 
@@ -729,7 +731,7 @@ const form = useForm <z.infer <typeof formSchema>>{
 
 Now the form is ready for users to fill in the necessary details.
 
-### Initialize Contract (Admin)
+### Initialize Contract & Set Default Admin
 
 - Scroll down to find the comment `// Step G - Initialize Role Contract`.
 
@@ -770,16 +772,16 @@ const initializeContract = async () => {
 };
 ```
 
-### Set Users Role (Admin)
+### Set Admin Role
 
 - Write the function to **`Set Users Role`**
 
-- Find the comment `// Step H - Set User Role`.
+- Find the comment `// Step H - Set Differentt Users Role`.
 
 - Replace the existing **`setAuthority`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-// Step H - Set User Role
+// Step H - Set Differentt Users Role
 const setAuthority = async (values: { address: string }, type: string) => {
   let loadingId;
   try {
@@ -832,13 +834,13 @@ const setAuthority = async (values: { address: string }, type: string) => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to set Admin, Parent and child using the their wallet address.
+1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to set admin, parent and child using their respective wallet address.
 
-Next, we'll write the **Handle submit set Role form** function.
+Next, we'll **Handle the submit form to set the roles** function.
 
-### Submit Set Role Form (Admin)
+### Submit Set Admin Role
 
-Write the function for handle submit form for set the user role.
+Write the function to handle the submit form to set the users' role.
 
 - Scroll down to find the comment `// Step I - Handle Submit Form`.
 
@@ -858,18 +860,18 @@ const onSubmit = async (values: { address: string }) => {
 };
 ```
 
-Next, we'll write the **Get Role Data** function.
+Next, we'll write the **Get Role Details** function.
 
-### Get Role Data (Admin)
+### Get Role Details
 
-- Write the function to **`Get Roles Data`**
+- Write the function to **`Get Roles Details`**
 
-- Find the comment `// Step J - Get Role Data`.
+- Find the comment `// Step J - Get Role Details`.
 
 - Replace the existing **`getAuthorityData`** function with this code snippet:
 
 ```javascript title="home/index.tsx"
-// Step J - Get Role Data
+// Step J - Get Role Details
 const getAuthorityData = async () => {
   setLoading(true);
   try {
@@ -901,17 +903,15 @@ const getAuthorityData = async () => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Methods** : It interacts with the blockchain smart contract to get Admin's, Parent's and Child's wallet address.
+1. **Calls Smart Contract Methods** : It interacts with the blockchain smart contract to get the addressess of the admin, parent and child roles respectively. Once the wallet addresses based on the roles are present, FE will display different components for each user role, like Admin, Parent, and Child. Each role has specific actions they can perform:
 
-Once we have the wallet addresses based on the roles, we will display different components for each user role, like Admin, Parent, and Child. Each role has specific actions they can perform:
+- **Admin Role** : The *admin* can assign roles to both parent and child.
+- **Parent Role** : The *parent* can assign the child role and set an allowance for the child.
+- **Child Role** : The *child* can spend money, but only up to the allowance set by the parent.
 
-- **Admin Role** : The Admin can assign roles to both Parent and Child.
-- **Parent Role** : The Parent can assign the Child role and set an allowance for the Child.
-- **Child Role** : The Child can spend money, but only up to the allowance set by the Parent.
+Now that we've finished integrating the functionality of the RoleContract, let's move on to the functions of the AllowanceContract.
 
-Now that we've finished the **Role** contract's functions, let's move on to the functions of the **Allowance** contract.
-
-### Configure Set Allowance Form (Parent)
+### Configure Set Allowance by Parent
 
 **Step 1: Locate the File**
 
@@ -935,9 +935,9 @@ const form = useForm <z.infer <typeof formSchema>>{
 };
 ```
 
-### Check Contract Initialize Status (Parent)
+### Check Contract Initialize Status
 
-Write the Function for check contract Initialize status of **Allowance Contract**.
+Write the Function to check contract initialization status of the **AllowanceContract**.
 
 - Scroll down to find the comment `// step L - Check if Allowance Contract is initialized or not`.
 
@@ -959,11 +959,11 @@ const checkIsContractInitialized = async () => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Methods** : It interacts with the allowance contract to get status of contract initialize.
+1. **Calls Smart Contract Methods** : It interacts with the allowance contract to get the initialization status of the allowance contract.
 
-### Initialize Allowance Contract (Parent)
+### Initialize Allowance Contract
 
-Write the function for Initialize the **Allowance Contract**.
+Write the function to initialize the **AllowanceContract**.
 
 - Scroll down to find the comment `// Step M - Initialize Allowance Contract`.
 
@@ -1009,11 +1009,11 @@ const initializeContract = async () => {
 
 1. **Calls Smart Contract Methods** : It call the Initialize of the allowance contract.
 
-Now that we've finished initialize contract functionality. let's move on to the Set Allowance functionality.
+Now that we've finished the initialize contract functionality. Let's move on to the *set allowance* functionality.
 
-### Set Allowance (Parent)
+### Set Allowance
 
-Write the function for set the allowance value for child.
+Write the function for set the allowance value for child by the parent.
 
 - Scroll down to find the comment `// step N - Set AllowanceValue`.
 
@@ -1063,13 +1063,13 @@ const setAllowance = async (value: { amount: string }) => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Methods** : It call the Initialize of the allowance contract.
+1. **Calls Smart Contract Methods** : It call the initialization method of the allowance contract.
 
 Let's handle the submit form for set allowance.
 
 ### Submit Set Allowance Form (Parent)
 
-Write the function for handle the set Allowance form.
+Write the function to handle the set allowance form.
 
 - Scroll down to find the comment `// Step O - Handle Set Allowance Submit Form`.
 
@@ -1085,11 +1085,11 @@ const onSubmit = async (value: { amount: string }) => {
 };
 ```
 
-As we completed the step of set Allowance value, now it's time to get that Allowance value form the contract.
+As we have completed the step of setting allowance value, now it's time to get that allowance value form the contract.
 
-### Ge Allowance Value (Parent)
+### Get Allowance Value
 
-Write the function for get the Allowance value.
+Write the function for get the allowance value.
 
 - Scroll down to find the comment `// step P - Get AllowanceValue`.
 
@@ -1119,7 +1119,7 @@ const getAllowance = async () => {
 };
 ```
 
-We completed all functionalities for Parent component and now it's time to prepare functionalities for Child component.
+At this point, we have completed all the functionalities for the parent role and now it's time to prepare functionalities for the child role.
 
 ### Configure Spend Allowance Form
 
@@ -1145,7 +1145,7 @@ const form =useForm <z.infer <typeof formSchema>>{
 
 ### Ge Allowance Value (Child)
 
-Write the function for get the Allowance value.
+Write the function for get the allowance value.
 
 - Scroll down to find the comment `// step R - Get AllowanceValue`.
 
@@ -1172,9 +1172,9 @@ const getAllowance = async () => {
 };
 ```
 
-### Spend Funds (Child)
+### Spend Funds
 
-Write the function for spend the funds value for child.
+Write the function to spend the funds by the child.
 
 - Scroll down to find the comment `// step S - Spend Allowance`.
 
@@ -1232,9 +1232,9 @@ const spendFunds = async (value: { amount: string }) => {
 
 #### What This Function Does:
 
-1. **Calls Smart Contract Methods** : It call the useFunds for spend the allowance value.
+1. **Calls Smart Contract Methods** : It calls the useFunds smart contract method to spend the allowance value.
 
-Let's handle the submit form for spend allowance.
+Let's handle the submit form to spend allowance.
 
 ### Submit Spend Funds Form (Child)
 
@@ -1352,81 +1352,81 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 Now we have  successfully connected our portkey wallet with Allowance dApp so let's move into set Roles functionality throgh Admin wallet.
 ---
 
-**Set Roles (Admin)**
+**Set Roles**
 
-- Click on **"Set Admin"** button assign the admin role.
+- Click on **"Set Admin"** button to assign the admin role.
 
   ![step-1-allowance](/img/step-1-allowance.png)
 
-- A pop-up form will appear to set the admin role. Please enter the wallet address you want to assign as Admin. You can then use this wallet to perform other admin functions.
+- A pop-up form will appear to set the admin role. Please enter the wallet address you want to assign as admin address. You can then use this wallet to perform other admin functions.
 
   ![step-2-allowance](/img/step-2-allowance.png)
 
-- Click on **Set Admin** Button.
+- Click on the **Set Admin** button.
 
-- You will now receive two transaction requests in your Portkey wallet to **sign**. The first request is to initialize the Role contract, and the second is to set the Admin role.
+- You will now receive two transaction requests in your Portkey wallet to **sign**. The first request is to initialize the role contract, and the second is to set the admin role.
 
 - Click on **Sign** for both the transaction.
 
   ![step-3-allowance](/img/step-3-allowance.png)
   ![step-4-allowance](/img/step-4-allowance.png)
 
-- After the transaction is successfully processed, you will be able to see the wallet address for **Admin role**.
+- After the transaction is successfully processed, you will be able to see the wallet address of the **Admin role**.
 
   ![step-5-allowance](/img/step-5-allowance.png)
 
-- As Admin role has been assigned, Please follow same steps for assign the **Parent** and **Child** role.
+- As Admin role has been assigned, Please follow same steps to assign the **Parent** and **Child** roles.
 
   ![step-6-allowance](/img/step-6-allowance.png)
 
-- After assign the Parent and Child role, you will be able to see the wallet addresses for each role.
+- After assigning the Parent and Child roles, you will be able to see the wallet addresses for each of the roles.
 
   ![step-7-allowance](/img/step-7-allowance.png)
 
-We have now assigned the role using the Role contract, and as an Admin, you can update the Parent and Child roles. Next, we need to work with the Allowance contract. To access the Parent component, connect your Parent wallet, and you will automatically switch to the Parent role.
+We have now assigned the role using the role contract, and as an Admin, you can update all the roles. Next, we need to work with the allowance contract. To access the parent front end components, connect the *Parent* address portkey wallet, and you will automatically switch to the Parent role.
 
 ---
 
 **Set Allowance (Parent)**
 
-As a Parent, you can manage Child role functions, such as set a Child, edit the Child's address, and set an allowance for the Child. 
+As a Parent, you can manage child role functions, such as set a child address, edit the child's address, and set an allowance for the child. 
 
   ![step-8-allowance](/img/step-8-allowance.png)
 
-- Click on **Set Allowance** button to set the allowance for Child.
+- Click on **Set Allowance** button to set the allowance for child.
 
   ![step-9-allowance](/img/step-9-allowance.png)
 
-- A pop-up form will appear to set the Allowance. Please enter the amount you want to set as an allowance and Click on **Set Allowance** button on the form.
+- A pop-up form will appear to set the allowance. Please enter the amount you want to set as an allowance and click on the **Set Allowance** button.
 
   ![step-10-allowance](/img/step-10-allowance.png)
 
-- You will now receive two transaction requests in your Portkey wallet to **sign** . The first request is to initialize the Allowance contract, and the second is to set the Allowance.
+- You will now receive two transaction requests in your Portkey wallet to **sign** . The first request is to initialize the allowance contract, and the second is to set the allowance.
 
 - Click on **Sign** for both the transaction.
 
   ![step-11-allowance](/img/step-11-allowance.png)
   ![step-12-allowance](/img/step-12-allowance.png)
 
-- After the transaction is successfully processed, Allowance value will be appear as shown below.
+- After the transaction is successfully processed, allowance value will be appear as shown below.
 
   ![step-13-allowance](/img/step-13-allowance.png)
 
-As we have **Set Allowance Value** successfully. Let's move to the other functionalities for Child. To access the Child component, connect your Child wallet, and you will automatically switch to the Child role.
+As we hav completed **Set Allowance** functionality successfully. Let's move to the other functionalities for the child role. To access the child role's front end components, connect the assigned child's Portkey wallet, and you will automatically switch to the child role.
 
 ---
 
-**Spend Funds (Child)**
+**Spend Funds**
 
-As a Child, you can view the allowance amount and spend funds within the assigned allowance limit.
+As a Child, the allowance amount will be visible and the child can spend funds within the assigned allowance limit.
 
   ![step-14-allowance](/img/step-14-allowance.png)
 
-- Enter the amount you want to spend and Click on **Spend** button.
+- Enter the amount you want to spend and click on the **Spend** button.
 
   ![step-15-allowance](/img/step-15-allowance.png)
 
-- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
+- Now, You will receive a transaction request on your portkey wallet to **Sign** the transaction.
 
   ![step-16-allowance](/img/step-16-allowance.png)
 
