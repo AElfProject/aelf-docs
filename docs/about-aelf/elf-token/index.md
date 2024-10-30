@@ -14,7 +14,7 @@ description: What is ELF?
 
 ELF is the native token of the aelf blockchain, serving multiple critical functions within the ecosystem. ELF is used for paying transaction fees on the aelf blockchain. 
 
-ELF is used by developers to pay block index fees, as cross-chain transfers and verifications require the MainChain to index the SideChain's block information. 
+ELF is used by developers to pay block index fees, as cross-chain transfers and verifications require the MainChain to index the aelf dAppChain's block information. 
 
 ELF is used by individuals or teams who are interested in becoming block producer nodes. To be one of aelf's block producers, they are required to purchase and deposit ELF tokens to participate in the block producer node election. Upon a successful election, the deposited ELF tokens are locked and will be unlocked and returned once the node steps down, provided no violations have occurred. ELF is used by voters to participate in aelf node elections, with each ELF token equating to one vote.
 
@@ -38,9 +38,9 @@ Ethereum: `0xbf2179859fc6d5bee9bf9158632dc51678a4100e`
 
 BSC: `0xa3f020a5c92e15be13caf0ee5c95cf79585eecc9` 
 
-MainChain AELF: `ELF_JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE_AELF` 
+aelf MainChain: `ELF_JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE_AELF` 
 
-SideChain tDVV: `ELF_7RzVGiuVWkvL4VfVHdZfQF2Tri3sgLe9U991bohHFfSRZXuGX_tDVV`
+aelf dAppChain: `ELF_7RzVGiuVWkvL4VfVHdZfQF2Tri3sgLe9U991bohHFfSRZXuGX_tDVV`
 
 :::
 
@@ -105,7 +105,7 @@ As of the latest information, here are the exchanges that support the aelf mainn
 
 Exchanges supporting aelf Mainnet include Binance, Bithumb, Upbit, HTX, OKX, Gate.io, MEXC, and these exchanges support deposits and withdrawals of Mainnet ELF tokens.
 
-Please note that the exchanges supporting aelf Mainnet only support token deposits and withdrawals using MainChain AELF. You should never deposit or withdraw using SideChain tDVV as this may result in your tokens being lost forever.
+Please note that the exchanges supporting aelf Mainnet only support token deposits and withdrawals using aelf MainChain. You should never deposit or withdraw using aelf dAppChain as this may result in your tokens being lost forever.
 
 We recommend verifying the latest information on the exchange platforms or aelf official channels.
 

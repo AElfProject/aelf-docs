@@ -141,14 +141,14 @@ aelf provides a range of educational resources and developer programmes for thos
 
 :::
 
-### 15. Do aelf ecosystem DApps use tokens on the MainChain or SideChain? When staking and earning rewards on aelf ecosystem DApps, are these staked tokens and reward tokens on the MainChain or SideChain? If I do not have any tokens on the SideChain, do I need to transfer them from the MainChain first?
+### 15. Do aelf ecosystem DApps use tokens on the MainChain or dAppChain? When staking and earning rewards on aelf ecosystem DApps, are these staked tokens and reward tokens on the MainChain or dAppChain? If I do not have any tokens on the aelf dAppChain, do I need to transfer them from the MainChain first?
 
-:::faq[Do aelf ecosystem DApps use tokens on the MainChain or SideChain? When staking and earning rewards on aelf ecosystem DApps, are these staked tokens and reward tokens on the MainChain or SideChain? If I do not have any tokens on the SideChain, do I need to transfer them from the MainChain first?]
+:::faq[Do aelf ecosystem DApps use tokens on the MainChain or dAppChain? When staking and earning rewards on aelf ecosystem DApps, are these staked tokens and reward tokens on the MainChain or dAppChain? If I do not have any tokens on the dAppChain, do I need to transfer them from the MainChain first?]
 
-Some aelf ecosystem DApps, like Portkey Wallet, ETransfer, and eBridge, can use tokens on either the MainChain or SideChain, while other DApps, like Awaken and Forest, only support the SideChain, depending on the specific application and its design. Generally, more complex operations, such as DApp interactions, are often handled on SideChains to enhance scalability and reduce congestion on the MainChain.
+Some aelf ecosystem DApps, like Portkey Wallet, ETransfer, and eBridge, can use tokens on either the MainChain or dAppChain, while other DApps, like Awaken and Forest, only support the aelf dAppChain, depending on the specific application and its design. Generally, more complex operations, such as DApp interactions, are often handled on aelf dAppChains to enhance scalability and reduce congestion on the MainChain.
 
-Typically, when you stake tokens or earn rewards through staking and voting on aelf governance, these activities are carried out on the MainChain. However, if you stake tokens or earn rewards through ecosystem DApps, it depends on the specific rules of those DApps; most of them are carried out on the SideChain.
+Typically, when you stake tokens or earn rewards through staking and voting on aelf governance, these activities are carried out on the MainChain. However, if you stake tokens or earn rewards through ecosystem DApps, it depends on the specific rules of those DApps; most of them are carried out on the aelf dAppChain.
 
-If the DApp you are interacting with requires tokens on the SideChain, and you currently only have tokens on the MainChain, you will need to transfer those tokens from the MainChain to the SideChain first. This transfer can usually be done within your Portkey Wallet.
+If the DApp you are interacting with requires tokens on the aelf dAppChain, and you currently only have tokens on the MainChain, you will need to transfer those tokens from the MainChain to the aelf dAppChain first. This transfer can usually be done within your Portkey Wallet.
 
 :::

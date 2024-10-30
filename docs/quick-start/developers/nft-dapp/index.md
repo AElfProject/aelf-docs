@@ -212,7 +212,7 @@ const fetchContract = async (
       );
       setMainChainSmartContract(mainChainContract as IContract);
 
-      // Fetch the SideChain Testnet Contract
+      // Fetch the dAppChain Testnet Contract
       const sideChainContract = await fetchContract(
         "tDVW",
         "ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx"
@@ -229,7 +229,7 @@ const fetchContract = async (
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Contracts** : It fetches and sets the smart contracts for the main chain, side chain, and cross chain.
     - **MainChain Contract** : Fetches the MainChain Testnet Contract and sets it in the state.
-    - **SideChain Contract** : Fetches the SideChain Testnet Contract and sets it in the state.
+    - **dAppChain Contract** : Fetches the dAppChain Testnet Contract and sets it in the state.
 
 By following these steps, we'll configure the Portkey provider to connect users' wallets to your app and interact with the multi-token smart contract including NFT related functionalities. This setup will enable our frontend components to perform actions like `create NFTs`, `validate NFTs`, and `transfer NFTs`.
 
@@ -313,7 +313,7 @@ Now the form is ready for users to fill in the necessary details for their NFT f
 
 ### Create NFT Collection
 
-Let's write the functions to `Create New NFT Collection` on the aelf mainchain and the sidechain.
+Let's write the functions to `Create New NFT Collection` on the aelf mainchain and the dAppChain.
 
 **Step 1: Write the function to `Create New NFT Collection` on the MainChain**
 
@@ -588,12 +588,12 @@ Next, we'll write the **Create a Collection on the cross-chain** function.
 
 **Step 5: Write a function to create a collection on the side chain**
 
-- Scroll up to find the comment `// step 5 - Create a collection on the sidechain`.
+- Scroll up to find the comment `// step 5 - Create a collection on the dAppChain`.
 
 - Replace the existing **`createCollectionOnSideChain`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 5 - Create a collection on the sidechain
+// step 5 - Create a collection on the dAppChain
 const createCollectionOnSideChain = async (
   transactionId: string,
   signedTx: string,
@@ -664,7 +664,7 @@ const createCollectionOnSideChain = async (
 
 #### What This Function Does:
 
-1. **Displays Loading Toast**: Shows a notification indicating the creation process of the collection on the sidechain.
+1. **Displays Loading Toast**: Shows a notification indicating the creation process of the collection on the dAppChain.
 
 2. **Fetches Merkle Path**: Retrieves the merkle path using the provided transactionId.
 
@@ -812,7 +812,7 @@ const validateNftToken = async (values: INftParams) => {
 
     await delay(3000);
 
-    // if SideChain index has a MainChain height greater than validateTokenInfoExist's
+    // if dAppChain index has a MainChain height greater than validateTokenInfoExist's
     let heightDone = false;
 
     while (!heightDone) {
@@ -874,16 +874,16 @@ const validateNftToken = async (values: INftParams) => {
 
 8. **Handles Errors:** Logs errors and returns `"error"` if something goes wrong.
 
-**Step 3: Write a Function for Create NFT on SideChain**
+**Step 3: Write a Function for Create NFT on dAppChain**
 
-Now, let's write the Create NFT on SideChain function.
+Now, let's write the Create NFT on dAppChain function.
 
-1. Scroll down to find the comment `// step 8 - Create a NFT on SideChain`.
+1. Scroll down to find the comment `// step 8 - Create a NFT on dAppChain`.
 
 2. Replace the existing **`createNftTokenOnSideChain`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 8 - Create a NFT on SideChain.
+// step 8 - Create a NFT on dAppChain.
 const createNftTokenOnSideChain = async (values: INftValidateResult) => {
   let createSideChainNFTLoadingId;
   try {
@@ -925,26 +925,26 @@ const createNftTokenOnSideChain = async (values: INftValidateResult) => {
 
 #### Here's what the function does:
 
-1. **Displays Loading Toast:** Shows a notification indicating that the NFT is being created on the SideChain.
+1. **Displays Loading Toast:** Shows a notification indicating that the NFT is being created on the dAppChain.
 
-2. **Prepares Cross-Chain Transaction Parameters:** Constructs the parameters needed for creating the NFT on the SideChain, including chain IDs, block height, transaction data, and Merkle path.
+2. **Prepares Cross-Chain Transaction Parameters:** Constructs the parameters needed for creating the NFT on the dAppChain, including chain IDs, block height, transaction data, and Merkle path.
 
-3. **Calls Smart Contract Method:** Sends the transaction to the SideChain smart contract to create the NFT.
+3. **Calls Smart Contract Method:** Sends the transaction to the dAppChain smart contract to create the NFT.
 
-4. **Handles Success:** Updates the notification to show successful NFT creation on the SideChain.
+4. **Handles Success:** Updates the notification to show successful NFT creation on the dAppChain.
 
 5. **Handles Errors:** Logs errors and returns `"error"` if something goes wrong.
 
-**Step 4: Write a Function for Issue NFT Token which has been Created on SideChain.**
+**Step 4: Write a Function for Issue NFT Token which has been Created on dAppChain.**
 
 Now, let's write the Issue NFT Function.
 
-1. Scroll down to find the comment `// step 9 - Issue a NFT Function which has been Created on SideChain`.
+1. Scroll down to find the comment `// step 9 - Issue a NFT Function which has been Created on dAppChain`.
 
 2. Replace the existing **`issueNftOnSideChain`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 9 - Issue a NFT Function which has been Created on SideChain
+// step 9 - Issue a NFT Function which has been Created on dAppChain
 const issueNftOnSideChain = async (values: {
   symbol: string;
   amount: string;
@@ -992,11 +992,11 @@ const issueNftOnSideChain = async (values: {
 
 #### Here's what the function does:
 
-1. **Displays Loading Toast:** Shows a notification indicating that the NFT is being issued on the SideChain.
+1. **Displays Loading Toast:** Shows a notification indicating that the NFT is being issued on the dAppChain.
 
 2. **Prepares Issuance Input:** Constructs the input parameters for issuing the NFT, including symbol, amount, memo, and recipient address.
 
-3. **Calls Smart Contract Method:** Sends the transaction to the SideChain smart contract to issue the NFT.
+3. **Calls Smart Contract Method:** Sends the transaction to the dAppChain smart contract to issue the NFT.
 
 4. **Handles Success:** Updates the notification to show successful issuance and notifies the user that the NFT will appear in their wallet.
 
@@ -1057,9 +1057,9 @@ const createNftToken = async (values: INftParams) => {
 
 2. **Validates NFT Token:** Waits for 3 seconds, then calls `validateNftToken` to validate the NFT. If validation fails, it updates the transaction status and exits.
 
-3. **Creates NFT on SideChain:** Calls `createNftTokenOnSideChain` to create the NFT on the SideChain using the validated data. If it fails, it updates the transaction status and exits.
+3. **Creates NFT on dAppChain:** Calls `createNftTokenOnSideChain` to create the NFT on the dAppChain using the validated data. If it fails, it updates the transaction status and exits.
 
-4. **Issues NFT on SideChain:** Calls `issueNftOnSideChain` to issue the NFT. Updates the transaction status to false after completion.
+4. **Issues NFT on dAppChain:** Calls `issueNftOnSideChain` to issue the NFT. Updates the transaction status to false after completion.
 
 5. **Handles Errors:** Catches and logs any errors, updates the transaction status, and displays an error notification.
 
@@ -1098,7 +1098,7 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
       return;
     }
 
-    // create NFT Collection on SideChain
+    // create NFT Collection on dAppChain
     await createCollectionOnSideChain(
       validateCollectionResult.transactionId,
       validateCollectionResult.signedTx,
@@ -1116,7 +1116,7 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
 
 3. **Creates and Validates NFT Collection:** If the collection isn’t created, calls `createNftCollectionOnMainChain` to create it. If successful, validates the NFT collection with `validateNftCollectionInfo`.
 
-4. **Creates Collection on SideChain:** If validation is successful, calls `createCollectionOnSideChain` to create the collection on the SideChain.
+4. **Creates Collection on dAppChain:** If validation is successful, calls `createCollectionOnSideChain` to create the collection on the dAppChain.
 
 5. **Handles Errors:** Updates the transaction status to false and exits if any step fails.
 
@@ -1592,7 +1592,7 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 - After **Sign In** the Transaction, Please wait to complete these steps. It will take approx 3-4 minutes.
   - NFT Collection Created Successfully On MainChain.
   - Validating Token Successfully Executed.
-  - Collection was Created Successfully On SideChain.
+  - Collection was Created Successfully On dAppChain.
 
 **Create NFT Token**
 
@@ -1614,7 +1614,7 @@ Please make sure the Symbol will be change to `[your_symbol]-id`. ie `VARBFUXYTY
 
   - NFT Created Successfully on MainChain.
   - Validating NFT Successfully Executed.
-  - NFT Created Successfully On SideChain.
+  - NFT Created Successfully On dAppChain.
   - You will get NFT on your Wallet! It can take sometimes to get into your wallet.
 
 - After Successfully Create NFT, Now you redirected to Home page and as you can see you will get the NFT in your account. (It' take some time to store your NFT in your wallet so please reload the page multiple times till you get the NFT).
@@ -1675,7 +1675,7 @@ aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_A
 ℹ️ Note: `transactionId` Note down the trasnactionId from the above transaction will be used in **step 3**.
 :::
 
-### 4.3 Create NFT Collection on SideChain
+### 4.3 Create NFT Collection on dAppChain
 
 :::tip
 ℹ️ Note: This step cannot be executed via the command line interface (CLI).
@@ -1694,7 +1694,7 @@ transactionBytes = Buffer.from(signedTx, "hex").toString("base64")
 :::
 
 :::tip
-ℹ️ Note: `ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx` is the contract address of the Multi-Token Contract on **aelf Testnet Sidechain**.
+ℹ️ Note: `ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx` is the contract address of the Multi-Token Contract on **aelf Testnet dAppChain**.
 :::
 
 ### 4.4 Create NFT Token on MainChain
@@ -1709,7 +1709,7 @@ aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_A
 aelf-command send JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io ValidateTokenInfoExists
 ```
 
-### 4.6 Create NFT Token on SideChain
+### 4.6 Create NFT Token on dAppChain
 
 ```bash
 aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io CrossChainCreateToken
@@ -1719,7 +1719,7 @@ aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_A
 transactionBytes = Buffer.from(signedTx, "hex").toString("base64")
 ```
 
-### 4.7 Issue NFT Token on SideChain
+### 4.7 Issue NFT Token on dAppChain
 
 ```bash
 aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://aelf-test-node.aelf.io Issue

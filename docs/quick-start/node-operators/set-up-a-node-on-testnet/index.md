@@ -26,7 +26,7 @@ Before starting, install the necessary tools and frameworks. Detailed instructio
 
 * c5.xlarge or N2 instance: 4 vCPU, 8GiB RAM, 800GiB storage, 100 Mbps internet bandwidth
 
-**Note:** For testing or dApp deployment, run a SideChain node only. Use the same configuration for multiple nodes on both MainChain and SideChain.
+**Note:** For testing or dApp deployment, run a dAppChain node only. Use the same configuration for multiple nodes on both MainChain and dAppChain.
 
 **Time Syncing:** Ensure your server is time-synced via NTP to avoid syncing issues.
 
@@ -189,7 +189,7 @@ aelf-command get-blk-height -e http://your-node-ip:port
 
 ### Note
 
-Each side chain has its own P2P network, add the mainnet sidechain nodes as peer:
+Each side chain has its own P2P network, add the mainnet dAppChain nodes as peer:
 
 ````
 ```sh

@@ -106,7 +106,7 @@ Intelligent load balancing, powered by AI and machine learning, offers substanti
 
 ## iv) AI-Facilitated Cross-Chain Interoperability for aelf
 
-Incorporating AI into aelf's cross-chain interoperability framework can significantly enhance the efficiency and security of data transfer and validation processes. By leveraging AI-driven optimisations, aelf can ensure seamless communication and robust performance within itself between MainChain and SideChains, and more importantly with various other blockchain networks.
+Incorporating AI into aelf's cross-chain interoperability framework can significantly enhance the efficiency and security of data transfer and validation processes. By leveraging AI-driven optimisations, aelf can ensure seamless communication and robust performance within itself between MainChain and dAppChains, and more importantly with various other blockchain networks.
 
 ### Optimising Data Transfer
 
