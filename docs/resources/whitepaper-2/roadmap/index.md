@@ -7,7 +7,7 @@ description: 10
 
 This roadmap outlines aelf's strategic integration of AI technologies, focusing on enhancing user and developer experiences, optimising smart contract operations, and ensuring robust, scalable blockchain solutions that is on par with leading technologies. 
 
-![aelf Roadmap](/img/aelf_roadmap.png "aelf Roadmap")
+![aelf Roadmap](/img/aelf_roadmap_2.png "aelf Roadmap")
 
 ## Q3 2024
 
