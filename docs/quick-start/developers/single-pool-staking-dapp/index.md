@@ -1385,7 +1385,7 @@ We are now ready to build the frontend components of our Staking dApp.
 
 We'll set up our Portkey provider to allow users to connect their Portkey wallets to the dApp and interact with the aelf smart contracts. We'll be interacting with the Stakinng contract and the Multi-token contract.
 
-#### Write Functions for MainChain and SideChain Contracts
+#### Write Functions for MainChain and dAppChain Contracts
 
 **Step 1. Locate the File:**
 
@@ -1447,7 +1447,7 @@ const fetchContract = async (
       );
       setMainChainSmartContract(mainChainContract as IContract);
 
-      // Fetch the SideChain Testnet Contract
+      // Fetch the dAppChain Testnet Contract
       const sideChainContract = await fetchContract(
         "tDVW",
         "ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx"
@@ -1464,7 +1464,7 @@ const fetchContract = async (
   - **Check Provider** : If no provider is available, the function returns null.
   - **Fetch Contracts** : It fetches and sets the smart contracts for the main chain, side chain.
   - **MainChain Contract** : Fetches the mainchain testnet contract and sets it in the state.
-  - **SideChain Contract** : Fetches the sidechain testnet contract and sets it in the state.
+  - **dAppChain Contract** : Fetches the dAppChain testnet contract and sets it in the state.
 
 #### Write Functions for Staking Contract
   
@@ -1921,7 +1921,7 @@ const validateToken = async (values: ITokenParams) => {
 
     await delay(3000);
 
-    // if SideChain index has a MainChain height greater than validateTokenInfoExist's
+    // if dAppChain index has a MainChain height greater than validateTokenInfoExist's
     let heightDone = false;
 
     while (!heightDone) {
@@ -1977,16 +1977,16 @@ const validateToken = async (values: ITokenParams) => {
 
 5. **Fetches Merkle Path:** Retrieves the Merkle path for the validated transaction.
 
-### Create Fungible Token on SideChain
+### Create Fungible Token on dAppChain
 
-**Write a Function to Create Token on the SideChain**
+**Write a Function to Create Token on the dAppChain**
 
-- Scroll down to find the comment `// Step M - Create a Token on the SideChain.`.
+- Scroll down to find the comment `// Step M - Create a Token on the dAppChain.`.
 
 - Replace the existing **`createTokenOnSideChain`** function with this code snippet:
 
 ```javascript title="create-token-modal/index.tsx"
-// Step M - Create a Token on the SideChain.
+// Step M - Create a Token on the dAppChain.
 const createTokenOnSideChain = async (values: ITokenValidateResult) => {
   let createSideChainTokenLoadingId;
   try {
@@ -2004,7 +2004,7 @@ const createTokenOnSideChain = async (values: ITokenValidateResult) => {
       merklePath: values.merklePath,
     };
 
-    // Calling CrossChainCreateToken function on sidechain
+    // Calling CrossChainCreateToken function on dAppChain
     await sideChainSmartContract?.callSendMethod(
       "CrossChainCreateToken",
       currentWalletAddress as string,
@@ -2033,21 +2033,21 @@ const createTokenOnSideChain = async (values: ITokenValidateResult) => {
 
 #### Here's what the function does:
 
-1. **Prepares Parameters:** Constructs the parameters needed for creating the token on the sidechain, including chain IDs & block height, transaction data, and Merkle path.
+1. **Prepares Parameters:** Constructs the parameters needed for creating the token on the dAppChain, including chain IDs & block height, transaction data, and Merkle path.
 
-2. **Calls Smart Contract Method:** Sends the transaction to the sidechain smart contract to create the token.
+2. **Calls Smart Contract Method:** Sends the transaction to the dAppChain smart contract to create the token.
 
 
-### Issue the created token on the SideChain
+### Issue the created token on the dAppChain
 
-**Write a Function to Issue Token which has been Created on the SideChain.**
+**Write a Function to Issue Token which has been Created on the dAppChain.**
 
-- Scroll down to find the comment `// Step N - Issue Token on SideChain`.
+- Scroll down to find the comment `// Step N - Issue Token on dAppChain`.
 
 - Replace the existing **`issueTokenOnSideChain`** function with this code snippet:
 
 ```javascript title="create-token-modal/index.tsx"
-// Step N - Issue Token on SideChain
+// Step N - Issue Token on dAppChain
 const issueTokenOnSideChain = async (values: {
   symbol: string;
   amount: string | number;
@@ -2067,7 +2067,7 @@ const issueTokenOnSideChain = async (values: {
       to: currentWalletAddress,
     };
 
-    // call Issue function on sidechain smart contract
+    // call Issue function on dAppChain smart contract
     const result = await sideChainSmartContract?.callSendMethod(
       "Issue",
       currentWalletAddress as string,
@@ -2106,7 +2106,7 @@ const issueTokenOnSideChain = async (values: {
 
 1. **Prepares Issuance Input:** Constructs the input parameters for issuing the token including symbol, amount, memo, and recipient address.
 
-2. **Calls Smart Contract Method:** Sends the transaction to the sidechain smart contract to issue the token.
+2. **Calls Smart Contract Method:** Sends the transaction to the dAppChain smart contract to issue the token.
 
 3. **Handles Success:** Updates the notification to show successful issuance and notifies the user that the token will appear in their wallet.
 
@@ -2138,7 +2138,7 @@ const transferTokenToStakingContract = async (
       memo: "Transfering Amount to Staking Contract for Reward Balance",
     };
 
-    // call Transfer function on sidechain contract
+    // call Transfer function on dAppChain contract
     await sideChainSmartContract?.callSendMethod(
       "Transfer",
       currentWalletAddress as string,
@@ -2168,7 +2168,7 @@ const transferTokenToStakingContract = async (
 
 1. **Prepares Transfer Input:** Constructs the input parameters to transfer the token including to address, symbol, amount & memo.
 
-2. **Calls Smart Contract Method:** Sends the transaction to the sidechain smart contract to transfer the token.
+2. **Calls Smart Contract Method:** Sends the transaction to the dAppChain smart contract to transfer the token.
 
 
 ### Initialize the staking contract
@@ -2297,9 +2297,9 @@ const onSubmit = async (values: {
 
 2. **Validates Create Token Transaction:** Waits for 3 seconds, then calls `validateToken` to validate the token. If validation fails, it updates the transaction status and exits.
 
-3. **Creates Token on the SideChain:** Calls `createTokenOnSideChain` to create the token on the sidechain using the validated data. If it fails, it updates the transaction status and exits.
+3. **Creates Token on the dAppChain:** Calls `createTokenOnSideChain` to create the token on the dAppChain using the validated data. If it fails, it updates the transaction status and exits.
 
-4. **Issues Token on the SideChain:** Calls `issueTokenOnSideChain` to issue the token. Updates the transaction status to false after completion.
+4. **Issues Token on the dAppChain:** Calls `issueTokenOnSideChain` to issue the token. Updates the transaction status to false after completion.
 
 5. **Transferring Reward Amount to the Staking Contract :** Calls `transferTokenToStakingContract` to transfer the reward amount to the staking contract.
 
@@ -2403,7 +2403,7 @@ Now, let's prepare the **Deposit Stake Amount** related functions.
 
 #### Transfer Tokens to the Staking Contract
 
-First, we need to transfer stake amount to the staking contract address using sidechain contract and then we can call the `GetDeposits` function on the staking contract.
+First, we need to transfer stake amount to the staking contract address using dAppChain contract and then we can call the `GetDeposits` function on the staking contract.
 
 - Scroll down to find the comment `// Step S - Function to transfer tokens to the staking contract`.
 
@@ -2844,19 +2844,19 @@ It is highly recommended to pin the Portkey wallet extension for easier access a
 
   ![staking-create-token-validating](/img/staking-create-token-validating.png)
 
-- Once the transaction is successfully validated, a new **Sign** transaction request will pop-up on Portkey to **Create Token on the SideChain**.
+- Once the transaction is successfully validated, a new **Sign** transaction request will pop-up on Portkey to **Create Token on the dAppChain**.
 
 - Click on the **Approve** button and wait for the transaction to complete.
 
   ![staking-create-token-sidechain-request](/img/staking-create-token-sidechain-request.png)
 
-- After the successful creation of the token on the sidechain, a new **Sign** transaction request will pop-up on Portkey to **Issue Tokens On the SideChain**.
+- After the successful creation of the token on the dAppChain, a new **Sign** transaction request will pop-up on Portkey to **Issue Tokens On the dAppChain**.
 
 - Click on the **Approve** button and wait for the transaction to complete.
 
   ![staking-issue-token-request](/img/staking-issue-token-request.png)
 
-- Once tokens are issued successfully on the sidechain, a new **Sign** transaction request will pop-up on Portkey to **Transfer Tokens to the Staking Contract** to distribute future staking rewards.
+- Once tokens are issued successfully on the dAppChain, a new **Sign** transaction request will pop-up on Portkey to **Transfer Tokens to the Staking Contract** to distribute future staking rewards.
 
 - Click on the **Approve** button and wait for the transaction to complete.
 
@@ -2962,7 +2962,7 @@ By now, you should have:
 
   - 📜 Successfully set up your development environment and installed all required packages.
 
-  - 💻 Configured your frontend to interact with both the multi-token and staking smart contracts, enabling functionalities like creating tokens, issuing them on the sidechain, staking, and withdrawing tokens.
+  - 💻 Configured your frontend to interact with both the multi-token and staking smart contracts, enabling functionalities like creating tokens, issuing them on the dAppChain, staking, and withdrawing tokens.
 
 **➡️ What's Next?**
 

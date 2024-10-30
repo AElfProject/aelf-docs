@@ -339,7 +339,7 @@ namespace AElf.Contracts.BuildersDAO
 ```
 
 :::danger
-Aelf sidechain does not allow duplicate identical smart contracts. Hence, we will be using the author variable as the unique identifier for our voting smart contract in order to deploy the smart contract successfully.
+Aelf dAppChain does not allow duplicate identical smart contracts. Hence, we will be using the author variable as the unique identifier for our voting smart contract in order to deploy the smart contract successfully.
 :::
 
 #### Implementing Initialize Function
@@ -552,7 +552,7 @@ public override BoolValue GetMemberExist(Address input)
 
 With that, we have implemented all the functionalities of our Voting dApp smart contract.
 
-In the next step, we will compile our smart contract and deploy our written smart contract to the aelf sidechain.
+In the next step, we will compile our smart contract and deploy our written smart contract to the aelf dAppChain.
 
 <!-- ### Unit Test Voting Smart Contract Logic
 
@@ -780,7 +780,7 @@ useEffect(() => {
     if (!provider) return null;
 
     try {
-      // 1. get the sidechain tDVW using provider.getChain
+      // 1. get the aelf dAppChain using provider.getChain
       const chain = await provider?.getChain("tDVW");
       if (!chain) throw new Error("No chain");
 

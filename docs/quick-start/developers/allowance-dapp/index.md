@@ -571,7 +571,7 @@ const fetchContract = async (address: string) => {
   if (!provider) return null;
 
   try {
-    // 1. get the sidechain tDVW using provider.getChain
+    // 1. get the dAppChain using provider.getChain
     const chain = await provider?.getChain("tDVW");
     if (!chain) throw new Error("No chain");
 

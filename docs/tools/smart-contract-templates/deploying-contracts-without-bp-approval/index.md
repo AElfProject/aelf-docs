@@ -12,11 +12,11 @@ Contracts can be deployed/updated via aelf explorer or aelf-command. Ensure npm 
 
 In these 6 cases, **BP approval is not needed for contract deployment/updates:**
 
-- Deploying user contracts on shared SideChains (initiated by users or BPs).
-- Updating user contracts on shared SideChains (initiated by contract creators).
-- Deploying user contracts on exclusive SideChains (initiated by SideChain creators).
-- Updating user contracts on exclusive SideChains (initiated by contract creators).
-- Deploying user contracts on MainChain (initiated by BPs, recommended on SideChains).
+- Deploying user contracts on shared dAppChains (initiated by users or BPs).
+- Updating user contracts on shared dAppChains (initiated by contract creators).
+- Deploying user contracts on exclusive dAppChains (initiated by dAppChain creators).
+- Updating user contracts on exclusive dAppChains (initiated by contract creators).
+- Deploying user contracts on MainChain (initiated by BPs, recommended on dAppChains).
 - Updating user contracts on MainChain (initiated by contract creators).
 
 ![Deploying Contract without BP Approval](/img/No-BP-approval-required.webp)
