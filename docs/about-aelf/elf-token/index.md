@@ -105,7 +105,7 @@ As of the latest information, here are the exchanges that support the aelf mainn
 
 Exchanges supporting aelf Mainnet include Binance, Bithumb, Upbit, HTX, OKX, Gate.io, MEXC, and these exchanges support deposits and withdrawals of Mainnet ELF tokens.
 
-Please note that the exchanges supporting aelf Mainnet only support token deposits and withdrawals using MainChain AELF. You should never deposit or withdraw using aelf dAppChain as this may result in your tokens being lost forever.
+Please note that the exchanges supporting aelf Mainnet only support token deposits and withdrawals using aelf MainChain. You should never deposit or withdraw using aelf dAppChain as this may result in your tokens being lost forever.
 
 We recommend verifying the latest information on the exchange platforms or aelf official channels.
 
