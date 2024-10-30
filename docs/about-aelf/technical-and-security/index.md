@@ -90,12 +90,12 @@ ELF token holders would vote to elect a set of 'Core Data Centers', which are al
 
 :::faq[How are transactions processed on the aelf network?]
 
-Transactions on the aelf blockchain are processed through a combination of its AEDPoS (aelf Delegated Proof of Stake) consensus mechanism and sidechain architecture that enables parallel processing. Here's what happens when a user initiates a transaction:
-- The transaction is broadcast to the relevant network and sidechain
-- The Core Data Center (also known as the miner) of that particular sidechain will validate the transaction and package it into blocks
+Transactions on the aelf blockchain are processed through a combination of its AEDPoS (aelf Delegated Proof of Stake) consensus mechanism and dAppChain architecture that enables parallel processing. Here's what happens when a user initiates a transaction:
+- The transaction is broadcast to the relevant network and dAppChain
+- The Core Data Center (also known as the miner) of that particular dAppChain will validate the transaction and package it into blocks
 - Through the AEDPoS, the elected Core Data Centers take turns to produce blocks. The produced blocks are validated by other Core Data Centers to ensure accuracy and integrity.
-- Once a block is validated and added to the sidechain's blockchain, the transactions are final and irreversible
-- In the event a transaction requires interaction between different sidechains, aelf's interoperability ensures the transfer and synchronisation of data across chains.
+- Once a block is validated and added to the dAppChain's blockchain, the transactions are final and irreversible
+- In the event a transaction requires interaction between different dAppChains, aelf's interoperability ensures the transfer and synchronisation of data across chains.
 
 :::
 
@@ -109,7 +109,7 @@ Some common issues that users may face include network congestion, technical dif
 
 Users might experience delays during peak times. 
 
-**Solution**: aelf's multi-sidechain architecture distributes workload efficiently to minimise congestion.
+**Solution**: aelf's multi-dAppChain architecture distributes workload efficiently to minimise congestion.
 
 #### Technical Difficulties
 Issues with wallet integration or transaction processing. 
@@ -126,7 +126,7 @@ Navigating the platform might be difficult for new users.
 
 **Solution**: User-friendly interfaces and tutorials are provided to ease the onboarding process.
 
-:::
+<!-- :::
 
 ### 9. How does aelf's Layer 2 ZK Rollup technology work, and what benefits does it offer?
 
@@ -142,25 +142,25 @@ Benefits of implementing ZK rollups on aelf include:
 - **Reduced Data Storage**: Since only a small amount of data needs to be stored on-chain (mainly the proof and the batch's final state), it helps in reducing blockchain's storage.
 - **Interoperability**: ZK rollups can be designed to work with various layer-1 blockchains, enhancing cross-chain compatibility and communication.
 
-:::
+::: -->
 
-### 10. How does aelf compare to other blockchain platforms in terms of transaction speed and scalability?
+### 9. How does aelf compare to other blockchain platforms in terms of transaction speed and scalability?
 
 :::faq[How does aelf compare to other blockchain platforms in terms of transaction speed and scalability?]
 
-aelf stands out in the blockchain landscape with its exceptional transaction speed and scalability. Its multi-sidechain architecture enables parallel processing of transactions, significantly enhancing both speed and scalability compared to traditional single-chain systems. Furthermore, aelf leverages advanced Layer 2 solutions such as ZK Rollups to further improve performance and efficiency. In terms of benchmarking, aelf consistently performs favourably against other leading blockchain platforms in transaction throughput and network efficiency. Additionally, aelf integrates artificial intelligence (AI) to optimise various aspects of its operations, including smart contract execution and network management, which further boosts its performance and scalability. This combination of multi-sidechain architecture, advanced Layer 2 solutions, and AI integration positions aelf as a superior choice in the blockchain arena.
+aelf stands out in the blockchain landscape with its exceptional transaction speed and scalability. Its multi-dAppChain architecture enables parallel processing of transactions, significantly enhancing both speed and scalability compared to traditional single-chain systems. In terms of benchmarking, aelf consistently performs favourably against other leading blockchain platforms in transaction throughput and network efficiency. Additionally, aelf integrates artificial intelligence (AI) to optimise various aspects of its operations, including smart contract execution and network management, which further boosts its performance and scalability. This combination of multi-dAppChain architecture, advanced Layer 2 solutions, and AI integration positions aelf as a superior choice in the blockchain arena.
 
 :::
 
-### 11. What is the difference between aelf's MainChain and SideChains?
+### 10. What is the difference between aelf's MainChain and dAppChains?
 
-:::faq[What is the difference between aelf's MainChain and SideChains?]
+:::faq[What is the difference between aelf's MainChain and dAppChains?]
 
-aelf's MainChain and SideChains serve distinct but complementary roles within its blockchain architecture. The MainChain acts as the backbone of the network, responsible for overall governance, security, and coordination. It manages cross-chain interactions and ensures the integrity of the entire ecosystem. SideChains, on the other hand, are specialised chains that handle specific types of transactions or applications. They operate independently but are connected to the MainChain, allowing for parallel processing of transactions. This design significantly enhances scalability by distributing the workload across multiple SideChains, reducing congestion and improving performance. Each SideChain can be customised for different use cases, providing flexibility and efficiency in handling diverse applications.
+aelf's MainChain and aelf dAppChains serve distinct but complementary roles within its blockchain architecture. The MainChain acts as the backbone of the network, responsible for overall governance, security, and coordination. It manages cross-chain interactions and ensures the integrity of the entire ecosystem. aelf dAppChains, on the other hand, are specialised chains that handle specific types of transactions or applications. They operate independently but are connected to the MainChain, allowing for parallel processing of transactions. This design significantly enhances scalability by distributing the workload across multiple aelf dAppChains, reducing congestion and improving performance. Each aelf dAppChain can be customised for different use cases, providing flexibility and efficiency in handling diverse applications.
 
 :::
 
-### 12. What is the transaction gas fee on the aelf blockchain? Are there any addresses that are exempt from fees?
+### 11. What is the transaction gas fee on the aelf blockchain? Are there any addresses that are exempt from fees?
 
 :::faq[What is the transaction gas fee on the aelf blockchain? Are there any addresses that are exempt from fees?]
 
@@ -183,7 +183,7 @@ If address A has a balance of 10 ELF at 1:00 UTC today but transfers out 7 ELF a
 
 :::
 
-### 13. At what block confirmation number on the aelf blockchain can we consider it unlikely that a chain becomes reversible?
+### 12. At what block confirmation number on the aelf blockchain can we consider it unlikely that a chain becomes reversible?
 
 :::faq[At what block confirmation number on the aelf blockchain can we consider it unlikely that a chain becomes reversible?]
 
@@ -193,27 +193,27 @@ The most accurate method is to follow the calculation based on the LIB (Last Irr
 
 :::
 
-### 14. What is the RPC service address for the SideChain tDVV?
+### 13. What is the RPC service address for the aelf dAppChain?
 
-:::faq[What is the RPC service address for the SideChain tDVV?]
+:::faq[What is the RPC service address for the aelf dAppChain?]
 
 You can access it via the following link: https://tdvv-public-node.aelf.io/
 
 :::
 
-### 15. Is a cross-chain transaction on the aelf blockchain considered a single transaction or two? Are there any examples?
+### 14. Is a cross-chain transaction on the aelf blockchain considered a single transaction or two? Are there any examples?
 
 :::faq[Is a cross-chain transaction on the aelf blockchain considered a single transaction or two? Are there any examples?]
 
-Cross-chain transactions between the MainChain and SideChain are considered two separate transactions. For example, transferring 1.5 ELF from the SideChain address ELF_75sSRT8rJqrKNF8h169qwwhiFLgXjaoLjthtA6ihnf7TnRDqB_tDVV to the MainChain address ELF_75sSRT8rJqrKNF8h169qwwhiFLgXjaoLjthtA6ihnf7TnRDqB_AELF:
+Cross-chain transactions between the MainChain and dAppChain are considered two separate transactions. For example, transferring 1.5 ELF from the aelf dAppChain address ELF_75sSRT8rJqrKNF8h169qwwhiFLgXjaoLjthtA6ihnf7TnRDqB_tDVV to the MainChain address ELF_75sSRT8rJqrKNF8h169qwwhiFLgXjaoLjthtA6ihnf7TnRDqB_AELF:
 
-First, a transaction called CrossChainTransfer is initiated on the SideChain: https://tdvv-explorer.aelf.io/tx/2b01a4cac416ae77c6f98c8a7cace66d2fb1edd565a5c0bedb9f44b395103895
+First, a transaction called CrossChainTransfer is initiated on the aelf dAppChain: https://tdvv-explorer.aelf.io/tx/2b01a4cac416ae77c6f98c8a7cace66d2fb1edd565a5c0bedb9f44b395103895
 
 Then, a transaction called CrossChainReceiveToken is generated on the MainChain: https://explorer.aelf.io/tx/db29e36851549e3c5650ba853078ab02c6bb31c252ddfd7e0f8a7c33191ca3dd
 
 :::
 
-### 16. How to become a Block Producer (BP)? How to run a full node?
+### 15. How to become a Block Producer (BP)? How to run a full node?
 
 :::faq[How to become a Block Producer (BP)? How to run a full node?]
 

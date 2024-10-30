@@ -30,7 +30,7 @@ There are two ways to run an aelf node: using Docker (recommended) or running bi
 **Note:**
 
 * For non-block producing nodes, there is no requirement on the number of nodes.
-* To become a BP, run individual nodes for both MainChain aelf and all SideChains.
+* To become a BP, run individual nodes for both aelf MainChain and all dAppChains.
 
 **Time Syncing:** Ensure your server is time-synced via NTP to avoid syncing issues.
 

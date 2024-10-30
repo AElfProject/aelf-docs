@@ -1,6 +1,6 @@
 ---
 sidebar_position: 9
-title: Beyond AI - A Modular + ZK Rollup Blockchain
+title: An AI-enhanced Layer 1 blockchain
 description: ""
 ---
 # aelf as a modular blockchain
@@ -21,11 +21,11 @@ By separating these tasks, a modular blockchain enables independent optimisation
 
 ## The present status of aelf
 
-As elaborated before, aelf operates on a mainchain-sidechain architecture. Its sidechains resemble the consumer chains of Cosmos or the parachains of Polkadot. Similar to these platforms, aelf decouples functionality at the code level — a modular or deconstructed approach rooted in software engineering principles. The primary objectives of this architecture are to facilitate the development of modular plugins within the aelf ecosystem and to enable the loading of various modules in a pluggable manner, thereby enhancing aelf's scalability and flexibility. For instance, the consensus functionality can be treated as a pluggable/replaceable code package, making it convenient for developers to customise.
+As elaborated before, aelf operates on a mainchain-dAppChain architecture. Its dAppChains resemble the consumer chains of Cosmos or the parachains of Polkadot. Similar to these platforms, aelf decouples functionality at the code level — a modular or deconstructed approach rooted in software engineering principles. The primary objectives of this architecture are to facilitate the development of modular plugins within the aelf ecosystem and to enable the loading of various modules in a pluggable manner, thereby enhancing aelf's scalability and flexibility. For instance, the consensus functionality can be treated as a pluggable/replaceable code package, making it convenient for developers to customise.
 
-Notwithstanding the aforementioned points, the current mainchain-sidechain architecture of aelf experiences performance bottlenecks, particularly in terms of its TPS capacity. aelf will be introducing a new Layer 2 chain utilising [ZK Rollup technology](https://ethereum.org/en/developers/docs/scaling/zk-rollups/) that would considerably enhance aelf's performance, scalability, and compatibility with the Ethereum Virtual Machine (EVM). 
+Notwithstanding the aforementioned points, the current mainchain-dAppChain architecture of aelf experiences performance bottlenecks, particularly in terms of its TPS capacity. aelf will be introducing a modular chain structure that would considerably enhance aelf's performance, scalability, and compatibility with the other blockchain Virtual Machines (VMs). 
 
-Consequently, we have initiated the **Modular + ZK Rollup project** to address these challenges.
+Consequently, we have initiated the **Modular Blockchain project** to address these challenges.
 
 ## The aelf solution
 
@@ -43,7 +43,7 @@ The aelf ZK-rollup utilises Polygon CDK, an advanced open-source framework desig
 
 Operating in the validium mode while maintaining seamless interoperability with all other EVM chains, aelf ZK-rollup offers a high-performance Layer 2 scaling solution. As transaction data is not stored on the aelf mainnet but executed and stored off-chain, this significantly enhances scalability. Validium, under the premise of ensuring security, reduces L1 gas storage costs, thereby lowering transaction costs for users on Layer 2 while significantly improving user privacy and experience.
 
-Unlike traditional rollups and sidechains, aelf ZK-rollup only shares proofs of validity, which are used to confirm transaction outcomes with Layer 1, rather than the actual executed transaction data. Its operation works as follows: A verifier smart contract is deployed on aelf Layer 1, and validium submits proofs of validity to this contract. These proofs, inherently zero-knowledge, contain transaction results without revealing specific transaction data.
+Unlike traditional rollups and dAppChains, aelf ZK-rollup only shares proofs of validity, which are used to confirm transaction outcomes with Layer 1, rather than the actual executed transaction data. Its operation works as follows: A verifier smart contract is deployed on aelf Layer 1, and validium submits proofs of validity to this contract. These proofs, inherently zero-knowledge, contain transaction results without revealing specific transaction data.
 
 The verifier smart contract assesses the validity of the proofs. Should any batch submitted by validium be found invalid, it will be rejected and not stored on the aelf Layer 1.
 
@@ -68,9 +68,9 @@ Advantages of DAC include:
 1. reduce transaction fees; less computation equals lower costs. 
 2. state privacy; maintaining secure records of state changes for data integrity.
 
-### aelf ZK-rollup Node
+<!-- ### aelf ZK-rollup Node
 
-aelf ZK-rollup Node is used to process transactions, synchronises states, generates, and submits proofs. Sequencers and aggregators manage L2 state and finality on L1. 
+aelf ZK-rollup Node is used to process transactions, synchronises states, generates, and submits proofs. Sequencers and aggregators manage L2 state and finality on L1.  -->
 
 #### zkEVM / ZKProver
 

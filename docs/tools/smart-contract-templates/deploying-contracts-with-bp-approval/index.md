@@ -13,8 +13,8 @@ Contracts can be deployed or updated via two methods: aelf explorer or aelf-comm
 In these cases, **BP approval is needed for contract updates:**
 
 - Upgrading system contracts on MainChain.
-- Upgrading system contracts on exclusive SideChains.
-- Upgrading system contracts on shared SideChains.
+- Upgrading system contracts on exclusive dAppChains.
+- Upgrading system contracts on shared dAppChains.
 
 System contracts can only be deployed in the Genesis block. After launch, only updates are supported. This guide focuses on contract deployment on aelf Mainnet with `ContractDeploymentAuthorityRequired` set to true.
 

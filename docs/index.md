@@ -11,7 +11,7 @@ hide_table_of_contents: true
 
 # aelf Documentation
 
-aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes in cloud data centers. It supports parallel smart contract execution, microservices, and scalable MainChain and multi-SideChains architecture. The cross-chain design enables fast data interaction, and its hybrid SideChain model reduces costs and boosts network performance.
+aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes in cloud data centers. It supports parallel smart contract execution, microservices, and scalable MainChain and multi-dAppChains architecture. The cross-chain design enables fast data interaction, and its hybrid aelf dAppChain model reduces costs and boosts network performance.
 
 <section className="row margin-top--xl">
 

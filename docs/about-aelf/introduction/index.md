@@ -12,7 +12,7 @@ description: What is aelf?
 
 :::faq[What is aelf?]
 
-aelf, an AI-enhanced Layer 1 blockchain network, leverages the robust C# programming language for efficiency and scalability across its sophisticated multi-layered architecture. Founded in 2017 with its global hub in Singapore, aelf is a pioneer in the industry, leading Asia in evolving blockchain with state-of-the-art AI integration and modular Layer 2 ZK Rollup technology, ensuring an efficient, low-cost, and highly secure platform that is both developer and end-user friendly. Aligned with its progressive vision, aelf is committed to fostering innovation within its ecosystem and advancing Web3 and AI technology adoption. For more information about aelf, please refer to our [Whitepaper V2.0](https://docs.aelf.com/resources/whitepaper-2/).
+aelf, an AI-enhanced Layer 1 blockchain network, leverages the robust C# programming language for efficiency and scalability across its sophisticated multi-layered architecture. Founded in 2017 with its global hub in Singapore, aelf is a pioneer in the industry, leading Asia in evolving blockchain with state-of-the-art AI integration to ensure an efficient, low-cost, and highly secure platform that is both developer and end-user friendly. Aligned with its progressive vision, aelf is committed to fostering innovation within its ecosystem and advancing Web3 and AI technology adoption. For more information about aelf, please refer to our [Whitepaper V2.0](https://docs.aelf.com/resources/whitepaper-2/).
 
 :::
 
@@ -52,7 +52,7 @@ aelf is primarily a multi-chain parallel computing blockchain network which was 
 
 :::faq[What makes aelf different from other blockchains? Why is aelf unique?]
 
-aelf's unique strength lies in its underlying architecture, which utilises a multi-layered structure comprising a MainChain and multiple SideChains. This differs from a traditional Single Chain system in that aelf is a "Branched Ecosystem", where the MainChain works as the backbone of the system and connects to multiple SideChains. Compared with the traditional "one Chain to any type of Contract", aelf's "One Chain to one type of Contract" design allows aelf to distribute tasks efficiently and process transactions in parallel, significantly enhancing scalability and reducing congestion. At the same time, the SideChains are easier to manage and can be tailored for specific applications, enabling aelf to support a wide range of use cases without compromising performance.
+aelf's unique strength lies in its underlying architecture, which utilises a multi-layered structure comprising a MainChain and multiple dAppChains. This differs from a traditional Single Chain system in that aelf is a "Branched Ecosystem", where the MainChain works as the backbone of the system and connects to multiple dAppChains. Compared with the traditional "one Chain to any type of Contract", aelf's "One Chain to one type of Contract" design allows aelf to distribute tasks efficiently and process transactions in parallel, significantly enhancing scalability and reducing congestion. At the same time, the aelf dAppChains are easier to manage and can be tailored for specific applications, enabling aelf to support a wide range of use cases without compromising performance.
 
 The [C# programming language](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/) forms the foundation of the entire aelf blockchain, which underpins aelf's ability to handle high transaction volumes and complex operations with ease. C# also offers a powerful foundation for AI integration in blockchain development, primarily due to its alignment with the [.NET ecosystem](https://dotnetfoundation.org/), which provides a wide range of libraries and tools that facilitate the development of sophisticated AI models, including the integration of machine learning algorithms, natural language processing (NLP), and data analytics. The integration of AI into the aelf ecosystem marks a significant advancement in the blockchain’s operational capabilities which not only optimises performance and security, but also plays a crucial role in transitioning mass Web2 users to Web3 by significantly improving the overall user and developer experience.
 
@@ -126,7 +126,7 @@ Nevertheless, do continue to stay updated via our [website](https://aelf.com/), 
 
 The primary cryptocurrency supported on the aelf blockchain is the ELF token. This token has several functions within the aelf ecosystem, including governance, resource allocation, and staking.
 
-As aelf is a multi-chain network with various sidechains, users can unlock utility with other tokens specific to dApps built on the aelf ecosystem, such as [AwakenSwap](https://awaken.finance/), [Portkey](https://portkey.finance/), and [Project Schrodinger](https://schrodingernft.ai/). Here are some of the supported tokens and stablecoins:
+As aelf is a multi-chain network with various dAppChains, users can unlock utility with other tokens specific to dApps built on the aelf ecosystem, such as [AwakenSwap](https://awaken.finance/), [Portkey](https://portkey.finance/), and [Project Schrodinger](https://schrodingernft.ai/). Here are some of the supported tokens and stablecoins:
 - ELF
 - USDT
 - BNB

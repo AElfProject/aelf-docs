@@ -28,7 +28,7 @@ description: Participate in BP election
 
 aelf doesn't have light nodes, so all nodes are full nodes. [Click here](/quick-start/node-operators/set-up-a-node-on-mainnet/) to learn how to set up a full node.
 
-**Note:** To become a BP, you need to run individual nodes for both MainChain aelf and all the SideChains.
+**Note:** To become a BP, you need to run individual nodes for both aelf MainChain and all the dAppChains.
 
 ### Participate in BP Election
 
