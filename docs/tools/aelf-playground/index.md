@@ -10,6 +10,8 @@ description: Play with aelf in your browser.
 
 aelf Playground is a sandbox for new developers who want to experience smart contract development with aelf without installing any tools on their local computer.
 
+<iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/-6QCKSpAXGc?si=TLFbIsZGpkFV0cGL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## 2. Setting up
 
 No setup is needed. Simply visit [aelf Playground](https://playground.aelf.com) in your browser.
