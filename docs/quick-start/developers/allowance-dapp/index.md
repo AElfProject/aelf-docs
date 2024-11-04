@@ -441,6 +441,70 @@ namespace AElf.Contracts.AllowanceContract
 }
 ```
 
+### Add Inter-Contract Calls
+- Now, AllowanceContract needs to create a reference with the RoleContract. First, AllowanceContract will use the `role_contract.proto` file inside the **Protobuf/reference** folder. Copy the `role_contract.proto` from the role-contract/src/Protobuf/contract folder.
+
+```csharp title="role_contract.proto"
+syntax = "proto3";
+
+import "aelf/core.proto"; 
+
+import "google/protobuf/empty.proto";
+import "Protobuf/reference/acs12.proto";
+import "aelf/options.proto";  
+import "google/protobuf/wrappers.proto"; 
+
+// The namespace of this class
+option csharp_namespace = "AElf.Contracts.RoleContract";
+
+service RoleContract {
+
+  // The name of the state class the smart contract is going to use to access blockchain state
+  option (aelf.csharp_state) = "AElf.Contracts.RoleContract.RoleContractState";
+  option (aelf.base) = "Protobuf/reference/acs12.proto";
+
+  rpc Initialize (google.protobuf.Empty) returns (google.protobuf.Empty){
+
+  }
+
+  rpc SetAdmin (aelf.Address) returns (google.protobuf.Empty) {
+  }
+
+  rpc GetAdmin (google.protobuf.Empty) returns (google.protobuf.StringValue) {
+    option (aelf.is_view) = true;
+  }
+
+  rpc SetParent (aelf.Address) returns (google.protobuf.Empty) {
+  }
+
+  rpc GetParent (google.protobuf.Empty) returns (google.protobuf.StringValue) {
+    option (aelf.is_view) = true;
+  }
+
+  rpc SetChild (aelf.Address) returns (google.protobuf.Empty) {
+  }
+
+  rpc GetChild (google.protobuf.Empty) returns (google.protobuf.StringValue) {
+    option (aelf.is_view) = true;
+  }
+
+}
+```
+
+  - Now, create a file inside `src` folder and name it as `ContractReferences.cs` and add the following code to establish connection between AllowanceContract and the RoleContract.
+
+```csharp title="ContractReferences.cs"
+using AElf.Contracts.RoleContract;
+
+namespace AElf.Contracts.AllowanceContract
+{
+    public partial class AllowanceContractState
+    {
+        internal RoleContractContainer.RoleContractReferenceState RoleContract { get; set; }
+    }
+}
+```
+
 ### Building Allowance Smart Contract
 
 - Build the smart contract code with the following command inside `src` folder:
