@@ -85,6 +85,10 @@ Once all the changes are done in the above files and all other required files (w
 5. **Deploy**: Deploy the smart contract code on the aelf blockchain. It will show `Deploying` status when the user clicks the `Deploy` button and will output below result including `transactionId`, `proposal status` and `contract address` once the build process ends. You can verify the contract address by visiting [aelf testnet explorer](https://testnet.aelfscan.io/tDVW).
 
   ![Deploy](/img/playground-13.png)
+
+5. **Contract Viewer**: The Contract Viewer in the Playground automatically appears after a smart contract is deployed, allowing users to test and interact with the contract immediately. This feature displays all available contract functions, both read and write, enabling users to execute them directly within the Playground. It provides a streamlined way to explore and perform actions on the contract without additional setup, making contract testing and function execution more accessible.
+
+  ![Deploy](/img/contract-viewer.png)
   
 6. **Export**: Export the project in a local directory. It will open an alert to save the workspace in the local directory. Users can rename the local directory.
 
@@ -403,6 +407,12 @@ namespace AElf.Contracts.ToDo
 - Once your smart contract deploy successfully, You will get **Contract Address** in terminal.
 
   ![playground-example-img-9](/img/playground-example-img-9.png)
+
+### Contract Viewer
+
+- The Contract Viewer will appear once your contract is successfully deployed, allowing you to execute all functions directly within the Playground.
+
+  ![Deploy](/img/contract-viewer.png)
 
 ### Export Smart Contract
 
