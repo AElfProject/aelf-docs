@@ -9,7 +9,7 @@ description: Smart contracts explaining inter-contract calls
 **Purpose**: The purpose of this dApp is to teach state management, access control, and inter smart contract calls on the aelf blockchain. This example models how multi-contract systems work together and call each other to securely manage roles and funds in a blockchain environment.
 **Difficulty Level**: Moderate
 
-<!-- <iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/sBNfFADQMXg?si=wbCGIIxez-nh0PC-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+<iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/LPWVIlLJY5I?si=nEkHdrWz8UK1Czk0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Step 1 - Setting up your development environment
 
