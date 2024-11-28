@@ -118,12 +118,14 @@ Once all the changes are done in the above files and all other required files (w
 
   ![Add a New File](/img/playground-20.png)
 
-
 14. **Deployments**: `Deployments` section provides a list of all deployed tutorials along with the wallet address used to deploy smart contracts on the aelf blockchain. You can click on the wallet address to view wallet details on the aelf explorer.
 
   ![Add a New File](/img/playground-21.png)
 
-15. **Themes**: Users can also choose to toggle between `dark` and `light` themes.
+15. **Privatekey**: You can export your wallet's private key from the `Deployments` section. Simply click the eye icon to reveal the private key, which you can then copy.
+![Add a New File](/img/playground-24.png)
+
+16. **Themes**: Users can also choose to toggle between `dark` and `light` themes.
 
   ![Add a New File](/img/playground-22.png)
 
