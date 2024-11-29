@@ -2266,7 +2266,7 @@ In this section, we'll explore how oracle calls work in the aelf blockchain to g
 ### 8. **Error Handling**
    - **Failure Management**: If the token transfer fails (e.g., due to insufficient funds), the dice contract handles the error by potentially reverting the transaction or notifying the user.
 
-By following these steps, you can see how inter-contract calls in aelf allow different contracts to work together smoothly. This modular approach helps in building complex applications like a dice game by ensuring secure and authorized interactions between contracts.
+By following these steps, you can see how oracle networks can be used to generate a truly verifiable random number. This modular approach helps in building complex applications like a dice game by ensuring secure and authorized interactions between contracts.
 
 
 ## 🎯 Conclusion 
