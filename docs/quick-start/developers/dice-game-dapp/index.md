@@ -2226,9 +2226,9 @@ aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e ht
 aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetContractBalance
 ```
 
-## Understanding Inter-Contract Calls in aelf
+## Understanding randomization using Oracle Contract in aelf
 
-In this section, we'll explore how inter-contract calls work in the aelf blockchain using the dice game example from the tutorial. This will help you understand how different smart contracts can interact to perform complex operations.
+In this section, we'll explore how oracle calls work in the aelf blockchain to generate a verifiable random number using the dice game example from the tutorial. This will help you understand how different smart contracts can interact to perform complex operations.
 
 ### 1. **Smart Contract Overview**
    - **Dice Master Contract**: Manages the game, including initialization, token deposit/withdrawal, interaction with oracle for random number generation and decision of win or lose based on dice outcome.
