@@ -1,17 +1,17 @@
 ---
-sidebar_position: 5
+sidebar_position: 10
 title: Dice Game dApp
-description: Moderately difficult smart contract and dApp
+description: Moderately complex smart contract
 ---
 
-**Description**: This contract is moderately complex, demonstrating oracle interactions with smart contracts to create a dice game where users can bet on the outcome of a dice roll.
+**Description**: This contract is moderately complex. It demonstrates the use of
+state variables, user interactions, and random number generation using Aetherlink VRF to create a dice game where users can bet on the outcome of the dice roll. Aetherlink is a decentralized oracle network on aelf blockchain.
 
-**Purpose**: To introduce you to state management in smart contracts, focusing on oracle interactions, user interactions, and contract updates for handling state of the game.
+**Purpose**: To introduce you to more advanced concepts such as state management, event handling, and randomization using oracle networks in smart contracts.
 
 **Difficulty Level**: Moderate
 
-<iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/9sefSIWX6Fw?si=2ijoq9jVnUFUohJ5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+<iframe width="100%" style={{"aspect-ratio": "16 / 9"}} src="https://www.youtube.com/embed/sBNfFADQMXg?si=wbCGIIxez-nh0PC-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Step 1 - Setting up your development environment
 
@@ -28,20 +28,15 @@ import Setup from "../\_setup.md"
 - Enter the following command to generate a new project:
 
 ```bash title="Terminal"
-mkdir dice-game-app
-cd dice-game-app
-dotnet new aelf -n DiceGameApp
+mkdir dice-game
+cd dice-game
+dotnet new aelf -n DiceGame
 ```
 
 ### Adding Your Smart Contract Code
 
-Now that we have a template todo list project, we can customise the template to incorporate our own contract logic.
-Let's start by implementing methods to handle the basic functionality of creating, editing, listing, deleting, and marking tasks as complete within the contract state. ToDo dApp includes the below functionalities like:
-1. Create a task (Name, category, description, createAt, updatedAt)
-2. Mark task as completed 
-3. Delete a task 
-4. List all the tasks
-5. Edit a task
+Now that we have a template dice game project, we can customise the template to incorporate our own contract logic.
+Lets start by implementing methods to provide basic functionality for interacting with oracle to generate verifiable random number. Then updating and reading a message stored persistently in the contract state to determine outcome of the game.
 
 - Enter this command in your `Terminal`.
 
@@ -51,216 +46,1415 @@ cd src
 
 #### Defining Methods and Messages
 
-- Rename the proto file name `hello_world_contract.proto` inside folder `Protobuf/contract/` to `todo_app.proto`:
+- Rename the file name from `Protobuf/contract/hello_world_contract.proto` to `dice_master_contract.proto`:
 
 ```bash title="Terminal"
-mv Protobuf/contract/hello_world_contract.proto Protobuf/contract/todo_app.proto
+mv Protobuf/contract/hello_world_contract.proto Protobuf/contract/dice_master_contract.proto
 ```
 
-The `.proto` file defines the structure and serialization of data, ensuring consistent communication and data exchange between the contract and external systems.
+- open the project with your IDE.
 
-- Open the project with your IDE.
+The implementation of file `src/Protobuf/contract/dice_master_contract.proto` is as follows:
 
-The implementation of `todo_app.proto` file inside folder `src/Protobuf/contract/` is as follows:
-
-```csharp title="todo_app.proto"
+```csharp title="dice_master_contract.proto"
 syntax = "proto3";
+
+import "aelf/core.proto";
 import "aelf/options.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 import "Protobuf/reference/acs12.proto";
+import "Protobuf/message/request_interface.proto";
 // The namespace of this class
-option csharp_namespace = "AElf.Contracts.ToDo";
-service ToDo {
+option csharp_namespace = "AElf.Contracts.DiceMaster";
+
+service DiceMaster {
   // The name of the state class the smart contract is going to use to access blockchain state
-  option (aelf.csharp_state) = "AElf.Contracts.ToDo.ToDoState";
+  option (aelf.csharp_state) = "AElf.Contracts.DiceMaster.DiceMasterState";
   option (aelf.base) = "Protobuf/reference/acs12.proto";
+  option (aelf.base) = "Protobuf/message/request_interface.proto";
+
   rpc Initialize (google.protobuf.Empty) returns (google.protobuf.Empty) {
   }
-  rpc CreateTask (TaskInput) returns (google.protobuf.StringValue) {
+
+  rpc Play (google.protobuf.Int64Value) returns (google.protobuf.Empty) {
   }
-  rpc UpdateTask (TaskUpdateInput) returns (google.protobuf.Empty) {
+
+  rpc Withdraw (google.protobuf.Int64Value) returns (google.protobuf.Empty) {
   }
-  rpc DeleteTask (google.protobuf.StringValue) returns (google.protobuf.Empty) {
+
+  rpc Deposit (google.protobuf.Int64Value) returns (google.protobuf.Empty) {
   }
-  rpc ListTasks (google.protobuf.StringValue) returns (TaskList) {
+  
+  rpc TransferOwnership (aelf.Address) returns (google.protobuf.Empty) {
+  }
+
+  rpc SetSubscriptionId (google.protobuf.Int64Value) returns (google.protobuf.Empty) {
+  }
+
+  rpc SetOracleNodeId (google.protobuf.Int32Value) returns (google.protobuf.Empty) {
+  }
+
+  rpc GetPlayAmountLimit (google.protobuf.Empty) returns (PlayAmountLimitMessage) {
     option (aelf.is_view) = true;
   }
-  rpc GetTask (google.protobuf.StringValue) returns (Task) {
+
+  rpc GetContractBalance (google.protobuf.Empty) returns (google.protobuf.Int64Value) {
     option (aelf.is_view) = true;
   }
-  rpc GetInitialStatus (google.protobuf.Empty) returns (google.protobuf.BoolValue) {
+  
+  rpc GetOwner (google.protobuf.Empty) returns (google.protobuf.StringValue) {
+    option (aelf.is_view) = true;
+  }
+
+  rpc GetSubscriptionId (google.protobuf.Empty) returns (google.protobuf.Int64Value) {
+    option (aelf.is_view) = true;
+  }
+
+  rpc GetOracleNodeId (google.protobuf.Empty) returns (google.protobuf.Int32Value) {
+    option (aelf.is_view) = true;
+  }
+
+  rpc GetPlayerInfo (aelf.Address) returns (PlayerInfo) {
     option (aelf.is_view) = true;
   }
 }
-// A message to represent a task
-message Task {
-  string task_id = 1;
-  string name = 2;
-  string description = 3;
-  string category = 4;
-  string status = 5;
-  string owner = 6;
-  int64 created_at = 7;
-  int64 updated_at = 8;
+
+// An event that will be emitted from contract method call when Play is called.
+message PlayOutcomeEvent {
+  option (aelf.is_event) = true;
+  int64 amount = 1;
+  int64 won = 2;
+  aelf.Address from = 3;
 }
-// Input for creating a task
-message TaskInput {
-  string name = 1;
-  string description = 2;
-  string category = 3;
+
+// An event that will be emitted from contract method call when Withdraw is called.
+message WithdrawEvent {
+  option (aelf.is_event) = true;
+  int64 amount = 1;
+  aelf.Address from = 2;
+  aelf.Address to = 3;
 }
-// Input for updating a task
-message TaskUpdateInput {
-  string task_id = 1;
-  string name = 2;
-  string description = 3;
-  string category = 4;
-  string status = 5;
+
+// An event that will be emitted from contract method call when Deposit is called.
+message DepositEvent {
+  option (aelf.is_event) = true;
+  int64 amount = 1;
+  aelf.Address from = 2;
+  aelf.Address to = 3;
 }
-// List of tasks
-message TaskList {
-  repeated Task tasks = 1;
+
+// The message containing the play amount limits
+message PlayAmountLimitMessage {
+  int64 minimumAmount = 1;
+  int64 maximumAmount = 2;
+}
+
+message PlayedRecord {
+  aelf.Address address = 1;
+  int64 blockNumber = 2;
+}
+
+message PlayerInfo {
+  aelf.Address address = 1;
+  int64 dice1 = 2;
+  int64 dice2 = 3;
+  bool win = 4;
+  int64 amount = 5;
+  bool pending = 6;
+  int64 blockNumber = 7;
 }
 ```
 
-- `rpc` methods define the callable functions within the contract, allowing external systems to interact with the contract's logic.
-- `message` represent the structured data exchanged between the contract and external systems.
-
 #### Define Contract States
 
-The implementation of the ToDo app state inside file `src/ToDoAppState.cs` is as follows:
+The implementation of file `src/DiceMasterState.cs` is as follows:
 
-```csharp title="src/ToDoAppState.cs"
+```csharp title="src/DiceMasterState.cs"
 using AElf.Sdk.CSharp.State;
 using AElf.Types;
 
-namespace AElf.Contracts.ToDo
+namespace AElf.Contracts.DiceMaster
 {
-    public class ToDoState : ContractState
+    // The state class is access the blockchain state
+    public partial class DiceMasterState : ContractState 
     {
+        // A state to check if contract is initialized
         public BoolState Initialized { get; set; }
+        // A state to store the owner address
         public SingletonState<Address> Owner { get; set; }
-        public MappedState<string, Task> Tasks { get; set; } // Mapping of task ID to Task
-        public MappedState<string, bool> TaskExistence { get; set; } // Mapping to track task existence
-        public StringState TaskIds { get; set; } // Concatenated string of task IDs
-        public Int32State TaskCounter { get; set; } // Counter for generating unique IDs
+        public MappedState<Hash, PlayedRecord> PlayedRecords { get; set; }
+        public SingletonState<int> OracleNodeId { get; set; }
+        public SingletonState<long> SubscriptionId { get; set; }
+        public MappedState<Address, PlayerInfo> PlayerInfos { get; set; }
     }
 }
 ```
 
-- The `State.cs` file in an aelf blockchain smart contract holds the variables that store the contract's data, making sure this data is saved and accessible whenever the contract needs it.
+#### Contract Reference State
 
-#### Implement ToDo Smart Contract 
+- Create a new file `token_contract.proto` under `src/Protobuf/reference/`.
 
-The implementation of the ToDo App smart contract inside file `src/ToDoApp.cs` is as follows:
+- Replace this code of implementation file of `token_contract.proto`:
 
-```csharp title="src/ToDoApp.cs"
-using Google.Protobuf.WellKnownTypes;
-using System.Collections.Generic;
-namespace AElf.Contracts.ToDo
+```csharp title="token_contract.proto"
+/**
+ * MultiToken contract.
+ */
+syntax = "proto3";
+
+package token;
+
+import "aelf/core.proto";
+import "aelf/options.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "AElf.Contracts.MultiToken";
+
+service TokenContract {
+  // Create a new token.
+  rpc Create (CreateInput) returns (google.protobuf.Empty) {
+  }
+
+  // Issuing some amount of tokens to an address is the action of increasing that addresses balance 
+  // for the given token. The total amount of issued tokens must not exceed the total supply of the token 
+  // and only the issuer (creator) of the token can issue tokens. 
+  // Issuing tokens effectively increases the circulating supply.
+  rpc Issue (IssueInput) returns (google.protobuf.Empty) {
+  }
+
+  // Transferring tokens simply is the action of transferring a given amount of tokens from one address to another. 
+  // The origin or source address is the signer of the transaction. 
+  // The balance of the sender must be higher than the amount that is transferred.
+  rpc Transfer (TransferInput) returns (google.protobuf.Empty) {
+  }
+
+  // The TransferFrom action will transfer a specified amount of tokens from one address to another. 
+  // For this operation to succeed the from address needs to have approved (see allowances) enough tokens 
+  // to Sender of this transaction. If successful the amount will be removed from the allowance.
+  rpc TransferFrom (TransferFromInput) returns (google.protobuf.Empty) {
+  }
+
+  // The approve action increases the allowance from the Sender to the Spender address, 
+  // enabling the Spender to call TransferFrom.
+  rpc Approve (ApproveInput) returns (google.protobuf.Empty) {
+  }
+
+  rpc BatchApprove (BatchApproveInput) returns (google.protobuf.Empty) {
+  }
+
+  // This is the reverse operation for Approve, it will decrease the allowance.
+  rpc UnApprove (UnApproveInput) returns (google.protobuf.Empty) {
+  }
+
+  // This method can be used to lock tokens.
+  rpc Lock (LockInput) returns (google.protobuf.Empty) {
+  }
+
+  // This is the reverse operation of locking, it un-locks some previously locked tokens.
+  rpc Unlock (UnlockInput) returns (google.protobuf.Empty) {
+  }
+
+  // This action will burn the specified amount of tokens, removing them from the token’s Supply.
+  rpc Burn (BurnInput) returns (google.protobuf.Empty) {
+  }
+
+  // Set the primary token of side chain.
+  rpc SetPrimaryTokenSymbol (SetPrimaryTokenSymbolInput) returns (google.protobuf.Empty) {
+  }
+
+  // This interface is used for cross-chain transfer.
+  rpc CrossChainTransfer (CrossChainTransferInput) returns (google.protobuf.Empty) {
+  }
+
+  // This method is used to receive cross-chain transfers.
+  rpc CrossChainReceiveToken (CrossChainReceiveTokenInput) returns (google.protobuf.Empty) {
+  }
+
+  // The side chain creates tokens.
+  rpc CrossChainCreateToken(CrossChainCreateTokenInput) returns (google.protobuf.Empty) {
+  }
+
+  // When the side chain is started, the side chain is initialized with the parent chain information.
+  rpc InitializeFromParentChain (InitializeFromParentChainInput) returns (google.protobuf.Empty) {
+  }
+
+  // Handle the transaction fees charged by ChargeTransactionFees.
+  rpc ClaimTransactionFees (TotalTransactionFeesMap) returns (google.protobuf.Empty) {
+  }
+
+  // Used to collect transaction fees.
+  rpc ChargeTransactionFees (ChargeTransactionFeesInput) returns (ChargeTransactionFeesOutput) {
+  }
+
+  rpc ChargeUserContractTransactionFees(ChargeTransactionFeesInput) returns(ChargeTransactionFeesOutput){
+
+  }
+
+  // Check the token threshold.
+  rpc CheckThreshold (CheckThresholdInput) returns (google.protobuf.Empty) {
+  }
+
+  // Initialize coefficients of every type of tokens supporting charging fee.
+  rpc InitialCoefficients (google.protobuf.Empty) returns (google.protobuf.Empty){
+  }
+
+  // Processing resource token received.
+  rpc DonateResourceToken (TotalResourceTokensMaps) returns (google.protobuf.Empty) {
+  }
+
+  // A transaction resource fee is charged to implement the ACS8 standards.
+  rpc ChargeResourceToken (ChargeResourceTokenInput) returns (google.protobuf.Empty) {
+  }
+
+  // Verify that the resource token are sufficient.
+  rpc CheckResourceToken (google.protobuf.Empty) returns (google.protobuf.Empty) {
+  }
+
+  // Set the list of tokens to pay transaction fees.
+  rpc SetSymbolsToPayTxSizeFee (SymbolListToPayTxSizeFee) returns (google.protobuf.Empty){
+  }
+
+  // Update the coefficient of the transaction fee calculation formula.
+  rpc UpdateCoefficientsForSender (UpdateCoefficientsInput) returns (google.protobuf.Empty) {
+  }
+
+  // Update the coefficient of the transaction fee calculation formula.
+  rpc UpdateCoefficientsForContract (UpdateCoefficientsInput) returns (google.protobuf.Empty) {
+  }
+
+  // This method is used to initialize the governance organization for some functions, 
+  // including: the coefficient of the user transaction fee calculation formula, 
+  // the coefficient of the contract developer resource fee calculation formula, and the side chain rental fee.
+  rpc InitializeAuthorizedController (google.protobuf.Empty) returns (google.protobuf.Empty){
+  }
+
+  rpc AddAddressToCreateTokenWhiteList (aelf.Address) returns (google.protobuf.Empty) {
+  }
+  rpc RemoveAddressFromCreateTokenWhiteList (aelf.Address) returns (google.protobuf.Empty) {
+  }
+
+  rpc SetTransactionFeeDelegations (SetTransactionFeeDelegationsInput) returns (SetTransactionFeeDelegationsOutput){
+  }
+
+  rpc RemoveTransactionFeeDelegator (RemoveTransactionFeeDelegatorInput) returns (google.protobuf.Empty){
+  }
+
+  rpc RemoveTransactionFeeDelegatee (RemoveTransactionFeeDelegateeInput) returns (google.protobuf.Empty){
+  }
+
+  rpc SetSymbolAlias (SetSymbolAliasInput) returns (google.protobuf.Empty){
+  }
+
+  // Get all delegatees' address of delegator from input
+  rpc GetTransactionFeeDelegatees (GetTransactionFeeDelegateesInput) returns (GetTransactionFeeDelegateesOutput) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query token information.
+  rpc GetTokenInfo (GetTokenInfoInput) returns (TokenInfo) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query native token information.
+  rpc GetNativeTokenInfo (google.protobuf.Empty) returns (TokenInfo) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query resource token information.
+  rpc GetResourceTokenInfo (google.protobuf.Empty) returns (TokenInfoList) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query the balance at the specified address.
+  rpc GetBalance (GetBalanceInput) returns (GetBalanceOutput) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query the account's allowance for other addresses
+  rpc GetAllowance (GetAllowanceInput) returns (GetAllowanceOutput) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query the account's available allowance for other addresses
+  rpc GetAvailableAllowance (GetAllowanceInput) returns (GetAllowanceOutput) {
+    option (aelf.is_view) = true;
+  }
+
+  // Check whether the token is in the whitelist of an address, 
+  // which can be called TransferFrom to transfer the token under the condition of not being credited.
+  rpc IsInWhiteList (IsInWhiteListInput) returns (google.protobuf.BoolValue) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query the information for a lock.
+  rpc GetLockedAmount (GetLockedAmountInput) returns (GetLockedAmountOutput) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query the address of receiving token in cross-chain transfer.
+  rpc GetCrossChainTransferTokenContractAddress (GetCrossChainTransferTokenContractAddressInput) returns (aelf.Address) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query the name of the primary Token.
+  rpc GetPrimaryTokenSymbol (google.protobuf.Empty) returns (google.protobuf.StringValue) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query the coefficient of the transaction fee calculation formula.
+  rpc GetCalculateFeeCoefficientsForContract (google.protobuf.Int32Value) returns (CalculateFeeCoefficients) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query the coefficient of the transaction fee calculation formula.
+  rpc GetCalculateFeeCoefficientsForSender (google.protobuf.Empty) returns (CalculateFeeCoefficients) {
+    option (aelf.is_view) = true;
+  }
+
+  // Query tokens that can pay transaction fees.
+  rpc GetSymbolsToPayTxSizeFee (google.protobuf.Empty) returns (SymbolListToPayTxSizeFee){
+    option (aelf.is_view) = true;
+  }
+
+  // Query the hash of the last input of ClaimTransactionFees.
+  rpc GetLatestTotalTransactionFeesMapHash (google.protobuf.Empty) returns (aelf.Hash){
+    option (aelf.is_view) = true;
+  }
+
+  // Query the hash of the last input of DonateResourceToken.
+  rpc GetLatestTotalResourceTokensMapsHash (google.protobuf.Empty) returns (aelf.Hash){
+    option (aelf.is_view) = true;
+  }
+  rpc IsTokenAvailableForMethodFee (google.protobuf.StringValue) returns (google.protobuf.BoolValue) {
+    option (aelf.is_view) = true;
+  }
+  rpc GetReservedExternalInfoKeyList (google.protobuf.Empty) returns (StringList) {
+    option (aelf.is_view) = true;
+  }
+
+  rpc GetTransactionFeeDelegationsOfADelegatee(GetTransactionFeeDelegationsOfADelegateeInput) returns(TransactionFeeDelegations){
+    option (aelf.is_view) = true;
+  }
+
+  rpc GetTokenAlias (google.protobuf.StringValue) returns (google.protobuf.StringValue) {
+    option (aelf.is_view) = true;
+  }
+
+  rpc GetSymbolByAlias (google.protobuf.StringValue) returns (google.protobuf.StringValue) {
+    option (aelf.is_view) = true;
+  }
+}
+
+message TokenInfo {
+  // The symbol of the token.f
+  string symbol = 1;
+  // The full name of the token.
+  string token_name = 2;
+  // The current supply of the token.
+  int64 supply = 3;
+  // The total supply of the token.
+  int64 total_supply = 4;
+  // The precision of the token.
+  int32 decimals = 5;
+  // The address that has permission to issue the token.
+  aelf.Address issuer = 6;
+  // A flag indicating if this token is burnable.
+  bool is_burnable = 7;
+  // The chain id of the token.
+  int32 issue_chain_id = 8;
+  // The amount of issued tokens.
+  int64 issued = 9;
+  // The external information of the token.
+  ExternalInfo external_info = 10;
+  // The address that owns the token.
+  aelf.Address owner = 11;
+}
+
+message ExternalInfo {
+  map<string, string> value = 1;
+}
+
+message CreateInput {
+  // The symbol of the token.
+  string symbol = 1;
+  // The full name of the token.
+  string token_name = 2;
+  // The total supply of the token.
+  int64 total_supply = 3;
+  // The precision of the token
+  int32 decimals = 4;
+  // The address that has permission to issue the token.
+  aelf.Address issuer = 5;
+  // A flag indicating if this token is burnable.
+  bool is_burnable = 6;
+  // A whitelist address list used to lock tokens.
+  repeated aelf.Address lock_white_list = 7;
+  // The chain id of the token.
+  int32 issue_chain_id = 8;
+  // The external information of the token.
+  ExternalInfo external_info = 9;
+  // The address that owns the token.
+  aelf.Address owner = 10;
+}
+
+message SetPrimaryTokenSymbolInput {
+  // The symbol of the token.
+  string symbol = 1;
+}
+
+message IssueInput {
+  // The token symbol to issue.
+  string symbol = 1;
+  // The token amount to issue.
+  int64 amount = 2;
+  // The memo.
+  string memo = 3;
+  // The target address to issue.
+  aelf.Address to = 4;
+}
+
+message TransferInput {
+  // The receiver of the token.
+  aelf.Address to = 1;
+  // The token symbol to transfer.
+  string symbol = 2;
+  // The amount to to transfer.
+  int64 amount = 3;
+  // The memo.
+  string memo = 4;
+}
+
+message LockInput {
+  // The one want to lock his token.
+  aelf.Address address = 1;
+  // Id of the lock.
+  aelf.Hash lock_id = 2;
+  // The symbol of the token to lock.
+  string symbol = 3;
+  // a memo.
+  string usage = 4;
+  // The amount of tokens to lock.
+  int64 amount = 5;
+}
+
+message UnlockInput {
+  // The one want to un-lock his token.
+  aelf.Address address = 1;
+  // Id of the lock.
+  aelf.Hash lock_id = 2;
+  // The symbol of the token to un-lock.
+  string symbol = 3;
+  // a memo.
+  string usage = 4;
+  // The amount of tokens to un-lock.
+  int64 amount = 5;
+}
+
+message TransferFromInput {
+  // The source address of the token.
+  aelf.Address from = 1;
+  // The destination address of the token.
+  aelf.Address to = 2;
+  // The symbol of the token to transfer.
+  string symbol = 3;
+  // The amount to transfer.
+  int64 amount = 4;
+  // The memo.
+  string memo = 5;
+}
+
+message ApproveInput {
+  // The address that allowance will be increased. 
+  aelf.Address spender = 1;
+  // The symbol of token to approve.
+  string symbol = 2;
+  // The amount of token to approve.
+  int64 amount = 3;
+}
+message BatchApproveInput {
+  repeated ApproveInput value = 1;
+}
+
+message UnApproveInput {
+  // The address that allowance will be decreased. 
+  aelf.Address spender = 1;
+  // The symbol of token to un-approve.
+  string symbol = 2;
+  // The amount of token to un-approve.
+  int64 amount = 3;
+}
+
+message BurnInput {
+  // The symbol of token to burn.
+  string symbol = 1;
+  // The amount of token to burn.
+  int64 amount = 2;
+}
+
+message ChargeResourceTokenInput {
+  // Collection of charge resource token, Symbol->Amount.
+  map<string, int64> cost_dic = 1;
+  // The sender of the transaction.
+  aelf.Address caller = 2;
+}
+
+message TransactionFeeBill {
+  // The transaction fee dictionary, Symbol->fee.
+  map<string, int64> fees_map = 1;
+}
+
+message TransactionFreeFeeAllowanceBill {
+  // The transaction free fee allowance dictionary, Symbol->fee.
+  map<string, int64> free_fee_allowances_map = 1;
+}
+
+message CheckThresholdInput {
+  // The sender of the transaction.
+  aelf.Address sender = 1;
+  // The threshold to set, Symbol->Threshold.
+  map<string, int64> symbol_to_threshold = 2;
+  // Whether to check the allowance.
+  bool is_check_allowance = 3;
+}
+
+message GetTokenInfoInput {
+  // The symbol of token.
+  string symbol = 1;
+}
+
+message GetBalanceInput {
+  // The symbol of token.
+  string symbol = 1;
+  // The target address of the query.
+  aelf.Address owner = 2;
+}
+
+message GetBalanceOutput {
+  // The symbol of token.
+  string symbol = 1;
+  // The target address of the query.
+  aelf.Address owner = 2;
+  // The balance of the owner.
+  int64 balance = 3;
+}
+
+message GetAllowanceInput {
+  // The symbol of token.
+  string symbol = 1;
+  // The address of the token owner.
+  aelf.Address owner = 2;
+  // The address of the spender.
+  aelf.Address spender = 3;
+}
+
+message GetAllowanceOutput {
+  // The symbol of token.
+  string symbol = 1;
+  // The address of the token owner.
+  aelf.Address owner = 2;
+  // The address of the spender.
+  aelf.Address spender = 3;
+  // The amount of allowance.
+  int64 allowance = 4;
+}
+
+message CrossChainTransferInput {
+  // The receiver of transfer.
+  aelf.Address to = 1;
+  // The symbol of token.
+  string symbol = 2;
+  // The amount of token to transfer.
+  int64 amount = 3;
+  // The memo.
+  string memo = 4;
+  // The destination chain id.
+  int32 to_chain_id = 5;
+  // The chain id of the token.
+  int32 issue_chain_id = 6;
+}
+
+message CrossChainReceiveTokenInput {
+  // The source chain id.
+  int32 from_chain_id = 1;
+  // The height of the transfer transaction.
+  int64 parent_chain_height = 2;
+  // The raw bytes of the transfer transaction.
+  bytes transfer_transaction_bytes = 3;
+  // The merkle path created from the transfer transaction.
+  aelf.MerklePath merkle_path = 4;
+}
+
+message IsInWhiteListInput {
+  // The symbol of token. 
+  string symbol = 1;
+  // The address to check.
+  aelf.Address address = 2;
+}
+
+message SymbolToPayTxSizeFee{
+  // The symbol of token. 
+  string token_symbol = 1;
+  // The charge weight of primary token.
+  int32 base_token_weight = 2;
+  // The new added token charge weight. For example, the charge weight of primary Token is set to 1. 
+  // The newly added token charge weight is set to 10. If the transaction requires 1 unit of primary token, 
+  // the user can also pay for 10 newly added tokens.
+  int32 added_token_weight = 3;
+}
+
+message SymbolListToPayTxSizeFee{
+  // Transaction fee token information.
+  repeated SymbolToPayTxSizeFee symbols_to_pay_tx_size_fee = 1;
+}
+
+message ChargeTransactionFeesInput {
+  // The method name of transaction.
+  string method_name = 1;
+  // The contract address of transaction.
+  aelf.Address contract_address = 2;
+  // The amount of transaction size fee.
+  int64 transaction_size_fee = 3;
+  // Transaction fee token information.
+  repeated SymbolToPayTxSizeFee symbols_to_pay_tx_size_fee = 4;
+}
+
+message ChargeTransactionFeesOutput {
+  // Whether the charge was successful.
+  bool success = 1;
+  // The charging information.
+  string charging_information = 2;
+}
+
+message CallbackInfo {
+  aelf.Address contract_address = 1;
+  string method_name = 2;
+}
+
+message ExtraTokenListModified {
+  option (aelf.is_event) = true;
+  // Transaction fee token information.
+  SymbolListToPayTxSizeFee symbol_list_to_pay_tx_size_fee = 1;
+}
+
+message GetLockedAmountInput {
+  // The address of the lock.
+  aelf.Address address = 1;
+  // The token symbol.
+  string symbol = 2;
+  // The id of the lock.
+  aelf.Hash lock_id = 3;
+}
+
+message GetLockedAmountOutput {
+  // The address of the lock.
+  aelf.Address address = 1;
+  // The token symbol.
+  string symbol = 2;
+  // The id of the lock.
+  aelf.Hash lock_id = 3;
+  // The locked amount.
+  int64 amount = 4;
+}
+
+message TokenInfoList {
+  // List of token information.
+  repeated TokenInfo value = 1;
+}
+
+message GetCrossChainTransferTokenContractAddressInput {
+  // The chain id.
+  int32 chainId = 1;
+}
+
+message CrossChainCreateTokenInput {
+  // The chain id of the chain on which the token was created.
+  int32 from_chain_id = 1;
+  // The height of the transaction that created the token.
+  int64 parent_chain_height = 2;
+  // The transaction that created the token.
+  bytes transaction_bytes = 3;
+  // The merkle path created from the transaction that created the transaction.
+  aelf.MerklePath merkle_path = 4;
+}
+
+message InitializeFromParentChainInput {
+  // The amount of resource.
+  map<string, int32> resource_amount = 1;
+  // The token contract addresses.
+  map<int32, aelf.Address> registered_other_token_contract_addresses = 2;
+  // The creator the side chain.
+  aelf.Address creator = 3;
+}
+
+message UpdateCoefficientsInput {
+  // The specify pieces gonna update.
+  repeated int32 piece_numbers = 1;
+  // Coefficients of one single type.
+  CalculateFeeCoefficients coefficients = 2;
+}
+
+enum FeeTypeEnum {
+  READ = 0;
+  STORAGE = 1;
+  WRITE = 2;
+  TRAFFIC = 3;
+  TX = 4;
+}
+
+message CalculateFeePieceCoefficients {
+  // Coefficients of one single piece.
+  // The first char is its type: liner / power.
+  // The second char is its piece upper bound.
+  repeated int32 value = 1;
+}
+
+message CalculateFeeCoefficients {
+  // The resource fee type, like READ, WRITE, etc.
+  int32 fee_token_type = 1;
+  // Coefficients of one single piece.
+  repeated CalculateFeePieceCoefficients piece_coefficients_list = 2;
+}
+
+message AllCalculateFeeCoefficients {
+  // The coefficients of fee Calculation.
+  repeated CalculateFeeCoefficients value = 1;
+}
+
+message TotalTransactionFeesMap
 {
-    public class ToDo : ToDoContainer.ToDoBase
+  // Token dictionary that charge transaction fee, Symbol->Amount.
+  map<string, int64> value = 1;
+  // The hash of the block processing the transaction.
+  aelf.Hash block_hash = 2;
+  // The height of the block processing the transaction.
+  int64 block_height = 3;
+}
+
+message TotalResourceTokensMaps {
+  // Resource tokens to charge.
+  repeated ContractTotalResourceTokens value = 1;
+  // The hash of the block processing the transaction.
+  aelf.Hash block_hash = 2;
+  // The height of the block processing the transaction.
+  int64 block_height = 3;
+}
+
+message ContractTotalResourceTokens {
+  // The contract address.
+  aelf.Address contract_address = 1;
+  // Resource tokens to charge.
+  TotalResourceTokensMap tokens_map = 2;
+}
+
+message TotalResourceTokensMap
+{
+  // Resource token dictionary, Symbol->Amount.
+  map<string, int64> value = 1;
+}
+
+message StringList {
+  repeated string value = 1;
+}
+
+message TransactionFeeDelegations{
+  // delegation, symbols and its' amount
+  map<string, int64> delegations = 1;
+  // height when added
+  int64 block_height = 2;
+  //Whether to pay transaction fee continuously
+  bool isUnlimitedDelegate = 3;
+}
+
+message TransactionFeeDelegatees{
+  map<string,TransactionFeeDelegations> delegatees = 1;
+}
+
+message SetTransactionFeeDelegationsInput {
+  // the delegator address
+  aelf.Address delegator_address = 1;
+  // delegation, symbols and its' amount
+  map<string, int64> delegations = 2;
+}
+
+message SetTransactionFeeDelegationsOutput {
+  bool success = 1;
+}
+
+message RemoveTransactionFeeDelegatorInput{
+  // the delegator address
+  aelf.Address delegator_address = 1;
+}
+
+message RemoveTransactionFeeDelegateeInput {
+  // the delegatee address
+  aelf.Address delegatee_address = 1;
+}
+
+message GetTransactionFeeDelegationsOfADelegateeInput {
+  aelf.Address delegatee_address = 1;
+  aelf.Address delegator_address = 2;
+}
+
+message GetTransactionFeeDelegateesInput {
+  aelf.Address delegator_address = 1;
+}
+
+message GetTransactionFeeDelegateesOutput {
+  repeated aelf.Address delegatee_addresses = 1;
+}
+
+message SetSymbolAliasInput {
+  string symbol = 1;
+  string alias = 2;
+}
+
+// Events
+
+message Transferred {
+  option (aelf.is_event) = true;
+  // The source address of the transferred token.
+  aelf.Address from = 1 [(aelf.is_indexed) = true];
+  // The destination address of the transferred token.
+  aelf.Address to = 2 [(aelf.is_indexed) = true];
+  // The symbol of the transferred token.
+  string symbol = 3 [(aelf.is_indexed) = true];
+  // The amount of the transferred token.
+  int64 amount = 4;
+  // The memo.
+  string memo = 5;
+}
+
+message Approved {
+  option (aelf.is_event) = true;
+  // The address of the token owner.
+  aelf.Address owner = 1 [(aelf.is_indexed) = true];
+  // The address that allowance be increased. 
+  aelf.Address spender = 2 [(aelf.is_indexed) = true];
+  // The symbol of approved token.
+  string symbol = 3 [(aelf.is_indexed) = true];
+  // The amount of approved token.
+  int64 amount = 4;
+}
+
+message UnApproved {
+  option (aelf.is_event) = true;
+  // The address of the token owner.
+  aelf.Address owner = 1 [(aelf.is_indexed) = true];
+  // The address that allowance be decreased. 
+  aelf.Address spender = 2 [(aelf.is_indexed) = true];
+  // The symbol of un-approved token.
+  string symbol = 3 [(aelf.is_indexed) = true];
+  // The amount of un-approved token.
+  int64 amount = 4;
+}
+
+message Burned
+{
+  option (aelf.is_event) = true;
+  // The address who wants to burn token.
+  aelf.Address burner = 1 [(aelf.is_indexed) = true];
+  // The symbol of burned token. 
+  string symbol = 2 [(aelf.is_indexed) = true];
+  // The amount of burned token. 
+  int64 amount = 3;
+}
+
+message ChainPrimaryTokenSymbolSet {
+  option (aelf.is_event) = true;
+  // The symbol of token. 
+  string token_symbol = 1;
+}
+
+message CalculateFeeAlgorithmUpdated {
+  option (aelf.is_event) = true;
+  // All calculate fee coefficients after modification.
+  AllCalculateFeeCoefficients all_type_fee_coefficients = 1;
+}
+
+message RentalCharged {
+  option (aelf.is_event) = true;
+  // The symbol of rental fee charged.
+  string symbol = 1;
+  // The amount of rental fee charged.
+  int64 amount = 2;
+  // The payer of rental fee.
+  aelf.Address payer = 3;
+  // The receiver of rental fee.
+  aelf.Address receiver = 4;
+}
+
+message RentalAccountBalanceInsufficient {
+  option (aelf.is_event) = true;
+  // The symbol of insufficient rental account balance.
+  string symbol = 1;
+  // The balance of the account.
+  int64 amount = 2;
+}
+
+message TokenCreated {
+  option (aelf.is_event) = true;
+  // The symbol of the token.
+  string symbol = 1;
+  // The full name of the token.
+  string token_name = 2;
+  // The total supply of the token.
+  int64 total_supply = 3;
+  // The precision of the token.
+  int32 decimals = 4;
+  // The address that has permission to issue the token.
+  aelf.Address issuer = 5;
+  // A flag indicating if this token is burnable.
+  bool is_burnable = 6;
+  // The chain id of the token.
+  int32 issue_chain_id = 7;
+  // The external information of the token.
+  ExternalInfo external_info = 8;
+  // The address that owns the token.
+  aelf.Address owner = 9;
+}
+
+message Issued {
+  option (aelf.is_event) = true;
+  // The symbol of issued token.
+  string symbol = 1;
+  // The amount of issued token.
+  int64 amount = 2;
+  // The memo.
+  string memo = 3;
+  // The issued target address.
+  aelf.Address to = 4;
+}
+
+message CrossChainTransferred {
+  option (aelf.is_event) = true;
+  // The source address of the transferred token.
+  aelf.Address from = 1;
+  // The destination address of the transferred token.
+  aelf.Address to = 2;
+  // The symbol of the transferred token.
+  string symbol = 3;
+  // The amount of the transferred token.
+  int64 amount = 4;
+  // The memo.
+  string memo = 5;
+  // The destination chain id.
+  int32 to_chain_id = 6;
+  // The chain id of the token.
+  int32 issue_chain_id = 7;
+}
+
+message CrossChainReceived {
+  option (aelf.is_event) = true;
+  // The source address of the transferred token.
+  aelf.Address from = 1;
+  // The destination address of the transferred token.
+  aelf.Address to = 2;
+  // The symbol of the received token.
+  string symbol = 3;
+  // The amount of the received token.
+  int64 amount = 4;
+  // The memo.
+  string memo = 5;
+  // The destination chain id.
+  int32 from_chain_id = 6;
+  // The chain id of the token.
+  int32 issue_chain_id = 7;
+  // The parent chain height of the transfer transaction.
+  int64 parent_chain_height = 8;
+  // The id of transfer transaction.
+  aelf.Hash transfer_transaction_id =9;
+}
+
+message TransactionFeeDelegationAdded {
+  option (aelf.is_event) = true;
+  aelf.Address delegator = 1 [(aelf.is_indexed) = true];
+  aelf.Address delegatee = 2 [(aelf.is_indexed) = true];
+  aelf.Address caller = 3 [(aelf.is_indexed) = true];
+}
+
+message TransactionFeeDelegationCancelled {
+  option (aelf.is_event) = true;
+  aelf.Address delegator = 1 [(aelf.is_indexed) = true];
+  aelf.Address delegatee = 2 [(aelf.is_indexed) = true];
+  aelf.Address caller = 3 [(aelf.is_indexed) = true];
+}
+
+message SymbolAliasAdded {
+  option (aelf.is_event) = true;
+  string symbol = 1 [(aelf.is_indexed) = true];
+  string alias = 2 [(aelf.is_indexed) = true];
+}
+
+message SymbolAliasDeleted {
+  option (aelf.is_event) = true;
+  string symbol = 1 [(aelf.is_indexed) = true];
+  string alias = 2 [(aelf.is_indexed) = true];
+}
+```
+
+#### Contract Reference State
+
+- Navigate to `src`. 
+
+- create a **new file** `ContractReferences.cs`.
+
+The implementation of file `src/ContractReferences.cs` is as follows:
+
+```csharp title="ContractReferences.cs"
+using AElf.Contracts.MultiToken;
+using AetherLink.Contracts.Oracle;
+
+namespace AElf.Contracts.DiceMaster
+{
+    public partial class DiceMasterState
     {
+        internal TokenContractContainer.TokenContractReferenceState TokenContract { get; set; }
+        internal OracleContractContainer.OracleContractReferenceState OracleContract { get; set; }
+    }
+}
+```
+
+#### Implement dice Game Smart Contract
+
+- Navigate to `src/DiceMaster.cs`
+
+```csharp title="DiceMaster.cs"
+using AElf.Contracts.MultiToken;
+using AElf.Sdk.CSharp;
+using AElf.Types;
+using AetherLink.Contracts.Consumer;
+using AetherLink.Contracts.Oracle;
+using AetherLink.Contracts.VRF.Coordinator;
+using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
+
+namespace AElf.Contracts.DiceMaster
+{
+    // Contract class must inherit the base class generated from the proto file
+    public class DiceMaster : DiceMasterContainer.DiceMasterBase
+    {
+        private const string OracleContractAddress = "21Fh7yog1B741yioZhNAFbs3byJ97jvBmbGAPPZKZpHHog5aEg"; // tDVW
+        //private const string OracleContractAddress = "BGhrBNTPcLccaxPv6hHJrn4CHHzeMovTsrkhFse5o2nwfvQyG"; // tDVV
+        private const string TokenSymbol = "ELF";
+        private const long MinimumPlayAmount = 1_000_000; // 0.01 ELF
+        private const long MaximumPlayAmount = 1_000_000_000; // 10 ELF
+        
+        // Initializes the contract
         public override Empty Initialize(Empty input)
         {
-            if (State.Initialized.Value)
+            // Check if the contract is already initialized
+            Assert(State.Initialized.Value == false, "Already initialized.");
+            // Set the contract state
+            State.Initialized.Value = true;
+            // Set the owner address
+            State.Owner.Value = Context.Sender;
+            
+            // Initialize the token contract
+            State.TokenContract.Value = Context.GetContractAddressByName(SmartContractConstants.TokenContractSystemName);
+            State.OracleContract.Value =Address.FromBase58(OracleContractAddress);
+            
+            return new Empty();
+        }
+        
+        public override Empty HandleOracleFulfillment(HandleOracleFulfillmentInput input)
+        {
+            var playedRecord = State.PlayedRecords[input.TraceId];
+            if (playedRecord == null || playedRecord.Address == null) return new Empty();
+            var address = playedRecord.Address;
+            var blockNumber = playedRecord.BlockNumber;
+
+            if (blockNumber != State.PlayerInfos[address].BlockNumber)
             {
                 return new Empty();
             }
-            State.Initialized.Value = true;
-            State.Owner.Value = Context.Sender;
-            State.TaskIds.Value = "";
-            State.TaskCounter.Value = 0;
+            
+            var randomHashList = HashList.Parser.ParseFrom(input.Response);
+            
+            var dice1 = randomHashList.Data[0].ToInt64() % 6;
+            var dice2 = randomHashList.Data[1].ToInt64() % 6;
+            dice1 = ((dice1 < 0)? dice1 * -1 : dice1) + 1;
+            dice2 = ((dice2 < 0)? dice2 * -1 : dice2) + 1;
+            
+            State.PlayerInfos[address].Dice1 = dice1;
+            State.PlayerInfos[address].Dice2 = dice2;
+            State.PlayerInfos[address].Pending = false;
+
+            var playAmount = State.PlayerInfos[address].Amount;
+            
+            if(IsWinner(dice1, dice2))
+            {
+                // Transfer the token from the contract to the sender
+                State.TokenContract.Transfer.Send(new TransferInput
+                {
+                    To = address,
+                    Symbol = TokenSymbol,
+                    Amount = playAmount * 2
+                });
+                
+                State.PlayerInfos[address].Win = true;
+                
+                // Emit an event to notify listeners about the outcome
+                Context.Fire(new PlayOutcomeEvent
+                {
+                    Amount = playAmount,
+                    Won = playAmount,
+                    From = address
+                });
+            }
+            else
+            {
+                State.PlayerInfos[address].Win = false;
+                
+                // Emit an event to notify listeners about the outcome
+                Context.Fire(new PlayOutcomeEvent
+                {
+                    Amount = playAmount,
+                    Won = -playAmount,
+                    From = address
+                });
+            }
+        
             return new Empty();
         }
-        public override StringValue CreateTask(TaskInput input)
+        
+        // Plays the lottery game with a specified amount of tokens.
+        // The method checks if the play amount is within the limit.
+        // If the player wins, tokens are transferred from the contract to the sender and a PlayOutcomeEvent is fired with the won amount.
+        // If the player loses, tokens are transferred from the sender to the contract and a PlayOutcomeEvent is fired with the lost amount.
+        public override Empty Play(Int64Value input)
         {
-            if (!State.Initialized.Value)
+            var playAmount = input.Value;
+            
+            // Check if input amount is within the limit
+            Assert(playAmount is >= MinimumPlayAmount and <= MaximumPlayAmount, "Invalid play amount.");
+            
+            // Check if the sender has enough tokens
+            var balance = State.TokenContract.GetBalance.Call(new GetBalanceInput
             {
-                return new StringValue { Value = "Contract not initialized." };
+                Owner = Context.Sender,
+                Symbol = TokenSymbol
+            }).Balance;
+            Assert(balance >= playAmount, "Insufficient balance.");
+            
+            // Check if the contract has enough tokens
+            var contractBalance = State.TokenContract.GetBalance.Call(new GetBalanceInput
+            {
+                Owner = Context.Self,
+                Symbol = TokenSymbol
+            }).Balance;
+            Assert(contractBalance >= playAmount, "Insufficient contract balance.");
+
+            if(State.PlayerInfos[Context.Sender] == null)
+            {
+                State.PlayerInfos[Context.Sender] = new PlayerInfo
+                {
+                    Pending = false,
+                    Win = false,
+                    Dice1 = 1,
+                    Dice2 = 1,
+                    Amount = playAmount,
+                    Address = Context.Sender,
+                    BlockNumber = Context.CurrentHeight
+                };
             }
-            var taskId = (State.TaskCounter.Value + 1).ToString();
-            State.TaskCounter.Value++;
-            var timestamp = Context.CurrentBlockTime.Seconds;
-            // Create task dictionary entry directly in ToDo class
-            State.Tasks[taskId] = new Task
+            Assert(State.PlayerInfos[Context.Sender].Pending == false, "Pending result. Please wait for the result.");
+            
+            // use VRF to get random number
+            var keyHashs = State.OracleContract.GetProvingKeyHashes.Call(new Empty());
+            var keyHash = keyHashs.Data[State.OracleNodeId.Value];
+            var specificData = new SpecificData
             {
-                TaskId = taskId,
-                Name = input.Name,
-                Description = input.Description,
-                Category = input.Category,
-                Status = "pending",
-                CreatedAt = timestamp,
-                UpdatedAt = timestamp,
-                Owner = Context.Sender.ToString().Trim('"'),
+                KeyHash = keyHash,
+                NumWords = 2,
+                RequestConfirmations = 1
+            }.ToByteString();
+            
+            var request = new SendRequestInput
+            {
+                SubscriptionId = State.SubscriptionId.Value,
+                RequestTypeIndex = 2,
+                SpecificData = specificData,
             };
-            State.TaskExistence[taskId] = true;
-            // Append task ID to the list of IDs
-            var existingTaskIds = State.TaskIds.Value;
-            existingTaskIds += string.IsNullOrEmpty(existingTaskIds) ? taskId : $",{taskId}";
-            State.TaskIds.Value = existingTaskIds;
-            return new StringValue { Value = taskId };
-        }
-        public override Empty UpdateTask(TaskUpdateInput input)
-        {
-            var task = State.Tasks[input.TaskId];
-            if (task == null)
+
+            var traceId = HashHelper.ConcatAndCompute(
+                HashHelper.ConcatAndCompute(HashHelper.ComputeFrom(Context.CurrentBlockTime),
+                    HashHelper.ComputeFrom(Context.Origin)), HashHelper.ComputeFrom(request));
+            request.TraceId = traceId;
+            State.OracleContract.SendRequest.Send(request);
+
+            var blockNumber = Context.CurrentHeight;
+            
+            State.PlayedRecords[traceId] = new PlayedRecord
             {
-                return new Empty(); // Handle case if task doesn't exist
-            }
-            task.Name = input.Name ?? task.Name;
-            task.Description = input.Description ?? task.Description;
-            task.Category = input.Category ?? task.Category;
-            task.Status = input.Status ?? task.Status;
-            task.UpdatedAt = Context.CurrentBlockTime.Seconds;
-            State.Tasks[input.TaskId] = task;
+                Address = Context.Sender,
+                BlockNumber = blockNumber,
+            };
+
+            State.PlayerInfos[Context.Sender].Pending = true;
+            State.PlayerInfos[Context.Sender].Win = false;
+            State.PlayerInfos[Context.Sender].Amount = playAmount;
+            State.PlayerInfos[Context.Sender].BlockNumber = blockNumber;
+            
+            // Transfer the token from the sender to the contract
+            State.TokenContract.TransferFrom.Send(new TransferFromInput
+            {
+                From = Context.Sender,
+                To = Context.Self,
+                Symbol = TokenSymbol,
+                Amount = playAmount
+            });
+            
             return new Empty();
         }
-        public override Empty DeleteTask(StringValue input)
+        
+        // Withdraws a specified amount of tokens from the contract.
+        // This method can only be called by the owner of the contract.
+        // After the tokens are transferred, a WithdrawEvent is fired to notify any listeners about the withdrawal.
+        public override Empty Withdraw(Int64Value input)
         {
-            State.Tasks.Remove(input.Value);
-            State.TaskExistence.Remove(input.Value);
-            // Remove task ID from the list of IDs
-            var existingTaskIds = State.TaskIds.Value.Split(',');
-            var newTaskIds = new List<string>(existingTaskIds.Length);
-            foreach (var taskId in existingTaskIds)
+            AssertIsOwner();
+            
+            // Transfer the token from the contract to the sender
+            State.TokenContract.Transfer.Send(new TransferInput
             {
-                if (taskId != input.Value)
-                {
-                    newTaskIds.Add(taskId);
-                }
-            }
-            State.TaskIds.Value = string.Join(",", newTaskIds);
+                To = Context.Sender,
+                Symbol = TokenSymbol,
+                Amount = input.Value
+            });
+            
+            // Emit an event to notify listeners about the withdrawal
+            Context.Fire(new WithdrawEvent
+            {
+                Amount = input.Value,
+                From = Context.Self,
+                To = State.Owner.Value
+            });
+            
             return new Empty();
         }
-        public override TaskList ListTasks(StringValue input)
+        
+        public override Empty SetSubscriptionId(Int64Value input)
         {
-            var owner = input.Value; // Get the owner value from the input
-            var taskList = new TaskList();
-            var taskIds = State.TaskIds.Value.Split(',');
-            foreach (var taskId in taskIds)
-            {
-                var task = State.Tasks[taskId];
-                if (task != null && task.Owner == owner) // Filter tasks by owner
-                {
-                    taskList.Tasks.Add(task);
-                }
-            }
-            return taskList;
+            AssertIsOwner();
+            State.SubscriptionId.Value = input.Value;
+            return new Empty();
         }
-        public override Task GetTask(StringValue input)
+
+        public override Empty SetOracleNodeId(Int32Value input)
         {
-            var task = State.Tasks[input.Value];
-            if (task == null)
-            {
-                return new Task { TaskId = input.Value, Name = "Task not found." };
-            }
-            return task;
+            AssertIsOwner();
+            State.OracleNodeId.Value = input.Value;
+            return new Empty();
         }
-        public override BoolValue GetInitialStatus(Empty input)
+        
+        // Deposits a specified amount of tokens into the contract.
+        // This method can only be called by the owner of the contract.
+        // After the tokens are transferred, a DepositEvent is fired to notify any listeners about the deposit.
+        public override Empty Deposit(Int64Value input)
         {
-            return new BoolValue { Value = State.Initialized.Value };
+            AssertIsOwner();
+            
+            // Transfer the token from the sender to the contract
+            State.TokenContract.TransferFrom.Send(new TransferFromInput
+            {
+                From = Context.Sender,
+                To = Context.Self,
+                Symbol = TokenSymbol,
+                Amount = input.Value
+            });
+            
+            // Emit an event to notify listeners about the deposit
+            Context.Fire(new DepositEvent
+            {
+                Amount = input.Value,
+                From = Context.Sender,
+                To = Context.Self
+            });
+            
+            return new Empty();
+        }
+        
+        // Transfers the ownership of the contract to a new owner.
+        // This method can only be called by the current owner of the contract.
+        public override Empty TransferOwnership(Address input)
+        {
+            AssertIsOwner();
+            
+            // Set the new owner address
+            State.Owner.Value = input;
+            
+            return new Empty();
+        }
+
+        // A method that read the contract's play amount limit
+        public override PlayAmountLimitMessage GetPlayAmountLimit(Empty input)
+        {
+            // Wrap the value in the return type
+            return new PlayAmountLimitMessage
+            {
+                MinimumAmount = MinimumPlayAmount,
+                MaximumAmount = MaximumPlayAmount
+            };
+        }
+        
+        // A method that read the contract's current balance
+        public override Int64Value GetContractBalance(Empty input)
+        {
+            // Get the balance of the contract
+            var balance = State.TokenContract.GetBalance.Call(new GetBalanceInput
+            {
+                Owner = Context.Self,
+                Symbol = TokenSymbol
+            }).Balance;
+            
+            // Wrap the value in the return type
+            return new Int64Value
+            {
+                Value = balance
+            };
+        }
+
+        // A method that read the contract's owner
+        public override StringValue GetOwner(Empty input)
+        {
+            return State.Owner.Value == null ? new StringValue() : new StringValue {Value = State.Owner.Value.ToBase58()};
+        }
+        
+        public override Int64Value GetSubscriptionId(Empty input)
+        {
+            return new Int64Value{
+                Value = State.SubscriptionId.Value
+            };
+        }
+
+        public override Int32Value GetOracleNodeId(Empty input)
+        {
+            return new Int32Value{
+                Value = State.OracleNodeId.Value
+            };
+        }
+        
+        public override PlayerInfo GetPlayerInfo(Address address)
+        {
+            Assert(State.PlayerInfos[address] != null, "No player info found.");
+            return State.PlayerInfos[address];
+        }
+        
+        // Determines if the player is a winner.
+        // The player is considered a winner if he has an odd number.
+        private bool IsWinner(long dice1, long dice2)
+        {
+            var result = (dice1 + dice2) % 2;
+            return result == 1;
+        }
+        
+        // This method is used to ensure that only the owner of the contract can perform certain actions.
+        // If the context sender is not the owner, an exception is thrown with the message "Unauthorized to perform the action."
+        private void AssertIsOwner()
+        {
+            Assert(Context.Sender == State.Owner.Value, "Unauthorized to perform the action.");
         }
     }
 }
@@ -268,866 +1462,147 @@ namespace AElf.Contracts.ToDo
 
 ### Building Smart Contract
 
-- Build the smart contract code with the following command inside `src` folder:
+- Build the new code with the following commands inside `src` folder:
 
 ```bash title="Terminal"
 dotnet build
 ```
 
-You should see **ToDoApp.dll.patched** in the directory `ToDoApp/src/bin/Debug/net.6.0`
+You should see **DiceMaster.dll.patched** in the directory `dice-game/src/bin/Debug/net.6.0`
 
 ## Step 3 - Deploy Smart Contract
 
-import Deploy from "../\_deploy_todo.md"
+import Deploy from "../\_deploy_dice.md"
 
 <Deploy />
 
-## Step 4 - Interact with Your Deployed Smart Contract through dApp
+## Step 4 - Interact with Your Deployed Smart Contract
 
-### Project Setup
-
-Let's start by cloning the frontend project repository from github.
+### Approving Smart Contract Spending
 
 ```bash title="Terminal"
-git clone https://github.com/AElfProject/aelf-samples.git
-```
-
-- Next, navigate to the frontend project directory with this command:
-
-```bash title="Terminal"
-cd aelf-samples/todo/2-dapp
-```
-
-- Once you're inside the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
-
-export const tree = {
-  "type": "directory",
-  "uri": "2-dapp",
-  "expanded": true,
-  "children": [
-    {
-      "type": "directory",
-      "uri": "app"
-    },
-    {
-      "type": "directory",
-      "uri": "assets"
-    },
-    {
-      "type": "directory",
-      "uri": "public"
-    },
-    {
-      "type": "directory",
-      "uri": "src"
-    },
-    {
-      "type": "file",
-      "uri": ".gitignore"
-    },
-    {
-      "type": "file",
-      "uri": "components.json"
-    },
-    {
-      "type": "file",
-      "uri": "index.html"
-    },
-    {
-      "type": "file",
-      "uri": "package.json"
-    },
-    {
-      "type": "file",
-      "uri": "postcss.config.js"
-    },
-    {
-      "type": "file",
-      "uri": "README.md"
-    },
-    {
-      "type": "file",
-      "uri": "tailwind.config.js"
-    },
-    {
-      "type": "file",
-      "uri": "tsconfig.json"
-    },
-    {
-      "type": "file",
-      "uri": "tsconfig.node.json"
-    },
-    {
-      "type": "file",
-      "uri": "vite.config.ts"
-    }
-  ]
-}
-
-<div style={{height: 500}}><FileTree tree={tree} /></div>
-
-#### Install necessary libraries
-
-- Run this command in the terminal to install all necessary packages and libraries:
-
-```bash title="Terminal"
-npm install
-```
-
-We are now ready to build the frontend components of our ToDo dApp.
-
-### Configure Portkey Provider & Write Connect Wallet Function
-
-Now, we'll set up our Portkey wallet provider to allow users to connect their Portkey wallets to the dApp and interact with the smart contract. We'll be interacting with the already deployed ToDo smart contract for this tutorial.
-
-**Step 1. Locate the File:**
-
-- Go to the `src/hooks/useTodoSmartContract.ts` file.
-
-**Step 2. Fetch the Smart Contract:**
-
-- Find the comment ` //Step A - Function to fetch a smart contract based on deployed wallet address`
-
-- Replace the existing **`fetchContract`** function with this updated code:
-
-```javascript title="useTodoSmartContract.ts"
-//Step A - Function to fetch a smart contract based on deployed wallet address
-const fetchContract = async () => {
-  if (!provider) return null;
-
-  try {
-    // 1. get the dAppChain tDVW using provider.getChain
-    const chain = await provider?.getChain("tDVW");
-    if (!chain) throw new Error("No chain");
-
-    //Address of ToDo Smart Contract
-    //Replace with Address of Deployed Smart Contract
-    const address = "your_deployed_todo_contract_address";
-
-    // 2. get the ToDo contract
-    const todoContract = chain?.getContract(address);
-    setSmartContract(todoContract);
-  } catch (error) {
-    console.log(error, "====error");
-  }
-}
+aelf-command send ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Approve
 ```
 
 :::tip
-ℹ️ Note: You are to replace the address placeholder with your deployed ToDo smart contract address from "Deploy Smart Contract" step!
-
-example:
-//Replace with Address of Deployed Smart Contract
-const address = "your_deployed_todo__smart_contract_address";
+ℹ️ Note: `ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx` is the contract address of `Multitoken Contract` on aelf Testnet dAppChain (tDVW).
 :::
 
-**Explanation:**
+When prompted, enter the following parameters to approve the spending of 90 ELF tokens:
 
-- **`fetchContract`** **Function**: This function fetches a smart contract based on the given chain symbol (e.g., "AELF" or "tDVW") and the contract address.
-
-  - **Check Provider** : If no provider is available, the function returns null.
-  - **Fetch Chain** : The function fetches chain information using the provider.
-  - **Get Contract** : It retrieves the smart contract instance from the chain.
-   
-`AELF` represents the mainnet chain and `tDVW` represents the testnet chain respectively on aelf blockchain.
-
-**Step 3. Initialize and Fetch the Smart Contracts:**
-
-- Find the comment `// Step B - Effect hook to initialize and fetch the smart contract when the provider changes.`
-
-- Replace the existing **`useEffect`** hook with this updated code:
-
-```javascript title="useTodoSmartContract.ts"
-  // Step B -  Effect hook to initialize and fetch the smart contract when the provider changes
-  useEffect(() => {
-    fetchContract();
-  }, [provider]); // Dependency array ensures this runs when the provider changes
+```terminal title="Terminal"
+Enter the params one by one, type `Enter` to skip optional param:
+? Enter the required param <spender>: "INSERT_YOUR_CONTRACT_ADDRESS_HERE"
+? Enter the required param <symbol>: ELF
+? Enter the required param <amount>: 9000000000
 ```
 
-**Explanation:**
-- **`useEffect` Hook** : This hook initializes and fetches the smart contracts when the provider changes.
-  - **Check Provider** : If no provider is available, the function returns null.
-  - **Fetch Contracts** : It fetches and sets the smart contracts.
-
-By following these steps, we'll configure the Portkey provider to connect users' wallets to our app and interact with the ToDo smart contract including task management related functionalities. This setup will enable our frontend components to perform actions like `Create Task`, `Edit Task`, and `Delete Task`.
-
-### Configure Connect Wallet Function
-
-**Step 1: Locate the File**
-
-- Go to the `src/components/layout/header/index.tsx` file.
-
-**Step 2: Write the Connect Wallet Function**
-
-- The `header/index.tsx` file is the header of our ToDo dApp. It allows users to connect their Portkey wallet with the ToDo dApp.
-
-- Before users can interact with the smart contract, we need to write the `Connect Wallet` function.
-
-- Find the comment `// Step C - Connect Portkey Wallet`.
-
-- Replace the existing connect function with this code snippet:
-
-```javascript title="header/index.tsx"
-const connect = async (walletProvider?: IPortkeyProvider) => {
-  // Step C - Connect Portkey Wallet
-  const accounts = await (walletProvider ? walletProvider : provider)?.request({
-    method: MethodsBase.REQUEST_ACCOUNTS,
-  });
-  const account = accounts?.AELF && accounts?.AELF[0];
-  if (account) {
-    setCurrentWalletAddress(account.replace(/^ELF_/, "").replace(/_AELF$/, ""));
-    setIsConnected(true);
-  }
-  !walletProvider && toast.success("Successfully connected");
-};
-```
-
-**Explanation:**
-
-- **`connect` Function** : This function connects the user's Portkey wallet with the dApp.
-  - **Fetch Accounts** : It fetches the wallet accounts using the provider.
-  - **Log Accounts** : Logs the accounts to the console for debugging.
-  - **Set Wallet Address** : Sets the current wallet address state variable with the fetched account.
-  - **Update Connection Status** : Updates the state to indicate that the wallet is connected.
-  - **User Notification** : Displays an alert to notify the user that their wallet is successfully connected.
-
-In this code, we fetch the Portkey wallet account using the provider and update the wallet address state variable. An alert notifies the user that their wallet is successfully connected.
-
-With the connect wallet function defined, we're ready to write the remaining functions in the next steps.
-
-### Configure Create Task Form 
-
-**Step 1: Locate the File**
-
-1. Go to the `src/pages/home/index.tsx` file. This file contains all the  functionalities like show user's Task, CreateTask, UpdateTask, DeleteTask and Filter all Tasks, etc.
-
-**Step 2: Prepare Form to Create and Update Tasks**
-
-1.  Find the comment `// Step D - Configure Todo Form`.
-
-2.  Replace the form variable with this code snippet:
-
-```javascript title="home/index.tsx"
-// Step D - Configure Todo Form
-const form = useForm<z.infer<typeof formSchema>>({
-  resolver: zodResolver(formSchema),
-  defaultValues: {
-    name: "",
-    description: "",
-  },
-});
-```
-
-#### Here's what the function does:
-
-1. Initializes a new form variable with default values needed to create a task.
-
-2. Fields include: `name` and `description`.
-
-Now the form is ready for users to fill in the necessary details.
-
-### Check Contract Initialization
-
-- Scroll down to find the comment `// step 1 - Check if contract is initialized or not`.
-
-- Replace the existing **`checkIsContractInitialized`** function with this code snippet:
- 
-```javascript title="home/index.tsx"
-// step 1 - Check if contract is initialized or not
-const checkIsContractInitialized = async () => {
-  const result = await smartContract?.callViewMethod("GetInitialStatus", ""); // Call the GetInitialStatus method which is present on Smart Contract
-  setIsContractInitialized(result?.data?.value); // Expect value True if it's Initialized otherwise NULL if it's not
-};
-```
-
-### Initialize Contract
-
-- Scroll down to find the comment `// step 2 - Initialize the smart contract`.
-
-- Replace the existing **`initializeContract`** function with this code snippet:
-
-<!-- checkIsContractInitialized and initializeContract are different here -->
- 
-```javascript title="home/index.tsx"
-// step 2 - Initialize the smart contract
-const initializeContract = async () => {
-  let initializeLoadingId;
-  try {
-    // Start Loading
-    initializeLoadingId = toast.loading("Initializing a Contract..");
-
-    await smartContract?.callSendMethod(
-      "Initialize", // Function Name
-      currentWalletAddress as string, // User Wallet Address 
-      {} // No Arguments
-    );
-
-    // Update Loading Message with Success
-    toast.update(initializeLoadingId, {
-      render: "Contract Successfully Initialized",
-      type: "success",
-      isLoading: false,
-    });
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(initializeLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    // Remove Loading Message
-    removeNotification(initializeLoadingId as Id);
-  }
-};
-```
-
-### Create a New Task
-
-- Write the function to `Create a New Task`**
-
-- The `home/index.tsx` file includes the code to create tasks. It allows users to create new tasks.
-
-- Find the comment `// step 3 - Create a New Task using Smart Contract`.
-
-- Replace the existing **`createNewTask`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 3 - Create a New Task using Smart Contract
-const createNewTask = async (values: {
-  name: string;
-  description: string;
-}) => {
-  let createLoadingId;
-  try {
-    // Start Loading
-    createLoadingId = toast.loading("Creating a New Task..");
-    setFormLoading(true);
-
-    // Prepare Arguments for Create a New Task
-    const sendData = {
-      name: values.name,
-      description: values.description,
-      category: selectedCategory?.value,
-      status: TASK_STATUS.pending,
-    };
-
-    // Call CreateTask Function of Smart Contract
-    await smartContract?.callSendMethod(
-      "CreateTask",
-      currentWalletAddress as string,
-      sendData
-    );
-
-    // Update Loading Message with Success
-    toast.update(createLoadingId, {
-      render: "New Task Successfully Created",
-      type: "success",
-      isLoading: false,
-    });      
-
-    // Get New Data from Contract
-    getTodoData();
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(createLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    // Close Form Modal
-    handleCloseModal();
-
-    // Remove Loading Message
-    removeNotification(createLoadingId as Id);
-    setFormLoading(false);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Creates an Object with Task Details** : It prepares the data needed to create a new task.
-
-2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to create the new task using the prepared data.
-
-Next, we'll write the **Update an Existing Task** function.
-
-### Update an Existing Task
-
-Write the function for update an existing task.
-
-- Scroll down to find the comment `// step 4 - Update an Existing Task`.
-
-- Replace the existing **`updateTask`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 4 - Update an Existing Task
-const updateTask = async (values: { name: string; description: string }) => {
-  let updateLoadingId;
-  try {
-    // Start Loading
-    updateLoadingId = toast.loading("Updating a Task..");
-    setFormLoading(true);
-
-    // Prepare Arguments for Update the Task
-    const sendData = {
-      taskId: updateId,
-      name: values.name,
-      description: values.description,
-      category: selectedCategory?.value,
-      status: TASK_STATUS.pending,
-    };
-
-    // Call UpdateTask Function of Smart Contract
-    await smartContract?.callSendMethod(
-      "UpdateTask",
-      currentWalletAddress as string,
-      sendData
-    );
-
-    // Update Loading Message with Success
-    toast.update(updateLoadingId, {
-      render: "Task Successfully Updated",
-      type: "success",
-      isLoading: false,
-    });
-
-    // Get New Data from Contract
-    getTodoData();
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(updateLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    // Close Form Modal
-    handleCloseModal();
-    // Remove Loading Message
-    removeNotification(updateLoadingId as Id);
-    setFormLoading(false);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Creates an Object with Updated Task Details** : It prepares the data needed for the updated task details
-
-2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the existing task using the prepared data.
-
-Next, we'll write the **Update Task Status (completeTask)** function.
-
-### Update the Task Status
-
-Write the Function to update the task status (completeTask).
-
-- Scroll down to find the comment `// step 5- Update Status from Pending to Completed of the Task`.
-
-- Replace the existing **`completeTask`** function with the following code snippet:
-
-```javascript title="home/index.tsx"
-// step 5- Update Status from Pending to Completed of the Task
-const completeTask = async (data: ITodoObject) => {
-  let completeLoadingId;
-  try {
-    // Start Loading
-    completeLoadingId = toast.loading("Moving to Completed Task..");
-    setUpdateId(data.taskId); // set Update Id for Loading on Button
-
-    // Call UpdateTask Function of Smart Contract
-    await smartContract?.callSendMethod(
-      "UpdateTask",
-      currentWalletAddress as string,
-      { ...data, status: TASK_STATUS.completed }
-    );
-
-    // Update Loading Message with Success
-    toast.update(completeLoadingId, {
-      render: "Task Moved to Completed",
-      type: "success",
-      isLoading: false,
-    });
-
-    // Get New Data from Contract
-    await getTodoData();
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(completeLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    setUpdateId(null);
-    // Remove Loading Message
-    removeNotification(completeLoadingId as Id);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the task status by passind the `completed` status as an argument.
-
-Next, we'll write the **Delete the Task** function.
-
-### Delete the Task
-
-Write a function to delete an existing task.
-
-- Scroll down to find the comment `// step 6 - Delete the Task`.
-
-- Replace the existing **`deleteTask`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 6 - Delete the Task
-const deleteTask = async (data: ITodoObject) => {
-  let deleteLoadingId;
-  try {
-    // Start Loading
-    deleteLoadingId = toast.loading("Removing a Task..");
-    setDeletingId(data.taskId); // set Deleting Id for Loading on Button
-
-    // Call UpdateTask Function of Smart Contract and update the status as "Removed"
-    await smartContract?.callSendMethod(
-      "UpdateTask",
-      currentWalletAddress as string,
-      { ...data, status: TASK_STATUS.removed }
-    );
-    
-    // Update Loading Message with Success
-    toast.update(deleteLoadingId, {
-      render: "Task Successfully Removed",
-      type: "success",
-      isLoading: false,
-    });
-
-    // Get New Data from Contract
-    await getTodoData();
-  } catch (error: any) {
-    // Update Loading Message with Error
-    toast.update(deleteLoadingId as Id, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-  } finally {
-    setDeletingId(null);
-    // Remove Loading Message
-    removeNotification(deleteLoadingId as Id);
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to delete the existing task by passing status as "removed".
-
-Next, we'll write the **Handle Submit Form** function.
-
-### Configure Submit Form
-
-- Scroll down to find the comment `// step 7 - Handle Submit Form`.
-
-- Replace the existing **`onSubmit`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 7 - Handle Submit Form
-const onSubmit = async (values: { name: string; description: string }) => {
-  
-  // Check Whether Contract Initialized or not
-  if (isContractInitialized !== true) {
-    await initializeContract(); // initialize the contract if it's not initialized before
-  }
-  
-  // Check Whether Form is for Create or Update the Task
-  if (!!updateId) {
-    await updateTask(values); // Call updateTask for Update the task
-  } else {
-    await createNewTask(values); // Call createNewTask for Create a new task
-  }
-};
-```
-
-#### What This Function Does:
-
-1. **Check initialized contract**: It checks whether the smart contract is initialized or not by using `initializeContract` function.
-
-2. **Update Task**: Call the `updateTask` function if updatedId has any value.
-
-3. **Create Task**: Call the `createNewTask` function if updatedId does not have any value.
-
-Here, we have completed functions to **Create Task**, **Update Task** and **Delete Task** and now it's time to write a function to **Fetch Tasks** from the smart contract.
-
-### Fetch All Tasks
-
-- Scroll up to find the comment `// step 8 - Fetch All Tasks`.
-
-- Replace the existing **`getTodoData`** function with this code snippet:
-
-```javascript title="home/index.tsx"
-// step 8 - Fetch All Tasks
-const getTodoData = async () => {
-  try {
-    const result = await smartContract?.callViewMethod("ListTasks", {
-      value: currentWalletAddress,
-    });
-    console.log("result", result?.data);
-    setTodoData(result?.data ? result?.data.tasks : []);
-  } catch (error) {
-    console.log("error======", error);
-  } finally {
-    setLoading(false);
-  }
-};
-```
-#### Here's what the function does:
-
-1. **Fetches Task Data:** It calls `ListTasks` to get the list of all ToDo tasks from the ToDo smart contract.
-2. **Set Tasks on State:** Get the result data from the smart contract and set an array of all tasks into `todoData` State.
-
-We have prepared necessary function to fetch all the tasks created from a connected user's wallet.
-
-Now that we've written all the necessary frontend functions and components, we're ready to run the ToDo dApp application in the next step.
-
-### Run Application
-
-In this step, we will run the ToDo dApp application.
-
-- To begin, run the following command on your terminal.
+### Initializing Dice Game Contract
 
 ```bash title="Terminal"
-npm run dev
+aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Initialize
 ```
 
-:::info
+- Output:
 
-**Note**: Ensure that you are running this command under the **todo/2-dapp** folder.
+![result](/img/Initialize.png)
 
-:::
+### Depositing funds into the Dice Game Contract
 
-- You should observe the following as shown below.
+```bash title="Terminal"
+aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Deposit
+```
 
-  ![run-app-success](/img/vote-npm-run-console.png)
+- You will be prompted for the following:
 
-- Upon clicking on the **localhost URL**, you should be directed to the ToDo dApp landing page as shown below.
+```terminal title="Terminal"
+Enter the params one by one, type `Enter` to skip optional param:
+? Enter the required param <value>: 20000
+```
 
-:::tip
-If you are developing and testing this with github codespace, you can use port forward to test the web server that is running in codespace, here is the link on how to use port forward for codespace https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace
-:::
+- Output:
 
-- Usually codespace will automatically forward port, you should see a pop-up message at the bottom right of your codespace browser window as shown in the diagram below:
+![result](/img/Deposit.png)
 
-  ![open-in-browser](/img/codespace-forwarded-port.png)
+### Playing the Dice Game
 
-- Click the link to open the ToDo dApp in the browser.
+```bash title="Terminal"
+aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Play
+```
 
-  ![todo-home-page](/img/todo-homepage.jpg)
+- Let's check the `Contract Balance`
 
-#### Create Portkey Wallet
+```bash title="Terminal"
+aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetContractBalance
+```
 
-:::info
-Portkey is the first AA wallet from aelf's ecosystem, migrating users, developers and projects from Web2 to Web3 with DID solution.
+## Understanding Inter-Contract Calls in aelf
 
-Users can swiftly log into Portkey via their Web2 social info with no private keys or mnemonics required. Underpinned by social recovery and decentralized guardian design, Portkey safeguards users' assets from centralized control and theft. Portkey has a unique payment delegation mechanism which enables interested parties to function as delegatees to pay for user activities on users' behalf. This means that users can create accounts for free and fees for other usages may also be covered in Portkey.
+In this section, we'll explore how inter-contract calls work in the aelf blockchain using the dice game example from the tutorial. This will help you understand how different smart contracts can interact to perform complex operations.
 
-Portkey also provides crypto on/off-ramp services, allowing users to exchange fiat with crypto freely. It supports the storage and management of various digital assets such as tokens, NFTs, etc. The compatibility with multi-chains and seamless connection to all kinds of DApps makes Portkey a great way to enter the world of Web3.
+### 1. **Smart Contract Overview**
+   - **Dice Contract**: Manages the game, including buying tickets, drawing winners, and distributing prizes.
+   - **Token Contract**: Handles the token transactions needed for buying dice tickets.
 
-With DID solution as its core, Portkey provides both Portkey Wallet and Portkey SDKs.
+### 2. **Ticket Purchase Process**
+   - **Initiating Purchase**: When a user wants to buy a dice ticket, they interact with the dice Contract.
+   - **Token Transfer Requirement**: The dice Contract must verify that the user has enough tokens and transfer those tokens to the dice’s account to complete the purchase.
 
-For more information, you may visit the official documentation for Portkey at https://doc.portkey.finance/.
-:::
+### 3. **Initializing Contract Reference State**
+   - **Setting Contract Address**: The dice Contract must first initialize its reference to the Token Contract by setting the correct contract address in its state.
 
+### 4. **Making an Inter-Contract Call**
+   - **Calling Token Contract**: The dice Contract needs to interact with the Token Contract to transfer tokens. 
+     - **Method Invocation**: It calls a method in the Token Contract, such as `Transfer`.
+     - **Parameters**: The call includes details like the sender’s address, the recipient’s address (the dice account), and the amount of tokens.
+   - **Encoding and Sending**: The parameters are encoded into a transaction format and sent to the Token Contract.
 
-- Download the Chrome extension for Portkey from https://chromewebstore.google.com/detail/portkey-wallet/iglbgmakmggfkoidiagnhknlndljlolb.
+### 5. **Processing in the Token Contract**
+   - **Token Transfer**: The Token Contract processes the transfer request by deducting tokens from the user’s account and adding them to the dice account.
+   - **Return Response**: The Token Contract then returns a result indicating whether the transfer was successful or if it failed.
 
-:::info
-The Portkey extension supports Chrome browser only (for now). Please ensure that you are using Chrome browser.
-You may download Chrome from https://www.google.com/intl/en_sg/chrome/.
-:::
+### 6. **Handling the Response**
+   - **dice Contract’s Role**: Once the dice Contract receives the response from the Token Contract, it checks if the transfer was successful.
+   - **Next Steps**: If successful, the dice Contract updates the user's dice ticket entries and continues with the game logic.
 
-- Once you have downloaded the extension, you should see the following on your browser as shown below.
+### 7. **Authorization and Security**
+   - **Permission Checks**: Ensures that the dice Contract is authorized to invoke methods in the Token Contract.
+   - **Secure Transactions**: Ensures that token transfers are secure and correctly authorized.
 
-   ![welcome-to-portkey](/img/welcome-to-portkey.png)
+### 8. **Error Handling**
+   - **Failure Management**: If the token transfer fails (e.g., due to insufficient funds), the dice Contract handles the error by potentially reverting the transaction or notifying the user.
 
-- Click on `Get Start` and you should see the following interface as shown below.
+By following these steps, you can see how inter-contract calls in aelf allow different contracts to work together smoothly. This modular approach helps in building complex applications like a dice game by ensuring secure and authorized interactions between contracts.
 
-   ![portkey-login](/img/portkey-login.png)
 
+## 🎯 Conclusion 
 
-**Sign up** 
+#### 🎊 Congratulations!
 
-- Switch to **aelf Testnet** network by selecting it:
+You've completed the Dice Game Contract tutorial! Well done for mastering the steps and complexities involved. 🌟
 
-   ![portkey-switch-to-testnet](/img/portkey-switch-to-testnet.png)
+#### 📚 What You've Learned
 
-:::danger
-Please make sure you are using `aelf Testnet` in order to be able to receive your testnet tokens from the Faucet.
-:::
+In this tutorial, you've explored:
 
-- Proceed to sign up with a Google Account or your preferred login method and complete the necessary accounts creation prompts and you should observe the following interface once you have signed up.
+- 🛠️ Setting up your development environment for aelf blockchain.
+- 🎲 Developing a smart contract for a dice game with state management and verifiable random number generation using Aetherlink.
+- 🚀 Deploying and interacting with your Dice Game Contract on the aelf network.
 
-   ![success-login](/img/success-login.png)
-
-With that, you have successfully created your very first Portkey wallet within seconds. How easy was that?
-
-:::info
-It is highly recommended to pin the Portkey wallet extension for easier access and navigation to your Portkey wallet!
-:::
-
-- Next, click on ‘Open Portkey’ and you should now observe the following as shown below.
-
-   ![portkey-wallet-preview](/img/portkey-wallet-preview.png)
-
-**Connect Portkey Wallet**
-
-- Click on **"Connect Wallet"** to connect your Portkey wallet.
-
-   ![connect-wallet](/img/todo-connect-wallet.jpg)
-
-- The button will change to **"Your Wallet Address"** when the connection is successful.
-
-   ![collect-wallet-success](/img/todo-wallet-connect-success.jpg)
-
---- 
-
-**Create a New Task**
-
-- Click on **"Add New"** button to create a new task.
-
-   ![create-task](/img/create-task.png)
-
-- You will see the pop-up modal with form to create a new task. Please fill all the necessary fields like `Name`, `Description` and `Category`.
-
-   ![create-task-form](/img/create-task-form.png)
-
-- Click on **Create New Task** Button.
-
-- Now, You will receive a transaction request on your portkey wallet to  **Sign** the transaction.
-
-   ![create-task-sign-request](/img/create-task-sign-request.jpg)
-
-- Click on **Sign** the transaction.
-
-- After the transaction is successfully processed, your first task will be created✅.
-
-   ![create-task-success](/img/create-task-success.jpg)
-
-- Your task item looks like below with the following details -  **`Name`** , **`Description`** , **`Last Updated Time`** , **`Create Date and Time`**,
-
-   ![todo-item.jpg](/img/todo-item.jpg)
-
-- You will be able to perform these following action for a selected task - **`Edit`** , **`Complete`** , and **`Remove`** .
-
-As we have **Created a Task** successfully, let's update the task details.
-
----
-
-**Edit the Task**
-
-- Click on the **"Edit"** button to edit the task.
-
-   ![update-task](/img/update-task.png)
-
-- You will see the pop-up modal with form to edit the task. Edit the necessary fields according to your need.
-
-   ![edit-task-form](/img/edit-task-form.jpg)
-
-- Click on **Update Task** Button.
- 
-- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
-
-   ![update-task-sign-request](/img/update-task-request.jpg)
-
-- Click on **Sign** the transaction.
-
-- After the transaction is successfully processed, your task details will be Updated✅.
-
-   ![update-task-success](/img/update-task-success.jpg)
-
-As we have **Edited a Task** successfully. Let's move that task to completed state.
-
----
-
-**Complete the Task**
-
-- Click on the **"Complete"** button to move the task to `Completed` status.
-
-   ![complete-task-button](/img/complete-task-button.jpg)
-
-- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
-
-   ![complete-task-sign-request](/img/complete-task-request.jpg)
-
-- Click on **Sign** the transaction.
-
-- After the transaction is successfully processed, your task will be moved to the completed tab✅.
-
-   ![complete-task-success](/img/complete-task-success.jpg)
-
-As we have performed **Complete Task** successfully. Let's remove the completed task.
-
----
-
-**Remove the Task**
-
-- Click on **"Remove"** button to remove the task.
-
-   ![remove-task-button](/img/delete-task-button.jpg)
- 
-- Now, You will recieve a transaction request on your portkey wallet to **Sign** the transaction.
-
-   ![remove-task-sign-request](/img/delete-task-request.jpg)
-
-- Click on **Sign** the transaction.
-
-- After the transaction is successfully processed, your task will be moved to the removed tab✅.
-
-   ![remove-task-success](/img/delete-task-success.jpg)
-
-:::success
-🎉 Congratulations Learners! You have successfully built your ToDo dApp.
-:::
-
-
-## 🎯 Conclusion
-
-🎉 Congratulations on successfully completing the **ToDo dApp** tutorial! 🎉 You've taken important steps in setting up your development environment, developing and deploying a smart contract on ToDo dApp, and building a fully functional ToDo decentralized application on the aelf blockchain. 🌟
-
-**📚 What You've Learned**
-
-Throughout this tutorial, you've mastered:
-
-  - **🛠️ Setting Up Your Development Environment:** You prepared your workspace by installing and configuring all the necessary tools to kickstart your smart contract project.
-
-  - **💻 Developing Your Smart Contract:** You created the foundation of your ToDo dApp by writing and building the smart contract that manages tasks, from creation to deletion.
-
-  - **🚀 Deploying the Smart Contract:** You deployed your smart contract to the aelf blockchain, enabling its functionalities to be used in a live environment.
-
-  - **🔧 Interacting with Your Deployed Smart Contract:** You connected your frontend to the blockchain, integrated Portkey for wallet connectivity, and implemented functions to manage tasks such as creating, updating, and deleting directly through the dApp.
-
-**🔍 Final Output**
+#### 🔍 Final Output
 
 By now, you should have:
 
-   - 📜 A deployed smart contract that powers your ToDo dApp, managing tasks with functionalities for creation, updating, status management, and deletion.
+- 📜 Successfully deployed your Dice Game Contract on the aelf blockchain.
+- 🎉 Deposited funds and played the Dice game using smart contract interactions with Aetherlink VRF integration.
 
-   - 💻 A fully operational ToDo dApp, allowing users to interact with the smart contract to efficiently manage their tasks.
+Ensure you've seen your ELF balance updated after playing the game to verify the contract's functionality.
 
-**➡️ What's Next?**
+#### ➡️ What's Next?
 
-With the basics under your belt, consider exploring more advanced topics:
+Now that you've tackled the Dice Game Contract, consider exploring more advanced topics or other tutorials to expand your aelf blockchain development skills.
 
-  - **📈 Enhancing Smart Contract Logic:** Introduce more complex features to your ToDo dApp, such as prioritization, deadlines, or collaboration tools.
+🚀 Keep innovating and building awesome decentralized applications!
 
-  - **🔒 Improving Security:** Ensure your dApp and smart contract are secure by implementing best practices and security measures.
+Happy coding! 😊
 
-  - **🌍 Exploring Cross-Chain Features:** Expand your dApp’s capabilities by exploring aelf’s cross-chain interoperability, enabling interaction with other blockchains.
-
-The possibilities with blockchain technology and decentralized applications are endless. You're now well-equipped to take your ToDo dApp to the next level. Keep building, innovating, and exploring with aelf. 🚀
-
-Happy coding and expanding your **ToDo dApp! 😊**
