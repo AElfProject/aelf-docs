@@ -1541,36 +1541,38 @@ aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_A
 In this section, we'll explore how inter-contract calls work in the aelf blockchain using the dice game example from the tutorial. This will help you understand how different smart contracts can interact to perform complex operations.
 
 ### 1. **Smart Contract Overview**
-   - **Dice Contract**: Manages the game, including buying tickets, drawing winners, and distributing prizes.
-   - **Token Contract**: Handles the token transactions needed for buying dice tickets.
+   - **Dice Master Contract**: Manages the game, including initialization, token deposit/withdrawal, interaction with oracle for random number generation and decision of win or lose based on dice outcome.
+   - **Token Contract**: Handles the token transactions needed for playing dice game.
 
-### 2. **Ticket Purchase Process**
-   - **Initiating Purchase**: When a user wants to buy a dice ticket, they interact with the dice Contract.
-   - **Token Transfer Requirement**: The dice Contract must verify that the user has enough tokens and transfer those tokens to the dice’s account to complete the purchase.
+### 2. **Game Play Process**
+   - **Starting Gameplay**: When a user wants to play the dice game, they interact with the dice master contract to deposit sufficent funds using deposit function. Then the master contract contract calls the oracle contract to generate a random number. The oracle contract calls the dice master contract to decide if the user wins or loses.
+   - **Deposit Requirement**: The Dice Master Contract must verify that the user has enough funds to play the game.
+   - **Token Transfer Requirement**: The Dice Master Contract must verify that the user has enough tokens and transfer those tokens to the smart contract account to play the game.
 
 ### 3. **Initializing Contract Reference State**
-   - **Setting Contract Address**: The dice Contract must first initialize its reference to the Token Contract by setting the correct contract address in its state.
+   - **Setting Token and Oracle Contract Address**: The dice game needs to initialize state of the contract, including references to external contracts like the Token Contract and Oracle Contract.
 
 ### 4. **Making an Inter-Contract Call**
-   - **Calling Token Contract**: The dice Contract needs to interact with the Token Contract to transfer tokens. 
+   - **Calling Token Contract**: The Dice Master Contract needs to interact with the Token Contract to transfer tokens. 
      - **Method Invocation**: It calls a method in the Token Contract, such as `Transfer`.
-     - **Parameters**: The call includes details like the sender’s address, the recipient’s address (the dice account), and the amount of tokens.
+     - **Parameters**: The call includes details like the sender’s address, the recipient’s address (the dice game account), and the amount of tokens.
+   - **Calling Oracle Contract**: The Dice Master Contract needs to interact with the Oracle Contract to generate a verifiable random number.
    - **Encoding and Sending**: The parameters are encoded into a transaction format and sent to the Token Contract.
 
 ### 5. **Processing in the Token Contract**
-   - **Token Transfer**: The Token Contract processes the transfer request by deducting tokens from the user’s account and adding them to the dice account.
+   - **Token Transfer**: The Token Contract processes the transfer request by deducting tokens from the user’s account and adding them to the dice game account.
    - **Return Response**: The Token Contract then returns a result indicating whether the transfer was successful or if it failed.
 
 ### 6. **Handling the Response**
-   - **dice Contract’s Role**: Once the dice Contract receives the response from the Token Contract, it checks if the transfer was successful.
-   - **Next Steps**: If successful, the dice Contract updates the user's dice ticket entries and continues with the game logic.
+   - **Dice Master Contract’s Role**: Once the dice master contract receives the response from the Token Contract, it checks if the transfer was successful.
+   - **Next Steps**: If successful, the dice master contract updates the contract balance and continues with the game logic.
 
 ### 7. **Authorization and Security**
-   - **Permission Checks**: Ensures that the dice Contract is authorized to invoke methods in the Token Contract.
-   - **Secure Transactions**: Ensures that token transfers are secure and correctly authorized.
+   - **Permission Checks**: Ensures that the Dice Game Contract is authorized to invoke methods in the Token and Oracle Contract.
+   - **Secure Transactions**: Ensures that token transfers and random number generation are secure and correctly authorized.
 
 ### 8. **Error Handling**
-   - **Failure Management**: If the token transfer fails (e.g., due to insufficient funds), the dice Contract handles the error by potentially reverting the transaction or notifying the user.
+   - **Failure Management**: If the token transfer fails (e.g., due to insufficient funds), the dice contract handles the error by potentially reverting the transaction or notifying the user.
 
 By following these steps, you can see how inter-contract calls in aelf allow different contracts to work together smoothly. This modular approach helps in building complex applications like a dice game by ensuring secure and authorized interactions between contracts.
 
