@@ -66,7 +66,7 @@ Now as the workspace setup is done and project is setup inside aelf's playground
 - src/`ContractName`State.cs
 
 Once all the changes are done in the above files and all other required files (whereever nacessary). Then below operations can be performed on the selected workspace project: 
-1. **AI Audit**: Complete the AI audit of the writtwn smart contract. Result similar to below image will be visible once the AI audit completes. The interpretation of the AI audit results will be shown when you hover over the smart contract code once the audit finishes.
+1. **AI Audit**: Complete the AI audit of the written smart contract. Result similar to below image will be visible once the AI audit completes. The interpretation of the AI audit results will be shown when you hover over the smart contract code once the audit finishes.
   
   ![AI-Audit](/img/playground-9.png)
 
@@ -85,41 +85,47 @@ Once all the changes are done in the above files and all other required files (w
 5. **Deploy**: Deploy the smart contract code on the aelf blockchain. It will show `Deploying` status when the user clicks the `Deploy` button and will output below result including `transactionId`, `proposal status` and `contract address` once the build process ends. You can verify the contract address by visiting [aelf testnet explorer](https://testnet.aelfscan.io/tDVW).
 
   ![Deploy](/img/playground-13.png)
+
+6. **Contract Viewer**: The Contract Viewer in the Playground automatically appears after a smart contract is deployed, allowing users to test and interact with the contract immediately. This feature displays all available contract functions, both read and write, enabling users to execute them directly within the Playground. It provides a streamlined way to explore and perform actions on the contract without additional setup, making contract testing and function execution more accessible.
+
+  ![Deploy](/img/contract-viewer.png)
   
-6. **Export**: Export the project in a local directory. It will open an alert to save the workspace in the local directory. Users can rename the local directory.
+7. **Export**: Export the project in a local directory. It will open an alert to save the workspace in the local directory. Users can rename the local directory.
 
   ![Export](/img/playground-14.png)
   
-7. **Share**: Share the project with a sharable link. It will show `Generating share link` status when the user clicks the `Share` button and will output below result including the sharable link.
+8. **Share**: Share the project with a sharable link. It will show `Generating share link` status when the user clicks the `Share` button and will output below result including the sharable link.
 
   ![Share](/img/playground-15.png)
 
-8. **Command Line Options**: Command line additionally provides options to check txID and clear terminal including above options. Use the help command to see all the options inside terminal. `check txID` helps in checking the transaction details.
+9. **Command Line Options**: Command line additionally provides options to check txID and clear terminal including above options. Use the help command to see all the options inside terminal. `check txID` helps in checking the transaction details.
 
   ![Upload Files](/img/playground-16.png)
   
-9. **Upload Files**: Upload more files to the project when necessary. It will show a `drag and drop files` section to drop files from the local directory.
+10. **Upload Files**: Upload more files to the project when necessary. It will show a `drag and drop files` section to drop files from the local directory.
 
   ![Upload Files](/img/playground-17.png)
   
-10. **Add a New File**: Manually add a new file in the playground project structure. It will allow users to add a new file in the workspace project structure add smart contract code, new proto files, etc.
+11. **Add a New File**: Manually add a new file in the playground project structure. It will allow users to add a new file in the workspace project structure add smart contract code, new proto files, etc.
 
   ![Add a New File](/img/playground-18.png)
 
-11. **Rename & Delete File**: `Renames` & `Deletes` the chosen file or folders in the project directory structure.
+12. **Rename & Delete File**: `Renames` & `Deletes` the chosen file or folders in the project directory structure.
 
   ![Add a New File](/img/playground-19.png)
 
-12. **Tutorials**: Some pre-compiled tutorials are curated under `Tutorials` section of aelf-playground. It provides an option to filter the tutorials based on the difficulty level (`Beginner`, `Intermediate` & `Advanced`) and smart contracts languages (C# & Solidity).
+13. **Tutorials**: Some pre-compiled tutorials are curated under `Tutorials` section of aelf-playground. It provides an option to filter the tutorials based on the difficulty level (`Beginner`, `Intermediate` & `Advanced`) and smart contracts languages (C# & Solidity).
 
   ![Add a New File](/img/playground-20.png)
 
-
-13. **Deployments**: `Deployments` section provides a list of all deployed tutorials along with the wallet address used to deploy smart contracts on the aelf blockchain. You can click on the wallet address to view wallet details on the aelf explorer.
+14. **Deployments**: `Deployments` section provides a list of all deployed tutorials along with the wallet address used to deploy smart contracts on the aelf blockchain. You can click on the wallet address to view wallet details on the aelf explorer.
 
   ![Add a New File](/img/playground-21.png)
 
-14. **Themes**: Users can also choose to toggle between `dark` and `light` themes.
+15. **Privatekey**: You can export your wallet's private key from the `Deployments` section. Simply click the eye icon to reveal the private key, which you can then copy.
+![Add a New File](/img/playground-24.png)
+
+16. **Themes**: Users can also choose to toggle between `dark` and `light` themes.
 
   ![Add a New File](/img/playground-22.png)
 
@@ -143,6 +149,8 @@ Now it's time to creat a Todo-dApp using playground.
 - You will be redirect to workspace page with specific folders like **`src`** and **`test`**.
 
   ![playground-example-img-3](/img/playground-example-img-3.png)
+
+### Rename File Name
 
 - Rename the proto file name `hello_world_contract.proto` inside folder `src/Protobuf/contract/` to `todo_app.proto`
 
@@ -356,12 +364,22 @@ namespace AElf.Contracts.ToDo
 }
 ```
 
+### Ai Audit Report
+
+- Click on AI Audit Icon to generate the AI Audit report.
+
+  ![ai-audit-button-playground](/img/ai-audit-button-playground.png)
+
+- The Report will be visible once the AI audit completes. It will provides suggestion for Todo functions as shown below so apply the suggetion and make your Todo smart contract more better. 
+
+  ![ai-audit-suggestion-playground](/img/ai-audit-suggestion-playground.png)
+
+
 ### Save Gas Fee
 
-- Click on Save Gas Fee Button and It will suggest to make changes if contract need to be optimised otherwise it shows result like below.
+- Click on Save Gas Fee Icon and It will suggest to make changes if contract need to be optimised otherwise it shows result like below.
 
   ![gas-fees-example-playground](/img/gas-fees-example-playground.png)
-
 
 ### Building Smart Contract
 
@@ -373,6 +391,15 @@ namespace AElf.Contracts.ToDo
 
   ![playground-example-img-7](/img/playground-example-img-7.png)
 
+<!-- ### Test Smart Contract
+
+- Click on Test Icon for run the test cases.
+
+  ![test-button-playground](/img/test-button-playground.png)
+
+- Once Test cases run successfully, You will get result in terminal. -->
+
+
 ### Deploy Smart Contract
 
 - Click on Deploy Icon for deploy the smart contract.
@@ -383,6 +410,42 @@ namespace AElf.Contracts.ToDo
 
   ![playground-example-img-9](/img/playground-example-img-9.png)
 
+### Contract Viewer
+
+- The Contract Viewer will appear once your contract is successfully deployed, allowing you to execute all functions directly within the Playground.
+
+  ![Deploy](/img/contract-viewer.png)
+
+### Export Smart Contract
+
+- Click on Export Icon for download the smart contract.
+
+  ![export-button-playground](/img/export-button-playground.png)
+
+- Once your smart contract exported successfully, You will get it in zip format like below.
+
+  ![export-success-playground](/img/export-success-playground.png)
+
+### Share Link
+
+- Click on Share Icon to generate the share link of the smart contract.
+
+  ![share-button-playground](/img/share-button-playground.png)
+
+- Share link will be generated and You will get it in terminal.
+
+  ![share-link-playground](/img/share-link-playground.png)
+
+### Deployment
+
+- Click on Deployment link to get deployment data of our recent deployed smart contract.
+
+  ![deployment-button-playground](/img/deployment-button-playground.png)
+
+- You will receive data about the deployed contract and wallet address, and you can click on them to view more details related to the wallet and contract. 
+
+  ![deployment-data-playground](/img/deployment-data-playground.png)
+  
 🎉 Congratulations, We got the contract address after successful deployment of todo-dapp smart contract using playground. 
 
 ## Conclusion

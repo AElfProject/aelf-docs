@@ -139,7 +139,6 @@ description: A tool to simplify building, testing, and deploying smart contracts
 
   - It's advised to wait for sometime and click on **Check Audit Report** button to see the audit report.
 
-
 ### Deploy the smart contract:
 
   - Click the **aelf icon** again in the bottom right corner.
