@@ -36,7 +36,7 @@ dotnet new aelf -n DiceGame
 ### Adding Your Smart Contract Code
 
 Now that we have a template dice game project, we can customise the template to incorporate our own contract logic.
-Lets start by implementing methods to provide basic functionality for interacting with oracle to generate verifiable random number. Then updating and reading a message stored persistently in the contract state to determine outcome of the game.
+Lets start by implementing methods to provide basic functionality for interacting with the oracle to generate a verifiable random number. Then updating and reading a message stored persistently in the contract state to determine outcome of the game.
 
 - Enter this command in your `Terminal`.
 
@@ -191,7 +191,7 @@ namespace AElf.Contracts.DiceMaster
 }
 ```
 
-#### Contract Reference State
+#### Token Contract Reference State
 
 - Create a new file `token_contract.proto` under `src/Protobuf/reference/`.
 
@@ -1094,6 +1094,696 @@ message SymbolAliasDeleted {
 }
 ```
 
+#### Oracle Contract Reference State
+
+- Create a new file `oracle_contract.proto` under `src/Protobuf/reference/`.
+
+- Replace this code of implementation file of `oracle_contract.proto`:
+
+```csharp title="oracle_contract.proto"
+// the version of the language, use proto3 for contracts
+syntax = "proto3";
+
+// some core imports for AElf chain types
+import "aelf/core.proto";
+import "aelf/options.proto";
+import "Protobuf/reference/acs12.proto";
+import "Protobuf/reference/oracle_common_message.proto";
+
+// import for using the google.protobuf.* type.
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+// the name of the C# namespace in which the contract code will be,
+// generated code will also be in this namespace.
+option csharp_namespace = "AetherLink.Contracts.Oracle";
+
+// the contract definition: a gRPC service definition.
+service OracleContract {
+
+    // the full name of the C# class that will contain the state (here <namespace>.<state-class-name> format).
+    option (aelf.base) = "Protobuf/reference/acs12.proto";
+    option (aelf.csharp_state) = "AetherLink.Contracts.Oracle.OracleContractState";
+    
+    // Action
+    // Admin
+    rpc Initialize(InitializeInput) returns (google.protobuf.Empty) {}
+    rpc TransferAdmin(aelf.Address) returns (google.protobuf.Empty) {}
+    rpc AcceptAdmin(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc Pause (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc Unpause (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+    // subscription
+    rpc CreateSubscription (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc CreateSubscriptionWithConsumer (aelf.Address) returns (google.protobuf.Empty) {}
+    rpc CancelSubscription (CancelSubscriptionInput) returns (google.protobuf.Empty) {}
+    rpc AdminCancelSubscription (google.protobuf.Int64Value) returns (google.protobuf.Empty) {}
+    rpc ProposeSubscriptionOwnerTransfer (ProposeSubscriptionOwnerTransferInput) returns (google.protobuf.Empty) {}
+    rpc AcceptSubscriptionOwnerTransfer (google.protobuf.Int64Value) returns (google.protobuf.Empty) {}
+    rpc AddConsumer (AddConsumerInput) returns (google.protobuf.Empty) {}
+    rpc RemoveConsumer (RemoveConsumerInput) returns (google.protobuf.Empty) {}
+
+    // Config
+    rpc AddCoordinator (aelf.Address) returns (google.protobuf.Empty) {}
+    rpc SetCoordinatorStatus (SetCoordinatorStatusInput) returns (google.protobuf.Empty) {}
+    rpc SetConfig (SetConfigInput) returns (google.protobuf.Empty) {}
+    rpc SetSubscriptionConfig (SubscriptionConfig) returns (google.protobuf.Empty) {}
+    rpc SetMaxOracleCount (google.protobuf.Int64Value) returns (google.protobuf.Empty) {}
+    
+    // PK
+    rpc RegisterProvingKey (RegisterProvingKeyInput) returns (google.protobuf.Empty) {}
+    rpc DeregisterProvingKey (DeregisterProvingKeyInput) returns (google.protobuf.Empty) {}
+    
+    // Request
+    rpc SendRequest (SendRequestInput) returns (google.protobuf.Empty) {}
+    rpc StartRequest (StartRequestInput) returns (google.protobuf.Empty) {}
+    rpc Fulfill (FulfillInput) returns (google.protobuf.Empty) {}
+    rpc Transmit (TransmitInput) returns (google.protobuf.Empty) {}
+    rpc CancelRequest (CancelRequestInput) returns (google.protobuf.Empty) {}
+    
+    // View
+    rpc GetAdmin(google.protobuf.Empty) returns (aelf.Address) { option (aelf.is_view) = true; }
+    rpc IsPaused (google.protobuf.Empty) returns (google.protobuf.BoolValue) { option (aelf.is_view) = true; }
+
+    rpc GetConfig (google.protobuf.Empty) returns (GetConfigOutput) { option (aelf.is_view) = true; }
+    rpc GetSubscriptionConfig (google.protobuf.Empty) returns (SubscriptionConfig) { option (aelf.is_view) = true; }
+    rpc GetCoordinatorByIndex (google.protobuf.Int32Value) returns (Coordinator) { option (aelf.is_view) = true; }
+    rpc GetCoordinators (google.protobuf.Empty) returns (CoordinatorList) { option (aelf.is_view) = true; }
+    rpc GetMaxOracleCount (google.protobuf.Empty) returns (google.protobuf.Int64Value) { option (aelf.is_view) = true; }
+    rpc GetLatestConfigDetails (google.protobuf.Empty) returns (GetLatestConfigDetailsOutput) { option (aelf.is_view) = true; }
+    rpc GetLatestRound (google.protobuf.Empty) returns (google.protobuf.Int64Value) { option (aelf.is_view) = true; }
+    rpc GetTransmitters (google.protobuf.Empty) returns (AddressList) { option (aelf.is_view) = true; }
+    rpc GetOracle (aelf.Address) returns (Oracle) { option (aelf.is_view) = true; }
+    
+    rpc GetProvingKeyHashes (google.protobuf.Empty) returns (HashList) { option (aelf.is_view) = true; }
+    rpc GetOracleByProvingKeyHash (google.protobuf.StringValue) returns (aelf.Address) { option (aelf.is_view) = true; }
+    rpc GetHashFromKey (google.protobuf.StringValue) returns (aelf.Hash) { option (aelf.is_view) = true; }
+
+    rpc IsPendingRequestExists (google.protobuf.Int64Value) returns (google.protobuf.BoolValue) { option (aelf.is_view) = true; }
+    rpc GetSubscription (google.protobuf.Int64Value) returns (Subscription) { option (aelf.is_view) = true; }
+    rpc GetConsumer (GetConsumerInput) returns (Consumer) { option (aelf.is_view) = true; }
+    rpc GetSubscriptionCount (google.protobuf.Empty) returns (google.protobuf.Int64Value) { option (aelf.is_view) = true; }
+}
+
+// Data structure
+message InitializeInput {
+    aelf.Address admin = 1;
+}
+
+message Coordinator {
+    int32 request_type_index = 1;
+    aelf.Address coordinator_contract_address = 2;
+    bool status = 3;
+}
+
+message CoordinatorList {
+    repeated Coordinator data = 1;
+}
+
+message SetCoordinatorStatusInput {
+    int32 request_type_index = 1;
+    bool status = 2;
+}
+
+message Config {
+    aelf.Hash latest_config_digest = 1;
+    int32 f = 2;  // // number of faulty oracles the system can tolerate
+    int32 n = 3;  // number of signers/transmitters
+}
+
+message SetConfigInput {
+    repeated aelf.Address signers = 1;
+    repeated aelf.Address transmitters = 2;
+    int32 f = 3;  // number of faulty oracles the system can tolerate
+    int64 off_chain_config_version = 4;  // version of the off-chain configuration
+    bytes off_chain_config = 5;  // serialized configuration used by the oracles exclusively and only passed through
+}
+
+message ConfigData {
+    int32 chain_id = 1;
+    aelf.Address contract_address = 2;  // self
+    int64 config_count = 3;
+    repeated aelf.Address signers = 4;
+    repeated aelf.Address transmitters = 5;
+    int32 f = 6;
+    int64 off_chain_config_version = 7;
+    bytes off_chain_config = 8;
+}
+
+message Oracle {
+    int32 index = 1;  // index of the oracle in the list of signers/transmitters
+    Role role = 2;
+}
+
+enum Role {
+    Unset = 0;
+    Signer = 1;
+    Transmitter = 2;
+}
+
+message AddressList {
+    repeated aelf.Address data = 1;
+}
+
+message GetLatestConfigDetailsOutput {
+    int64 config_count = 1;  // times of config set
+    int64 block_number = 2;  // block number when latest config set
+    aelf.Hash config_digest = 3;
+}
+
+message SendRequestInput {
+    int64 subscription_id = 1;
+    int32 request_type_index = 2;
+    bytes specific_data = 3;
+    aelf.Hash trace_id = 4;
+}
+
+message StartRequestInput {
+    aelf.Hash request_id = 1;
+    aelf.Address requesting_contract = 2;
+    int64 subscription_id = 3;
+    aelf.Address subscription_owner = 4;
+    bytes commitment = 5;
+    int32 request_type_index = 6;
+}
+
+message FulfillInput {
+    bytes response = 1;
+    bytes err = 2;
+    aelf.Address transmitter = 3;
+    oracle.Commitment commitment = 4;
+}
+
+message TransmitInput {
+    repeated aelf.Hash report_context = 1;
+    bytes report = 2;
+    repeated bytes signatures = 3;
+}
+
+message CancelRequestInput {
+    aelf.Hash request_id = 1;
+    int64 subscription_id = 2;
+    aelf.Address consumer = 3;
+    int32 request_type_index = 4;
+}
+
+message RegisterProvingKeyInput {
+    aelf.Address oracle = 1;
+    string public_proving_key = 2;
+}
+
+message DeregisterProvingKeyInput {
+    string public_proving_key = 1;
+}
+
+message SubscriptionConfig {
+    int64 max_consumers_per_subscription = 1;
+}
+
+message Subscription {
+    aelf.Address owner = 1;
+    aelf.Address proposed_owner = 2;
+    repeated aelf.Address consumers = 3;
+    int64 balance = 4;
+    int64 block_balance = 5;
+}
+
+message Consumer {
+    bool allowed = 1;
+    int64 initiated_requests = 2;
+    int64 completed_requests = 3;
+}
+
+message ProposeSubscriptionOwnerTransferInput {
+    int64 subscription_id = 1;
+    aelf.Address to = 2;
+}
+
+message CancelSubscriptionInput {
+    int64 subscription_id = 1;
+    aelf.Address to = 2;
+}
+
+message AddConsumerInput {
+    int64 subscription_id = 1;
+    aelf.Address consumer = 2;
+}
+
+message RemoveConsumerInput {
+    int64 subscription_id = 1;
+    aelf.Address consumer = 2;
+}
+
+message GetConsumerInput {
+    aelf.Address consumer = 1;
+    int64 subscription_id = 2;
+}
+
+message HashList {
+    repeated aelf.Hash data = 1;
+}
+
+message GetConfigOutput {
+    Config config = 1;
+    repeated aelf.Address signers = 2;
+    repeated aelf.Address transmitters = 3;
+}
+
+// Log event
+message AdminTransferRequested {
+    option (aelf.is_event) = true;
+    aelf.Address from = 1;
+    aelf.Address to = 2;
+}
+
+message AdminTransferred {
+    option (aelf.is_event) = true;
+    aelf.Address from = 1;
+    aelf.Address to = 2;
+}
+
+message ConfigSet {
+    option (aelf.is_event) = true;
+    int64 previous_config_block_number = 1;
+    aelf.Hash config_digest = 2;
+    int64 config_count = 3;
+    AddressList signers = 4;
+    AddressList transmitters = 5;
+    int32 f = 6;
+    int64 off_chain_config_version = 7;
+    bytes off_chain_config = 8;
+}
+
+message ProvingKeyRegistered {
+    option (aelf.is_event) = true;
+    aelf.Hash key_hash = 1;
+    aelf.Address oracle = 2;
+}
+
+message ProvingKeyDeregistered {
+    option (aelf.is_event) = true;
+    aelf.Hash key_hash = 1;
+    aelf.Address oracle = 2;
+}
+
+message OracleRequestSent {
+    option (aelf.is_event) = true;
+    int64 subscription_id = 1;
+    aelf.Address subscription_owner = 2;
+    aelf.Address requesting_contract = 3;
+    aelf.Address request_initiator = 4;
+    bytes specific_data = 5;
+}
+
+message RequestStarted {
+    option (aelf.is_event) = true;
+    aelf.Hash request_id = 1;
+    aelf.Address requesting_contract = 2;   // consumer contract address
+    aelf.Address requesting_initiator = 3;  // origin address
+    int64 subscription_id = 4;
+    aelf.Address subscription_owner = 5;
+    bytes commitment = 6;                   // commitment to the request
+    int32 request_type_index = 7;
+}
+
+message RequestProcessed {
+    option (aelf.is_event) = true;
+    aelf.Hash request_id = 1;
+    int64 subscription_id = 2;
+    aelf.Address transmitter = 3;
+    bytes response = 4;
+    bytes err = 5;
+}
+
+message Transmitted {
+    option (aelf.is_event) = true;
+    aelf.Hash request_id = 1;
+    aelf.Hash config_digest = 2;
+    int64 epoch_and_round = 3;
+    aelf.Address transmitter = 4;
+}
+
+message CoordinatorSet {
+    option (aelf.is_event) = true;
+    aelf.Address coordinator_contract_address = 1;
+    int32 request_type_index = 2;
+    bool status = 3;
+}
+
+message SubscriptionCreated {
+    option (aelf.is_event) = true;
+    int64 subscription_id = 1;
+    aelf.Address owner = 2;
+}
+
+message SubscriptionConsumerAdded {
+    option (aelf.is_event) = true;
+    int64 subscription_id = 1;
+    aelf.Address consumer = 2;
+}
+
+message SubscriptionCanceled {
+    option (aelf.is_event) = true;
+    int64 subscription_id = 1;
+    aelf.Address funds_recipient = 2;
+    int64 funds_amount = 3;
+}
+
+message SubscriptionOwnerTransferRequested {
+    option (aelf.is_event) = true;
+    int64 subscription_id = 1;
+    aelf.Address from = 2;
+    aelf.Address to = 3;
+}
+
+message SubscriptionOwnerTransferred {
+    option (aelf.is_event) = true;
+    int64 subscription_id = 1;
+    aelf.Address from = 2;
+    aelf.Address to = 3;
+}
+
+message SubscriptionConsumerRemoved {
+    option (aelf.is_event) = true;
+    int64 subscription_id = 1;
+    aelf.Address consumer = 2;
+}
+
+message SubscriptionConfigSet {
+    option (aelf.is_event) = true;
+    SubscriptionConfig config = 1;
+}
+
+message Paused {
+    option (aelf.is_event) = true;
+    aelf.Address account = 1;  // the address called Pause()
+}
+
+message Unpaused {
+    option (aelf.is_event) = true;
+    aelf.Address account = 1;  // the address called Unpause()
+}
+
+message RequestCancelled {
+    option (aelf.is_event) = true;
+    aelf.Hash request_id = 1;
+}
+```
+
+#### Coordinator Contract Reference State
+
+- Create a new file `coordinator_contract.proto` under `src/Protobuf/reference/`.
+
+- Replace this code of implementation file of `coordinator_contract.proto`:
+
+```csharp title="coordinator_contract.proto"
+// the version of the language, use proto3 for contracts
+syntax = "proto3";
+
+// some core imports for AElf chain types
+import "aelf/core.proto";
+import "aelf/options.proto";
+import "Protobuf/reference/acs12.proto";
+import "Protobuf/reference/oracle_common_message.proto";
+
+package coordinator;
+
+// import for using the google.protobuf.* type.
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+// the contract definition: a gRPC service definition.
+service CoordinatorInterface {
+
+  // Action
+  // Admin
+  rpc Initialize(InitializeInput) returns (google.protobuf.Empty) {}
+  rpc TransferAdmin(aelf.Address) returns (google.protobuf.Empty) {}
+  rpc AcceptAdmin(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Pause (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Unpause (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  // Config
+  rpc SetOracleContractAddress (aelf.Address) returns (google.protobuf.Empty) {}
+  rpc SetRequestTypeIndex(google.protobuf.Int32Value) returns (google.protobuf.Empty) {}
+
+  // Request
+  rpc SendRequest (Request) returns (google.protobuf.Empty) {}
+  rpc Report (ReportInput) returns (google.protobuf.Empty) {}
+  rpc DeleteCommitment (aelf.Hash) returns (google.protobuf.Empty) {}
+
+  // View
+  rpc GetAdmin (google.protobuf.Empty) returns (aelf.Address) { option (aelf.is_view) = true; }
+  rpc IsPaused (google.protobuf.Empty) returns (google.protobuf.BoolValue) { option (aelf.is_view) = true; }
+  rpc GetOracleContractAddress (google.protobuf.Empty) returns (aelf.Address) { option (aelf.is_view) = true; }
+  rpc GetRequestTypeIndex (google.protobuf.Empty) returns (google.protobuf.Int32Value) { option (aelf.is_view) = true; }
+  rpc GetCommitmentHash (aelf.Hash) returns (aelf.Hash) { option (aelf.is_view) = true; }
+}
+
+//Data structure
+message InitializeInput {
+  aelf.Address admin = 1;
+  aelf.Address oracle = 2;
+  int32 request_type_index = 3;
+}
+
+message Request {
+  aelf.Address requesting_contract = 1;
+  int64 subscription_id = 2;
+  int64 initiated_requests = 3;
+  int64 completed_requests = 4;
+  aelf.Address subscription_owner = 5;
+  bytes specific_data = 6;
+  aelf.Hash trace_id = 7;
+}
+
+message RequestInfo {
+  aelf.Address coordinator = 1;
+  aelf.Address requesting_contract = 2;
+  int64 subscription_id = 3;
+  int64 nonce = 4;
+  google.protobuf.Timestamp timeout_timestamp = 5;
+  aelf.Address request_initiator = 6;
+  aelf.Hash trace_id = 7;
+}
+
+message ReportInput {
+  aelf.Address transmitter = 1;
+  repeated aelf.Hash report_context = 2;
+  bytes report = 3;
+  repeated bytes signatures = 4;
+}
+
+// log event
+message AdminTransferRequested {
+  option (aelf.is_event) = true;
+  aelf.Address from = 1;
+  aelf.Address to = 2;
+}
+
+message AdminTransferred {
+  option (aelf.is_event) = true;
+  aelf.Address from = 1;
+  aelf.Address to = 2;
+}
+
+message Paused {
+  option (aelf.is_event) = true;
+  aelf.Address account = 1;  // the address called Pause()
+}
+
+message Unpaused {
+  option (aelf.is_event) = true;
+  aelf.Address account = 1;  // the address called Unpause()
+}
+
+message RequestSent {
+  option (aelf.is_event) = true;
+  aelf.Hash request_id = 1;
+  aelf.Address requesting_contract = 2;
+  aelf.Address requesting_initiator = 3;
+  bytes commitment = 4;
+}
+
+message Reported {
+  option (aelf.is_event) = true;
+  aelf.Hash request_id = 1;
+  aelf.Address transmitter = 2;
+}
+
+message RequestTypeIndexSet {
+  option (aelf.is_event) = true;
+  int32 request_type_index = 1;
+}
+
+message CommitmentDeleted {
+  option (aelf.is_event) = true;
+  aelf.Hash request_id = 1;
+}
+```
+
+#### Oracle Common Message Contract Reference State
+
+- Create a new file `oracle_common_message.proto` under `src/Protobuf/reference/`.
+
+- Replace this code of implementation file of `oracle_common_message.proto`:
+
+```csharp title="oracle_common_message.proto"
+// the version of the language, use proto3 for contracts
+syntax = "proto3";
+
+// some core imports for AElf chain types
+import "aelf/core.proto";
+import "aelf/options.proto";
+import "Protobuf/reference/acs12.proto";
+
+package oracle;
+
+// import for using the google.protobuf.* type.
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+// the name of the C# namespace in which the contract code will be,
+
+message Commitment {
+  aelf.Hash request_id = 1;                         
+  aelf.Address coordinator = 2;                     // coordinator contract address
+  aelf.Address client = 3;                          // consumer contract address
+  int64 subscription_id = 4;
+  google.protobuf.Timestamp timeout_timestamp = 5;
+  bytes specific_data = 6;
+  int32 request_type_index = 7;
+  aelf.Hash trace_id = 8;
+}
+
+message Report {
+  bytes result = 1;
+  bytes error = 2;
+  bytes on_chain_metadata = 3;   // serialized Commitment
+  bytes off_chain_metadata = 4;  // TODO use in getDonFee() for dynamic billing
+}
+```
+
+#### VRF Coordinator Contract Reference State
+
+- Create a new file `vrf_coordinator_contract.proto` under `src/Protobuf/reference/`.
+
+- Replace this code of implementation file of `vrf_coordinator_contract.proto`:
+
+```csharp title="vrf_coordinator_contract.proto"
+// the version of the language, use proto3 for contracts
+syntax = "proto3";
+
+package vrf;
+
+// some core imports for AElf chain types
+import "aelf/core.proto";
+import "aelf/options.proto";
+import "Protobuf/reference/acs12.proto";
+import "Protobuf/reference/oracle_common_message.proto";
+import "Protobuf/reference/coordinator_contract.proto";
+
+// import for using the google.protobuf.* type.
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+// the name of the C# namespace in which the contract code will be,
+// generated code will also be in this namespace.
+option csharp_namespace = "AetherLink.Contracts.VRF.Coordinator";
+
+// the contract definition: a gRPC service definition.
+service VrfCoordinatorContract {
+
+  // the full name of the C# class that will contain the state (here <namespace>.<state-class-name> format).
+  option (aelf.base) = "Protobuf/reference/acs12.proto";
+  option (aelf.base) = "Protobuf/reference/coordinator_contract.proto";
+  option (aelf.csharp_state) = "AetherLink.Contracts.VRF.Coordinator.VrfCoordinatorContractState";
+
+  rpc SetConfig (Config) returns (google.protobuf.Empty) {}
+  rpc GetConfig (google.protobuf.Empty) returns (Config) { option (aelf.is_view) = true; }
+}
+
+message Config {
+  int64 request_timeout_seconds = 1;
+  int64 minimum_request_confirmations = 2;
+  int64 max_request_confirmations = 3;
+  int64 max_num_words = 4;
+}
+
+message SpecificData {
+  int64 block_number = 1;
+  int64 num_words = 2;              // amount of random values
+  aelf.Hash key_hash = 3;           // hash of the public key
+  int64 request_confirmations = 4;  // amount of blocks to wait
+  aelf.Hash pre_seed = 5;
+}
+
+// log event
+message ConfigSet {
+  option (aelf.is_event) = true;
+  Config config = 1;
+}
+```
+
+#### Message Request Interface Contract State
+
+- Create a new file `request_interface.proto` under `src/Protobuf/message/`.
+
+- Replace this code of implementation file of `request_interface.proto`:
+
+```csharp title="request_interface.proto"
+// the version of the language, use proto3 for contracts
+syntax = "proto3";
+
+// some core imports for AElf chain types
+import "aelf/core.proto";
+import "aelf/options.proto";
+import "Protobuf/reference/acs12.proto";
+
+package oracle;
+
+// import for using the google.protobuf.* type.
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+// the name of the C# namespace in which the contract code will be,
+// generated code will also be in this namespace.
+option csharp_namespace = "AetherLink.Contracts.Consumer";
+
+// the contract definition: a gRPC service definition.
+service RequestInterface {
+
+  // the full name of the C# class that will contain the state (here <namespace>.<state-class-name> format).
+  rpc StartOracleRequest(StartOracleRequestInput) returns (google.protobuf.Empty);
+  rpc HandleOracleFulfillment(HandleOracleFulfillmentInput) returns (google.protobuf.Empty);
+}
+
+message StartOracleRequestInput {
+  int64 subscription_id = 1;
+  int32 request_type_index = 2;
+  bytes specific_data = 3;
+  aelf.Hash trace_id = 4;
+}
+
+message HandleOracleFulfillmentInput {
+  aelf.Hash request_id = 1;
+  bytes response = 2;
+  bytes err = 3;
+  int32 request_type_index = 4;
+  aelf.Hash trace_id = 5;
+}
+
+message OracleResponse {
+  bytes response = 1;
+  bytes err = 2;
+}
+```
+
 #### Contract Reference State
 
 - Navigate to `src`. 
@@ -1543,11 +2233,13 @@ In this section, we'll explore how inter-contract calls work in the aelf blockch
 ### 1. **Smart Contract Overview**
    - **Dice Master Contract**: Manages the game, including initialization, token deposit/withdrawal, interaction with oracle for random number generation and decision of win or lose based on dice outcome.
    - **Token Contract**: Handles the token transactions needed for playing dice game.
+   - **Oracle Contract**: Handles the generation of verifiable random number needed for playing the dice game.
 
 ### 2. **Game Play Process**
    - **Starting Gameplay**: When a user wants to play the dice game, they interact with the dice master contract to deposit sufficent funds using deposit function. Then the master contract contract calls the oracle contract to generate a random number. The oracle contract calls the dice master contract to decide if the user wins or loses.
-   - **Deposit Requirement**: The Dice Master Contract must verify that the user has enough funds to play the game.
    - **Token Transfer Requirement**: The Dice Master Contract must verify that the user has enough tokens and transfer those tokens to the smart contract account to play the game.
+   - **Random Number Generation using an Oracle**: The dice master contract connects with Aetherlink VRF oracle to generate a true random number.
+   - **Win or Lose Decision**: The decision for win or lose is made by the dice master contract based on random number generated from the Oracle.
 
 ### 3. **Initializing Contract Reference State**
    - **Setting Token and Oracle Contract Address**: The dice game needs to initialize state of the contract, including references to external contracts like the Token Contract and Oracle Contract.
