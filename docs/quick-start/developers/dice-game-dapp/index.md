@@ -30,7 +30,7 @@ import Setup from "../\_setup.md"
 ```bash title="Terminal"
 mkdir dice-game
 cd dice-game
-dotnet new aelf -n DiceGame
+dotnet new aelf -n DiceMaster
 ```
 
 ### Adding Your Smart Contract Code
@@ -2190,7 +2190,7 @@ Enter the params one by one, type `Enter` to skip optional param:
 ### Initializing Dice Game Contract
 
 ```bash title="Terminal"
-aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Initialize
+aelf-command send $env:CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Initialize
 ```
 
 - Output:
@@ -2200,7 +2200,7 @@ aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e ht
 ### Depositing funds into the Dice Game Contract
 
 ```bash title="Terminal"
-aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Deposit
+aelf-command send $env:CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Deposit
 ```
 
 - You will be prompted for the following:
@@ -2214,16 +2214,33 @@ Enter the params one by one, type `Enter` to skip optional param:
 
 ![result](/img/Deposit.png)
 
+### Setup the Oracle subscription Id and Node Id
+
+```bash title="Terminal"
+aelf-command send 21Fh7yog1B741yioZhNAFbs3byJ97jvBmbGAPPZKZpHHog5aEg -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -e https://tdvw-test-node.aelf.io AddConsumer
+```
+:::tip
+ℹ️ Note: `21Fh7yog1B741yioZhNAFbs3byJ97jvBmbGAPPZKZpHHog5aEg` is the contract address of `Oracle Contract` on aelf Testnet dAppChain (tDVW).
+:::
+
+```bash title="Terminal"
+aelf-command send $env:CONTRACT_ADDRESS -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -e https://tdvw-test-node.aelf.io SetSubscriptionId
+```
+
+```bash title="Terminal"
+aelf-command send $env:CONTRACT_ADDRESS -a $env:WALLET_ADDRESS -p $env:WALLET_PASSWORD -e https://tdvw-test-node.aelf.io SetOracleNodeId
+```
+
 ### Playing the Dice Game
 
 ```bash title="Terminal"
-aelf-command send $CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Play
+aelf-command send $env:CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io Play
 ```
 
 - Let's check the `Contract Balance`
 
 ```bash title="Terminal"
-aelf-command call ASh2Wt7nSEmYqnGxPPzp4pnVDU4uhj1XW9Se5VeZcX2UDdyjx -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetContractBalance
+aelf-command call $env:CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetContractBalance
 ```
 
 ## Understanding randomization using Oracle Contract in aelf
