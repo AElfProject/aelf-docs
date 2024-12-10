@@ -2243,77 +2243,986 @@ aelf-command send $env:CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -
 aelf-command call $env:CONTRACT_ADDRESS -a $WALLET_ADDRESS -p $WALLET_PASSWORD -e https://tdvw-test-node.aelf.io GetContractBalance
 ```
 
-## Understanding randomization using Oracle Contract in aelf
+### Understanding randomization using Oracle Contract in aelf
 
 In this section, we'll explore how oracle calls work in the aelf blockchain to generate a verifiable random number using the dice game example from the tutorial. This will help you understand how different smart contracts can interact to perform complex operations.
 
-### 1. **Smart Contract Overview**
+#### 1. **Smart Contract Overview**
    - **Dice Master Contract**: Manages the game, including initialization, token deposit/withdrawal, interaction with oracle for random number generation and decision of win or lose based on dice outcome.
    - **Token Contract**: Handles the token transactions needed for playing dice game.
    - **Oracle Contract**: Handles the generation of verifiable random number needed for playing the dice game.
 
-### 2. **Game Play Process**
+#### 2. **Game Play Process**
    - **Starting Gameplay**: When a user wants to play the dice game, they interact with the dice master contract to deposit sufficent funds using deposit function. Then the master contract contract calls the oracle contract to generate a random number. The oracle contract calls the dice master contract to decide if the user wins or loses.
    - **Token Transfer Requirement**: The Dice Master Contract must verify that the user has enough tokens and transfer those tokens to the smart contract account to play the game.
    - **Random Number Generation using an Oracle**: The dice master contract connects with Aetherlink VRF oracle to generate a true random number.
    - **Win or Lose Decision**: The decision for win or lose is made by the dice master contract based on random number generated from the Oracle.
 
-### 3. **Initializing Contract Reference State**
+#### 3. **Initializing Contract Reference State**
    - **Setting Token and Oracle Contract Address**: The dice game needs to initialize state of the contract, including references to external contracts like the Token Contract and Oracle Contract.
 
-### 4. **Making an Inter-Contract Call**
+#### 4. **Making an Inter-Contract Call**
    - **Calling Token Contract**: The Dice Master Contract needs to interact with the Token Contract to transfer tokens. 
      - **Method Invocation**: It calls a method in the Token Contract, such as `Transfer`.
      - **Parameters**: The call includes details like the sender’s address, the recipient’s address (the dice game account), and the amount of tokens.
    - **Calling Oracle Contract**: The Dice Master Contract needs to interact with the Oracle Contract to generate a verifiable random number.
    - **Encoding and Sending**: The parameters are encoded into a transaction format and sent to the Token Contract.
 
-### 5. **Processing in the Token Contract**
+#### 5. **Processing in the Token Contract**
    - **Token Transfer**: The Token Contract processes the transfer request by deducting tokens from the user’s account and adding them to the dice game account.
    - **Return Response**: The Token Contract then returns a result indicating whether the transfer was successful or if it failed.
 
-### 6. **Handling the Response**
+#### 6. **Handling the Response**
    - **Dice Master Contract’s Role**: Once the dice master contract receives the response from the Token Contract, it checks if the transfer was successful.
    - **Next Steps**: If successful, the dice master contract updates the contract balance and continues with the game logic.
 
-### 7. **Authorization and Security**
+#### 7. **Authorization and Security**
    - **Permission Checks**: Ensures that the Dice Game Contract is authorized to invoke methods in the Token and Oracle Contract.
    - **Secure Transactions**: Ensures that token transfers and random number generation are secure and correctly authorized.
 
-### 8. **Error Handling**
+#### 8. **Error Handling**
    - **Failure Management**: If the token transfer fails (e.g., due to insufficient funds), the dice contract handles the error by potentially reverting the transaction or notifying the user.
 
 By following these steps, you can see how oracle networks can be used to generate a truly verifiable random number. This modular approach helps in building complex applications like a dice game by ensuring secure and authorized interactions between contracts.
 
 
-## 🎯 Conclusion 
+## Step 5 - Interact Your Deployed Smart Contract With Frontend
 
-#### 🎊 Congratulations!
+### Project Setup
 
-You've completed the Dice Game Contract tutorial! Well done for mastering the steps and complexities involved. 🌟
+Let's start by cloning the frontend project repository from github.
 
-#### 📚 What You've Learned
+```
+git clone https://github.com/AElfProject/aelf-samples.git
 
-In this tutorial, you've explored:
+```
 
-- 🛠️ Setting up your development environment for aelf blockchain.
-- 🎲 Developing a smart contract for a dice game with state management and verifiable random number generation using Aetherlink.
-- 🚀 Deploying and interacting with your Dice Game Contract on the aelf network.
+- Next, navigate to the frontend project directory with this command:
 
-#### 🔍 Final Output
+```bash title="Terminal"
+cd aelf-samples/dice/2-dapp
+```
 
-By now, you should have:
+- Once you're inside the `2-dapp` directory, open the project with your preferred IDE (e.g., VSCode). You should see the project structure as shown below.
 
-- 📜 Successfully deployed your Dice Game Contract on the aelf blockchain.
-- 🎉 Deposited funds and played the Dice game using smart contract interactions with Aetherlink VRF integration.
+export const tree = {
+"type": "directory",
+"uri": "2-dapp",
+"expanded": true,
+"children": [
+{
+"type": "directory",
+"uri": "._tests.__"
+},
+{
+"type": "directory",
+"uri": ".github"
+},
+{
+"type": "directory",
+"uri": ".husky"
+},
+{
+"type": "directory",
+"uri": "public"
+},
+{
+"type": "directory",
+"uri": "src"
+},
+{
+"type": "file",
+"uri": ".dockerignore"
+},
+{
+"type": "file",
+"uri": ".env.development"
+},
+{
+"type": "file",
+"uri": ".env.production"
+},
+{
+"type": "file",
+"uri": ".eslintrc.json"
+},
+{
+"type": "file",
+"uri": ".gitignore"
+},
+{
+"type": "file",
+"uri": ".prettierrc"
+},
+{
+"type": "file",
+"uri": ".stylelintrc.json"
+},
+{
+"type": "file",
+"uri": "appsettings.ts"
+},
+{
+"type": "file",
+"uri": "commitlint.config.js"
+},
+{
+"type": "file",
+"uri": "docker-compose.yml"
+},
+{
+"type": "file",
+"uri": "Dockerfile"
+},
+{
+"type": "file",
+"uri": "jest.config.ts"
+},
+{
+"type": "file",
+"uri": "jest.setup.ts"
+},
+{
+"type": "file",
+"uri": "next.config.mjs"
+},
+{
+"type": "file",
+"uri": "nginx-template.conf"
+},
+{
+"type": "file",
+"uri": "nginx.template.md"
+},
+{
+"type": "file",
+"uri": "package.json"
+},
+{
+"type": "file",
+"uri": "pm2.config.js"
+},
+{
+"type": "file",
+"uri": "pnpm-lock.yaml"
+},
+{
+"type": "file",
+"uri": "postcss.config.mjs"
+},
+{
+"type": "file",
+"uri": "README.md"
+},
+{
+"type": "file",
+"uri": "sentry.client.config.ts"
+},
+{
+"type": "file",
+"uri": "sentry.edge.config.ts"
+},
+{
+"type": "file",
+"uri": "sentry.server.config.ts"
+},
+{
+"type": "file",
+"uri": "tailwind.config.ts"
+},
+{
+"type": "file",
+"uri": "tsconfig.json"
+},
+]
+}
 
-Ensure you've seen your ELF balance updated after playing the game to verify the contract's functionality.
+<div style={{height: 1000}}><FileTree tree={tree} /></div>
 
-#### ➡️ What's Next?
+#### Install necessary libraries
 
-Now that you've tackled the Dice Game Contract, consider exploring more advanced topics or other tutorials to expand your aelf blockchain development skills.
+- Run this command in the terminal to install all necessary packages and libraries:
 
-🚀 Keep innovating and building awesome decentralized applications!
+```bash title="Terminal"
+npm install
+```
+
+We are now ready to build the frontend components of our Dice Game.
+
+### Setting Up the Dice Game Smart Contract
+
+Let’s configure your deployed Dice Game smart contract so you can interact with its functionality in this tutorial.
+
+**Step 1. Locate the Configuration File**
+
+- Navigate to the file located at: `src/config/configTest.ts`
+
+**Step 2. Update the Smart Contract Address**
+
+- Find the comment `// Step A - Configure Dice Contract`
+
+- Replace the placeholder value `add_your_deployed_dice_contract` with the address of your deployed smart contract.
+
+**Example:**
+
+```typescript
+// Replace with the address of your deployed smart contract
+const DICE_CONTRACT_ADDRESS = "your_deployed_contract_address";
+```
+
+:::tip
+Make sure to use the smart contract address from the "Deploy Smart Contract" step. Double-check for accuracy to avoid errors later!
+:::
+
+### Setting Up Wallet Integration
+
+Let’s configure wallet connection, disconnection, and display wallet information so you can seamlessly interact with the Dice Game.
+
+**Step 1. Locate the Wallet Configuration File**
+
+- Navigate to the file located at: `src/app/dice/Account.tsx`
+
+**Step 2. Update the Wallet Connection Handler**
+
+- Find the comment `// Step B - Connect wallet handler`
+
+- Replace the existing **`onConnectBtnClickHandler`** function with the updated code below:
+
+```javascript title="Account.tsx"
+// Step B - Connect wallet handler
+export const onConnectBtnClickHandler = async (connectWallet: () => any) => {
+  try {
+    const rs = await connectWallet();
+    console.log('walletConnected rs: ', rs);
+  } catch (e: any) {
+    console.log(e.message);
+  }
+};
+```
+
+**Step 3. Update the Wallet Disconnection Handler**
+
+- Find the comment `// Step C - Disconnect wallet handler`
+
+- Replace the existing **`onDisConnectBtnClickHandler`** function with the updated code below:
+
+```javascript title="Account.tsx"
+// Step C - Disconnect wallet handler
+export const onDisConnectBtnClickHandler = async (
+  disConnectWallet: () => any
+) => {
+  await disConnectWallet();
+};
+```
+
+**Step 4. Update the Wallet Info Component**
+
+- Find the comment `// Step D - Wallet info component`
+
+- Replace the existing **`WalletConnectWithRTK`** function with the updated code below:
+
+```javascript title="Account.tsx"
+// Step D - Wallet info component
+export const WalletConnectWithRTK = () => {
+  const dispatch = useAppDispatch();
+  const walletConnected = useAppSelector(getWalletInfo);
+  const { disConnectWallet, walletInfo } = useConnectWallet();
+  useEffect(() => {
+    if (walletInfo) {
+      dispatch(setWalletInfo(formatWalletInfo(walletInfo)));
+    }
+  }, [dispatch, walletInfo]);
+  if (!walletInfo) {
+    return "";
+  }
+  if (walletConnected && walletConnected?.address) {
+    return (
+      <div className="flex items-start">
+        <div className="tron-glow mr-2 bg-gradient-to-r from-teal-300 to-teal-500 bg-clip-text text-2xl font-bold text-transparent">
+          Hello, {walletConnected.name}
+        </div>
+        <div
+          className="cursor-pointer text-teal-400 text-opacity-50"
+          onClick={() => onDisConnectBtnClickHandler(disConnectWallet)}
+        >
+          Logout
+        </div>
+      </div>
+    );
+  }
+
+  return "";
+};
+```
+
+**Explanation:**
+
+- **Wallet Connection Handler (`connectWallet`):** Initiates the wallet connection process and logs the connection status.
+
+- **Wallet Disconnection Handler (`disConnectWallet`):** Safely disconnects the wallet when triggered.
+
+- **Wallet Info Component:**
+  - Displays the connected wallet’s information, including a friendly greeting.
+  - Offers a logout option to disconnect the wallet.
+  - Keeps wallet information up to date using React hooks and Redux Toolkit.
+
+we will use these handlers and components to ensure a smooth wallet experience for your Dice Game.
+You're all set to integrate wallet functionality into your project! 🚀
+
+### Setting Up Token Contract Methods
+
+We’ll set up token contract methods to **get allowance**, **set allowance**, and combine them into a reusable hook for streamlined functionality.
+
+**Step 1: Locate the File**
+
+- Go to the `src/app/dice/useDiceMethods.ts` file.
+
+**Step 2: Write the Get Allowance Functions**
+
+- Find the comment `// Step E - Check Get Token Alowance`.
+
+- Replace the existing `getAllowance` function with this code snippet:
+
+```javascript title="useDiceMethods.ts"
+// Step E - Check Get Token Alowance
+const getAllowance = async () => {
+  if (!walletInfo) {
+    message.error("Please login");
+    return;
+  }
+  const res: any = await callViewMethod({
+    chainId: CHAIN_ID,
+    contractAddress: TOKEN_CONTRACT_ADDRESS,
+    methodName: "GetAllowance",
+    args: {
+      symbol: "ELF",
+      owner: walletInfo.address,
+      spender: DICE_CONTRACT_ADDRESS,
+    },
+  });
+  console.log("GetAllowance: ", res);
+  return res.data.allowance;
+};
+```
+
+**Step 3: Write the Set Allowance Functions**
+
+- Find the comment `// Step F - Set Token Alowance`.
+
+- Replace the existing `setAllowance` function with this code snippet:
+
+```javascript title="useDiceMethods.ts"
+// Step F - Set Token Alowance
+const setAllowance = async () => {
+  const allowance: string = await getAllowance();
+  if (new Bignumber(allowance).div(1e8).isGreaterThan(10)) {
+    return;
+  }
+  const res: any = await callSendMethod({
+    chainId: CHAIN_ID,
+    contractAddress: TOKEN_CONTRACT_ADDRESS,
+    methodName: "Approve",
+    args: {
+      symbol: "ELF",
+      amount: new Bignumber(100).multipliedBy(1e8).toString(),
+      spender: DICE_CONTRACT_ADDRESS,
+    },
+  });
+  const txResult = await getTxResultRetry(res.transactionId, EXPLORE_URL);
+  return res;
+};
+```
+
+**Explanation:**
+
+- **`getAllowance` Function**
+
+  - Retrieves the current token allowance for the Dice Game smart contract.
+  - Ensures the wallet is connected before proceeding.
+
+- **`setAllowance` Function**
+  - Checks the current allowance using `getAllowance`.
+  - If the allowance is less than 10 tokens, it sends a request to approve 100 tokens.
+  - Waits for the transaction result and returns the response.
+
+Combining these functions into a custom hook simplifies token allowance management and ensures smooth interactions with the Dice Game.
+You're now ready to handle token allowances efficiently! 🚀
+
+### Setting Up Dice Contract Methods
+
+Let’s create the methods needed to **get player info**, **play the game**, and put them together into a single, easy-to-use hook.
+
+**Step 1: Create the Get Player Info Function**
+
+- Scroll down and find the comment `// Step G - Get Player Info From Dice Contract`.
+
+- Replace the existing `getPlayerInfo` function with this code snippet:
+
+```javascript title="useDiceMethods.ts"
+// Step G - Get Player Info From Dice Contract
+const getPlayerInfo = async () => {
+  if (!walletInfo) {
+    message.error("Please login");
+    return {};
+  }
+  try {
+    // Call the contract's "GetPlayerInfo" method with the player's wallet address
+    const res: any = await callViewMethod({
+      chainId: CHAIN_ID,
+      contractAddress: DICE_CONTRACT_ADDRESS,
+      methodName: "GetPlayerInfo",
+      args: walletInfo.address,
+    });
+    // Update playerInfo state with the retrieved data
+    setPlayerInfo(res.data);
+    return res.data;
+  } catch (e) {
+    // Log an error if no information is available yet
+    console.log("getPlayerInfo:", "no info yet");
+    return {};
+  }
+};
+```
+
+**Step 2: Automatically Fetch Player Info**
+
+Set up the code to automatically get player details whenever the wallet is connected.
+
+- Scroll down and find the comment `// Step H - Fetch player information when the wallet is connected.`.
+
+- Replace the existing `useEffect` with this code snippet:
+
+```javascript title="useDiceMethods.ts"
+// Step H - Fetch player information when the wallet is connected.
+useEffect(() => {
+  if (!walletInfo) {
+    return;
+  }
+
+  // Define and invoke an asynchronous function to get player info
+  const main = async () => {
+    await getPlayerInfo();
+  };
+  main();
+}, [walletInfo]); // Dependency array ensures this effect runs when walletInfo changes
+```
+
+**Step 3: Create the Play Game Function**
+
+This function lets the user play the Dice game by interacting with the contract.
+
+- Scroll down and find the comment `// Step I - Play Game`.
+
+- Replace the existing `useEffect` with this code snippet:
+
+```javascript title="useDiceMethods.ts"
+// Step I - Play Game
+const play = async (multiplier = 1) => {
+  // Ensure the required token allowance is set
+  await setAllowance();
+
+  // Call the contract's "Play" method with the calculated value
+  const res: any = await callSendMethod({
+    chainId: CHAIN_ID,
+    contractAddress: DICE_CONTRACT_ADDRESS,
+    methodName: "Play",
+    args: {
+      value: new Bignumber(BASE_NUMBER)
+        .multipliedBy(10 ** 8)
+        .multipliedBy(multiplier),
+    },
+  });
+  // Wait for the transaction result to be confirmed
+  await getTxResultRetry(res.transactionId, EXPLORE_URL);
+  // Refresh the player's information after the game
+  await getPlayerInfo();
+};
+```
+
+**Explanation:**
+
+- **Get Player Info**: Fetches player stats from the blockchain and updates the app.
+- **Auto Fetch Player Info**: Ensures player details are always synced when the wallet is connected.
+- **Play Game**: Handles the gameplay logic by setting allowances, interacting with the contract, and updating the player’s stats.
+
+Now you have a well-structured hook to manage all Dice game methods in one place.
+
+
+### Setting Up Game Features and Effects
+
+Let’s create the functions needed to **fetch player information**, **spawn particle effects**, **display game results**, and **handle dice rolls**.
+
+1. **Fetching Player Information:**
+   We’ll start by creating a function that fetches player data when the wallet is connected. This function will automatically update the player’s information so you can access their stats and game status seamlessly.
+
+2. **Creating and Spawning Particle Effects:**
+   To add some excitement and interactivity to the game, we’ll set up particle effects triggered by player actions. This includes creating individual particle effects (e.g., stars, sparks) and spawning multiple particles at a specific position on the screen.
+
+3. **Displaying Game Results:**
+   After each game round, we’ll handle displaying the result to the player. Whether they win or lose, the result message will update accordingly, including any ELF rewards earned.
+
+4. **Handling Dice Rolls:**
+   We’ll implement the logic for rolling the dice, interacting with the game contract, and managing animations. The dice roll will trigger specific visual effects and update the player’s information once the game round concludes.
+
+By the end of this setup, these functions will be integrated into a cohesive experience that allows players to interact with the game smoothly, see real-time updates, and enjoy engaging visual effects.
+
+**Step 1: Locate the File**
+
+- Go to the `src/app/dice/page.tsx` file.
+
+**Step 2: Call Get Player Info Funcation**
+
+- Find the comment `// Step J - Fetch player information when wallet is connected`.
+
+- Replace the existing `useEffect` with this code snippet:
+
+```javascript title="page.tsx"
+// Step J - Fetch player information when wallet is connected
+useEffect(() => {
+  if (!walletInfo) {
+    return;
+  }
+  const loopGetPlayInfo = async () => {
+    const result: any = await getPlayerInfo();
+    setPlayerInfo({
+      ...playerInfo,
+      ...result,
+    });
+  };
+  loopGetPlayInfo();
+}, [walletInfo]);
+```
+
+**Step 3: Creates a single particle effect**
+
+- Find the comment `// Step K - Creates a single particle effect.`.
+
+- Replace the existing `createParticle` fucntion with this code snippet:
+
+```javascript title="page.tsx"
+  // Step K - Creates a single particle effect.
+  const createParticle = useCallback(
+    (x: number, y: number, container: HTMLDivElement, type: string) => {
+      const particle = document.createElement('div');
+      particle.className = `particle ${type}`;
+      particle.style.left = `${x}px`;
+      particle.style.top = `${y}px`;
+
+      // Random spread for different directions
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.random() * 100 + 50;
+      particle.style.setProperty(
+        '--spread-x',
+        `${Math.cos(angle) * distance}px`,
+      );
+      particle.style.setProperty(
+        '--spread-y',
+        `${Math.sin(angle) * distance}px`,
+      );
+
+      // Random trail effect
+      particle.style.setProperty(
+        '--trail-x',
+        `${(Math.random() - 0.5) * 100}px`,
+      );
+      particle.style.setProperty('--trail-y', `${-Math.random() * 100 - 50}px`);
+
+      container.appendChild(particle);
+
+      // Define animations for different particle types
+      const animations = {
+        'particle-basic': [
+          { transform: 'scale(1) translate(0, 0)', opacity: 1 },
+          {
+            transform: `scale(0) translate(${Math.random() * 100 - 50}px, ${-Math.random() * 100}px)`,
+            opacity: 0,
+          },
+        ],
+        'particle-star': [
+          { transform: 'rotate(0deg) scale(1)', opacity: 1 },
+          { transform: 'rotate(360deg) scale(0)', opacity: 0 },
+        ],
+        'particle-spark': [
+          {
+            transform: `rotate(${Math.random() * 360}deg) translateX(0)`,
+            opacity: 1,
+          },
+          {
+            transform: `rotate(${Math.random() * 360}deg) translateX(${Math.random() * 100 + 50}px)`,
+            opacity: 0,
+          },
+        ],
+        'particle-ring': [
+          { transform: 'scale(1)', opacity: 1, borderWidth: '2px' },
+          { transform: 'scale(2)', opacity: 0, borderWidth: '0px' },
+        ],
+        'particle-trail': {
+          duration: 1000,
+          easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          fill: 'forwards',
+          iterations: 1,
+        },
+      };
+
+      // Apply animation and remove particle after animation ends
+      const animation = particle.animate(
+        animations[type as keyof typeof animations] ||
+          animations['particle-basic'],
+        {
+          duration: 1000 + Math.random() * 500,
+          easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          fill: 'forwards',
+        },
+      );
+
+      animation.onfinish = () => particle.remove();
+    },
+    [],
+  );
+```
+
+**Step 4: Spawns multiple particle effects**
+
+- Find the comment `// Step L - Spawns multiple particle effects at a specified position.`.
+
+- Replace the existing `spawnParticles` fucntion with this code snippet:
+
+```javascript title="page.tsx"
+  // Step L - Spawns multiple particle effects at a specified position.
+  const spawnParticles = useCallback(
+    (x: number, y: number) => {
+      const container = document.querySelector(
+        '.particle-container',
+      ) as HTMLDivElement;
+      if (!container) return;
+
+      const particleTypes = [
+        'particle-basic',
+        'particle-star',
+        'particle-spark',
+        'particle-ring',
+        'particle-trail',
+      ];
+
+      // Spawn multiple waves of particles
+      for (let wave = 0; wave < 3; wave++) {
+        setTimeout(() => {
+          for (let i = 0; i < 8; i++) {
+            particleTypes.forEach((type) => {
+              const offsetX = (Math.random() - 0.5) * 20;
+              const offsetY = (Math.random() - 0.5) * 20;
+              createParticle(x + offsetX, y + offsetY, container, type);
+            });
+          }
+        }, wave * 100);
+      }
+    },
+    [createParticle],
+  );
+```
+
+**Step 5: Displays the result**
+
+- Find the comment `// Step M - Displays the result message based on the game outcome.`.
+
+- Replace the existing `handleGameResult` fucntion with this code snippet:
+
+```javascript title="page.tsx"
+// Step M - Displays the result message based on the game outcome.
+const handleGameResult = (isWin: boolean, amount: string) => {
+  const number = new Bignumber(amount).div(10 ** 8);
+  let message = `Lose ${number} ELF. Better luck next time!`;
+  if (isWin) {
+    message = `Congratulations! You Win ${number.multipliedBy(2)} ELF!`;
+  }
+  setMessage(message);
+};
+```
+
+**Step 6: Rolls the dice**
+
+- Find the comment `// Step N - Rolls the dice`.
+
+- Replace the existing `rollDice` fucntion with this code snippet:
+
+```javascript title="page.tsx"
+  // Step N - Rolls the dice
+  const rollDice = async (multiplier = 1) => {
+    setMessage('');
+    if (isRolling) return;
+
+    setIsRolling(true);
+    setMessage('');
+    const sequenceNumber = Math.floor(Math.random() * 3) + 1;
+    setSequence(sequenceNumber);
+
+    new Audio('https://www.soundjay.com/misc/sounds/dice-roll-01.mp3')
+      .play()
+      .catch(() => {});
+
+    const startTimePlay = Date.now();
+    try {
+      setIsPlaying(true);
+      await play(multiplier);
+    } catch (error: any) {
+      console.log('play failed: ', error);
+      setIsPlaying(false);
+      setIsRolling(false);
+      alert(error.message);
+      return;
+    }
+    const startTime = Date.now();
+    const getPlayInfoInterval = setInterval(async () => {
+      const result = await getPlayerInfo();
+      if (result.pending === false) {
+        // if (result.score !== prePlayScore) {
+        clearInterval(getPlayInfoInterval);
+        setPlayerInfo({
+          ...playerInfo,
+          ...result,
+        });
+        playerInfoGlobal = result;
+        if (result.win) {
+          handleGameResult(true, result.amount);
+        } else {
+          handleGameResult(false, result.amount);
+        }
+
+        const finalDice1 = parseInt(playerInfoGlobal.dice1, 10);
+        const finalDice2 = parseInt(playerInfoGlobal.dice2, 10);
+        setDice1(finalDice1);
+        setDice2(finalDice2);
+        setIsRolling(false);
+        setIsShaking(true);
+        setIsPlaying(false);
+
+        // Get dice positions for particle effects
+        const dice1El = document.querySelector('.dice-container:first-child');
+        const dice2El = document.querySelector('.dice-container:last-child');
+
+        if (dice1El) {
+          const rect1 = dice1El.getBoundingClientRect();
+          spawnParticles(
+            rect1.left + rect1.width / 2,
+            rect1.top + rect1.height / 2,
+          );
+        }
+
+        if (dice2El) {
+          const rect2 = dice2El.getBoundingClientRect();
+          spawnParticles(
+            rect2.left + rect2.width / 2,
+            rect2.top + rect2.height / 2,
+          );
+        }
+
+        // Remove screen shake after animation
+        setTimeout(() => setIsShaking(false), 500);
+
+        console.log('Time used: ', Date.now() - startTime);
+        console.log('Time used with play: ', Date.now() - startTimePlay);
+      }
+    }, 500);
+  };
+```
+
+Now that we've written all the necessary frontend functions and hooks, we're ready to run the Dice Game in the next step.
+
+
+### Run Application
+
+In this step, we will run the Dice Game dApp.
+
+- To begin, run the following command on your terminal.
+
+```bash title="Terminal"
+npm run dev
+```
+
+:::info
+**Note**: Ensure that you are running this command under the **todo/2-dapp** folder.
+:::
+
+- You should observe the following as shown below.
+
+  ![run-app-success](/img/dice-npm-run-console.png)
+
+- Upon clicking on the **localhost URL**, you should be directed to the Dice Game landing page as shown below.
+
+  ![todo-home-page](/img/dice-game-homepage.png)
+
+
+#### Create Portkey Wallet
+
+:::info
+Portkey is the first AA wallet from aelf's ecosystem, migrating users, developers and projects from Web2 to Web3 with DID solution.
+
+Users can swiftly log into Portkey via their Web2 social info with no private keys or mnemonics required. Underpinned by social recovery and decentralized guardian design, Portkey safeguards users' assets from centralized control and theft. Portkey has a unique payment delegation mechanism which enables interested parties to function as delegatees to pay for user activities on users' behalf. This means that users can create accounts for free and fees for other usages may also be covered in Portkey.
+
+Portkey also provides crypto on/off-ramp services, allowing users to exchange fiat with crypto freely. It supports the storage and management of various digital assets such as tokens, NFTs, etc. The compatibility with multi-chains and seamless connection to all kinds of DApps makes Portkey a great way to enter the world of Web3.
+
+With DID solution as its core, Portkey provides both Portkey Wallet and Portkey SDKs.
+
+For more information, you may visit the official documentation for Portkey at https://doc.portkey.finance/.
+:::
+
+- Download the Chrome extension for Portkey from https://chromewebstore.google.com/detail/portkey-wallet/iglbgmakmggfkoidiagnhknlndljlolb.
+:::info
+The Portkey extension supports Chrome browser only (for now). Please ensure that you are using Chrome browser.
+You may download Chrome from https://www.google.com/intl/en_sg/chrome/.
+:::
+
+- Once you have downloaded the extension, you should see the following on your browser as shown below.
+
+   ![welcome-to-portkey](/img/welcome-to-portkey.png)
+
+- Click on `Get Start` and you should see the following interface as shown below.
+
+   ![portkey-login](/img/portkey-login.png)
+
+
+**Sign up** 
+
+- Switch to **aelf Testnet** network by selecting it:
+
+   ![portkey-switch-to-testnet](/img/portkey-switch-to-testnet.png)
+
+:::danger
+Please make sure you are using `aelf Testnet` in order to be able to receive your testnet tokens from the Faucet.
+:::
+
+- Proceed to sign up with a Google Account or your preferred login method and complete the necessary accounts creation prompts and you should observe the following interface once you have signed up.
+
+   ![success-login](/img/success-login.png)
+
+With that, you have successfully created your very first Portkey wallet within seconds. How easy was that?
+
+:::info
+It is highly recommended to pin the Portkey wallet extension for easier access and navigation to your Portkey wallet!
+:::
+
+- Next, click on ‘Open Portkey’ and you should now observe the following as shown below.
+
+   ![portkey-wallet-preview](/img/portkey-wallet-preview.png)
+
+**Claim Test Token**
+
+- Click on Copy icon in right side in the top as shown in the below image and copy your wallet address.
+
+  ![copy-wallet-address](/img/copy-wallet-address.png)
+
+- Open Faucet site : https://faucet-ui.aelf.dev
+
+- Enter your wallet address and submit the form after verify the captcha.
+
+   ![dice-game-faucet-claim-token](/img/dice-game-faucet-claim-token.png)
+
+- ELF token will be claimed in your account successfully.
+
+   ![token-claim-success](/img/token-claim-success.png).
+
+We’ve completed all the steps to set up the wallet and claim the testnet ELF tokens. Now, let’s move on to the wallet connection process in the next step.
+
+**Connect Portkey Wallet**
+
+- Open your Running project and click on **"Login"** to connect your Portkey wallet.
+
+  ![dice-click-login-button](/img/dice-click-login-button.png)
+
+- You will get login popup so Click on **"Connect Wallet"** option as shown below.
+
+  ![click-login-option](/img/click-login-option.png)
+
+- Next, you will see a list of wallet options. Select the **"Portkey"** wallet from the list.
+
+  ![click-login-portkey](/img/click-login-portkey.png)
+
+- You will get the connection request on your **Portkey** wallet Next.
+- Click on **Approve** button on request modal.
+
+  ![dice-approve-login-request](/img/dice-approve-login-request.png)
+
+- After successfully connection with Portkey wallet, you will get the wallet info in Dice game page.
+
+  ![dice-home-page-post-login](/img/dice-home-page-post-login.png)
+
+With the wallet connection setup complete, we’re now ready to start playing the game!
+
+
+**Play Dice Game**
+
+Let's start to play the dice game with step by step.
+
+As you can see we have 3 token price option to play with ELF token. i.e: 0.1 ELF, 0.2 ELF and 0.4 ELF so let's play with 0.1 ELF tokens.
+
+- Click on **"0.1 ELF"** button to play the game with Token.
+
+  ![dice-select-price-option](/img/dice-select-price-option.png)
+
+- Game will start after click on **"0.1 ELF"** button and **PROCESSING...** message will be appear as below.
+
+  ![dice-game-processing](/img/dice-game-processing.png)
+
+- The first time you perform a transaction with ELF tokens, you will receive a Token Allowance request in your wallet.
+
+- Click on **"Pre-athorize**" button to authenticate and approve the Allowance transaction as shown below.
+
+  ![get-approval-token-request](/img/get-approval-token-request.png)
+
+- After the successfully transaction of Allowance, your will get **Play** transaction request as shown below.
+
+- Click on **Sign** the transaction.
+
+  ![get-game-transaction-request](/img/get-game-transaction-request.png)
+
+- After the successfully transaction of **Play** game, you will get the game result in Dice game.
+
+  ![dice-game-result](/img/dice-game-result.png)
+
+:::success
+🎉 Congratulations Learners! You have successfully built the Dice game 🎲🎲
+:::
+
+
+## 🎯 Conclusion
+
+🎉 Congratulations on completing the **Dice Game dApp** tutorial! 🎉 You've learned how to set up your development environment, develop and deploy a smart contract, and build a functional Dice Game on the aelf blockchain. 🌟
+
+**📚 What You've Learned**
+
+Throughout this tutorial, you’ve accomplished:
+
+- **🛠️ Setting Up Your Development Environment:** You prepared your workspace with all necessary tools to start building the Dice Game.
+
+- **🎲 Developing the Dice Game Smart Contract:** You created the core logic for the Dice Game, including dice rolling, reward handling, and managing bets.
+
+- **🚀 Deploying the Smart Contract:** You deployed your smart contract to the aelf blockchain, enabling its functionalities to be used in a live environment.
+
+- **🔧 Building and Running the dApp:** You connected your frontend to the blockchain and implemented key features like:
+
+  - Wallet integration via Portkey.
+  - Configuring token and dice contract methods.
+  - Adding gameplay logic and user-friendly features.
+
+**🔍 Final Output**
+
+You now have:
+
+- A **deployed smart contract** managing game logic and rewards.
+
+- A **fully operational Dice Game dApp** where users can securely place bets, roll dice, and claim rewards.
+
+**➡️ Next Steps**
+
+Now that you’ve mastered the basics, consider:
+
+- **Enhancing gameplay** with new features like customizable bets or multiplayer options.
+
+- **Strengthening security** with advanced testing and best practices.
+
+- **Exploring cross-chain functionality** to make your game interoperable with other blockchains.
+
+You’ve taken a significant step into blockchain development. Keep building and innovating with aelf! 🚀
 
 Happy coding! 😊
 
