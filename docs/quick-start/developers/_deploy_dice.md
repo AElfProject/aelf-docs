@@ -22,7 +22,21 @@ aelf-command create
 ℹ️ Note: If you do not save your account information (by selecting n or N), do not export the wallet password. Only **proceed to the next** step if you have saved your account information.
 :::
 
-- Next, enter and confirm your password. Then export your wallet password as shown below:
+- Next, enter and confirm your password. Then export your wallet address and password as shown below:
+
+<Tabs>
+<TabItem value="Linux and macOs" label="Linux and macOs" default>
+```bash title="Terminal"
+export WALLET_ADDRESS="YOUR_WALLET_ADDRESS"
+```
+</TabItem>
+
+<TabItem value="Windows" label="Windows">
+```bash title="Command Prompt"
+$env:WALLET_ADDRESS = "YOUR_WALLET_ADDRESS"
+```
+</TabItem>
+</Tabs>
 
 <Tabs>
 <TabItem value="Linux and macOs" label="Linux and macOs" default>
