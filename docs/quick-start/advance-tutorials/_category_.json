@@ -1,0 +1,15 @@
+{
+  "position": 3,
+  "label": "Advance Tutorials",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Advance Tutorials",
+    "slug": "quick-start/advance-tutorials",
+    "description": "Welcome to the advanced technical documentation for developing smart contracts on the aelf blockchain. This guide is tailored to help you master advanced concepts and techniques for creating robust and scalable smart contracts. Each tutorial delves deeper into intricate functionalities, building on your foundational knowledge to enhance your expertise step by step."
+  },
+  "customProps": {
+    "description": "Master advanced dApp development on aelf"
+  }
+}
