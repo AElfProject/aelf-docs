@@ -4,6 +4,7 @@ import {
   Question,
   PRESET_YESNO_LIKE_DISLIKE,
 } from "@feelback/react";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 const YES_TAGS = [
   {
@@ -53,10 +54,10 @@ const NO_TAGS = [
   { value: "other-no", title: "Another reason" },
 ];
 
-const FEEDBACK_CONTENT_SET_ID = "ef48ea6a-517e-47dc-b390-c083ecf3b99e";
-
 const Feedback = () => {
   const [choice, setChoice] = useState<"y" | "n">();
+  const { siteConfig } = useDocusaurusContext();
+  const { FEEDBACK_CONTENT_SET_ID } = siteConfig.customFields;
 
   return (
     <div className="alert alert--info feedback-component">
@@ -70,7 +71,7 @@ const Feedback = () => {
           />
         ) : (
           <FeelbackTaggedMessage
-            contentSetId={FEEDBACK_CONTENT_SET_ID}
+            contentSetId={FEEDBACK_CONTENT_SET_ID as string}
             layout="radio-group"
             tags={choice === "y" ? YES_TAGS : NO_TAGS}
             title={choice === "y" ? "What did you like?" : "What went wrong?"}
