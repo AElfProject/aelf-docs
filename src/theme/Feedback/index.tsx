@@ -53,7 +53,7 @@ const NO_TAGS = [
   { value: "other-no", title: "Another reason" },
 ];
 
-const FEEDBACK_CONTENT_SET_ID = "d069bd2e-19d3-405c-9198-a8f005883f6b";
+const FEEDBACK_CONTENT_SET_ID = "ef48ea6a-517e-47dc-b390-c083ecf3b99e";
 
 const Feedback = () => {
   const [choice, setChoice] = useState<"y" | "n">();
