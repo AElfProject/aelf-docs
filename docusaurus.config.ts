@@ -110,6 +110,9 @@ const config: Config = {
       indexName: "aelf",
     },
   } satisfies Preset.ThemeConfig,
+  customFields: {
+    FEEDBACK_CONTENT_SET_ID: process.env.FEEDBACK_CONTENT_SET_ID || "",
+  },
   stylesheets: [
     {
       href: "/katex/katex.min.css",
