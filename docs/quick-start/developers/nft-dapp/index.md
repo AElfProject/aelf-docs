@@ -331,7 +331,7 @@ const createNftCollectionOnMainChain = async (values: {
   totalSupply: string;
   decimals: string;
 }) => {
-  let createLoadingId;
+  let createLoadingId: any;
   try {
     createLoadingId = toast.loading("Creating NFT Collection..");
 
@@ -415,7 +415,7 @@ Next, we'll write the **Validate Collection Info Exist** function.
 // step 2 - Validate Collection information exist
 // This function validates if the token collection information already exists on the main blockchain.
 const validateNftCollectionInfo = async (values: INftInput) => {
-  let validateLoadingId
+  let validateLoadingId: any;
   try {
     // Start Loading before initiate the transaction
     validateLoadingId = toast.loading(
@@ -459,7 +459,7 @@ const validateNftCollectionInfo = async (values: INftInput) => {
       const sideIndexMainHeight = await GetParentChainHeight();
       if (
         // check the latest index Hight is grater than or equal
-        sideIndexMainHeight >= VALIDATE_TXRESULT.Transaction.RefBlockNumber
+        Number(sideIndexMainHeight) >= VALIDATE_TXRESULT.Transaction.RefBlockNumber
       ) {
         VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
         heightDone = true;
@@ -599,7 +599,7 @@ const createCollectionOnSideChain = async (
   signedTx: string,
   BlockNumber: number
 ) => {
-  let crossChainLoadingId;
+  let crossChainLoadingId: any;
   try {
     crossChainLoadingId = toast.loading(
       "Creating Collection on SideChain..."
@@ -656,7 +656,7 @@ const createCollectionOnSideChain = async (
         type: "error",
         isLoading: false,
       });
-      removeNotification(validateLoadingId);
+      removeNotification(crossChainLoadingId);
       return "error";
     }
   };
@@ -771,7 +771,7 @@ Now, let's write the Validate NFT Info Exist function.
 ```javascript title="create-nft/index.tsx"
 // step 7 - Validate an NFT token on the maincgit stashhain
 const validateNftToken = async (values: INftParams) => {
-  let validateNFTLoadingId;
+  let validateNFTLoadingId: any;
   try {
     // Start Loading before initiate the transaction
     validateNFTLoadingId = toast.loading(
@@ -820,7 +820,7 @@ const validateNftToken = async (values: INftParams) => {
       const sideIndexMainHeight = await GetParentChainHeight();
       if (
         // check the latest index Hight is grater than or equal
-        sideIndexMainHeight >= VALIDATE_TXRESULT.Transaction.RefBlockNumber
+        Number(sideIndexMainHeight >= VALIDATE_TXRESULT.Transaction.RefBlockNumber)
       ) {
         VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
         heightDone = true;
@@ -844,13 +844,13 @@ const validateNftToken = async (values: INftParams) => {
       signedTx: signedTx,
       merklePath: merklePath,
     };
-  } catch (error) {
+  } catch (error: any) {
     toast.update(validateNFTLoadingId, {
       render: error.message,
       type: "error",
       isLoading: false,
     });
-    removeNotification(validateLoadingId);
+    removeNotification(validateNFTLoadingId);
     return "error";
   }
 };
@@ -885,7 +885,7 @@ Now, let's write the Create NFT on dAppChain function.
 ```javascript title="create-nft/index.tsx"
 // step 8 - Create a NFT on dAppChain.
 const createNftTokenOnSideChain = async (values: INftValidateResult) => {
-  let createSideChainNFTLoadingId;
+  let createSideChainNFTLoadingId: any;
   try {
     createSideChainNFTLoadingId = toast.loading(
       "Creating NFT on SideChain..."
@@ -911,7 +911,7 @@ const createNftTokenOnSideChain = async (values: INftValidateResult) => {
     });
     removeNotification(createSideChainNFTLoadingId);
     return "success";
-  } catch (error) {
+  } catch (error: any) {
     toast.update(createSideChainNFTLoadingId, {
       render: error.message,
       type: "error",
@@ -950,7 +950,7 @@ const issueNftOnSideChain = async (values: {
   amount: string;
   memo: string;
 }) => {
-  let issuingNFTLoadingId
+  let issuingNFTLoadingId: any;
   try {
     issuingNFTLoadingId = toast.loading(
       "Issuing NFT on SideChain..."
@@ -1357,7 +1357,7 @@ const form = useForm<z.infer<typeof formSchema>>({
   resolver: zodResolver(formSchema),
   defaultValues: {
     address: "",
-    amount: 0,
+    amount: "",
     memo: "",
   },
 });
