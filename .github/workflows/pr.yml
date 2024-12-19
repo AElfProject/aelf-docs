@@ -32,7 +32,5 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo TYPESENSE_COLLECTION_NAME="test-collection" >> .env
-          echo TYPESENSE_SERVER_HOST="test-host" >> .env
-          echo TYPESENSE_SEARCH_ONLY_APIKEY="test-api-key" >> .env
+          echo FEEDBACK_CONTENT_SET_ID=${{ vars.FEEDBACK_CONTENT_SET_ID }} >> .env
       - run: npm run build
