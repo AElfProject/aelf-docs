@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 title: NFT dApp
 description: Advance featured dApp
 ---
@@ -15,6 +15,7 @@ description: Advance featured dApp
 ## Step 3 - Interact with aelf's multi-token contract
 
 We have already integrated frontend integration for NFT dapp in **"For Developer"** tutorials so please follow all the instruction here - 
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 

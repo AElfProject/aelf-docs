@@ -1,5 +1,7 @@
 ---
-sidebar_position: 5
+sidebar_position: 1
+title: NFT AeIndexer
+description: Advance featured AeIndexer application 
 ---
 # NFT AeIndexer
 
