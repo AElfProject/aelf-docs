@@ -1,7 +1,9 @@
 ---
-sidebar_position: 5
+sidebar_position: 1
+title: NFT AeIndexer
+description: Advance featured AeIndexer application 
 ---
-# NFT AeIndexer
+# NFT dApp with AeIndexer
 
 **Description**: This application demonstrates how to maintain account balances and transfer records by indexing aelf's NFT issued data.
 
@@ -183,7 +185,7 @@ public class NFTTransferredProcessor : LogEventProcessorBase<Issued>, ITransient
 }
 ```
 
-- Add files AccountDto.cs, TransferRecordDto.cs, GetAccountInput.cs, GetTransferRecordInput.cs to the directory src/nftIndexer/GraphQL.
+- Add files `AccountDto.cs`, `TransferRecordDto.cs`, `GetAccountInput.cs`, `GetTransferRecordInput.cs` to the directory `src/nftIndexer/GraphQL`.
 
 ```csharp title="AccountDto.cs"
 using AeFinder.Sdk.Dtos;
@@ -237,7 +239,7 @@ public class GetTransferRecordInput
 }
 ```
 
-  - Modify src/nftIndexer/GraphQL/Query.cs to add query logic.
+  - Modify `src/nftIndexer/GraphQL/Query.cs` to add query logic.
 
 ```csharp title="Query.cs"
 using AeFinder.Sdk;
@@ -301,7 +303,7 @@ public class Query
 
 - Register log event processor
 
-  Modify src/nftIndexer/nftIndexerModule.cs to register NFTTransferredProcessor.
+  Modify `src/nftIndexer/nftIndexerModule.cs` to register NFTTransferredProcessor.
 
 ```csharp title="nftIndexerModule.cs"
 using AeFinder.Sdk.Processor;
