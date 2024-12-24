@@ -54,7 +54,8 @@ public class Account: AeFinderEntity, IAeFinderEntity
     [Keyword] public string Symbol { get; set; }
     public long Amount { get; set; }
     public string TokenName { get; set; }
-    public ExternalInfo ExternalInfo { get; set; }
+    public string NftImageUri { get; set; }
+    public string NftAttributes { get; set; }
 }
 ```
 
@@ -74,6 +75,17 @@ public class TransferRecord: AeFinderEntity, IAeFinderEntity
 The NFTTransferredProcessor handles NFT transfer events and updates account balances:
 
 ```csharp title="NFTTransferredProcessor.cs"
+using System;
+using System.Threading.Tasks;
+using AElf.Sdk.Network.Events;
+using AElf.Types;
+using AElf.Contracts.Account.Dto;
+using AElf.Contracts.Token;
+using AElf.Contracts.Token.Dto;
+using AElf.Contracts.Account;
+using AElf.Contracts.Account.Entity;
+using AElf.Sdk.Service;
+using Microsoft.Extensions.Logging;
 using AElf.Contracts.MultiToken;
 using AeFinder.Sdk.Logging;
 using AeFinder.Sdk.Processor;
@@ -113,14 +125,6 @@ public class NFTTransferredProcessor : LogEventProcessorBase<Issued>, ITransient
         {
             Symbol = logEvent.Symbol
         };
-        Logger.LogDebug("Fetching TokenInfo: ChainId={0}, Address={1}, Symbol={2}", context.ChainId, GetContractAddress(context.ChainId), logEvent.Symbol);
-        var contractAddress = GetContractAddress(context.ChainId);
-        Logger.LogDebug("Contract Address resolved to: {0}", contractAddress);
-        var tokenInfo = await _blockChainService.ViewContractAsync<TokenInfo>(
-            context.ChainId, contractAddress,
-            "GetTokenInfo", tokenInfoParam);
-
-        Logger.LogDebug("TokenInfo response: {@TokenInfo}", tokenInfo);
 
         var nftTransfer = new TransferRecord
         {
@@ -145,6 +149,8 @@ public class NFTTransferredProcessor : LogEventProcessorBase<Issued>, ITransient
             chainId, contractAddress,
             "GetTokenInfo", tokenInfoParam);
 
+        Logger.LogDebug("TokenInfo response: {@TokenInfo}", tokenInfo);
+
         if (account == null)
         {
             account = new Account
@@ -154,7 +160,8 @@ public class NFTTransferredProcessor : LogEventProcessorBase<Issued>, ITransient
                 Amount = amount,
                 Address = address,
                 TokenName = tokenInfo.TokenName,
-                ExternalInfo = tokenInfo.ExternalInfo
+                NftImageUri = tokenInfo.ExternalInfo?.Value["__nft_image_uri"] ?? tokenInfo.ExternalInfo?.Value["__nft_image_url"],
+                NftAttributes = tokenInfo.ExternalInfo?.Value["__nft_attributes"]
             };
         }
         else
@@ -188,6 +195,9 @@ public class AccountDto : AeFinderEntityDto
     public string Address { get; set; }
     public string Symbol { get; set; }
     public long Amount { get; set; }
+    public string TokenName { get; set; }
+    public string NftImageUri { get; set; }
+    public string NftAttributes { get; set; }
 }
 ```
 
@@ -379,19 +389,19 @@ dotnet build -c Release
 Through the Playground page below the details page, you can use GraphQL syntax to query the indexed data information. Enter the query statement on the left, and the query results will be displayed on the right.
 
 ```GraphQL
-query {
-  account(input: { 
-    chainId: "tDVW", 
-    address: "DStUjYn3fH1pbCtz614gQhTurrt4w2WgUY7w8ymzXCggedDHb"
-  }) {
-    symbol,
-    amount,
-    address,
-    metadata {
-      chainId,
-      block {
-        blockHeight
+query{
+    account(input: { chainId: "tDVW", address: "2AaBGTi2cJLWtEXR7w96hzun4qVz2KnsGZ1XfqErhKTgDj9Q8x"}) {
+        symbol,
+        amount,
+        address,
+        tokenName,
+        nftImageUri,
+        nftAttributes,
+        metadata {
+          chainId,
+          block {
+            blockHeight
+          }
+        }
       }
-    }
-  }
 }
