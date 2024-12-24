@@ -7,6 +7,14 @@ import TabItem from '@theme/TabItem';
 - Basic knowledge of terminal commands
 - **IDE** - Install [VS Code](https://code.visualstudio.com/)
 
+**Note for Apple Silicon users:**
+
+Ensure that Rosetta is installed, if it is not, use the following command:
+
+```bash title="Terminal"
+softwareupdate --install-rosetta
+```
+
 **Install Required Packages**
 
 - [Install dotnet 8.0.x SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
