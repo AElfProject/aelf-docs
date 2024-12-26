@@ -608,7 +608,7 @@ const createCollectionOnSideChain = async (
         await delay(10000);
         const { TransactionId } = await tdvw.chain.sendTransaction(signedTx2);
         const txResult = await tdvw.chain.getTxResult(TransactionId);
-
+  
         if (txResult.Status === "SUCCESS" || txResult.Status === "MINED") {
           done = true;
           setIsNftCollectionCreated(true);
@@ -622,9 +622,11 @@ const createCollectionOnSideChain = async (
           setTransactionStatus(false);
         }
       } catch (err) {
-        if (err && err.Error.includes("Cross chain verification failed.")) {
+        if ((err as { Error: string }).Error.includes("Cross chain verification failed.")) {
           console.log("Exit.");
           done = true;
+        } else {
+          console.error("An unexpected error occurred:", err);
         }
       }
     }
@@ -1320,12 +1322,10 @@ const transferNftToOtherAccount = async (values: {
   amount: string;
   memo: string;
 }) => {
-
   if (Number(values.amount) > Number(nftBalance)) {
     toast.error("Amount must be Less than or Equal to Supply Balance");
     return;
   }
-
   const transferNFTLoadingId = toast.loading("Transfer Transaction Executing");
 
   try {
@@ -1353,8 +1353,7 @@ const transferNftToOtherAccount = async (values: {
 
     handleReturnClick();
   } catch (error) {
-    console.error(error.message, "=====error");
-    toast.error(error.message);
+    handleError(transferNFTLoadingId, error);
   }
 };
 ```
