@@ -319,22 +319,21 @@ Let's write the functions to `Create New NFT Collection` on the aelf mainchain a
 
 - The `create-nft/index.tsx` file includes the code to create NFTs. It allows users to create new NFTs.
 
-- Find the comment `// step 1 - Create New NFT Collection on the mainchain`.
+- Find the comment `// step 1 - Create New NFT Collection on MainChain Function`.
 
 - Replace the existing **`createNftCollectionOnMainChain`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
- // step - 1 Create New NFT Collection on the mainchain
+// step 1 - Create New NFT Collection on MainChain Function
 const createNftCollectionOnMainChain = async (values: {
   tokenName: string;
   symbol: string;
   totalSupply: string;
   decimals: string;
 }) => {
-  let createLoadingId: any;
+  let createLoadingId: Id;
+  createLoadingId = toast.loading("Creating NFT Collection..");
   try {
-    createLoadingId = toast.loading("Creating NFT Collection..");
-
     // Create an object with the necessary information for the new NFT collection.
     const createNtfInput: INftInput = {
       tokenName: values.tokenName, // Name of the nft Collection
@@ -366,15 +365,8 @@ const createNftCollectionOnMainChain = async (values: {
 
     // Return the input data for further use.
     return createNtfInput;
-  } catch (error: any) {
-    // If there's an error, log it and alert the user.
-    console.error(error.message, "=====error");
-    toast.update(createLoadingId, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-    removeNotification(createLoadingId);
+  } catch (error) {
+    handleError(createLoadingId, error)
     return "error";
   }
 };
@@ -407,24 +399,23 @@ Next, we'll write the **Validate Collection Info Exist** function.
 
 **Step 2: Write the validates collection info exist function**
 
-- Scroll up to find the comment `// step 2 - Validate Collection information exist`.
+- Scroll up to find the comment `// step 2 - Validate Collection information existence`.
 
 - Replace the existing **`validateNftCollectionInfo`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 2 - Validate Collection information exist
+// step 2 - Validate Collection information existence
 // This function validates if the token collection information already exists on the main blockchain.
 const validateNftCollectionInfo = async (values: INftInput) => {
-  let validateLoadingId: any;
+  let validateLoadingId: Id;
+  // Start Loading before initiate the transaction
+  validateLoadingId = toast.loading(
+    <CustomToast
+      title="Transaction is getting validated on aelf blockchain. Please wait!"
+      message="Validation means transaction runs through a consensus algorithm to be selected or rejected. Once the status changes process will complete. It usually takes some time in distributed systems."
+    />
+  );
   try {
-    // Start Loading before initiate the transaction
-    validateLoadingId = toast.loading(
-      <CustomToast
-        title="Transaction is getting validated on aelf blockchain. Please wait!"
-        message="Validation means transaction runs through a consensus algorithm to be selected or rejected. Once the status changes process will complete. It usually takes some time in distributed systems."
-      />
-    );
-
     // Create an object with the necessary information for token validation.
     const validateInput = {
       symbol: values.symbol, // Symbol of the token
@@ -485,15 +476,10 @@ const validateNftCollectionInfo = async (values: INftInput) => {
       BlockNumber: VALIDATE_TXRESULT.BlockNumber,
     };
 
-  } catch (error: any) {
+  } catch (error) {
     // If there's an error, log it and alert the user.
-    console.error(error.message, "=====error in validateTokenInfoExist");
-    toast.update(validateLoadingId, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-    removeNotification(validateLoadingId);
+    console.error(error, "=====error in validateTokenInfoExist");
+    handleError(validateLoadingId, error);
     return "error";
   }
 };
@@ -525,7 +511,7 @@ const GetParentChainHeight = async () => {
     const result = await tdvwCrossChainContract.GetParentChainHeight.call()
     // Return the parent chain height if it exists, otherwise return an empty string.
     return result ? (result.value as string) : "";
-  } catch (error: any) {
+  } catch (error) {
     // If there's an error, log it and return an error status.
     console.error(error, "=====error in GetParentChainHeight");
     return "error";
@@ -549,7 +535,7 @@ Next, we'll write the **Fetch the Merkle path** function.
 
 ```javascript title="create-nft/index.tsx"
 // step 4 - Fetch the merkle path by transaction Id
-const getMerklePathByTxId = async (aelf: any, txId: string) => {
+const getMerklePathByTxId = async (aelf: AElf, wallet: IWalletInfo) => {
   try {
     const { MerklePathNodes } = await aelf.chain.getMerklePathByTxId(txId);
 
@@ -599,67 +585,55 @@ const createCollectionOnSideChain = async (
   signedTx: string,
   BlockNumber: number
 ) => {
-  let crossChainLoadingId: any;
+  let crossChainLoadingId: Id;
+  crossChainLoadingId = toast.loading("Creating Collection on SideChain...");
   try {
-    crossChainLoadingId = toast.loading(
-      "Creating Collection on SideChain..."
-    );
+    const merklePath = await getMerklePathByTxId(aelf, transactionId);
+    const tdvwTokenContract = await getTokenContract(tdvw, wallet);
+    const CROSS_CHAIN_CREATE_TOKEN_PARAMS = {
+      fromChainId: mainchain_from_chain_id,
+      parentChainHeight: "" + BlockNumber,
+      // @ts-ignore
+      transactionBytes: Buffer.from(signedTx, "hex").toString("base64"),
+      merklePath,
+    };
+    const signedTx2 =
+      await tdvwTokenContract.CrossChainCreateToken.getSignedTx(
+        CROSS_CHAIN_CREATE_TOKEN_PARAMS
+      );
 
-      const merklePath = await getMerklePathByTxId(aelf, transactionId);
+    let done = false;
+    while (!done) {
+      try {
+        await delay(10000);
+        const { TransactionId } = await tdvw.chain.sendTransaction(signedTx2);
+        const txResult = await tdvw.chain.getTxResult(TransactionId);
 
-      const tdvwTokenContract = await getTokenContract(tdvw, wallet);
-
-      const CROSS_CHAIN_CREATE_TOKEN_PARAMS = {
-        fromChainId: mainchain_from_chain_id,
-        parentChainHeight: "" + BlockNumber,
-        // @ts-ignore
-        transactionBytes: Buffer.from(signedTx, "hex").toString("base64"),
-        merklePath,
-      };
-      const signedTx2 =
-        await tdvwTokenContract.CrossChainCreateToken.getSignedTx(
-          CROSS_CHAIN_CREATE_TOKEN_PARAMS
-        );
-
-      let done = false;
-
-      while (!done) {
-        try {
-          await delay(10000);
-          const { TransactionId } = await tdvw.chain.sendTransaction(signedTx2);
-          const txResult = await tdvw.chain.getTxResult(TransactionId);
-
-          if (txResult.Status === "SUCCESS" || txResult.Status === "MINED") {
-            done = true;
-            setIsNftCollectionCreated(true);
-            toast.update(crossChainLoadingId, {
-              render: "Collection was Created Successfully On SideChain",
-              type: "success",
-              isLoading: false,
-            });
-            removeNotification(crossChainLoadingId);
-            toast.info("You Can Create NFT now");
-            setTransactionStatus(false);
-          }
-        } catch (err: any) {
-          console.log(err);
-          if (err.Error.includes("Cross chain verification failed.")) {
-            console.log("Exit.");
-            done = true;
-          }
+        if (txResult.Status === "SUCCESS" || txResult.Status === "MINED") {
+          done = true;
+          setIsNftCollectionCreated(true);
+          toast.update(crossChainLoadingId, {
+            render: "Collection was Created Successfully On SideChain",
+            type: "success",
+            isLoading: false,
+          });
+          removeNotification(crossChainLoadingId);
+          toast.info("You Can Create NFT now");
+          setTransactionStatus(false);
+        }
+      } catch (err) {
+        if (err && err.Error.includes("Cross chain verification failed.")) {
+          console.log("Exit.");
+          done = true;
         }
       }
-      return "success";
-    } catch (error:any) {
-      toast.update(crossChainLoadingId, {
-        render: error.message,
-        type: "error",
-        isLoading: false,
-      });
-      removeNotification(crossChainLoadingId);
-      return "error";
     }
-  };
+    return "success";
+  } catch (error) {
+    handleError(crossChainLoadingId, error);
+    return "error";
+  }
+};
 ```
 
 #### What This Function Does:
@@ -693,13 +667,9 @@ const createNFTOnMainChain = async (values: {
   symbol: string;
   totalSupply: string;
 }) => {
-  let createMainChainNFTLoadingId;
-
+  let createMainChainNFTLoadingId: Id;
+  createMainChainNFTLoadingId = toast.loading("Creating NFT on MainChain...");
   try {
-    createMainChainNFTLoadingId = toast.loading(
-      "Creating NFT on MainChain..."
-    );
-
     // Preparing Parameter for Create Function
     const createNtfMainChainInput = {
       tokenName: values.tokenName,
@@ -718,10 +688,7 @@ const createNFTOnMainChain = async (values: {
       createNtfMainChainInput
     );
 
-    console.log(
-      "========= result of createNewNft =========",
-      resultMainchain
-    );
+    console.log("========= result of createNewNft =========", resultMainchain);
 
     toast.update(createMainChainNFTLoadingId, {
       render: "NFT Created Successfully on MainChain",
@@ -729,18 +696,9 @@ const createNFTOnMainChain = async (values: {
       isLoading: false,
     });
     removeNotification(createMainChainNFTLoadingId);
-
     return "success";
-  } catch (error: any) {
-    if (!createMainChainNFTLoadingId) {
-      return "error";
-    }
-    toast.update(createMainChainNFTLoadingId, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-    removeNotification(createMainChainNFTLoadingId, 5000);
+  } catch (error) {
+    handleError(createMainChainNFTLoadingId, error);
     return "error";
   }
 };
@@ -769,18 +727,17 @@ Now, let's write the Validate NFT Info Exist function.
 2. Replace the existing **`validateNftToken`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-// step 7 - Validate an NFT token on the maincgit stashhain
+// step 7 - Validate a NFT Token on MainChain
 const validateNftToken = async (values: INftParams) => {
-  let validateNFTLoadingId: any;
+  let validateNFTLoadingId: Id;
+  // Start Loading before initiate the transaction
+  validateNFTLoadingId = toast.loading(
+    <CustomToast
+      title="Transaction is getting validated on aelf blockchain. Please wait!"
+      message="Validation means transaction runs through a consensus algorithm to be selected or rejected. Once the status changes process will complete. It usually takes some time in distributed systems."
+    />
+  );
   try {
-    // Start Loading before initiate the transaction
-    validateNFTLoadingId = toast.loading(
-      <CustomToast
-        title="Transaction is getting validated on aelf blockchain. Please wait!"
-        message="Validation means transaction runs through a consensus algorithm to be selected or rejected. Once the status changes process will complete. It usually takes some time in distributed systems."
-      />
-    );
-
     // Create an object with the necessary information for token validation.
     const validateInput = {
       symbol: values.symbol,
@@ -820,7 +777,7 @@ const validateNftToken = async (values: INftParams) => {
       const sideIndexMainHeight = await GetParentChainHeight();
       if (
         // check the latest index Hight is grater than or equal
-        Number(sideIndexMainHeight >= VALIDATE_TXRESULT.Transaction.RefBlockNumber)
+        Number(sideIndexMainHeight) >= VALIDATE_TXRESULT.Transaction.RefBlockNumber
       ) {
         VALIDATE_TXRESULT = await aelf.chain.getTxResult(VALIDATE_TXID);
         heightDone = true;
@@ -844,13 +801,8 @@ const validateNftToken = async (values: INftParams) => {
       signedTx: signedTx,
       merklePath: merklePath,
     };
-  } catch (error: any) {
-    toast.update(validateNFTLoadingId, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-    removeNotification(validateNFTLoadingId);
+  } catch (error) {
+    handleError(validateNFTLoadingId, error);
     return "error";
   }
 };
@@ -885,12 +837,9 @@ Now, let's write the Create NFT on dAppChain function.
 ```javascript title="create-nft/index.tsx"
 // step 8 - Create a NFT on dAppChain.
 const createNftTokenOnSideChain = async (values: INftValidateResult) => {
-  let createSideChainNFTLoadingId: any;
+  let createSideChainNFTLoadingId: Id;
+  createSideChainNFTLoadingId = toast.loading("Creating NFT on SideChain...");
   try {
-    createSideChainNFTLoadingId = toast.loading(
-      "Creating NFT on SideChain..."
-    );
-
     const CROSS_CHAIN_CREATE_TOKEN_PARAMS = {
       fromChainId: mainchain_from_chain_id,
       parentChainHeight: values.parentChainHeight,
@@ -911,13 +860,8 @@ const createNftTokenOnSideChain = async (values: INftValidateResult) => {
     });
     removeNotification(createSideChainNFTLoadingId);
     return "success";
-  } catch (error: any) {
-    toast.update(createSideChainNFTLoadingId, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-    removeNotification(createSideChainNFTLoadingId);
+  } catch (error) {
+    handleError(createSideChainNFTLoadingId, error);
     return "error";
   }
 };
@@ -950,11 +894,9 @@ const issueNftOnSideChain = async (values: {
   amount: string;
   memo: string;
 }) => {
-  let issuingNFTLoadingId: any;
+  let issuingNFTLoadingId: Id;
+  issuingNFTLoadingId = toast.loading("Issuing NFT on SideChain...");
   try {
-    issuingNFTLoadingId = toast.loading(
-      "Issuing NFT on SideChain..."
-    );
     const issueNftInput = {
       symbol: values.symbol,
       amount: values.amount,
@@ -977,13 +919,8 @@ const issueNftOnSideChain = async (values: {
     toast.success("You will get NFT on your Wallet! It can take sometimes to get into your wallet");
     handleReturnClick();
     return "success";
-  } catch (error: any) {
-    toast.update(issuingNFTLoadingId, {
-      render: error.message,
-      type: "error",
-      isLoading: false,
-    });
-    removeNotification(issuingNFTLoadingId);
+  } catch (error) {
+    handleError(issuingNFTLoadingId,error);
     setTransactionStatus(false);
     return "error";
   }
@@ -1042,10 +979,9 @@ const createNftToken = async (values: INftParams) => {
       memo: "We are issuing nftToken",
     });
     setTransactionStatus(false);
-  } catch (error: any) {
+  } catch (error) {
     console.error(error, "=====error");
     setTransactionStatus(false);
-    toast.error(error);
     return "error";
   }
 };
@@ -1072,7 +1008,7 @@ Now, let's Write a Function to Call Necessary Functions for NFT Creation.
 2. Replace the existing **`onSubmit`** function with this code snippet:
 
 ```javascript title="create-nft/index.tsx"
-//Step 11 - Handle Submit Form
+// Step 11 - Handle Submit Form
 const onSubmit = async (values: z.infer<typeof formSchema>) => {
   setTransactionStatus(true);
 
@@ -1143,7 +1079,7 @@ const getBalanceOfNft = async (
     symbol: string,
     owner: string,
   },
-  sideChainSmartContract: any
+  sideChainSmartContract: IContract
 ): Promise<number> => {
   // @ts-ignore
   const { data }: { data: { balance: number } } =
@@ -1172,7 +1108,7 @@ const getBalanceOfNft = async (
 const fetchNftBalances = async (
   nfts: Nft[],
   ownerAddress: string,
-  sideChainSmartContract: any
+  sideChainSmartContract: IContract
 ): Promise<Nft[]> => {
   const nftDataWithBalances = await Promise.all(
     nfts.map(async (nft) => {
@@ -1212,7 +1148,7 @@ const fetchNftBalances = async (
 // fetch NFT Data from eforest API
 export const fetchUserNftData = async (
   currentWalletAddress: string,
-  sideChainSmartContract: any
+  sideChainSmartContract: IContract
 ) => {
   try {
     const response = await fetch(
@@ -1286,7 +1222,7 @@ Now, Let's call **`fetchUserNftData`** on necessary page.
 const getNFTData = async () => {
   const result = await fetchUserNftData(
     currentWalletAddress as string,
-    sideChainSmartContract
+    sideChainSmartContract as IContract
   );
   if (result !== "error") {
     setUserNfts(result);
@@ -1318,7 +1254,7 @@ const getNFTData = async () => {
 const getNFTData = async () => {
   const result = await fetchUserNftData(
     currentWalletAddress as string,
-    sideChainSmartContract
+    sideChainSmartContract as IContract
   );
   if (result !== "error") {
     setUserNfts(result);
@@ -1416,7 +1352,7 @@ const transferNftToOtherAccount = async (values: {
     await delay(3000);
 
     handleReturnClick();
-  } catch (error: any) {
+  } catch (error) {
     console.error(error.message, "=====error");
     toast.error(error.message);
   }
