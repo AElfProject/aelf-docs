@@ -515,7 +515,6 @@ const GetParentChainHeight = async () => {
     // If there's an error, log it and return an error status.
     console.error(error, "=====error in GetParentChainHeight");
     throw new Error("Failed to Get Parent Chain Height.");
-    return "error";
   }
 };
 ```
