@@ -64,6 +64,15 @@ When deploying new contract code, Nodes perform checks against a whitelist. If a
 | string                        | ALL                     | Allowed   |
 | string                        | Constructor             | Denied    |
 | Byte[]                        | ALL                     | Allowed   |
+| Func 4                        | ALL                     | Allowed   |
+| ValueTuple 1                  | ALL                     | Allowed   |
+| ValueTuple 2                  | ALL                     | Allowed   |
+| ValueTuple 3                  | ALL                     | Allowed   |
+| ValueTuple 4                  | ALL                     | Allowed   |
+| ValueTuple 5                  | ALL                     | Allowed   |
+| ValueTuple 6                  | ALL                     | Allowed   |
+| ValueTuple 7                  | ALL                     | Allowed   |
+| ValueTuple 8                  | ALL                     | Allowed   |
 
 ## Types and Members Whitelist in System.Reflection Namespace
 

@@ -184,3 +184,4 @@ In contract state, only the following types are allowed:
 - `MethodReference<T, T>`
 - `ProtobufState<T>`
 - `ContractReferenceState`
+- `StructuredState`
