@@ -14,7 +14,7 @@
 
 - Replace the existing connect function with this code snippet:
 
-```javascript title="header/index.tsx"
+```tsx title="header/index.tsx"
 const connect = async (walletProvider?: IPortkeyProvider) => {
   // Step C - Connect Portkey Wallet
   const accounts = await (walletProvider ? walletProvider : provider)?.request({

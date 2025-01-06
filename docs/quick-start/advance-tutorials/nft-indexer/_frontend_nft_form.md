@@ -6,7 +6,7 @@
 
 2.  Replace the form variable with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // Step D - Configure NFT Form
 const form = useForm<z.infer<typeof formSchema>>({
   resolver: zodResolver(formSchema),
@@ -20,6 +20,6 @@ const form = useForm<z.infer<typeof formSchema>>({
 ```
 
 #### Here's what the function does:
-1. Initializes a new form variable with default values needed to create a nft.
+1. Initializes a new form variable with default values needed to create an NFT.
 2. Fields include: `tokenName` , `symbol` , `totalSupply` , and `decimals`.
 Now the form is ready for users to fill in the necessary details for their NFT function interaction.

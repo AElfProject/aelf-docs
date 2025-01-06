@@ -8,7 +8,7 @@ So now let's **Transfer NFT** to other wallet now.
 
 2.  Replace the form variable with this code snippet:
 
-```javascript title="transfer-nft/index.tsx"
+```tsx title="transfer-nft/index.tsx"
 // Configure NFT Transfer Form
 const form = useForm<z.infer<typeof formSchema>>({
   resolver: zodResolver(formSchema),
@@ -27,7 +27,7 @@ Now your form is ready for users to fill in the necessary details for their NFTs
 **Step 3: Create NFT Transfer Function**
 1.  Find the comment `// Transfer NFT to Other Wallet`.
 2.  Replace the form variable with this code snippet:
-```javascript title="transfer-nft/index.tsx"
+```tsx title="transfer-nft/index.tsx"
 // Transfer NFT to Other Wallet
 const transferNftToOtherAccount = async (values: {
   address: string;
@@ -94,7 +94,7 @@ const transferNftToOtherAccount = async (values: {
 
 2.  Replace the form variable with this code snippet:
 
-```javascript title=""
+```tsx title=""
 // Handle Transfer Submit Form
 function onSubmit(values: z.infer<typeof formSchema>) {
   transferNftToOtherAccount(values);

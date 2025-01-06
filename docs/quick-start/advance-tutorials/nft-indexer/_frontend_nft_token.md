@@ -1,11 +1,11 @@
 ### Create NFT Token
 **Step 1: Write a Function to create NFTs on the mainchain**
-Now, let's write the create NFTs on mainchain function.
+Now, let's write the **create NFTs on MainChain** function.
 1. Scroll down to find the comment `// step 6 - Create an NFT on the mainchain`.
 
 2. Replace the existing **`createNFTOnMainChain`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 6 - Create an NFT on the mainchain
 const createNFTOnMainChain = async (values: INftParams) => {
   let createMainChainNFTLoadingId;
@@ -16,7 +16,7 @@ const createNFTOnMainChain = async (values: INftParams) => {
     );
 
     // Preparing Parameter for Create Function
-    const createNtfMainChainInput = {
+    const createNftMainChainInput = {
       tokenName: values.tokenName,
       symbol: values.symbol,
       totalSupply: values.totalSupply,
@@ -30,7 +30,7 @@ const createNFTOnMainChain = async (values: INftParams) => {
     const resultMainchain = await mainChainSmartContract?.callSendMethod(
       "Create",
       currentWalletAddress,
-      createNtfMainChainInput
+      createNftMainChainInput
     );
 
     console.log(
@@ -65,7 +65,7 @@ Now, let's write the Validate NFT Info Exist function.
 
 2. Replace the existing **`validateNftToken`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 7 - Validate an NFT token on the maincgit stashhain
 const validateNftToken = async (values: INftParams) => {
   let validateNFTLoadingId;
@@ -113,6 +113,7 @@ const validateNftToken = async (values: INftParams) => {
     let heightDone = false;
 
     while (!heightDone) {
+      await delay(5000); // Wait 5 seconds before checking again
       // get latest index Hight
       const sideIndexMainHeight = await GetParentChainHeight();
       if (
@@ -162,7 +163,7 @@ Now, let's write the Create NFT on dAppChain function.
 
 2. Replace the existing **`createNftTokenOnSideChain`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 8 - Create a NFT on dAppChain.
 const createNftTokenOnSideChain = async (values: INftValidateResult) => {
   let createSideChainNFTLoadingId;
@@ -207,7 +208,7 @@ Now, let's write the Issue NFT Function.
 
 2. Replace the existing **`issueNftOnSideChain`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 9 - Issue a NFT Function which has been Created on dAppChain
 const issueNftOnSideChain = async (values: {
   symbol: string;
@@ -260,7 +261,7 @@ Now, let's write the createNftToken Function.
 
 2. Replace the existing **`createNftToken`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 10 - Call Necessary Function for Create NFT
 const createNftToken = async (values: INftParams) => {
   try {

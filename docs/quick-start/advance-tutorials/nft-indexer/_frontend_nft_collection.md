@@ -9,7 +9,7 @@ Let's write the functions to `Create New NFT Collection` on the aelf mainchain a
 
 - Replace the existing **`createNftCollectionOnMainChain`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step - 1 Create New NFT Collection on the mainchain
 const createNftCollectionOnMainChain = async (
   values: z.infer<typeof formSchema>
@@ -19,7 +19,7 @@ const createNftCollectionOnMainChain = async (
     createLoadingId = toast.loading("Creating NFT Collection..");
 
     // Create an object with the necessary information for the new NFT collection.
-    const createNtfInput: INftInput = {
+    const createNftInput: INftInput = {
       tokenName: values.tokenName, // Name of the nft Collection
       symbol: values.symbol, // Symbol of the token (You have to get it from your PortKey wallet on NFT seed from NFT section)
       totalSupply: values.totalSupply, // Total supply of the token
@@ -34,7 +34,7 @@ const createNftCollectionOnMainChain = async (
     const result = await mainChainSmartContract?.callSendMethod(
       "Create",
       currentWalletAddress,
-      createNtfInput
+      createNftInput
     );
 
     // Log the result of the creation for debugging purposes.
@@ -48,7 +48,7 @@ const createNftCollectionOnMainChain = async (
     removeNotification(createLoadingId);
 
     // Return the input data for further use.
-    return createNtfInput;
+    return createNftInput;
   } catch (error) {
     handleError(createLoadingId as number, error);
     return "error";
@@ -76,7 +76,7 @@ Next, we'll write the **Validate Collection Info Exist** function.
 
 - Replace the existing **`validateNftCollectionInfo`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 2 - Validate Collection information exist
 // This function validates if the token collection information already exists on the main blockchain.
 const validateNftCollectionInfo = async (
@@ -123,6 +123,7 @@ const validateNftCollectionInfo = async (
     let heightDone = false;
 
     while (!heightDone) {
+      await delay(5000); // Wait 5 seconds before checking again
       // Get the latest index height
       const sideIndexMainHeight = await GetParentChainHeight();
       if (Number(sideIndexMainHeight) >= VALIDATE_TXRESULT.Transaction.RefBlockNumber) {
@@ -165,7 +166,7 @@ Next, we'll write the **Get the parent chain height** function.
 
 - Replace the existing **`GetParentChainHeight`** function with the following code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // Step 3: Get the parent chain height
 // This function fetches the current height of the parent blockchain.
 const GetParentChainHeight = async () => {
@@ -191,7 +192,7 @@ Next, we'll write the **Fetch the Merkle path** function.
 
 - Replace the existing **`getMerklePathByTxId`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 4 - Fetch the merkle path by transaction Id
 const getMerklePathByTxId = async (aelf: AElf, txId: string) => {
   try {
@@ -228,7 +229,7 @@ Next, we'll write the **Create a Collection on the cross-chain** function.
 
 - Replace the existing **`createCollectionOnSideChain`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 5 - Create a collection on the dAppChain
 const createCollectionOnSideChain = async (
   transactionId: string,
@@ -238,7 +239,7 @@ const createCollectionOnSideChain = async (
   let crossChainLoadingId;
   try {
     crossChainLoadingId = toast.loading(
-      "Creating Collection on SideChain..."
+      "Creating Collection on dAppChain..."
     );
 
     const merklePath = await getMerklePathByTxId(aelf, transactionId);
@@ -248,7 +249,6 @@ const createCollectionOnSideChain = async (
     const CROSS_CHAIN_CREATE_TOKEN_PARAMS = {
       fromChainId: mainchain_from_chain_id,
       parentChainHeight: "" + BlockNumber,
-      // @ts-ignore
       transactionBytes: Buffer.from(signedTx, "hex").toString("base64"),
       merklePath,
     };
@@ -269,7 +269,7 @@ const createCollectionOnSideChain = async (
           done = true;
           setIsNftCollectionCreated(true);
           toast.update(crossChainLoadingId, {
-            render: "Collection was Created Successfully On SideChain",
+            render: "Collection was Created Successfully On dAppChain",
             type: "success",
             isLoading: false,
           });
@@ -281,6 +281,12 @@ const createCollectionOnSideChain = async (
         if ((err as { Error: string }).Error.includes("Cross chain verification failed.")) {
           console.log("Exit.");
           done = true;
+          toast.update(crossChainLoadingId, {
+            render: "Please try again to create NFT using new NFT seed",
+            type: "error",
+            isLoading: false,
+          });
+          removeNotification(crossChainLoadingId);
         } else {
           console.error("An unexpected error occurred:", err);
         }

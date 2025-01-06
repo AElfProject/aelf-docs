@@ -8,9 +8,9 @@ Let's write the Function for the fetch NFT data from user's Wallet using API.
 
 - Replace the existing **`fetchUserNftData`** function with this code snippet:
 
-```javascript title="commonFunctions.ts"
+```ts title="commonFunctions.ts"
 // fetch NFT Data from Indexer API
-export const fetchUserNftData = async (addres:string) => {
+export const fetchUserNftData = async (address:string) => {
 
   const url = 'add_your_aeindexer_api';
   const headers = { 'Content-Type': 'application/json'};
@@ -18,7 +18,7 @@ export const fetchUserNftData = async (addres:string) => {
   const body = JSON.stringify({
     query: `
       query {
-        account(input: { chainId: "tDVW", address: "${addres}" }) {
+        account(input: { chainId: "tDVW", address: "${address}" }) {
           symbol
           amount
           address
@@ -68,7 +68,7 @@ Now, Let's call **`fetchUserNftData`** on necessary page.
 
 - Replace the existing **`getNFTData`** function with this code snippet:
 
-```javascript title="home/index.tsx"
+```tsx title="home/index.tsx"
 // get NFT Data from User's wallet
 const getNFTData = async () => {
   const result = await fetchUserNftData(currentWalletAddress as string);
@@ -91,7 +91,7 @@ const getNFTData = async () => {
 
 - Replace the existing **`getNFTData`** function with this code snippet:
 
-```javascript title="profile/index.tsx"
+```tsx title="profile/index.tsx"
 // get NFT Data from User's wallet
 const getNFTData = async () => {
   const result = await fetchUserNftData(currentWalletAddress as string);

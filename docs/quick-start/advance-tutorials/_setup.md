@@ -46,7 +46,7 @@ aelf.deploy is a utility tool for deploying smart contracts on the aelf blockcha
 Please remember to export PATH after installing aelf.deploy.
 
 :::info
-ℹ️ Note: If you have installed aelf.deploy and your terminal says that there is no such command available, please uninstall and install aelf.deploy.
+ℹ️ Note: If you have installed aelf.deploy and your terminal says that there is no such command available, please uninstall and reinstall aelf.deploy.
 :::
 
 **Install Node.js and Yarn**
@@ -83,7 +83,7 @@ Provide required permissions while installing aelf-command globally.
    Select `Codespaces`.
 5. Click on the `+` sign to create a new Codespace.
 6. After some time, your workspace will load with the contents of the repository.
-   You can now continue your development using GitHub Codespaces.
+   You may now continue your development using GitHub Codespaces.
 
 </TabItem>
 </Tabs>
