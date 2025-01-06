@@ -14,7 +14,7 @@ So now let's **Transfer NFT** to other wallet now.
 
 2.  Replace the form variable with this code snippet:
 
-```javascript title="transfer-nft/index.tsx"
+```tsx title="transfer-nft/index.tsx"
 // Configure NFT Transfer Form
 const form = useForm<z.infer<typeof formSchema>>({
   resolver: zodResolver(formSchema),
@@ -40,7 +40,7 @@ Now your form is ready for users to fill in the necessary details for their NFTs
 
 2.  Replace the form variable with this code snippet:
 
-```javascript title="transfer-nft/index.tsx"
+```tsx title="transfer-nft/index.tsx"
 // Transfer NFT to Other Wallet
 const transferNftToOtherAccount = async (values: {
   address: string;
@@ -109,7 +109,7 @@ const transferNftToOtherAccount = async (values: {
 
 2.  Replace the form variable with this code snippet:
 
-```javascript title=""
+```tsx title="transfer-nft/index.tsx"
 // Handle Transfer Submit Form
 function onSubmit(values: z.infer<typeof formSchema>) {
   transferNftToOtherAccount(values);
@@ -122,4 +122,4 @@ function onSubmit(values: z.infer<typeof formSchema>) {
 2. **Parameters:** It takes `values`, which is inferred from the `formSchema` and represents the form's data.
 3. **Calls Transfer Function:** It calls the `transferNftToOtherAccount` function with the form values to initiate the NFT transfer.
 
-Now that we've written all the necessary frontend functions and components, we're ready to run the NFT dApp application in the next step.
+Now that we've written all the necessary frontend functions and components, we're ready to run the NFT dApp in the next step.

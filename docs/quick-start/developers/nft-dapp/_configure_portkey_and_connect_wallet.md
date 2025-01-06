@@ -12,7 +12,7 @@ We'll set up our Portkey provider to allow users to connect their Portkey wallet
 
 - Replace the existing **`fetchContract`** function with this updated code:
 
-```javascript title="useNFTSmartContract.ts"
+```ts title="useNFTSmartContract.ts"
 //Step A - Function to fetch a smart contract based on the chain symbol and the contract address
 const fetchContract = async (
   symbol: "AELF" | "tDVW",
@@ -52,7 +52,7 @@ const fetchContract = async (
 
 - Replace the existing **`useEffect`** hook with this updated code:
 
-```javascript title="useNFTSmartContract.ts"
+```ts title="useNFTSmartContract.ts"
 // Step B -  Effect hook to initialize and fetch the smart contracts when the provider changes
   useEffect(() => {
     (async () => {
@@ -100,7 +100,7 @@ By following these steps, we'll configure the Portkey provider to connect users'
 
 - Replace the existing connect function with this code snippet:
 
-```javascript title="header/index.tsx"
+```tsx title="header/index.tsx"
 const connect = async (walletProvider?: IPortkeyProvider) => {
   // Step C - Connect Portkey Wallet
   const accounts = await (walletProvider ? walletProvider : provider)?.request({

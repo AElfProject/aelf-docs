@@ -10,7 +10,7 @@
 
 2.  Replace the form variable with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // Step D - Configure NFT Form
 const form = useForm<z.infer<typeof formSchema>>({
   resolver: zodResolver(formSchema),
@@ -43,7 +43,7 @@ Let's write the functions to `Create New NFT Collection` on the aelf mainchain a
 
 - Replace the existing **`createNftCollectionOnMainChain`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 1 - Create New NFT Collection on MainChain Function
 const createNftCollectionOnMainChain = async (values: {
   tokenName: string;
@@ -123,7 +123,7 @@ Next, we'll write the **Validate Collection Info Exist** function.
 
 - Replace the existing **`validateNftCollectionInfo`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 2 - Validate Collection information existence
 // This function validates if the token collection information already exists on the main blockchain.
 const validateNftCollectionInfo = async (values: INftInput) => {
@@ -221,7 +221,7 @@ Next, we'll write the **Get the parent chain height** function.
 
 - Replace the existing **`GetParentChainHeight`** function with the following code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // Step 3: Get the parent chain height
 // This function fetches the current height of the parent blockchain.
 const GetParentChainHeight = async () => {
@@ -253,7 +253,7 @@ Next, we'll write the **Fetch the Merkle path** function.
 
 - Replace the existing **`getMerklePathByTxId`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 4 - Fetch the merkle path by transaction Id
 const getMerklePathByTxId = async (aelf: AElf, wallet: IWalletInfo) => {
   try {
@@ -298,7 +298,7 @@ Next, we'll write the **Create a Collection on the cross-chain** function.
 
 - Replace the existing **`createCollectionOnSideChain`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 5 - Create a collection on the dAppChain
 const createCollectionOnSideChain = async (
   transactionId: string,
@@ -382,7 +382,7 @@ Now, let's write the create NFTs on mainchain function.
 
 2. Replace the existing **`createNFTOnMainChain`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 6 - Create an NFT on the mainchain
 const createNFTOnMainChain = async (values: {
   tokenName: string;
@@ -448,7 +448,7 @@ Now, let's write the Validate NFT Info Exist function.
 
 2. Replace the existing **`validateNftToken`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 7 - Validate a NFT Token on MainChain
 const validateNftToken = async (values: INftParams) => {
   let validateNFTLoadingId: Id;
@@ -556,7 +556,7 @@ Now, let's write the Create NFT on dAppChain function.
 
 2. Replace the existing **`createNftTokenOnSideChain`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 8 - Create a NFT on dAppChain.
 const createNftTokenOnSideChain = async (values: INftValidateResult) => {
   let createSideChainNFTLoadingId: Id;
@@ -609,7 +609,7 @@ Now, let's write the Issue NFT Function.
 
 2. Replace the existing **`issueNftOnSideChain`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 9 - Issue a NFT Function which has been Created on dAppChain
 const issueNftOnSideChain = async (values: {
   symbol: string;
@@ -669,7 +669,7 @@ Now, let's write the createNftToken Function.
 
 2. Replace the existing **`createNftToken`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // step 10 - Call Necessary Function for Create NFT
 const createNftToken = async (values: INftParams) => {
   try {
@@ -729,7 +729,7 @@ Now, let's Write a Function to Call Necessary Functions for NFT Creation.
 
 2. Replace the existing **`onSubmit`** function with this code snippet:
 
-```javascript title="create-nft/index.tsx"
+```tsx title="create-nft/index.tsx"
 // Step 11 - Handle Submit Form
 const onSubmit = async (values: z.infer<typeof formSchema>) => {
   setTransactionStatus(true);

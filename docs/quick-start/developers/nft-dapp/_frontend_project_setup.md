@@ -87,7 +87,7 @@ export const tree = {
 
 #### Install necessary packages and libraries
 
-- Run teh following command in the terminal:
+- Run the following command in the terminal:
 
 <Tabs>
 <TabItem value="Linux and macOs" label="Linux and macOs" default>

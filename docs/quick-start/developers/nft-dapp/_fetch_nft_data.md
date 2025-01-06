@@ -14,7 +14,7 @@ Let's write the Function for the fetch NFT data from user's Wallet using API.
 
 - Replace the existing **`getBalanceOfNft`** function with this code snippet:
 
-```javascript title="commonFunctions.ts"
+```ts title="commonFunctions.ts"
 // Function to get the balance of a specific NFT
 const getBalanceOfNft = async (
   values: {
@@ -23,7 +23,6 @@ const getBalanceOfNft = async (
   },
   sideChainSmartContract: IContract
 ): Promise<number> => {
-  // @ts-ignore
   const { data }: { data: { balance: number } } =
     await sideChainSmartContract?.callViewMethod("getBalance", values);
   return data.balance;
@@ -45,7 +44,7 @@ const getBalanceOfNft = async (
 
 - Replace the existing **`fetchNftBalances`** function with this code snippet:
 
-```javascript title="commonFunctions.ts"
+```ts title="commonFunctions.ts"
 // Function to fetch balance information for an array of NFTs
 const fetchNftBalances = async (
   nfts: Nft[],
@@ -86,7 +85,7 @@ const fetchNftBalances = async (
 
 - Replace the existing **`fetchUserNftData`** function with this code snippet:
 
-```javascript title="commonFunctions.ts"
+```ts title="commonFunctions.ts"
 // fetch NFT Data from eforest API
 export const fetchUserNftData = async (
   currentWalletAddress: string,
@@ -159,7 +158,7 @@ Now, Let's call **`fetchUserNftData`** on necessary page.
 
 - Replace the existing **`getNFTData`** function with this code snippet:
 
-```javascript title="home/index.tsx"
+```tsx title="home/index.tsx"
 // get NFT Data from User's wallet
 const getNFTData = async () => {
   const result = await fetchUserNftData(
@@ -191,7 +190,7 @@ const getNFTData = async () => {
 
 - Replace the existing **`getNFTData`** function with this code snippet:
 
-```javascript title="profile/index.tsx"
+```tsx title="profile/index.tsx"
 // get NFT Data from User's wallet
 const getNFTData = async () => {
   const result = await fetchUserNftData(
