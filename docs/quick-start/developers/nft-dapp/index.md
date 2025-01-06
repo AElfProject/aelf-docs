@@ -44,7 +44,6 @@ import CreateNftCollectionAndNftToken from "./\_create_nft.md"
 import FetchNftData from "./\_fetch_nft_data.md";
 import TransferNft from "./\_transfer_nft.md";
 import RunApplication from "./\_run_application.md";
-import CommandInteraction from "./\_command_interaction.md"
 import Conclusion from "./\_conclusion.md"
 
 <!-- smart contract integration in frontend application -->
@@ -55,10 +54,6 @@ import Conclusion from "./\_conclusion.md"
 <FetchNftData />
 <TransferNft />
 <RunApplication />
-
-<!-- smart contract integration within command line -->
-## Step 4 - Interact with Deployed Multi-Token Smart Contract
-<CommandInteraction />
 
 <!-- conclusion -->
 <Conclusion />
