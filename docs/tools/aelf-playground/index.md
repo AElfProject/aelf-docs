@@ -50,17 +50,19 @@ The interaction with the workspace project code inside `src` and `test` folders 
 
   ![drag-and-drop-3](/img/playground-7.png)
 
-- Also, you can choose to import the project directly from the github. 
-  1. Click on `enter a GitHub repo url`. 
-  2. Enter the github URL. 
-  3. Choose the required `.csproj` file. 
-  4. Enter the workspace name and click Submit. 
+- Also, you can choose to import the project directly from the github.
+
+  1. Click on `enter a GitHub repo url`.
+  2. Enter the github URL.
+  3. Choose the required `.csproj` file.
+  4. Enter the workspace name and click Submit.
 
   ![drag-and-drop-3](/img/playground-8.png)
 
 ### Features of the aelf-playground
 
 Now as the workspace setup is done and project is setup inside aelf's playground. The user can now edit the smart contract logic according to the user needs. The changes will majorly takes place inside the below files:
+
 - src/Protobuf/contract/`contract_proto_file_name`.proto file
 - src/`ContractName`.cs
 - src/`ContractName`State.cs
@@ -70,18 +72,20 @@ Once all the changes are done in the above files and all other required files (w
   
   ![AI-Audit](/img/playground-9.png)
 
-2. **Save Gas Fee**: Optimise the smart contract to save gas fee.  It will suggest to make changes to the smart contract if the smart contract is not optimised. If the smart contract is already optimed then result like below will appear.
+![AI-Audit](/img/playground-9.png)
 
-  ![Save-Gas-Fee](/img/playground-10.png)
+2. **Save Gas Fee**: Optimise the smart contract to save gas fee. It will suggest to make changes to the smart contract if the smart contract is not optimised. If the smart contract is already optimed then result like below will appear.
+
+![Save-Gas-Fee](/img/playground-10.png)
 
 3. **Build**: Build the smart contract code. It will show `building` status when the user clicks the `Build` button and will output below result including whether build was successful or failed once the build process ends.
 
-  ![Build](/img/playground-11.png)
-  
+![Build](/img/playground-11.png)
+
 4. **Test**: Test the smart contract code. It will show `Running Tests` status when the user clicks the `Test` button and will output below result including how many tests have passed and failed once the test process ends.
 
-  ![Test](/img/playground-12.png)
-  
+![Test](/img/playground-12.png)
+
 5. **Deploy**: Deploy the smart contract code on the aelf blockchain. It will show `Deploying` status when the user clicks the `Deploy` button and will output below result including `transactionId`, `proposal status` and `contract address` once the build process ends. You can verify the contract address by visiting [aelf testnet explorer](https://testnet.aelfscan.io/tDVW).
 
   ![Deploy](/img/playground-13.png)
@@ -96,7 +100,7 @@ Once all the changes are done in the above files and all other required files (w
   
 8. **Share**: Share the project with a sharable link. It will show `Generating share link` status when the user clicks the `Share` button and will output below result including the sharable link.
 
-  ![Share](/img/playground-15.png)
+![Share](/img/playground-15.png)
 
 9. **Command Line Options**: Command line additionally provides options to check txID and clear terminal including above options. Use the help command to see all the options inside terminal. `check txID` helps in checking the transaction details.
 
@@ -108,11 +112,11 @@ Once all the changes are done in the above files and all other required files (w
   
 11. **Add a New File**: Manually add a new file in the playground project structure. It will allow users to add a new file in the workspace project structure add smart contract code, new proto files, etc.
 
-  ![Add a New File](/img/playground-18.png)
+![Add a New File](/img/playground-18.png)
 
 12. **Rename & Delete File**: `Renames` & `Deletes` the chosen file or folders in the project directory structure.
 
-  ![Add a New File](/img/playground-19.png)
+![Add a New File](/img/playground-19.png)
 
 13. **Tutorials**: Some pre-compiled tutorials are curated under `Tutorials` section of aelf-playground. It provides an option to filter the tutorials based on the difficulty level (`Beginner`, `Intermediate` & `Advanced`) and smart contracts languages (C# & Solidity).
 
@@ -120,15 +124,14 @@ Once all the changes are done in the above files and all other required files (w
 
 14. **Deployments**: `Deployments` section provides a list of all deployed tutorials along with the wallet address used to deploy smart contracts on the aelf blockchain. You can click on the wallet address to view wallet details on the aelf explorer.
 
-  ![Add a New File](/img/playground-21.png)
+![Add a New File](/img/playground-21.png)
 
 15. **Privatekey**: You can export your wallet's private key from the `Deployments` section. Simply click the eye icon to reveal the private key, which you can then copy.
 ![Add a New File](/img/playground-24.png)
 
 16. **Themes**: Users can also choose to toggle between `dark` and `light` themes.
 
-  ![Add a New File](/img/playground-22.png)
-
+![Add a New File](/img/playground-22.png)
 
 ## 4. Example
 
@@ -249,7 +252,7 @@ namespace AElf.Contracts.ToDo
 
 - The `State.cs` file in an aelf blockchain smart contract holds the variables that store the contract's data, making sure this data is saved and accessible whenever the contract needs it.
 
-#### Implement ToDo Smart Contract 
+#### Implement ToDo Smart Contract
 
 The implementation of the ToDo App smart contract inside file `src/todo-dapp.cs` is as follows:
 
@@ -449,4 +452,5 @@ namespace AElf.Contracts.ToDo
 🎉 Congratulations, We got the contract address after successful deployment of todo-dapp smart contract using playground. 
 
 ## Conclusion
+
 The aelf Playground offers a seamless and accessible platform for developers to build, test, and deploy smart contracts without the need for any local setup. With built-in features like AI audit, gas fee optimization, and GitHub integration, it simplifies the entire smart contract development process. Whether you're writing new code or modifying existing templates, the aelf Playground provides all the essential tools in one place, making it an ideal sandbox for both beginners and experienced developers.
