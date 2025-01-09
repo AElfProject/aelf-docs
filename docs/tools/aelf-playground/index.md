@@ -69,8 +69,6 @@ Now as the workspace setup is done and project is setup inside aelf's playground
 
 Once all the changes are done in the above files and all other required files (whereever nacessary). Then below operations can be performed on the selected workspace project: 
 1. **AI Audit**: Complete the AI audit of the written smart contract. Result similar to below image will be visible once the AI audit completes. The interpretation of the AI audit results will be shown when you hover over the smart contract code once the audit finishes.
-  
-  ![AI-Audit](/img/playground-9.png)
 
 ![AI-Audit](/img/playground-9.png)
 
