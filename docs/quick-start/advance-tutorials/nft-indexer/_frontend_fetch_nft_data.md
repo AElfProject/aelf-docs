@@ -1,8 +1,13 @@
 ### Fetch NFT Data
+
 Let's write the Function for the fetch NFT data from user's Wallet using API.
+
 **Step 1: Locate the File**
+
 - go to the `src/lib/commonFunctions.ts` file.
+
 **Step 2: Write the Helper Functions for fetch the NFT data**
+
 - The `commonFunctions.ts` file is contains the helpers function for fetch NFT and etc.
 - Find the comment `// fetch NFT Data from Indexer API`.
 
@@ -61,7 +66,9 @@ export const fetchUserNftData = async (address:string) => {
 1. **Retrieves NFT Data:** The function `fetchUserNftData` fetches the NFT data for a given owner using AeIndexer API.
 We have Prepared all necessary function for fetch NFT Data from User's Wallet.
 Now, Let's call **`fetchUserNftData`** on necessary page.
+
 **Step 3: Call fetchUserNftData Functions on Home Page**
+
 - go to the `src/pages/home/index.tsx` file.
 - The `home/index.tsx` file contains the Home Page of NFT dApp
 - Find the comment `// get NFT Data from User's wallet`.
@@ -84,7 +91,9 @@ const getNFTData = async () => {
 3. **Handles Result:** It checks the result:
    - If the result is not "error", it updates the state with the fetched NFT data by calling `setUserNfts(result)`.
 4. **Updates Loading State:** Regardless of the result, it sets the loading state to false by calling `setLoading(false)`.
+
 **Step 4: Call fetchUserNftData Functions on Profile Page**
+
 - go to the `src/pages/profile/index.tsx` file.
 - The `profile/index.tsx` file contains the Home Page of NFT dApp
 - Find the comment `// get NFT Data from User's wallet`.

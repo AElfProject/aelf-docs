@@ -1,6 +1,6 @@
 ### Configure Submit Form
 Now, let's write a function to call necessary functions for NFT creation.
-1. Scroll down to find the comment `// Step 11 - Handle Submit Form`.
+1. Scroll down to find the comment `//Step 11 - Handle Submit Form`.
 
 2. Replace the existing **`onSubmit`** function with this code snippet:
 

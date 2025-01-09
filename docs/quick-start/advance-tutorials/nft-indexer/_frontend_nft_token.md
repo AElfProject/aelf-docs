@@ -1,5 +1,6 @@
 ### Create NFT Token
 **Step 1: Write a Function to create NFTs on the mainchain**
+
 Now, let's write the **create NFTs on MainChain** function.
 1. Scroll down to find the comment `// step 6 - Create an NFT on the mainchain`.
 
@@ -59,7 +60,9 @@ const createNFTOnMainChain = async (values: INftParams) => {
 4. **Handles Success:** Updates the notification to show successful NFT creation.
 5. **Handles Errors:** Displays an error message if the operation fails and logs the error.
 6. **Final Return:** Returns `"success"` if the NFT is created successfully; otherwise, returns `"error"`.
+
 **Step 2: Write the Function for Validate NFT Info Exist**
+
 Now, let's write the Validate NFT Info Exist function.
 1. Scroll down to find the comment `// step 7 - Validate an NFT token on the mainchain`.
 
@@ -157,7 +160,9 @@ const validateNftToken = async (values: INftParams) => {
 6. **Fetches Merkle Path:** Retrieves the Merkle path for the validated transaction.
 7. **Handles Success:** Updates the notification to show successful validation and returns necessary values.
 8. **Handles Errors:** Logs errors and returns `"error"` if something goes wrong.
+
 **Step 3: Write a Function for Create NFT on dAppChain**
+
 Now, let's write the Create NFT on dAppChain function.
 1. Scroll down to find the comment `// step 8 - Create a NFT on dAppChain`.
 
@@ -202,8 +207,11 @@ const createNftTokenOnSideChain = async (values: INftValidateResult) => {
 3. **Calls Smart Contract Method:** Sends the transaction to the dAppChain smart contract to create the NFT.
 4. **Handles Success:** Updates the notification to show successful NFT creation on the dAppChain.
 5. **Handles Errors:** Logs errors and returns `"error"` if something goes wrong.
+
 **Step 4: Write a Function for Issue NFT Token which has been Created on dAppChain.**
+
 Now, let's write the Issue NFT Function.
+
 1. Scroll down to find the comment `// step 9 - Issue a NFT Function which has been Created on dAppChain`.
 
 2. Replace the existing **`issueNftOnSideChain`** function with this code snippet:
@@ -255,8 +263,11 @@ const issueNftOnSideChain = async (values: {
 3. **Calls Smart Contract Method:** Sends the transaction to the dAppChain smart contract to issue the NFT.
 4. **Handles Success:** Updates the notification to show successful issuance and notifies the user that the NFT will appear in their wallet.
 5. **Handles Errors:** Logs and displays any error messages, updates the transaction status, and returns `"error"`.
+
 **Step 5: Create a Function to Call Necessary Functions for NFT Creation**
+
 Now, let's write the createNftToken Function.
+
 1. Scroll down to find the comment `// step 10 - Call Necessary Function for Create NFT`.
 
 2. Replace the existing **`createNftToken`** function with this code snippet:

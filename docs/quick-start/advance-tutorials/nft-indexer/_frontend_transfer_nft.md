@@ -1,9 +1,14 @@
 ### Transfer NFT Token
+
 As we have completed `Create` and `Fetch NFT` so now it's time to `Transfer NFT`.
 So now let's **Transfer NFT** to other wallet now.
+
 **Step 1: Locate the File**
+
 1. go to the `src/pages/transfer-nft/index.tsx` file. This file is the **Transfer NFT** page where users can enter details like the `address`, `amount` and `memo`.
+
 **Step 2: Prepare Form for Transfer NFT**
+
 1.  Find the comment `// Configure NFT Transfer Form`.
 
 2.  Replace the form variable with this code snippet:
@@ -24,9 +29,12 @@ const form = useForm<z.infer<typeof formSchema>>({
 1. Initializes a new form variable with default values needed to transfer a nft.
 2. Fields include: `address` , `amount` , and `memo`.
 Now your form is ready for users to fill in the necessary details for their NFTs Transfer function Interaction.
+
 **Step 3: Create NFT Transfer Function**
+
 1.  Find the comment `// Transfer NFT to Other Wallet`.
 2.  Replace the form variable with this code snippet:
+
 ```tsx title="transfer-nft/index.tsx"
 // Transfer NFT to Other Wallet
 const transferNftToOtherAccount = async (values: {
