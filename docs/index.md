@@ -28,6 +28,8 @@ aelf is a high-performance, cloud-native, layer-1 blockchain with Mainnet nodes 
   - [Tic-Tac-Toe](/quick-start/developers/tic-tac-toe-dapp/) dApp
   - [Expense Tracker](/quick-start/developers/expense-tracker/) dApp
   - [Staking](/quick-start/developers/single-pool-staking-dapp/) dApp
+  - [Dice Game](/quick-start/developers/dice-game-dapp/) dApp
+  - [NFT Indexer](/quick-start/advance-tutorials/nft-indexer/) dApp
 
 - For node operators
   - [Simulate](/quick-start/node-operators/simulating-a-bp-node/) a BP node
