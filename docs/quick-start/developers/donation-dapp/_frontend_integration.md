@@ -51,28 +51,28 @@ Next, we’ll fetch the donation smart contract to enable interaction with it fr
 
 - Go to the `src/hooks/useDonationSmartContract.ts` file.
 
-- Find the comment `// Step 3 - Replace with Address of Deployed Smart Contract`
+- Find the comment `// Step 2 - Replace with Address of Deployed Smart Contract`
 
 - Replace the your donation contract address with this value : `your_deployed_donation_smart_contract_address`
 
-- Find the comment `// Step 4 - Function to fetch a smart contract based on deployed contract address`
+- Find the comment `// Step 3 - Function to fetch a smart contract based on deployed contract address`
 
 - Replace the existing **fetchDonationContract** function with this updated code:
 
 ```ts title="useDonationSmartContract.ts"
-// Step 4 - Function to fetch a smart contract based on deployed contract address
+// Step 3 - Function to fetch a smart contract based on deployed contract address
 const fetchDonationContract = async () => {
   const contract = await fetchContract(provider, donationContractAddress);
   contract && setSmartContract(contract);
 };
 ```
 
-- Find the comment `// Step 5 - Effect hook to initialize and fetch the smart contract when the provider changes`
+- Find the comment `// Step 4 - Effect hook to initialize and fetch the smart contract when the provider changes`
 
 - Replace the existing **useEffect** hook with this updated code:
 
 ```ts title="useDonationSmartContract.ts"
-// Step 5 - Effect hook to initialize and fetch the smart contract when the provider changes
+// Step 4 - Effect hook to initialize and fetch the smart contract when the provider changes
 useEffect(() => {
   fetchDonationContract();
 }, [provider]); // Dependency array ensures this runs when the provider changes
@@ -82,12 +82,12 @@ useEffect(() => {
 
 - Go to the `src/hooks/useTokenContract.ts` file.
 
-- Find the comment `// Step 6 - Function to fetch the ELF token contract on dApp chain`
+- Find the comment `// Step 5 - Function to fetch the ELF token contract on dApp chain`
 
 - Replace the existing **fetchTokenContract** function with this updated code:
 
 ```ts title="useTokenContract.ts"
-// Step 6 - Function to fetch the ELF token contract on dApp chain
+// Step 5 - Function to fetch the ELF token contract on dApp chain
 const fetchTokenContract = async () => {
   // token address of dApp chain
   const contract = await fetchContract(
@@ -98,12 +98,12 @@ const fetchTokenContract = async () => {
 };
 ```
 
-- Find the comment `// Step 7 -  Effect hook to initialize and fetch the smart contract when the provider changes`
+- Find the comment `// Step 6 -  Effect hook to initialize and fetch the smart contract when the provider changes`
 
 - Replace the existing **useEffect** hook with this updated code:
 
 ```ts title="useTokenContract.ts"
-// Step 7 -  Effect hook to initialize and fetch the smart contract when the provider changes
+// Step 6 -  Effect hook to initialize and fetch the smart contract when the provider changes
 useEffect(() => {
  fetchTokenContract();
 }, [provider]); // Dependency array ensures this runs when the provider changes
@@ -113,12 +113,12 @@ useEffect(() => {
 
 - Go to the `src/hooks/userBalance.ts` file.
 
-- Find the comment `// Step 8 -  Function to get ELF token balance`
+- Find the comment `// Step 7 - Function to get ELF token balance`
 
 - Replace the existing **getTokenBalance** function with this updated code:
 
 ```ts title="useTokenContract.ts"
-// Step 8 -  Function to get ELF token balance
+// Step 7 - Function to get ELF token balance
 const getTokenBalance = async () => {
   if (!tokencontract || !currentWalletAddress) return;
 
@@ -137,12 +137,12 @@ const getTokenBalance = async () => {
 };
 ```
 
-- Find the comment `// Step 9 -  Effect hook to fetch the token balance when tokencontract and currentWalletAddress change`
+- Find the comment `// Step 8 - Effect hook to fetch the token balance when tokencontract and currentWalletAddress change`
 
 - Replace the existing **useEffect** hook with this updated code:
 
 ```ts title="useTokenContract.ts"
-// Step 9 -  Effect hook to fetch the token balance when tokencontract and currentWalletAddress change
+// Step 8 - Effect hook to fetch the token balance when tokencontract and currentWalletAddress change
 useEffect(() => {
   getTokenBalance();
 }, [tokencontract, currentWalletAddress]);
@@ -162,12 +162,12 @@ Now, we have completed step with fetch smart contracts and token balance.
 
 - Before users can interact with the smart contract, we need to write the `Connect Wallet` function.
 
-- Find the comment `// Step 10 - Connect Portkey Wallet`.
+- Find the comment `// Step 9 - Connect Portkey Wallet`.
 
 - Replace the existing **connect** function with this code snippet:
 
 ```ts title="header/index.tsx"
-// Step 10 - Connect Portkey Wallet
+// Step 9 - Connect Portkey Wallet
 const connect = async (walletProvider?: IPortkeyProvider) => {
   const accounts = await (walletProvider
     ? walletProvider
@@ -208,12 +208,12 @@ With the connect wallet function defined, we're ready to write the remaining fun
 
 **Step 2 : Prepare Form to Create and Edit Campaign**
 
-- Find the comment `// Step 11 - Configure campaign form`.
+- Find the comment `// Step 10 - Configure campaign form`.
 
 - Replace the form variable with this code snippet:
 
 ```ts title="header/index.tsx"
-// Step 11 - Configure campaign form
+// Step 10 - Configure campaign form
 const form = useForm<z.infer<typeof formSchema>>({
   resolver: zodResolver(formSchema),
   defaultValues: {
@@ -236,12 +236,12 @@ Now the form is ready for users to fill in the necessary details.
 
 ### Check Contract Initialization
 
-- Scroll down to find the comment `// step 12 - Check if the smart contract is initialized`.
+- Scroll down to find the comment `// step 11 - Check if the smart contract is initialized`.
 
 - Replace the existing **`checkIsContractInitialized`** function with this code snippet:
  
 ```ts title="create-campaign/index.tsx"
-// step 12 - Check if the smart contract is initialized
+// step 11 - Check if the smart contract is initialized
 const checkIsContractInitialized = async () => {
   const result = await smartContract?.callViewMethod(
     "IsContractInitialized",
@@ -253,12 +253,12 @@ const checkIsContractInitialized = async () => {
 
 ### Initialize Contract
 
-- Scroll down to find the comment `// step 13 - Initialize the smart contract if not already initialized`.
+- Scroll down to find the comment `// step 12 - Initialize the smart contract if not already initialized`.
 
 - Replace the existing **`initializeContract`** function with this code snippet:
 
 ```ts title="create-campaign/index.tsx"
-// step 13 - Initialize the smart contract if not already initialized
+// step 12 - Initialize the smart contract if not already initialized
 const initializeContract = async () => {
   return await smartContract?.callSendMethod("Initialize", "");
 };
@@ -270,12 +270,12 @@ const initializeContract = async () => {
 
 - The `create-campaign/index.tsx` file includes the code to create campaigns. It allows users to create new campaign.
 
-- Find the comment `// step 14 - Function to create a new campaign`.
+- Find the comment `// step 13 - Function to create a new campaign`.
 
 - Replace the existing **`createCampaign`** function with this code snippet:
 
 ```ts title="create-campaign/index.tsx"
-// step 14 - Function to create a new campaign
+// step 13 - Function to create a new campaign
 const createCampaign = async (values: z.infer<typeof formSchema>) => {
   let createLoading: Id;
   createLoading = toast.loading("Creating Campaign...");
@@ -334,12 +334,12 @@ Next, we'll write the **Edit an Existing Campaign** function.
 
 Write the function for update an existing campaign.
 
-- Scroll down to find the comment `// step 15 - Function to edit an existing campaign`.
+- Scroll down to find the comment `// step 14 - Function to edit an existing campaign`.
 
 - Replace the existing **`editCampaign`** function with this code snippet:
 
 ```ts title="create-campaign/index.tsx"
-// step 15 - Function to edit an existing campaign
+// step 14 - Function to edit an existing campaign
 const editCampaign = async (values: z.infer<typeof formSchema>) => {
   let createLoading: Id;
   createLoading = toast.loading("Updating Campaign...");
@@ -386,12 +386,12 @@ const editCampaign = async (values: z.infer<typeof formSchema>) => {
 
 2. **Calls Smart Contract Method** : It interacts with the blockchain smart contract to update the existing capmaign using the prepared data.
 
-- Scroll down to find the comment `// step 16 - Handle form submission for creating/editing a campaign`.
+- Scroll down to find the comment `// step 15 - Handle form submission for creating/editing a campaign`.
 
 - Replace the existing **`onSubmit`** function with this code snippet:
 
 ```ts title="create-campaign/index.tsx"
-// step 16 - Handle form submission for creating/editing a campaign
+// step 15 - Handle form submission for creating/editing a campaign
 const onSubmit = (values: z.infer<typeof formSchema>) => {
   if (editCampaignId) {
     editCampaign(values);
@@ -401,12 +401,12 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
 };
 ```
 
-- Scroll down to find the comment `// step 17 - Set form data for editing an existing campaign`.
+- Scroll down to find the comment `// step 16 - Set form data for editing an existing campaign`.
 
 - Replace the existing **`setEditFormData`** function with this code snippet:
 
 ```ts title="create-campaign/index.tsx"
-// step 17 - Set form data for editing an existing campaign
+// step 16 - Set form data for editing an existing campaign
 const setEditFormData = async () => {
   try {
     const data = await smartContract?.callViewMethod("GetCampaign", {
@@ -437,12 +437,12 @@ const setEditFormData = async () => {
 
 **Step 2 : Fetch Campaign Data**
 
-- Find the comment `// step 18 - Fetch campaign data from the smart contract`.
+- Find the comment `// step 17 - Fetch campaign data from the smart contract`.
 
 - Replace the existing **`getCampaignData`** function with this code snippet:
 
 ```ts title="home/index.tsx"
-// step 18 - Fetch campaign data from the smart contract
+// step 17 - Fetch campaign data from the smart contract
 const getCampaignData = async () => {
   try {
     const data = await smartContract?.callViewMethod("GetCampaignsData", "");
@@ -458,12 +458,12 @@ const getCampaignData = async () => {
 
 ### Search Campaign Data
 
-- Scroll down to find the comment `// step 19 - Filter campaigns based on selected filter and search value`.
+- Scroll down to find the comment `// step 18 - Filter campaigns based on selected filter and search value`.
 
 - Replace the existing **`filterCampaignsData`** variable with this code snippet:
 
 ```ts title="home/index.tsx"
-// step 19 - Filter campaigns based on selected filter and search value
+// step 18 - Filter campaigns based on selected filter and search value
 const filterCampaignsData = useMemo(() => {
   let data: DonationCampaign[] = [];
 
@@ -496,12 +496,12 @@ const filterCampaignsData = useMemo(() => {
 
 **Step 2 : Fetch Campaign Details**
 
-- Find the comment `// step 20 - Fetch campaign details from the smart contract`.
+- Find the comment `// step 19 - Fetch campaign details from the smart contract`.
 
 - Replace the existing **`getCampaignDetails`** function with this code snippet:
 
 ```ts title="campaign-details/index.tsx"
-// step 20 - Fetch campaign details from the smart contract
+// step 19 - Fetch campaign details from the smart contract
 const getCampaignDetails = async () => {
   try {
     const data = await smartContract?.callViewMethod("GetCampaign", {
@@ -524,12 +524,12 @@ Let's prepare the functions for donate funds in active campaign.
 
 #### Check Allowance
 
-- Scroll down to find the comment `// step 21 - Check if the user's wallet has sufficient allowance to spend tokens`.
+- Scroll down to find the comment `// step 20 - Check if the user's wallet has sufficient allowance to spend tokens`.
 
 - Replace the existing **`checkAllowance`** function with this code snippet:
 
 ```ts title="campaign-details/index.tsx"
-// step 21 - Check if the user's wallet has sufficient allowance to spend tokens
+// step 20 - Check if the user's wallet has sufficient allowance to spend tokens
 const checkAllowance = async () => {
   const data = await tokenContract?.callViewMethod("GetAllowance", {
     symbol: "ELF",
@@ -542,12 +542,12 @@ const checkAllowance = async () => {
 
 #### Donate funds to campaign
 
-- Scroll down to find the comment `// step 22 - Function to donate funds`.
+- Scroll down to find the comment `// step 21 - Function to donate funds`.
 
 - Replace the existing **`donateFunds`** function with this code snippet:
 
 ```ts title="campaign-details/index.tsx"
-// step 22 - Function to donate funds
+// step 21 - Function to donate funds
 const donateFunds = async (amount: number) => {
   let donationLoading: Id;
   donationLoading = toast.loading("Donation In Progress..."); // Show loading toast
@@ -633,12 +633,12 @@ The `donateFunds` function handles the process of donating ELF tokens to a speci
 
 **Step 2 : Get User Data**
 
-- Find the comment `// step 23 - Fetch user data from the smart contract using the "GetUserDetails" method.`.
+- Find the comment `// step 22 - Fetch user data from the smart contract using the "GetUserDetails" method.`.
 
 - Replace the existing **`getUserData`** function with this code snippet:
 
 ```ts title="user-profile/index.tsx"
-// step 23 - Fetch user data from the smart contract using the "GetUserDetails" method.
+// step 22 - Fetch user data from the smart contract using the "GetUserDetails" method.
 const getUserData = async () => {
   try {
     const data = await smartContract?.callViewMethod(
@@ -658,12 +658,12 @@ const getUserData = async () => {
 
 ### Delete Campaign
 
-- Scroll down to find the comment `// step 24 - Delete a specific campaign using the campaign ID`
+- Scroll down to find the comment `// step 23 - Delete a specific campaign using the campaign ID`
 
 - Replace the existing **`deleteComapign`** function with this code snippet:
 
 ```ts title="user-profile/index.tsx"
-// step 24 - Delete a specific campaign using the campaign ID.
+// step 23 - Delete a specific campaign using the campaign ID.
 const deleteComapign = async (id: string) => {
   let deleteLoading: Id;
   deleteLoading = toast.loading("Deleting Campaign.."); // Show loading toast
@@ -692,12 +692,12 @@ const deleteComapign = async (id: string) => {
 
 ### Withdraw Raised Amount
 
-- Scroll down to find the comment `// step 25 - Withdraw amount of raised amount of campaign`
+- Scroll down to find the comment `// step 24 - Withdraw amount of raised amount of campaign`
 
 - Replace the existing **`withdrawAmount`** function with this code snippet:
 
 ```ts title="user-profile/index.tsx"
-// step 25 - Withdraw amount of raised amount of campaign
+// step 24 - Withdraw amount of raised amount of campaign
 const withdrawAmount = async (id: string) => {
   let withdrawLoading: Id;
   withdrawLoading = toast.loading("Withdraw Amount is in progress..");
