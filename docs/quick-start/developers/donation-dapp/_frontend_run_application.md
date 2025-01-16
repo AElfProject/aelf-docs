@@ -284,4 +284,28 @@ Congratulations! You’ve successfully donated to the campaign. Thank you for yo
 
    ![delete-campaign-success](/img/delete-campaign-success.png)
 
+---
 
+**Withdraw Raised Amount**
+
+When the campaign is over, only the owner is eligible to withdraw the amount from their campaign. Let's withdraw the raised amount after the campaign has ended.
+
+- Redirect to user profile page.
+
+- Click on **Withdraw Raised Amount** button on campaign card.
+
+   ![withdraw-raised-amount-btn](/img/withdraw-raised-amount-btn.png)
+
+- Now, You will receive a transaction request for withdraw amount on your portkey wallet to Sign the transaction. 
+
+- Click on **Sign** the transaction.
+
+   ![withdraw-raised-amount-request](/img/withdraw-raised-amount-request.png)
+
+- After the transaction is successfully processed, your token balance will be updated with raised amount and button will be change from **Withdraw Raised Amount** to **Withdrawal Complted**.
+
+   ![withdraw-raised-amount-success](/img/withdraw-raised-amount-success.png)
+
+:::success
+🎉 Congratulations Learners! You have successfully built your Donation dApp.
+:::
