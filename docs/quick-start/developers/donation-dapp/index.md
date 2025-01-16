@@ -55,7 +55,7 @@ mv Protobuf/contract/hello_world_contract.proto Protobuf/contract/donation_contr
 
 #### Contract State Definition
 
-Create a new file `DonationAppState.cs` in the `src` directory:
+Update `DonationAppState.cs` file in the `src` directory:
 
 ```csharp title="DonationAppState.cs"
 using AElf.Sdk.CSharp.State;
@@ -351,51 +351,6 @@ message GetAllowanceOutput {
     aelf.Address owner = 2;
     aelf.Address spender = 3;
     int64 allowance = 4;
-}
-```
-
-3. Create `src/Protobuf/message/authority_info.proto`:
-
-```protobuf title="authority_info.proto"
-syntax = "proto3";
-
-import "aelf/core.proto";
-
-option csharp_namespace = "AElf.Contracts.DonationApp";
-
-message AuthorityInfo {
-    aelf.Address contract_address = 1;
-    aelf.Address owner_address = 2;
-}
-```
-
-4. Create `src/Protobuf/reference/acs12.proto`:
-
-```protobuf title="acs12.proto"
-syntax = "proto3";
-
-package acs12;
-
-import public "aelf/options.proto";
-import public "google/protobuf/empty.proto";
-import public "google/protobuf/wrappers.proto";
-import "aelf/core.proto";
-
-option (aelf.identity) = "acs12";
-option csharp_namespace = "AElf.Standards.ACS12";
-
-service UserContract {
-    // Base contract service
-}
-
-message UserContractMethodFees {
-    repeated UserContractMethodFee fees = 2;
-    bool is_size_fee_free = 3;
-}
-
-message UserContractMethodFee {
-    string symbol = 1;
-    int64 basic_fee = 2;
 }
 ```
 
