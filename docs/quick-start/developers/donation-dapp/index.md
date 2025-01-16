@@ -6,7 +6,7 @@ description: Moderately complex smart contract
 
 **Description**: The Donation dApp contract is moderately complex, enabling functionalities such as creating, editing, and deleting donation campaigns, tracking donations, and rewarding contributors. It also supports user-specific data retrieval and ensures secure interactions for managing ELF token-based campaigns.
 
-**Purpose**: To provide a practical understanding of donation management systems using smart contracts, focusing on features like campaign creation, user-specific interactions, secure fund management, and reward distribution to enhance blockchain-based philanthropy.
+**Purpose**: To provide a practical understanding of donation management systems using smart contracts, focusing on features like campaign creation, user-specific interactions, secure fund management, and reward distribution to enhance blockchain-based philanthropy. This tutorial also emphasizes unit testing practices for smart contracts to ensure reliability and security.
 
 **Difficulty Level**: Moderate
 
@@ -689,7 +689,135 @@ namespace AElf.Contracts.DonationApp
 dotnet build
 ```
 
-You should see **DonationContract.dll.patched** in the directory `donation/src/bin/Debug/net6.0`
+You should see **DonationApp.dll.patched** in the directory `donation/src/bin/Debug/net6.0`
+
+### Unit Testing Smart Contract
+
+Unit testing is crucial for ensuring the reliability and security of smart contracts. Let's look at some test cases for the critical `Donate` method:
+
+```csharp title="DonationDAppTests.cs"
+[Fact]
+public async Task Donate_Success()
+{
+    // Arrange
+    await DonationContract.Initialize.SendAsync(new InitializeInput());
+    
+    var createResult = await DonationContract.CreateCampaign.SendAsync(new CreateCampaignInput
+    {
+        Title = "Test Campaign",
+        Description = "Test Description",
+        TargetAmount = 100_00000000,
+        StartTime = GetTimestamp(),
+        EndTime = GetTimestamp(30)
+    });
+    var campaignId = createResult.Output.Value;
+
+    // Approve token spending
+    await ApproveTokenAsync(DonationContractAddress, DefaultDonationAmount);
+
+    // Act
+    var result = await DonationContract.Donate.SendAsync(new DonateInput
+    {
+        CampaignId = campaignId,
+        Amount = DefaultDonationAmount
+    });
+
+    // Assert
+    result.TransactionResult.Status.ShouldBe(TransactionResultStatus.Mined);
+
+    var campaign = await DonationContract.GetCampaign.CallAsync(new StringValue { Value = campaignId });
+    campaign.CurrentAmount.ShouldBe(DefaultDonationAmount);
+
+    var donatorList = await DonationContract.GetDonatorList.CallAsync(new StringValue { Value = campaignId });
+    donatorList.Value.Count.ShouldBe(1);
+    donatorList.Value[0].Donor.ShouldBe(DefaultAddress);
+    donatorList.Value[0].Amount.ShouldBe(DefaultDonationAmount);
+}
+
+[Fact]
+public async Task Donate_CampaignEnded_ShouldFail()
+{
+    // Arrange
+    await DonationContract.Initialize.SendAsync(new InitializeInput());
+    
+    var createResult = await DonationContract.CreateCampaign.SendAsync(new CreateCampaignInput
+    {
+        Title = "Test Campaign",
+        Description = "Test Description",
+        TargetAmount = 100_00000000,
+        StartTime = GetTimestamp(-30),  // Started 30 days ago
+        EndTime = GetTimestamp(-1)      // Ended yesterday
+    });
+    var campaignId = createResult.Output.Value;
+
+    await ApproveTokenAsync(DonationContractAddress, DefaultDonationAmount);
+
+    // Act & Assert
+    var exception = await Assert.ThrowsAsync<Exception>(() =>
+        DonationContract.Donate.SendAsync(new DonateInput
+        {
+            CampaignId = campaignId,
+            Amount = DefaultDonationAmount
+        }));
+    exception.Message.ShouldContain("Campaign has ended");
+}
+
+[Fact]
+public async Task Donate_ExceedTargetAmount_ShouldFail()
+{
+    // Arrange
+    await DonationContract.Initialize.SendAsync(new InitializeInput());
+    
+    var targetAmount = 10_00000000;  // 10 ELF
+    var createResult = await DonationContract.CreateCampaign.SendAsync(new CreateCampaignInput
+    {
+        Title = "Test Campaign",
+        Description = "Test Description",
+        TargetAmount = targetAmount,
+        StartTime = GetTimestamp(),
+        EndTime = GetTimestamp(30)
+    });
+    var campaignId = createResult.Output.Value;
+
+    // First donation equals target amount
+    await ApproveTokenAsync(DonationContractAddress, targetAmount);
+    await DonationContract.Donate.SendAsync(new DonateInput
+    {
+        CampaignId = campaignId,
+        Amount = targetAmount
+    });
+
+    // Try to donate more
+    await ApproveTokenAsync(DonationContractAddress, DefaultDonationAmount);
+
+    // Act & Assert
+    var exception = await Assert.ThrowsAsync<Exception>(() =>
+        DonationContract.Donate.SendAsync(new DonateInput
+        {
+            CampaignId = campaignId,
+            Amount = DefaultDonationAmount
+        }));
+    exception.Message.ShouldContain("Campaign target amount reached");
+}
+```
+
+These test cases demonstrate:
+
+1. **Successful Donation**: Tests a complete donation flow, including:
+   - Campaign creation
+   - Token approval
+   - Donation execution
+   - Verification of campaign amount and donor list
+
+2. **Campaign End Date Validation**: Tests that donations cannot be made to expired campaigns
+
+3. **Target Amount Validation**: Tests that donations cannot exceed the campaign's target amount
+
+Each test follows the Arrange-Act-Assert pattern and uses the `Shouldly` assertion library for clear, readable assertions.
+
+:::Note
+For a deeper dive into unit testing smart contracts, check out the complete test suite in our [GitHub repository](https://github.com/AElfProject/aelf-samples/tree/master/donation/1-smart-contract/test).
+:::
 
 ## Step 3 - Deploy Smart Contract
 
