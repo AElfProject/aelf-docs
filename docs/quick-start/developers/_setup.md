@@ -20,7 +20,11 @@ softwareupdate --install-rosetta
 - [Install dotnet 8.0.x SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - Install aelf contract templates
 
-<Tabs>
+```bash title="Terminal"
+dotnet new install AElf.ContractTemplates
+```
+
+<!-- <Tabs>
 <TabItem value="Linux and macOs" label="Linux and macOs" default>
 ```bash title="Terminal"
 dotnet new --install AElf.ContractTemplates
@@ -32,7 +36,7 @@ dotnet new --install AElf.ContractTemplates
 dotnet new install AElf.ContractTemplates
 ```
 </TabItem>
-</Tabs>
+</Tabs> -->
 
 AELF.ContractTemplates contains various predefined templates for the ease of developing smart contracts on the aelf blockchain.
 
@@ -72,6 +76,13 @@ npm i -g aelf-command
 
 aelf-command is a CLI tool for interacting with the aelf blockchain, enabling tasks like creating wallets and managing transactions.
 Provide required permissions while installing aelf-command globally.
+
+**Install Git**
+
+- [Install Git](https://git-scm.com/downloads)
+
+As we will be using a ready made project, we will require git to clone from the project.
+
 </TabItem>
 
 <TabItem value="codespaces" label="Codespaces">
